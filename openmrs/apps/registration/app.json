@@ -68,28 +68,18 @@
                         "id3DocNumber",
                         "id3DateOfExpiry"
                     ]
-                },
-
-                "hidden": {
-                    "attributes": [
-                        "primaryContact"
-                    ]
-                },
-                "defaults":  {
-                    "class": "General",
-                    "landHolding": 2
                 }
             },
             "addressHierarchy": {
                 "showAddressFieldsTopDown": false,
                 "freeTextAddressFields": ["address2", "address1"]
             },
+
             "relationshipTypeMap": {
                 "Doctor":"provider",
                 "Parent":"patient"
             },
 
-            "autoCompleteFields":["familyName", "caste"],
             "defaultIdentifierPrefix": "AMN",
             "defaultVisitType": "OPD",
             "searchByIdForwardUrl": "/patient/{{patientUuid}}",
@@ -112,15 +102,10 @@
                     "shortcutKey": "r"
                 }
             ],
-            "conceptSetUI": {
-            },
             "fieldValidation" : {
-                "primaryContact" : {"pattern" : "[0-9]{8,10}", "errorMessage" : "Should be 12 characters starting with 91 (country code)"},
-                "landHolding" : {"pattern" : "[0-9]{0,3}", "errorMessage" : "Should be between 1 to 999 acres"},
                 "familyName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
                 "givenName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
-                "middleName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
-                "address1" : {"pattern" : "[a-zA-Z0-9]{3}", "errorMessage" : "Should contain 3 characters"}
+                "middleName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"}
             },
             "patientSearch": {
                 "address": {
