@@ -18,18 +18,58 @@
         ],
         "config" : {
             "patientInformation": {
-                "additionalPatientInformation": {
-                    "title": "Additional Patient Information",
+                "patientContact": {
+                    "title": "Patient Contact",
+                    "translationKey": "Patient Contact",
                     "attributes": [
-                        "distanceFromCenter",
-                        "isUrban",
-                        "cluster",
-                        "RationCard",
-                        "familyIncome",
-                        "debt",
-                        "cluster"
+                        "phoneNumber1",
+                        "phoneNumber2",
+                        "emailAddress",
+                        "whatsapp",
+                        "facebook",
+                        "viber"
                     ]
                 },
+                "idDocumentOne": {
+                    "title": "ID Document 1 (Please enter details as written in document)",
+                    "translationKey": "ID Document 1 (Please enter details as written in document)",
+                    "attributes": [
+                        "id1Document",
+                        "id1FirstNameEnglish",
+                        "id1FamilyNameEnglish",
+                        "id1FirstNameArabic",
+                        "id1FamilyNameArabic",
+                        "id1DocNumber",
+                        "id1DateOfExpiry"
+                    ]
+                },
+                "idDocumentTwo": {
+                    "title": "ID Document 2 (Please enter details as written in document)",
+                    "translationKey": "ID Document 2 (Please enter details as written in document)",
+                    "attributes": [
+                        "id2Document",
+                        "id2FirstNameEnglish",
+                        "id2FamilyNameEnglish",
+                        "id2FirstNameArabic",
+                        "id2FamilyNameArabic",
+                        "id2DocNumber",
+                        "id2DateOfExpiry"
+                    ]
+                },
+                "idDocumentThree": {
+                    "title": "ID Document 3 (Please enter details as written in document)",
+                    "translationKey": "ID Document 3 (Please enter details as written in document)",
+                    "attributes": [
+                        "id3Document",
+                        "id3FirstNameEnglish",
+                        "id3FamilyNameEnglish",
+                        "id3FirstNameArabic",
+                        "id3FamilyNameArabic",
+                        "id3DocNumber",
+                        "id3DateOfExpiry"
+                    ]
+                },
+
                 "hidden": {
                     "attributes": [
                         "primaryContact"
