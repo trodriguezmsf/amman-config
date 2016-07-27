@@ -27,7 +27,8 @@
                         "emailAddress",
                         "whatsapp",
                         "facebook",
-                        "viber"
+                        "viber",
+                        "emergencyContactNumber"
                     ]
                 },
                 "idDocumentOne": {
