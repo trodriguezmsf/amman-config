@@ -42,7 +42,8 @@
                         "id1FamilyNameArabic",
                         "id1DocNumber",
                         "id1DateOfExpiry"
-                    ]
+                    ],
+                    "expanded": true
                 },
                 "idDocumentTwo": {
                     "title": "ID Document 2 (Please enter details as written in document)",
