@@ -18,7 +18,7 @@
         ],
         "config" : {
             "patientInformation": {
-                "patientContact": {
+                "3patientContact": {
                     "title": "Patient Contact",
                     "translationKey": "Patient Contact",
                     "attributes": [
@@ -27,11 +27,41 @@
                         "emailAddress",
                         "whatsapp",
                         "facebook",
-                        "viber",
-                        "emergencyContactNumber"
+                        "viber"
                     ]
                 },
-                "idDocumentOne": {
+
+                "1campaddress" :{
+                    "title": "Camp Address",
+                    "translationKey": "Camp Address",
+                    "attributes": [
+                        "CampCountry",
+                        "NameOfTheCamp",
+                        "NameOfTheBlock",
+                        "NameOfTheArea"
+
+                    ]
+                },
+                "2otherInformation" :{
+                    "title": "Other Information",
+                    "translationKey": "Other Information",
+                    "attributes": [
+                        "nationality1",
+                        "nationality2",
+                        "occupation",
+                        "SpokenLanguages"
+                    ]
+                },
+                "4emergencyContact": {
+                    "title":"Emergency Contact Details",
+                    "translationKey": "Emergency Contact Details",
+                    "attributes":[
+                        "EmergencyContactName",
+                        "emergencyContactNumber",
+                        "RelationWithPatient"
+                    ]
+                },
+                "4idDocumentOne": {
                     "title": "ID Document 1 (Please enter details as written in document)",
                     "translationKey": "ID Document 1 (Please enter details as written in document)",
                     "attributes": [
@@ -43,9 +73,9 @@
                         "id1DocNumber",
                         "id1DateOfExpiry"
                     ],
-                    "expanded": true
+                    "expanded":true
                 },
-                "idDocumentTwo": {
+                "5idDocumentTwo": {
                     "title": "ID Document 2 (Please enter details as written in document)",
                     "translationKey": "ID Document 2 (Please enter details as written in document)",
                     "attributes": [
@@ -58,7 +88,7 @@
                         "id2DateOfExpiry"
                     ]
                 },
-                "idDocumentThree": {
+                "6idDocumentThree": {
                     "title": "ID Document 3 (Please enter details as written in document)",
                     "translationKey": "ID Document 3 (Please enter details as written in document)",
                     "attributes": [
@@ -82,7 +112,7 @@
                 "Parent":"patient"
             },
 
-            "defaultIdentifierPrefix": "AMN",
+
             "defaultVisitType": "OPD",
             "searchByIdForwardUrl": "/patient/{{patientUuid}}",
             "showMiddleName": true,
