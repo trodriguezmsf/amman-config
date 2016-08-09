@@ -60,8 +60,8 @@
                     ]
                 },
                 "idDocumentOne": {
-                    "title": "ID Document 1 (Please enter details as written in document)",
-                    "translationKey": "ID Document 1 (Please enter details as written in document)",
+                    "title": "Patient ID Document 1",
+                    "translationKey": "Patient ID Document 1",
                     "attributes": [
                         "id1Document",
                         "id1FirstNameEnglish",
@@ -74,8 +74,8 @@
                     "expanded": true
                 },
                 "idDocumentTwo": {
-                    "title": "ID Document 2 (Please enter details as written in document)",
-                    "translationKey": "ID Document 2 (Please enter details as written in document)",
+                    "title": "Patient ID Document 2",
+                    "translationKey": "Patient ID Document 2",
                     "attributes": [
                         "id2Document",
                         "id2FirstNameEnglish",
