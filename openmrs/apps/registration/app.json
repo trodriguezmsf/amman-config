@@ -18,7 +18,7 @@
         ],
         "config" : {
             "patientInformation": {
-                "3patientContact": {
+                "patientContact": {
                     "title": "Patient Contact",
                     "translationKey": "Patient Contact",
                     "attributes": [
@@ -30,8 +30,7 @@
                         "viber"
                     ]
                 },
-
-                "1campaddress" :{
+                "campaddress": {
                     "title": "Camp Address",
                     "translationKey": "Camp Address",
                     "attributes": [
@@ -39,10 +38,9 @@
                         "NameOfTheCamp",
                         "NameOfTheBlock",
                         "NameOfTheArea"
-
                     ]
                 },
-                "2otherInformation" :{
+                "otherInformation": {
                     "title": "Other Information",
                     "translationKey": "Other Information",
                     "attributes": [
@@ -52,16 +50,16 @@
                         "SpokenLanguages"
                     ]
                 },
-                "4emergencyContact": {
-                    "title":"Emergency Contact Details",
+                "emergencyContact": {
+                    "title": "Emergency Contact Details",
                     "translationKey": "Emergency Contact Details",
-                    "attributes":[
+                    "attributes": [
                         "EmergencyContactName",
                         "emergencyContactNumber",
                         "RelationWithPatient"
                     ]
                 },
-                "4idDocumentOne": {
+                "idDocumentOne": {
                     "title": "ID Document 1 (Please enter details as written in document)",
                     "translationKey": "ID Document 1 (Please enter details as written in document)",
                     "attributes": [
@@ -73,9 +71,9 @@
                         "id1DocNumber",
                         "id1DateOfExpiry"
                     ],
-                    "expanded":true
+                    "expanded": true
                 },
-                "5idDocumentTwo": {
+                "idDocumentTwo": {
                     "title": "ID Document 2 (Please enter details as written in document)",
                     "translationKey": "ID Document 2 (Please enter details as written in document)",
                     "attributes": [
@@ -88,9 +86,21 @@
                         "id2DateOfExpiry"
                     ]
                 },
-                "6idDocumentThree": {
-                    "title": "ID Document 3 (Please enter details as written in document)",
-                    "translationKey": "ID Document 3 (Please enter details as written in document)",
+                "caretaker": {
+                    "title": "Caretaker Details",
+                    "translationKey": "Caretaker Details",
+                    "attributes": [
+                        "CaretakerNameinEng",
+                        "CaretakerNameinArb",
+                        "CaretakerGender",
+                        "CaretakerDob",
+                        "CaretakerAge",
+                        "CaretakerNationality"
+                    ]
+                },
+                "Caretaker ID documents": {
+                    "title": "Caretaker ID Documents",
+                    "translationKey": "Caretaker ID Documents",
                     "attributes": [
                         "id3Document",
                         "id3FirstNameEnglish",
@@ -99,6 +109,32 @@
                         "id3FamilyNameArabic",
                         "id3DocNumber",
                         "id3DateOfExpiry"
+                    ]
+                },
+                "Caretaker Contact Details": {
+                    "title": "Caretaker Contact Details",
+                    "translationKey": "Caretaker Contact Details",
+                    "attributes": [
+                        "CaretakerPhoneNum1",
+                        "CaretakerPhoneNum2",
+                        "CaretakerEmail",
+                        "CaretakerWhatsapp",
+                        "CaretakerViber",
+                        "CaretakerFacebook"
+                    ]
+                },
+                "LegalRepresentative": {
+                    "title": "Legal representative (for patient under 18 years only) ",
+                    "translationKey": "Legal representative (for patient under 18 years only) ",
+                    "attributes": [
+                        "LegalRepRelationWithPatient",
+                        "LegalRepalsoCaretaker",
+                        "LegalRepFullnameinEng",
+                        "LegalRepFullnameinArb",
+                        "LegalRepGender",
+                        "LegalRepDob",
+                        "LegalRepAge",
+                        "LegalRepNationality"
                     ]
                 }
             },
