@@ -34,10 +34,10 @@
                     "title": "Camp Address",
                     "translationKey": "Camp Address",
                     "attributes": [
-                        "CampCountry",
-                        "NameOfTheCamp",
-                        "NameOfTheBlock",
-                        "NameOfTheArea"
+                        "campCountry",
+                        "nameoftheCamp",
+                        "nameoftheBlock",
+                        "nameoftheArea"
                     ]
                 },
                 "otherInformation": {
@@ -47,16 +47,16 @@
                         "nationality1",
                         "nationality2",
                         "occupation",
-                        "SpokenLanguages"
+                        "spokenLanguages"
                     ]
                 },
                 "emergencyContact": {
                     "title": "Emergency Contact Details",
                     "translationKey": "Emergency Contact Details",
                     "attributes": [
-                        "EmergencyContactName",
+                        "emergencyContactName",
                         "emergencyContactNumber",
-                        "RelationWithPatient"
+                        "relationWithPatient"
                     ]
                 },
                 "idDocumentOne": {
@@ -90,12 +90,12 @@
                     "title": "Caretaker Details",
                     "translationKey": "Caretaker Details",
                     "attributes": [
-                        "CaretakerNameinEng",
-                        "CaretakerNameinArb",
-                        "CaretakerGender",
-                        "CaretakerDob",
-                        "CaretakerAge",
-                        "CaretakerNationality"
+                        "caretakerNameEnglish",
+                        "caretakerNameArabic",
+                        "caretakerGender",
+                        "caretakerDob",
+                        "caretakerAge",
+                        "caretakerNationality"
                     ]
                 },
                 "Caretaker ID documents": {
@@ -115,26 +115,26 @@
                     "title": "Caretaker Contact Details",
                     "translationKey": "Caretaker Contact Details",
                     "attributes": [
-                        "CaretakerPhoneNum1",
-                        "CaretakerPhoneNum2",
-                        "CaretakerEmail",
-                        "CaretakerWhatsapp",
-                        "CaretakerViber",
-                        "CaretakerFacebook"
+                        "caretakerPhoneNum1",
+                        "caretakerPhoneNum2",
+                        "caretakerEmail",
+                        "caretakerWhatsapp",
+                        "caretakerViber",
+                        "caretakerFacebook"
                     ]
                 },
                 "LegalRepresentative": {
                     "title": "Legal Representative (for patient under 18 years only) ",
                     "translationKey": "Legal Representative (for patient under 18 years only) ",
                     "attributes": [
-                        "LegalRepFullnameinEng",
-                        "LegalRepFullnameinArb",
-                        "LegalRepRelationWithPatient",
-                        "LegalRepalsoCaretaker",
-                        "LegalRepGender",
-                        "LegalRepDob",
-                        "LegalRepAge",
-                        "LegalRepNationality"
+                        "legalRepFullNameEnglish",
+                        "legalRepFullNameArabic",
+                        "legalRepRelationWithPatient",
+                        "legalRepalsoCaretaker",
+                        "legalRepGender",
+                        "legalRepDob",
+                        "legalRepAge",
+                        "legalRepNationality"
                     ]
                 }
             },
