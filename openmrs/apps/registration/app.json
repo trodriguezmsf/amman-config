@@ -124,13 +124,13 @@
                     ]
                 },
                 "LegalRepresentative": {
-                    "title": "Legal representative (for patient under 18 years only) ",
-                    "translationKey": "Legal representative (for patient under 18 years only) ",
+                    "title": "Legal Representative (for patient under 18 years only) ",
+                    "translationKey": "Legal Representative (for patient under 18 years only) ",
                     "attributes": [
-                        "LegalRepRelationWithPatient",
-                        "LegalRepalsoCaretaker",
                         "LegalRepFullnameinEng",
                         "LegalRepFullnameinArb",
+                        "LegalRepRelationWithPatient",
+                        "LegalRepalsoCaretaker",
                         "LegalRepGender",
                         "LegalRepDob",
                         "LegalRepAge",
