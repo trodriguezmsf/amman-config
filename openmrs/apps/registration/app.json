@@ -115,8 +115,8 @@
                     "title": "Caretaker Contact Details",
                     "translationKey": "Caretaker Contact Details",
                     "attributes": [
-                        "caretakerPhoneNum1",
-                        "caretakerPhoneNum2",
+                        "caretakerPhoneNumber1",
+                        "caretakerPhoneNumber2",
                         "caretakerEmail",
                         "caretakerWhatsapp",
                         "caretakerViber",
