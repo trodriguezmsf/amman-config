@@ -31,6 +31,27 @@
                     "maximumNoOfVisits": 8,
                     "groupByVisits": true
                 }
+            },
+            "historyAndExaminations": {
+                "translationKey": "DASHBOARD_TITLE_HISTORY_AND_EXAMINATIONS_KEY",
+                "type": "vitals",
+                "isObservation": true,
+                "displayOrder": 14,
+                "dashboardConfig": {
+                    "showDetailsButton": true,
+                    "conceptNames": [
+                        "History and Examination"
+                    ],
+                    "numberOfVisits": 2
+                },
+                "expandedViewConfig": {
+                    "conceptNames": [
+                        "History and Examination"
+                    ],
+                    "numberOfVisits": 2,
+                    "showDetailsButton": true,
+                    "pivotTable": {}
+                }
             }
         }
     }
