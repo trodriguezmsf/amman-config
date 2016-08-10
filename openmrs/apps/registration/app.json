@@ -54,9 +54,13 @@
                     "translationKey": "Camp Address",
                     "attributes": [
                         "campCountry",
+                        "campGovernorate",
                         "nameoftheCamp",
+                        "campVillage",
+                        "campDistrict",
                         "nameoftheBlock",
-                        "nameoftheArea"
+                        "nameoftheArea",
+                        ""
                     ]
                 },
                 "otherInformation": {
