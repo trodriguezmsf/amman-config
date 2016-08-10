@@ -17,6 +17,25 @@
             "activeVisitUuid"
         ],
         "config" : {
+            "mandatoryPersonAttributes" : [
+                "caretakerDob",
+                "legalRepDob",
+                "legalRepFullNameEnglish",
+                "legalRepRelationWithPatient",
+                "caretakerPhoneNumber1",
+                "id3Document",
+                "id3FirstNameEnglish",
+                "id3FirstNameArabic",
+                "caretakerNameEnglish",
+                "caretakerNameArabic",
+                "caretakerGender",
+                "caretakerDob",
+                "id1Document",
+                "id1FullNameEnglish",
+                "id1DocNumber",
+                "spokenLanguages",
+                "phoneNumber1"
+                ],
             "patientInformation": {
                 "patientContact": {
                     "title": "Patient Contact",
@@ -64,10 +83,8 @@
                     "translationKey": "Patient ID Document 1",
                     "attributes": [
                         "id1Document",
-                        "id1FirstNameEnglish",
-                        "id1FamilyNameEnglish",
-                        "id1FirstNameArabic",
-                        "id1FamilyNameArabic",
+                        "id1FullNameEnglish",
+                        "id1FullNameArabic",
                         "id1DocNumber",
                         "id1DateOfExpiry"
                     ],
@@ -78,10 +95,8 @@
                     "translationKey": "Patient ID Document 2",
                     "attributes": [
                         "id2Document",
-                        "id2FirstNameEnglish",
-                        "id2FamilyNameEnglish",
-                        "id2FirstNameArabic",
-                        "id2FamilyNameArabic",
+                        "id2FullNameEnglish",
+                        "id2FullNameArabic",
                         "id2DocNumber",
                         "id2DateOfExpiry"
                     ]
@@ -103,10 +118,8 @@
                     "translationKey": "Caretaker ID Documents",
                     "attributes": [
                         "id3Document",
-                        "id3FirstNameEnglish",
-                        "id3FamilyNameEnglish",
-                        "id3FirstNameArabic",
-                        "id3FamilyNameArabic",
+                        "id3FullNameEnglish",
+                        "id3FullNameArabic",
                         "id3DocNumber",
                         "id3DateOfExpiry"
                     ]
@@ -147,6 +160,7 @@
                 "Doctor":"provider",
                 "Parent":"patient"
             },
+
 
 
             "defaultVisitType": "OPD",
