@@ -34,8 +34,10 @@
                         "emailAddress",
                         "whatsapp",
                         "facebook",
-                        "viber"
-                    ]
+                        "viber",
+                        "isCareTakerRequired"
+                    ],
+                    "expanded": true
                 },
                 "campaddress": {
                     "title": "Camp Address",
