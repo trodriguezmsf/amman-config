@@ -18,18 +18,6 @@
         ],
         "config" : {
             "mandatoryPersonAttributes" : [
-                "caretakerDob",
-                "legalRepDob",
-                "legalRepFullNameEnglish",
-                "legalRepRelationWithPatient",
-                "caretakerPhoneNumber1",
-                "id3Document",
-                "id3FirstNameEnglish",
-                "id3FirstNameArabic",
-                "caretakerNameEnglish",
-                "caretakerNameArabic",
-                "caretakerGender",
-                "caretakerDob",
                 "id1Document",
                 "id1FullNameEnglish",
                 "id1DocNumber",

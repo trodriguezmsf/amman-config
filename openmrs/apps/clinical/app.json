@@ -46,6 +46,103 @@
         "conceptSetUI": {
             "Video": {
                 "allowAddMore": true
+            },
+            "PMIPA, Name of MLO": {
+                "dropdown": true,
+                "required":true
+            },
+            "PMIPA, Network Area": {
+                "dropdown": true,
+                "required":true
+            },
+            "PMIPA, Referred by":{
+                "required":true
+            },
+            "PMIPA, Type of medical information received":{
+                "dropdown":true,
+                "required":true
+            },
+            "Date received":{
+                "required":true
+            },
+            "Cause of injury":{
+                "required":true
+            },
+            "PMIPA, Is the medical file complete?":{
+                "required":true
+            },
+
+            "PMIPA, Specialty determined by MLO":{
+                "dropdown":true,
+                "required":true
+            },
+            "PMIPA, If caretaker is needed, why?":{
+                "dropdown":true
+            },
+            "PMIPA, Specialty":{
+                "dropdown":true
+            },
+            "PMIPA, Outcomes for 1st stage surgical validation":{
+                "dropdown":true,
+                "required":true
+            },
+            "PMIPA, Priority":
+            {
+                "dropdown":true
+            },
+            "PMIPA, Name (s) of Surgeon 1":{
+                "dropdown":true
+            },
+            "PMIPA, Name (s) of Surgeon 2":{
+                "dropdown":true
+            },
+            "PMIPA, Outcomes for 1st stage Aneasthesia validation":
+            {
+                "dropdown":true
+            },
+            "PMIPA, Name (s) of Anesthetist":{
+                "dropdown":true
+            },
+            "PMIPA, Postpone reason":{
+                "dropdown":true
+            },
+            "PMIPA, Refused Reason":{
+                "dropdown":true
+            },
+            "PMIPA, Outcomes for follow-up surgical validation":{
+                "dropdown":true
+            },
+            "PMIPA, Qualitative outcome":{
+                "dropdown":true
+            },
+            "PMIPA, Date of next medical follow-up to be done":{
+                "dropdown":true,
+                "required":true
+            },
+            "PMIPA, Dismissal reason":{
+                "dropdown":true
+            },
+            "PMIPA, Approval of dismissal":{
+                "dropdown":true
+            },
+            "PMIPA, Reason for re-admission":{
+                "dropdown":true
+            },
+            "PMIPA, Does the patient need medical final validation?":{
+                "required":true,
+                "dropdown":true
+            },
+            "PMIPA, Outcomes FV":{
+                "dropdown":true
+            },
+            "PMIPA, Stage":{
+                "dropdown":true
+            },
+            "PMIPA, Medical file to be submitted again by":{
+                "required":true
+            },
+            "PMIPA, Type of medical information needed for next submission":{
+                "required":true
             }
         },
         "visitPage": {

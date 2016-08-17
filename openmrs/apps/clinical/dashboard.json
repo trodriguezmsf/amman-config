@@ -52,6 +52,28 @@
                     "showDetailsButton": true,
                     "pivotTable": {}
                 }
+            },
+            "Patient Medical Information Prior to Admission":{
+                "translationKey": "DASHBOARD_TITLE_PATIENT_MEDICAL_INFORMATION_PRIOR_TO_ADMISSION",
+                "type": "vitals",
+                "isObservation": true,
+                "displayOrder": 14,
+                "dashboardConfig": {
+                    "showDetailsButton": true,
+                    "conceptNames": [
+                        "Patient Medical Information Prior to Admission"
+                    ],
+                    "numberOfVisits": 1
+                },
+                "expandedViewConfig": {
+                    "conceptNames": [
+                        "Patient Medical Information Prior to Admission"
+                    ],
+                    "numberOfVisits": 1,
+                    "showDetailsButton": true,
+                    "pivotTable": {}
+                }
+
             }
         }
     }
