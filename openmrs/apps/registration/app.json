@@ -26,11 +26,12 @@
                 ],
             "patientInformation": {
                 "patientContact": {
-                    "title": "Patient Contact",
-                    "translationKey": "Patient Contact",
+                    "title": "Patient Contact Details",
+                    "translationKey": "Patient Contact Details",
                     "attributes": [
                         "phoneNumber1",
                         "phoneNumber2",
+                        "phoneNumber3",
                         "emailAddress",
                         "whatsapp",
                         "facebook",
@@ -49,7 +50,7 @@
                         "campVillage",
                         "campDistrict",
                         "nameoftheBlock",
-                        "nameoftheArea",
+                        "nameoftheStreet",
                         ""
                     ]
                 },
@@ -60,8 +61,10 @@
                         "nationality1",
                         "nationality2",
                         "occupation",
-                        "spokenLanguages"
-                    ]
+                        "spokenLanguages",
+                        "isCareTakerRequired"
+                    ],
+                    "expanded": true
                 },
                 "emergencyContact": {
                     "title": "Emergency Contact Details",
@@ -73,32 +76,28 @@
                     ]
                 },
                 "idDocumentOne": {
-                    "title": "Patient ID Document 1",
-                    "translationKey": "Patient ID Document 1",
+                    "title": "Patient ID Documents",
+                    "translationKey": "Patient ID Documents",
                     "attributes": [
+                        "doesthePatienthaveOfficalIddocuments",
                         "id1Document",
                         "id1FullNameEnglish",
                         "id1FullNameArabic",
                         "id1DocNumber",
-                        "id1DateOfExpiry"
-                    ],
-                    "expanded": true
-                },
-                "idDocumentTwo": {
-                    "title": "Patient ID Document 2",
-                    "translationKey": "Patient ID Document 2",
-                    "attributes": [
+                        "id1DateOfExpiry",
                         "id2Document",
                         "id2FullNameEnglish",
                         "id2FullNameArabic",
                         "id2DocNumber",
                         "id2DateOfExpiry"
-                    ]
+                    ],
+                    "expanded": true
                 },
                 "caretaker": {
                     "title": "Caretaker Details",
                     "translationKey": "Caretaker Details",
                     "attributes": [
+                        "caretakeralsoLegalRep",
                         "caretakerNameEnglish",
                         "caretakerNameArabic",
                         "caretakerGender",
@@ -137,10 +136,8 @@
                         "legalRepFullNameEnglish",
                         "legalRepFullNameArabic",
                         "legalRepRelationWithPatient",
-                        "legalRepalsoCaretaker",
                         "legalRepGender",
                         "legalRepDob",
-                        "legalRepAge",
                         "legalRepNationality"
                     ]
                 }
@@ -159,7 +156,7 @@
 
             "defaultVisitType": "OPD",
             "searchByIdForwardUrl": "/patient/{{patientUuid}}",
-            "showMiddleName": true,
+            "showMiddleName": false,
             "showCasteSameAsLastNameCheckbox": false,
             "printOptions": [
                 {

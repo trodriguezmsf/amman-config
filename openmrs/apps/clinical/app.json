@@ -52,8 +52,7 @@
                 "required":true
             },
             "PMIPA, Network Area": {
-                "dropdown": true,
-                "required":true
+                "dropdown": true
             },
             "PMIPA, Referred by":{
                 "required":true
@@ -65,22 +64,24 @@
             "Date received":{
                 "required":true
             },
-            "Cause of injury":{
-                "required":true
+            "PMIPA, Cause of injury":{
+                "required":true,
+                "dropdown":true
             },
             "PMIPA, Is the medical file complete?":{
                 "required":true
             },
 
             "PMIPA, Specialty determined by MLO":{
-                "dropdown":true,
-                "required":true
+                "required":true,
+                "multiSelect":true
             },
             "PMIPA, If caretaker is needed, why?":{
                 "dropdown":true
             },
-            "PMIPA, Specialty":{
-                "dropdown":true
+            "PMIPA, Specialty determined by MLO at first validation":{
+                "multiSelect":true,
+                "required":true
             },
             "PMIPA, Outcomes for 1st stage surgical validation":{
                 "dropdown":true,
