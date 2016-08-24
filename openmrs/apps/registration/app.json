@@ -25,21 +25,6 @@
                 "phoneNumber1"
                 ],
             "patientInformation": {
-                "patientContact": {
-                    "title": "Patient Contact Details",
-                    "translationKey": "Patient Contact Details",
-                    "attributes": [
-                        "phoneNumber1",
-                        "phoneNumber2",
-                        "phoneNumber3",
-                        "emailAddress",
-                        "whatsapp",
-                        "facebook",
-                        "viber",
-                        "isCareTakerRequired"
-                    ],
-                    "expanded": true
-                },
                 "campaddress": {
                     "title": "Camp Address",
                     "translationKey": "Camp Address",
@@ -50,30 +35,24 @@
                         "campVillage",
                         "campDistrict",
                         "nameoftheBlock",
-                        "nameoftheStreet",
-                        ""
-                    ]
-                },
-                "otherInformation": {
-                    "title": "Other Information",
-                    "translationKey": "Other Information",
-                    "attributes": [
-                        "nationality1",
-                        "nationality2",
-                        "occupation",
-                        "spokenLanguages",
-                        "isCareTakerRequired"
+                        "nameoftheStreet"
                     ],
-                    "expanded": true
+                    "order": 1
                 },
-                "emergencyContact": {
-                    "title": "Emergency Contact Details",
-                    "translationKey": "Emergency Contact Details",
+                "patientContact": {
+                    "title": "Patient Contact Details",
+                    "translationKey": "Patient Contact Details",
                     "attributes": [
-                        "emergencyContactName",
-                        "emergencyContactNumber",
-                        "relationWithPatient"
-                    ]
+                        "phoneNumber1",
+                        "phoneNumber2",
+                        "phoneNumber3",
+                        "emailAddress",
+                        "whatsapp",
+                        "facebook",
+                        "viber"
+                    ],
+                    "order": 2,
+                    "expanded": true
                 },
                 "idDocumentOne": {
                     "title": "Patient ID Documents",
@@ -91,20 +70,45 @@
                         "id2DocNumber",
                         "id2DateOfExpiry"
                     ],
+                    "order": 3,
                     "expanded": true
+                },
+                "otherInformation": {
+                    "title": "Other Information",
+                    "translationKey": "Other Information",
+                    "attributes": [
+                        "nationality1",
+                        "nationality2",
+                        "occupation",
+                        "spokenLanguages",
+                        "isCareTakerRequired"
+                    ],
+                    "expanded": true,
+                    "order": 4
+                },
+                "emergencyContact": {
+                    "title": "Emergency Contact Details",
+                    "translationKey": "Emergency Contact Details",
+                    "attributes": [
+                        "emergencyContactName",
+                        "emergencyContactNumber",
+                        "relationWithPatient"
+                    ],
+                    "order": 5
                 },
                 "caretaker": {
                     "title": "Caretaker Details",
                     "translationKey": "Caretaker Details",
                     "attributes": [
-                        "caretakeralsoLegalRep",
                         "caretakerNameEnglish",
                         "caretakerNameArabic",
                         "caretakerGender",
                         "caretakerDob",
                         "caretakerAge",
-                        "caretakerNationality"
-                    ]
+                        "caretakerNationality",
+                        "caretakeralsoLegalRep"
+                    ],
+                    "order": 6
                 },
                 "Caretaker ID documents": {
                     "title": "Caretaker ID Documents",
@@ -115,7 +119,8 @@
                         "id3FullNameArabic",
                         "id3DocNumber",
                         "id3DateOfExpiry"
-                    ]
+                    ],
+                    "order": 7
                 },
                 "Caretaker Contact Details": {
                     "title": "Caretaker Contact Details",
@@ -127,7 +132,8 @@
                         "caretakerWhatsapp",
                         "caretakerViber",
                         "caretakerFacebook"
-                    ]
+                    ],
+                    "order": 8
                 },
                 "LegalRepresentative": {
                     "title": "Legal Representative (for patient under 18 years only) ",
@@ -139,7 +145,8 @@
                         "legalRepGender",
                         "legalRepDob",
                         "legalRepNationality"
-                    ]
+                    ],
+                    "order": 9
                 }
             },
             "addressHierarchy": {
