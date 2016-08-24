@@ -24,27 +24,46 @@ Bahmni.ConceptSet.FormConditions.rules = {
           	};
           	var conditionConcept = formFieldValues['PMIPA, Outcomes for 1st stage surgical validation'];
           	if (conditionConcept=="Valid") {
-          		conditions.enable.push("PMIPA, Priority","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:")
+          		conditions.enable.push("PMIPA, Priority","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Outcomes for 1st stage Aneasthesia validation")
           		conditions.disable.push("PMIPA, Postpone reason","PMIPA, Comments about postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Type of medical information needed for next submission","PMIPA, Refused Reason","PMIPA, Comments about refusal")
           		}
           	else if(conditionConcept=="Postponed") {
-          	conditions.enable.push("PMIPA, Postpone reason","PMIPA, Comments about postpone reason","PMIPA, Medical file to be submitted again by")
-          	conditions.disable.push("PMIPA, Priority","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Type of medical information needed for next submission","PMIPA, Refused Reason","PMIPA, Comments about refusal")
+          	conditions.enable.push("PMIPA, Postpone reason","PMIPA, Comments about postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Outcomes for 1st stage Aneasthesia validation")
+          	conditions.disable.push("PMIPA, Priority","PMIPA, Outcomes for 1st stage Aneasthesia validation","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Type of medical information needed for next submission","PMIPA, Refused Reason","PMIPA, Comments about refusal")
           	}
           	else if(conditionConcept=="More Information"){
           	conditions.enable.push("PMIPA, Type of medical information needed for next submission")
-          	conditions.disable.push("PMIPA, Priority","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Postpone reason","PMIPA, Comments about postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Refused Reason","PMIPA, Comments about refusal")
+          	conditions.disable.push("PMIPA, Priority","PMIPA, Outcomes for 1st stage Aneasthesia validation","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Postpone reason","PMIPA, Comments about postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Refused Reason","PMIPA, Comments about refusal")
           	}
           	else if(conditionConcept=="Refused"){
           	conditions.enable.push("PMIPA, Refused Reason","PMIPA, Comments about refusal")
-          	conditions.disable.push("PMIPA, Priority","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Postpone reason","PMIPA, Comments about postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Type of medical information needed for next submission")
+          	conditions.disable.push("PMIPA, Priority","PMIPA, Outcomes for 1st stage Aneasthesia validation","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Postpone reason","PMIPA, Comments about postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Type of medical information needed for next submission")
           	}
           	else {
-          	    conditions.disable.push("PMIPA, Priority","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Postpone reason","PMIPA, Comments about postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Type of medical information needed for next submission","PMIPA, Refused Reason","PMIPA, Comments about refusal")
+          	    conditions.disable.push("PMIPA, Priority","PMIPA, Outcomes for 1st stage Aneasthesia validation","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Postpone reason","PMIPA, Comments about postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Type of medical information needed for next submission","PMIPA, Refused Reason","PMIPA, Comments about refusal")
           	}
           	return conditions;
             },
-      'PMIPA, Outcomes for follow-up surgical validation' : function (formName, formFieldValues) {
+            "PMIPA, Outcomes for 1st stage Aneasthesia validation": function (formName, formFieldValues) {
+                        var conditions = {
+                            enable : [],
+                            disable : []
+                        };
+            var conditionConcept = formFieldValues['PMIPA, Outcomes for 1st stage Aneasthesia validation'];
+            if (conditionConcept == "Fits anaesthesia criteria"){
+            conditions.enable.push("PMIPA, Name (s) of Anesthetist","Comments about Aneasthesia validation")
+            conditions.disable.push("PMIPA, Type of medical information needed for next submission")
+            }
+            else if(conditionConcept == "Need complementary investigation"){
+            conditions.enable.push("PMIPA, Type of medical information needed for next submission")
+            conditions.disable.push("PMIPA, Name (s) of Anesthetist","Comments about Aneasthesia validation")
+            }
+            else{
+            conditions.disable.push("Comments about Aneasthesia validation","PMIPA, Name (s) of Anesthetist","PMIPA, Type of medical information needed for next submission")
+             }
+             return conditions;
+             },
+            'PMIPA, Outcomes for follow-up surgical validation' : function (formName, formFieldValues) {
           	var conditions = {
           		enable : [],
           		disable : []
