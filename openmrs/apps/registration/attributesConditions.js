@@ -63,5 +63,19 @@ Bahmni.Registration.AttributesConditions.rules = {
             patient["legalRepNationality"] = undefined
         }
         return returnValues
+    },
+    'doesthePatienthaveOfficalIddocuments': function(patient){
+        var returnValues = {
+            show: [],
+            hide: []
+        };
+        if (patient["doesthePatienthaveOfficalIddocuments"] && patient["doesthePatienthaveOfficalIddocuments"].value && patient["doesthePatienthaveOfficalIddocuments"].value.fullySpecifiedName === "Yes") {
+            returnValues.show.push("idDocumentOne");
+            returnValues.show.push("idDocumentTwo")
+        } else {
+            returnValues.hide.push("idDocumentOne");
+            returnValues.hide.push("idDocumentTwo")
+        }
+        return returnValues
     }
 };

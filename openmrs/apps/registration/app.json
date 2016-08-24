@@ -54,25 +54,6 @@
                     "order": 2,
                     "expanded": true
                 },
-                "idDocumentOne": {
-                    "title": "Patient ID Documents",
-                    "translationKey": "Patient ID Documents",
-                    "attributes": [
-                        "doesthePatienthaveOfficalIddocuments",
-                        "id1Document",
-                        "id1FullNameEnglish",
-                        "id1FullNameArabic",
-                        "id1DocNumber",
-                        "id1DateOfExpiry",
-                        "id2Document",
-                        "id2FullNameEnglish",
-                        "id2FullNameArabic",
-                        "id2DocNumber",
-                        "id2DateOfExpiry"
-                    ],
-                    "order": 3,
-                    "expanded": true
-                },
                 "otherInformation": {
                     "title": "Other Information",
                     "translationKey": "Other Information",
@@ -81,10 +62,37 @@
                         "nationality2",
                         "occupation",
                         "spokenLanguages",
-                        "isCareTakerRequired"
+                        "isCareTakerRequired",
+                        "doesthePatienthaveOfficalIddocuments"
                     ],
                     "expanded": true,
-                    "order": 4
+                    "order": 3
+                },
+                "idDocumentOne": {
+                    "title": "Patient ID Documents",
+                    "translationKey": "Patient ID Documents 1",
+                    "attributes": [
+                        "id1Document",
+                        "id1FullNameEnglish",
+                        "id1FullNameArabic",
+                        "id1DocNumber",
+                        "id1DateOfExpiry"
+                    ],
+                    "order": 4,
+                    "expanded": true
+                },
+                "idDocumentTwo": {
+                    "title": "Patient ID Documents",
+                    "translationKey": "Patient ID Documents 2",
+                    "attributes": [
+                        "id2Document",
+                        "id2FullNameEnglish",
+                        "id2FullNameArabic",
+                        "id2DocNumber",
+                        "id2DateOfExpiry"
+                    ],
+                    "order": 5,
+                    "expanded": true
                 },
                 "emergencyContact": {
                     "title": "Emergency Contact Details",
@@ -94,7 +102,7 @@
                         "emergencyContactNumber",
                         "relationWithPatient"
                     ],
-                    "order": 5
+                    "order": 6
                 },
                 "caretaker": {
                     "title": "Caretaker Details",
@@ -108,7 +116,7 @@
                         "caretakerNationality",
                         "caretakeralsoLegalRep"
                     ],
-                    "order": 6
+                    "order": 7
                 },
                 "Caretaker ID documents": {
                     "title": "Caretaker ID Documents",
@@ -120,7 +128,7 @@
                         "id3DocNumber",
                         "id3DateOfExpiry"
                     ],
-                    "order": 7
+                    "order": 8
                 },
                 "Caretaker Contact Details": {
                     "title": "Caretaker Contact Details",
@@ -133,7 +141,7 @@
                         "caretakerViber",
                         "caretakerFacebook"
                     ],
-                    "order": 8
+                    "order": 9
                 },
                 "LegalRepresentative": {
                     "title": "Legal Representative (for patient under 18 years only) ",
@@ -146,7 +154,7 @@
                         "legalRepDob",
                         "legalRepNationality"
                     ],
-                    "order": 9
+                    "order": 10
                 }
             },
             "addressHierarchy": {
