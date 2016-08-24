@@ -161,7 +161,7 @@
 
 
 
-            "defaultVisitType": "OPD",
+            "defaultVisitType": "Identification",
             "searchByIdForwardUrl": "/patient/{{patientUuid}}",
             "showMiddleName": false,
             "showCasteSameAsLastNameCheckbox": false,
