@@ -1,0 +1,1 @@
+select count(*) as `Number of new files received` from patient where date(date_created) between '#startDate#' and '#endDate#' and voided = 0;

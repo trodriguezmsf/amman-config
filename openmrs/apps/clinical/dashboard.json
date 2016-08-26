@@ -17,6 +17,12 @@
                     "countryDistrict"
                 ]
             },
+            "navigationLinksControl": {
+                "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
+                "type": "navigationLinksControl",
+                "displayOrder": 2,
+                "showLinks" : ["home","registration", "enrolment"]
+            },
             "programs": {
                 "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
                 "type": "programs",
@@ -70,6 +76,30 @@
                         "Patient Medical Information Prior to Admission"
                     ],
                     "numberOfVisits": 1,
+                    "showDetailsButton": true,
+                    "pivotTable": {}
+                }
+
+            },
+            "Patient Medical Information Prior to Admission":{
+                "translationKey": "DASHBOARD_TITLE_PATIENT_STAGE_AND_SPECALITY",
+                "type": "vitals",
+                "isObservation": true,
+                "displayOrder": 4,
+                "dashboardConfig": {
+                    "showDetailsButton": true,
+                    "conceptNames": [
+                        "PMIPA, Specialty determined by MLO",
+                        "PMIPA, Stage"
+                    ],
+                    "numberOfVisits": 3
+                },
+                "expandedViewConfig": {
+                    "conceptNames": [
+                        "PMIPA, Specialty determined by MLO",
+                        "PMIPA, Stage"
+                    ],
+                    "numberOfVisits": 3,
                     "showDetailsButton": true,
                     "pivotTable": {}
                 }

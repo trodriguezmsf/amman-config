@@ -44,6 +44,10 @@
         "maxConceptSetLevels": 3,
         "allowOnlyCodedDiagnosis": false,
         "conceptSetUI": {
+            "Patient Medical Information Prior to Admission":{
+            "showPreviousButton":true
+
+            },
             "Video": {
                 "allowAddMore": true
             },
@@ -73,7 +77,6 @@
             },
 
             "PMIPA, Specialty determined by MLO":{
-                "required":true,
                 "multiSelect":true
             },
             "PMIPA, If caretaker is needed, why?":{

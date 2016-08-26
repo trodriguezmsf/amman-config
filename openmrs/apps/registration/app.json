@@ -159,6 +159,7 @@
             },
             "addressHierarchy": {
                 "showAddressFieldsTopDown": false,
+
                 "freeTextAddressFields": ["address2", "address1"]
             },
 
@@ -166,9 +167,6 @@
                 "Doctor":"provider",
                 "Parent":"patient"
             },
-
-
-
             "defaultVisitType": "Identification",
             "searchByIdForwardUrl": "/patient/{{patientUuid}}",
             "showMiddleName": false,
