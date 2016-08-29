@@ -11,10 +11,10 @@
                 "ageLimit": 100,
                 "patientAttributes": [],
                 "addressFields": [
-                    "address1",
-                    "address2",
-                    "cityVillage",
-                    "countryDistrict"
+                    "stateProvince",
+
+                    "country",
+                    "address3"
                 ]
             },
             "navigationLinksControl": {

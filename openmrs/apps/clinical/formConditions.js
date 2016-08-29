@@ -1,23 +1,5 @@
 Bahmni.ConceptSet.FormConditions.rules = {
-    'PMIPA, Is the medical file complete?' : function (formName, formFieldValues) {
-    	var conditions = {
-    		enable : [],
-    		disable : []
-    	};
-    	var conditionConcept = formFieldValues['PMIPA, Is the medical file complete?'];
-    	if (conditionConcept=="No") {
-    		conditions.enable.push("PMIPA, Document(s) needed to be complete")
-    		conditions.disable.push("Date of injury","PMIPA, Cause of injury","PMIPA, Specialty determined by MLO","PMIPA, Stage")
-        } else if (conditionConcept=="Yes") {
-    		conditions.enable.push("Date of injury","PMIPA, Cause of injury","PMIPA, Specialty determined by MLO","PMIPA, Stage")
-    		conditions.disable.push("PMIPA, Document(s) needed to be complete")
-    	}
-    	else {
-    	    conditions.disable.push("Date of injury","PMIPA, Cause of injury","PMIPA, Document(s) needed to be complete","PMIPA, Specialty determined by MLO","PMIPA, Stage")
-    	}
-    	return conditions;
-      },
-      'PMIPA, Outcomes for 1st stage surgical validation' : function (formName, formFieldValues) {
+   'PMIPA, Outcomes for 1st stage surgical validation' : function (formName, formFieldValues) {
           	var conditions = {
           		enable : [],
           		disable : []
@@ -44,8 +26,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
           	}
           	return conditions;
             },
-            "PMIPA, Outcomes for 1st stage Aneasthesia validation": function (formName, formFieldValues) {
-                        var conditions = {
+   "PMIPA, Outcomes for 1st stage Aneasthesia validation": function (formName, formFieldValues) {
+            var conditions = {
                             enable : [],
                             disable : []
                         };
@@ -87,7 +69,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
           	}
           	return conditions;
             },
-      'PMIPA, Does the patient need medical final validation?' : function (formName, formFieldValues) {
+   'PMIPA, Does the patient need medical final validation?' : function (formName, formFieldValues) {
     	    var conditions = {
     		enable : [],
     		disable : []
