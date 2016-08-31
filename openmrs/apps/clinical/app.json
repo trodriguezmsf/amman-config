@@ -113,9 +113,6 @@
             "PMIPA, Refused Reason":{
                 "dropdown":true
             },
-            "PMIPA, Outcomes for follow-up surgical validation":{
-                "dropdown":true
-            },
             "PMIPA, Qualitative outcome":{
                 "dropdown":true
             },
@@ -148,7 +145,18 @@
             },
             "PMIPA, Type of medical information needed for next submission":{
                 "required":true
+            },
+            "FUP, Qualitative outcome":{
+                "dropdown":true
+            },
+            "FUP, Priority":
+            {
+                "dropdown":true
+            },
+            "FUP, Outcomes for follow-up surgical validation":{
+                "dropdown":true
             }
+
         },
         "visitPage": {
             "observationDisplay": {

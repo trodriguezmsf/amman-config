@@ -22,7 +22,8 @@
                 "id1FullNameEnglish",
                 "id1DocNumber",
                 "spokenLanguages",
-                "phoneNumber1"
+                "phoneNumber1",
+                "nationality1"
                 ],
             "patientInformation": {
                 "campaddress": {
@@ -196,9 +197,14 @@
             "patientSearch": {
                 "address": {
                     "label": "Rural Ward",
-                    "placeholder": "Enter ward",
+                    "placeholder": "Enter",
                     "field": "address2"
-                }
+                },
+                "customAttributes": {
+                "label": "name in arabic",
+                "placeholder": "Enter Name in Arabic",
+                "fields": ["givenNameLocal"]
+            }
             }
         }
 }

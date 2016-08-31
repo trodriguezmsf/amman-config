@@ -26,7 +26,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
           	}
           	return conditions;
             },
-   "PMIPA, Outcomes for 1st stage Aneasthesia validation": function (formName, formFieldValues) {
+   'PMIPA, Outcomes for 1st stage Aneasthesia validation' : function (formName, formFieldValues) {
             var conditions = {
                             enable : [],
                             disable : []
@@ -45,46 +45,30 @@ Bahmni.ConceptSet.FormConditions.rules = {
              }
              return conditions;
              },
-            'PMIPA, Outcomes for follow-up surgical validation' : function (formName, formFieldValues) {
+   'FUP, Outcomes for follow-up surgical validation' : function (formName, formFieldValues) {
           	var conditions = {
           		enable : [],
           		disable : []
           	};
-          	var conditionConcept = formFieldValues['PMIPA, Outcomes for follow-up surgical validation'];
+          	var conditionConcept = formFieldValues['FUP, Outcomes for follow-up surgical validation'];
           	if (conditionConcept=="To continue under Fup") {
-          		conditions.enable.push("PMIPA, Priority","PMIPA, Qualitative outcome","PMIPA, Time for next medical follow-up to be done","PMIPA, Comments about next follow-up")
-          	    conditions.disable.push("PMIPA, Comments about MBA","PMIPA, Dismissal reason","PMIPA, Approval of dismissal","PMIPA, Comments about dismissal","PMIPA, Reason for re-admission","PMIPA, Comments about re-admission")          		}
+          		conditions.enable.push("FUP, Priority","FUP, Qualitative outcome","FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up")
+          	    conditions.disable.push("FUP, Comments about MBA","FUP, Dismissal reason","FUP, Approval of dismissal","FUP, Comments about dismissal","FUP, Reason for re-admission","FUP, Comments about re-admission")
+          	       }
           	else if(conditionConcept=="MBA") {
-          	conditions.enable.push("PMIPA, Comments about MBA")
-          	    conditions.disable.push("PMIPA, Priority","PMIPA, Qualitative outcome","PMIPA, Time for next medical follow-up to be done","PMIPA, Comments about next follow-up","PMIPA, Dismissal reason","PMIPA, Approval of dismissal","PMIPA, Comments about dismissal","PMIPA, Reason for re-admission","PMIPA, Comments about re-admission")          	}
+          	conditions.enable.push("FUP, Comments about MBA")
+          	    conditions.disable.push("FUP, Priority","FUP, Qualitative outcome","FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up","FUP, Dismissal reason","FUP, Approval of dismissal","FUP, Comments about dismissal","FUP, Reason for re-admission","FUP, Comments about re-admission")          	}
           	else if(conditionConcept=="Dismissal"){
-          	conditions.enable.push("PMIPA, Dismissal reason","PMIPA, Approval of dismissal","PMIPA, Comments about dismissal")
-          	    conditions.disable.push("PMIPA, Priority","PMIPA, Qualitative outcome","PMIPA, Time for next medical follow-up to be done","PMIPA, Comments about next follow-up","PMIPA, Comments about MBA","PMIPA, Reason for re-admission","PMIPA, Comments about re-admission")          	}
+          	conditions.enable.push("FUP, Dismissal reason","FUP, Approval of dismissal","FUP, Comments about dismissal")
+          	    conditions.disable.push("FUP, Priority","FUP, Qualitative outcome","FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up","FUP, Comments about MBA","FUP, Reason for re-admission","FUP, Comments about re-admission")          	}
           	else if(conditionConcept=="Re-admission"){
-          	conditions.enable.push("PMIPA, Reason for re-admission","PMIPA, Comments about re-admission")
-          	    conditions.disable.push("PMIPA, Priority","PMIPA, Qualitative outcome","PMIPA, Time for next medical follow-up to be done","PMIPA, Comments about next follow-up","PMIPA, Comments about MBA","PMIPA, Dismissal reason","PMIPA, Approval of dismissal","PMIPA, Comments about dismissal")
+          	conditions.enable.push("FUP, Reason for re-admission","FUP, Comments about re-admission")
+          	    conditions.disable.push("FUP, Priority","FUP, Qualitative outcome","FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up","FUP, Comments about MBA","FUP, Dismissal reason","FUP, Approval of dismissal","FUP, Comments about dismissal")
           	}
           	else {
-          	    conditions.disable.push("PMIPA, Priority","PMIPA, Qualitative outcome","PMIPA, Time for next medical follow-up to be done","PMIPA, Comments about next follow-up","PMIPA, Comments about MBA","PMIPA, Dismissal reason","PMIPA, Approval of dismissal","PMIPA, Comments about dismissal","PMIPA, Reason for re-admission","PMIPA, Comments about re-admission")
+          	    conditions.disable.push("FUP, Priority","FUP, Qualitative outcome","FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up","FUP, Comments about MBA","FUP, Dismissal reason","FUP, Approval of dismissal","FUP, Comments about dismissal","FUP, Reason for re-admission","FUP, Comments about re-admission")
           	}
           	return conditions;
-            },
-   'PMIPA, Does the patient need medical final validation?' : function (formName, formFieldValues) {
-    	    var conditions = {
-    		enable : [],
-    		disable : []
-    	    };
-    	    var conditionConcept = formFieldValues['PMIPA, Does the patient need medical final validation?'];
-    	    if (conditionConcept=="No") {
-    		//conditions.enable.push("PMIPA, Document(s) needed to be complete")
-    		conditions.disable.push("PMIPA, Which medical information is needed for FV?","PMIPA, Dead line to submit final validation","PMIPA, Outcomes FV")
-            } else if (conditionConcept=="Yes") {
-    		conditions.enable.push("PMIPA, Which medical information is needed for FV?","PMIPA, Dead line to submit final validation","PMIPA, Outcomes FV")
-    		//conditions.disable.push("PMIPA, Which medical information is needed for FV?","PMIPA, Dead line to submit final validation","PMIPA, Outcomes FV")
-    	    }
-    	    else {
-    	    conditions.disable.push("PMIPA, Which medical information is needed for FV?","PMIPA, Dead line to submit final validation","PMIPA, Outcomes FV")
-    	    }
-    	    return conditions;
-            },
+            }
+
 };

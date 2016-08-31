@@ -21,7 +21,13 @@
                 "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
                 "type": "navigationLinksControl",
                 "displayOrder": 2,
-                "showLinks" : ["home","registration", "enrolment"]
+                "showLinks" : ["home","registration", "enrolment"],
+                "customLinks": [
+                    {
+                        "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
+                        "url": "../document-upload/?encounterType=RADIOLOGY&topLevelConcept=Radiology#/patient/{{patientUuid}}/document"
+                              }
+                ]
             },
             "programs": {
                 "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
@@ -98,6 +104,28 @@
                     "conceptNames": [
                         "PMIPA, Specialty determined by MLO",
                         "PMIPA, Stage"
+                    ],
+                    "numberOfVisits": 3,
+                    "showDetailsButton": true,
+                    "pivotTable": {}
+                }
+
+            },
+            "Radiology":{
+                "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
+                "type": "vitals",
+                "isObservation": true,
+                "displayOrder": 4,
+                "dashboardConfig": {
+                    "showDetailsButton": true,
+                    "conceptNames": [
+                        "Radiology"
+                    ],
+                    "numberOfVisits": 3
+                },
+                "expandedViewConfig": {
+                    "conceptNames": [
+                        "Radiology"
                     ],
                     "numberOfVisits": 3,
                     "showDetailsButton": true,
