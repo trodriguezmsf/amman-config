@@ -29,69 +29,11 @@
                               }
                 ]
             },
-            "programs": {
-                "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
-                "type": "programs",
-                "displayOrder": 1 
-            },
-            "visits": {
-                "translationKey": "DASHBOARD_TITLE_VISITS_KEY",
-                "type": "visits",
-                "displayOrder": 2,
-                "dashboardConfig": {
-                    "title": null,
-                    "maximumNoOfVisits": 8,
-                    "groupByVisits": true
-                }
-            },
-            "historyAndExaminations": {
-                "translationKey": "DASHBOARD_TITLE_HISTORY_AND_EXAMINATIONS_KEY",
+            "Stage and speciality":{
+                "translationKey": "DASHBOARD_TITLE_PATIENT_STAGE_AND_SPECIALITY",
                 "type": "vitals",
                 "isObservation": true,
-                "displayOrder": 14,
-                "dashboardConfig": {
-                    "showDetailsButton": true,
-                    "conceptNames": [
-                        "History and Examination"
-                    ],
-                    "numberOfVisits": 2
-                },
-                "expandedViewConfig": {
-                    "conceptNames": [
-                        "History and Examination"
-                    ],
-                    "numberOfVisits": 2,
-                    "showDetailsButton": true,
-                    "pivotTable": {}
-                }
-            },
-            "Patient Medical Information Prior to Admission":{
-                "translationKey": "DASHBOARD_TITLE_PATIENT_MEDICAL_INFORMATION_PRIOR_TO_ADMISSION",
-                "type": "vitals",
-                "isObservation": true,
-                "displayOrder": 14,
-                "dashboardConfig": {
-                    "showDetailsButton": true,
-                    "conceptNames": [
-                        "Patient Medical Information Prior to Admission"
-                    ],
-                    "numberOfVisits": 1
-                },
-                "expandedViewConfig": {
-                    "conceptNames": [
-                        "Patient Medical Information Prior to Admission"
-                    ],
-                    "numberOfVisits": 1,
-                    "showDetailsButton": true,
-                    "pivotTable": {}
-                }
-
-            },
-            "Patient Medical Information Prior to Admission":{
-                "translationKey": "DASHBOARD_TITLE_PATIENT_STAGE_AND_SPECALITY",
-                "type": "vitals",
-                "isObservation": true,
-                "displayOrder": 4,
+                "displayOrder": 1,
                 "dashboardConfig": {
                     "showDetailsButton": true,
                     "conceptNames": [
@@ -111,21 +53,109 @@
                 }
 
             },
-            "Radiology":{
-                "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
+            "programs": {
+                "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
+                "type": "programs",
+                "displayOrder": 2
+            },
+            "visits": {
+                "translationKey": "DASHBOARD_TITLE_VISITS_KEY",
+                "type": "visits",
+                "displayOrder": 2,
+                "dashboardConfig": {
+                    "title": null,
+                    "maximumNoOfVisits": 8,
+                    "groupByVisits": true
+                }
+            },
+            "historyAndExaminations": {
+                "translationKey": "DASHBOARD_TITLE_HISTORY_AND_EXAMINATIONS_KEY",
+                "type": "vitals",
+                "isObservation": true,
+                "displayOrder": 3,
+                "dashboardConfig": {
+                    "showDetailsButton": true,
+                    "conceptNames": [
+                        "History and Examination"
+                    ],
+                    "numberOfVisits": 2
+                },
+                "expandedViewConfig": {
+                    "conceptNames": [
+                        "History and Examination"
+                    ],
+                    "numberOfVisits": 2,
+                    "showDetailsButton": true,
+                    "pivotTable": {}
+                }
+            },
+            "First Stage Validation":{
+                "translationKey": "DASHBOARD_TITLE_FIRST_STAGE_VALIDATION",
                 "type": "vitals",
                 "isObservation": true,
                 "displayOrder": 4,
                 "dashboardConfig": {
                     "showDetailsButton": true,
                     "conceptNames": [
-                        "Radiology"
+                        "First Stage Validation"
+                    ],
+                    "numberOfVisits": 1
+                },
+                "expandedViewConfig": {
+                    "conceptNames": [
+                        "First Stage Validation"
+                    ],
+                    "numberOfVisits": 1,
+                    "showDetailsButton": true,
+                    "pivotTable": {}
+                }
+
+            },
+            "Follow-up Validation":{
+                "translationKey": "DASHBOARD_TITLE_FOLLOWUP_VALIDATION",
+                "type": "vitals",
+                "isObservation": true,
+                "displayOrder": 5,
+                "dashboardConfig": {
+                    "showDetailsButton": true,
+                    "conceptNames": [
+                        "Follow-up validation"
+                    ],
+                    "numberOfVisits": 1
+                },
+                "expandedViewConfig": {
+                    "conceptNames": [
+                        "Follow-up validation"
+                    ],
+                    "numberOfVisits": 1,
+                    "showDetailsButton": true,
+                    "pivotTable": {}
+                }
+
+            },
+            "Radiology": {
+                "type": "radiology",
+                "translationKey": "VISIT_TITLE_RADIOLOGY_KEY",
+                "displayOrder": 6,
+                "config": {
+                    "translationKey": "VISIT_TITLE_RADIOLOGY_KEY"
+                }
+            },
+            "Document-upload":{
+                "translationKey": "DASHBOARD_TITLE_DOCUMENT_UPLOAD_KEY",
+                "type": "vitals",
+                "isObservation": true,
+                "displayOrder": 7,
+                "dashboardConfig": {
+                    "showDetailsButton": true,
+                    "conceptNames": [
+                        "Patient file"
                     ],
                     "numberOfVisits": 3
                 },
                 "expandedViewConfig": {
                     "conceptNames": [
-                        "Radiology"
+                        "Patient file"
                     ],
                     "numberOfVisits": 3,
                     "showDetailsButton": true,

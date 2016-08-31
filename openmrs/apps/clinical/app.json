@@ -44,10 +44,6 @@
         "maxConceptSetLevels": 3,
         "allowOnlyCodedDiagnosis": false,
         "conceptSetUI": {
-            "Patient Medical Information Prior to Admission":{
-            "showPreviousButton":true
-
-            },
             "Video": {
                 "allowAddMore": true
             },
