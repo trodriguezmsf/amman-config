@@ -149,13 +149,19 @@
                 "dashboardConfig": {
                     "showDetailsButton": true,
                     "conceptNames": [
-                        "Patient file"
+                        "Patient file",
+                        "Passport",
+                        "National Document",
+                        "Refugee Registration Document"
                     ],
                     "numberOfVisits": 3
                 },
                 "expandedViewConfig": {
                     "conceptNames": [
-                        "Patient file"
+                        "Patient file",
+                        "Passport",
+                        "National Document",
+                        "Refugee Registration Document"
                     ],
                     "numberOfVisits": 3,
                     "showDetailsButton": true,
