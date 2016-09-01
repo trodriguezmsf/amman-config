@@ -36,18 +36,16 @@
             </table>
         </td>
         <td class="print-table-right" valign="top">
-            <table>
+            <table border="2">
                 <tr>
-                    <td class="logo">
-                        <p>
-                            <img src="/bahmni_config/openmrs/apps/registration/registrationCardLayout/images/bahmni-icon.png" style="width: 12mm; height: 12mm; "/>
-                        </p>
-                    </td>
+
                     <td class="print-table-right-header">
                         <h3>
-                        {{ "REGISTRATION_INSTITUTE_NAME_TEXT_KEY" | translate }}
+                            <p>
+                                <img src="/bahmni_config/openmrs/apps/registration/registrationCardLayout/images/logo.png" style="width: 12mm; height: 12mm; "/>
+                            </p>
                         </h3>
-                        <h3 class="print-center">{{ "REGISTRATION_INSTITUTE_REGISTERED_TEXT_KEY" |  translate }}</h3>
+
                     </td>
                     <td class="registrationCard-photo">
                         <img ng-src="{{patient.image}}" style="width: 20mm; height: 20mm; "

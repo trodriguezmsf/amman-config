@@ -156,6 +156,18 @@
                         "legalRepNationality"
                     ],
                     "order": 10
+                },
+                "AdditionalDetails":{
+                    "title": "Patient Arrival Information",
+                    "translationKey":"Patient Arrival Information",
+                    "attributes":  [
+                        "expectedDateofArrival",
+                        "doesthePatientneedAccommodation",
+                        "typeofAdmission",
+                        "dateofAdmission"
+                    ],
+                    "order":11,
+                    "expanded": true
                 }
             },
             "addressHierarchy": {
@@ -201,7 +213,7 @@
                     "field": "address2"
                 },
                 "customAttributes": {
-                "label": "name in arabic",
+                "label": "Name in Arabic",
                 "placeholder": "Enter Name in Arabic",
                 "fields": ["givenNameLocal"]
             }

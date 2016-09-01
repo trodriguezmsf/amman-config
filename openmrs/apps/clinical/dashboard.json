@@ -12,7 +12,6 @@
                 "patientAttributes": [],
                 "addressFields": [
                     "stateProvince",
-
                     "country",
                     "address3"
                 ]
