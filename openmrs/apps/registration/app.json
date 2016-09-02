@@ -215,9 +215,9 @@
             },
             "patientSearch": {
                 "address": {
-                    "label": "Rural Ward",
-                    "placeholder": "Enter",
-                    "field": "address2"
+                    "label": "Country",
+                    "placeholder": "Country",
+                    "field": "address3"
                 },
                 "customAttributes": {
                 "label": "Name in Arabic",

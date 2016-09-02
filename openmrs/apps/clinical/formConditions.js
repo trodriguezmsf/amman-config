@@ -69,6 +69,42 @@ Bahmni.ConceptSet.FormConditions.rules = {
           	    conditions.disable.push("FUP, Priority","FUP, Qualitative outcome","FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up","FUP, Comments about MBA","FUP, Dismissal reason","FUP, Approval of dismissal","FUP, Comments about dismissal","FUP, Reason for re-admission","FUP, Comments about re-admission")
           	}
           	return conditions;
-            }
-
+            },
+   'FV, Does the patient need medical final validation?': function(formName, formFieldValues) {
+               var conditions ={
+                   enable : [],
+                   disable : []
+               };
+               var conditionConcept = formFieldValues['FV, Does the patient need medical final validation?'];
+               if (conditionConcept == "Yes"){
+                   conditions.enable.push("FV, Which medical information is needed for FV?","FV, Dead line to submit final validation","FV, Outcomes FV")
+               }
+               else if(conditionConcept == "No")
+                  {
+                   conditions.disable.push("FV, Which medical information is needed for FV?","FV, Dead line to submit final validation","FV, Outcomes FV","FV, Comments on FV")
+               }
+               else
+               {
+                   conditions.disable.push("FV, Which medical information is needed for FV?","FV, Dead line to submit final validation","FV, Outcomes FV","FV, Comments on FV")
+               }
+               return conditions;
+               },
+      'FV, Outcomes FV' : function(formName, formFieldValues){
+               var conditions = {
+                   enable : [],
+                   disable : [],
+               };
+               var conditionConcept = formFieldValues['FV, Outcomes FV'];
+               if (conditionConcept == "Further Evaluation"){
+               conditions.enable.push("FV, Comments on FV")
+               }
+               else if (conditionConcept == "Rejected"){
+                           conditions.enable.push("FV, Comments on FV")
+                           }
+               else
+               {
+               conditions.disable.push("FV, Comments on FV")
+               }
+               return conditions;
+      }
 };
