@@ -1,7 +1,7 @@
 bahmni_repo_url: https://bahmni-repo.twhosted.com/rpm/bahmni/
 environment_name: amman-qa-aws
 implementation_name: amman
-installer_location: /var/lib/go-agent/pipelines/Deploy_QA_master/installer
+installer_location: /var/lib/go-agent/pipelines/Deploy_QA_master/installer/
 config_url: https://github.com/bahmni-msf/amman-config/archive/master.zip
 base_path: /var/lib/go-agent/pipelines/Deploy_QA_master
 branch: master
