@@ -184,6 +184,7 @@
             "searchByIdForwardUrl": "/patient/{{patientUuid}}",
             "showMiddleName": false,
             "showCasteSameAsLastNameCheckbox": false,
+            "showEnterID":false,
             "printOptions": [
                 {
                     "translationKey": "REGISTRATION_PRINT_REG_CARD_LOCAL_KEY",
@@ -205,24 +206,24 @@
                 "familyName" : {"pattern" : "^[A-Z0-9 _]*${0,}", "errorMessage" : "Should contain characters"},
                 "givenName" : {"pattern" : "^[A-Z0-9 _]*${0,}", "errorMessage" : "Should it contain characters"},
                 "middleName" : {"pattern" : "[a-zA-Z_]{0,}", "errorMessage" : "Should contain characters"},
-                "phoneNumber1" :{"pattern" : "[0-9]{0,}","errorMessage" : "Should contain Numbers"},
-                "phoneNumber2" :{"pattern" : "[0-9]{0,}","errorMessage" : "Should contain Numbers"},
-                "phoneNumber3" :{"pattern" : "[0-9]{0,}","errorMessage" : "Should contain Numbers"},
-                "caretakerPhoneNumber1" :{"pattern" : "[0-9]{0,}","errorMessage" : "Should contain Numbers"},
-                "caretakerPhoneNumber2" :{"pattern" : "[0-9]{0,}","errorMessage" : "Should contain Numbers"}
+                "phoneNumber1" :{"pattern" : "[+][0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
+                "phoneNumber2" :{"pattern" : "[+][0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
+                "phoneNumber3" :{"pattern" : "[+][0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
+                "caretakerPhoneNumber1" :{"pattern" : "[+][0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
+                "caretakerPhoneNumber2" :{"pattern" : "[+][0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "}
 
 
             },
             "patientSearch": {
                 "address": {
                     "label": "Country",
-                    "placeholder": "Country",
+                    "placeholder": "Enter Country",
                     "field": "address3"
                 },
                 "customAttributes": {
                 "label": "Name in Arabic",
                 "placeholder": "Enter Name in Arabic",
-                "fields": ["givenNameLocal"]
+                "fields": ["givenNameLocal","familyNameLocal"]
             }
             }
         }

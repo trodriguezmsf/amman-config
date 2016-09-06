@@ -35,6 +35,7 @@
                 "displayOrder": 1,
                 "dashboardConfig": {
                     "showDetailsButton": true,
+                    "isEditable": true,
                     "conceptNames": [
                         "PMIPA, Specialty determined by MLO",
                         "PMIPA, Stage"
@@ -46,6 +47,7 @@
                         "PMIPA, Specialty determined by MLO",
                         "PMIPA, Stage"
                     ],
+                    "isEditable": true,
                     "numberOfVisits": 3,
                     "showDetailsButton": true,
                     "pivotTable": {}
@@ -94,6 +96,7 @@
                 "isObservation": true,
                 "displayOrder": 4,
                 "dashboardConfig": {
+                    "isEditable": true,
                     "showDetailsButton": true,
                     "conceptNames": [
                         "First Stage Validation"
@@ -116,6 +119,30 @@
                 "isObservation": true,
                 "displayOrder": 5,
                 "dashboardConfig": {
+                    "isEditable": true,
+                    "showDetailsButton": true,
+                    "conceptNames": [
+                        "Follow-up validation"
+                    ],
+                    "numberOfVisits": 1
+                },
+                "expandedViewConfig": {
+                    "conceptNames": [
+                        "Follow-up validation"
+                    ],
+                    "numberOfVisits": 1,
+                    "showDetailsButton": true,
+                    "pivotTable": {}
+                }
+
+            },
+            "":{
+                "translationKey": "DASHBOARD_TITLE_FOLLOWUP_VALIDATION",
+                "type": "vitals",
+                "isObservation": true,
+                "displayOrder": 5,
+                "dashboardConfig": {
+                    "isEditable": true,
                     "showDetailsButton": true,
                     "conceptNames": [
                         "Follow-up validation"

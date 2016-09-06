@@ -7,22 +7,22 @@ Bahmni.ConceptSet.FormConditions.rules = {
           	var conditionConcept = formFieldValues['PMIPA, Outcomes for 1st stage surgical validation'];
           	if (conditionConcept=="Valid") {
           		conditions.enable.push("PMIPA, Priority","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Outcomes for 1st stage Aneasthesia validation")
-          		conditions.disable.push("PMIPA, Postpone reason","PMIPA, Comments about postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Type of medical information needed for next submission","PMIPA, Refused Reason","PMIPA, Comments about refusal")
+          		conditions.disable.push("PMIPA, Postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Type of medical information needed for next submission","PMIPA, Refused Reason")
           		}
           	else if(conditionConcept=="Postponed") {
-          	conditions.enable.push("PMIPA, Postpone reason","PMIPA, Comments about postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Outcomes for 1st stage Aneasthesia validation")
-          	conditions.disable.push("PMIPA, Priority","PMIPA, Outcomes for 1st stage Aneasthesia validation","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Type of medical information needed for next submission","PMIPA, Refused Reason","PMIPA, Comments about refusal")
+          	conditions.enable.push("PMIPA, Postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Outcomes for 1st stage Aneasthesia validation")
+          	conditions.disable.push("PMIPA, Priority","PMIPA, Outcomes for 1st stage Aneasthesia validation","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Type of medical information needed for next submission","PMIPA, Refused Reason")
           	}
           	else if(conditionConcept=="More Information"){
           	conditions.enable.push("PMIPA, Type of medical information needed for next submission")
-          	conditions.disable.push("PMIPA, Priority","PMIPA, Outcomes for 1st stage Aneasthesia validation","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Postpone reason","PMIPA, Comments about postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Refused Reason","PMIPA, Comments about refusal")
+          	conditions.disable.push("PMIPA, Priority","PMIPA, Outcomes for 1st stage Aneasthesia validation","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Refused Reason")
           	}
           	else if(conditionConcept=="Refused"){
-          	conditions.enable.push("PMIPA, Refused Reason","PMIPA, Comments about refusal")
-          	conditions.disable.push("PMIPA, Priority","PMIPA, Outcomes for 1st stage Aneasthesia validation","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Postpone reason","PMIPA, Comments about postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Type of medical information needed for next submission")
+          	conditions.enable.push("PMIPA, Refused Reason")
+          	conditions.disable.push("PMIPA, Priority","PMIPA, Outcomes for 1st stage Aneasthesia validation","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Type of medical information needed for next submission")
           	}
           	else {
-          	    conditions.disable.push("PMIPA, Priority","PMIPA, Outcomes for 1st stage Aneasthesia validation","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Postpone reason","PMIPA, Comments about postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Type of medical information needed for next submission","PMIPA, Refused Reason","PMIPA, Comments about refusal")
+          	    conditions.disable.push("PMIPA, Priority","PMIPA, Outcomes for 1st stage Aneasthesia validation","PMIPA, Name (s) of Surgeon 1","PMIPA, Name (s) of Surgeon 2","PMIPA, Comments:","PMIPA, Postpone reason","PMIPA, Medical file to be submitted again by","PMIPA, Type of medical information needed for next submission","PMIPA, Refused Reason")
           	}
           	return conditions;
             },
@@ -52,21 +52,21 @@ Bahmni.ConceptSet.FormConditions.rules = {
           	};
           	var conditionConcept = formFieldValues['FUP, Outcomes for follow-up surgical validation'];
           	if (conditionConcept=="To continue under Fup") {
-          		conditions.enable.push("FUP, Priority","FUP, Qualitative outcome","FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up")
-          	    conditions.disable.push("FUP, Comments about MBA","FUP, Dismissal reason","FUP, Approval of dismissal","FUP, Comments about dismissal","FUP, Reason for re-admission","FUP, Comments about re-admission")
+          		conditions.enable.push("FUP, Priority","FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up")
+          	    conditions.disable.push("FUP, Comments about MBA","FUP, Dismissal reason","FUP, Dismissal confirmed","FUP, Reason for re-admission")
           	       }
           	else if(conditionConcept=="MBA") {
           	conditions.enable.push("FUP, Comments about MBA")
-          	    conditions.disable.push("FUP, Priority","FUP, Qualitative outcome","FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up","FUP, Dismissal reason","FUP, Approval of dismissal","FUP, Comments about dismissal","FUP, Reason for re-admission","FUP, Comments about re-admission")          	}
+          	    conditions.disable.push("FUP, Priority","FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up","FUP, Dismissal reason","FUP, Dismissal confirmed","FUP, Reason for re-admission")          	}
           	else if(conditionConcept=="Dismissal"){
-          	conditions.enable.push("FUP, Dismissal reason","FUP, Approval of dismissal","FUP, Comments about dismissal")
-          	    conditions.disable.push("FUP, Priority","FUP, Qualitative outcome","FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up","FUP, Comments about MBA","FUP, Reason for re-admission","FUP, Comments about re-admission")          	}
+          	conditions.enable.push("FUP, Dismissal reason","FUP, Dismissal confirmed")
+          	    conditions.disable.push("FUP, Priority","FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up","FUP, Comments about MBA","FUP, Reason for re-admission")          	}
           	else if(conditionConcept=="Re-admission"){
-          	conditions.enable.push("FUP, Reason for re-admission","FUP, Comments about re-admission")
-          	    conditions.disable.push("FUP, Priority","FUP, Qualitative outcome","FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up","FUP, Comments about MBA","FUP, Dismissal reason","FUP, Approval of dismissal","FUP, Comments about dismissal")
+          	conditions.enable.push("FUP, Reason for re-admission")
+          	    conditions.disable.push("FUP, Priority","FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up","FUP, Comments about MBA","FUP, Dismissal reason","FUP, Dismissal confirmed")
           	}
           	else {
-          	    conditions.disable.push("FUP, Priority","FUP, Qualitative outcome","FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up","FUP, Comments about MBA","FUP, Dismissal reason","FUP, Approval of dismissal","FUP, Comments about dismissal","FUP, Reason for re-admission","FUP, Comments about re-admission")
+          	    conditions.disable.push("FUP, Priority","FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up","FUP, Comments about MBA","FUP, Dismissal reason","FUP, Dismissal confirmed","FUP, Reason for re-admission")
           	}
           	return conditions;
             },

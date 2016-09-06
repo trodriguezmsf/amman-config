@@ -151,6 +151,12 @@
             },
             "FUP, Outcomes for follow-up surgical validation":{
                 "dropdown":true
+            },
+            "FUP, Time for next medical follow-up to be done":{
+                "dropdown":true
+            },
+            "FUP, Dismissal reason":{
+                "dropdown":true
             }
 
         },
