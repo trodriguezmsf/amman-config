@@ -1,5 +1,4 @@
 bahmni_repo_url: https://bahmni-repo.twhosted.com/rpm/bahmni/
-environment_name: amman-uat-aws
 implementation_name: amman
 two_factor_auth: disabled
 implementer_interface: disabled
