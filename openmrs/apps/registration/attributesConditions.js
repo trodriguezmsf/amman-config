@@ -56,11 +56,11 @@ Bahmni.Registration.AttributesConditions.rules = {
             patient["legalRepDob"] = undefined;
             patient["legalRepNationality"] = undefined
         } else {
-            patient["legalRepFullNameEnglish"] = undefined;
-            patient["legalRepFullNameArabic"] = undefined;
-            patient["legalRepGender"] = undefined;
-            patient["legalRepDob"] = undefined;
-            patient["legalRepNationality"] = undefined
+            patient["legalRepFullNameEnglish"] = patient["legalRepFullNameEnglish"] || undefined;
+            patient["legalRepFullNameArabic"] = patient["legalRepFullNameArabic"] || undefined;
+            patient["legalRepGender"] = patient["legalRepGender"] || undefined;
+            patient["legalRepDob"] = patient["legalRepDob"] || undefined;
+            patient["legalRepNationality"] = patient["legalRepNationality"] || undefined
         }
         return returnValues
     },
