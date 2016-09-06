@@ -83,8 +83,8 @@ h1, h2, h3 {
 /* line 58, print.scss */
 .print-table-right .logo {
   text-align: center;
-  width: 12mm;
-  padding: 0px;
+  width: 120mm;
+  padding: 5px;
   margin: 0px;
   height: 12mm;
 }

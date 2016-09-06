@@ -36,19 +36,19 @@ Bahmni.Registration.AttributesConditions.rules = {
         return returnValues
 
     },
-    'caretakeralsoLegalRep': function(patient) {
+    'legalRepalsoCaretaker': function(patient) {
         var returnValues = {
             show: [],
             hide: []
         };
-        if (patient["caretakeralsoLegalRep"] && patient["caretakeralsoLegalRep"].value && patient["caretakeralsoLegalRep"].value.fullySpecifiedName === "Yes") {
+        if (patient["legalRepalsoCaretaker"] && patient["legalRepalsoCaretaker"].value && patient["legalRepalsoCaretaker"].value.fullySpecifiedName === "Yes") {
             returnValues.show.push("LegalRepresentative");
             patient["legalRepFullNameEnglish"] = patient["caretakerNameEnglish"];
             patient["legalRepFullNameArabic"] = patient["caretakerNameArabic"];
             patient["legalRepGender"] = patient["caretakerGender"];
             patient["legalRepDob"] = patient["caretakerDob"];
             patient["legalRepNationality"] = patient["caretakerNationality"]
-        } else if((patient["age"].years === undefined || patient["age"].years > 18) && patient["caretakeralsoLegalRep"] && (patient["caretakeralsoLegalRep"].value === undefined || patient["caretakeralsoLegalRep"].value.fullySpecifiedName === "No")){
+        } else if((patient["age"].years === undefined || patient["age"].years > 18) && patient["legalRepalsoCaretaker"] && (patient["legalRepalsoCaretaker"].value === undefined || patient["legalRepalsoCaretaker"].value.fullySpecifiedName === "No")){
             returnValues.hide.push("LegalRepresentative");
             patient["legalRepFullNameEnglish"] = undefined;
             patient["legalRepFullNameArabic"] = undefined;
