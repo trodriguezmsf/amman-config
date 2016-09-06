@@ -1,10 +1,6 @@
 bahmni_repo_url: https://bahmni-repo.twhosted.com/rpm/bahmni/
 environment_name: amman-uat-aws
 implementation_name: amman
-installer_location: /var/lib/go-agent/pipelines/Deploy_UAT_master/installer/
-config_url: https://github.com/bahmni-msf/amman-config/archive/master.zip
-base_path: /var/lib/go-agent/pipelines/Deploy_UAT_master
-branch: master
 two_factor_auth: disabled
 implementer_interface: disabled
 SSLCertificateFilePath: /etc/letsencrypt/live/uat-amman.mybahmni.org/cert.pem
