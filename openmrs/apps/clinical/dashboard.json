@@ -73,20 +73,20 @@
                 "translationKey": "DASHBOARD_TITLE_FIRST_STAGE_VALIDATION",
                 "type": "vitals",
                 "isObservation": true,
-                "displayOrder": 3,
+                "displayOrder": 4,
                 "dashboardConfig": {
                     "isEditable": true,
                     "showDetailsButton": true,
                     "conceptNames": [
                         "First Stage Validation"
                     ],
-                    "numberOfVisits": 1
+                    "numberOfVisits": 3
                 },
                 "expandedViewConfig": {
                     "conceptNames": [
                         "First Stage Validation"
                     ],
-                    "numberOfVisits": 1,
+                    "numberOfVisits": 3,
                     "showDetailsButton": true,
                     "pivotTable": {}
                 }
@@ -96,20 +96,43 @@
                 "translationKey": "DASHBOARD_TITLE_FOLLOWUP_VALIDATION",
                 "type": "vitals",
                 "isObservation": true,
-                "displayOrder": 4,
+                "displayOrder": 3,
                 "dashboardConfig": {
                     "isEditable": true,
                     "showDetailsButton": true,
                     "conceptNames": [
                         "Follow-up validation"
                     ],
-                    "numberOfVisits": 1
+                    "numberOfVisits": 3
                 },
                 "expandedViewConfig": {
                     "conceptNames": [
                         "Follow-up validation"
                     ],
-                    "numberOfVisits": 1,
+                    "numberOfVisits": 3,
+                    "showDetailsButton": true,
+                    "pivotTable": {}
+                }
+
+            },
+            "final Validation":{
+                "translationKey": "DASHBOARD_TITLE_FINAL_VALIDATION",
+                "type": "vitals",
+                "isObservation": true,
+                "displayOrder": 5,
+                "dashboardConfig": {
+                    "isEditable": true,
+                    "showDetailsButton": true,
+                    "conceptNames": [
+                        "FV, Final validation"
+                    ],
+                    "numberOfVisits": 3
+                },
+                "expandedViewConfig": {
+                    "conceptNames": [
+                        "FV, Final validation"
+                    ],
+                    "numberOfVisits": 3,
                     "showDetailsButton": true,
                     "pivotTable": {}
                 }
@@ -118,7 +141,7 @@
             "Radiology": {
                 "type": "radiology",
                 "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
-                "displayOrder": 5,
+                "displayOrder": 6,
                 "config": {
                     "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY"
                 }
@@ -127,7 +150,7 @@
                 "translationKey": "DASHBOARD_TITLE_DOCUMENT_UPLOAD_KEY",
                 "type": "vitals",
                 "isObservation": true,
-                "displayOrder": 6,
+                "displayOrder": 7,
                 "dashboardConfig": {
                     "showDetailsButton": true,
                     "conceptNames": [
