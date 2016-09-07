@@ -95,16 +95,6 @@
                     "order": 5,
                     "expanded": true
                 },
-                "emergencyContact": {
-                    "title": "Emergency Contact Details",
-                    "translationKey": "Emergency Contact Details",
-                    "attributes": [
-                        "emergencyContactName",
-                        "emergencyContactNumber",
-                        "relationWithPatient"
-                    ],
-                    "order": 6
-                },
                 "caretaker": {
                     "title": "Caretaker Details",
                     "translationKey": "Caretaker Details",
@@ -117,7 +107,7 @@
                         "caretakerNationality",
                         "legalRepalsoCaretaker"
                     ],
-                    "order": 7
+                    "order": 6
                 },
                 "Caretaker ID documents": {
                     "title": "Caretaker ID Documents",
@@ -129,7 +119,7 @@
                         "id3DocNumber",
                         "id3DateOfExpiry"
                     ],
-                    "order": 8
+                    "order": 7
                 },
                 "Caretaker Contact Details": {
                     "title": "Caretaker Contact Details",
@@ -142,7 +132,7 @@
                         "caretakerViber",
                         "caretakerFacebook"
                     ],
-                    "order": 9
+                    "order": 8
                 },
                 "LegalRepresentative": {
                     "title": "Legal Representative (for patient under 18 years only) ",
@@ -154,6 +144,16 @@
                         "legalRepGender",
                         "legalRepDob",
                         "legalRepNationality"
+                    ],
+                    "order": 9
+                },
+                "emergencyContact": {
+                    "title": "Emergency Contact Details",
+                    "translationKey": "Emergency Contact Details",
+                    "attributes": [
+                        "emergencyContactName",
+                        "emergencyContactNumber",
+                        "relationWithPatient"
                     ],
                     "order": 10
                 },
@@ -186,20 +186,16 @@
             "showCasteSameAsLastNameCheckbox": false,
             "showEnterID":false,
             "printOptions": [
-                {
-                    "translationKey": "REGISTRATION_PRINT_REG_CARD_LOCAL_KEY",
-                    "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print_local.html",
-                    "shortcutKey": "l"
-                },
+
                 {
                     "translationKey": "REGISTRATION_PRINT_REG_CARD_KEY",
                     "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print.html",
                     "shortcutKey": "p"
                 },
                 {
-                    "translationKey": "REGISTRATION_PRINT_SUPPLEMENTAL_PAPER",
-                    "templateUrl": "/bahmni_config/openmrs/apps/registration/supplementalPaperLayout/print.html",
-                    "shortcutKey": "r"
+                    "translationKey": "REGISTRATION_PRINT_STICKER_KEY",
+                    "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print_local.html",
+                    "shortcutKey": "l"
                 }
             ],
             "fieldValidation" : {
