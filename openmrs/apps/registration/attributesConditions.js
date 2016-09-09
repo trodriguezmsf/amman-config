@@ -64,12 +64,12 @@ Bahmni.Registration.AttributesConditions.rules = {
         }
         return returnValues
     },
-    'doesthePatienthaveOfficalIddocuments': function(patient){
+    'statusofOfficialIDdocuments': function(patient){
         var returnValues = {
             show: [],
             hide: []
         };
-        if (patient["doesthePatienthaveOfficalIddocuments"] && patient["doesthePatienthaveOfficalIddocuments"].value && patient["doesthePatienthaveOfficalIddocuments"].value.fullySpecifiedName === "Yes") {
+        if (patient["statusofOfficialIDdocuments"] && patient["statusofOfficialIDdocuments"].value && patient["statusofOfficialIDdocuments"].value.fullySpecifiedName === "Recevied") {
             returnValues.show.push("idDocumentOne");
             returnValues.show.push("idDocumentTwo")
         } else {

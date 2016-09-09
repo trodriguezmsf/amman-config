@@ -17,12 +17,4 @@ Bahmni.Registration.customValidator = {
         },
         errorMessage: "REGISTRATION_CASTE_TEXT_ERROR_KEY"
     },
-    "legalRepDob":{
-    method: function (name, value, personAttributeDetails){
-
-    return value >= 0;
-    },
-    errorMessage: "Soome thingss"
-
-    }
 };

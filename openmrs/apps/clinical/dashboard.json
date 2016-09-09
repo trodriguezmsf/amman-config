@@ -1,5 +1,5 @@
 {
-    "general": {
+  "general": {
         "translationKey": "DASHBOARD_TAB_GENERAL_KEY",
         "displayByDefault": true,
         "maxRecentlyViewedPatients": 10,
@@ -19,7 +19,7 @@
             "navigationLinksControl": {
                 "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
                 "type": "navigationLinksControl",
-                "displayOrder": 2,
+                "displayOrder": 1,
                 "showLinks" : ["home","registration", "enrolment"],
                 "customLinks": [
                     {
@@ -32,7 +32,7 @@
                 "translationKey": "DASHBOARD_TITLE_PATIENT_STAGE_AND_SPECIALITY",
                 "type": "vitals",
                 "isObservation": true,
-                "displayOrder": 1,
+                "displayOrder": 2,
                 "dashboardConfig": {
                     "showDetailsButton": true,
                     "isEditable": true,
@@ -57,12 +57,12 @@
             "programs": {
                 "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
                 "type": "programs",
-                "displayOrder": 2
+                "displayOrder": 3
             },
             "visits": {
                 "translationKey": "DASHBOARD_TITLE_VISITS_KEY",
                 "type": "visits",
-                "displayOrder": 2,
+                "displayOrder": 4,
                 "dashboardConfig": {
                     "title": null,
                     "maximumNoOfVisits": 8,
@@ -73,7 +73,7 @@
                 "translationKey": "DASHBOARD_TITLE_FIRST_STAGE_VALIDATION",
                 "type": "vitals",
                 "isObservation": true,
-                "displayOrder": 4,
+                "displayOrder": 5,
                 "dashboardConfig": {
                     "isEditable": true,
                     "showDetailsButton": true,
@@ -96,7 +96,7 @@
                 "translationKey": "DASHBOARD_TITLE_FOLLOWUP_VALIDATION",
                 "type": "vitals",
                 "isObservation": true,
-                "displayOrder": 3,
+                "displayOrder": 7,
                 "dashboardConfig": {
                     "isEditable": true,
                     "showDetailsButton": true,
@@ -119,7 +119,7 @@
                 "translationKey": "DASHBOARD_TITLE_FINAL_VALIDATION",
                 "type": "vitals",
                 "isObservation": true,
-                "displayOrder": 5,
+                "displayOrder": 9,
                 "dashboardConfig": {
                     "isEditable": true,
                     "showDetailsButton": true,
@@ -141,7 +141,7 @@
             "Radiology": {
                 "type": "radiology",
                 "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
-                "displayOrder": 6,
+                "displayOrder": 8,
                 "config": {
                     "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY"
                 }
@@ -150,7 +150,7 @@
                 "translationKey": "DASHBOARD_TITLE_DOCUMENT_UPLOAD_KEY",
                 "type": "vitals",
                 "isObservation": true,
-                "displayOrder": 7,
+                "displayOrder": 6,
                 "dashboardConfig": {
                     "showDetailsButton": true,
                     "conceptNames": [
