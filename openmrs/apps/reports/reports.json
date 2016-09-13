@@ -1,13 +1,30 @@
 {
-  "testReport1": {
-    "name": "1st Stage validation",
+  "testReport0": {
+    "name": "Test Report",
     "type": "observations",
     "config": {
+      "patientAttributes": [
+        "id1DocNumber",
+        "doesthePatientneedAccommodation",
+        "isCareTakerRequired",
+        "caretakerNameEnglish",
+        "caretakerGender",
+        "id3Document",
+        "phoneNumber1"
+      ],
+      "patientAddresses": ["address3"],
       "conceptNamesToFilter":[
-        "First Stage Validation"
+        "FSTG, Specialty determined by MLO",
+        "FSTG, Stage",
+        "FSTG, Priority",
+        "MH, Network Area",
+        "MH, Referred by",
+        "FSTG, Name (s) of Surgeon 1",
+        "FSTG, Name (s) of Surgeon 2"
       ],
       "encounterPerRow": true,
-      "conceptNameDisplayFormat": "short"
+      "conceptNameDisplayFormat": "short",
+      "excludeColumns": ["Location Name","Program Name", "Program Enrollment Date", "Program End Date", "Patient Created Date"]
     }
   },
   "testReport2": {
