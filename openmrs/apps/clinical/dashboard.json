@@ -173,6 +173,22 @@
                     "pivotTable": {}
                 }
 
+            },
+            "validationForms": {
+                "type": "forms",
+                "displayOrder": 10,
+                "dashboardConfig": {
+                    "title": null,
+                    "maximumNoOfVisits": 1
+                },
+                "formGroup": [
+                    "MH, Medical History",
+                    "First Stage Validation",
+                    "Follow-up validation",
+                    "FV, Final validation"
+
+                ],
+                "translationKey": "DASHBOARD_TITLE_EDIT"
             }
         }
     }
