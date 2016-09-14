@@ -37,12 +37,14 @@
     }
   },
   "testReport3": {
-    "name":"Follow-up",
+    "name":"Final Validation",
     "type": "observations",
     "config": {
 
       "encounterPerRow": true,
+      "conceptNameDisplayFormat": "short",
       "excludeColumns":["Location Name","Program Name", "Age","Birthdate","Gender","Program Enrollment Date", "Program End Date", "Patient Created Date"]
+
     }
   }
 }
