@@ -7,4 +7,22 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
+    <changeSet id="Amman-01" author="Chethan" context="rel1">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM global_property where property = 'emr.personImagesDirectory'
+            </sqlCheck>
+        </preConditions>
+        <comment>Set up person image directory</comment>
+        <sql>
+            select uuid() into @uuid;
+            insert into global_property (`property`, `property_value`, `description`, `uuid`)
+            values ('emr.personImagesDirectory',
+            '/home/bahmni/patient_images',
+            'Location of patient images - required by emrapi',
+            @uuid
+            );
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
