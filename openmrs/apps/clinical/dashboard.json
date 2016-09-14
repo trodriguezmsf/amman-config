@@ -146,34 +146,7 @@
                     "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY"
                 }
             },
-            "Document-upload":{
-                "translationKey": "DASHBOARD_TITLE_DOCUMENT_UPLOAD_KEY",
-                "type": "vitals",
-                "isObservation": true,
-                "displayOrder": 6,
-                "dashboardConfig": {
-                    "showDetailsButton": true,
-                    "conceptNames": [
-                        "Patient file",
-                        "Passport",
-                        "National Document",
-                        "Refugee Registration Document"
-                    ],
-                    "numberOfVisits": 3
-                },
-                "expandedViewConfig": {
-                    "conceptNames": [
-                        "Patient file",
-                        "Passport",
-                        "National Document",
-                        "Refugee Registration Document"
-                    ],
-                    "numberOfVisits": 3,
-                    "showDetailsButton": true,
-                    "pivotTable": {}
-                }
 
-            },
             "validationForms": {
                 "type": "forms",
                 "displayOrder": 10,

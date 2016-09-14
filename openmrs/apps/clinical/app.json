@@ -48,28 +48,21 @@
                 "allowAddMore": true
             },
             "MH, Name of MLO": {
-                "dropdown": true,
-                "required":true
+                "dropdown": true
             },
             "MH, Network Area": {
                 "dropdown": true
             },
-            "MH, Referred by":{
-                "required":true
-            },
 
-            "MH, Date received":{
-                "required":true
-            },
             "MH, Cause of injury":{
-                "required":true,
+
                 "dropdown":true
             },
             "MH, If caretaker is needed, why?":{
                 "dropdown":true
             },
             "FSTG, Is the medical file complete?":{
-                "required":true,
+
                 "dropdown" :true
             },
 
@@ -78,16 +71,16 @@
             },
 
             "FSTG, Type of medical information received":{
-                "dropdown":true,
-                "required":true
+                "dropdown":true
+
             },
             "FSTG, Specialty determined by MLO at first validation":{
-                "multiSelect":true,
-                "required":true
+                "multiSelect":true
+
             },
             "FSTG, Outcomes for 1st stage surgical validation":{
-                "dropdown":true,
-                "required":true
+                "dropdown":true
+
             },
             "FSTG, Priority":
             {
@@ -116,8 +109,7 @@
                 "dropdown":true
             },
             "FSTG, Date of next medical follow-up to be done":{
-                "dropdown":true,
-                "required":true
+                "dropdown":true
             },
             "FSTG, Dismissal reason":{
                 "dropdown":true
@@ -129,7 +121,6 @@
                 "dropdown":true
             },
             "FSTG, Does the patient need medical final validation?":{
-                "required":true,
                 "dropdown":true
             },
             "FSTG, Outcomes FV":{
@@ -139,11 +130,9 @@
                 "dropdown":true
             },
             "FSTG, Medical file to be submitted again by":{
-                "required":true,
-                "allowFutureDates": true
+                 "allowFutureDates": true
             },
             "FSTG, Type of medical information needed for next submission":{
-                "required":true,
                 "dropdown":true
             },
             "FUP, Qualitative outcome":{
@@ -170,6 +159,9 @@
             },
             "FUP, Reason for re-admission":{
                 "dropdown":true
+            },
+            "FV, Dead line to submit final validation":{
+                "allowFutureDates": true
             },
             "defaults" : {
                 "FSTG, Stage":"1st"

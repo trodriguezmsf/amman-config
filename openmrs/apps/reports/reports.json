@@ -27,26 +27,22 @@
       "excludeColumns": ["Location Name","Program Name", "Program Enrollment Date", "Program End Date", "Patient Created Date"]
     }
   },
-  "testReport2": {
-    "name": "Follow-up Validation",
+  "testReport1": {
+    "name": "For Vc",
     "type": "observations",
     "config": {
-      "conceptNamesToFilter":[
-        "Follow-up validation"
-      ],
+      "patientAddresses": ["address3"],
       "encounterPerRow": true,
-      "conceptNameDisplayFormat": "short"
+      "excludeColumns":["Location Name","Program Name", "Age","Birthdate","Gender","Program Enrollment Date", "Program End Date", "Patient Created Date"]
     }
   },
   "testReport3": {
-    "name":"Final Validation",
+    "name":"Follow-up",
     "type": "observations",
     "config": {
-      "conceptNamesToFilter":[
-        "FV, Final validation"
-      ],
+
       "encounterPerRow": true,
-      "conceptNameDisplayFormat": "short"
+      "excludeColumns":["Location Name","Program Name", "Age","Birthdate","Gender","Program Enrollment Date", "Program End Date", "Patient Created Date"]
     }
   }
 }
