@@ -9,6 +9,29 @@
         },
         "defaultSections": true,
         "sections": {
+            "final Validation":{
+                "translationKey": "DASHBOARD_TITLE_FINAL_VALIDATION",
+                "type": "vitals",
+                "isObservation": true,
+                "displayOrder": 9,
+                "dashboardConfig": {
+                    "isEditable": true,
+                    "showDetailsButton": true,
+                    "conceptNames": [
+                        "FV, Final validation"
+                    ],
+                    "numberOfVisits": 3
+                },
+                "expandedViewConfig": {
+                    "conceptNames": [
+                        "FV, Final validation"
+                    ],
+                    "numberOfVisits": 3,
+                    "showDetailsButton": true,
+                    "pivotTable": {}
+                }
+
+            }
         }
     },
     "dischargeSummary":{

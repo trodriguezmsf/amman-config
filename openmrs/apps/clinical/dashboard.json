@@ -37,15 +37,15 @@
                     "showDetailsButton": true,
                     "isEditable": true,
                     "conceptNames": [
-                        "PMIPA, Specialty determined by MLO",
-                        "PMIPA, Stage"
+                        "FSTG, Specialty determined by MLO",
+                        "FSTG, Stage"
                     ],
                     "numberOfVisits": 3
                 },
                 "expandedViewConfig": {
                     "conceptNames": [
-                        "PMIPA, Specialty determined by MLO",
-                        "PMIPA, Stage"
+                        "FSTG, Specialty determined by MLO",
+                        "FSTG, Stage"
                     ],
                     "isEditable": true,
                     "numberOfVisits": 3,
