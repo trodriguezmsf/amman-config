@@ -29,7 +29,7 @@
   },
   "testReport1": {
     "name": "For Vc",
-    "type": "programs",
+    "type": "observations",
     "config": {
       "patientAddresses": ["address3"],
       "encounterPerRow": true,
