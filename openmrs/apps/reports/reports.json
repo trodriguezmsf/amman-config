@@ -29,11 +29,11 @@
   },
   "testReport1": {
     "name": "For Vc",
-    "type": "observations",
+    "type": "programs",
     "config": {
       "patientAddresses": ["address3"],
       "encounterPerRow": true,
-      "excludeColumns":["Location Name","Program Name", "Age","Birthdate","Gender","Program Enrollment Date", "Program End Date", "Patient Created Date"]
+      "excludeColumns":["Location Name","Program Name", "Age","Birthdate","Gender","Program Enrollment Date", "Program End Date", "Patient Created Date","Enrolled Date","Completed Date","Current State"]
     }
   },
   "testReport3": {

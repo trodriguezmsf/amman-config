@@ -9,6 +9,7 @@
 p, h1, h2, h3, tr, td, div, span, li {
   margin: 0px;
   padding: 0px;
+  text-align:center;
 }
 
 /* line 14, print.scss */

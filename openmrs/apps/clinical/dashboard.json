@@ -16,23 +16,11 @@
                     "address3"
                 ]
             },
-            "navigationLinksControl": {
-                "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
-                "type": "navigationLinksControl",
-                "displayOrder": 1,
-                "showLinks" : ["home","registration", "enrolment"],
-                "customLinks": [
-                    {
-                        "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
-                        "url": "../document-upload/?encounterType=RADIOLOGY&topLevelConcept=Radiology#/patient/{{patientUuid}}/document"
-                              }
-                ]
-            },
             "Stage and speciality":{
                 "translationKey": "DASHBOARD_TITLE_PATIENT_STAGE_AND_SPECIALITY",
                 "type": "vitals",
                 "isObservation": true,
-                "displayOrder": 2,
+                "displayOrder": 1,
                 "dashboardConfig": {
                     "showDetailsButton": true,
                     "isEditable": true,
@@ -54,26 +42,63 @@
                 }
 
             },
+            "navigationLinksControl": {
+                "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
+                "type": "navigationLinksControl",
+                "displayOrder": 2,
+                "showLinks" : ["home","registration", "enrolment"],
+                "customLinks": [
+                    {
+                        "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
+                        "url": "../document-upload/?encounterType=RADIOLOGY&topLevelConcept=Radiology#/patient/{{patientUuid}}/document"
+                              }
+                ]
+            },
+
             "programs": {
                 "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
                 "type": "programs",
                 "displayOrder": 3
             },
+            "final Validation":{
+                "translationKey": "DASHBOARD_TITLE_FINAL_VALIDATION",
+                "type": "vitals",
+                "isObservation": true,
+                "displayOrder": 4,
+                "dashboardConfig": {
+                    "isEditable": true,
+                    "showDetailsButton": true,
+                    "conceptNames": [
+                        "FV, Final validation"
+                    ],
+                    "numberOfVisits": 3
+                },
+                "expandedViewConfig": {
+                    "conceptNames": [
+                        "FV, Final validation"
+                    ],
+                    "numberOfVisits": 3,
+                    "showDetailsButton": true,
+                    "pivotTable": {}
+                }
+
+            },
             "visits": {
                 "translationKey": "DASHBOARD_TITLE_VISITS_KEY",
                 "type": "visits",
-                "displayOrder": 4,
+                "displayOrder": 5,
                 "dashboardConfig": {
                     "title": null,
                     "maximumNoOfVisits": 8,
                     "groupByVisits": true
                 }
             },
+
             "First Stage Validation":{
                 "translationKey": "DASHBOARD_TITLE_FIRST_STAGE_VALIDATION",
                 "type": "vitals",
                 "isObservation": true,
-                "displayOrder": 5,
+                "displayOrder":8,
                 "dashboardConfig": {
                     "isEditable": true,
                     "showDetailsButton": true,
@@ -96,7 +121,7 @@
                 "translationKey": "DASHBOARD_TITLE_FOLLOWUP_VALIDATION",
                 "type": "vitals",
                 "isObservation": true,
-                "displayOrder": 7,
+                "displayOrder": 6,
                 "dashboardConfig": {
                     "isEditable": true,
                     "showDetailsButton": true,
@@ -115,33 +140,11 @@
                 }
 
             },
-            "final Validation":{
-                "translationKey": "DASHBOARD_TITLE_FINAL_VALIDATION",
-                "type": "vitals",
-                "isObservation": true,
-                "displayOrder": 9,
-                "dashboardConfig": {
-                    "isEditable": true,
-                    "showDetailsButton": true,
-                    "conceptNames": [
-                        "FV, Final validation"
-                    ],
-                    "numberOfVisits": 3
-                },
-                "expandedViewConfig": {
-                    "conceptNames": [
-                        "FV, Final validation"
-                    ],
-                    "numberOfVisits": 3,
-                    "showDetailsButton": true,
-                    "pivotTable": {}
-                }
 
-            },
             "Radiology": {
                 "type": "radiology",
                 "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
-                "displayOrder": 8,
+                "displayOrder": 7,
                 "config": {
                     "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY"
                 }
@@ -149,7 +152,7 @@
 
             "validationForms": {
                 "type": "forms",
-                "displayOrder": 10,
+                "displayOrder": 9,
                 "dashboardConfig": {
                     "title": null,
                     "maximumNoOfVisits": 1
