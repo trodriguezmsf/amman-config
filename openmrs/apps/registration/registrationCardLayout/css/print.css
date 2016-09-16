@@ -11,7 +11,9 @@ p, h1, h2, h3, tr, td, div, span, li {
   padding: 0px;
   text-align:center;
 }
-
+.arabic{
+text-align:right;
+}
 /* line 14, print.scss */
 h1, h2, h3 ,h4 {
   text-align: center;

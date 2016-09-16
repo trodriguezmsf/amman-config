@@ -205,8 +205,9 @@
                 "phoneNumber1" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
                 "phoneNumber2" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
                 "phoneNumber3" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
-                "caretakerPhoneNumber1" :{"pattern" : "[+][0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
-                "caretakerPhoneNumber2" :{"pattern" : "[+][0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "}
+                "caretakerPhoneNumber1" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
+                "caretakerPhoneNumber2" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
+                "emergencyContactNumber" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "}
 
 
             },
