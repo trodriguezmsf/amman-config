@@ -69,9 +69,14 @@
                     "isEditable": true,
                     "showDetailsButton": true,
                     "conceptNames": [
-                        "FV, Final validation"
+                        "FV, Does the patient need medical final validation?",
+                        "FV, Which medical information is needed for FV?",
+                        "FV, Dead line to submit final validation",
+                        "FV, Outcomes FV",
+                        "FV, Comments on FV"
                     ],
-                    "numberOfVisits": 3
+                    "scope": "latest",
+                    "showGroupDateTime": false
                 },
                 "expandedViewConfig": {
                     "conceptNames": [
@@ -103,9 +108,30 @@
                     "isEditable": true,
                     "showDetailsButton": true,
                     "conceptNames": [
-                        "First Stage Validation"
-                    ],
-                    "numberOfVisits": 3
+                        "FSTG, Type of medical information received",
+                        "FSTG, Date received",
+                        "FSTG, Is the medical file complete?",
+                        "FSTG, Document(s) needed to be complete",
+                        "FSTG, Specialty determined by MLO",
+                        "FSTG, Stage",
+                        "FSTG, Patient Videos",
+                        "FSTG, Date of presentation at 1st stage",
+                        "FSTG, Outcomes for 1st stage surgical validation",
+                        "FSTG, Priority",
+                        "FSTG, Name (s) of Surgeon 1",
+                        "FSTG, Name (s) of Surgeon 2",
+                        "FSTG, Comments:",
+                        "FSTG, Outcomes for 1st stage Aneasthesia validation",
+                        "FSTG, Name (s) of Anesthetist",
+                        "FSTG, Comments about Aneasthesia validation",
+                        "FSTG, Postpone reason",
+                        "FSTG, Comments about postpone reason",
+                        "FSTG, Medical file to be submitted again by",
+                        "FSTG, Type of medical information needed for next submission",
+                        "FSTG, Refused Reason",
+                        "FSTG, Comments about refusal"                    ],
+                    "scope": "latest",
+                    "showGroupDateTime": false
                 },
                 "expandedViewConfig": {
                     "conceptNames": [
@@ -126,9 +152,27 @@
                     "isEditable": true,
                     "showDetailsButton": true,
                     "conceptNames": [
-                        "Follow-up validation"
+                        "FUP, Date of presentation at Followup",
+                        "FUP, Stage",
+                        "FUP, Qualitative outcome-Union",
+                        "FUP, Qualitative outcome - Infection",
+                        "FUP, Outcomes for follow-up surgical validation",
+                        "FUP, Time for next medical follow-up to be done",
+                        "FUP, Comments about next follow-up",
+                        "FUP, Comments about MBA",
+                        "FUP, Dismissal reason",
+                        "FUP, Dismissal confirmed",
+                        "FUP, Comments about dismissal",
+                        "FUP, Comments about Defaulter",
+                        "FUP, Reason for re-admission",
+                        "FUP, Priority",
+                        "FUP, Name (s) of Surgeon 1",
+                        "FUP, Name (s) of Surgeon 2",
+                        "FUP, Comments about further stage admission",
+                        "FUP Patient Videos"
                     ],
-                    "numberOfVisits": 3
+                    "scope": "latest",
+                    "showGroupDateTime": false
                 },
                 "expandedViewConfig": {
                     "conceptNames": [
