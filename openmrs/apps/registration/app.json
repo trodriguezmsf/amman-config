@@ -195,7 +195,7 @@
                 {
                     "translationKey": "REGISTRATION_PRINT_STICKER_KEY",
                     "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print_local.html",
-                    "shortcutKey": "l"
+                    "shortcutKey": "t"
                 }
             ],
             "fieldValidation" : {

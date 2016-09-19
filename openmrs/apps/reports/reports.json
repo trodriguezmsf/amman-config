@@ -10,6 +10,9 @@
         "caretakerNameEnglish",
         "caretakerGender",
         "id3Document",
+        "phoneNumber1",
+        "expectedDateofArrival",
+        "dateofAdmission",
         "phoneNumber1"
       ],
       "patientAddresses": ["address3"],
@@ -17,6 +20,7 @@
         "FSTG, Specialty determined by MLO",
         "FSTG, Stage",
         "FSTG, Priority",
+        "MH, Name of MLO",
         "MH, Network Area",
         "MH, Referred by",
         "FSTG, Name (s) of Surgeon 1",
@@ -24,7 +28,7 @@
       ],
       "encounterPerRow": true,
       "conceptNameDisplayFormat": "short",
-      "excludeColumns": ["Location Name","Program Name", "Program Enrollment Date", "Program End Date", "Patient Created Date"]
+      "excludeColumns": ["Location Name","Birthdate","Program Name", "Program Enrollment Date", "Program End Date", "Patient Created Date"]
     }
   },
   "testReport1": {
@@ -32,7 +36,11 @@
     "type": "observations",
     "config": {
       "patientAddresses": ["address3"],
+      "conceptNamesToFilter":[
+        "FSTG, Specialty determined by MLO"
+      ],
       "encounterPerRow": true,
+      "conceptNameDisplayFormat": "short",
       "excludeColumns":["Location Name","Program Name", "Age","Birthdate","Gender","Program Enrollment Date", "Program End Date", "Patient Created Date","Enrolled Date","Completed Date","Current State"]
     }
   },
@@ -40,6 +48,9 @@
     "name":"Final Validation",
     "type": "observations",
     "config": {
+      "conceptNamesToFilter":[
+        "FSTG, Specialty determined by MLO"
+      ],
 
       "encounterPerRow": true,
       "conceptNameDisplayFormat": "short",

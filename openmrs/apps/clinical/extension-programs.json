@@ -6,7 +6,7 @@
         "extensionParams": {
             "searchHandler": "emrapi.sqlSearch.activePatients",
             "translationKey": "MODULE_LABEL_ACTIVE_KEY",
-            "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard"
+            "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext"
         },
         "order": 1,
         "requiredPrivilege": "app:clinical"
