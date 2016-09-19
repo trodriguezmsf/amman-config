@@ -19,5 +19,6 @@ Bahmni.Registration.customValidator = {
             return moment(value).isAfter(dateUtil.today());
         },
         "errorMessage": "REGISTRATION_DOE_ERROR_KEY"
-    }
+    },
+
 };

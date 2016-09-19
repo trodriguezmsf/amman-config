@@ -38,6 +38,14 @@
             "Radiology": "Radiology Order",
             "Endoscopy": "Endoscopy Order"
         },
+        "patientContext": {
+
+            "personAttributes": [
+                "nationality1"
+
+            ]
+
+        },
         "allowConsultationWhenNoOpenVisit": false,
         "defaultVisitType": "OPD",
         "visitTypeForRetrospectiveEntries": "Special OPD",
@@ -68,6 +76,9 @@
 
             "FSTG, Specialty determined by MLO":{
                 "multiSelect":true
+            },
+            "FSTG, Stage":{
+                "dropdown":true
             },
 
             "FSTG, Type of medical information received":{
@@ -162,10 +173,8 @@
             },
             "FV, Dead line to submit final validation":{
                 "allowFutureDates": true
-            },
-            "defaults" : {
-                "FSTG, Stage":"1st"
             }
+
 
         },
         "visitPage": {

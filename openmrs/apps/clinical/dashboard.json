@@ -4,23 +4,11 @@
         "displayByDefault": true,
         "maxRecentlyViewedPatients": 10,
         "sections": {
-            "patientInformation": {
-                "translationKey": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
-                "type": "patientInformation",
-                "displayOrder": 0,
-                "ageLimit": 100,
-                "patientAttributes": [],
-                "addressFields": [
-                    "stateProvince",
-                    "country",
-                    "address3"
-                ]
-            },
             "Stage and speciality":{
                 "translationKey": "DASHBOARD_TITLE_PATIENT_STAGE_AND_SPECIALITY",
                 "type": "vitals",
                 "isObservation": true,
-                "displayOrder": 1,
+                "displayOrder": 0,
                 "dashboardConfig": {
                     "showDetailsButton": true,
                     "isEditable": true,
@@ -45,7 +33,7 @@
             "navigationLinksControl": {
                 "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
                 "type": "navigationLinksControl",
-                "displayOrder": 2,
+                "displayOrder": 1,
                 "showLinks" : ["home","registration", "enrolment"],
                 "customLinks": [
                     {
@@ -54,17 +42,11 @@
                               }
                 ]
             },
-
-            "programs": {
-                "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
-                "type": "programs",
-                "displayOrder": 3
-            },
             "final Validation":{
                 "translationKey": "DASHBOARD_TITLE_FINAL_VALIDATION",
                 "type": "vitals",
                 "isObservation": true,
-                "displayOrder": 4,
+                "displayOrder": 2,
                 "dashboardConfig": {
                     "isEditable": true,
                     "showDetailsButton": true,
@@ -88,103 +70,107 @@
                 }
 
             },
-            "visits": {
-                "translationKey": "DASHBOARD_TITLE_VISITS_KEY",
-                "type": "visits",
-                "displayOrder": 5,
-                "dashboardConfig": {
-                    "title": null,
-                    "maximumNoOfVisits": 8,
-                    "groupByVisits": true
-                }
+            "programs": {
+                "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
+                "type": "programs",
+                "displayOrder": 3
             },
-
-            "First Stage Validation":{
-                "translationKey": "DASHBOARD_TITLE_FIRST_STAGE_VALIDATION",
-                "type": "vitals",
-                "isObservation": true,
-                "displayOrder":8,
-                "dashboardConfig": {
-                    "isEditable": true,
-                    "showDetailsButton": true,
-                    "conceptNames": [
-                        "FSTG, Type of medical information received",
-                        "FSTG, Date received",
-                        "FSTG, Is the medical file complete?",
-                        "FSTG, Document(s) needed to be complete",
-                        "FSTG, Specialty determined by MLO",
-                        "FSTG, Stage",
-                        "FSTG, Patient Videos",
-                        "FSTG, Date of presentation at 1st stage",
-                        "FSTG, Outcomes for 1st stage surgical validation",
-                        "FSTG, Priority",
-                        "FSTG, Name (s) of Surgeon 1",
-                        "FSTG, Name (s) of Surgeon 2",
-                        "FSTG, Comments:",
-                        "FSTG, Outcomes for 1st stage Aneasthesia validation",
-                        "FSTG, Name (s) of Anesthetist",
-                        "FSTG, Comments about Aneasthesia validation",
-                        "FSTG, Postpone reason",
-                        "FSTG, Comments about postpone reason",
-                        "FSTG, Medical file to be submitted again by",
-                        "FSTG, Type of medical information needed for next submission",
-                        "FSTG, Refused Reason",
-                        "FSTG, Comments about refusal"                    ],
-                    "scope": "latest",
-                    "showGroupDateTime": false
-                },
-                "expandedViewConfig": {
-                    "conceptNames": [
-                        "First Stage Validation"
-                    ],
-                    "numberOfVisits": 3,
-                    "showDetailsButton": true,
-                    "pivotTable": {}
-                }
-
+          "Follow-up Validation":{
+            "translationKey": "DASHBOARD_TITLE_FOLLOWUP_VALIDATION",
+            "type": "vitals",
+            "isObservation": true,
+            "displayOrder": 4,
+            "dashboardConfig": {
+              "isEditable": true,
+              "showDetailsButton": true,
+              "conceptNames": [
+                "FUP, Date of presentation at Followup",
+                "FUP, Stage",
+                "FUP, Qualitative outcome-Union",
+                "FUP, Qualitative outcome - Infection",
+                "FUP, Outcomes for follow-up surgical validation",
+                "FUP, Time for next medical follow-up to be done",
+                "FUP, Comments about next follow-up",
+                "FUP, Comments about MBA",
+                "FUP, Dismissal reason",
+                "FUP, Dismissal confirmed",
+                "FUP, Comments about dismissal",
+                "FUP, Comments about Defaulter",
+                "FUP, Reason for re-admission",
+                "FUP, Priority",
+                "FUP, Name (s) of Surgeon 1",
+                "FUP, Name (s) of Surgeon 2",
+                "FUP, Comments about further stage admission",
+                "FUP Patient Videos"
+              ],
+              "scope": "latest",
+              "showGroupDateTime": false
             },
-            "Follow-up Validation":{
-                "translationKey": "DASHBOARD_TITLE_FOLLOWUP_VALIDATION",
-                "type": "vitals",
-                "isObservation": true,
-                "displayOrder": 6,
-                "dashboardConfig": {
-                    "isEditable": true,
-                    "showDetailsButton": true,
-                    "conceptNames": [
-                        "FUP, Date of presentation at Followup",
-                        "FUP, Stage",
-                        "FUP, Qualitative outcome-Union",
-                        "FUP, Qualitative outcome - Infection",
-                        "FUP, Outcomes for follow-up surgical validation",
-                        "FUP, Time for next medical follow-up to be done",
-                        "FUP, Comments about next follow-up",
-                        "FUP, Comments about MBA",
-                        "FUP, Dismissal reason",
-                        "FUP, Dismissal confirmed",
-                        "FUP, Comments about dismissal",
-                        "FUP, Comments about Defaulter",
-                        "FUP, Reason for re-admission",
-                        "FUP, Priority",
-                        "FUP, Name (s) of Surgeon 1",
-                        "FUP, Name (s) of Surgeon 2",
-                        "FUP, Comments about further stage admission",
-                        "FUP Patient Videos"
-                    ],
-                    "scope": "latest",
-                    "showGroupDateTime": false
-                },
-                "expandedViewConfig": {
-                    "conceptNames": [
-                        "Follow-up validation"
-                    ],
-                    "numberOfVisits": 3,
-                    "showDetailsButton": true,
-                    "pivotTable": {}
-                }
+            "expandedViewConfig": {
+              "conceptNames": [
+                "Follow-up validation"
+              ],
+              "numberOfVisits": 3,
+              "showDetailsButton": true,
+              "pivotTable": {}
+            }
 
+          },
+          "visits": {
+            "translationKey": "DASHBOARD_TITLE_VISITS_KEY",
+            "type": "visits",
+            "displayOrder": 5,
+            "dashboardConfig": {
+              "title": null,
+              "maximumNoOfVisits": 8,
+              "groupByVisits": true
+            }
+          },
+
+          "First Stage Validation":{
+            "translationKey": "DASHBOARD_TITLE_FIRST_STAGE_VALIDATION",
+            "type": "vitals",
+            "isObservation": true,
+            "displayOrder":6,
+            "dashboardConfig": {
+              "isEditable": true,
+              "showDetailsButton": true,
+              "conceptNames": [
+                "FSTG, Type of medical information received",
+                "FSTG, Date received",
+                "FSTG, Is the medical file complete?",
+                "FSTG, Document(s) needed to be complete",
+                "FSTG, Specialty determined by MLO",
+                "FSTG, Stage",
+                "FSTG, Patient Videos",
+                "FSTG, Date of presentation at 1st stage",
+                "FSTG, Outcomes for 1st stage surgical validation",
+                "FSTG, Priority",
+                "FSTG, Name (s) of Surgeon 1",
+                "FSTG, Name (s) of Surgeon 2",
+                "FSTG, Comments:",
+                "FSTG, Outcomes for 1st stage Aneasthesia validation",
+                "FSTG, Name (s) of Anesthetist",
+                "FSTG, Comments about Aneasthesia validation",
+                "FSTG, Postpone reason",
+                "FSTG, Comments about postpone reason",
+                "FSTG, Medical file to be submitted again by",
+                "FSTG, Type of medical information needed for next submission",
+                "FSTG, Refused Reason",
+                "FSTG, Comments about refusal"                    ],
+              "scope": "latest",
+              "showGroupDateTime": false
             },
+            "expandedViewConfig": {
+              "conceptNames": [
+                "First Stage Validation"
+              ],
+              "numberOfVisits": 3,
+              "showDetailsButton": true,
+              "pivotTable": {}
+            }
 
+          },
             "Radiology": {
                 "type": "radiology",
                 "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
@@ -196,7 +182,7 @@
 
             "validationForms": {
                 "type": "forms",
-                "displayOrder": 9,
+                "displayOrder": 8,
                 "dashboardConfig": {
                     "title": null,
                     "maximumNoOfVisits": 1
