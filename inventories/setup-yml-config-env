@@ -4,6 +4,7 @@ implementation_name: amman
 two_factor_auth: disabled
 java_runtime: jdk
 implementer_interface: disabled
+omods: ["/tmp/bahmnimsf-1.0-SNAPSHOT.omod"]
 SSLCertificateFilePath: /etc/letsencrypt/live/config-amman.mybahmni.org/cert.pem
 SSLCertificateKeyFilePath: /etc/letsencrypt/live/config-amman.mybahmni.org/privkey.pem
 SSLCertificateChainFilePath: /etc/letsencrypt/live/config-amman.mybahmni.org/chain.pem
