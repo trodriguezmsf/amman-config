@@ -18,7 +18,7 @@ Bahmni.Registration.customValidator = {
             var dateUtil = Bahmni.Common.Util.DateUtil;
             return moment(value).isAfter(dateUtil.today());
         },
-        "errorMessage": "REGISTRATION_DOE_ERROR_KEY"
+        "errorMessage": "REGISTRATION_POE_ERROR_KEY"
     },
     "id2DateOfExpiry": {
             method: function (name, value, personAttributeDetails) {
@@ -32,7 +32,7 @@ Bahmni.Registration.customValidator = {
                     var dateUtil = Bahmni.Common.Util.DateUtil;
                     return moment(value).isAfter(dateUtil.today());
                 },
-                "errorMessage": "REGISTRATION_POE_ERROR_KEY"
+                "errorMessage": "REGISTRATION_DOE_ERROR_KEY"
             },
 
 };

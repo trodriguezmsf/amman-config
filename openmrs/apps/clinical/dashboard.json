@@ -4,32 +4,11 @@
         "displayByDefault": true,
         "maxRecentlyViewedPatients": 10,
         "sections": {
-            "Stage and speciality":{
-                "translationKey": "DASHBOARD_TITLE_PATIENT_STAGE_AND_SPECIALITY",
-                "type": "vitals",
-                "isObservation": true,
-                "displayOrder": 0,
-                "dashboardConfig": {
-                    "showDetailsButton": true,
-                    "isEditable": true,
-                    "conceptNames": [
-                        "FSTG, Specialty determined by MLO",
-                        "FSTG, Stage"
-                    ],
-                    "numberOfVisits": 3
-                },
-                "expandedViewConfig": {
-                    "conceptNames": [
-                        "FSTG, Specialty determined by MLO",
-                        "FSTG, Stage"
-                    ],
-                    "isEditable": true,
-                    "numberOfVisits": 3,
-                    "showDetailsButton": true,
-                    "pivotTable": {}
-                }
-
-            },
+           "programs": {
+            "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
+            "type": "programs",
+            "displayOrder": 0
+          },
             "navigationLinksControl": {
                 "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
                 "type": "navigationLinksControl",
@@ -70,11 +49,44 @@
                 }
 
             },
-            "programs": {
-                "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
-                "type": "programs",
-                "displayOrder": 3
+
+          "Medical History":{
+            "translationKey": "DASHBOARD_TITLE_PATIENT_MEDICAL_HISTORY",
+            "type": "vitals",
+            "isObservation": true,
+            "displayOrder": 3,
+            "dashboardConfig": {
+              "showDetailsButton": true,
+              "isEditable": true,
+              "conceptNames": [
+                "MH, Name of MLO",
+                "MH, Network Area",
+                "MH, Date of injury",
+                "MH, Cause of injury",
+                "FSTG, Stage",
+                "FSTG, Specialty determined by MLO"
+
+              ],
+
+              "scope": "latest",
+              "showGroupDateTime": false
             },
+            "expandedViewConfig": {
+              "conceptNames": [
+                "MH, Name of MLO",
+                "MH, Network Area",
+                "MH, Date of injury",
+                "MH, Cause of injury",
+                "FSTG, Stage",
+                "FSTG, Specialty determined by MLO"
+
+              ],
+              "isEditable": true,
+              "numberOfVisits": 3,
+              "showDetailsButton": true,
+              "pivotTable": {}
+            }
+          },
           "Follow-up Validation":{
             "translationKey": "DASHBOARD_TITLE_FOLLOWUP_VALIDATION",
             "type": "vitals",
@@ -85,25 +97,18 @@
               "showDetailsButton": true,
               "conceptNames": [
                 "FUP, Date of presentation at Followup",
-                "FUP, Stage",
-                "FUP, Qualitative outcome-Union",
-                "FUP, Qualitative outcome - Infection",
                 "FUP, Outcomes for follow-up surgical validation",
                 "FUP, Time for next medical follow-up to be done",
                 "FUP, Comments about next follow-up",
                 "FUP, Comments about MBA",
                 "FUP, Dismissal reason",
-                "FUP, Dismissal confirmed",
                 "FUP, Comments about dismissal",
-                "FUP, Comments about Defaulter",
                 "FUP, Reason for re-admission",
                 "FUP, Priority",
                 "FUP, Name (s) of Surgeon 1",
-                "FUP, Name (s) of Surgeon 2",
-                "FUP, Comments about further stage admission",
-                "FUP Patient Videos"
+                "FUP, Name (s) of Surgeon 2"
               ],
-              "scope": "latest",
+                "scope": "latest",
               "showGroupDateTime": false
             },
             "expandedViewConfig": {
@@ -136,28 +141,14 @@
               "isEditable": true,
               "showDetailsButton": true,
               "conceptNames": [
-                "FSTG, Type of medical information received",
-                "FSTG, Date received",
-                "FSTG, Is the medical file complete?",
-                "FSTG, Document(s) needed to be complete",
-                "FSTG, Specialty determined by MLO",
-                "FSTG, Stage",
-                "FSTG, Patient Videos",
                 "FSTG, Date of presentation at 1st stage",
                 "FSTG, Outcomes for 1st stage surgical validation",
                 "FSTG, Priority",
-                "FSTG, Name (s) of Surgeon 1",
-                "FSTG, Name (s) of Surgeon 2",
-                "FSTG, Comments:",
                 "FSTG, Outcomes for 1st stage Aneasthesia validation",
-                "FSTG, Name (s) of Anesthetist",
-                "FSTG, Comments about Aneasthesia validation",
                 "FSTG, Postpone reason",
-                "FSTG, Comments about postpone reason",
-                "FSTG, Medical file to be submitted again by",
                 "FSTG, Type of medical information needed for next submission",
-                "FSTG, Refused Reason",
-                "FSTG, Comments about refusal"                    ],
+                "FSTG, Refused Reason"
+                                    ],
               "scope": "latest",
               "showGroupDateTime": false
             },
