@@ -8,7 +8,7 @@
 /* line 10, print.scss */
 p, h1, h2, h3, tr, td, div, span, li {
   margin: 0px;
-  padding: 0px;
+  padding: 5px;
   text-align:center;
 }
 .arabic{
@@ -31,6 +31,15 @@ h1, h2, h3 ,h4 {
   overflow: scroll;
   margin: 0 auto;
   table-layout: fixed;
+}
+
+.subpage {
+    border: 5px red solid;
+    height: 100%;
+    margin-top: 0.9cm;
+    margin-left: 0.9cm;
+    margin-right: 0.86cm;
+    margin-bottom: 0.86cm;
 }
 
 /* line 24, print.scss */

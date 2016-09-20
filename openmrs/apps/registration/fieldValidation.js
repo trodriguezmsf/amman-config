@@ -13,12 +13,26 @@ Bahmni.Registration.customValidator = {
         },
         "errorMessage": "REGISTRATION_CTDOB_ERROR_KEY"
     },
-    "id3DateOfExpiry": {
+    "id1DateOfExpiry": {
         method: function (name, value, personAttributeDetails) {
             var dateUtil = Bahmni.Common.Util.DateUtil;
             return moment(value).isAfter(dateUtil.today());
         },
         "errorMessage": "REGISTRATION_DOE_ERROR_KEY"
     },
+    "id2DateOfExpiry": {
+            method: function (name, value, personAttributeDetails) {
+                var dateUtil = Bahmni.Common.Util.DateUtil;
+                return moment(value).isAfter(dateUtil.today());
+            },
+            "errorMessage": "REGISTRATION_POE_ERROR_KEY"
+        },
+    "id3DateOfExpiry": {
+                method: function (name, value, personAttributeDetails) {
+                    var dateUtil = Bahmni.Common.Util.DateUtil;
+                    return moment(value).isAfter(dateUtil.today());
+                },
+                "errorMessage": "REGISTRATION_POE_ERROR_KEY"
+            },
 
 };

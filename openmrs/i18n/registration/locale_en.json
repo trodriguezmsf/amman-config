@@ -12,6 +12,7 @@
   "REGISTRATION_LGDOB_ERROR_KEY": "'LEGAL REPRESENTATIVE DOB' cannot be a future date",
   "REGISTRATION_CTDOB_ERROR_KEY": "'CARETAKER DOB' cannot be a future date",
   "REGISTRATION_DOE_ERROR_KEY": "'CARETAKER ID DOCUMENTS' are already expired",
+  "REGISTRATION_POE_ERROR_KEY": "'PATIENT ID DOCUMENTS' are already expired",
   "REGISTRATION_EDA_ERROR_KEY": "'EXPECTED DATE OF ARRIVAL' should not be a past date",
   "REGISTRATION_BRING_CARD_TEXT_KEY": "( تعليمات بطاقة المواعيد )",
   "REGISTRATION_TAKE_MEDICINES_TEXT_KEY": "على المراجعين الكرام الالتزام بالموعد المحدد واحضار",
