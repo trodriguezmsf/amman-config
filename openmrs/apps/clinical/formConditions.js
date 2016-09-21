@@ -51,7 +51,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
           		disable : []
           	};
           	var conditionConcept = formFieldValues['FUP, Outcomes for follow-up surgical validation'];
-          	if (conditionConcept=="Continue Under Fup") {
+          	if (conditionConcept=="Continue under follow-up") {
           		conditions.enable.push("FUP, Time for next medical follow-up to be done","FUP, Comments about next follow-up")
           	    conditions.disable.push("FUP, Comments about MBA","FUP, Dismissal reason","FUP, Dismissal confirmed","FUP, Comments about dismissal","FUP, Comments about Defaulter","FUP, Reason for re-admission","FUP, Name (s) of Surgeon 1","FUP, Name (s) of Surgeon 2","FUP, Comments about further stage admission","FUP, Reason for re-admission","FUP, Priority","FUP, Name (s) of Surgeon 1","FUP, Name (s) of Surgeon 2","FUP, Comments about further stage admission")
           	       }
