@@ -34,14 +34,37 @@ h1, h2, h3 ,h4 {
 }
 
 .subpage {
-    border: 5px red solid;
     height: 100%;
     margin-top: 0.9cm;
     margin-left: 0.9cm;
     margin-right: 0.86cm;
     margin-bottom: 0.86cm;
+    font-size: 9px;
+    line-height: 0.9;
 }
+.subpage ul{
+  margin:0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid;
+  width:100%;
+  overflow: hidden;
+  clear: both;
+}
+.subpage ul li{
+  width:25%;
+  height: 2.5cm;
+  display: block;
+  border: 1px solid;
+  float:left;
+  box-sizing: border-box;
 
+}
+.subpage ul li span.localname{
+  display: block;
+  line-height: 1;
+  font-size: 11px;
+}
 /* line 24, print.scss */
 .registrationCard-print-table td.registrationCard-photo {
   padding-top: 2px;
