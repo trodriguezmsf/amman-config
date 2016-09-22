@@ -4,6 +4,7 @@
 MAILING_ADDRESS_ON_FAILURE='vyugesh@thoughtworks.com'
 DIR_TO_BACKUP='/db-backup/,/home/bahmni/uploaded_results,/home/bahmni/document_images,/home/bahmni/.bahmni-reports,/home/bahmni/patient_images,/home/bahmni/uploaded-files'
 SENDMAIL=false
+USAGE="script should be used as backup.sh <user@remore_server.com> <remote_backup_dir>"
 
 #parsing the command line options
 while getopts "m:d:f:" opt ;
@@ -12,7 +13,7 @@ do
         m) SENDMAIL="$OPTARG";;
         d) DIR_TO_BACKUP="$OPTARG";;
         f) MAILING_ADDRESS_ON_FAILURE="$OPTARG";;
-        *) echo "Invalid Argument $OPTARG"
+        *) echo "$USAGE"
         exit 0 ;;
     esac
 done
@@ -25,6 +26,7 @@ done
 
 REMOTE_SERV_ADDRESS="$1";
 REMOTE_SERV_SYNC_DIR="$2";
+echo "connecting to $REMOTE_SERV_ADDRESS at $REMOTE_SERV_SYNC_DIR"
 
 DIRS=(${DIR_TO_BACKUP//,/ })
 
