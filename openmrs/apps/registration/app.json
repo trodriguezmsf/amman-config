@@ -18,7 +18,6 @@
         ],
         "config" : {
             "mandatoryPersonAttributes" : [
-                "givenNameLocal",
                 "id1Document",
                 "id1FullNameEnglish",
                 "id1DocNumber",
