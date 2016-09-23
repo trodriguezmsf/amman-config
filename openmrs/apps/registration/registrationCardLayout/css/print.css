@@ -55,7 +55,8 @@ h1, h2, h3 ,h4 {
   width:25%;
   height: 2.5cm;
   display: block;
-  border: 1px solid;
+  border: 0px solid;
+  padding-top : 10px;
   float:left;
   box-sizing: border-box;
 
