@@ -1,0 +1,9 @@
+timezone: Asia/Amman
+bahmni_repo_url: https://bahmni-repo.twhosted.com/rpm/bahmni/
+implementation_name: amman
+two_factor_auth: disabled
+implementer_interface: disabled
+omods: ["file:///tmp/bahmnimsf-1.0-SNAPSHOT.omod"]
+SSLCertificateFilePath: /etc/letsencrypt/live/amman.mybahmni.org/cert.pem
+SSLCertificateKeyFilePath: /etc/letsencrypt/live/amman.mybahmni.org/privkey.pem
+SSLCertificateChainFilePath: /etc/letsencrypt/live/amman.mybahmni.org/chain.pem
