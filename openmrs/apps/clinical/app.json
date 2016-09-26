@@ -48,7 +48,7 @@
         },
         "allowConsultationWhenNoOpenVisit": false,
         "defaultVisitType": "OPD",
-        "visitTypeForRetrospectiveEntries": "Special OPD",
+        "visitTypeForRetrospectiveEntries": "Validation",
         "maxConceptSetLevels": 3,
         "allowOnlyCodedDiagnosis": false,
         "conceptSetUI": {
