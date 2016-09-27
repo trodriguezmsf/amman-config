@@ -59,7 +59,7 @@
     }
   },
   "customReport1": {
-    "name": "Extraction Of Validation Committee (New)",
+    "name": "Extraction Of Validation Committee (First Stage)",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/ExtractionOfValidationCommitteeNew.sql"

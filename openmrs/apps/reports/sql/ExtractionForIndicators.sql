@@ -17,7 +17,7 @@ SELECT
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Stage', o.value_numeric, NULL)) ORDER BY o.obs_id DESC) AS 'Follow-Up Validation Stage',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Time for next medical follow-up to be done', COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Time for next medical follow-up to be done',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Name of MLO', COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Name of MLO',
-  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Network Area', COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'MH, Network Area',
+  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Network Area', COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Network Area',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'statusofOfficialIDdocuments', coalesce(scn.name, fscn.name), NULL))) AS 'Status of Official ID Documents',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'dateofAdmission', DATE_FORMAT(pa.value, "%d/%m/%Y"), NULL))) AS 'Date of Admission'
 FROM obs o
