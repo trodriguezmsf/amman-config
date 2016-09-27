@@ -108,9 +108,7 @@
                 "FUP, Priority",
                 "FUP, Name (s) of Surgeon 1",
                 "FUP, Name (s) of Surgeon 2"
-              ],
-                "scope": "latest",
-              "showGroupDateTime": false
+              ]
             },
             "expandedViewConfig": {
               "conceptNames": [
@@ -152,9 +150,7 @@
                 "FSTG, Postpone reason",
                 "FSTG, Type of medical information needed for next submission",
                 "FSTG, Refused Reason"
-                                    ],
-              "scope": "latest",
-              "showGroupDateTime": false
+                                    ]
             },
             "expandedViewConfig": {
               "conceptNames": [
