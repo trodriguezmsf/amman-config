@@ -69,7 +69,7 @@ Bahmni.Registration.AttributesConditions.rules = {
             show: [],
             hide: []
         };
-        if (patient["statusofOfficialIDdocuments"] && patient["statusofOfficialIDdocuments"].value && patient["statusofOfficialIDdocuments"].value.fullySpecifiedName === "Recevied") {
+        if (patient["statusofOfficialIDdocuments"] && patient["statusofOfficialIDdocuments"].value && patient["statusofOfficialIDdocuments"].value.fullySpecifiedName === "Received") {
             returnValues.show.push("idDocumentOne");
             returnValues.show.push("idDocumentTwo")
         } else {

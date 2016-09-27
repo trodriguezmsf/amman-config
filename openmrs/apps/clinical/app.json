@@ -66,6 +66,9 @@
 
                 "dropdown":true
             },
+            "MH, Patient General Condition":{
+                "dropdown" : true
+            },
             "MH, If caretaker is needed, why?":{
                 "dropdown":true
             },
@@ -173,6 +176,9 @@
             },
             "FV, Dead line to submit final validation":{
                 "allowFutureDates": true
+            },
+            "defaults" : {
+               "FSTG, Is the medical file complete?":"No"
             }
 
 

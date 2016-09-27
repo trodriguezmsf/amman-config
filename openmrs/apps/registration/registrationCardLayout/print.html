@@ -45,70 +45,80 @@
                              onerror="this.onerror=null;this.src='../images/blank.jpeg';"/>
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="3" class="print-center registrationCard-location">
-                        {{ "REGISTRATION_INSTITUTE_ADDRESS" | translate }}
-                    </td>
-                </tr>
+
             </table>
             <table class="registrationCard-details">
                 <tbody>
                 <tr>
                     <td class="registrationCard-details-name">
-                        <span class="hindi-text">Date</span>
-                    </td>
-                    <td class="registrationCard-details-seperator"> :  </td>
-                    <td>{{patient.dateofAdmission | date:'dd MMM yyyy'}} </td>
-                </tr>
-                <tr>
-                    <td class="registrationCard-details-name">
-                        <span class="hindi-text">Registration</span>
+                        <span class="data-text">Patient ID</span>
                     </td>
                     <td class="registrationCard-details-seperator"> :  </td>
                     <td>{{patient.primaryIdentifier.identifier}} </td>
                 </tr>
                 <tr>
                     <td class="registrationCard-details-name">
-                        <span class="hindi-text">Eng-Name</span>
+                        <span class="data-text">Eng-Name</span>
                     </td>
 
                     <td class="registrationCard-details-seperator"> :  </td>
                     <td>
-                        <span class="hindi-text">{{patient.givenName}}&nbsp;{{patient.familyName}}</span>
+                        <span class="data-text">{{patient.givenName}}&nbsp;{{patient.familyName}}</span>
                     </td>
                 </tr>
                 <tr>
-                <tr>
                     <td class="registrationCard-details-name">
-                        <span class="hindi-text">Arb-Name</span>
+                        <span class="data-text">Arb-Name</span>
                     </td>
 
                     <td class="registrationCard-details-seperator"> :  </td>
                     <td>
-                        <span class="hindi-text">{{patient.givenNameLocal}}&nbsp;{{patient.familyNameLocal}}</span>
+                        <span class="data-text">{{patient.givenNameLocal}}&nbsp;{{patient.familyNameLocal}}</span>
                     </td>
                 </tr>
                 <tr>
                     <td class="registrationCard-details-name">
-                        <span class="hindi-text">Age</span>
+                        <span class="data-text">Age</span>
                     </td>
                     <td class="registrationCard-details-seperator"> :  </td>
                     <td>{{patient.age | age}} </td>
                 </tr>
-                <tr>
-                    <td class="registrationCard-details-name">
-                        <span class="hindi-text">Gender</span>
-                    </td>
-                    <td class="registrationCard-details-seperator"> :  </td>
-                    <td>{{patient.gender}} </td>
-                </tr>
                 <td class="registrationCard-details-name">
-                    <span class="hindi-text">Is caretaker Required</span>
+                    <span class="data-text">Gender</span>
                 </td>
                 <td class="registrationCard-details-seperator"> :  </td>
-                <td ng-if="patient.isCareTakerRequired">Yes</td>
-                <td ng-if="!patient.isCareTakerRequired">No</td>
+                <td>{{patient.gender}} </td>
                 </tr>
+
+                <tr>
+                    <td class="registrationCard-details-name">
+                        <span class="data-text">Nationality</span>
+                    </td>
+                    <td class="registrationCard-details-seperator"> :  </td>
+                    <td>{{patient.nationality1.value}} </td>
+                </tr>
+                <tr>
+                    <td class="registrationCard-details-name">
+                        <span class="data-text">Country</span>
+                    </td>
+                    <td class="registrationCard-details-seperator"> :  </td>
+                    <td>{{patient.address.address3}} </td>
+                </tr>
+                <tr>
+                    <td class="registrationCard-details-name">
+                        <span class="data-text">Date</span>
+                    </td>
+                    <td class="registrationCard-details-seperator"> :  </td>
+                    <td>{{patient.dateofAdmission | date:'dd MMM yyyy'}} </td>
+                </tr>
+                <!--<tr>-->
+                <!--<td class="registrationCard-details-name">-->
+                    <!--<span class="data-text">Is caretaker Required</span>-->
+                <!--</td>-->
+                <!--<td class="registrationCard-details-seperator"> :  </td>-->
+                <!--<td ng-if="patient.isCareTakerRequired">Yes</td>-->
+                <!--<td ng-if="!patient.isCareTakerRequired">No</td>-->
+                <!--</tr>-->
                 </tbody>
             </table>
         </td>

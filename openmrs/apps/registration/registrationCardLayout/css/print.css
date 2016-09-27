@@ -6,10 +6,18 @@
 }
 
 /* line 10, print.scss */
-p, h1, h2, h3, tr, td, div, span, li {
+p, h1, h2, h3, tr, div, span, li {
   margin: 0px;
   padding: 5px;
   text-align:center;
+}
+
+
+td {
+margin: 0px;
+  padding: 5px;
+  text-align:left;
+
 }
 .arabic{
 text-align:right;
@@ -155,6 +163,7 @@ h1, h2, h3 ,h4 {
 }
 
 /* line 84, print.scss */
-.hindi-text {
+.data-text {
   vertical-align: bottom;
+
 }

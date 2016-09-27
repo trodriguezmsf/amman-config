@@ -34,5 +34,11 @@ Bahmni.Registration.customValidator = {
                 },
                 "errorMessage": "REGISTRATION_DOE_ERROR_KEY"
             },
-
+    "FSTG, Medical file to be submitted again by": {
+                    method: function (name, value, personAttributeDetails) {
+                        var dateUtil = Bahmni.Common.Util.DateUtil;
+                        return moment(value).isAfter(dateUtil.today());
+                    },
+                    "errorMessage": "REGISTRATION_DOE_ERROR_KEY"
+                },
 };

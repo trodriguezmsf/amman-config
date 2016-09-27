@@ -161,7 +161,7 @@
                     "title": "Patient Arrival Information",
                     "translationKey":"Patient Arrival Information",
                     "attributes":  [
-                        "expectedDateofArrival",
+                        "",
                         "doesthePatientneedAccommodation",
                         "typeofAdmission",
                         "dateofAdmission"

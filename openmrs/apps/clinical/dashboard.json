@@ -63,7 +63,7 @@
                 "MH, Network Area",
                 "MH, Date of injury",
                 "MH, Cause of injury",
-                "FSTG, Stage",
+                "FUP, Stage",
                 "FSTG, Specialty determined by MLO"
 
               ],
@@ -77,7 +77,7 @@
                 "MH, Network Area",
                 "MH, Date of injury",
                 "MH, Cause of injury",
-                "FSTG, Stage",
+                "FUP, Stage",
                 "FSTG, Specialty determined by MLO"
 
               ],
@@ -96,6 +96,7 @@
               "isEditable": true,
               "showDetailsButton": true,
               "conceptNames": [
+                "FUP Patient Videos",
                 "FUP, Date of presentation at Followup",
                 "FUP, Outcomes for follow-up surgical validation",
                 "FUP, Time for next medical follow-up to be done",
@@ -141,6 +142,9 @@
               "isEditable": true,
               "showDetailsButton": true,
               "conceptNames": [
+                "FSTG, Type of medical information received",
+                "FSTG, Date received",
+                "FSTG, Patient Videos",
                 "FSTG, Date of presentation at 1st stage",
                 "FSTG, Outcomes for 1st stage surgical validation",
                 "FSTG, Priority",
@@ -164,6 +168,7 @@
           },
             "Radiology": {
                 "type": "radiology",
+              "groupByVisits": true,
                 "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
                 "displayOrder": 7,
                 "config": {
