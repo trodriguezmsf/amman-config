@@ -35,9 +35,7 @@
                         "FV, Dead line to submit final validation",
                         "FV, Outcomes FV",
                         "FV, Comments on FV"
-                    ],
-                    "scope": "latest",
-                    "showGroupDateTime": false
+                    ]
                 },
                 "expandedViewConfig": {
                     "conceptNames": [
@@ -66,10 +64,7 @@
                 "FUP, Stage",
                 "FSTG, Specialty determined by MLO"
 
-              ],
-
-              "scope": "latest",
-              "showGroupDateTime": false
+              ]
             },
             "expandedViewConfig": {
               "conceptNames": [
