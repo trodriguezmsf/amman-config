@@ -19,10 +19,10 @@ secondary
 [bahmni-erp-db-secondary]
 
 [bahmni-lab]
-primary
+
 
 [bahmni-lab-db]
-primary
+
 
 [bahmni-lab-db-secondary]
 
