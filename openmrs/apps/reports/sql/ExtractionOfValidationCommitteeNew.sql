@@ -1,4 +1,4 @@
-SELECT
+SELECT * FROM (SELECT
   pi.identifier                                                                                                                                        AS "Patient Identifier",
   concat(pn.given_name, " ", pn.family_name) AS "Patient Name",
   floor(DATEDIFF(DATE(o.obs_datetime), p.birthdate) / 365)      AS "Age",
@@ -6,7 +6,7 @@ SELECT
   p.gender                                                      AS "Gender",
   paddress.address3 AS 'Country',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Specialty determined by MLO', COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Specialty',
-  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Stage', COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Stage',
+  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'Stage', o.value_numeric, NULL)) ORDER BY o.obs_id DESC) AS 'Stage',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'statusofOfficialIDdocuments', coalesce(scn.name, fscn.name), NULL))) AS 'Status of Official ID Documents',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'expectedDateofArrival', DATE_FORMAT(pa.value, "%d/%m/%Y"), NULL))) AS 'Expected Date of Arrival',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Date of presentation at 1st stage', DATE_FORMAT(o.value_datetime, "%d/%m/%Y"), NULL)) ORDER BY o.obs_id DESC) AS 'Date of presentation',
@@ -35,7 +35,7 @@ FROM obs o
   JOIN concept_name obs_fscn
     ON c.concept_id = obs_fscn.concept_id AND
        obs_fscn.name IN ('FSTG, Specialty determined by MLO',
-                         'FSTG, Stage',
+                         'Stage',
                          'FSTG, Date of presentation at 1st stage',
                          'FSTG, Outcomes for 1st stage surgical validation',
                          'FSTG, Priority',
@@ -56,8 +56,8 @@ FROM obs o
           obs.concept_id,
           max(encounter_datetime) AS max_encounter_datetime
         FROM obs
-          JOIN encounter ON obs.encounter_id = encounter.encounter_id
+          JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided = FALSE
         GROUP BY obs.person_id, obs.concept_id) latest_encounter
     ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id AND
        e.encounter_datetime = latest_encounter.max_encounter_datetime
-GROUP BY o.person_id;
+GROUP BY o.person_id) result WHERE result.Stage = 1;

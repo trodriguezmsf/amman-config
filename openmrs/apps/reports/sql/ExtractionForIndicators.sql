@@ -61,7 +61,7 @@ FROM obs o
           obs.concept_id,
           max(encounter_datetime) AS max_encounter_datetime
         FROM obs
-          JOIN encounter ON obs.encounter_id = encounter.encounter_id
+          JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided = FALSE
         GROUP BY obs.person_id, obs.concept_id) latest_encounter
     ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id AND
        e.encounter_datetime = latest_encounter.max_encounter_datetime
