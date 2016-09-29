@@ -140,9 +140,6 @@
             "FSTG, Outcomes FV":{
                 "dropdown":true
             },
-            "FSTG, Stage":{
-                "dropdown":true
-            },
             "FSTG, Medical file to be submitted again by":{
                  "allowFutureDates": true
             },

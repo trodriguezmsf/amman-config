@@ -61,7 +61,7 @@
                 "MH, Network Area",
                 "MH, Date of injury",
                 "MH, Cause of injury",
-                "FUP, Stage",
+                "Stage",
                 "FSTG, Specialty determined by MLO"
 
               ]
@@ -72,7 +72,7 @@
                 "MH, Network Area",
                 "MH, Date of injury",
                 "MH, Cause of injury",
-                "FUP, Stage",
+                "Stage",
                 "FSTG, Specialty determined by MLO"
 
               ],
