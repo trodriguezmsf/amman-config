@@ -18,7 +18,7 @@
       "patientAddresses": ["address3"],
       "conceptNamesToFilter":[
         "FSTG, Specialty determined by MLO",
-        "FUP, Stage",
+        "Stage",
         "FSTG, Priority",
         "MH, Name of MLO",
         "MH, Network Area",
