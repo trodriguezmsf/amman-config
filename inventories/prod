@@ -1,17 +1,17 @@
-primary 192.168.33.10 ansible_connection=ssh ansible_ssh_user=
-secondary 192.168.33.11 ansible_connection=ssh ansible_ssh_user=
+192.168.1.200 ansible_connection=ssh ansible_ssh_user=
+192.168.1.200 ansible_connection=ssh ansible_ssh_user=
 
 [nagios-server]
 
 [bahmni-emr]
-primary
-secondary passive=yes
+192.168.1.200
+192.168.1.200 passive=yes
 
 [bahmni-emr-db]
-primary
+192.168.1.200
 
 [bahmni-emr-db-secondary]
-secondary
+192.168.1.200
 [bahmni-erp]
 
 [bahmni-erp-db]
@@ -27,8 +27,8 @@ secondary
 [bahmni-lab-db-secondary]
 
 [bahmni-reports]
-primary
-secondary passive=yes
+192.168.1.200
+192.168.1.200 passive=yes
 
 [pacs-integration]
 
