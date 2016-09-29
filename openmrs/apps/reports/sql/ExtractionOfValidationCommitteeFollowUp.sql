@@ -6,7 +6,7 @@ SELECT
   p.gender                                                      AS "Gender",
   paddress.address3 AS 'Country',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Specialty determined by MLO', COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Specialty',
-  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Stage', o.value_numeric, NULL)) ORDER BY o.obs_id DESC) AS 'Stage',
+  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'Stage', o.value_numeric, NULL)) ORDER BY o.obs_id DESC) AS 'Stage',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'statusofOfficialIDdocuments', coalesce(scn.name, fscn.name), NULL))) AS 'Status of Official ID Documents',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'expectedDateofArrival', DATE_FORMAT(pa.value, "%d/%m/%Y"), NULL))) AS 'Expected Date of Arrival',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Date of presentation at Followup', DATE_FORMAT(o.value_datetime, "%d/%m/%Y"), NULL)) ORDER BY o.obs_id DESC) AS 'Date of presentation',
@@ -34,7 +34,7 @@ FROM obs o
   JOIN concept_name obs_fscn
     ON c.concept_id = obs_fscn.concept_id AND
        obs_fscn.name IN ('FSTG, Specialty determined by MLO',
-                         'FUP, Stage',
+                         'Stage',
                          'FUP, Date of presentation at Followup',
                          'FUP, Outcomes for follow-up surgical validation',
                          'FUP, Time for next medical follow-up to be done',
