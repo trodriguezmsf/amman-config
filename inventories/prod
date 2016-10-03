@@ -1,46 +1,42 @@
-192.168.1.200 ansible_connection=ssh ansible_ssh_user=
-192.168.1.200 ansible_connection=ssh ansible_ssh_user=
+192.168.1.200 ansible_connection=ssh ansible_ssh_user=root ansible_ssh_pass=medomedo
+192.168.1.200 ansible_connection=ssh ansible_ssh_user=root ansible_ssh_pass=medomedo
 
 [nagios-server]
 
 [bahmni-emr]
 192.168.1.200
-192.168.1.200 passive=yes
 
 [bahmni-emr-db]
 192.168.1.200
 
-[bahmni-emr-db-secondary]
-192.168.1.200
+[bahmni-emr-db-slave]
+
 [bahmni-erp]
 
 [bahmni-erp-db]
 
-[bahmni-erp-db-secondary]
+[bahmni-erp-db-slave]
 
 [bahmni-lab]
 
-
 [bahmni-lab-db]
 
-
-[bahmni-lab-db-secondary]
+[bahmni-lab-db-slave]
 
 [bahmni-reports]
 192.168.1.200
-192.168.1.200 passive=yes
 
 [pacs-integration]
 
 [pacs-integration-db]
 
-[pacs-integration-db-secondary]
+[pacs-integration-db-slave]
 
 [dcm4chee]
 
 [dcm4chee-db]
 
-[dcm4chee-db-secondary]
+[dcm4chee-db-slave]
 
 [bahmni-event-log-service]
 
@@ -50,19 +46,19 @@
 nagios-server
 bahmni-emr
 bahmni-emr-db
-bahmni-emr-db-secondary
+bahmni-emr-db-slave
 bahmni-lab
 bahmni-lab-db
-bahmni-lab-db-secondary
+bahmni-lab-db-slave
 bahmni-erp
 bahmni-erp-db
-bahmni-erp-db-secondary
+bahmni-erp-db-slave
 bahmni-reports
 pacs-integration
 pacs-integration-db
-pacs-integration-db-secondary
+pacs-integration-db-slave
 dcm4chee
 dcm4chee-db
-dcm4chee-db-secondary
+dcm4chee-db-slave
 bahmni-event-log-service
 bahmni-offline
