@@ -1,15 +1,17 @@
-192.168.1.200 ansible_connection=ssh ansible_ssh_user=root ansible_ssh_pass=medomedo
-192.168.1.200 ansible_connection=ssh ansible_ssh_user=root ansible_ssh_pass=medomedo
+192.168.33.10 ansible_connection=ssh ansible_ssh_user=root ansible_ssh_pass=vagrant
+192.168.33.10 ansible_connection=ssh ansible_ssh_user=root ansible_ssh_pass=vagrant
 
 [nagios-server]
 
 [bahmni-emr]
-192.168.1.200
+192.168.33.10
+192.168.33.10 passive=yes
 
 [bahmni-emr-db]
-192.168.1.200
+192.168.33.10
 
 [bahmni-emr-db-slave]
+192.168.33.10
 
 [bahmni-erp]
 
@@ -24,7 +26,8 @@
 [bahmni-lab-db-slave]
 
 [bahmni-reports]
-192.168.1.200
+192.168.33.10
+192.168.33.10 passive=yes
 
 [pacs-integration]
 
