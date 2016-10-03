@@ -1,17 +1,17 @@
-192.168.33.10 ansible_connection=ssh ansible_ssh_user=root ansible_ssh_pass=vagrant
-192.168.33.10 ansible_connection=ssh ansible_ssh_user=root ansible_ssh_pass=vagrant
+192.168.33.10 ansible_connection=ssh ansible_ssh_user=root
+192.168.33.11 ansible_connection=ssh ansible_ssh_user=root 
 
 [nagios-server]
 
 [bahmni-emr]
 192.168.33.10
-192.168.33.10 passive=yes
+192.168.33.11 passive=yes
 
 [bahmni-emr-db]
 192.168.33.10
 
 [bahmni-emr-db-slave]
-192.168.33.10
+192.168.33.11
 
 [bahmni-erp]
 
@@ -27,7 +27,7 @@
 
 [bahmni-reports]
 192.168.33.10
-192.168.33.10 passive=yes
+192.168.33.11 passive=yes
 
 [pacs-integration]
 
