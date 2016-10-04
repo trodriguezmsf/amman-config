@@ -1,15 +1,36 @@
-SELECT * FROM (SELECT
-  pi.identifier                                                                                                                                        AS "Patient Identifier",
+SELECT
+  `Patient Identifier`,
+  `Patient Name`,
+  `Age`,
+  `Birthdate`,
+  `Gender`,
+  `Country`,
+  `Specialty`,
+  `Stage`,
+  `Status of Official ID Documents`,
+  `Expected Date of Arrival`,
+  DATE_FORMAT(`Date of presentation`, "%d/%m/%Y") AS 'Date of presentation',
+  `Outcomes for follow-up surgical validation`,
+  `Time for next medical follow-up to be done`,
+  `Comments about next follow-up`,
+  `Comments about MBA`,
+  `Dismissal reason`,
+  `Comments about dismissal`,
+  `Reason for further stage admission`,
+  `Priority`,
+  `Does the patient need medical final validation?`
+FROM (SELECT
+  pi.identifier AS "Patient Identifier",
   concat(pn.given_name, " ", pn.family_name) AS "Patient Name",
-  floor(DATEDIFF(DATE(o.obs_datetime), p.birthdate) / 365)      AS "Age",
-  DATE_FORMAT(p.birthdate, "%d-%b-%Y")                          AS "Birthdate",
-  p.gender                                                      AS "Gender",
+  floor(DATEDIFF(DATE(o.obs_datetime), p.birthdate) / 365) AS "Age",
+  DATE_FORMAT(p.birthdate, "%d-%b-%Y") AS "Birthdate",
+  p.gender AS "Gender",
   paddress.address3 AS 'Country',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Specialty determined by MLO', COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Specialty',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'Stage', o.value_numeric, NULL)) ORDER BY o.obs_id DESC) AS 'Stage',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'statusofOfficialIDdocuments', coalesce(scn.name, fscn.name), NULL))) AS 'Status of Official ID Documents',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'expectedDateofArrival', DATE_FORMAT(pa.value, "%d/%m/%Y"), NULL))) AS 'Expected Date of Arrival',
-  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Date of presentation at Followup', DATE_FORMAT(o.value_datetime, "%d/%m/%Y"), NULL)) ORDER BY o.obs_id DESC) AS 'Date of presentation',
+  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Date of presentation at Followup', o.value_datetime, NULL)) ORDER BY o.obs_id DESC) AS 'Date of presentation',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Outcomes for follow-up surgical validation', COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Outcomes for follow-up surgical validation',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Time for next medical follow-up to be done', COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Time for next medical follow-up to be done',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Comments about next follow-up', o.value_text, NULL)) ORDER BY o.obs_id DESC) AS 'Comments about next follow-up',
@@ -58,4 +79,4 @@ FROM obs o
         GROUP BY obs.person_id, obs.concept_id) latest_encounter
     ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id AND
        e.encounter_datetime = latest_encounter.max_encounter_datetime
-GROUP BY o.person_id) result where result.Stage > 1;
+GROUP BY o.person_id) result where result.Stage > 1 AND (result.`Date of presentation` BETWEEN '#startDate#' AND '#endDate#');

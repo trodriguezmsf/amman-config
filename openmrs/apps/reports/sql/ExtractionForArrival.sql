@@ -10,7 +10,7 @@ SELECT
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Network Area', COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Network Area',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Referred by', o.value_text, NULL)) ORDER BY o.obs_id DESC)                    AS 'Referred by',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'expectedDateofArrival', DATE_FORMAT(pa.value, "%d/%m/%Y"), NULL))) AS 'Expected Date of Arrival',
-  GROUP_CONCAT(DISTINCT(IF(pat.name = 'dateofAdmission', DATE_FORMAT(pa.value, "%d/%m/%Y"), NULL))) AS 'Date of Admission',
+  GROUP_CONCAT(DISTINCT(IF(pat.name = 'dateofAdmission', DATE_FORMAT(pa.value, "%d/%m/%Y"), NULL))) AS 'Date of Arrival',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'statusofOfficialIDdocuments', coalesce(scn.name, fscn.name), NULL))) AS 'Status of Official ID Documents',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'id1Document', coalesce(scn.name, fscn.name), NULL))) AS 'Patient ID document type',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'id1DocNumber', pa.value, NULL))) AS 'Patient ID document number',
