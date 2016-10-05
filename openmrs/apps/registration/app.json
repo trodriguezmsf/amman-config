@@ -30,8 +30,6 @@
                     "title": "Camp Address",
                     "translationKey": "Camp Address",
                     "attributes": [
-                        "campCountry",
-                        "campGovernorate",
                         "nameoftheCamp",
                         "campVillage",
                         "campDistrict",
@@ -103,23 +101,10 @@
                         "caretakerNameArabic",
                         "caretakerGender",
                         "caretakerDob",
-                        "caretakerAge",
                         "caretakerNationality",
                         "legalRepalsoCaretaker"
                     ],
                     "order": 6
-                },
-                "Caretaker ID documents": {
-                    "title": "Caretaker ID Documents",
-                    "translationKey": "Caretaker ID Documents",
-                    "attributes": [
-                        "id3Document",
-                        "id3FullNameEnglish",
-                        "id3FullNameArabic",
-                        "id3DocNumber",
-                        "id3DateOfExpiry"
-                    ],
-                    "order": 7
                 },
                 "Caretaker Contact Details": {
                     "title": "Caretaker Contact Details",
@@ -132,8 +117,21 @@
                         "caretakerViber",
                         "caretakerFacebook"
                     ],
+                    "order": 7
+                },
+                "Caretaker ID documents": {
+                    "title": "Caretaker ID Documents",
+                    "translationKey": "Caretaker ID Documents",
+                    "attributes": [
+                        "id3Document",
+                        "id3FullNameEnglish",
+                        "id3FullNameArabic",
+                        "id3DocNumber",
+                        "id3DateOfExpiry"
+                    ],
                     "order": 8
                 },
+
                 "LegalRepresentative": {
                     "title": "Legal Representative (for patient under 18 years only) ",
                     "translationKey": "Legal Representative (for patient under 18 years only) ",
@@ -162,9 +160,7 @@
                     "translationKey":"Patient Arrival Information",
                     "attributes":  [
                         "expectedDateofArrival",
-                        "doesthePatientneedAccommodation",
-                        "typeofAdmission",
-                        "dateofAdmission"
+                        "dateofArrival"
                     ],
                     "order":11,
                     "expanded": true

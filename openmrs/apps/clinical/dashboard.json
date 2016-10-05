@@ -64,7 +64,9 @@
                 "Stage",
                 "FSTG, Specialty determined by MLO"
 
-              ]
+              ],
+              "scope": "latest",
+              "showGroupDateTime": false
             },
             "expandedViewConfig": {
               "conceptNames": [

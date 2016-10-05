@@ -25,4 +25,14 @@
         </sql>
     </changeSet>
 
+    <changeSet id="Amman-183504102016" author="Shiva kumar" context="rel1">
+        <comment>Adding patient listing queues for patients who are in first stage date of file recieved filled and date of presentation is not filled</comment>
+        <sqlFile path="awaitingValidationPatientQueue.sql"/>
+    </changeSet>
+
+    <changeSet id="Amman-183604102016" author="Shiva kumar" context="rel1">
+        <comment>Adding patient listing queues for patients whos expected date of arrival is filled and arrival date not filled</comment>
+        <sqlFile path="expectedarrivalpatientqueue.sql"/>
+    </changeSet>
+
 </databaseChangeLog>

@@ -78,7 +78,7 @@
             },
 
             "FSTG, Specialty determined by MLO":{
-                "multiSelect":true
+                "dropdown":true
             },
             "FSTG, Stage":{
                 "dropdown":true
@@ -104,6 +104,9 @@
                 "dropdown":true
             },
             "FSTG, Name (s) of Surgeon 2":{
+                "dropdown":true
+            },
+            "FSTG, Does the Patient need Surgical Final Validation":{
                 "dropdown":true
             },
             "FSTG, Outcomes for 1st stage Anaesthesia validation":
@@ -171,8 +174,14 @@
             "FUP, Reason for re-admission":{
                 "dropdown":true
             },
-            "FV, Dead line to submit final validation":{
-                "allowFutureDates": true
+            "FUP, Does the Patient need Surgical Final Validation":{
+                "dropdown":true
+            },
+            "FV, Does the Patient need Accommodation?":{
+                "dropdown": true
+            },
+            "FV, Type of Admission Recommended":{
+                "dropdown": true
             },
             "defaults" : {
                "FSTG, Is the medical file complete?":"No"
