@@ -46,6 +46,11 @@
             ]
 
         },
+        "program": {
+            "Pre-Admission" : {
+                "required" : true
+            }
+        },
         "allowConsultationWhenNoOpenVisit": false,
         "defaultVisitType": "OPD",
         "visitTypeForRetrospectiveEntries": "Validation",

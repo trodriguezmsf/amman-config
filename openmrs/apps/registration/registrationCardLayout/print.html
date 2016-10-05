@@ -8,23 +8,26 @@
 
 
                     <p class="arabic">
-                        {{ "REGISTRATION_BRING_CARD_TEXT_KEY" | translate }}
+                      <b>  {{ "REGISTRATION_TEXT_LINE_A" | translate }}</b>
                     </p>
                     <br>
                     <p class="arabic">
-                        {{ "REGISTRATION_TAKE_MEDICINES_TEXT_KEY" | translate}}
+                        {{ "REGISTRATION_TEXT_LINE_B" | translate}}
                     </p>
                     <p class="arabic">
-                        {{ "REGISTRATION_TIMINGS_TEXT_KEY" | translate }}
+                        {{ "REGISTRATION_TEXT_LINE_C" | translate }}
                     </p>
                     <p class="arabic">
-                        {{ "REGISTRATION_OPD_DAYS_TEXT_KEY" | translate }}
+                        {{ "REGISTRATION_TEXT_LINE_D" | translate }}
                     </p>
                     <p class="arabic">
-                        {{ "REGISTRATION_SUNDAYS_HOLIDAY_TEXT_KEY" | translate }}
+                        {{ "REGISTRATION_TEXT_LINE_E" | translate }}
                     </p>
                     <p class="arabic">
-                        {{ "REGISTRATION_SMOKING_INJURIOUS_TEXT_KEY" | translate }}
+                        {{ "REGISTRATION_TEXT_LINE_F" | translate }}
+                    </p>
+                    <p class="arabic">
+                        {{ "REGISTRATION_TEXT_LINE_G" | translate }}
                     </p>
                     </ul>
 
@@ -106,19 +109,20 @@
                 </tr>
                 <tr>
                     <td class="registrationCard-details-name">
+                        <span class="data-text">Is caretaker required</span>
+                    </td>
+                    <td class="registrationCard-details-seperator"> :  </td>
+                    <td ng-if="patient.isCareTakerRequired">Yes</td>
+                    <td ng-if="!patient.isCareTakerRequired">No</td>
+                </tr>
+                <tr>
+                    <td class="registrationCard-details-name">
                         <span class="data-text">Date</span>
                     </td>
                     <td class="registrationCard-details-seperator"> :  </td>
                     <td>{{patient.dateofAdmission | date:'dd MMM yyyy'}} </td>
                 </tr>
-                <!--<tr>-->
-                <!--<td class="registrationCard-details-name">-->
-                    <!--<span class="data-text">Is caretaker Required</span>-->
-                <!--</td>-->
-                <!--<td class="registrationCard-details-seperator"> :  </td>-->
-                <!--<td ng-if="patient.isCareTakerRequired">Yes</td>-->
-                <!--<td ng-if="!patient.isCareTakerRequired">No</td>-->
-                <!--</tr>-->
+
                 </tbody>
             </table>
         </td>
