@@ -82,4 +82,9 @@ FROM obs o
         GROUP BY obs.person_id, obs.concept_id) latest_encounter
     ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id AND
        e.encounter_datetime = latest_encounter.max_encounter_datetime
-GROUP BY o.person_id) result WHERE result.Stage = 1 AND (result.`Date of presentation` BETWEEN '#startDate#' AND '#endDate#');
+  JOIN patient_program pp ON p.person_id = pp.patient_id
+  JOIN program_workflow pw ON pw.program_id = pp.program_id
+  JOIN program_workflow_state pws ON pw.program_workflow_id = pws.program_workflow_id
+  JOIN patient_state ps ON pws.program_workflow_state_id = ps.state AND ps.patient_program_id = pp.patient_program_id
+                           AND pws.concept_id = (SELECT concept_id FROM concept_name WHERE name = 'Validation' AND concept_name_type = 'FULLY_SPECIFIED')
+GROUP BY o.person_id) result WHERE (result.`Date of presentation` BETWEEN '#startDate#' AND '#endDate#');
