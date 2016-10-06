@@ -88,5 +88,5 @@ FROM obs o
   JOIN program_workflow pw ON pw.program_id = pp.program_id
   JOIN program_workflow_state pws ON pw.program_workflow_id = pws.program_workflow_id
   JOIN patient_state ps ON pws.program_workflow_state_id = ps.state AND ps.patient_program_id = pp.patient_program_id
-                           AND pws.concept_id = (SELECT concept_id FROM concept_name WHERE name = 'Validation' AND concept_name_type = 'FULLY_SPECIFIED')
-GROUP BY o.person_id) result WHERE (result.`Date of presentation` BETWEEN '#startDate#' AND '#endDate#');
+                           AND pws.concept_id = (SELECT concept_id FROM concept_name WHERE name = 'Identification' AND concept_name_type = 'FULLY_SPECIFIED')
+GROUP BY o.person_id) result WHERE (cast(result.`Date of presentation` AS DATE) BETWEEN '#startDate#' AND '#endDate#');
