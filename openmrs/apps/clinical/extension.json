@@ -35,6 +35,18 @@
     "order": 2,
     "requiredPrivilege": "app:clinical"
   },
+  "bahmniClinicalPatientsSearchAllAwaitingValidationfollowup": {
+    "id": "bahmni.clinical.patients.search.allAwaitingfollowup",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "searchHandler": "emrapi.sqlSearch.awaitingValidationFollowup",
+      "translationKey": "MODULE_LABEL_AWAITING_FOLLOWUP_KEY",
+      "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext"
+    },
+    "order": 3,
+    "requiredPrivilege": "app:clinical"
+  },
   "bahmniClinicalPatientsSearchAllexpectedArrival": {
     "id": "bahmni.clinical.patients.search.expectedArrival",
     "extensionPointId": "org.bahmni.patient.search",
@@ -44,7 +56,7 @@
       "translationKey": "MODULE_LABEL_ARRIVAL_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext"
     },
-    "order": 3,
+    "order": 4,
     "requiredPrivilege": "app:clinical"
   },
   "bahmniClinicalPatientsSearchAllPatients": {
@@ -56,7 +68,7 @@
       "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard"
     },
     "label": "All",
-    "order": 3,
+    "order": 5,
     "requiredPrivilege": "app:clinical"
   }
 }

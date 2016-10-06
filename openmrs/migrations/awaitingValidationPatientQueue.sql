@@ -1,7 +1,5 @@
  DELETE FROM global_property where property = 'emrapi.sqlSearch.awaitingValidationFirstStage';
  select uuid() into @uuid;
-
-
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.awaitingValidationFirstStage',
 "SELECT name, identifier, uuid
@@ -9,9 +7,8 @@ FROM (SELECT
         concat(pn.given_name, ' ', pn.family_name) AS name,
         pi.identifier                              AS identifier,
         p.uuid                                     AS uuid,
-        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Date received', o.value_datetime, NULL)) ORDER BY o.obs_id
-                     DESC)                         AS 'dateReceived',
-        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Date of presentation at 1st stage', o.value_datetime, NULL))
+        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Date received' AND latest_encounter.person_id IS NOT NULL , o.value_datetime, NULL)) ORDER BY o.obs_id DESC)      AS 'dateReceived',
+        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Date of presentation at 1st stage' AND latest_encounter.person_id IS NOT NULL , o.value_datetime, NULL))
                      ORDER BY o.obs_id DESC)       AS 'dateOfPresentation'
       FROM person p
         JOIN patient_identifier pi ON p.person_id = pi.patient_id
@@ -28,6 +25,8 @@ FROM (SELECT
                 max(encounter_datetime) AS max_encounter_datetime
               FROM obs
                 JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided = FALSE
+                AND encounter.visit_id IN (SELECT max(visit_id) AS latest_visit_id
+                                                         FROM visit GROUP BY patient_id )
               GROUP BY obs.person_id, obs.concept_id) latest_encounter
           ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id AND
              e.encounter_datetime = latest_encounter.max_encounter_datetime

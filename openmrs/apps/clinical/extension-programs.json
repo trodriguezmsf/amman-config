@@ -23,6 +23,18 @@
         "order": 2,
         "requiredPrivilege": "app:clinical"
     },
+    "bahmniClinicalPatientsSearchAllAwaitingValidationfollowup": {
+        "id": "bahmni.clinical.patients.search.allAwaitingfollowup",
+        "extensionPointId": "org.bahmni.patient.search",
+        "type": "config",
+        "extensionParams": {
+            "searchHandler": "emrapi.sqlSearch.awaitingValidationFollowup",
+            "translationKey": "MODULE_LABEL_AWAITING_FOLLOWUP_KEY",
+            "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext"
+        },
+        "order": 3,
+        "requiredPrivilege": "app:clinical"
+    },
     "bahmniClinicalPatientsSearchAllexpectedArrival": {
         "id": "bahmni.clinical.patients.search.expectedArrival",
         "extensionPointId": "org.bahmni.patient.search",
@@ -32,9 +44,10 @@
             "translationKey": "MODULE_LABEL_ARRIVAL_KEY",
             "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext"
         },
-        "order": 2,
+        "order": 4,
         "requiredPrivilege": "app:clinical"
     },
+
     "bahmniClinicalPatientsSearchAllPatients": {
         "id": "bahmni.clinical.patients.search.allPatients",
         "extensionPointId": "org.bahmni.patient.search",
@@ -44,7 +57,7 @@
             "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext"
         },
         "label": "All",
-        "order": 3,
+        "order": 5,
         "requiredPrivilege": "app:clinical"
     },
     "bahmniClinicalConceptSetGroupObservationsHistory": {
@@ -55,7 +68,7 @@
             "conceptName": "History and Examination",
             "default": true
         },
-        "order": 4,
+        "order": 6,
         "requiredPrivilege": "app:clinical:history"
     },
 
@@ -67,7 +80,7 @@
         "extensionParams": {
             "conceptName": "Discharge Summary"
         },
-        "order": 5,
+        "order": 7,
         "requiredPrivilege": "Discharge Summary"
     },
     "observations": {
@@ -79,7 +92,7 @@
         "url": "concept-set-group/observations",
         "default": true,
         "icon": "fa-user-md",
-        "order": 6,
+        "order": 8,
         "requiredPrivilege": "app:clinical:observationTab"
     }
 }
