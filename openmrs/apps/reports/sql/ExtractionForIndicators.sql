@@ -19,7 +19,7 @@ SELECT
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Name of MLO' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Name of MLO',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Network Area' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Network Area',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'statusofOfficialIDdocuments', coalesce(scn.name, fscn.name), NULL))) AS 'Status of Official ID Documents',
-  GROUP_CONCAT(DISTINCT(IF(pat.name = 'dateofAdmission', DATE_FORMAT(pa.value, "%d/%m/%Y"), NULL))) AS 'Date of Arrival'
+  GROUP_CONCAT(DISTINCT(IF(pat.name = 'dateofArrival', DATE_FORMAT(pa.value, "%d/%m/%Y"), NULL))) AS 'Date of Arrival'
 FROM obs o
   JOIN person p ON p.person_id = o.person_id AND p.voided is false
   JOIN patient_identifier pi ON p.person_id = pi.patient_id AND pi.voided is false

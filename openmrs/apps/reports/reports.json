@@ -12,7 +12,7 @@
         "id3Document",
         "phoneNumber1",
         "expectedDateofArrival",
-        "dateofAdmission",
+        "dateofArrival",
         "phoneNumber1"
       ],
       "patientAddresses": ["address3"],
