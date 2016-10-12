@@ -36,4 +36,8 @@
         <comment>Adding patient listing queues for patients whose program state is network-followup and date of presentation in followup is not filled</comment>
         <sqlFile path="awaitingValidationfollowup.sql"/>
     </changeSet>
+    <changeSet id="Amman-165112102016" author="Shiva kumar" context="rel1" runOnChange="true">
+        <comment>Adding patient listing queues for patients whose medical file is not complete</comment>
+        <sqlFile path="incompleteMedicalFile.sql"/>
+    </changeSet>
 </databaseChangeLog>

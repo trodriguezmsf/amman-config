@@ -51,6 +51,19 @@
         "order": 4,
         "requiredPrivilege": "app:clinical"
     },
+    "bahmniClinicalPatientsSearchAllMedicalfileincomplete": {
+        "id": "bahmni.clinical.patients.search.emrapi.sqlSearch.incompleteMedicalFile",
+        "extensionPointId": "org.bahmni.patient.search",
+        "type": "config",
+        "extensionParams": {
+            "searchHandler": "emrapi.sqlSearch.incompleteMedicalFile",
+            "translationKey": "MODULE_LABEL_INCOMPLETE_KEY",
+            "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
+            "view":"tabular"
+        },
+        "order": 5,
+        "requiredPrivilege": "app:clinical"
+    },
 
     "bahmniClinicalPatientsSearchAllPatients": {
         "id": "bahmni.clinical.patients.search.allPatients",
@@ -61,7 +74,7 @@
             "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext"
         },
         "label": "All",
-        "order": 5,
+        "order": 6,
         "requiredPrivilege": "app:clinical"
     },
     "bahmniClinicalConceptSetGroupObservationsHistory": {
@@ -72,7 +85,7 @@
             "conceptName": "History and Examination",
             "default": true
         },
-        "order": 6,
+        "order": 7,
         "requiredPrivilege": "app:clinical:history"
     },
 
@@ -84,7 +97,7 @@
         "extensionParams": {
             "conceptName": "Discharge Summary"
         },
-        "order": 7,
+        "order": 8,
         "requiredPrivilege": "Discharge Summary"
     },
     "observations": {
@@ -96,7 +109,7 @@
         "url": "concept-set-group/observations",
         "default": true,
         "icon": "fa-user-md",
-        "order": 8,
+        "order": 9,
         "requiredPrivilege": "app:clinical:observationTab"
     }
 }

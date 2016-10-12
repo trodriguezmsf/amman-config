@@ -1,10 +1,10 @@
-DELETE FROM global_property where property = 'emrapi.sqlSearch.awaitingValidationFollowup';
+DELETE FROM global_property where property = 'emrapi.sqlSearch.incompleteMedicalFile';
  select uuid() into @uuid;
 
 
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
- VALUES ('emrapi.sqlSearch.awaitingValidationFollowup',
-"SELECT  `identifier`, Name , uuid , `Name of MLO` , `Nationality` , `Specialty` , `Name of Surgeon 1` , `Name of Surgeon 2`
+ VALUES ('emrapi.sqlSearch.incompleteMedicalFile',
+"SELECT  `identifier`, Name , uuid , `Name of MLO` , `Nationality`
   FROM (SELECT
           concat(pn.given_name, ' ', pn.family_name) AS Name,
           pi.identifier                              AS `identifier`,
@@ -13,10 +13,7 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.awaitingValidatio
           GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Date of presentation at Followup' AND latest_encounter.person_id IS NOT NULL , o.value_datetime, NULL))
                        ORDER BY o.obs_id DESC)       AS 'dateOfPresentation',
   		GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Name of MLO' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Name of MLO',
-  		GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Specialty determined by MLO' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Specialty',
-          GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Name (s) of Surgeon 1' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Name of Surgeon 1',
-          GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Name (s) of Surgeon 2' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Name of Surgeon 2',
-                    GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Is the medical file complete?' AND latest_encounter.person_id IS NOT NULL,COALESCE(coded_fscn.name, coded_scn.name) , NULL)) ORDER BY o.obs_id DESC) AS 'Isthemedicalfilecomplete?'
+ 		GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Is the medical file complete?' AND latest_encounter.person_id IS NOT NULL,COALESCE(coded_fscn.name, coded_scn.name) , NULL)) ORDER BY o.obs_id DESC) AS 'Isthemedicalfilecomplete?'
 
 
         FROM person p
@@ -25,7 +22,7 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.awaitingValidatio
           JOIN obs o ON p.person_id = o.person_id
           JOIN concept_name obs_fscn ON o.concept_id = obs_fscn.concept_id AND
                                         obs_fscn.name IN
-                                        ('FUP, Date of presentation at Followup','MH, Name of MLO', 'FSTG, Specialty determined by MLO','FSTG, Name (s) of Surgeon 1','FSTG, Name (s) of Surgeon 2','FSTG, Is the medical file complete?')
+                                        ('MH, Name of MLO', 'FSTG, Specialty determined by MLO','FSTG, Name (s) of Surgeon 1','FSTG, Name (s) of Surgeon 2','FSTG, Is the medical file complete?')
                                         AND obs_fscn.voided IS FALSE AND o.voided IS FALSE  AND obs_fscn.concept_name_type= 'FULLY_SPECIFIED'
   		LEFT OUTER JOIN person_attribute pa ON p.person_id = pa.person_id AND pa.voided is false
      LEFT OUTER JOIN person_attribute_type pat ON pa.person_attribute_type_id = pat.person_attribute_type_id AND pat.retired is false
@@ -50,6 +47,6 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.awaitingValidatio
           JOIN program_workflow pw ON pw.program_id = pp.program_id
           JOIN program_workflow_state pws ON pw.program_workflow_id = pws.program_workflow_id
           JOIN patient_state ps ON pws.program_workflow_state_id = ps.state AND ps.patient_program_id = pp.patient_program_id
-                                   AND pws.concept_id = (SELECT concept_id FROM concept_name WHERE name = 'Network Follow-up' AND concept_name_type = 'FULLY_SPECIFIED')
-        GROUP BY p.person_id order by Specialty) result
-  WHERE (dateOfPresentation IS NULL) and (`Isthemedicalfilecomplete?` = 'yes')",'awaiting Validation Followup',@uuid);
+
+        GROUP BY p.person_id) result
+  WHERE  (`Isthemedicalfilecomplete?` = 'No')",'Incomplete Medical File',@uuid);

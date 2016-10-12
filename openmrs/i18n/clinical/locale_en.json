@@ -6,6 +6,7 @@
   "MODULE_LABEL_ACTIVE_PATIENTS_BY_LOCATION": "PatientsByLocation",
   "MODULE_LABEL_ARRIVAL_KEY":"Expected Arrival",
   "MODULE_LABEL_AWAITING_FOLLOWUP_KEY":"Awaiting Validation - Follow Up Stage",
+  "MODULE_LABEL_INCOMPLETE_KEY":"Incomplete Medical File",
   "MODULE_LABEL_OPD_1_KEY": "OPD-1",
   "MODULE_LABEL_ALL_KEY": "All",
 
