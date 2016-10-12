@@ -6,23 +6,23 @@ Bahmni.ConceptSet.FormConditions.rules = {
           	};
           	var conditionConcept = formFieldValues['FSTG, Outcomes for 1st stage surgical validation'];
           	if (conditionConcept=="Valid") {
-          		conditions.enable.push("FSTG, Priority","FSTG, Name (s) of Surgeon 1","FSTG, Name (s) of Surgeon 2","FSTG, Comments:","FSTG, Outcomes for 1st stage Anaesthesia validation","FSTG, Does the Patient need Surgical Final Validation")
+          		conditions.enable.push("FSTG, Priority","FSTG, Name (s) of Surgeon 1","FSTG, Name (s) of Surgeon 2","FSTG, Comments","FSTG, Outcomes for 1st stage Anaesthesia validation","FSTG, Does the Patient need Surgical Final Validation")
           		conditions.disable.push("FSTG, Postpone reason","FSTG, Medical file to be submitted again by","FSTG, Type of medical information needed for next submission","FSTG, Refused Reason","FSTG, Comments about postpone reason","FSTG, Comments about refusal")
           		}
           	else if(conditionConcept=="Postponed") {
           	conditions.enable.push("FSTG, Postpone reason","FSTG, Medical file to be submitted again by","FSTG, Comments about postpone reason","FSTG, Outcomes for 1st stage Anaesthesia validation")
-          	conditions.disable.push("FSTG, Priority","FSTG, Outcomes for 1st stage Anaesthesia validation","FSTG, Name (s) of Surgeon 1","FSTG, Name (s) of Surgeon 2","FSTG, Comments:","FSTG, Type of medical information needed for next submission","FSTG, Refused Reason","FSTG, Comments about refusal","FSTG, Name (s) of Anaesthetist","FSTG, Comments about Anaesthesia validation","FSTG, Does the Patient need Surgical Final Validation")
+          	conditions.disable.push("FSTG, Priority","FSTG, Outcomes for 1st stage Anaesthesia validation","FSTG, Name (s) of Surgeon 1","FSTG, Name (s) of Surgeon 2","FSTG, Comments","FSTG, Type of medical information needed for next submission","FSTG, Refused Reason","FSTG, Comments about refusal","FSTG, Name (s) of Anaesthetist","FSTG, Comments about Anaesthesia validation","FSTG, Does the Patient need Surgical Final Validation")
           	}
           	else if(conditionConcept=="More Information"){
           	conditions.enable.push("FSTG, Type of medical information needed for next submission")
-          	conditions.disable.push("FSTG, Priority","FSTG, Outcomes for 1st stage Anaesthesia validation","FSTG, Name (s) of Surgeon 1","FSTG, Name (s) of Surgeon 2","FSTG, Comments:","FSTG, Postpone reason","FSTG, Medical file to be submitted again by","FSTG, Refused Reason","FSTG, Comments about postpone reason","FSTG, Comments about refusal","FSTG, Name (s) of Anaesthetist","FSTG, Comments about Anaesthesia validation","FSTG, Does the Patient need Surgical Final Validation")
+          	conditions.disable.push("FSTG, Priority","FSTG, Outcomes for 1st stage Anaesthesia validation","FSTG, Name (s) of Surgeon 1","FSTG, Name (s) of Surgeon 2","FSTG, Comments","FSTG, Postpone reason","FSTG, Medical file to be submitted again by","FSTG, Refused Reason","FSTG, Comments about postpone reason","FSTG, Comments about refusal","FSTG, Name (s) of Anaesthetist","FSTG, Comments about Anaesthesia validation","FSTG, Does the Patient need Surgical Final Validation")
           	}
           	else if(conditionConcept=="Refused"){
           	conditions.enable.push("FSTG, Refused Reason","FSTG, Comments about refusal")
-          	conditions.disable.push("FSTG, Priority","FSTG, Outcomes for 1st stage Anaesthesia validation","FSTG, Name (s) of Surgeon 1","FSTG, Name (s) of Surgeon 2","FSTG, Comments:","FSTG, Postpone reason","FSTG, Medical file to be submitted again by","FSTG, Comments about postpone reason","FSTG, Type of medical information needed for next submission","FSTG, Name (s) of Anaesthetist","FSTG, Comments about Anaesthesia validation","FSTG, Does the Patient need Surgical Final Validation")
+          	conditions.disable.push("FSTG, Priority","FSTG, Outcomes for 1st stage Anaesthesia validation","FSTG, Name (s) of Surgeon 1","FSTG, Name (s) of Surgeon 2","FSTG, Comments","FSTG, Postpone reason","FSTG, Medical file to be submitted again by","FSTG, Comments about postpone reason","FSTG, Type of medical information needed for next submission","FSTG, Name (s) of Anaesthetist","FSTG, Comments about Anaesthesia validation","FSTG, Does the Patient need Surgical Final Validation")
           	}
           	else {
-          	    conditions.disable.push("FSTG, Priority","FSTG, Outcomes for 1st stage Anaesthesia validation","FSTG, Name (s) of Surgeon 1","FSTG, Name (s) of Surgeon 2","FSTG, Comments:","FSTG, Postpone reason","FSTG, Comments about postpone reason","FSTG, Medical file to be submitted again by","FSTG, Type of medical information needed for next submission","FSTG, Refused Reason","FSTG, Comments about refusal","FSTG, Name (s) of Anaesthetist","FSTG, Comments about Anaesthesia validation","FSTG, Does the Patient need Surgical Final Validation")
+          	    conditions.disable.push("FSTG, Priority","FSTG, Outcomes for 1st stage Anaesthesia validation","FSTG, Name (s) of Surgeon 1","FSTG, Name (s) of Surgeon 2","FSTG, Comments","FSTG, Postpone reason","FSTG, Comments about postpone reason","FSTG, Medical file to be submitted again by","FSTG, Type of medical information needed for next submission","FSTG, Refused Reason","FSTG, Comments about refusal","FSTG, Name (s) of Anaesthetist","FSTG, Comments about Anaesthesia validation","FSTG, Does the Patient need Surgical Final Validation")
           	}
           	return conditions;
             },
