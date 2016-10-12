@@ -195,8 +195,8 @@
                 }
             ],
             "fieldValidation" : {
-                "familyName" : {"pattern" : "^(?:[A-Za-z0-9-'.,@:?!()$#/\\]+|&(?!#))+$", "errorMessage" : "Should contain characters"},
-                "givenName" : {"pattern" : "^[A-Za-z _]*$", "errorMessage" : "Should it contain characters"},
+                "familyName" : {"pattern" : "^[a-zA-Z \\-\\'\\ ]+$", "errorMessage" : "Should contain characters"},
+                "givenName" : {"pattern" :  "^[a-zA-Z \\-\\'\\ ]+$",  "errorMessage" : "Should it contain characters"},
                 "phoneNumber1" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
                 "phoneNumber2" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
                 "phoneNumber3" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
