@@ -183,10 +183,17 @@
                 "dropdown":true
             },
             "FV, Does the Patient need Accommodation?":{
-                "dropdown": true
+                "dropdown": false
             },
             "FV, Type of Admission Recommended":{
-                "dropdown": true
+                "dropdown": false
+            },
+            "FV, Expected Date of Arrival" : {
+                "required" : true,
+                "minYear": 2000,
+                "maxYear": 2100,
+                "allowFutureDates": true,
+                "displayMonthAndYear": true
             },
             "defaults" : {
                "FSTG, Is the medical file complete?":"No"
