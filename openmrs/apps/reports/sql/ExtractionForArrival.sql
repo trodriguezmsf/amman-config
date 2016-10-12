@@ -5,37 +5,39 @@ SELECT
   p.gender                                                      AS "Gender",
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Specialty determined by MLO' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Specialty',
   paddress.address3 AS 'Country',
+  GROUP_CONCAT(DISTINCT(IF(pat.name = 'phoneNumber1', pa.value, NULL))) AS 'Patient contact number 1',
+  GROUP_CONCAT(DISTINCT(IF(pat.name = 'phoneNumber2', pa.value, NULL))) AS 'Patient contact number 2',
+  GROUP_CONCAT(DISTINCT(IF(pat.name = 'phoneNumber3', pa.value, NULL))) AS 'Patient contact number 3',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'nationality1', coalesce(scn.name, fscn.name), NULL))) AS 'Nationality 1',
-  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Name of MLO' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Name of MLO',
-  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Network Area' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Network Area',
-  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Referred by' AND latest_encounter.person_id IS NOT NULL, o.value_text, NULL)) ORDER BY o.obs_id DESC)                    AS 'Referred by',
-  GROUP_CONCAT(DISTINCT(IF(pat.name = 'expectedDateofArrival', DATE_FORMAT(pa.value, "%d/%m/%Y"), NULL))) AS 'Expected Date of Arrival',
-  GROUP_CONCAT(DISTINCT(IF(pat.name = 'dateofArrival', DATE_FORMAT(pa.value, "%d/%m/%Y"), NULL))) AS 'Date of Arrival',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'statusofOfficialIDdocuments', coalesce(scn.name, fscn.name), NULL))) AS 'Status of Official ID Documents',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'id1Document', coalesce(scn.name, fscn.name), NULL))) AS 'Patient ID document type',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'id1DocNumber', pa.value, NULL))) AS 'Patient ID document number',
-  GROUP_CONCAT(DISTINCT(IF(pat.name = 'doesthePatientneedAccommodation', coalesce(scn.name, fscn.name), NULL))) AS 'Accommodation needed?',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'isCareTakerRequired', if(pa.value = 'true', 'true', NULL), NULL))) AS 'Need for a caretaker?',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'caretakerNameEnglish', pa.value, NULL))) AS 'Caretaker name',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'caretakerDob', floor(DATEDIFF(DATE(now()), pa.value) / 365), NULL))) AS 'Caretaker age',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'caretakerGender', coalesce(scn.name, fscn.name), NULL))) AS 'Caretaker Gender',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'id3Document', coalesce(scn.name, fscn.name), NULL))) AS 'Caretaker ID document type',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'id3DocNumber', pa.value, NULL))) AS 'Caretaker ID document number',
-  GROUP_CONCAT(DISTINCT(IF(pat.name = 'phoneNumber1', pa.value, NULL))) AS 'Patient contact number 1',
-  GROUP_CONCAT(DISTINCT(IF(pat.name = 'phoneNumber2', pa.value, NULL))) AS 'Patient contact number 2',
-  GROUP_CONCAT(DISTINCT(IF(pat.name = 'phoneNumber3', pa.value, NULL))) AS 'Patient contact number 3',
+  GROUP_CONCAT(DISTINCT(IF(pat.name = 'expectedDateofArrival', DATE_FORMAT(pa.value, "%d/%m/%Y"), NULL))) AS 'Expected Date of Arrival',
+  GROUP_CONCAT(DISTINCT(IF(pat.name = 'dateofArrival', DATE_FORMAT(pa.value, "%d/%m/%Y"), NULL))) AS 'Date of Arrival',
+  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Name of MLO' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Name of MLO',
+  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Network Area' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Network Area',
+  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Referred by' AND latest_encounter.person_id IS NOT NULL, o.value_text, NULL)) ORDER BY o.obs_id DESC)                    AS 'Referred by',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Stage' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'First Stage Validation Stage',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Outcomes for 1st stage surgical validation' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Outcomes for 1st stage surgical validation',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Priority' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Priority',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Outcomes for 1st stage Anaesthesia validation' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Outcomes for 1st stage Anaesthesia validation',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Name (s) of Surgeon 1' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'First Stage, Surgeon 1',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Name (s) of Surgeon 2' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'First Stage, Surgeon 2',
+  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Does the Patient need Surgical Final Validation' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'First Stage, Does the Patient need Surgical Final Validation',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'Stage' AND latest_encounter.person_id IS NOT NULL, o.value_numeric, NULL)) ORDER BY o.obs_id DESC) AS 'Follow-Up Validation Stage',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Outcomes for follow-up surgical validation' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Outcomes for follow-up surgical validation',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Priority' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Priority',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Name (s) of Surgeon 1' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Follow-Up, Surgeon 1',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Name (s) of Surgeon 2' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Follow-Up, Surgeon 2',
-  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FV, Does the patient need medical final validation?' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Does the patient need medical final validation?'
+  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Does the Patient need Surgical Final Validation' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Follow-Up, Does the Patient need Surgical Final Validation',
+  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FV, Expected Date of Arrival' AND latest_encounter.person_id IS NOT NULL, DATE_FORMAT(o.value_datetime, "%d/%m/%Y"), NULL)) ORDER BY o.obs_id DESC) AS 'Final Validation, Expected Date of Arrival',
+  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FV, Does the Patient need Accommodation?' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Does the Patient need Accommodation?'
 FROM obs o
   JOIN person p ON p.person_id = o.person_id AND p.voided is false
   JOIN patient_identifier pi ON p.person_id = pi.patient_id AND pi.voided is false
@@ -56,6 +58,7 @@ FROM obs o
          'MH, Network Area',
          'MH, Referred by',
          'FSTG, Stage',
+         'FSTG, Does the Patient need Surgical Final Validation',
          'FSTG, Outcomes for 1st stage surgical validation',
          'FSTG, Priority',
          'FSTG, Outcomes for 1st stage Anaesthesia validation',
@@ -66,7 +69,9 @@ FROM obs o
          'FUP, Priority',
          'FUP, Name (s) of Surgeon 1',
          'FUP, Name (s) of Surgeon 2',
-         'FV, Does the patient need medical final validation?'
+         'FUP, Does the Patient need Surgical Final Validation',
+         'FV, Expected Date of Arrival',
+         'FV, Does the Patient need Accommodation?'
        ) AND
        obs_fscn.voided IS FALSE
   JOIN concept_name obs_scn ON o.concept_id = obs_scn.concept_id AND obs_scn.concept_name_type = "SHORT"
