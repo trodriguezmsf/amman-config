@@ -52,8 +52,8 @@
             }
         },
         "allowConsultationWhenNoOpenVisit": false,
-        "defaultVisitType": "OPD",
-        "visitTypeForRetrospectiveEntries": "Validation",
+        "defaultVisitType": "First Stage Validation",
+        "visitTypeForRetrospectiveEntries": "First Stage Validation",
         "maxConceptSetLevels": 3,
         "allowOnlyCodedDiagnosis": false,
         "conceptSetUI": {
