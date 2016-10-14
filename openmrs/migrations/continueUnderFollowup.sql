@@ -1,20 +1,21 @@
-DELETE FROM global_property where property = 'emrapi.sqlSearch.incompleteMedicalFile';
+ DELETE FROM global_property where property = 'emrapi.sqlSearch.continueUnderFollowup';
  select uuid() into @uuid;
-
-
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
- VALUES ('emrapi.sqlSearch.incompleteMedicalFile',
-"SELECT `Date of File Received`, `identifier`, Name , uuid , `Name of MLO` , `Documents Needed to be Complete`
+ VALUES ('emrapi.sqlSearch.continueUnderFollowup',
+"SELECT  `identifier`, Name , uuid , `Specialty` , `Name of MLO`, `Time for next medical follow-up`, `Commments`
    FROM (SELECT
            concat(pn.given_name, ' ', pn.family_name) AS Name,
            pi.identifier                              AS `identifier`,
            p.uuid                                     AS uuid,
- 		GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Date received' AND latest_encounter.person_id IS NOT NULL, DATE_FORMAT(o.value_datetime, '%d/%m/%Y'), NULL)) ORDER BY o.obs_id DESC) AS 'Date of File Received',
-         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Date of presentation at Followup' AND latest_encounter.person_id IS NOT NULL , o.value_datetime, NULL)) ORDER BY o.obs_id DESC) AS 'dateOfPresentation',
+         GROUP_CONCAT(DISTINCT(IF(pat.name = 'nationality1', coalesce(scn.name, fscn.name), NULL))) AS 'Nationality',
+         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Date of presentation at Followup' AND latest_encounter.person_id IS NOT NULL , o.value_datetime, NULL))
+                        ORDER BY o.obs_id DESC)       AS 'dateOfPresentation',
+ 		GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Specialty determined by MLO' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Specialty',
    		GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Name of MLO' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Name of MLO',
-  		GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Is the medical file complete?' AND latest_encounter.person_id IS NOT NULL,COALESCE(coded_fscn.name, coded_scn.name) , NULL)) ORDER BY o.obs_id DESC) AS 'Isthemedicalfilecomplete?',
-         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Document(s) needed to be complete' AND latest_encounter.person_id IS NOT NULL,o.value_text , NULL)) ORDER BY o.obs_id DESC) AS 'Documents Needed to be Complete'
-
+  		GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Outcomes for follow-up surgical validation' AND latest_encounter.person_id IS NOT NULL,COALESCE(coded_fscn.name, coded_scn.name) , NULL)) ORDER BY o.obs_id DESC) AS 'outcomeFollowupSurgicalValidation',
+ 		GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Time for next medical follow-up to be done' AND latest_encounter.person_id IS NOT NULL,COALESCE(coded_fscn.name, coded_scn.name) , NULL)) ORDER BY o.obs_id DESC) AS 'Time for next medical follow-up',
+         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Comments about next follow-up' AND latest_encounter.person_id IS NOT NULL , o.value_text, NULL))
+                        ORDER BY o.obs_id DESC)       AS 'Commments'
 
          FROM person p
            JOIN patient_identifier pi ON p.person_id = pi.patient_id
@@ -22,7 +23,7 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.incompleteMedical
            JOIN obs o ON p.person_id = o.person_id
            JOIN concept_name obs_fscn ON o.concept_id = obs_fscn.concept_id AND
                                          obs_fscn.name IN
-                                         ('FSTG, Date received','MH, Name of MLO', 'FSTG, Specialty determined by MLO','FSTG, Name (s) of Surgeon 1','FSTG, Name (s) of Surgeon 2','FSTG, Is the medical file complete?')
+                                         ('FUP, Date of presentation at Followup','FSTG, Specialty determined by MLO','MH, Name of MLO','FUP, Outcomes for follow-up surgical validation','FUP, Time for next medical follow-up to be done','FUP, Comments about next follow-up')
                                          AND obs_fscn.voided IS FALSE AND o.voided IS FALSE  AND obs_fscn.concept_name_type= 'FULLY_SPECIFIED'
    		LEFT OUTER JOIN person_attribute pa ON p.person_id = pa.person_id AND pa.voided is false
       LEFT OUTER JOIN person_attribute_type pat ON pa.person_attribute_type_id = pat.person_attribute_type_id AND pat.retired is false
@@ -49,4 +50,4 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.incompleteMedical
            JOIN patient_state ps ON pws.program_workflow_state_id = ps.state AND ps.patient_program_id = pp.patient_program_id
 
          GROUP BY p.person_id) result
-   WHERE  (`Isthemedicalfilecomplete?` = 'No')",'Incomplete Medical File',@uuid);
+   WHERE  (`outcomeFollowupSurgicalValidation` = 'Continue under follow-up')",'Patients under follow up',@uuid);

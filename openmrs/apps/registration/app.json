@@ -180,8 +180,8 @@
             "searchByIdForwardUrl": "/patient/{{patientUuid}}",
             "showMiddleName": false,
             "showCasteSameAsLastNameCheckbox": false,
-            "showEnterID":false,
-            "printOptions": [
+            "afterVisitSaveForwardUrl" : "../clinical/#/programs/patient/{{patientUuid}}/consultationContext",
+            "showEnterID":false,            "printOptions": [
 
                 {
                     "translationKey": "REGISTRATION_PRINT_REG_CARD_KEY",

@@ -40,4 +40,12 @@
         <comment>Adding patient listing queues for patients whose medical file is not complete</comment>
         <sqlFile path="incompleteMedicalFile.sql"/>
     </changeSet>
+    <changeSet id="Amman-103414102016" author="Shiva kumar" context="rel1" runOnChange="true">
+        <comment>Adding patient listing queues for patients who are in under follow-Up validation</comment>
+        <sqlFile path="continueUnderFollowup.sql"/>
+    </changeSet>
+    <changeSet id="Amman-150614102016" author="Shiva kumar" context="rel1" runOnChange="true">
+        <comment>Adding patient listing queues for patients who are filled with date of presentation and with outcome as postponed or need more information</comment>
+        <sqlFile path="MoreInformationorPostponed.sql"/>
+    </changeSet>
 </databaseChangeLog>

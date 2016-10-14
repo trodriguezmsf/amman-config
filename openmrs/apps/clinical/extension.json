@@ -11,15 +11,15 @@
     "order": 0,
     "requiredPrivilege": "app:clinical:observationTab"
   },
-  "bahmniClinicalPatientsSearchAllActivePatients": {
-    "id": "bahmni.clinical.patients.search.allActivePatients",
+  "bahmniClinicalPatientsSearchAllMedicalfileincomplete": {
+    "id": "bahmni.clinical.patients.search.emrapi.sqlSearch.incompleteMedicalFile",
     "extensionPointId": "org.bahmni.patient.search",
     "type": "config",
     "extensionParams": {
-      "searchHandler": "emrapi.sqlSearch.activePatients",
-      "translationKey": "MODULE_LABEL_ACTIVE_KEY",
-      "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard",
-      "view":"tabular"
+      "searchHandler": "emrapi.sqlSearch.incompleteMedicalFile",
+      "translationKey": "MODULE_LABEL_INCOMPLETE_KEY",
+      "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
+      "view": "tabular"
     },
     "order": 1,
     "requiredPrivilege": "app:clinical"
@@ -32,7 +32,7 @@
       "searchHandler": "emrapi.sqlSearch.awaitingValidationFirstStage",
       "translationKey": "MODULE_LABEL_AWAITING_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
-      "view":"tabular"
+      "view": "tabular"
     },
     "order": 2,
     "requiredPrivilege": "app:clinical"
@@ -45,7 +45,7 @@
       "searchHandler": "emrapi.sqlSearch.awaitingValidationFollowup",
       "translationKey": "MODULE_LABEL_AWAITING_FOLLOWUP_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
-      "view":"tabular"
+      "view": "tabular"
     },
     "order": 3,
     "requiredPrivilege": "app:clinical"
@@ -58,22 +58,48 @@
       "searchHandler": "emrapi.sqlSearch.expectedArrival",
       "translationKey": "MODULE_LABEL_ARRIVAL_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
-      "view":"tabular"
+      "view": "tabular"
     },
     "order": 4,
     "requiredPrivilege": "app:clinical"
   },
-  "bahmniClinicalPatientsSearchAllMedicalfileincomplete": {
-    "id": "bahmni.clinical.patients.search.emrapi.sqlSearch.incompleteMedicalFile",
+  "bahmniClinicalPatientsSearchAllmoreinformationorpostponed": {
+    "id": "bahmni.clinical.patients.search.moreinformationorpostponed",
     "extensionPointId": "org.bahmni.patient.search",
     "type": "config",
     "extensionParams": {
-      "searchHandler": "emrapi.sqlSearch.incompleteMedicalFile",
-      "translationKey": "MODULE_LABEL_INCOMPLETE_KEY",
+      "searchHandler": "emrapi.sqlSearch.moreInformationorPostponed",
+      "translationKey": "MODULE_LABEL_MORE_INFORMATION_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
-      "view":"tabular"
+      "view": "tabular"
     },
     "order": 5,
+    "requiredPrivilege": "app:clinical"
+  },
+  "bahmniClinicalPatientsSearchAllPatientsUnderFollowup": {
+    "id": "bahmni.clinical.patients.search.emrapi.sqlSearch.continueUnderFollowup",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "searchHandler": "emrapi.sqlSearch.continueUnderFollowup",
+      "translationKey": "MODULE_LABEL_CONTINUE_UNDER_FOLLOWUP_KEY",
+      "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
+      "view": "tabular"
+    },
+    "order": 6,
+    "requiredPrivilege": "app:clinical"
+  },
+  "bahmniClinicalPatientsSearchAllActivePatients": {
+    "id": "bahmni.clinical.patients.search.allActivePatients",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "searchHandler": "emrapi.sqlSearch.activePatients",
+      "translationKey": "MODULE_LABEL_PROGRAMS_KEY",
+      "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
+      "view": "tabular"
+    },
+    "order": 7,
     "requiredPrivilege": "app:clinical"
   },
   "bahmniClinicalPatientsSearchAllPatients": {
@@ -82,10 +108,10 @@
     "type": "config",
     "extensionParams": {
       "translationKey": "MODULE_LABEL_ALL_KEY",
-      "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard"
+      "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext"
     },
     "label": "All",
-    "order": 6,
+    "order": 8,
     "requiredPrivilege": "app:clinical"
   }
 }

@@ -46,11 +46,7 @@
             ]
 
         },
-        "program": {
-            "Pre-Admission" : {
-                "required" : true
-            }
-        },
+
         "allowConsultationWhenNoOpenVisit": false,
         "defaultVisitType": "First Stage Validation",
         "visitTypeForRetrospectiveEntries": "First Stage Validation",
@@ -194,12 +190,7 @@
                 "maxYear": 2100,
                 "allowFutureDates": true,
                 "displayMonthAndYear": true
-            },
-            "defaults" : {
-               "FSTG, Is the medical file complete?":"No"
             }
-
-
         },
         "visitPage": {
             "observationDisplay": {
