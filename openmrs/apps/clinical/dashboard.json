@@ -30,11 +30,11 @@
                     "isEditable": true,
                     "showDetailsButton": true,
                     "conceptNames": [
-                        "FV, Does the patient need medical final validation?",
-                        "FV, Which medical information is needed for FV?",
-                        "FV, Dead line to submit final validation",
                         "FV, Outcomes FV",
-                        "FV, Comments on FV"
+                        "FV, Comments on FV",
+                        "FV, Expected Date of Arrival",
+                        "FV, Does the Patient need Accommodation?",
+                        "FV, Type of Admission Recommended"
                     ]
                 },
                 "expandedViewConfig": {
@@ -143,6 +143,8 @@
                 "FSTG, Date of presentation at 1st stage",
                 "FSTG, Outcomes for 1st stage surgical validation",
                 "FSTG, Priority",
+                "FSTG, Does the Patient need Surgical Final Validation",
+                "FSTG, Comments",
                 "FSTG, Outcomes for 1st stage Anaesthesia validation",
                 "FSTG, Postpone reason",
                 "FSTG, Type of medical information needed for next submission",

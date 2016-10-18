@@ -186,7 +186,7 @@
             },
             "FV, Expected Date of Arrival" : {
                 "required" : true,
-                "minYear": 2000,
+                "minYear": 2016,
                 "maxYear": 2100,
                 "allowFutureDates": true,
                 "displayMonthAndYear": true

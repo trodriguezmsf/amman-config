@@ -48,4 +48,4 @@
              JOIN program_workflow_state pws ON pw.program_workflow_id = pws.program_workflow_id
 
              GROUP BY p.person_id order by 'Postpone reason') result
-             WHERE (`Date of Presentation` IS NOT NULL) AND ((`Outcomes for 1st stage surgical validation` = 'Postponed' OR 'More Information') OR (`Outcomes for 1st stage Anaesthesia validation` = 'Need complementary investigation'))",'Patients under postponed or needed more information',@uuid);
+             WHERE (`Date of Presentation` IS NOT NULL) AND ((`Outcomes for 1st stage surgical validation` = 'Postponed' OR  `Outcomes for 1st stage surgical validation` ='More Information') OR (`Outcomes for 1st stage Anaesthesia validation` = 'Need complementary investigation'))",'Patients under postponed or needed more information',@uuid);

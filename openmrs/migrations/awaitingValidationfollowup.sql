@@ -4,13 +4,12 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.awaitingValidatio
 
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.awaitingValidationFollowup',
-"SELECT `Date of File Received`, `identifier`, Name , uuid , `Name of MLO` , `Nationality` , `Specialty` , `Name of Surgeon 1` , `Name of Surgeon 2`
+"SELECT  `identifier`, Name , uuid , `Name of MLO` , `Nationality` , `Specialty` , `Name of Surgeon 1` , `Name of Surgeon 2`
    FROM (SELECT
            concat(pn.given_name, ' ', pn.family_name) AS Name,
            pi.identifier                              AS `identifier`,
            p.uuid                                     AS uuid,
            GROUP_CONCAT(DISTINCT(IF(pat.name = 'nationality1', coalesce(scn.name, fscn.name), NULL))) AS 'Nationality',
- 		   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Date received' AND latest_encounter.person_id IS NOT NULL, DATE_FORMAT(o.value_datetime, '%d/%m/%Y'), NULL)) ORDER BY o.obs_id DESC) AS 'Date of File Received',
            GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Date of presentation at Followup' AND latest_encounter.person_id IS NOT NULL , o.value_datetime, NULL)) ORDER BY o.obs_id DESC)       AS 'dateOfPresentation',
  		   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Name of MLO' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Name of MLO',
    		   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Specialty determined by MLO' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Specialty',
@@ -24,7 +23,7 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.awaitingValidatio
            JOIN obs o ON p.person_id = o.person_id
            JOIN concept_name obs_fscn ON o.concept_id = obs_fscn.concept_id AND
                                          obs_fscn.name IN
-                                         ('FSTG, Date received','FUP, Date of presentation at Followup','MH, Name of MLO', 'FSTG, Specialty determined by MLO','FSTG, Name (s) of Surgeon 1','FSTG, Name (s) of Surgeon 2','FSTG, Is the medical file complete?')
+                                         ('FUP, Date of presentation at Followup','MH, Name of MLO', 'FSTG, Specialty determined by MLO','FSTG, Name (s) of Surgeon 1','FSTG, Name (s) of Surgeon 2','FSTG, Is the medical file complete?')
                                          AND obs_fscn.voided IS FALSE AND o.voided IS FALSE  AND obs_fscn.concept_name_type= 'FULLY_SPECIFIED'
    		   LEFT OUTER JOIN person_attribute pa ON p.person_id = pa.person_id AND pa.voided is false
  		   LEFT OUTER JOIN person_attribute_type pat ON pa.person_attribute_type_id = pat.person_attribute_type_id AND pat.retired is false
