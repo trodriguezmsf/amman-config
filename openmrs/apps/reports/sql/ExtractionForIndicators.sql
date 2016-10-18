@@ -4,13 +4,13 @@ SELECT
   paddress.address3 AS 'Country',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'nationality1', coalesce(scn.name, fscn.name), NULL))) AS 'Nationality 1',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'statusofOfficialIDdocuments', coalesce(scn.name, fscn.name), NULL))) AS 'Status of Official ID Documents',
-  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Name of MLO' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Name of MLO',
-  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Network Area' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Network Area',
+  GROUP_CONCAT(DISTINCT (IF(obs_across_visits.name = 'MH, Name of MLO' AND obs_across_visits.person_id IS NOT NULL, COALESCE(value_fsn, value_scn), NULL))) AS 'MLO',
+  GROUP_CONCAT(DISTINCT (IF(obs_across_visits.name = 'MH, Network Area' AND obs_across_visits.person_id IS NOT NULL, COALESCE(value_fsn, value_scn), NULL))) AS 'Network Area',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'dateofArrival', DATE_FORMAT(pa.value, "%d/%m/%Y"), NULL))) AS 'Date of Arrival',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Type of medical information received' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Type of medical information received',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Date received' AND latest_encounter.person_id IS NOT NULL, DATE_FORMAT(o.value_datetime, "%d/%m/%Y"), NULL)) ORDER BY o.obs_id DESC) AS 'Medical files date received',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Is the medical file complete?' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Is the medical file complete?',
-  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Specialty determined by MLO' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Specialty',
+  GROUP_CONCAT(DISTINCT (IF(obs_across_visits.name = 'FSTG, Specialty determined by MLO' AND obs_across_visits.person_id IS NOT NULL, COALESCE(value_fsn, value_scn), NULL))) AS 'Specialty',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Date of presentation at 1st stage' AND latest_encounter.person_id IS NOT NULL, DATE_FORMAT(o.value_datetime, "%d/%m/%Y"), NULL)) ORDER BY o.obs_id DESC) AS 'First stage date of presentation',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Outcomes for 1st stage surgical validation' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Outcomes for 1st stage surgical validation',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Outcomes for 1st stage Anaesthesia validation' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Outcomes for 1st stage Anaesthesia validation',
@@ -34,7 +34,6 @@ FROM obs o
     ON c.concept_id = obs_fscn.concept_id AND
        obs_fscn.name IN (
          'FSTG, Is the medical file complete?',
-         'FSTG, Specialty determined by MLO',
          'Stage',
          'FSTG, Type of medical information received',
          'FSTG, Date received',
@@ -44,9 +43,7 @@ FROM obs o
          'FUP, Outcomes for follow-up surgical validation',
          'FUP, Date of presentation at Followup',
          'Stage',
-         'FUP, Time for next medical follow-up to be done',
-         'MH, Name of MLO',
-         'MH, Network Area'
+         'FUP, Time for next medical follow-up to be done'
        ) AND
        obs_fscn.voided IS FALSE
   JOIN concept_name obs_scn ON o.concept_id = obs_scn.concept_id AND obs_scn.concept_name_type = "SHORT"
@@ -63,4 +60,24 @@ FROM obs o
         GROUP BY obs.person_id, obs.concept_id) latest_encounter
     ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id AND
        e.encounter_datetime = latest_encounter.max_encounter_datetime
+  LEFT JOIN (SELECT
+               cn.name,
+               obs.person_id,
+               coded_fscn.name AS value_fsn,
+               coded_scn.name  AS value_scn
+             FROM obs
+               JOIN concept_name cn ON cn.name IN ('MH, Name of MLO',
+                                                   'FSTG, Specialty determined by MLO',
+                                                   'MH, Network Area')
+                                       AND cn.concept_id = obs.concept_id
+               LEFT JOIN concept_name coded_fscn ON coded_fscn.concept_id = obs.value_coded
+                                                    AND coded_fscn.concept_name_type = "FULLY_SPECIFIED"
+                                                    AND coded_fscn.voided IS FALSE
+               LEFT JOIN concept_name coded_scn ON coded_scn.concept_id = obs.value_coded
+                                                   AND coded_fscn.concept_name_type = "SHORT"
+                                                   AND coded_scn.voided IS FALSE
+             WHERE obs_id IN (
+               SELECT max(obs.obs_id) FROM obs
+               GROUP BY obs.person_id, obs.concept_id)
+            ) obs_across_visits ON p.person_id = obs_across_visits.person_id
 GROUP BY o.person_id;

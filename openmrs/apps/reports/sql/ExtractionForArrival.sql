@@ -3,7 +3,7 @@ SELECT
   concat(pn.given_name, " ", pn.family_name) AS "Patient Name",
   floor(DATEDIFF(DATE(o.obs_datetime), p.birthdate) / 365)      AS "Age",
   p.gender                                                      AS "Gender",
-  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Specialty determined by MLO' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Specialty',
+  GROUP_CONCAT(DISTINCT (IF(obs_across_visits.name = 'FSTG, Specialty determined by MLO' AND obs_across_visits.person_id IS NOT NULL, COALESCE(value_fsn, value_scn), NULL))) AS 'Specialty',
   paddress.address3 AS 'Country',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'phoneNumber1', pa.value, NULL))) AS 'Patient contact number 1',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'phoneNumber2', pa.value, NULL))) AS 'Patient contact number 2',
@@ -20,9 +20,9 @@ SELECT
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'id3DocNumber', pa.value, NULL))) AS 'Caretaker ID document number',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'expectedDateofArrival', DATE_FORMAT(pa.value, "%d/%m/%Y"), NULL))) AS 'Expected Date of Arrival',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'dateofArrival', DATE_FORMAT(pa.value, "%d/%m/%Y"), NULL))) AS 'Date of Arrival',
-  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Name of MLO' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Name of MLO',
-  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Network Area' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Network Area',
-  GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Referred by' AND latest_encounter.person_id IS NOT NULL, o.value_text, NULL)) ORDER BY o.obs_id DESC)                    AS 'Referred by',
+  GROUP_CONCAT(DISTINCT (IF(obs_across_visits.name = 'MH, Name of MLO' AND obs_across_visits.person_id IS NOT NULL, COALESCE(value_fsn, value_scn), NULL))) AS 'MLO',
+  GROUP_CONCAT(DISTINCT (IF(obs_across_visits.name = 'MH, Network Area' AND obs_across_visits.person_id IS NOT NULL, COALESCE(value_fsn, value_scn), NULL))) AS 'Network Area',
+  GROUP_CONCAT(DISTINCT (IF(obs_across_visits.name = 'MH, Referred by' AND obs_across_visits.person_id IS NOT NULL, COALESCE(value_fsn, value_scn), NULL))) AS 'Referred by',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Outcomes for 1st stage surgical validation' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Outcomes for 1st stage surgical validation',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Priority' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'First Stage, Priority',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Outcomes for 1st stage Anaesthesia validation' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Outcomes for 1st stage Anaesthesia validation',
@@ -52,10 +52,6 @@ FROM obs o
   JOIN concept_name obs_fscn
     ON c.concept_id = obs_fscn.concept_id AND
        obs_fscn.name IN (
-         'FSTG, Specialty determined by MLO',
-         'MH, Name of MLO',
-         'MH, Network Area',
-         'MH, Referred by',
          'FSTG, Does the Patient need Surgical Final Validation',
          'FSTG, Outcomes for 1st stage surgical validation',
          'FSTG, Priority',
@@ -86,4 +82,25 @@ FROM obs o
         GROUP BY obs.person_id, obs.concept_id) latest_encounter
     ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id AND
        e.encounter_datetime = latest_encounter.max_encounter_datetime
+  LEFT JOIN (SELECT
+               cn.name,
+               obs.person_id,
+               coded_fscn.name AS value_fsn,
+               coded_scn.name  AS value_scn
+             FROM obs
+               JOIN concept_name cn ON cn.name IN ('MH, Name of MLO',
+                                                   'FSTG, Specialty determined by MLO',
+                                                   'MH, Network Area',
+                                                   'MH, Referred by')
+                                       AND cn.concept_id = obs.concept_id
+               LEFT JOIN concept_name coded_fscn ON coded_fscn.concept_id = obs.value_coded
+                                                    AND coded_fscn.concept_name_type = "FULLY_SPECIFIED"
+                                                    AND coded_fscn.voided IS FALSE
+               LEFT JOIN concept_name coded_scn ON coded_scn.concept_id = obs.value_coded
+                                                   AND coded_fscn.concept_name_type = "SHORT"
+                                                   AND coded_scn.voided IS FALSE
+             WHERE obs_id IN (
+               SELECT max(obs.obs_id) FROM obs
+               GROUP BY obs.person_id, obs.concept_id)
+            ) obs_across_visits ON p.person_id = obs_across_visits.person_id
 GROUP BY o.person_id;
