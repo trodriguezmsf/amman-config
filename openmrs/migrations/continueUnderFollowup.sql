@@ -2,14 +2,14 @@
  select uuid() into @uuid;
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.continueUnderFollowup',
-"SELECT  `identifier`, Name , uuid , `Specialty` , `Name of MLO`, `Time for next medical follow-up`, `Commments`
+"SELECT  `Date Of Presentation`,`identifier`, Name , uuid , `Specialty` , `Name of MLO`, `Time for next medical follow-up`, `Commments`
    FROM (SELECT
            concat(pn.given_name, ' ', pn.family_name) AS Name,
            pi.identifier                              AS `identifier`,
            p.uuid                                     AS uuid,
          GROUP_CONCAT(DISTINCT(IF(pat.name = 'nationality1', coalesce(scn.name, fscn.name), NULL))) AS 'Nationality',
          GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Date of presentation at Followup' AND latest_encounter.person_id IS NOT NULL , o.value_datetime, NULL))
-                        ORDER BY o.obs_id DESC)       AS 'dateOfPresentation',
+                        ORDER BY o.obs_id DESC)       AS 'Date Of Presentation',
  		GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Specialty determined by MLO' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Specialty',
    		GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'MH, Name of MLO' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Name of MLO',
   		GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Outcomes for follow-up surgical validation' AND latest_encounter.person_id IS NOT NULL,COALESCE(coded_fscn.name, coded_scn.name) , NULL)) ORDER BY o.obs_id DESC) AS 'outcomeFollowupSurgicalValidation',
