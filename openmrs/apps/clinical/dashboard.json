@@ -104,7 +104,8 @@
                 "FUP, Reason for re-admission",
                 "FUP, Priority",
                 "FUP, Name (s) of Surgeon 1",
-                "FUP, Name (s) of Surgeon 2"
+                "FUP, Name (s) of Surgeon 2",
+                "FUP, Does the Patient need Surgical Final Validation"
               ]
             },
             "expandedViewConfig": {
