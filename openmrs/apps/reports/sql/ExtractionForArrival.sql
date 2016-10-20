@@ -1,7 +1,7 @@
 SELECT
   pi.identifier                                                                                                                                        AS "Patient Identifier",
   concat(pn.given_name, " ", pn.family_name) AS "Patient Name",
-  floor(DATEDIFF(DATE(o.obs_datetime), p.birthdate) / 365)      AS "Age",
+  floor(DATEDIFF(CURDATE(), p.birthdate) / 365)      AS "Age",
   p.gender                                                      AS "Gender",
   GROUP_CONCAT(DISTINCT (IF(obs_across_visits.name = 'FSTG, Specialty determined by MLO' AND obs_across_visits.person_id IS NOT NULL, COALESCE(value_fsn, value_scn), NULL))) AS 'Specialty',
   paddress.address3 AS 'Country',
