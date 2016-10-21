@@ -41,6 +41,7 @@
                   GROUP BY obs.person_id, obs.concept_id ) latest_encounter
               ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id AND
                  e.encounter_datetime = latest_encounter.max_encounter_datetime
+
        LEFT JOIN (SELECT
                  cn.name,
                  obs.person_id,
@@ -54,5 +55,6 @@
                      SELECT max(obs.obs_id) FROM obs
                      GROUP BY obs.person_id, obs.concept_id)
                   ) obs_across_visits ON p.person_id = obs_across_visits.person_id
+                  JOIN patient_program pp ON p.person_id = pp.patient_id AND pp.date_completed is NULL AND pp.voided =0
           GROUP BY p.person_id order by Specialty) result
           WHERE (`Date of File Received` IS NOT NULL) AND (dateOfPresentation IS NULL) and (`Isthemedicalfilecomplete?` = 'yes')",'awaiting Validation FirstStage',@uuid);

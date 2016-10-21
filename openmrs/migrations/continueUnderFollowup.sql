@@ -7,7 +7,6 @@
            concat(pn.given_name, ' ', pn.family_name) AS Name,
            pi.identifier                              AS `identifier`,
            p.uuid                                     AS uuid,
-         GROUP_CONCAT(DISTINCT(IF(pat.name = 'nationality1', coalesce(scn.name, fscn.name), NULL))) AS 'Nationality',
          GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Date of presentation at Followup' AND latest_encounter.person_id IS NOT NULL , DATE_FORMAT(o.value_datetime, '%d/%m/%Y'), NULL))
                         ORDER BY o.obs_id DESC)       AS 'Date Of Presentation',
          GROUP_CONCAT(DISTINCT (IF(obs_across_visits.name = 'MH, Name of MLO' AND obs_across_visits.person_id IS NOT NULL, COALESCE(value_fsn, value_scn), NULL))) AS 'Name of MLO',
@@ -44,6 +43,7 @@
                       GROUP BY obs.person_id, obs.concept_id) latest_encounter
              ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id
                 AND latest_encounter.max_encounter_datetime = e.encounter_datetime
+
            LEFT JOIN (SELECT
                  cn.name,
                  obs.person_id,
@@ -57,10 +57,7 @@
                      SELECT max(obs.obs_id) FROM obs
                      GROUP BY obs.person_id, obs.concept_id)
                   ) obs_across_visits ON p.person_id = obs_across_visits.person_id
-           JOIN patient_program pp ON p.person_id = pp.patient_id
-           JOIN program_workflow pw ON pw.program_id = pp.program_id
-           JOIN program_workflow_state pws ON pw.program_workflow_id = pws.program_workflow_id
-           JOIN patient_state ps ON pws.program_workflow_state_id = ps.state AND ps.patient_program_id = pp.patient_program_id
 
+        JOIN patient_program pp ON p.person_id = pp.patient_id AND  pp.date_completed is NULL and pp.voided = 0
          GROUP BY p.person_id) result
    WHERE  (`outcomeFollowupSurgicalValidation` = 'Continue under follow-up')",'Patients under follow up',@uuid);

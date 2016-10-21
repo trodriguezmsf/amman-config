@@ -43,6 +43,7 @@
                         GROUP BY obs.person_id, obs.concept_id) latest_encounter
                ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id
                   AND latest_encounter.max_encounter_datetime = e.encounter_datetime
+
              LEFT JOIN (SELECT
                  cn.name,
                  obs.person_id,
@@ -56,9 +57,6 @@
                      SELECT max(obs.obs_id) FROM obs
                      GROUP BY obs.person_id, obs.concept_id)
                   ) obs_across_visits ON p.person_id = obs_across_visits.person_id
-             JOIN patient_program pp ON p.person_id = pp.patient_id
-             JOIN program_workflow pw ON pw.program_id = pp.program_id
-             JOIN program_workflow_state pws ON pw.program_workflow_id = pws.program_workflow_id
-
+             JOIN patient_program pp ON p.person_id = pp.patient_id AND  pp.date_completed is NULL and pp.voided = 0
              GROUP BY p.person_id order by 'Postpone reason') result
              WHERE (`Date of Presentation` IS NOT NULL) AND ((`Outcomes for 1st stage surgical validation` = 'Postponed' OR  `Outcomes for 1st stage surgical validation` ='More Information') OR (`Outcomes for 1st stage Anaesthesia validation` = 'Need complementary investigation'))",'Patients under postponed or needed more information',@uuid);
