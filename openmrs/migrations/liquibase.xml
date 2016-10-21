@@ -48,4 +48,20 @@
         <comment>Adding patient listing queues for patients who are filled with date of presentation and with outcome as postponed or need more information</comment>
         <sqlFile path="MoreInformationorPostponed.sql"/>
     </changeSet>
+    <changeSet id="Amman-113620102016" author="Shiva kumar, Santhosh" context="rel1">
+        <comment>Adding a procedure to create a concept reference mapping</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING;
+        </sql>
+        <sqlFile splitStatements="false" path="CreateReferenceMapping.sql"/>
+    </changeSet>
+    <changeSet id="Amman-113920102016" author="Shiva kumar, Santhosh" context="rel1">
+        <comment>Adding reference terms for CEIL exports codes</comment>
+        <sqlFile path="export_ref_terms.sql"/>
+    </changeSet>
+    <changeSet id="Amman-114020102016" author="Shiva Kumar, Santhosh" context="rel1">
+        <comment>Mapping export codes with respective concepts</comment>
+        <sqlFile path="concept_ref_map.sql"/>
+    </changeSet>
+
 </databaseChangeLog>
