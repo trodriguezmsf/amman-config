@@ -59,5 +59,6 @@
                        SELECT max(obs.obs_id) FROM obs
                        GROUP BY obs.person_id, obs.concept_id)
                     ) obs_across_visits ON p.person_id = obs_across_visits.person_id
+                    JOIN patient_program pp ON p.person_id = pp.patient_id AND  pp.date_completed is NULL and pp.voided = 0
              GROUP BY p.person_id ) result
              WHERE(result.`Expected Date of Arrival` IS NOT NULL) AND (result.`Date of Arrival` IS NULL)", 'Expected Arrival Patient Queue', @uuid);
