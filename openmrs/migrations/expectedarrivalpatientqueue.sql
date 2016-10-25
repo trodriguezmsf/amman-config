@@ -4,9 +4,9 @@
 
  INSERT INTO global_property (property, property_value, description, uuid)
  VALUES ('emrapi.sqlSearch.expectedArrival',
-"SELECT  `identifier` , Name , `Age`, uuid ,`Country` , `Nationality` , `Specialty` , `Stage`,`Expected Date of Arrival` ,`Does the Patient need Accommodation?`, `Type of Admission Recommended`
+"SELECT  `identifier` , name , `Age`, uuid ,`Country` , `Nationality` , `Specialty` , `Stage`,`Expected Date of Arrival` ,`Does the Patient need Accommodation?`, `Type of Admission Recommended`
        FROM (SELECT
-               concat(pn.given_name, ' ', pn.family_name) AS Name,
+               concat(pn.given_name, ' ', pn.family_name) AS name,
                floor(DATEDIFF(CURDATE(), p.birthdate) / 365)      AS `Age`,
                pi.identifier                              AS `identifier`,
                p.uuid                                     AS uuid,

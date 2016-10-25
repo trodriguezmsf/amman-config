@@ -2,9 +2,9 @@
  select uuid() into @uuid;
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.awaitingValidationFirstStage',
-"SELECT `Date of File Received`, `identifier` , Name , uuid , `Name of MLO` , `Nationality` , `Specialty`
+"SELECT `Date of File Received`, `identifier` , name , uuid , `Name of MLO` , `Nationality` , `Specialty`
     FROM (SELECT
-            concat(pn.given_name, ' ', pn.family_name) AS Name,
+            concat(pn.given_name, ' ', pn.family_name) AS name,
             pi.identifier                              AS `identifier`,
             p.uuid                                     AS uuid,
        GROUP_CONCAT(DISTINCT(IF(pat.name = 'nationality1', coalesce(scn.name, fscn.name), NULL))) AS 'Nationality',

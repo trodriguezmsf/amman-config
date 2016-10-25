@@ -2,9 +2,9 @@
  select uuid() into @uuid;
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.moreInformationorPostponed',
-"SELECT  `Date of Presentation` ,  `identifier`, Name , uuid , `Nationality` ,`Name of MLO`,`Specialty`,`Outcomes for 1st stage surgical validation`,`Outcomes for 1st stage Anaesthesia validation`,`Postpone reason`,`Comments About Postpone Reason`,`Type of Medical Information Needed for Next Submission`
+"SELECT  `Date of Presentation` ,  `identifier`, name , uuid , `Nationality` ,`Name of MLO`,`Specialty`,`Outcomes for 1st stage surgical validation`,`Outcomes for 1st stage Anaesthesia validation`,`Postpone reason`,`Comments About Postpone Reason`,`Type of Medical Information Needed for Next Submission`
      FROM (SELECT
-             concat(pn.given_name, ' ', pn.family_name) AS Name,
+             concat(pn.given_name, ' ', pn.family_name) AS name,
              pi.identifier                              AS `identifier`,
              p.uuid                                     AS uuid,
              GROUP_CONCAT(DISTINCT(IF(pat.name = 'nationality1', coalesce(scn.name, fscn.name), NULL))) AS 'Nationality',

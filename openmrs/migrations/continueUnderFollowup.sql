@@ -2,9 +2,9 @@
  select uuid() into @uuid;
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.continueUnderFollowup',
-"SELECT  `Date Of Presentation`,`identifier`, Name , uuid , `Specialty` , `Name of MLO`, `Time for next medical follow-up`, `Commments`
+"SELECT  `Date Of Presentation`,`identifier`, name , uuid , `Specialty` , `Name of MLO`, `Time for next medical follow-up`, `Commments`
    FROM (SELECT
-           concat(pn.given_name, ' ', pn.family_name) AS Name,
+           concat(pn.given_name, ' ', pn.family_name) AS name,
            pi.identifier                              AS `identifier`,
            p.uuid                                     AS uuid,
          GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Date of presentation at Followup' AND latest_encounter.person_id IS NOT NULL , DATE_FORMAT(o.value_datetime, '%d/%m/%Y'), NULL))

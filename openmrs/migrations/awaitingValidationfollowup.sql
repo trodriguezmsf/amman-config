@@ -4,9 +4,9 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.awaitingValidatio
 
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.awaitingValidationFollowup',
-"SELECT  `identifier`, Name , uuid , `Name of MLO` , `Nationality` , `Specialty` , `Name of Surgeon 1` , `Name of Surgeon 2`
+"SELECT  `identifier`, name , uuid , `Name of MLO` , `Nationality` , `Specialty` , `Name of Surgeon 1` , `Name of Surgeon 2`
     FROM (SELECT
-            concat(pn.given_name, ' ', pn.family_name) AS Name,
+            concat(pn.given_name, ' ', pn.family_name) AS name,
             pi.identifier                              AS `identifier`,
             p.uuid                                     AS uuid,
             GROUP_CONCAT(DISTINCT(IF(pat.name = 'nationality1', coalesce(scn.name, fscn.name), NULL))) AS 'Nationality',

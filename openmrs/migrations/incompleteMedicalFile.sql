@@ -4,9 +4,9 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.incompleteMedical
 
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.incompleteMedicalFile',
-"SELECT `Date of File Received`, `identifier`, Name , uuid , `Name of MLO` , `Documents Needed to be Complete`
+"SELECT `Date of File Received`, `identifier`, name , uuid , `Name of MLO` , `Documents Needed to be Complete`
      FROM (SELECT
-             concat(pn.given_name, ' ', pn.family_name) AS Name,
+             concat(pn.given_name, ' ', pn.family_name) AS name,
              pi.identifier                              AS `identifier`,
              p.uuid                                     AS uuid,
    		GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Date received' AND latest_encounter.person_id IS NOT NULL, DATE_FORMAT(o.value_datetime, '%d/%m/%Y'), NULL)) ORDER BY o.obs_id DESC) AS 'Date of File Received',
