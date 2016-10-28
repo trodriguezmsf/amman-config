@@ -17,6 +17,9 @@ then
 	echo "bahmnimsf mode not found ,Kindly download it";
 	exit;
 fi
+cd /etc/bahmni-installer/deployment-artifacts
+rm -rf amman-config*
+rm -rf amman_config*
 wget https://github.com/bahmni-msf/amman-config/archive/master.zip
 unzip master.zip
 mv amman-config-master amman_config
