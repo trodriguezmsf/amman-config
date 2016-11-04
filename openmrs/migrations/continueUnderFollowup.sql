@@ -2,7 +2,7 @@
  select uuid() into @uuid;
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.continueUnderFollowup',
-"SELECT  `Date Of Presentation`,`identifier`, name , uuid , `Specialty` , `Name of MLO`, `Time for next medical follow-up`, `Commments`
+"SELECT  `Date Of Presentation`,`identifier`, name , uuid , `Specialty` , `Name of MLO`, `Time for next medical follow-up`, `Comments`
    FROM (SELECT
            concat(pn.given_name, ' ', pn.family_name) AS name,
            pi.identifier                              AS `identifier`,
@@ -14,7 +14,7 @@
          GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Outcomes for follow-up surgical validation' AND latest_encounter.person_id IS NOT NULL,COALESCE(coded_fscn.name, coded_scn.name) , NULL)) ORDER BY o.obs_id DESC) AS 'outcomeFollowupSurgicalValidation',
          GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Time for next medical follow-up to be done' AND latest_encounter.person_id IS NOT NULL,COALESCE(coded_fscn.name, coded_scn.name) , NULL)) ORDER BY o.obs_id DESC) AS 'Time for next medical follow-up',
          GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Comments about next follow-up' AND latest_encounter.person_id IS NOT NULL , o.value_text, NULL))
-                        ORDER BY o.obs_id DESC)       AS 'Commments'
+                        ORDER BY o.obs_id DESC)       AS 'Comments'
 
          FROM person p
            JOIN patient_identifier pi ON p.person_id = pi.patient_id
