@@ -38,8 +38,11 @@
                         max(en.encounter_datetime) AS max_encounter_datetime
                       FROM obs
                         JOIN encounter en ON obs.encounter_id = en.encounter_id
-                      AND en.visit_id IN (SELECT max(visit_id) AS latest_visit_id
-                                            FROM visit GROUP BY patient_id )
+                      AND en.visit_id IN (SELECT v.visit_id FROM
+                                                 visit v
+                                                 JOIN  (SELECT patient_id AS patient_id, max(date_started) AS date_started
+                                               FROM visit GROUP BY patient_id) latest_visit
+                                                 ON v.date_started = latest_visit.date_started AND v.patient_id = latest_visit.patient_id )
                       GROUP BY obs.person_id, obs.concept_id) latest_encounter
              ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id
                 AND latest_encounter.max_encounter_datetime = e.encounter_datetime
