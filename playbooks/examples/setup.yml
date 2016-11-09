@@ -1,4 +1,4 @@
-bahmni_repo_url: https://dl.bintray.com/bahmni/rpm/
+bahmni_repo_url: https://bahmni-repo.twhosted.com/rpm/bahmni/
 two_factor_auth: disabled
 implementation_name: amman
 timezone: Asia/Amman

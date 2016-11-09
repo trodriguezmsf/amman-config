@@ -1,3 +1,5 @@
+- debug: msg="Bhamni Apps url is {{ bahmniapps_url }}"
+
 - name: Get bahmniapps from remote location if configured
   get_url: url={{ bahmniapps_url }}
    force=yes
