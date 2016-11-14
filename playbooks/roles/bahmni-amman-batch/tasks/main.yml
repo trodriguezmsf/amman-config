@@ -5,20 +5,45 @@
    force=yes
    dest=/opt/bahmni-web/etc/bahmniapps.zip
    mode=0755
+  register: bahmni_apps_download_result
   when: bahmniapps_url is defined
 
 - name: unlinking /var/www/bahmniapps
-  command: unlink /var/www/bahmniapps
-  when: bahmniapps_url is defined
+  file: path=/var/www/bahmniapps state=absent
+  when:
+    - bahmniapps_url is defined
+    - bahmni_apps_download_result.changed
 
 - name: Removing amman-bahmniapps folder
-  command: rm -rf /opt/bahmni-web/etc/amman-bahmniapps
-  when: bahmniapps_url is defined
+  file: path=/opt/bahmni-web/etc/amman-bahmniapps state=absent
+  when:
+    - bahmniapps_url is defined
+    - bahmni_apps_download_result.changed
 
 - name: Unzip downloaded bahmniapps file
   command: unzip /opt/bahmni-web/etc/bahmniapps.zip -d /opt/bahmni-web/etc/amman-bahmniapps
-  when: bahmniapps_url is defined
+  when:
+    - bahmniapps_url is defined
+    - bahmni_apps_download_result.changed
+
+- name: Change ownership of bahmniapps files
+  action: file state=directory recurse=yes path=/opt/bahmni-web/etc/amman-bahmniapps owner=bahmni group=bahmni
+  when:
+    - bahmniapps_url is defined
+    - bahmni_apps_download_result.changed
 
 - name: linking /var/www/bahmniapps to amman-release-84 bahmniapps
-  command: ln -s /opt/bahmni-web/etc/amman-bahmniapps /var/www/bahmniapps
-  when: bahmniapps_url is defined
+  file: src=/opt/bahmni-web/etc/amman-bahmniapps dest=/var/www/bahmniapps owner=bahmni group=bahmni state=link
+  when:
+    - bahmniapps_url is defined
+    - bahmni_apps_download_result.changed
+
+- name: Get omods from remote location if configured
+  with_items: "{{ omods }}"
+  get_url: url={{ item }}
+   force=yes
+   dest=/opt/openmrs/modules/
+   mode=0644
+   group=bahmni
+   owner=bahmni
+  when: omods is defined
