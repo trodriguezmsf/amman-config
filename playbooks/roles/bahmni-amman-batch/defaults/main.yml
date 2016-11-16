@@ -1,5 +1,5 @@
 omods: [
         "https://bahmni-msf.s3.amazonaws.com/artifacts/1.0/bahmnimsf-1.0-SNAPSHOT.omod",
-        "https://bahmni-msf.s3.amazonaws.com/artifacts/1.1/bahmni-core/14.2/bahmnicore-omod-0.84-SNAPSHOT.omod"
+        "https://bahmni-msf.s3.amazonaws.com/artifacts/1.1/bahmni-core/16.1/bahmnicore-0.84-SNAPSHOT.omod"
         ]
-bahmniapps_url: "https://bahmni-msf.s3.amazonaws.com/artifacts/1.1/bahmniApps/7.1/bahmniapps.zip"
+bahmniapps_url: "https://bahmni-msf.s3.amazonaws.com/artifacts/1.1/bahmniApps/11.1/bahmniapps.zip"

@@ -2,8 +2,8 @@ bahmni_repo_url: https://bahmni-repo.twhosted.com/rpm/bahmni/
 two_factor_auth: disabled
 implementation_name: amman
 timezone: Asia/Amman
-omods: ["https://bahmni-msf.s3.amazonaws.com/artifacts/1.0/bahmnimsf-1.0-SNAPSHOT.omod", "https://bahmni-msf.s3.amazonaws.com/artifacts/1.1/bahmni-core/14.2/bahmnicore-omod-0.84-SNAPSHOT.omod"]
-bahmniapps_url: https://bahmni-msf.s3.amazonaws.com/artifacts/1.1/bahmniApps/7.1/bahmniapps.zip
+omods: ["https://bahmni-msf.s3.amazonaws.com/artifacts/1.0/bahmnimsf-1.0-SNAPSHOT.omod", "https://bahmni-msf.s3.amazonaws.com/artifacts/1.1/bahmni-core/16.1/bahmnicore-0.84-SNAPSHOT.omod"]
+bahmniapps_url: https://bahmni-msf.s3.amazonaws.com/artifacts/1.1/bahmniApps/11.1/bahmniapps.zip
 SSLCertificateFilePath: /etc/letsencrypt/live/qa-amman.mybahmni.org/cert.pem
 SSLCertificateKeyFilePath: /etc/letsencrypt/live/qa-amman.mybahmni.org/privkey.pem
 SSLCertificateChainFilePath: /etc/letsencrypt/live/qa-amman.mybahmni.org/chain.pem
