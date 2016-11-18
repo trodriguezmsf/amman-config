@@ -1,6 +1,7 @@
 127.0.0.1 ansible_connection=local
 
 [nagios-server]
+127.0.0.1
 
 [bahmni-emr]
 127.0.0.1
