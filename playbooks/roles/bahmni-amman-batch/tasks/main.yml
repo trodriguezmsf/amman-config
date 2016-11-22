@@ -37,13 +37,3 @@
   when:
     - bahmniapps_url is defined
     - bahmni_apps_download_result.changed
-
-- name: Get omods from remote location if configured
-  with_items: "{{ omods }}"
-  get_url: url={{ item }}
-   force=yes
-   dest=/opt/openmrs/modules/
-   mode=0644
-   group=bahmni
-   owner=bahmni
-  when: omods is defined
