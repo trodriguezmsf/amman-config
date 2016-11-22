@@ -27,7 +27,7 @@ localhost
 localhost
 
 [bahmni-reports-db]
-172.18.2.10
+localhost
 
 [bahmni-reports-db-slave]
 
