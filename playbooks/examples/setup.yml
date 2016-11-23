@@ -7,6 +7,6 @@ bahmniapps_url: https://bahmni-msf.s3.amazonaws.com/artifacts/1.1/bahmniApps/11.
 SSLCertificateFilePath: /etc/letsencrypt/live/qa-amman.mybahmni.org/cert.pem
 SSLCertificateKeyFilePath: /etc/letsencrypt/live/qa-amman.mybahmni.org/privkey.pem
 SSLCertificateChainFilePath: /etc/letsencrypt/live/qa-amman.mybahmni.org/chain.pem
-nagios_contact_email: chethandec22@gmail.com
+nagios_contact_email: randomsome8@gmail.com
 ssmtp_auth_user: randomsome8@gmail.com
 ssmtp_auth_pass: pass123123
