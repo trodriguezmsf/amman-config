@@ -73,5 +73,6 @@
   "PATIENT_VISIT_PAGE_KEY":"Patient Visit Page",
   "HOME_DASHBOARD_KEY":"Home Dashboard",
   "MEDICATION_CHANGE_DURATION_BUTTON": "Change Duration",
-  "DASHBOARD_TITLE_Consultation_KEY": "Consultation Notes"
+  "DASHBOARD_TITLE_Consultation_KEY": "Consultation Notes",
+  "DASHBOARD_TITLE_PATIENT_ENCOUNTER_LOCATIONS_KEY": "Patient Encounter Locations"
 }

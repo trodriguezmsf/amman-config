@@ -1,0 +1,97 @@
+<div id="customControl">
+    <h2 class="section-title">{{title | titleTranslate}} </h2>
+    <section class="block hierarchy">
+        <ul class="form-field" ng-if="isEncounterListShown">
+            <li ng-repeat="entry in ::encounterLocationInfo" class="is-text">
+
+                <span class="tree-list-item row-click toggle-container" toggle="isOpen">
+                    <i class="fa fa-caret-right"></i>
+                    <i class="fa fa-caret-down"></i>
+                    <span class="obs-date">
+                        {{::entry.encounterDatetime | bahmniDateTime}}
+                    </span>
+                </span>
+                    <ul  ng-show="isOpen" >
+                        <li>
+                            <div class="tree-list-item">
+                                <span class="testUnderPanel fl">{{"EncounterType" | titleTranslate }}</span>
+                                <span class="value-text-only">{{entry.encounterType.name}} </span>
+                                <button class="toggle fr"
+                                        toggle="et.showDetails">
+                                    <i class="fa fa-angle-down"></i>
+                                    <i class="fa fa-angle-up"></i>
+                                </button>
+                            </div>
+                            <div ng-if="et.showDetails" class="notes inline-notes">
+                                <div class="footer-note fr">
+                                    <span class="provider">
+                                            <span>{{entry.provider.display}}</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tree-list-item">
+                                <span class="testUnderPanel fl">{{"VisitType" | titleTranslate }}</span>
+                                <span class="value-text-only">{{entry.visit.visitType.name}}</span>
+                                <button class="toggle fr"
+                                        toggle="vt.showDetails">
+                                    <i class="fa fa-angle-down"></i>
+                                    <i class="fa fa-angle-up"></i>
+                                </button>
+                            </div>
+                            <div ng-if="vt.showDetails" class="notes inline-notes">
+                                <div class="footer-note fr">
+                                    <span class="provider">
+                                            <span>{{entry.provider.display}}</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tree-list-item">
+                                <span class="testUnderPanel fl"> {{"Location" | titleTranslate }}</span>
+                                <span class="value-text-only">{{entry.location.name }}</span>
+                                <button class="toggle fr"
+                                        toggle="loc.showDetails">
+                                    <i class="fa fa-angle-down"></i>
+                                    <i class="fa fa-angle-up"></i>
+                                </button>
+                            </div>
+                            <div ng-if="loc.showDetails" class="notes inline-notes">
+                                <div class="footer-note fr">
+                                    <span class="provider">
+                                            <span>{{entry.provider.display}}</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tree-list-item">
+                                <span class ="testUnderPanel fl">{{"EncounterDatetime" | titleTranslate }}</span>
+                                <span  class="value-text-only">{{entry.encounterDatetime | bahmniDateTime}}</span>
+                                <button class="toggle fr"
+                                        toggle="edt.showDetails">
+                                    <i class="fa fa-angle-down"></i>
+                                    <i class="fa fa-angle-up"></i>
+                                </button>
+                            </div>
+                            <div ng-if="edt.showDetails" class="notes inline-notes">
+                                <div class="footer-note fr">
+                                    <span class="provider">
+                                            <span>{{entry.provider.display}}</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+            </li>
+        </ul>
+
+        <div ng-if="!isEncounterListShown">
+            <div class="placeholder-text" ><p translate="DISPLAY_CONTROL_ERROR_MESSAGE_KEY"
+                                              translate-values="::{displayControl : '{{'encounters' | translate}}'}"></p>
+            </div>
+        </div>
+    </section>
+</div>

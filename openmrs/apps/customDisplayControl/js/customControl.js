@@ -149,4 +149,43 @@ angular.module('bahmni.common.displaycontrol.custom')
         },
         template: '<ng-include src="contentUrl"/>'
     }
+}]).directive('patientEncounterLocations', ['$http', 'appService', 'spinner', function ($http, appService, spinner) {
+    var link = function ($scope) {
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/patientLocationEncountersTable.html";
+        $scope.title = $scope.config.title;
+        $scope.isEncounterListShown = true;
+
+        var emitNoDataPresentEvent = function () {
+            return $scope.$emit("no-data-present-event");
+        };
+
+        var sortEncounterByEncounterDateTime = function (encounters) {
+            return _.sortBy(encounters, "encounterDatetime").reverse();
+        };
+
+        var fetchLocationsInfoForEncounters = function (patientProgramUuid) {
+            return $http.get('/openmrs/ws/rest/v1/bahmniprogramenrollment', {
+                params: {
+                    patientProgramUuid: patientProgramUuid,
+                    v: "custom:(encounter:(encounterDatetime,encounterType,provider,location:(uuid,name,display),visit:(visitType)))"
+                },
+                withCredentials: true
+            });
+        };
+
+        spinner.forPromise(fetchLocationsInfoForEncounters($scope.enrollment).then(function (response) {
+            var encounters = _.get(response, "data.results[0].encounter", []);
+            $scope.encounterLocationInfo = sortEncounterByEncounterDateTime(encounters);
+            if ($scope.encounterLocationInfo.length <= 0) {
+                emitNoDataPresentEvent();
+                $scope.isEncounterListShown = false;
+            }
+        }));
+    };
+
+    return {
+        restrict: 'E',
+        link: link,
+        template: '<ng-include src="contentUrl"/>'
+    }
 }]);

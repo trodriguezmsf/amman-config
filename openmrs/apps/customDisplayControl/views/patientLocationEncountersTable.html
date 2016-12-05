@@ -1,0 +1,32 @@
+<div id="customControl">
+    <h2 class="section-title">{{title | titleTranslate}} </h2>
+    <section class="dashboard-section" >
+        <div ng-if="isEncounterListShown">
+            <table>
+                <thead>
+                <tr>
+                    <th>EncounterDatetime</th>
+                    <th>EncounterType</th>
+                    <th>VisitType</th>
+                    <th>Location</th>
+                    <th>Provider</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="entry in ::encounterLocationInfo track by $index">
+                    <td>{{entry.encounterDatetime | bahmniDateTime}}</td>
+                    <td>{{entry.encounterType.name}}</td>
+                    <td>{{entry.visit.visitType.name}}</td>
+                    <td>{{entry.location.name}}</td>
+                    <td>{{entry.provider.display}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div ng-if="!isEncounterListShown">
+            <div class="placeholder-text" ><p translate="DISPLAY_CONTROL_ERROR_MESSAGE_KEY"
+                                              translate-values="::{displayControl : '{{'encounters' | translate}}'}"></p>
+            </div>
+        </div>
+    </section>
+</div>

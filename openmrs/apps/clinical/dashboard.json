@@ -187,6 +187,14 @@
 
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
+            },
+            "patientEncounterLocations": {
+                "type": "custom",
+                "displayOrder": 10,
+                "config": {
+                    "title": "DASHBOARD_TITLE_PATIENT_ENCOUNTER_LOCATIONS_KEY",
+                    "template": "<patient-encounter-locations section='section' patient='patient'></patient-encounter-locations>"
+                }
             }
         }
     }
