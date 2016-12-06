@@ -93,9 +93,11 @@
         "extensionPointId": "org.bahmni.patient.search",
         "type": "config",
         "extensionParams": {
+            "view": "tabular",
             "searchHandler": "emrapi.sqlSearch.patientsToAdmit",
             "translationKey": "MODULE_LABEL_TO_ADMIT_KEY",
-            "forwardUrl":"#/patient/{{patientUuid}}/visit/{{visitUuid}}/admit"
+            "forwardUrl":"#/patient/{{patientUuid}}/visit/{{visitUuid}}/admit",
+            "linkColumn": "Status"
         },
         "label": "To Admit",
         "order": 1,
