@@ -109,6 +109,7 @@
         "type": "config",
         "extensionParams": {
             "searchHandler": "emrapi.sqlSearch.admittedPatients",
+            "view": "tabular",
             "translationKey": "MODULE_LABEL_ADMITTED_KEY",
             "forwardUrl" : "#/patient/{{patientUuid}}/visit/{{visitUuid}}/transfer"
         },
