@@ -93,22 +93,5 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.disable.push("FV, Which medical information is needed for FV?", "FV, Dead line to submit final validation", "FV, Outcomes FV", "FV, Comments on FV")
         }
         return conditions;
-    },
-    'FV, Outcomes FV': function (formName, formFieldValues) {
-        var conditions = {
-            enable: [],
-            disable: []
-        };
-        var conditionConcept = formFieldValues['FV, Outcomes FV'];
-        if (conditionConcept == "Further Evaluation") {
-            conditions.enable.push("FV, Comments on FV")
-        }
-        else if (conditionConcept == "Rejected") {
-            conditions.enable.push("FV, Comments on FV")
-        }
-        else {
-            conditions.disable.push("FV, Comments on FV")
-        }
-        return conditions;
     }
 };
