@@ -63,8 +63,6 @@
         <comment>Mapping export codes with respective concepts</comment>
         <sqlFile path="concept_ref_map.sql"/>
     </changeSet>
-<<<<<<< Updated upstream
-=======
     <changeSet id="Amman-201612051834" author="Santhosh, Kaustav" context="rel2.2" runOnChange="true">
         <comment>Adding patient listing queue for adt toAdmit</comment>
         <sqlFile path="adtPatientsToAdmit.sql"/>
@@ -88,6 +86,4 @@
             update concept_set set sort_weight=6 where concept_id=297 and concept_set=409;
         </sql>
     </changeSet>
->>>>>>> Stashed changes
-
 </databaseChangeLog>
