@@ -4,7 +4,8 @@
 
  INSERT INTO global_property (property, property_value, description, uuid)
  VALUES ('emrapi.sqlSearch.expectedArrival',
-"SELECT  `identifier` , name , `Age`, uuid ,`Country` , `Nationality` , `Specialty` , `Stage`,`Expected Date of Arrival` ,`Does the Patient need Accommodation?`, `Type of Admission Recommended`
+"
+SELECT  `identifier` , name , `Age`, uuid ,`Country` , `Nationality` , `Specialty` , `Stage`, DATE_FORMAT(`ExpectedDateOfArrival`, '%d/%m/%Y') AS `Expected Date of Arrival`,`Does the Patient need Accommodation?`, `Type of Admission Recommended`
        FROM (SELECT
                concat(pn.given_name, ' ', pn.family_name) AS name,
                floor(DATEDIFF(CURDATE(), p.birthdate) / 365)      AS `Age`,
@@ -12,7 +13,7 @@
                p.uuid                                     AS uuid,
                paddress.address3 AS 'Country',
           GROUP_CONCAT(DISTINCT(IF(pat.name = 'nationality1', coalesce(scn.name, fscn.name), NULL))) AS 'Nationality',
-          GROUP_CONCAT(DISTINCT(IF(pat.name = 'expectedDateofArrival', DATE_FORMAT(pa.value, '%d/%m/%Y'), NULL))) AS 'Expected Date of Arrival',
+          GROUP_CONCAT(DISTINCT(IF(pat.name = 'expectedDateofArrival', pa.value, NULL)))  AS 'ExpectedDateOfArrival',
           GROUP_CONCAT(DISTINCT(IF(pat.name = 'dateofArrival', pa.value, NULL))) AS 'Date of Arrival',
           GROUP_CONCAT(DISTINCT (IF(obs_across_visits.name = 'FSTG, Specialty determined by MLO' AND obs_across_visits.person_id IS NOT NULL, COALESCE(value_fsn, value_scn), NULL))) AS 'Specialty',
           GROUP_CONCAT(DISTINCT (IF(obs_across_visits.name = 'Stage' AND obs_across_visits.person_id IS NOT NULL, obs_across_visits.value_numeric, NULL))) AS 'Stage',
@@ -63,5 +64,5 @@
                        GROUP BY obs.person_id, obs.concept_id)
                     ) obs_across_visits ON p.person_id = obs_across_visits.person_id
                     JOIN patient_program pp ON p.person_id = pp.patient_id AND  pp.date_completed is NULL and pp.voided = 0
-             GROUP BY p.person_id ) result
-             WHERE(result.`Expected Date of Arrival` IS NOT NULL) AND (result.`Date of Arrival` IS NULL)", 'Expected Arrival Patient Queue', @uuid);
+             GROUP BY p.person_id ORDER BY ExpectedDateOfArrival) result
+             WHERE(result.`ExpectedDateOfArrival` IS NOT NULL) AND (result.`Date of Arrival` IS NULL)", 'Expected Arrival Patient Queue', @uuid);
