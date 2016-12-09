@@ -30,6 +30,8 @@
                     "isEditable": true,
                     "showDetailsButton": true,
                     "conceptNames": [
+                        "FV, Patient Videos",
+                        "FV, Date of Presentation",
                         "FV, Outcomes FV",
                         "FV, Comments on FV",
                         "FV, Expected Date of Arrival",

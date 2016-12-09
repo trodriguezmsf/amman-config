@@ -64,6 +64,15 @@
         <sqlFile path="concept_ref_map.sql"/>
     </changeSet>
     <changeSet id="Amman-114707122016" author="Shiva kumar" context="rel2.1">
+    <changeSet id="Amman-201612051834" author="Santhosh, Kaustav" context="rel2.2" runOnChange="true">
+        <comment>Adding patient listing queue for adt toAdmit</comment>
+        <sqlFile path="adtPatientsToAdmit.sql"/>
+    </changeSet>
+    <changeSet id="Amman-11406122016" author="Sourav" context="rel2.2" runOnChange="true">
+        <comment>Updating the property emrapi.sqlSearch.admittedPatients</comment>
+        <sqlFile path="adtAdmittedQueue.sql"/>
+    </changeSet>
+    <changeSet id="Amman-114707122016" author="Shiva kumar" context="rel2.1" runOnChange="true" >
         <comment>Adding video upload and date of presentation in final validation form</comment>
         <sql>
             insert into concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) values (836,409,0,8,now(),uuid()),(835,409,1,8,now(),uuid());
