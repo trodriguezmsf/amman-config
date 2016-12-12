@@ -63,19 +63,36 @@
         <comment>Mapping export codes with respective concepts</comment>
         <sqlFile path="concept_ref_map.sql"/>
     </changeSet>
+    <changeSet id="Amman-201612051834" author="Santhosh, Kaustav" context="rel2.2" runOnChange="true">
+        <comment>Adding patient listing queue for adt toAdmit</comment>
+        <sqlFile path="adtPatientsToAdmit.sql"/>
+    </changeSet>
+    <changeSet id="Amman-11406122016" author="Sourav" context="rel2.2" runOnChange="true">
+        <comment>Updating the property emrapi.sqlSearch.admittedPatients</comment>
+        <sqlFile path="adtAdmittedQueue.sql"/>
+    </changeSet>
     <changeSet id="Amman-114707122016" author="Shiva kumar" context="rel2.1" runOnChange="true" >
         <comment>Adding video upload and date of presentation in final validation form</comment>
         <sql>
-            insert into concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) values (836,409,0,8,now(),uuid()),(835,409,1,8,now(),uuid());
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (840,409,0,8,now(),uuid()),(835,409,1,8,now(),uuid());
         </sql>
         <sql>
-            update concept_set set sort_weight=0 where concept_id=836 and concept_set=409;
-            update concept_set set sort_weight=1 where concept_id=835 and concept_set=409;
-            update concept_set set sort_weight=2 where concept_id=282 and concept_set=409;
-            update concept_set set sort_weight=3 where concept_id=417 and concept_set=409;
-            update concept_set set sort_weight=4 where concept_id=291 and concept_set=409;
-            update concept_set set sort_weight=5 where concept_id=295 and concept_set=409;
-            update concept_set set sort_weight=6 where concept_id=297 and concept_set=409;
+            UPDATE concept_set SET sort_weight=0 WHERE concept_id=840 and concept_set=409;
+            UPDATE concept_set SET sort_weight=1 WHERE concept_id=835 and concept_set=409;
+            UPDATE concept_set SET sort_weight=2 WHERE concept_id=282 and concept_set=409;
+            UPDATE concept_set SET sort_weight=3 WHERE concept_id=417 and concept_set=409;
+            UPDATE concept_set SET sort_weight=4 WHERE concept_id=291 and concept_set=409;
+            UPDATE concept_set SET sort_weight=5 WHERE concept_id=295 and concept_set=409;
+            UPDATE concept_set SET sort_weight=6 WHERE concept_id=297 and concept_set=409;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-120212122016" author="Shiva kumar" context="rel2.1" runOnChange="true" >
+        <comment>Adding Answer concepts to Outcome in Final Validation Form</comment>
+        <sql>
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (282,836,8,now(),4,uuid()),
+            (282,837,8,now(),5,uuid()),
+            (282,838,8,now(),6,uuid()),
+            (282,839,8,now(),7,uuid());
         </sql>
     </changeSet>
 </databaseChangeLog>
