@@ -81,7 +81,6 @@
         <sqlFile path="adtAdmittedQueue.sql"/>
     </changeSet>
     <changeSet id="Amman-114707122016" author="Shiva kumar" context="rel2.1" runOnChange="true" >
-    <changeSet id="Amman-114707122016" author="Shiva kumar" context="rel2.1" runOnChange="true" >
         <comment>Adding video upload and date of presentation in final validation form</comment>
         <sql>
             INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (840,409,0,8,now(),uuid()),(835,409,1,8,now(),uuid());
