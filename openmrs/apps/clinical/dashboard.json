@@ -46,8 +46,8 @@
                     "numberOfVisits": 3,
                     "showDetailsButton": true,
                     "pivotTable": {}
-                }
-
+                },
+              "hideEmptyDisplayControl": true
             },
 
           "Medical History":{
@@ -84,7 +84,8 @@
               "numberOfVisits": 3,
               "showDetailsButton": true,
               "pivotTable": {}
-            }
+            },
+            "hideEmptyDisplayControl": true
           },
           "Follow-up Validation":{
             "translationKey": "DASHBOARD_TITLE_FOLLOWUP_VALIDATION",
@@ -117,8 +118,8 @@
               "numberOfVisits": 3,
               "showDetailsButton": true,
               "pivotTable": {}
-            }
-
+            },
+            "hideEmptyDisplayControl": true
           },
           "visits": {
             "translationKey": "DASHBOARD_TITLE_VISITS_KEY",
@@ -161,8 +162,8 @@
               "numberOfVisits": 3,
               "showDetailsButton": true,
               "pivotTable": {}
-            }
-
+            },
+            "hideEmptyDisplayControl": true
           },
             "Radiology": {
                 "type": "radiology",
