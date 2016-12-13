@@ -217,6 +217,20 @@
                 "placeholder": "Enter Name in Arabic",
                 "fields": ["givenNameLocal","familyNameLocal"]
             }
-            }
+            },
+            "forwardUrlsForVisitTypes": [
+                {
+                    "visitType": "First Stage Validation",
+                    "forwardUrl": "../clinical/#/programs/patient/{{patientUuid}}/consultationContext",
+                    "translationKey": "Enter First stage details",
+                    "shortcutKey": "c"
+                },
+                {
+                    "visitType": "Follow-Up Validation",
+                    "forwardUrl": "../clinical/#/programs/patient/{{patientUuid}}/consultationContext",
+                    "translationKey": "Enter Follow-Up Details",
+                    "shortcutKey": "d"
+                }
+            ]
         }
 }
