@@ -74,19 +74,19 @@
      <changeSet id="Amman-114707122016" author="Shiva kumar" context="rel2.1" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                select count(*) from concept_set where concept_id=840 and concept_set=409;
+                select count(*) from concept_set where concept_id=839 and concept_set=409;
             </sqlCheck>
         </preConditions>
         <comment>Adding video upload and date of presentation in final validation form</comment>
         <sql>
-            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (840,409,0,8,now(),uuid()),(835,409,1,8,now(),uuid());
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (839,409,0,8,now(),uuid()),(834,409,1,8,now(),uuid());
         </sql>
     </changeSet>
     <changeSet id="Amman-130613122016" author="shiva kumar" context="rel2.1" runOnChange="true">
         <comment>Updating Final Validation form fields in given format</comment>
         <sql>
-            UPDATE concept_set SET sort_weight=0 WHERE concept_id=840 and concept_set=409;
-            UPDATE concept_set SET sort_weight=1 WHERE concept_id=835 and concept_set=409;
+            UPDATE concept_set SET sort_weight=0 WHERE concept_id=839 and concept_set=409;
+            UPDATE concept_set SET sort_weight=1 WHERE concept_id=834 and concept_set=409;
             UPDATE concept_set SET sort_weight=2 WHERE concept_id=282 and concept_set=409;
             UPDATE concept_set SET sort_weight=3 WHERE concept_id=417 and concept_set=409;
             UPDATE concept_set SET sort_weight=4 WHERE concept_id=291 and concept_set=409;
@@ -97,15 +97,15 @@
     <changeSet id="Amman-120212122016" author="Shiva kumar" context="rel2.1" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                select count(*) from concept_answer where concept_id=282 and answer_concept=836;
+                select count(*) from concept_answer where concept_id=282 and answer_concept=835;
             </sqlCheck>
         </preConditions>
         <comment>Adding Answer concepts to Outcome in Final Validation Form</comment>
         <sql>
-            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (282,836,8,now(),4,uuid()),
-            (282,837,8,now(),5,uuid()),
-            (282,838,8,now(),6,uuid()),
-            (282,839,8,now(),7,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (282,835,8,now(),4,uuid()),
+            (282,836,8,now(),5,uuid()),
+            (282,837,8,now(),6,uuid()),
+            (282,838,8,now(),7,uuid());
         </sql>
     </changeSet>
 </databaseChangeLog>
