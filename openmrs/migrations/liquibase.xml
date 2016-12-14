@@ -63,7 +63,15 @@
         <comment>Mapping export codes with respective concepts</comment>
         <sqlFile path="concept_ref_map.sql"/>
     </changeSet>
-    <changeSet id="Amman-114707122016" author="Shiva kumar" context="rel2.1" >
+    <changeSet id="Amman-201612051834" author="Santhosh, Kaustav" context="rel2.2" runOnChange="true">
+        <comment>Adding patient listing queue for adt toAdmit</comment>
+        <sqlFile path="adtPatientsToAdmit.sql"/>
+    </changeSet>
+    <changeSet id="Amman-11406122016" author="Sourav" context="rel2.2" runOnChange="true">
+        <comment>Updating the property emrapi.sqlSearch.admittedPatients</comment>
+        <sqlFile path="adtAdmittedQueue.sql"/>
+    </changeSet>
+     <changeSet id="Amman-114707122016" author="Shiva kumar" context="rel2.1" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_set where concept_id=839 and concept_set=409;
