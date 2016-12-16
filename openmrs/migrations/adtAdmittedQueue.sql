@@ -15,7 +15,7 @@ from visit v
   join patient_identifier_type pit on pi.identifier_type = pit.patient_identifier_type_id
   join global_property gp on gp.property='emr.primaryIdentifierType' and gp.property_value=pit.uuid
   join person p on v.patient_id = p.person_id
-  join bed_patient_assignment_map bpam on bpam.patient_id = p.person_id
+  join bed_patient_assignment_map bpam on bpam.patient_id = p.person_id AND bpam.date_stopped IS NULL
   join bed b on b.bed_id = bpam.bed_id
   join bed_type bt on bt.bed_type_id = b.bed_type_id
   join visit_attribute va on v.visit_id = va.visit_id and va.value_reference = 'Admitted' and va.voided = 0

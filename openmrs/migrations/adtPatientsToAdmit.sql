@@ -18,5 +18,9 @@ UPDATE global_property
         JOIN concept c ON o.value_coded = c.concept_id
         JOIN concept_name cn ON c.concept_id = cn.concept_id
         JOIN location l ON l.uuid=${visit_location_uuid} AND v.location_id = l.location_id
-        WHERE v.date_stopped IS NULL AND cn.name = 'Admit Patient'"
+        WHERE v.date_stopped IS NULL AND cn.name = 'Admit Patient' AND v.visit_id NOT IN (SELECT visit_id
+                                                                                  FROM encounter ie
+                                                                                  join encounter_type iet
+                                                                                      ON iet.encounter_type_id = ie.encounter_type
+                                                                                  WHERE iet.name = 'ADMISSION')"
   WHERE property = "emrapi.sqlSearch.patientsToAdmit";
