@@ -2,24 +2,9 @@
 
 angular.module('bahmni.common.displaycontrol.custom')
     .directive('birthCertificate', ['observationsService', 'appService', 'spinner', function (observationsService, appService, spinner) {
-            var link = function ($scope) {
-                console.log("inside birth certificate");
-                var conceptNames = ["HEIGHT"];
-                $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/birthCertificate.html";
-                spinner.forPromise(observationsService.fetch($scope.patient.uuid, conceptNames, "latest", undefined, $scope.visitUuid, undefined).then(function (response) {
-                    $scope.observations = response.data;
-                }));
-            };
-
-            return {
-                restrict: 'E',
-                template: '<ng-include src="contentUrl"/>',
-                link: link
-            }
-    }]).directive('deathCertificate', ['observationsService', 'appService', 'spinner', function (observationsService, appService, spinner) {
         var link = function ($scope) {
-            var conceptNames = ["WEIGHT"];
-            $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/deathCertificate.html";
+            var conceptNames = ["HEIGHT"];
+            $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/birthCertificate.html";
             spinner.forPromise(observationsService.fetch($scope.patient.uuid, conceptNames, "latest", undefined, $scope.visitUuid, undefined).then(function (response) {
                 $scope.observations = response.data;
             }));
@@ -27,10 +12,24 @@ angular.module('bahmni.common.displaycontrol.custom')
 
         return {
             restrict: 'E',
-            link: link,
-            template: '<ng-include src="contentUrl"/>'
+            template: '<ng-include src="contentUrl"/>',
+            link: link
         }
-    }]).directive('customTreatmentChart', ['appService', 'treatmentConfig', 'TreatmentService', 'spinner', '$q', function (appService, treatmentConfig, treatmentService, spinner, $q) {
+    }]).directive('deathCertificate', ['observationsService', 'appService', 'spinner', function (observationsService, appService, spinner) {
+    var link = function ($scope) {
+        var conceptNames = ["WEIGHT"];
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/deathCertificate.html";
+        spinner.forPromise(observationsService.fetch($scope.patient.uuid, conceptNames, "latest", undefined, $scope.visitUuid, undefined).then(function (response) {
+            $scope.observations = response.data;
+        }));
+    };
+
+    return {
+        restrict: 'E',
+        link: link,
+        template: '<ng-include src="contentUrl"/>'
+    }
+}]).directive('customTreatmentChart', ['appService', 'treatmentConfig', 'TreatmentService', 'spinner', '$q', function (appService, treatmentConfig, treatmentService, spinner, $q) {
     var link = function ($scope) {
         var Constants = Bahmni.Clinical.Constants;
         var days = [
@@ -151,7 +150,7 @@ angular.module('bahmni.common.displaycontrol.custom')
     }
 }]).directive('patientEncounterLocations', ['$http', 'appService', 'spinner', function ($http, appService, spinner) {
     var link = function ($scope) {
-        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/patientLocationEncountersTable.html";
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/patientLocationEncounters.html";
         $scope.title = $scope.config.title;
         $scope.isEncounterListShown = true;
 
@@ -160,22 +159,25 @@ angular.module('bahmni.common.displaycontrol.custom')
         };
 
         var sortEncounterByEncounterDateTime = function (encounters) {
-            return _.sortBy(encounters, "encounterDatetime").reverse();
+            return _.sortBy(encounters, "encounterDateTime").reverse();
         };
 
         var fetchLocationsInfoForEncounters = function (patientProgramUuid) {
-            return $http.get('/openmrs/ws/rest/v1/bahmniprogramenrollment', {
+            return $http.get('/openmrs/ws/rest/v1/bahmniprogramencounter', {
                 params: {
-                    patientProgramUuid: patientProgramUuid,
-                    v: "custom:(encounter:(encounterDatetime,encounterType,provider,location:(uuid,name,display),visit:(visitType)))"
+                    patientProgramUuid: patientProgramUuid
                 },
                 withCredentials: true
             });
         };
 
         spinner.forPromise(fetchLocationsInfoForEncounters($scope.enrollment).then(function (response) {
-            var encounters = _.get(response, "data.results[0].encounter", []);
+            var encounters = response.data;
             $scope.encounterLocationInfo = sortEncounterByEncounterDateTime(encounters);
+            var firstThreeEncounters = _.take($scope.encounterLocationInfo, 3);
+            _.each(firstThreeEncounters, function(encounter) {
+                encounter.isOpen = true
+            });
             if ($scope.encounterLocationInfo.length <= 0) {
                 emitNoDataPresentEvent();
                 $scope.isEncounterListShown = false;
