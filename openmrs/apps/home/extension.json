@@ -69,6 +69,17 @@
     "icon": "fa-bed",
     "order": 7,
     "requiredPrivilege": "app:adt"
+  },
+  "bahmniIpd": {
+    "id": "bahmni.ipd",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "IPD",
+    "label": "InPatient",
+    "url": "../ipd/#/admit",
+    "icon": "fa-bed",
+    "order": 8,
+    "requiredPrivilege": "app:adt"
   }
 
 }
