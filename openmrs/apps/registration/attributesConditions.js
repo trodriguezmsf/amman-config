@@ -41,14 +41,14 @@ Bahmni.Registration.AttributesConditions.rules = {
             show: [],
             hide: []
         };
-        if (patient["legalRepalsoCaretaker"] && patient["legalRepalsoCaretaker"].value && patient["legalRepalsoCaretaker"].value.fullySpecifiedName === "Yes") {
+        if (patient["legalRepalsoCaretaker"] && patient["legalRepalsoCaretaker"].value === "Yes") {
             returnValues.show.push("LegalRepresentative");
             patient["legalRepFullNameEnglish"] = patient["caretakerNameEnglish"];
             patient["legalRepFullNameArabic"] = patient["caretakerNameArabic"];
             patient["legalRepGender"] = patient["caretakerGender"];
             patient["legalRepDob"] = patient["caretakerDob"];
             patient["legalRepNationality"] = patient["caretakerNationality"]
-        } else if((patient["age"].years === undefined || patient["age"].years > 18) && patient["legalRepalsoCaretaker"] && (patient["legalRepalsoCaretaker"].value === undefined || patient["legalRepalsoCaretaker"].value.fullySpecifiedName === "No")){
+        } else if((patient["age"].years === undefined || patient["age"].years > 18) && patient["legalRepalsoCaretaker"] && (patient["legalRepalsoCaretaker"].value === undefined || patient["legalRepalsoCaretaker"].value === "No")){
             returnValues.hide.push("LegalRepresentative");
             patient["legalRepFullNameEnglish"] = undefined;
             patient["legalRepFullNameArabic"] = undefined;
@@ -69,7 +69,7 @@ Bahmni.Registration.AttributesConditions.rules = {
             show: [],
             hide: []
         };
-        if (patient["statusofOfficialIDdocuments"] && patient["statusofOfficialIDdocuments"].value && patient["statusofOfficialIDdocuments"].value.fullySpecifiedName === "Received") {
+        if (patient["statusofOfficialIDdocuments"] && patient["statusofOfficialIDdocuments"].value === "Received") {
             returnValues.show.push("idDocumentOne");
             returnValues.show.push("idDocumentTwo")
         } else {
