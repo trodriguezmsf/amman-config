@@ -64,7 +64,6 @@
             },
 
             "MH, Cause of injury":{
-
                 "dropdown":true
             },
             "MH, Patient General Condition":{
@@ -73,32 +72,20 @@
             "MH, If caretaker is needed, why?":{
                 "dropdown":true
             },
-            "FSTG, Is the medical file complete?":{
-
-                "dropdown" :true
-            },
-
-            "FSTG, Specialty determined by MLO":{
-                "dropdown":true
-            },
-            "FSTG, Stage":{
-                "dropdown":true
-            },
-
             "FSTG, Type of medical information received":{
                 "dropdown":true
-
             },
-            "FSTG, Specialty determined by MLO at first validation":{
+            "FSTG, Is the medical file complete?":{
+                "dropdown" :true
+            },
+            "FSTG, Specialty determined by MLO":{
                 "multiSelect":true
-
-            },
-            "FSTG, Outcomes for 1st stage surgical validation":{
-                "dropdown":true
-
             },
             "FSTG, Priority":
             {
+                "dropdown":true
+            },
+            "FSTG, Outcomes for 1st stage surgical validation":{
                 "dropdown":true
             },
             "FSTG, Name (s) of Surgeon 1":{
@@ -185,7 +172,7 @@
                 "dropdown": false
             },
             "FV, Expected Date of Arrival" : {
-                "required" : true,
+                "required" : false,
                 "minYear": 2016,
                 "maxYear": 2100,
                 "allowFutureDates": true,
