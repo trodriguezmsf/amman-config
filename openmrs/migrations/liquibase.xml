@@ -63,41 +63,91 @@
         <comment>Mapping export codes with respective concepts</comment>
         <sqlFile path="concept_ref_map.sql"/>
     </changeSet>
-     <changeSet id="Amman-114707122016" author="Shiva kumar" context="rel2.1" >
+     <changeSet id="Amman-114707122016" author="Shiva kumar" context="rel2.1" runOnChange="true" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                select count(*) from concept_set where concept_id=839 and concept_set=409;
+                SELECT count(*) FROM concept_set WHERE concept_id=(SELECT concept_id  FROM concept_name WHERE name = 'FV, Patient Videos' AND concept_name_type="FULLY_SPECIFIED") AND concept_set=409;
             </sqlCheck>
         </preConditions>
         <comment>Adding video upload and date of presentation in final validation form</comment>
         <sql>
-            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (839,409,0,8,now(),uuid()),(834,409,1,8,now(),uuid());
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'FV, Patient Videos' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id1,409,0,8,now(),uuid());
+            SELECT concept_id INTO @concept_id2 FROM concept_name where name = 'FV, Date of Presentation' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id2,409,0,8,now(),uuid());
         </sql>
     </changeSet>
     <changeSet id="Amman-130613122016" author="shiva kumar" context="rel2.1" runOnChange="true">
         <comment>Updating Final Validation form fields in given format</comment>
         <sql>
-            UPDATE concept_set SET sort_weight=0 WHERE concept_id=839 and concept_set=409;
-            UPDATE concept_set SET sort_weight=1 WHERE concept_id=834 and concept_set=409;
-            UPDATE concept_set SET sort_weight=2 WHERE concept_id=282 and concept_set=409;
-            UPDATE concept_set SET sort_weight=3 WHERE concept_id=417 and concept_set=409;
-            UPDATE concept_set SET sort_weight=4 WHERE concept_id=291 and concept_set=409;
-            UPDATE concept_set SET sort_weight=5 WHERE concept_id=295 and concept_set=409;
-            UPDATE concept_set SET sort_weight=6 WHERE concept_id=297 and concept_set=409;
+            select concept_id into @concept_id1 from concept_name where name = 'FV, Patient Videos' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id2 from concept_name where name = 'FV, Date of Presentation' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id3 from concept_name where name = 'FV, Outcomes FV' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id4 from concept_name where name = 'FV, Comments on FV' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id5 from concept_name where name = 'FV, Expected Date of Arrival' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id6 from concept_name where name = 'FV, Does the Patient need Accommodation?' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id7 from concept_name where name = 'FV, Type of Admission Recommended' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET sort_weight=0 WHERE concept_id=@concept_id1 and concept_set=409;
+            UPDATE concept_set SET sort_weight=1 WHERE concept_id=@concept_id2 and concept_set=409;
+            UPDATE concept_set SET sort_weight=2 WHERE concept_id=@concept_id3 and concept_set=409;
+            UPDATE concept_set SET sort_weight=3 WHERE concept_id=@concept_id4 and concept_set=409;
+            UPDATE concept_set SET sort_weight=4 WHERE concept_id=@concept_id5 and concept_set=409;
+            UPDATE concept_set SET sort_weight=5 WHERE concept_id=@concept_id6 and concept_set=409;
+            UPDATE concept_set SET sort_weight=6 WHERE concept_id=@concept_id7 and concept_set=409;
         </sql>
     </changeSet>
     <changeSet id="Amman-120212122016" author="Shiva kumar" context="rel2.1" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                select count(*) from concept_answer where concept_id=282 and answer_concept=835;
+            select count(*) from concept_answer where answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'R2A : Surgery Outside' AND concept_name_type="FULLY_SPECIFIED") and concept_id=835;
             </sqlCheck>
         </preConditions>
         <comment>Adding Answer concepts to Outcome in Final Validation Form</comment>
         <sql>
-            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (282,835,8,now(),4,uuid()),
-            (282,836,8,now(),5,uuid()),
-            (282,837,8,now(),6,uuid()),
-            (282,838,8,now(),7,uuid());
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'R2A : Surgery Outside' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (282,@concept_id1,8,now(),4,uuid());
+            SELECT concept_id INTO @concept_id2 FROM concept_name where name = 'R2B: Refused Treatment or Follow-up' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES   (282,@concept_id2,8,now(),6,uuid());
+            SELECT concept_id INTO @concept_id3 FROM concept_name where name = 'R2C: refused to travel to Amman' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES   (282,@concept_id3,8,now(),7,uuid());
+            SELECT concept_id INTO @concept_id4 FROM concept_name where name = 'R2D: Refused to Under Surgery' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES   (282,@concept_id4,8,now(),8,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201612181609" author="Shiva kumar" context="rel2.1" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_set WHERE concept_id=(SELECT concept_id  FROM concept_name WHERE name = 'Orthopantogram (OPG)') AND concept_set=754;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding concepts in patient document upload </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'Orthopantogram (OPG)';
+            insert into concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) values (@concept_id1,754,12,8,now(),uuid());
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'Electrocardiogram (ECG)';
+            insert into concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) values (@concept_id2,754,13,8,now(),uuid());
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = 'Blood Investigations';
+            insert into concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) values (@concept_id3,754,14,8,now(),uuid());
+            SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name = 'Cardiac Echo';
+            insert into concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) values (@concept_id4,754,15,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201612201052" author="Shiva kumar" context="rel2.1" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'Orthopedic + Plastic' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="FSTG, Specialty determined by MLO");
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting answer concepts from Specialty in first stage validation form </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'Orthopedic + Plastic' AND concept_name_type="FULLY_SPECIFIED";
+            delete from concept_answer where answer_concept=@concept_id1 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="FSTG, Specialty determined by MLO");
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'Orthopedic + Maxillofacial' AND concept_name_type="FULLY_SPECIFIED";
+            delete from concept_answer where answer_concept=@concept_id2 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="FSTG, Specialty determined by MLO");
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = 'Plastic + Maxillofacial' AND concept_name_type="FULLY_SPECIFIED";
+            delete from concept_answer where answer_concept=@concept_id3 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="FSTG, Specialty determined by MLO");
+            SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name = 'Orthopedic + Plastic + Maxillofacial' AND concept_name_type="FULLY_SPECIFIED";
+            delete from concept_answer where answer_concept=@concept_id4 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="FSTG, Specialty determined by MLO");
         </sql>
     </changeSet>
 </databaseChangeLog>
