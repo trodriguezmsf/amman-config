@@ -28,8 +28,8 @@ FROM (SELECT
   DATE_FORMAT(p.birthdate, "%d-%b-%Y") AS "Birthdate",
   p.gender AS "Gender",
   paddress.address3 AS 'Country',
-  GROUP_CONCAT(DISTINCT (IF(obs_across_visits.name = 'MH, Name of MLO' AND obs_across_visits.person_id IS NOT NULL, COALESCE(value_fsn, value_scn), NULL))) AS 'MLO',
-  GROUP_CONCAT(DISTINCT (IF(obs_across_visits.name = 'FSTG, Specialty determined by MLO' AND obs_across_visits.person_id IS NOT NULL, COALESCE(value_fsn, value_scn), NULL))) AS 'Specialty',
+  `MLO`,
+  `Specialty`,
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'Stage' AND latest_encounter.person_id IS NOT NULL, o.value_numeric, NULL)) ORDER BY o.obs_id DESC) AS 'Stage',
   GROUP_CONCAT(DISTINCT(IF(pat.name = 'statusofOfficialIDdocuments', coalesce(scn.name, fscn.name), NULL))) AS 'Status of Official ID Documents',
   GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FV, Expected Date of Arrival' AND latest_encounter.person_id IS NOT NULL, DATE_FORMAT(o.value_datetime, "%m/%Y"), NULL)) ORDER BY o.obs_id DESC) AS 'Expected Date of Arrival',
@@ -90,22 +90,30 @@ FROM obs o
     ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id AND
        e.encounter_datetime = latest_encounter.max_encounter_datetime
   LEFT JOIN (SELECT
-               cn.name,
                obs.person_id,
-               coded_fscn.name AS value_fsn,
-               coded_scn.name  AS value_scn
-             FROM obs
-               JOIN concept_name cn ON cn.name IN ('MH, Name of MLO', 'FSTG, Specialty determined by MLO')
-                                       AND cn.concept_id = obs.concept_id
+               encounter.encounter_id,
+               GROUP_CONCAT(DISTINCT (IF(c_name = 'FSTG, Specialty determined by MLO', COALESCE(coded_fscn.name, coded_scn.name), NULL))) AS 'Specialty',
+               GROUP_CONCAT(DISTINCT (IF(c_name = 'MH, Name of MLO', COALESCE(coded_fscn.name, coded_scn.name), NULL))) AS 'MLO'
+             FROM (SELECT
+                     cn.name                 AS c_name,
+                     obs.person_id,
+                     obs.encounter_id,
+                     max(encounter_datetime) AS max_encounter_datetime,
+                     obs.concept_id
+                   FROM obs
+                     JOIN encounter ON obs.encounter_id = encounter.encounter_id
+                     JOIN concept_name cn ON cn.name IN ('MH, Name of MLO', 'FSTG, Specialty determined by MLO')
+                                             AND cn.concept_id = obs.concept_id
+                   GROUP BY person_id, concept_id) result
+               JOIN encounter ON result.max_encounter_datetime = encounter.encounter_datetime
+               JOIN obs ON encounter.encounter_id = obs.encounter_id AND obs.concept_id = result.concept_id
                LEFT JOIN concept_name coded_fscn ON coded_fscn.concept_id = obs.value_coded
                                                     AND coded_fscn.concept_name_type = "FULLY_SPECIFIED"
                                                     AND coded_fscn.voided IS FALSE
                LEFT JOIN concept_name coded_scn ON coded_scn.concept_id = obs.value_coded
                                                    AND coded_fscn.concept_name_type = "SHORT"
                                                    AND coded_scn.voided IS FALSE
-             WHERE obs_id IN (
-               SELECT max(obs.obs_id) FROM obs
-               GROUP BY obs.person_id, obs.concept_id)
+             GROUP BY obs.person_id
             ) obs_across_visits ON p.person_id = obs_across_visits.person_id
   JOIN patient_program pp ON p.person_id = pp.patient_id
   JOIN program_workflow pw ON pw.program_id = pp.program_id
