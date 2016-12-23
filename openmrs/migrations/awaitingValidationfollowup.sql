@@ -11,6 +11,7 @@ FROM (SELECT
         p.uuid                                     AS uuid,
         GROUP_CONCAT(DISTINCT(IF(pat.name = 'nationality1', coalesce(scn.name, fscn.name), NULL))) AS 'Nationality',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Date of presentation at Followup' AND latest_encounter.person_id IS NOT NULL , o.value_datetime, NULL)) ORDER BY o.obs_id DESC)       AS 'dateOfPresentation',
+        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FV, Date of Presentation' AND latest_encounter.person_id IS NOT NULL , o.value_datetime, NULL)) ORDER BY o.obs_id DESC)  AS 'FVdateOfPresentation',
         `Name of MLO`,
         `Specialty`,
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Name (s) of Surgeon 1' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Name of Surgeon 1',
@@ -23,7 +24,7 @@ FROM (SELECT
         LEFT JOIN obs o ON p.person_id = o.person_id
         LEFT JOIN concept_name obs_fscn ON o.concept_id = obs_fscn.concept_id AND
                                            obs_fscn.name IN
-                                           ('FUP, Date of presentation at Followup', 'FUP, Name (s) of Surgeon 1', 'FUP, Name (s) of Surgeon 2')
+                                           ('FUP, Date of presentation at Followup', 'FUP, Name (s) of Surgeon 1', 'FUP, Name (s) of Surgeon 2', 'FV, Date of Presentation')
                                            AND obs_fscn.voided IS FALSE AND o.voided IS FALSE  AND obs_fscn.concept_name_type= 'FULLY_SPECIFIED'
         LEFT OUTER JOIN person_attribute pa ON p.person_id = pa.person_id AND pa.voided is false
         LEFT OUTER JOIN person_attribute_type pat ON pa.person_attribute_type_id = pat.person_attribute_type_id AND pat.retired is false
@@ -47,6 +48,7 @@ FROM (SELECT
                    GROUP BY obs.person_id, obs.concept_id) latest_encounter
           ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id
              AND latest_encounter.max_encounter_datetime = e.encounter_datetime
+        LEFT JOIN visit v ON e.visit_id = v.visit_id AND v.visit_type_id = (SELECT visit_type_id FROM visit_type WHERE name = 'Follow-Up Validation')
         LEFT JOIN (SELECT
                      obs.person_id,
                      encounter.encounter_id,
@@ -79,5 +81,5 @@ FROM (SELECT
         JOIN program_workflow_state pws ON pw.program_workflow_id = pws.program_workflow_id
         JOIN patient_state ps ON pws.program_workflow_state_id = ps.state AND ps.patient_program_id = pp.patient_program_id AND ps.end_date IS NULL
                                  AND pws.concept_id = (SELECT concept_id FROM concept_name WHERE name = 'Network Follow-up' AND concept_name_type = 'FULLY_SPECIFIED')
-      GROUP BY p.person_id order by Specialty) result
-WHERE (dateOfPresentation IS NULL)",'awaiting Validation Followup',@uuid);
+GROUP BY p.person_id order by Specialty) result
+WHERE (dateOfPresentation IS NULL AND FVdateOfPresentation IS NULL)",'awaiting Validation Followup',@uuid);
