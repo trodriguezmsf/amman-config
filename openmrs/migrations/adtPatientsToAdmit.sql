@@ -4,7 +4,7 @@ UPDATE global_property
                 concat(pn.given_name,' ', pn.family_name) as name,
                 p.gender as Gender,
                 floor(DATEDIFF(CURDATE(), p.birthdate) / 365) AS 'Age',
-                DATE_FORMAT(o.obs_datetime,'%d %b %Y %h:%i %p') as 'Disposition Date',
+                MAX(DATE_FORMAT(o.obs_datetime,'%d %b %Y %h:%i %p'))  as 'Disposition Date',
                 'Admit' as 'Status',
                 concat('',p.uuid) as uuid,
                 concat('',v.uuid) as activeVisitUuid
@@ -22,5 +22,6 @@ UPDATE global_property
                                                                                   FROM encounter ie
                                                                                   join encounter_type iet
                                                                                       ON iet.encounter_type_id = ie.encounter_type
-                                                                                  WHERE iet.name = 'ADMISSION')"
+                                                                                  WHERE iet.name = 'ADMISSION')
+        GROUP BY  pi.identifier;                                                                          "
   WHERE property = "emrapi.sqlSearch.patientsToAdmit";
