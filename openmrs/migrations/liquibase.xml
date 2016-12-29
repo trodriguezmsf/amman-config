@@ -166,7 +166,6 @@
         </preConditions>
         <comment>Adding other concept in camps and comments in camp </comment>
         <sql>
-            select * from concept_name where name ="camp";
             SELECT concept_id INTO @conceptid1 FROM concept_name where name ="Other" and concept_name_type = "FULLY_SPECIFIED";
             SELECT concept_id INTO @conceptid2 FROM concept_name where name ="camp" and concept_name_type = "FULLY_SPECIFIED";
             INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptid2,@conceptid1,1,now(),3,uuid());
