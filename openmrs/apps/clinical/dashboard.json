@@ -152,6 +152,7 @@
                 "FSTG, Outcomes for 1st stage Anaesthesia validation",
                 "FSTG, Postpone reason",
                 "FSTG, Type of medical information needed for next submission",
+                "FSTG, Comments about postpone reason",
                 "FSTG, Refused Reason"
                                     ]
             },
