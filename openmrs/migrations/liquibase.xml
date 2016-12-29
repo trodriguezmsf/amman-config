@@ -150,4 +150,20 @@
             delete from concept_answer where answer_concept=@concept_id4 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="FSTG, Specialty determined by MLO");
         </sql>
     </changeSet>
+    <changeSet id="Amman-201612291240" author="Shiva kumar" context="rel2.1" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'Other' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="camp");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding other concept in camps and comments in camp </comment>
+        <sql>
+            select * from concept_name where name ="camp";
+            SELECT concept_id INTO @conceptid1 FROM concept_name where name ="Other" and concept_name_type = "FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptid2 FROM concept_name where name ="camp" and concept_name_type = "FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptid2,@conceptid1,1,now(),3,uuid());
+            Insert into  person_attribute_type (name ,description ,format, creator,date_created,sort_weight,uuid) values ("campComments","Comments","java.lang.String",1,now(),64,uuid());
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
