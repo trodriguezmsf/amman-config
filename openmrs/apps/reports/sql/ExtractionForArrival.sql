@@ -100,12 +100,12 @@ FROM obs o
                      max(encounter_datetime) AS max_encounter_datetime,
                      obs.concept_id
                    FROM obs
-                     JOIN encounter ON obs.encounter_id = encounter.encounter_id
+                     JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided IS FALSE
                      JOIN concept_name cn ON cn.name IN ('MH, Name of MLO', 'FSTG, Specialty determined by MLO', 'MH, Network Area', 'MH, Referred by')
                                              AND cn.concept_id = obs.concept_id
                    GROUP BY person_id, concept_id) result
                JOIN encounter ON result.max_encounter_datetime = encounter.encounter_datetime
-               JOIN obs ON encounter.encounter_id = obs.encounter_id AND obs.concept_id = result.concept_id
+               JOIN obs ON encounter.encounter_id = obs.encounter_id AND obs.concept_id = result.concept_id AND obs.voided IS FALSE
                LEFT JOIN concept_name coded_fscn ON coded_fscn.concept_id = obs.value_coded
                                                     AND coded_fscn.concept_name_type = "FULLY_SPECIFIED"
                                                     AND coded_fscn.voided IS FALSE

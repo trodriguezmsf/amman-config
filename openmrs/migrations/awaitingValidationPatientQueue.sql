@@ -19,11 +19,11 @@ FROM (SELECT
       FROM person p
         LEFT JOIN patient_identifier pi ON p.person_id = pi.patient_id
         LEFT JOIN person_name pn ON p.person_id = pn.person_id
-        LEFT JOIN obs o ON p.person_id = o.person_id
+        LEFT JOIN obs o ON p.person_id = o.person_id AND o.voided IS FALSE
         LEFT JOIN concept_name obs_fscn ON o.concept_id = obs_fscn.concept_id AND
                                            obs_fscn.name IN
                                            ('FSTG, Date received', 'FSTG, Date of presentation at 1st stage', 'FSTG, Is the medical file complete?', 'FV, Date of Presentation')
-                                           AND obs_fscn.voided IS FALSE AND o.voided IS FALSE AND obs_fscn.concept_name_type= 'FULLY_SPECIFIED'
+                                           AND obs_fscn.voided IS FALSE AND obs_fscn.concept_name_type= 'FULLY_SPECIFIED'
         LEFT OUTER JOIN person_attribute pa ON p.person_id = pa.person_id AND pa.voided is false
         LEFT OUTER JOIN person_attribute_type pat ON pa.person_attribute_type_id = pat.person_attribute_type_id AND pat.retired is false
         LEFT OUTER JOIN concept_name scn ON pat.format = 'org.openmrs.Concept' AND pa.value = scn.concept_id AND scn.concept_name_type = 'SHORT' AND scn.voided is false
@@ -64,7 +64,7 @@ FROM (SELECT
                                                    AND cn.concept_id = obs.concept_id
                          GROUP BY person_id, concept_id) result
                      JOIN encounter ON result.max_encounter_datetime = encounter.encounter_datetime
-                     JOIN obs ON encounter.encounter_id = obs.encounter_id AND obs.concept_id = result.concept_id
+                     JOIN obs ON encounter.encounter_id = obs.encounter_id AND obs.concept_id = result.concept_id AND obs.voided IS FALSE
                      LEFT JOIN concept_name coded_fscn ON coded_fscn.concept_id = obs.value_coded
                                                           AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
                                                           AND coded_fscn.voided IS FALSE
