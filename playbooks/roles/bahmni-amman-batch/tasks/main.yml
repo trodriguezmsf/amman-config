@@ -37,10 +37,3 @@
   when:
     - bahmniapps_url is defined
     - bahmni_apps_download_result.changed
-
-- name: Copy ssl.conf to right location
-  command: cp -f {{ ssl_conf_url }} /etc/httpd/conf.d/
-  when:
-    - ssl_conf_url is defined
-
-
