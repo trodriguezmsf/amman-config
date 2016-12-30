@@ -1,1 +1,2 @@
 bahmniapps_url: "file:///tmp/bahmniapps.zip"
+ssl_conf_url: "/tmp/ssl.conf"
