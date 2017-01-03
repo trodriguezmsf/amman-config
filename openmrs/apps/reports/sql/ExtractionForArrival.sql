@@ -81,7 +81,7 @@ FROM obs o
                                                         visit v
                                                         JOIN  (SELECT patient_id AS patient_id, max(date_started) AS date_started
                                                         FROM visit GROUP BY patient_id) latest_visit
-                                                              ON v.date_started = latest_visit.date_started AND v.patient_id = latest_visit.patient_id )
+                                                              ON v.date_started = latest_visit.date_started AND v.patient_id = latest_visit.patient_id AND v.voided IS FALSE )
         GROUP BY obs.person_id, obs.concept_id) latest_encounter
     ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id AND
        e.encounter_datetime = latest_encounter.max_encounter_datetime

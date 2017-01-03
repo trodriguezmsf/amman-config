@@ -42,7 +42,7 @@ FROM (SELECT
                        visit v
                        JOIN  (SELECT patient_id AS patient_id, max(date_started) AS date_started
                               FROM visit GROUP BY patient_id) latest_visit
-                         ON v.date_started = latest_visit.date_started AND v.patient_id = latest_visit.patient_id )
+                         ON v.date_started = latest_visit.date_started AND v.patient_id = latest_visit.patient_id AND v.voided IS FALSE )
                    GROUP BY obs.person_id, obs.concept_id) latest_encounter
           ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id
              AND latest_encounter.max_encounter_datetime = e.encounter_datetime
@@ -77,4 +77,4 @@ FROM (SELECT
 
         JOIN patient_program pp ON p.person_id = pp.patient_id AND  pp.date_completed is NULL and pp.voided = 0
       GROUP BY p.person_id) result
-WHERE  (`outcomeFollowupSurgicalValidation` = 'Continue under follow-up')",'Patients under follow up',@uuid);
+WHERE (`outcomeFollowupSurgicalValidation` = 'Continue under follow-up')",'Patients under follow up',@uuid);
