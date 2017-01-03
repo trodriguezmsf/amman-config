@@ -19,11 +19,11 @@ FROM (SELECT
       FROM person p
         LEFT JOIN patient_identifier pi ON p.person_id = pi.patient_id
         LEFT JOIN person_name pn ON p.person_id = pn.person_id
-        LEFT JOIN obs o ON p.person_id = o.person_id
+        LEFT JOIN obs o ON p.person_id = o.person_id AND o.voided IS FALSE
         LEFT JOIN concept_name obs_fscn ON o.concept_id = obs_fscn.concept_id AND
                                            obs_fscn.name IN
                                            ('FSTG, Date received', 'FSTG, Date of presentation at 1st stage', 'FSTG, Is the medical file complete?', 'FV, Date of Presentation')
-                                           AND obs_fscn.voided IS FALSE AND o.voided IS FALSE AND obs_fscn.concept_name_type= 'FULLY_SPECIFIED'
+                                           AND obs_fscn.voided IS FALSE AND obs_fscn.concept_name_type= 'FULLY_SPECIFIED'
         LEFT OUTER JOIN person_attribute pa ON p.person_id = pa.person_id AND pa.voided is false
         LEFT OUTER JOIN person_attribute_type pat ON pa.person_attribute_type_id = pat.person_attribute_type_id AND pat.retired is false
         LEFT OUTER JOIN concept_name scn ON pat.format = 'org.openmrs.Concept' AND pa.value = scn.concept_id AND scn.concept_name_type = 'SHORT' AND scn.voided is false
@@ -41,11 +41,11 @@ FROM (SELECT
                        visit v
                        JOIN  (SELECT patient_id AS patient_id, max(date_started) AS date_started
                               FROM visit GROUP BY patient_id) latest_visit
-                         ON v.date_started = latest_visit.date_started AND v.patient_id = latest_visit.patient_id )
+                         ON v.date_started = latest_visit.date_started AND v.patient_id = latest_visit.patient_id AND v.voided IS FALSE )
                    GROUP BY obs.person_id, obs.concept_id ) latest_encounter
           ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id AND
              e.encounter_datetime = latest_encounter.max_encounter_datetime
-        LEFT JOIN visit v ON e.visit_id = v.visit_id AND v.visit_type_id = (SELECT visit_type_id FROM visit_type WHERE name = 'First Stage Validation')
+        LEFT JOIN visit v ON e.visit_id = v.visit_id AND v.voided IS FALSE AND v.visit_type_id = (SELECT visit_type_id FROM visit_type WHERE name = 'First Stage Validation')
         LEFT JOIN (SELECT
                      obs.person_id,
                      encounter.encounter_id,
@@ -64,7 +64,7 @@ FROM (SELECT
                                                    AND cn.concept_id = obs.concept_id
                          GROUP BY person_id, concept_id) result
                      JOIN encounter ON result.max_encounter_datetime = encounter.encounter_datetime
-                     JOIN obs ON encounter.encounter_id = obs.encounter_id AND obs.concept_id = result.concept_id
+                     JOIN obs ON encounter.encounter_id = obs.encounter_id AND obs.concept_id = result.concept_id AND obs.voided IS FALSE
                      LEFT JOIN concept_name coded_fscn ON coded_fscn.concept_id = obs.value_coded
                                                           AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
                                                           AND coded_fscn.voided IS FALSE
