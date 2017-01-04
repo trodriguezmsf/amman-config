@@ -77,5 +77,66 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
-    
+    'SMH, Smoking history': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+         };
+         var conditionConcept = formFieldValues['SMH, Smoking history'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("SMH, Number of cigarettes per day","SMH, Duration of smoking (in years)")
+        }
+        else if(conditionConcept == "No" || conditionConcept == "Unknown") {
+            conditions.hide.push("SMH, Number of cigarettes per day","SMH, Duration of smoking (in years)")
+        }
+        else {
+            conditions.hide.push("SMH, Number of cigarettes per day","SMH, Duration of smoking (in years)")
+        }
+        return conditions;
+    },
+    'SMH, Currently taking medication': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['SMH, Currently taking medication'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("SMH, Type of medication","SMH, Dose and freqency","SMH, Date of last dose")
+        }
+        else if(conditionConcept == "No" || conditionConcept == "Unknown") {
+            conditions.hide.push("SMH, Type of medication","SMH, Dose and freqency","SMH, Date of last dose")
+        }
+        else {
+            conditions.hide.push("SMH, Type of medication","SMH, Dose and freqency","SMH, Date of last dose")
+        }
+        return conditions;
+    },
+    'SMH, Pain severity': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['SMH, Pain severity'];
+        if (conditionConcept >= 1){
+            conditions.show.push("SMH, Side of pain","SMH, Site of pain")
+        }
+        else {
+            conditions.hide.push("SMH, Side of pain","SMH, Site of pain")
+        }
+        return conditions;
+    },
+    'HE, External devices, present': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['HE, External devices, present'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("HE, Other type of external device")
+        }
+        else {
+            conditions.hide.push("HE, Other type of external device")
+        }
+        return conditions;
+    }
 };

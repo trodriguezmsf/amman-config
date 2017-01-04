@@ -158,7 +158,7 @@
             delete from concept_answer where answer_concept=@concept_id4 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="FSTG, Specialty determined by MLO");
         </sql>
     </changeSet>
-    <changeSet id="Amman-201612291240" author="Shiva kumar" context="rel2.1" >
+    <changeSet id="Amman-201612291240" author="Shiva kumar" context="rel2.1" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'Other' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="camp");
