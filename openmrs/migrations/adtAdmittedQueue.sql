@@ -7,6 +7,7 @@ UPDATE global_property SET property_value = "select distinct
   bt.name as `Bed Type`,
   b.bed_number as `Bed No`,
   DATE_FORMAT(bpam.date_started, '%Y-%m-%d %H:%i') as `Admitted On`,
+  'Transfer/Discharge' as 'Action',
   concat('',p.uuid) as uuid,
   concat('',v.uuid) as activeVisitUuid
 from visit v
