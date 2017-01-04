@@ -96,7 +96,7 @@
             "view": "tabular",
             "searchHandler": "emrapi.sqlSearch.patientsToAdmit",
             "translationKey": "MODULE_LABEL_TO_ADMIT_KEY",
-            "forwardUrl":"#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
+            "forwardUrl":"#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}/admit",
             "linkColumn": "Status"
         },
         "label": "To Admit",
@@ -111,7 +111,7 @@
             "searchHandler": "emrapi.sqlSearch.admittedPatients",
             "view": "tabular",
             "translationKey": "MODULE_LABEL_ADMITTED_KEY",
-            "forwardUrl" : "#/patient/{{patientUuid}}/visit/{{visitUuid}}/transfer",
+            "forwardUrl" : "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}/transfer",
             "linkColumn": "Action"
         },
         "label": "Admitted",
