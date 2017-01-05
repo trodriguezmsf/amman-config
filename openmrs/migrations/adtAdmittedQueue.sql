@@ -20,5 +20,5 @@ FROM visit v
   JOIN bed_type bt ON bt.bed_type_id = b.bed_type_id
   JOIN visit_attribute va ON v.visit_id = va.visit_id AND va.value_reference = 'Admitted' AND va.voided IS FALSE
   JOIN visit_attribute_type vat ON vat.visit_attribute_type_id = va.attribute_type_id AND vat.name = 'Admission Status' AND vat.retired IS FALSE
-  JOIN location l ON l.uuid = ${visit_location_uuid} AND v.location_id = l.location_id AND location.retired IS FALSE
+  JOIN location l ON l.uuid = ${visit_location_uuid} AND v.location_id = l.location_id AND l.retired IS FALSE
 WHERE v.date_stopped IS NULL AND v.voided IS FALSE" where property = "emrapi.sqlSearch.admittedPatients"
