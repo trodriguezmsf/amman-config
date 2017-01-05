@@ -14,11 +14,9 @@ FROM (SELECT
         `Name of MLO`,
         `Specialty`,
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Is the medical file complete?' AND latest_encounter.person_id IS NOT NULL,COALESCE(coded_fscn.name, coded_scn.name) , NULL)) ORDER BY o.obs_id DESC) AS 'Isthemedicalfilecomplete?'
-
-
       FROM person p
-        LEFT JOIN patient_identifier pi ON p.person_id = pi.patient_id
-        LEFT JOIN person_name pn ON p.person_id = pn.person_id
+        JOIN patient_identifier pi ON p.person_id = pi.patient_id AND p.voided IS FALSE AND pi.voided IS FALSE
+        JOIN person_name pn ON p.person_id = pn.person_id AND pn.voided IS FALSE
         LEFT JOIN obs o ON p.person_id = o.person_id AND o.voided IS FALSE
         LEFT JOIN concept_name obs_fscn ON o.concept_id = obs_fscn.concept_id AND
                                            obs_fscn.name IN
@@ -28,7 +26,7 @@ FROM (SELECT
         LEFT OUTER JOIN person_attribute_type pat ON pa.person_attribute_type_id = pat.person_attribute_type_id AND pat.retired is false
         LEFT OUTER JOIN concept_name scn ON pat.format = 'org.openmrs.Concept' AND pa.value = scn.concept_id AND scn.concept_name_type = 'SHORT' AND scn.voided is false
         LEFT OUTER JOIN concept_name fscn ON pat.format = 'org.openmrs.Concept' AND pa.value = fscn.concept_id AND fscn.concept_name_type = 'FULLY_SPECIFIED' AND fscn.voided is false
-        LEFT JOIN encounter e ON o.encounter_id = e.encounter_id
+        LEFT JOIN encounter e ON o.encounter_id = e.encounter_id AND e.voided IS FALSE
         LEFT JOIN concept_name coded_fscn on coded_fscn.concept_id = o.value_coded AND coded_fscn.concept_name_type= 'FULLY_SPECIFIED' AND coded_fscn.voided is false
         LEFT JOIN concept_name coded_scn on coded_scn.concept_id = o.value_coded AND coded_fscn.concept_name_type= 'SHORT' AND coded_scn.voided is false
         LEFT JOIN (SELECT
@@ -36,11 +34,11 @@ FROM (SELECT
                      obs.concept_id,
                      max(encounter_datetime) AS max_encounter_datetime
                    FROM obs
-                     JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided = FALSE
+                     JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided = FALSE AND encounter.voided IS FALSE
                                        AND encounter.visit_id IN (SELECT v.visit_id FROM
                        visit v
                        JOIN  (SELECT patient_id AS patient_id, max(date_started) AS date_started
-                              FROM visit GROUP BY patient_id) latest_visit
+                              FROM visit WHERE visit.voided IS FALSE GROUP BY patient_id) latest_visit
                          ON v.date_started = latest_visit.date_started AND v.patient_id = latest_visit.patient_id AND v.voided IS FALSE )
                    GROUP BY obs.person_id, obs.concept_id ) latest_encounter
           ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id AND
@@ -59,11 +57,11 @@ FROM (SELECT
                            max(encounter_datetime) AS max_encounter_datetime,
                            obs.concept_id
                          FROM obs
-                           JOIN encounter ON obs.encounter_id = encounter.encounter_id
+                           JOIN encounter ON obs.encounter_id = encounter.encounter_id AND encounter.voided IS FALSE AND obs.voided IS FALSE
                            JOIN concept_name cn ON cn.name IN ('MH, Name of MLO', 'FSTG, Specialty determined by MLO')
-                                                   AND cn.concept_id = obs.concept_id
+                                                   AND cn.concept_id = obs.concept_id AND cn.voided IS FALSE
                          GROUP BY person_id, concept_id) result
-                     JOIN encounter ON result.max_encounter_datetime = encounter.encounter_datetime
+                     JOIN encounter ON result.max_encounter_datetime = encounter.encounter_datetime AND encounter.voided IS FALSE
                      JOIN obs ON encounter.encounter_id = obs.encounter_id AND obs.concept_id = result.concept_id AND obs.voided IS FALSE
                      LEFT JOIN concept_name coded_fscn ON coded_fscn.concept_id = obs.value_coded
                                                           AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
@@ -73,10 +71,10 @@ FROM (SELECT
                                                          AND coded_scn.voided IS FALSE
                    GROUP BY obs.person_id
                   ) obs_across_visits ON p.person_id = obs_across_visits.person_id
-        JOIN patient_program pp ON p.person_id = pp.patient_id AND  pp.date_completed is NULL and pp.voided = 0
-        JOIN program_workflow pw ON pw.program_id = pp.program_id
-        JOIN program_workflow_state pws ON pw.program_workflow_id = pws.program_workflow_id
-        JOIN patient_state ps ON pws.program_workflow_state_id = ps.state AND ps.patient_program_id = pp.patient_program_id AND ps.end_date IS NULL
-                                 AND pws.concept_id = (SELECT concept_id FROM concept_name WHERE name = 'Identification' AND concept_name_type = 'FULLY_SPECIFIED')
+        JOIN patient_program pp ON p.person_id = pp.patient_id AND  pp.date_completed is NULL and pp.voided IS FALSE
+        JOIN program_workflow pw ON pw.program_id = pp.program_id AND pw.retired IS FALSE
+        JOIN program_workflow_state pws ON pw.program_workflow_id = pws.program_workflow_id AND pws.retired IS FALSE
+        JOIN patient_state ps ON pws.program_workflow_state_id = ps.state AND ps.patient_program_id = pp.patient_program_id AND ps.end_date IS NULL AND ps.voided IS FALSE
+                                 AND pws.concept_id = (SELECT concept_id FROM concept_name WHERE name = 'Identification' AND concept_name_type = 'FULLY_SPECIFIED' AND voided IS FALSE )
       GROUP BY p.person_id order by Specialty) result
 WHERE (dateOfPresentation IS NULL AND FVdateOfPresentation IS NULL) AND (`Isthemedicalfilecomplete?` IS NULL OR `Isthemedicalfilecomplete?` = 'Yes')",'awaiting Validation FirstStage',@uuid);

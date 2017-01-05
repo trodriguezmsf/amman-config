@@ -17,8 +17,8 @@ FROM (SELECT
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Name (s) of Surgeon 1' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Name of Surgeon 1',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Name (s) of Surgeon 2' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Name of Surgeon 2'
       FROM person p
-        LEFT JOIN patient_identifier pi ON p.person_id = pi.patient_id
-        LEFT JOIN person_name pn ON p.person_id = pn.person_id
+        JOIN patient_identifier pi ON p.person_id = pi.patient_id AND p.voided IS FALSE
+        JOIN person_name pn ON p.person_id = pn.person_id AND pn.voided IS FALSE
         LEFT JOIN obs o ON p.person_id = o.person_id AND o.voided IS FALSE
         LEFT JOIN concept_name obs_fscn ON o.concept_id = obs_fscn.concept_id AND
                                            obs_fscn.name IN
@@ -38,10 +38,12 @@ FROM (SELECT
                      max(en.encounter_datetime) AS max_encounter_datetime
                    FROM obs
                      JOIN encounter en ON obs.encounter_id = en.encounter_id
+                                          AND en.voided IS FALSE
+                                          AND obs.voided IS FALSE
                                           AND en.visit_id IN (SELECT v.visit_id FROM
                        visit v
                        JOIN  (SELECT patient_id AS patient_id, max(date_started) AS date_started
-                              FROM visit GROUP BY patient_id) latest_visit
+                              FROM visit WHERE visit.voided IS FALSE GROUP BY patient_id) latest_visit
                          ON v.date_started = latest_visit.date_started AND v.patient_id = latest_visit.patient_id AND v.voided IS FALSE )
                    GROUP BY obs.person_id, obs.concept_id) latest_encounter
           ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id
@@ -60,11 +62,11 @@ FROM (SELECT
                            max(encounter_datetime) AS max_encounter_datetime,
                            obs.concept_id
                          FROM obs
-                           JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided IS FALSE
+                           JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided IS FALSE AND encounter.voided IS FALSE
                            JOIN concept_name cn ON cn.name IN ('MH, Name of MLO', 'FSTG, Specialty determined by MLO')
-                                                   AND cn.concept_id = obs.concept_id
+                                                   AND cn.concept_id = obs.concept_id AND cn.voided IS FALSE
                          GROUP BY person_id, concept_id) result
-                     JOIN encounter ON result.max_encounter_datetime = encounter.encounter_datetime
+                     JOIN encounter ON result.max_encounter_datetime = encounter.encounter_datetime AND encounter.voided IS FALSE
                      JOIN obs ON encounter.encounter_id = obs.encounter_id AND obs.concept_id = result.concept_id AND obs.voided IS FALSE
                      LEFT JOIN concept_name coded_fscn ON coded_fscn.concept_id = obs.value_coded
                                                           AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
@@ -74,10 +76,10 @@ FROM (SELECT
                                                          AND coded_scn.voided IS FALSE
                    GROUP BY obs.person_id
                   ) obs_across_visits ON p.person_id = obs_across_visits.person_id
-        JOIN patient_program pp ON p.person_id = pp.patient_id
-        JOIN program_workflow pw ON pw.program_id = pp.program_id
-        JOIN program_workflow_state pws ON pw.program_workflow_id = pws.program_workflow_id
-        JOIN patient_state ps ON pws.program_workflow_state_id = ps.state AND ps.patient_program_id = pp.patient_program_id AND ps.end_date IS NULL
+        JOIN patient_program pp ON p.person_id = pp.patient_id AND pp.voided IS FALSE
+        JOIN program_workflow pw ON pw.program_id = pp.program_id AND pw.retired IS FALSE
+        JOIN program_workflow_state pws ON pw.program_workflow_id = pws.program_workflow_id AND pws.retired IS FALSE
+        JOIN patient_state ps ON pws.program_workflow_state_id = ps.state AND ps.patient_program_id = pp.patient_program_id AND ps.end_date IS NULL AND ps.voided IS FALSE
                                  AND pws.concept_id = (SELECT concept_id FROM concept_name WHERE name = 'Network Follow-up' AND concept_name_type = 'FULLY_SPECIFIED')
       GROUP BY p.person_id order by Specialty) result
 WHERE (dateOfPresentation IS NULL AND FVdateOfPresentation IS NULL)",'awaiting Validation Followup',@uuid);
