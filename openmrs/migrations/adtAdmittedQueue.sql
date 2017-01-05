@@ -3,7 +3,7 @@ UPDATE global_property SET property_value = "SELECT DISTINCT
   concat(pn.given_name, ' ', pn.family_name)       AS name,
   FLOOR(DATEDIFF(CURDATE(), p.birthdate) / 365)    AS age,
   p.gender                                         AS gender,
-  l.name                                           AS department,
+  parentLocation.name                              AS department,
   bt.name                                          AS `Bed Type`,
   b.bed_number                                     AS `Bed No`,
   DATE_FORMAT(bpam.date_started, '%Y-%m-%d %H:%i') AS `Admitted On`,
@@ -21,5 +21,7 @@ FROM visit v
   JOIN bed_type bt ON bt.bed_type_id = b.bed_type_id
   JOIN visit_attribute va ON v.visit_id = va.visit_id AND va.value_reference = 'Admitted' AND va.voided IS FALSE
   JOIN visit_attribute_type vat ON vat.visit_attribute_type_id = va.attribute_type_id AND vat.name = 'Admission Status' AND vat.retired IS FALSE
-  JOIN location l ON l.uuid = ${visit_location_uuid} AND v.location_id = l.location_id AND l.retired IS FALSE
+  JOIN bed_location_map blm ON b.bed_id = blm.bed_id
+  JOIN location childLocation on blm.location_id = childLocation.location_id AND childLocation.retired IS FALSE
+  JOIN location parentLocation ON parentLocation.location_id = childLocation.parent_location AND parentLocation.retired IS FALSE
 WHERE v.date_stopped IS NULL AND v.voided IS FALSE" where property = "emrapi.sqlSearch.admittedPatients"
