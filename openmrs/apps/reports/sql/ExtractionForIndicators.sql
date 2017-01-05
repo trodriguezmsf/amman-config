@@ -46,7 +46,7 @@ FROM obs o
          'FUP, Time for next medical follow-up to be done'
        ) AND
        obs_fscn.voided IS FALSE
-  JOIN concept_name obs_scn ON o.concept_id = obs_scn.concept_id AND obs_scn.concept_name_type = "SHORT"
+  JOIN concept_name obs_scn ON o.concept_id = obs_scn.concept_id AND obs_scn.concept_name_type = "SHORT" AND obs_scn.voided IS FALSE
   LEFT JOIN concept_name coded_fscn on coded_fscn.concept_id = o.value_coded AND coded_fscn.concept_name_type="FULLY_SPECIFIED" AND coded_fscn.voided is false
   LEFT JOIN concept_name coded_scn on coded_scn.concept_id = o.value_coded AND coded_fscn.concept_name_type="SHORT" AND coded_scn.voided is false
   JOIN (SELECT
@@ -54,11 +54,11 @@ FROM obs o
           obs.concept_id,
           max(encounter_datetime) AS max_encounter_datetime
         FROM obs
-          JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided = FALSE
+          JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided = FALSE AND encounter.voided IS FALSE
                             AND encounter.visit_id IN (SELECT v.visit_id FROM
             visit v
-            JOIN  (SELECT patient_id AS patient_id, max(date_started) AS date_started
-                   FROM visit GROUP BY patient_id) latest_visit
+            JOIN (SELECT patient_id AS patient_id, max(date_started) AS date_started
+                  FROM visit WHERE visit.voided IS FALSE GROUP BY patient_id) latest_visit
               ON v.date_started = latest_visit.date_started AND v.patient_id = latest_visit.patient_id AND v.voided IS FALSE )
         GROUP BY obs.person_id, obs.concept_id) latest_encounter
     ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id AND
@@ -77,11 +77,11 @@ FROM obs o
                      max(encounter_datetime) AS max_encounter_datetime,
                      obs.concept_id
                    FROM obs
-                     JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided IS FALSE
+                     JOIN encounter ON obs.encounter_id = encounter.encounter_id AND obs.voided IS FALSE AND encounter.voided IS FALSE
                      JOIN concept_name cn ON cn.name IN ('MH, Name of MLO', 'FSTG, Specialty determined by MLO', 'MH, Network Area')
-                                             AND cn.concept_id = obs.concept_id
+                                             AND cn.concept_id = obs.concept_id AND cn.voided IS FALSE
                    GROUP BY person_id, concept_id) result
-               JOIN encounter ON result.max_encounter_datetime = encounter.encounter_datetime
+               JOIN encounter ON result.max_encounter_datetime = encounter.encounter_datetime AND encounter.voided IS FALSE
                JOIN obs ON encounter.encounter_id = obs.encounter_id AND obs.concept_id = result.concept_id AND obs.voided IS FALSE
                LEFT JOIN concept_name coded_fscn ON coded_fscn.concept_id = obs.value_coded
                                                     AND coded_fscn.concept_name_type = "FULLY_SPECIFIED"

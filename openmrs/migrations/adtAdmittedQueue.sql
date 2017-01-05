@@ -1,24 +1,24 @@
-UPDATE global_property SET property_value = "select distinct
-  pi.identifier as identifier,
-  concat(pn.given_name,' ', pn.family_name) as name,
-  FLOOR(DATEDIFF(CURDATE(), p.birthdate)/365) as age,
-  p.gender as gender,
-  l.name as department,
-  bt.name as `Bed Type`,
-  b.bed_number as `Bed No`,
-  DATE_FORMAT(bpam.date_started, '%Y-%m-%d %H:%i') as `Admitted On`,
-  concat('',p.uuid) as uuid,
-  concat('',v.uuid) as activeVisitUuid
-from visit v
-  join person_name pn on v.patient_id = pn.person_id and pn.voided = 0
-  join patient_identifier pi on v.patient_id = pi.patient_id
-  join patient_identifier_type pit on pi.identifier_type = pit.patient_identifier_type_id
-  join global_property gp on gp.property='emr.primaryIdentifierType' and gp.property_value=pit.uuid
-  join person p on v.patient_id = p.person_id
-  join bed_patient_assignment_map bpam on bpam.patient_id = p.person_id
-  join bed b on b.bed_id = bpam.bed_id
-  join bed_type bt on bt.bed_type_id = b.bed_type_id
-  join visit_attribute va on v.visit_id = va.visit_id and va.value_reference = 'Admitted' and va.voided = 0
-  join visit_attribute_type vat on vat.visit_attribute_type_id = va.attribute_type_id and vat.name = 'Admission Status'
-  join location l on l.uuid=${visit_location_uuid} and v.location_id = l.location_id
-where v.date_stopped is null AND v.voided = 0" where property = "emrapi.sqlSearch.admittedPatients"
+UPDATE global_property SET property_value = "SELECT DISTINCT
+  pi.identifier                                    AS identifier,
+  concat(pn.given_name, ' ', pn.family_name)       AS name,
+  FLOOR(DATEDIFF(CURDATE(), p.birthdate) / 365)    AS age,
+  p.gender                                         AS gender,
+  l.name                                           AS department,
+  bt.name                                          AS `Bed Type`,
+  b.bed_number                                     AS `Bed No`,
+  DATE_FORMAT(bpam.date_started, '%Y-%m-%d %H:%i') AS `Admitted On`,
+  concat('', p.uuid)                               AS uuid,
+  concat('', v.uuid)                               AS activeVisitUuid
+FROM visit v
+  JOIN person_name pn ON v.patient_id = pn.person_id AND pn.voided IS FALSE
+  JOIN patient_identifier pi ON v.patient_id = pi.patient_id AND pi.voided IS FALSE
+  JOIN patient_identifier_type pit ON pi.identifier_type = pit.patient_identifier_type_id AND pit.retired IS FALSE
+  JOIN global_property gp ON gp.property = 'emr.primaryIdentifierType' AND gp.property_value = pit.uuid
+  JOIN person p ON v.patient_id = p.person_id AND p.voided IS FALSE
+  JOIN bed_patient_assignment_map bpam ON bpam.patient_id = p.person_id AND bpam.date_stopped IS NULL AND bpam.voided IS FALSE
+  JOIN bed b ON b.bed_id = bpam.bed_id AND b.voided IS FALSE
+  JOIN bed_type bt ON bt.bed_type_id = b.bed_type_id
+  JOIN visit_attribute va ON v.visit_id = va.visit_id AND va.value_reference = 'Admitted' AND va.voided IS FALSE
+  JOIN visit_attribute_type vat ON vat.visit_attribute_type_id = va.attribute_type_id AND vat.name = 'Admission Status' AND vat.retired IS FALSE
+  JOIN location l ON l.uuid = ${visit_location_uuid} AND v.location_id = l.location_id AND location.retired IS FALSE
+WHERE v.date_stopped IS NULL AND v.voided IS FALSE" where property = "emrapi.sqlSearch.admittedPatients"
