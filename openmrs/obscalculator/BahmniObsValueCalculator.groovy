@@ -22,6 +22,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static Double BMI_OVERWEIGHT = 30.0;
     static Double BMI_OBESE = 35.0;
     static Double BMI_SEVERELY_OBESE = 40.0;
+    static Double ZERO = 0.0;
     static Map<BahmniObservation, BahmniObservation> obsParentMap = new HashMap<BahmniObservation, BahmniObservation>();
 
     public static enum BmiStatus {
@@ -99,24 +100,10 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 return
             }
 
-            bmiDataObservation = bmiDataObservation ?: createObs("BMI Data", null, bahmniEncounterTransaction, obsDatetime) as BahmniObservation
-            bmiStatusDataObservation = bmiStatusDataObservation ?: createObs("BMI Status Data", null, bahmniEncounterTransaction, obsDatetime) as BahmniObservation
-
+            bmiDataObservation = bmiDataObservation ?: createObs("BMI Data", parent, bahmniEncounterTransaction, obsDatetime) as BahmniObservation
             def bmi = bmi(height, weight)
             bmiObservation = bmiObservation ?: createObs("BMI", bmiDataObservation, bahmniEncounterTransaction, obsDatetime) as BahmniObservation;
             bmiObservation.setValue(bmi);
-
-            def bmiStatus = bmiStatus(bmi, patientAgeInMonthsAsOfEncounter, patient.getGender());
-            bmiStatusObservation = bmiStatusObservation ?: createObs("BMI Status", bmiStatusDataObservation, bahmniEncounterTransaction, obsDatetime) as BahmniObservation;
-            bmiStatusObservation.setValue(bmiStatus);
-
-            def bmiAbnormal = bmiAbnormal(bmiStatus);
-            bmiAbnormalObservation =  bmiAbnormalObservation ?: createObs("BMI Abnormal", bmiDataObservation, bahmniEncounterTransaction, obsDatetime) as BahmniObservation;
-            bmiAbnormalObservation.setValue(bmiAbnormal);
-
-            bmiStatusAbnormalObservation =  bmiStatusAbnormalObservation ?: createObs("BMI Status Abnormal", bmiStatusDataObservation, bahmniEncounterTransaction, obsDatetime) as BahmniObservation;
-            bmiStatusAbnormalObservation.setValue(bmiAbnormal);
-
             return
         }
 
@@ -191,6 +178,11 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     }
 
     static def bmi(Double height, Double weight) {
+        if (height == ZERO) {
+            throw new IllegalArgumentException("Please enter Height greater than zero")
+        } else if (weight == ZERO) {
+            throw new IllegalArgumentException("Please enter Weight greater than zero")
+        }
         Double heightInMeters = height / 100;
         Double value = weight / (heightInMeters * heightInMeters);
         return new BigDecimal(value).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
@@ -247,13 +239,14 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 " and obs.voided = false" +
                 " and obs.obsDatetime <= :till" +
                 excludeObsClause +
-                " order by obs.obsDatetime desc limit 1");
+                " order by obs.obsDatetime desc ");
         queryToGetObservations.setString("patientUuid", patientUuid);
         queryToGetObservations.setParameterList("conceptName", conceptName);
         queryToGetObservations.setParameter("till", tillDate);
         if (excludedObsIsSaved) {
             queryToGetObservations.setString("excludeObsUuid", excludeObs.uuid)
         }
+        queryToGetObservations.setMaxResults(1);
         List<Obs> observations = queryToGetObservations.list();
         if (observations.size() > 0) {
             return observations.get(0).getValueNumeric();
