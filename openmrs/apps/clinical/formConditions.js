@@ -101,13 +101,13 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['SMH, Currently taking medication'];
         if (conditionConcept == "Yes"){
-            conditions.show.push("SMH, Type of medication","SMH, Dose and freqency","SMH, Date of last dose")
+            conditions.show.push("Allergy medication")
         }
         else if(conditionConcept == "No" || conditionConcept == "Unknown") {
-            conditions.hide.push("SMH, Type of medication","SMH, Dose and freqency","SMH, Date of last dose")
+            conditions.hide.push("Allergy medication")
         }
         else {
-            conditions.hide.push("SMH, Type of medication","SMH, Dose and freqency","SMH, Date of last dose")
+            conditions.hide.push("Allergy medication")
         }
         return conditions;
     },

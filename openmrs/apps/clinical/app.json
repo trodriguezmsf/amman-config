@@ -188,13 +188,22 @@
                 "multiSelect" :true
             },
             "SMH, Site of pain":{
-                "dropdown":true
+                "dropdown":false
             },
             "Allergy medication":{
                 "allowAddMore" : true
             },
             "Pain Assessment":{
              "allowAddMore" : true
+            },
+            "HE, External devices, present":{
+                "multiSelect":true
+            },
+            "SMH, History of Allergy":{
+                "multiSelect":true
+            },
+            "SMH, Date of consultation":{
+                "default":true
             }
         },
         "visitPage": {
