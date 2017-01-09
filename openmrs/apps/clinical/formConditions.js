@@ -131,7 +131,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['HE, External devices, present'];
-        if (conditionConcept == "Other"){
+
+        if (conditionConcept.indexOf("Other")>=0){
             conditions.show.push("HE, Other type of external device")
         }
         else {
