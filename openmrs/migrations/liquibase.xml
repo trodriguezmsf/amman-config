@@ -173,4 +173,11 @@
         </sql>
     </changeSet>
 
+    <changeSet id="Amman-201701111540" author="Kaustav Chakraborty" context="rel2.2">
+        <comment>Resetting bed layout for hospital</comment>
+        <sqlFile path="clearBedLayout.sql"/>
+        <sqlFile path="addHospitalAndWards.sql"/>
+        <sqlFile path="addBeds.sql"/>
+        <sqlFile path="bedLayoutForSecondFloor.sql"/>
+    </changeSet>
 </databaseChangeLog>
