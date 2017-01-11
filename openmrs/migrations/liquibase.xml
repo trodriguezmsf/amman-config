@@ -188,4 +188,12 @@
             INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id3,88,6,8,now(),uuid());
         </sql>
     </changeSet>
+
+    <changeSet id="Amman-201701111540" author="Kaustav Chakraborty" context="rel2.2">
+        <comment>Resetting bed layout for hospital</comment>
+        <sqlFile path="clearBedLayout.sql"/>
+        <sqlFile path="addHospitalAndWards.sql"/>
+        <sqlFile path="addBeds.sql"/>
+        <sqlFile path="bedLayoutForSecondFloor.sql"/>
+    </changeSet>
 </databaseChangeLog>
