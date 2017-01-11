@@ -131,7 +131,6 @@
               "groupByVisits": true
             }
           },
-
           "First Stage Validation":{
             "translationKey": "DASHBOARD_TITLE_FIRST_STAGE_VALIDATION",
             "type": "vitals",
@@ -201,5 +200,82 @@
                 }
             }
         }
+    },
+  "patientSummary": {
+    "translationKey": "DASHBOARD_TAB_PATIENT_SUMMARY_KEY",
+    "displayByDefault": true,
+    "maxRecentlyViewedPatients": 10,
+    "sections": {
+      "Vital Signs":{
+        "translationKey": "DASHBOARD_TITLE_VITAL_SIGNS",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 0,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "Vital Signs"
+          ],
+          "showGroupDateTime": true
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Vital Signs"
+
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Social and Medical History":{
+        "translationKey": "DASHBOARD_TITLE_SOCIAL_MEDICAL_HISTORY",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 1,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "Social and Medical History"
+          ],
+          "showGroupDateTime": true
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Social and Medical History"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Health Education":{
+        "translationKey": "DASHBOARD_TITLE_HEALTH_EDUCATION",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 2,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "Health Education"
+          ],
+          "showGroupDateTime": true
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Health Education"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      }
     }
+  }
 }
