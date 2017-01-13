@@ -175,9 +175,17 @@
 
     <changeSet id="Amman-201701111540" author="Kaustav Chakraborty" context="rel2.2">
         <comment>Resetting bed layout for hospital</comment>
-        <sqlFile path="clearBedLayout.sql"/>
-        <sqlFile path="addHospitalAndWards.sql"/>
-        <sqlFile path="addBeds.sql"/>
-        <sqlFile path="bedLayoutForSecondFloor.sql"/>
+        <sqlFile path="bedManagement/clearBedLayout.sql"/>
+        <sqlFile path="bedManagement/addHospitalAndWards.sql"/>
+        <sqlFile path="bedManagement/addBeds.sql"/>
+        <sqlFile path="bedManagement/bedLayoutForSecondFloor.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201701121438" author="Kaustav Chakraborty" context="rel2.2">
+        <comment>Resetting bed layout for hospital with 3rd, 4th and 5th floor</comment>
+        <sqlFile path="bedManagement/addWardsAndRehabilitationCenter.sql"/>
+        <sqlFile path="bedManagement/addBedsForRemainingFloors.sql"/>
+        <sqlFile path="bedManagement/bedLayoutForThirdFloor.sql"/>
+        <sqlFile path="bedManagement/bedLayoutForFourthFloor.sql"/>
+        <sqlFile path="bedManagement/bedLayoutForFifthFloor.sql"/>
     </changeSet>
 </databaseChangeLog>
