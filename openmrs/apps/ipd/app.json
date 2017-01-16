@@ -26,8 +26,8 @@
         "config" : {
             "diagnosisStatus": "Inactive",
             "onAdmissionForwardTo": "#/bedManagement/bed/{{bedId}}",
-            "onTransferForwardTo": "#/patient/{{patientUuid}}/visit/{{visitUuid}}/encounter/{{encounterUuid}}/bed",
-            "onDischargeForwardTo": "#/patient/search",
+            "onTransferForwardTo": "#/bedManagement/bed/{{bedId}}",
+            "onDischargeForwardTo": "#/bedManagement/bed/{{bedId}}",
             "defaultVisitType": "First Stage Validation",
             "maxPatientsPerBed" : 2,
             "dashboard":{
