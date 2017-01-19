@@ -139,5 +139,229 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("HE, Other type of external device")
         }
         return conditions;
+    },
+    'AIA, Adverse reaction to anaesthesia': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['AIA, Adverse reaction to anaesthesia'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("AIA, Comments about adverse reaction")
+        }
+        else if(conditionConcept == "No" || conditionConcept == "Unknown") {
+            conditions.hide.push("AIA, Comments about adverse reaction")
+        }
+        else {
+            conditions.hide.push("AIA, Comments about adverse reaction")
+        }
+        return conditions;
+    },
+    'PIA, Future expectations about care plan': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PIA, Future expectations about care plan'];
+        if (conditionConcept == "Different from medical plan"){
+            conditions.show.push("PIA, Comments about expectations")
+        }
+        else {
+            conditions.hide.push("PIA, Comments about expectations")
+        }
+        return conditions;
+    },
+    'PIA, Past history of psychological or counselling care for patient': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PIA, Past history of psychological or counselling care for patient'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("PIA, By who (NGO / private) ccp")
+        }
+        else if(conditionConcept == "No" || conditionConcept == "Unknown") {
+            conditions.hide.push("PIA, By who (NGO / private) ccp")
+        }
+        else {
+            conditions.hide.push("PIA, By who (NGO / private) ccp")
+        }
+        return conditions;
+    },
+    'PIA, Past history of psychological or counselling care of family member': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PIA, Past history of psychological or counselling care of family member'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("PIA, By who (NGO / private) ccf")
+        }
+        else if(conditionConcept == "No" || conditionConcept == "Unknown") {
+            conditions.hide.push("PIA, By who (NGO / private) ccf")
+        }
+        else {
+            conditions.hide.push("PIA, By who (NGO / private) ccf")
+        }
+        return conditions;
+    },
+    'PIA, Past history of psychiatric care for patient': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PIA, Past history of psychiatric care for patient'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("PIA, By who (NGO / private) pcp")
+        }
+        else if(conditionConcept == "No" || conditionConcept == "Unknown") {
+            conditions.hide.push("PIA, By who (NGO / private) pcp")
+        }
+        else {
+            conditions.hide.push("PIA, By who (NGO / private) pcp")
+        }
+        return conditions;
+    },
+    'PIA, Past history of psychiatric care of family member': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PIA, Past history of psychiatric care of family member'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("PIA, By who (NGO / private) pcf")
+        }
+        else if(conditionConcept == "No" || conditionConcept == "Unknown") {
+            conditions.hide.push("PIA, By who (NGO / private) pcf")
+        }
+        else {
+            conditions.hide.push("PIA, By who (NGO / private) pcf")
+        }
+        return conditions;
+    },
+    'PIA, History of psychotropic drugs': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PIA, Past history of psychiatric care of family member'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("PIA, Drug")
+        }
+        else if(conditionConcept == "No" || conditionConcept == "Unknown") {
+            conditions.hide.push("PIA, Drug")
+        }
+        else {
+            conditions.hide.push("PIA, Drug")
+        }
+        return conditions;
+    },
+
+    'PHIA, Does the patient use an assistive decive?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PHIA, Does the patient use an assistive decive?'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("PHIA, Type of assistive decive")
+        }
+        else if (conditionConcept == "No"){
+            conditions.hide.push("PHIA, Type of assistive decive")
+        }
+        else {
+            conditions.hide.push("PHIA, Type of assistive decive")
+        }
+        return conditions;
+    },
+    'PHIA, Type of assistive decive': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PHIA, Type of assistive decive'];
+
+        if (conditionConcept.indexOf("Other")>=0){
+            conditions.show.push("PHIA, Other type of assistive device")
+        }
+        else {
+            conditions.hide.push("PHIA, Other type of assistive device")
+        }
+        return conditions;
+    },
+    'PHIA, Amputee patient?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PHIA, Amputee patient?'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("PHIA, Type of amputation")
+        }
+        else if (conditionConcept == "No"){
+            conditions.hide.push("PHIA, Type of amputation")
+        }
+        else {
+            conditions.hide.push("PHIA, Type of amputation")
+        }
+        return conditions;
+    },
+    'PHIA, Is the patient coming with a prostheses?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PHIA, Is the patient coming with a prostheses?'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("PHIA, Is the patient using the prostheses?","PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification")
+        }
+        else if (conditionConcept == "No"){
+            conditions.hide.push("PHIA, Is the patient using the prostheses?","PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification")
+        }
+        else {
+            conditions.hide.push("PHIA, Is the patient using the prostheses?","PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification")
+        }
+        return conditions;
+    },
+    'PHIA, Is there a need of new prosthesis or modification': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PHIA, Is there a need of new prosthesis or modification'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("PHIA, Comment about new prosthesis or modification")
+        }
+        else if (conditionConcept == "No"){
+            conditions.hide.push("PHIA, Comment about new prosthesis or modification")
+        }
+        else {
+            conditions.hide.push("PHIA, Comment about new prosthesis or modification")
+        }
+        return conditions;
+    },
+    'PHIA, Location of assessment': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PHIA, Location of assessment'];
+        if (conditionConcept == "Lower limb"){
+            conditions.show.push("PHIA, FIM Score","PHIA, Tinnetti Score","PHIA, MMT Score")
+            conditions.hide.push("PHIA, 20 Function Test Score","PHIA, Basic Grip Test Score","PHIA, Kapandji Score","PHIA, Functional Evaluation Mouth Score","PHIA, Mouth Opening Score")
+        }
+        else if (conditionConcept == "Upper limb"){
+            conditions.show.push("PHIA, FIM Score","PHIA, MMT Score","PHIA, 20 Function Test Score","PHIA, Basic Grip Test Score","PHIA, Kapandji Score")
+            conditions.hide.push("PHIA, Tinnetti Score","PHIA, Functional Evaluation Mouth Score","PHIA, Mouth Opening Score")
+        }
+        else if (conditionConcept == "Maxillo-facial"){
+            conditions.show.push("PHIA, FIM Score","PHIA, Functional Evaluation Mouth Score","PHIA, Mouth Opening Score")
+            conditions.hide.push("PHIA, Tinnetti Score","PHIA, MMT Score","PHIA, 20 Function Test Score","PHIA, Basic Grip Test Score","PHIA, Kapandji Score")
+        }
+        else {
+            conditions.hide.push("PHIA, FIM Score","PHIA, Tinnetti Score","PHIA, MMT Score","PHIA, 20 Function Test Score","PHIA, Basic Grip Test Score","PHIA, Kapandji Score","PHIA, Functional Evaluation Mouth Score","PHIA, Mouth Opening Score")
+        }
+        return conditions;
     }
-};
+
+}
