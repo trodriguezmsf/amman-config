@@ -188,4 +188,8 @@
         <sqlFile path="bedManagement/bedLayoutForFourthFloor.sql"/>
         <sqlFile path="bedManagement/bedLayoutForFifthFloor.sql"/>
     </changeSet>
+    <changeSet id="Amman-201701231203" author="Kaustav Chakraborty" context="rel2.2">
+        <comment>Update bed numbers from character to numeric value</comment>
+        <sqlFile path="bedManagement/changeBedNumberFromAlphaToNumeric.sql"/>
+    </changeSet>
 </databaseChangeLog>
