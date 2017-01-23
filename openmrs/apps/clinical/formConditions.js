@@ -101,13 +101,13 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['SMH, Currently taking medication'];
         if (conditionConcept == "Yes"){
-            conditions.show.push("Allergy medication")
+            conditions.show.push("SMH, Medication")
         }
         else if(conditionConcept == "No" || conditionConcept == "Unknown") {
-            conditions.hide.push("Allergy medication")
+            conditions.hide.push("SMH, Medication")
         }
         else {
-            conditions.hide.push("Allergy medication")
+            conditions.hide.push("SMH, Medication")
         }
         return conditions;
     },
