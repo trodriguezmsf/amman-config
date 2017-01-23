@@ -190,7 +190,7 @@
             "SMH, Site of pain":{
                 "dropdown":false
             },
-            "Allergy medication":{
+            "SMH, Medication":{
                 "allowAddMore" : true
             },
             "Pain Assessment":{
@@ -207,6 +207,12 @@
             },
             "PHIA, Type of assistive decive":{
                 "multiSelect":true
+            },
+            "VS, Blood glucose":{
+                "isTabular": true
+            },
+            "VS, Blood pressure":{
+                "isTabular": true
             }
         },
         "visitPage": {
