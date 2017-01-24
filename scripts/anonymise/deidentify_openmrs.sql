@@ -32,7 +32,10 @@ set
 where 
 	death_date is not null;
 
--- 
+UPDATE person
+SET gender = 'M';
+
+--
 -- Dumbify the usernames and clear out login info
 --
 update users
@@ -147,3 +150,36 @@ UPDATE person_attribute pa
   INNER JOIN person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id
     AND pat.format = 'org.openmrs.Concept' AND pat.name IN ('caretakerGender', 'legalRepGender')
   SET pa.value = 231;
+
+--  as the following comments fiels having some sensitive info
+UPDATE obs
+    SET value_text = 'annonimized comment'
+WHERE concept_id IN (SELECT DISTINCT concept_id
+                     FROM concept_name WHERE name IN ('Adt Notes',
+                         'Document(s) needed to be complete',
+                         'Comments:',
+                         'Comments about postpone reason',
+                         'Type of medical information needed for next submission',
+                         'Comments about refusal',
+                         'Comments about next follow-up',
+                         'PMIPA, Comments on FV',
+                         'Comments about Aneasthesia validation',
+                         'Comments about further stage admission'
+                     ));
+
+--  Updating the documentUrls to 'document url'
+UPDATE obs
+SET value_text = 'document url'
+WHERE concept_id IN (SELECT DISTINCT concept_id
+                     FROM concept_name WHERE name IN (
+                         'Document'
+                     ));
+
+-- defaulting the Referrer and MLO to concept 304
+UPDATE obs
+SET value_coded = 304
+WHERE concept_id IN (SELECT DISTINCT concept_id
+                     FROM concept_name WHERE name IN (
+                         'Referred by',
+                         'Name Of MLO'
+                     ));
