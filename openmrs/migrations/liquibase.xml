@@ -172,7 +172,10 @@
             Insert into  person_attribute_type (name ,description ,format, creator,date_created,sort_weight,uuid) values ("campComments","Comments","java.lang.String",1,now(),64,uuid());
         </sql>
     </changeSet>
-
+    <changeSet id="Amman-201701251215" author="Santhosh, Swarup" context="rel2.1">
+        <comment>Migrating the consultation encounters that were part of clinical to programs</comment>
+        <sqlFile path="migrateClinicalEncountersToProgram.sql"/>
+    </changeSet>
     <changeSet id="Amman-201701111540" author="Kaustav Chakraborty" context="rel2.2">
         <comment>Resetting bed layout for hospital</comment>
         <sqlFile path="bedManagement/clearBedLayout.sql"/>
