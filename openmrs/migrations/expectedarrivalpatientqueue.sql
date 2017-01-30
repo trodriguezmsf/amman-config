@@ -14,7 +14,7 @@ FROM
     SELECT
       expectedPerson.name                                                                        AS name,
       expectedPerson.age                                                                         AS `Age`,
-      expectedPerson.person_id                                                                   AS `identifier`,
+      expectedPerson.patient_identifier                                                                   AS `identifier`,
       expectedPerson.uuid                                                                        AS  uuid,
       expectedPerson.country                                                                     AS 'Country',
       expectedPerson.nationality                                                                 AS 'Nationality',
@@ -38,7 +38,7 @@ FROM
           SELECT
             concat(pn.given_name, ' ', pn.family_name)                                                  AS name,
             floor(DATEDIFF(CURDATE(), p.birthdate) / 365)                                               AS age,
-            pi.identifier                                                                               AS id,
+            pi.identifier                                                                               AS patient_identifier,
             p.person_id                                                                                 As person_id,
             p.uuid                                                                                      AS uuid,
             paddress.address3                                                                           AS country,
