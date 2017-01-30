@@ -85,7 +85,7 @@ INSERT INTO
 	(patient_id, identifier, identifier_type, location_id, preferred, creator, date_created, voided, uuid)
 SELECT
 	patient_id,
-	concat((Select prefix from idgen_seq_id_gen order by rand() limit 1), patient_id),
+	concat('IQ', patient_id),
 	(Select patient_identifier_type_id from patient_identifier_type where name = 'Patient Identifier'),
 	9,
 	1,
