@@ -213,7 +213,13 @@
             },
             "VS, Blood pressure":{
                 "isTabular": true
-            }
+            },
+            "AIA, Previous Anaesthesia history":{
+                "multiSelect":true
+            },
+            "AIA, Pre-anaesthesia orders":{
+                "multiSelect":true
+           }
         },
         "visitPage": {
             "observationDisplay": {

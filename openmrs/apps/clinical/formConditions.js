@@ -362,6 +362,40 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("PHIA, FIM Score","PHIA, Tinnetti Score","PHIA, MMT Score","PHIA, 20 Function Test Score","PHIA, Basic Grip Test Score","PHIA, Kapandji Score","PHIA, Functional Evaluation Mouth Score","PHIA, Mouth Opening Score")
         }
         return conditions;
+    },
+    'AIA, Personal history of blood transfusion': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['AIA, Personal history of blood transfusion'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("AIA, Did an incident occur during previous blood transfusion")
+        }
+        else if (conditionConcept == "No" || conditionConcept == "Unknown"){
+            conditions.hide.push("AIA, Did an incident occur during previous blood transfusion")
+        }
+        else {
+            conditions.hide.push("AIA, Did an incident occur during previous blood transfusion")
+        }
+        return conditions;
+    },
+    'AIA, Did an incident occur during previous blood transfusion': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['AIA, Did an incident occur during previous blood transfusion'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("AIA, Describe")
+        }
+        else if (conditionConcept == "No" || conditionConcept == "Unknown"){
+            conditions.hide.push("AIA, Describe")
+        }
+        else {
+            conditions.hide.push("AIA, Describe")
+        }
+        return conditions;
     }
 
 }
