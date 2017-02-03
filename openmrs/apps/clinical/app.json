@@ -53,6 +53,9 @@
         "maxConceptSetLevels": 3,
         "allowOnlyCodedDiagnosis": false,
         "conceptSetUI": {
+            "All Observation Templates": {
+                "showPanelView": false
+            },
             "Video": {
                 "allowAddMore": true
             },
@@ -177,6 +180,45 @@
                 "maxYear": 2100,
                 "allowFutureDates": true,
                 "displayMonthAndYear": true
+            },
+            "SMH, Medical History":{
+                "multiSelect" :true
+            },
+            "SMH, Site":{
+                "multiSelect" :true
+            },
+            "SMH, Site of pain":{
+                "dropdown":false
+            },
+            "SMH, Medication":{
+                "allowAddMore" : true
+            },
+            "Pain Assessment":{
+             "allowAddMore" : true
+            },
+            "HE, External devices, present":{
+                "multiSelect":true
+            },
+            "SMH, History of Allergy":{
+                "multiSelect":true
+            },
+            "SMH, Date of consultation":{
+                "default":true
+            },
+            "PHIA, Type of assistive decive":{
+                "multiSelect":true
+            },
+            "VS, Blood glucose":{
+                "isTabular": true
+            },
+            "VS, Blood pressure":{
+                "isTabular": true
+            },
+            "AIA, Previous Anaesthesia history":{
+                "multiSelect":true
+            },
+            "AIA, Pre-anaesthesia orders":{
+                "multiSelect":true
             }
         },
         "visitPage": {

@@ -158,7 +158,7 @@
             delete from concept_answer where answer_concept=@concept_id4 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="FSTG, Specialty determined by MLO");
         </sql>
     </changeSet>
-    <changeSet id="Amman-201612291240" author="Shiva kumar" context="rel2.1" >
+    <changeSet id="Amman-201612291240" author="Shiva kumar" context="rel2.1" runOnChange="true">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'Other' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="camp");
@@ -194,5 +194,36 @@
     <changeSet id="Amman-201701231203" author="Kaustav Chakraborty" context="rel2.2">
         <comment>Update bed numbers from character to numeric value</comment>
         <sqlFile path="bedManagement/changeBedNumberFromAlphaToNumeric.sql"/>
+    <changeSet id="Amman-201612281718" author="Shiva kumar" context="rel2.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="Vital Signs" and concept_name_type = "FULLY_SPECIFIED") and concept_set =88;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new observation templates </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'Vital Signs' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id1,88,4,8,now(),uuid());
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'Social AND Medical History' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id2,88,5,8,now(),uuid());
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = 'Health Education' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id3,88,6,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201701181528" author="Shiva kumar" context="rel2.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="Initial Anesthesia Assessment" and concept_name_type = "FULLY_SPECIFIED") and concept_set =88;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new observation templates </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name = 'Initial Anesthesia Assessment' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id4,88,7,8,now(),uuid());
+            SELECT concept_id INTO @concept_id5 FROM concept_name WHERE name = 'Physiotherapy initial assessment' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id5,88,8,8,now(),uuid());
+            SELECT concept_id INTO @concept_id6 FROM concept_name WHERE name = 'Psychology initial assessment' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id6,88,9,8,now(),uuid());
+        </sql>
     </changeSet>
 </databaseChangeLog>
