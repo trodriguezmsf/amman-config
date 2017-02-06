@@ -219,7 +219,20 @@
             },
             "AIA, Pre-anaesthesia orders":{
                 "multiSelect":true
-            }
+            },
+          "PIA, Needed Mental Health Support":{
+            "multiSelect":true
+          },
+          "SAP, Site of injury":{
+            "multiSelect":true
+          },
+          "SAP, Side of injury":{
+            "multiSelect":true
+          },
+          "SAP, Surgical Pre-operative Diagnosis (by surgeon)":{
+            "multiSelect":true,
+            "autocomplete":true
+          }
         },
         "visitPage": {
             "observationDisplay": {

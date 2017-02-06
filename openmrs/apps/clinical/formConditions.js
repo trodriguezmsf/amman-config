@@ -244,7 +244,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             show: [],
             hide: []
         };
-        var conditionConcept = formFieldValues['PIA, Past history of psychiatric care of family member'];
+        var conditionConcept = formFieldValues['PIA, History of psychotropic drugs'];
         if (conditionConcept == "Yes"){
             conditions.show.push("PIA, Drug")
         }
