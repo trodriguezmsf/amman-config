@@ -219,8 +219,7 @@
             },
             "AIA, Pre-anaesthesia orders":{
                 "multiSelect":true
-           }
-            },
+           },
           "PIA, Needed Mental Health Support":{
             "multiSelect":true
           },
