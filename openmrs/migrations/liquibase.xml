@@ -226,6 +226,7 @@
     <changeSet id="Amman-201701231203" author="Kaustav Chakraborty" context="rel2.2">
         <comment>Update bed numbers from character to numeric value</comment>
         <sqlFile path="bedManagement/changeBedNumberFromAlphaToNumeric.sql"/>
+    </changeSet>
     <changeSet id="Amman-201612281718" author="Shiva kumar" context="rel2.3" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
