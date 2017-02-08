@@ -468,6 +468,81 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("MD, cm of shortening")
         }
         return conditions;
+    },
+    'SAP, Initial general plan': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['SAP, Initial general plan'];
+        if (conditionConcept == "The patient needs immediate physiotherapy or other consultation before deciding plan"){
+            conditions.show.push("SAP, Objectives of physiotherpay")
+            conditions.hide.push("SAP, Anatomical site")
+        }
+        else if (conditionConcept == "Aim of admission is to improve function of"){
+            conditions.show.push("SAP, Anatomical site")
+            conditions.hide.push("SAP, Objectives of physiotherpay")
+        }
+        else {
+            conditions.hide.push("SAP, Objectives of physiotherpay","SAP, Anatomical site")
+        }
+        return conditions;
+    },
+    'SAP, Surgical objective': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['SAP, Surgical objective'];
+        if (conditionConcept == "Uncertain"){
+            conditions.show.push("SAP, Comments of uncertainty")
+        }
+        else {
+            conditions.hide.push("SAP, Comments of uncertainty")
+        }
+        return conditions;
+    },
+    'SAP, Frequency of Operations': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['SAP, Frequency of Operations'];
+        if (conditionConcept == "Multiple Operations"){
+            conditions.show.push("SAP, Estimated number of surgeries")
+        }
+        else {
+            conditions.hide.push("SAP, Estimated number of surgeries")
+        }
+        return conditions;
+    },
+    'SAP, Sites (donor areas excluded)': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['SAP, Sites (donor areas excluded)'];
+        if (conditionConcept == "More than one site that can be tackled in different surgeries"){
+            conditions.show.push("SAP, Spacing between surgeries")
+        }
+        else {
+            conditions.hide.push("SAP, Spacing between surgeries")
+        }
+        return conditions;
+    },
+    'SAP, Need consultations': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['SAP, Need consultations'];
+        if (conditionConcept.indexOf("Other")>=0){
+            conditions.show.push("SAP, Other consultation needed")
+        }
+        else {
+            conditions.hide.push("SAP, Other consultation needed")
+        }
+        return conditions;
     }
 
 
