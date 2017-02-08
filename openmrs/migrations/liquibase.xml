@@ -172,6 +172,7 @@
             Insert into  person_attribute_type (name ,description ,format, creator,date_created,sort_weight,uuid) values ("campComments","Comments","java.lang.String",1,now(),64,uuid());
         </sql>
     </changeSet>
+<<<<<<< HEAD
     <changeSet id="Amman-201701251215" author="Santhosh, Swarup" context="rel2.1">
         <comment>Migrating the consultation encounters that were part of clinical to programs</comment>
         <sqlFile path="migrateClinicalEncountersToProgram.sql"/>
@@ -195,6 +196,8 @@
         <comment>Update bed numbers from character to numeric value</comment>
         <sqlFile path="bedManagement/changeBedNumberFromAlphaToNumeric.sql"/>
     </changeSet>
+=======
+>>>>>>> release_medforms-2.2
     <changeSet id="Amman-201612281718" author="Shiva kumar" context="rel2.3" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
