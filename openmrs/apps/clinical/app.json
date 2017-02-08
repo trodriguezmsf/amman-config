@@ -232,7 +232,63 @@
           "SAP, Surgical Pre-operative Diagnosis (by surgeon)":{
             "multiSelect":true,
             "autocomplete":true
-          }
+          },
+            "PA, Location Assessment": {
+                "allowAddMore": true
+            },
+            "AIA, I discussed the risks and benefits of anaesthesia and answered all questions":{
+                "required":true
+            },
+            "MD, Procedures performed outside AMH":{
+                "multiSelect":true,
+                "autocomplete":true
+            },
+            "MD, Site of procedure":{
+                "multiSelect":true
+            },
+            "MD, Review of systems, general":{
+                "multiSelect":true
+            },
+            "MD, Review of systems, cardiopulmonary":{
+                "multiSelect":true
+            },
+            "MD, Review of systems, gastrointestinal":{
+                "multiSelect":true
+            },
+            "MD, Review of systems, genitourinary":{
+                "multiSelect":true
+            },
+            "MD, Review of systems, central nervous system":{
+                "multiSelect":true
+            },
+            "MD, Review of systems, HEENT":{
+                "multiSelect":true
+            },
+            "MD, Review of systems, musculoskeletal":{
+                "multiSelect":true
+            },
+            "SAP, Planned procedure (surgical)":{
+                "multiSelect":true,
+                "autocomplete":true
+            },
+            "SAP, Anatomical site":{
+                "multiSelect":true
+            },
+            "SMH, Pain Assessment":{
+                "allowAddMore": true
+            },
+            "defaults" : {
+                "MD, Review of systems, general": ["Negative"],
+                "MD, Review of systems, cardiopulmonary":["Negative"],
+                "MD, Review of systems, gastrointestinal": ["Negative"],
+                "MD, Review of systems, genitourinary": ["Negative"],
+                "MD, Review of systems, central nervous system": ["Negative"],
+                "MD, Review of systems, HEENT": ["Negative"]
+
+
+                         }
+
+
         },
         "visitPage": {
             "observationDisplay": {

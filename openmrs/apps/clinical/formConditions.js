@@ -103,9 +103,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
         if (conditionConcept == "Yes"){
             conditions.show.push("SMH, Medication")
         }
-        else if(conditionConcept == "No" || conditionConcept == "Unknown") {
-            conditions.hide.push("SMH, Medication")
-        }
         else {
             conditions.hide.push("SMH, Medication")
         }
@@ -149,9 +146,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
         if (conditionConcept == "Yes"){
             conditions.show.push("AIA, Comments about adverse reaction")
         }
-        else if(conditionConcept == "No" || conditionConcept == "Unknown") {
-            conditions.hide.push("AIA, Comments about adverse reaction")
-        }
         else {
             conditions.hide.push("AIA, Comments about adverse reaction")
         }
@@ -180,9 +174,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
         if (conditionConcept == "Yes"){
             conditions.show.push("PIA, By who (NGO / private) ccp")
         }
-        else if(conditionConcept == "No" || conditionConcept == "Unknown") {
-            conditions.hide.push("PIA, By who (NGO / private) ccp")
-        }
         else {
             conditions.hide.push("PIA, By who (NGO / private) ccp")
         }
@@ -196,9 +187,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['PIA, Past history of psychological or counselling care of family member'];
         if (conditionConcept == "Yes"){
             conditions.show.push("PIA, By who (NGO / private) ccf")
-        }
-        else if(conditionConcept == "No" || conditionConcept == "Unknown") {
-            conditions.hide.push("PIA, By who (NGO / private) ccf")
         }
         else {
             conditions.hide.push("PIA, By who (NGO / private) ccf")
@@ -214,9 +202,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
         if (conditionConcept == "Yes"){
             conditions.show.push("PIA, By who (NGO / private) pcp")
         }
-        else if(conditionConcept == "No" || conditionConcept == "Unknown") {
-            conditions.hide.push("PIA, By who (NGO / private) pcp")
-        }
         else {
             conditions.hide.push("PIA, By who (NGO / private) pcp")
         }
@@ -230,9 +215,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['PIA, Past history of psychiatric care of family member'];
         if (conditionConcept == "Yes"){
             conditions.show.push("PIA, By who (NGO / private) pcf")
-        }
-        else if(conditionConcept == "No" || conditionConcept == "Unknown") {
-            conditions.hide.push("PIA, By who (NGO / private) pcf")
         }
         else {
             conditions.hide.push("PIA, By who (NGO / private) pcf")
@@ -248,9 +230,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
         if (conditionConcept == "Yes"){
             conditions.show.push("PIA, Drug")
         }
-        else if(conditionConcept == "No" || conditionConcept == "Unknown") {
-            conditions.hide.push("PIA, Drug")
-        }
         else {
             conditions.hide.push("PIA, Drug")
         }
@@ -265,12 +244,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['PHIA, Does the patient use an assistive decive?'];
         if (conditionConcept == "Yes"){
             conditions.show.push("PHIA, Type of assistive decive")
-        }
-        else if (conditionConcept == "No"){
-            conditions.hide.push("PHIA, Type of assistive decive")
+            conditions.hide.push("PHIA, Other type of assistive device")
         }
         else {
-            conditions.hide.push("PHIA, Type of assistive decive")
+            conditions.hide.push("PHIA, Type of assistive decive","PHIA, Other type of assistive device")
         }
         return conditions;
     },
@@ -296,13 +273,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['PHIA, Amputee patient?'];
         if (conditionConcept == "Yes"){
-            conditions.show.push("PHIA, Type of amputation")
-        }
-        else if (conditionConcept == "No"){
-            conditions.hide.push("PHIA, Type of amputation")
+            conditions.show.push("PHIA, Type of amputation","PHIA, Comments about amputation")
         }
         else {
-            conditions.hide.push("PHIA, Type of amputation")
+            conditions.hide.push("PHIA, Type of amputation","PHIA, Comments about amputation")
         }
         return conditions;
     },
@@ -314,12 +288,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['PHIA, Is the patient coming with a prostheses?'];
         if (conditionConcept == "Yes"){
             conditions.show.push("PHIA, Is the patient using the prostheses?","PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification")
-        }
-        else if (conditionConcept == "No"){
-            conditions.hide.push("PHIA, Is the patient using the prostheses?","PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification")
+            conditions.hide.push("PHIA, Comment about new prosthesis or modification")
         }
         else {
-            conditions.hide.push("PHIA, Is the patient using the prostheses?","PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification")
+            conditions.hide.push("PHIA, Is the patient using the prostheses?","PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification","PHIA, Comment about new prosthesis or modification")
         }
         return conditions;
     },
@@ -331,9 +303,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['PHIA, Is there a need of new prosthesis or modification'];
         if (conditionConcept == "Yes"){
             conditions.show.push("PHIA, Comment about new prosthesis or modification")
-        }
-        else if (conditionConcept == "No"){
-            conditions.hide.push("PHIA, Comment about new prosthesis or modification")
         }
         else {
             conditions.hide.push("PHIA, Comment about new prosthesis or modification")
@@ -371,12 +340,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['AIA, Personal history of blood transfusion'];
         if (conditionConcept == "Yes"){
             conditions.show.push("AIA, Did an incident occur during previous blood transfusion")
-        }
-        else if (conditionConcept == "No" || conditionConcept == "Unknown"){
-            conditions.hide.push("AIA, Did an incident occur during previous blood transfusion")
+            conditions.hide.push("AIA, Describe")
         }
         else {
-            conditions.hide.push("AIA, Did an incident occur during previous blood transfusion")
+            conditions.hide.push("AIA, Did an incident occur during previous blood transfusion","AIA, Describe")
         }
         return conditions;
     },
@@ -389,13 +356,120 @@ Bahmni.ConceptSet.FormConditions.rules = {
         if (conditionConcept == "Yes"){
             conditions.show.push("AIA, Describe")
         }
-        else if (conditionConcept == "No" || conditionConcept == "Unknown"){
-            conditions.hide.push("AIA, Describe")
-        }
         else {
             conditions.hide.push("AIA, Describe")
         }
         return conditions;
+    },
+    'AIA, Pre-anaesthesia orders': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['AIA, Pre-anaesthesia orders'];
+
+        if (conditionConcept.indexOf("Other lab orders")>=0){
+            conditions.show.push("AIA, Comments about other lab orders")
+        }
+        else {
+            conditions.hide.push("AIA, Comments about other lab orders")
+        }
+        return conditions;
+    },
+    'MD, History of previous surgery': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MD, History of previous surgery'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("MD, Procedures performed outside AMH","MD, Site of procedure","MD, Side of procedure","MD, Comment of procedure","MD, Year of procedure")
+        }
+        else {
+            conditions.hide.push("MD, Procedures performed outside AMH","MD, Site of procedure","MD, Side of procedure","MD, Comment of procedure","MD, Year of procedure")
+        }
+        return conditions;
+    },
+    'MD, Type of previous fixation': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MD, Type of previous fixation'];
+        if (conditionConcept == "Internal"){
+            conditions.show.push("MD, Type of internal fixation")
+            conditions.hide.push("MD, Duration of External fixation","MD, Other type of fixation")
+        }
+        else if (conditionConcept == "External"){
+            conditions.show.push("MD, Duration of External fixation")
+            conditions.hide.push("MD, Type of internal fixation","MD, Other type of fixation")
+        }
+        else if (conditionConcept == "Other"){
+            conditions.show.push("MD, Other type of fixation")
+            conditions.hide.push("MD, Type of internal fixation","MD, Duration of External fixation")
+        }
+        else {
+            conditions.hide.push("MD, Type of internal fixation","MD, Duration of External fixation","MD, Other type of fixation")
+        }
+        return conditions;
+    },
+    'MD, HIstory of infection': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MD, HIstory of infection'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("MD, Comments about previous infection")
+        }
+        else {
+            conditions.hide.push("MD, Comments about previous infection")
+        }
+        return conditions;
+    },
+    'MD, Discharging sinus': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MD, Discharging sinus'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("MD, Duration of discharging sinus")
+        }
+        else {
+            conditions.hide.push("MD, Duration of discharging sinus")
+        }
+        return conditions;
+    },
+    'MD, Bone Loss': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MD, Bone Loss'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("MD, Cm of bone loss")
+        }
+        else {
+            conditions.hide.push("MD, Cm of bone loss")
+        }
+        return conditions;
+    },
+    'MD, Shortening': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MD, Shortening'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("MD, cm of shortening")
+        }
+        else {
+            conditions.hide.push("MD, cm of shortening")
+        }
+        return conditions;
     }
+
+
 
 }
