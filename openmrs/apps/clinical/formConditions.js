@@ -476,15 +476,15 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['SAP, Initial general plan'];
         if (conditionConcept == "The patient needs immediate physiotherapy or other consultation before deciding plan"){
-            conditions.show.push("SAP, Objectives of physiotherpay")
+         conditions.show.push("SAP, Objectives of physiotherapy")
             conditions.hide.push("SAP, Anatomical site")
         }
         else if (conditionConcept == "Aim of admission is to improve function of"){
             conditions.show.push("SAP, Anatomical site")
             conditions.hide.push("SAP, Objectives of physiotherpay")
         }
-        else {
-            conditions.hide.push("SAP, Objectives of physiotherpay","SAP, Anatomical site")
+               else {
+            conditions.hide.push("SAP, Objectives of physiotherapy","SAP, Anatomical site")
         }
         return conditions;
     },
@@ -542,9 +542,33 @@ Bahmni.ConceptSet.FormConditions.rules = {
         else {
             conditions.hide.push("SAP, Other consultation needed")
         }
+     },
+    'MD, Associated neural injury': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MD, Associated neural injury'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("MD, Comments (neural injury)")
+        }
+        else {
+            conditions.hide.push("MD, Comments (neural injury)")
+        }
+        return conditions;
+    },
+    'MD, Associated vascular injury': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MD, Associated vascular injury'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("MD, Comments (vascular injury)")
+        }
+        else {
+            conditions.hide.push("MD, Comments (vascular injury)")
+        }
         return conditions;
     }
-
-
-
 }

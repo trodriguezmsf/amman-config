@@ -226,15 +226,12 @@
           "SAP, Site of injury":{
             "multiSelect":true
           },
-          "SAP, Side of injury":{
-            "multiSelect":true
-          },
           "SAP, Surgical Pre-operative Diagnosis (by surgeon)":{
             "multiSelect":true,
             "autocomplete":true
 
           },
-            "PA, Location Assessment": {
+            "PA, Location of Assessment": {
                 "allowAddMore": true
             },
             "AIA, I discussed the risks and benefits of anaesthesia and answered all questions":{
