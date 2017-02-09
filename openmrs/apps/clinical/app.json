@@ -280,6 +280,9 @@
           "SAP, Need consultations":{
             "multiSelect":true
           },
+            "SAP, Investigations needed":{
+             "multiSelect":true
+            },
 
             "defaults" : {
                 "MD, Review of systems, general": ["Negative"],

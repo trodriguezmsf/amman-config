@@ -508,7 +508,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['SAP, Frequency of Operations'];
-        if (conditionConcept == "Multiple Operations"){
+        if (conditionConcept == "Multiple Operations (+2)"){
             conditions.show.push("SAP, Estimated number of surgeries")
         }
         else {
