@@ -278,6 +278,13 @@
             "SMH, Pain Assessment":{
                 "allowAddMore": true
             },
+          "PHIA, Type of amputation":{
+            "multiSelect":true
+          },
+          "SAP, Need consultations":{
+            "multiSelect":true
+          },
+
             "defaults" : {
                 "MD, Review of systems, general": ["Negative"],
                 "MD, Review of systems, cardiopulmonary":["Negative"],
