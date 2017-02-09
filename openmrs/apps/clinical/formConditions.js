@@ -479,7 +479,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
          conditions.show.push("SAP, Objectives of physiotherapy")
             conditions.hide.push("SAP, Anatomical site")
         }
-        else if (conditionConcept == "Aim of admission is to improve function of"){
+        else if (conditionConcept == "Aim of admission is to improve function"){
             conditions.show.push("SAP, Anatomical site")
             conditions.hide.push("SAP, Objectives of physiotherpay")
         }
@@ -570,5 +570,139 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("MD, Comments (vascular injury)")
         }
         return conditions;
+    },
+    'MD, Review of systems, general': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MD, Review of systems, general'];
+        if (conditionConcept.length > 0 && conditionConcept.indexOf("Negative") < 0 && conditionConcept.indexOf("Other") < 0) {
+            conditions.show.push("MD, Description and duration of symptom (general)")
+            conditions.hide.push("MD, Other ROS general symptoms")
+        }
+        else if(conditionConcept.indexOf("Other")>-1) {
+            conditions.show.push("MD, Other ROS general symptoms")
+            conditions.hide.push("MD, Description and duration of symptom (general)")
+        }
+        else {
+            conditions.hide.push("MD, Description and duration of symptom (general)","MD, Other ROS general symptoms")
+        }
+        return conditions;
+    },
+    'MD, Review of systems, cardiopulmonary': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MD, Review of systems, cardiopulmonary'];
+        if (conditionConcept.length > 0 && conditionConcept.indexOf("Negative") < 0 && conditionConcept.indexOf("Other") < 0) {
+            conditions.show.push("MD, Description and duration of symptom (cardiopulmonary)")
+            conditions.hide.push("MD, Other ROS cardiopulmonary symptoms")
+        }
+        else if(conditionConcept.indexOf("Other")>-1) {
+            conditions.show.push("MD, Other ROS cardiopulmonary symptoms")
+            conditions.hide.push("MD, Description and duration of symptom (cardiopulmonary)")
+        }
+        else {
+            conditions.hide.push("MD, Description and duration of symptom (cardiopulmonary)","MD, Other ROS cardiopulmonary symptoms")
+        }
+        return conditions;
+    },
+    'MD, Review of systems, gastrointestinal': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MD, Review of systems, gastrointestinal'];
+        if (conditionConcept.length > 0 && conditionConcept.indexOf("Negative") < 0 && conditionConcept.indexOf("Other") < 0) {
+            conditions.show.push("MD, Description and duration of symptom (gastrointestinal)")
+            conditions.hide.push("MD, Other ROS gastrointestinal symptoms")
+        }
+        else if(conditionConcept.indexOf("Other")>-1) {
+            conditions.show.push("MD, Other ROS gastrointestinal symptoms")
+            conditions.hide.push("MD, Description and duration of symptom (gastrointestinal)")
+        }
+        else {
+            conditions.hide.push("MD, Description and duration of symptom (gastrointestinal)","MD, Other ROS gastrointestinal symptoms")
+        }
+        return conditions;
+    },
+    'MD, Review of systems, genitourinary': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MD, Review of systems, genitourinary'];
+        if (conditionConcept.length > 0 && conditionConcept.indexOf("Negative") < 0 && conditionConcept.indexOf("Other") < 0) {
+            conditions.show.push("MD, Description and duration of symptom (genitourinary)")
+            conditions.hide.push("MD, Other ROS genitourinary symptoms")
+        }
+        else if(conditionConcept.indexOf("Other")>-1) {
+            conditions.show.push("MD, Other ROS genitourinary symptoms")
+            conditions.hide.push("MD, Description and duration of symptom (genitourinary)")
+        }
+        else {
+            conditions.hide.push("MD, Description and duration of symptom (genitourinary)","MD, Other ROS genitourinary symptoms")
+        }
+        return conditions;
+    },
+    'MD, Review of systems, central nervous system': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MD, Review of systems, central nervous system'];
+        if (conditionConcept.length > 0 && conditionConcept.indexOf("Negative") < 0 && conditionConcept.indexOf("Other") < 0) {
+            conditions.show.push("MD, Description and duration of symptom (central nervous system)")
+            conditions.hide.push("MD, Other ROS central nervous system symptoms")
+        }
+        else if(conditionConcept.indexOf("Other")>-1) {
+            conditions.show.push("MD, Other ROS general symptoms")
+            conditions.hide.push("MD, Description and duration of symptom (central nervous system)")
+        }
+        else {
+            conditions.hide.push("MD, Description and duration of symptom (central nervous system)","MD, Other ROS central nervous system symptoms")
+        }
+        return conditions;
+    },
+    'MD, Review of systems, HEENT': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MD, Review of systems, HEENT'];
+        if (conditionConcept.length > 0 && conditionConcept.indexOf("Negative") < 0 && conditionConcept.indexOf("Other") < 0) {
+            conditions.show.push("MD, Description and duration of symptom (HEENT)")
+            conditions.hide.push("MD, Other ROS HEENT symptoms")
+        }
+        else if(conditionConcept.indexOf("Other")>-1) {
+            conditions.show.push("MD, Other ROS HEENT symptoms")
+            conditions.hide.push("MD, Description and duration of symptom (HEENT)")
+        }
+        else {
+            conditions.hide.push("MD, Description and duration of symptom (HEENT)","MD, Other ROS HEENT symptoms")
+        }
+        return conditions;
+    },
+    'MD, Review of systems, musculoskeletal': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MD, Review of systems, musculoskeletal'];
+        if (conditionConcept.length > 0 && conditionConcept.indexOf("Negative") < 0 && conditionConcept.indexOf("Other") < 0) {
+            conditions.show.push("MD, Description and duration of symptom (musculoskeletal)")
+            conditions.hide.push("MD, Other ROS musculoskeletal symptoms")
+        }
+        else if(conditionConcept.indexOf("Other")>-1) {
+            conditions.show.push("MD, Other ROS musculoskeletal symptoms")
+            conditions.hide.push("MD, Description and duration of symptom (musculoskeletal)")
+        }
+        else {
+            conditions.hide.push("MD, Description and duration of symptom (musculoskeletal)","MD, Other ROS musculoskeletal symptoms")
+        }
+        return conditions;
     }
+
 }
