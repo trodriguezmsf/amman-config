@@ -205,7 +205,7 @@
             "SMH, Date of consultation":{
                 "default":true
             },
-            "PHIA, Type of assistive decive":{
+            "PHIA, Type of assistive device":{
                 "multiSelect":true
             },
             "VS, Blood glucose":{
