@@ -236,27 +236,27 @@ Bahmni.ConceptSet.FormConditions.rules = {
         return conditions;
     },
 
-    'PHIA, Does the patient use an assistive decive?': function (formName, formFieldValues) {
+    'PHIA, Does the patient use an assistive device?': function (formName, formFieldValues) {
         var conditions = {
             show: [],
             hide: []
         };
-        var conditionConcept = formFieldValues['PHIA, Does the patient use an assistive decive?'];
+        var conditionConcept = formFieldValues['PHIA, Does the patient use an assistive device?'];
         if (conditionConcept == "Yes"){
-            conditions.show.push("PHIA, Type of assistive decive")
+            conditions.show.push("PHIA, Type of assistive device")
             conditions.hide.push("PHIA, Other type of assistive device")
         }
         else {
-            conditions.hide.push("PHIA, Type of assistive decive","PHIA, Other type of assistive device")
+            conditions.hide.push("PHIA, Type of assistive device","PHIA, Other type of assistive device")
         }
         return conditions;
     },
-    'PHIA, Type of assistive decive': function (formName, formFieldValues) {
+    'PHIA, Type of assistive device': function (formName, formFieldValues) {
         var conditions = {
             show: [],
             hide: []
         };
-        var conditionConcept = formFieldValues['PHIA, Type of assistive decive'];
+        var conditionConcept = formFieldValues['PHIA, Type of assistive device'];
 
         if (conditionConcept.indexOf("Other")>=0){
             conditions.show.push("PHIA, Other type of assistive device")
