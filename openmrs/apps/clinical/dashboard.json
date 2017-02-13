@@ -275,6 +275,121 @@
           "showDetailsButton": true,
           "pivotTable": {}
         }
+      },
+      "Anesthesia Initial Assessment":{
+        "translationKey": "DASHBOARD_TITLE_ANESTHESIA_ASSESSMENT",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 2,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "Initial Anesthesia Assessment"
+          ],
+          "showGroupDateTime": true
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Initial Anesthesia Assessment"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "MD Initial Assessment":{
+        "translationKey": "DASHBOARD_MD_ASSESSMENT",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 2,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "MD Initial Assessment"
+          ],
+          "showGroupDateTime": true
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "MD Initial Assessment"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Psycho-Social initial assessment":{
+        "translationKey": "DASHBOARD_PSYCHO_SOCIAL_ASSESSMENT",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 2,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "Psychology initial assessment"
+          ],
+          "showGroupDateTime": true
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Psychology initial assessment"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Physiotherapy initial assessment":{
+        "translationKey": "DASHBOARD_PHYSIOTHERAPY_ASSESSMENT",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 2,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "Physiotherapy initial assessment"
+          ],
+          "showGroupDateTime": true
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Physiotherapy initial assessment"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Surgeon Pre-Op Assessment and Treatment Plan":{
+        "translationKey": "DASHBOARD_SURGEON_AND_TREATMENT_PLAN_ASSESSMENT",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 2,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "Surgeon Pre-Op Assessment and Treatment Plan"
+          ],
+          "showGroupDateTime": true
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Surgeon Pre-Op Assessment and Treatment Plan"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
       }
     }
   }
