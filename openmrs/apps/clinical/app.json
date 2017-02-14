@@ -229,7 +229,6 @@
           "SAP, Surgical Pre-operative Diagnosis (by surgeon)":{
             "multiSelect":true,
             "autocomplete":true
-
           },
             "PA, Location of Assessment": {
                 "allowAddMore": true
@@ -283,20 +282,7 @@
           },
             "SAP, Investigations needed":{
              "multiSelect":true
-            },
-
-            "defaults" : {
-                "MD, Review of systems, general": ["Negative"],
-                "MD, Review of systems, cardiopulmonary":["Negative"],
-                "MD, Review of systems, gastrointestinal": ["Negative"],
-                "MD, Review of systems, genitourinary": ["Negative"],
-                "MD, Review of systems, central nervous system": ["Negative"],
-                "MD, Review of systems, HEENT": ["Negative"]
-
-
-                         }
-
-
+            }
         },
         "visitPage": {
             "observationDisplay": {
