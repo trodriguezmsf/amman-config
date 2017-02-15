@@ -223,13 +223,6 @@
           "PIA, Needed Mental Health Support":{
             "multiSelect":true
           },
-          "SAP, Site of injury":{
-            "multiSelect":true
-          },
-          "SAP, Surgical Pre-operative Diagnosis (by surgeon)":{
-            "multiSelect":true,
-            "autocomplete":true
-          },
             "PA, Location of Assessment": {
                 "allowAddMore": true
             },
@@ -237,11 +230,7 @@
                 "required":true
             },
             "MD, Procedures performed outside AMH":{
-                "multiSelect":true,
                 "autocomplete":true
-            },
-            "MD, Site of procedure":{
-                "multiSelect":true
             },
             "MD, Review of systems, general":{
                 "multiSelect":true
@@ -265,7 +254,6 @@
                 "multiSelect":true
             },
             "SAP, Planned procedure (surgical)":{
-                "multiSelect":true,
                 "autocomplete":true
             },
             "SAP, Anatomical site":{
@@ -282,6 +270,12 @@
           },
             "SAP, Investigations needed":{
              "multiSelect":true
+          },
+            "SAP, Injury Site":{
+            "allowAddMore": true
+          },
+            "SAP, Planned Surgical procedures":{
+            "allowAddMore": true
             }
         },
         "visitPage": {
