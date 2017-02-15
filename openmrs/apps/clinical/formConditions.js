@@ -383,10 +383,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['MD, History of previous surgery'];
         if (conditionConcept == "Yes"){
-            conditions.show.push("MD, Procedures performed outside AMH","MD, Site of procedure","MD, Side of procedure","MD, Comment of procedure","MD, Year of procedure")
+            conditions.show.push("MD, Surgical Procedures Outside AMH")
         }
         else {
-            conditions.hide.push("MD, Procedures performed outside AMH","MD, Site of procedure","MD, Side of procedure","MD, Comment of procedure","MD, Year of procedure")
+            conditions.hide.push("MD, Surgical Procedures Outside AMH")
         }
         return conditions;
     },
@@ -751,6 +751,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
             else {
                 conditions.hide.push("MD, Description and duration of symptom (musculoskeletal)","MD, Other ROS musculoskeletal symptoms")
             }
+        }
+        return conditions;
+    },
+    'SAP, Site of injury': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['SAP, Site of injury'];
+        if (conditionConcept == undefined || conditionConcept.length == 0){
+            conditions.hide.push("SAP, Side of injury","SAP, Condition of soft tissue at presentation")
+        }
+        else {
+            conditions.show.push("SAP, Side of injury","SAP, Condition of soft tissue at presentation")
         }
         return conditions;
     }
