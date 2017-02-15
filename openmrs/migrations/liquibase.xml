@@ -246,4 +246,17 @@
         <comment>Update casing for center and floor</comment>
         <sqlFile path="bedManagement/updateCasingForCenterAndFloor.sql"/>
     </changeSet>
+    <changeSet id="Amman-201702151757" author="Santhosh" context="rel2.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from bed_tag;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding bed tags</comment>
+        <sql>
+            INSERT INTO bed_tag(name, creator, date_created, voided, uuid) VALUES ("Lost", 1, now(), 0, uuid());
+            INSERT INTO bed_tag(name, creator, date_created, voided, uuid) VALUES ("Isolation", 1, now(), 0, uuid());
+            INSERT INTO bed_tag(name, creator, date_created, voided, uuid) VALUES ("Strict Isolation", 1, now(), 0, uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
