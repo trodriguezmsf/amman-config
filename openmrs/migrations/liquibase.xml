@@ -242,4 +242,8 @@
 
         </sql>
     </changeSet>
+    <changeSet id="Amman-201702151622" author="Kaustav Chakraborty" context="rel2.3">
+        <comment>Update casing for center and floor</comment>
+        <sqlFile path="bedManagement/updateCasingForCenterAndFloor.sql"/>
+    </changeSet>
 </databaseChangeLog>
