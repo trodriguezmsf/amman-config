@@ -276,6 +276,9 @@
           },
             "SAP, Planned Surgical procedures":{
             "allowAddMore": true
+            },
+            "MD, Surgical Procedures Outside AMH":{
+             "allowAddMore": true
             }
         },
         "visitPage": {
