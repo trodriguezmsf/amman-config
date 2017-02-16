@@ -73,7 +73,14 @@
                     "translationKey":"DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
                     "type": "navigationLinksControl",
                     "displayOrder": 5,
-                    "showLinks" : ["home", "visit", "registration", "inpatient", "enrolment", "visitAttribute"]
+                    "showLinks" : ["home", "visit", "registration", "inpatient", "enrolment", "visitAttribute"],
+                    "customLinks" : [
+                        {
+                            "name": "bedManagement",
+                            "translationKey": "PATIENT_BED_MANAGEMENT_PAGE_KE",
+                            "url": "../ipd/#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}"
+                        }
+                    ]
                 }
 
             }}
