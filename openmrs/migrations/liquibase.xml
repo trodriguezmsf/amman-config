@@ -211,4 +211,14 @@
 
         </sql>
     </changeSet>
+    <changeSet id="Amman-201702161728" author="Shiva Kumar">
+        <comment>Adding Diagnosis Set of Sets in global properties</comment>
+        <sql>
+            DELETE FROM global_property where property = 'emr.concept.diagnosisSetOfSets';
+            select uuid() into @uuid;
+            select uuid into @conceptID from concept_name where name="Diagnosis Set of Sets" and concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
+            VALUES ('emr.concept.diagnosisSetOfSets',@conceptID,'Diagnosis Set of Sets',@uuid);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
