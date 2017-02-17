@@ -462,10 +462,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['MD, Shortening'];
         if (conditionConcept == "Yes"){
-            conditions.show.push("MD, cm of shortening")
+            conditions.show.push("MD, Cm of shortening")
         }
         else {
-            conditions.hide.push("MD, cm of shortening")
+            conditions.hide.push("MD, Cm of shortening")
         }
         return conditions;
     },

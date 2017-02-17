@@ -279,6 +279,13 @@
             },
             "MD, Surgical Procedures Outside AMH":{
              "allowAddMore": true
+            },
+            "SAP, Planned procedure data": {
+                "autocomplete":true,
+                "codedConceptName":"SAP, Planned procedure (surgical)",
+                "nonCodedConceptName":"SAP, Non-coded Planned procedure",
+                "durationRequired": false,
+                "allowAddMore": false
             }
         },
         "visitPage": {
