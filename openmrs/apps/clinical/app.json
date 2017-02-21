@@ -286,6 +286,13 @@
                 "nonCodedConceptName":"SAP, Non-coded Planned procedure",
                 "durationRequired": false,
                 "allowAddMore": false
+            },
+            "MD, Surgical Procedures Outside AMH Data": {
+                "autocomplete":true,
+                "codedConceptName":"MD, Procedures performed outside AMH",
+                "nonCodedConceptName":"MD, Non-Coded Procedures performed outside AMH",
+                "durationRequired": false,
+                "allowAddMore": false
             }
         },
         "visitPage": {
