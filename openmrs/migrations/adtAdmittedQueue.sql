@@ -4,7 +4,6 @@ UPDATE global_property SET property_value = "SELECT DISTINCT
   FLOOR(DATEDIFF(CURDATE(), p.birthdate) / 365)    AS age,
   p.gender                                         AS gender,
   parentLocation.name                              AS department,
-  bt.name                                          AS `Bed Type`,
   b.bed_number                                     AS `Bed No`,
   DATE_FORMAT(bpam.date_started, '%Y-%m-%d %H:%i') AS `Admitted On`,
   'Transfer/Discharge'                             AS 'Action',
@@ -18,7 +17,6 @@ FROM visit v
   JOIN person p ON v.patient_id = p.person_id AND p.voided IS FALSE
   JOIN bed_patient_assignment_map bpam ON bpam.patient_id = p.person_id AND bpam.date_stopped IS NULL AND bpam.voided IS FALSE
   JOIN bed b ON b.bed_id = bpam.bed_id AND b.voided IS FALSE
-  JOIN bed_type bt ON bt.bed_type_id = b.bed_type_id
   JOIN visit_attribute va ON v.visit_id = va.visit_id AND va.value_reference = 'Admitted' AND va.voided IS FALSE
   JOIN visit_attribute_type vat ON vat.visit_attribute_type_id = va.attribute_type_id AND vat.name = 'Admission Status' AND vat.retired IS FALSE
   JOIN bed_location_map blm ON b.bed_id = blm.bed_id
