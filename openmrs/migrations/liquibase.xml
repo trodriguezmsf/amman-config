@@ -269,4 +269,15 @@
             VALUES ('emr.concept.diagnosisSetOfSets',@conceptID,'Diagnosis Set of Sets',@uuid);
         </sql>
     </changeSet>
+    <changeSet id="Amman-201702211105" author="Santhosh" context="rel2.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from bed_tag where name = "Reserved for CT";
+            </sqlCheck>
+        </preConditions>
+        <comment>adding new bed tag Reserved for Caretaker</comment>
+        <sql>
+            INSERT INTO bed_tag(name, creator, date_created, voided, uuid) VALUES ("Reserved for CT", 1, now(), 0, uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
