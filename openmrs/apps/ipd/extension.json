@@ -88,34 +88,94 @@
         "order": 2,
         "requiredPrivilege": "app:adt"
     },
-    "bahmniAdtPatientsSearchPatientsToAdmit":{
-        "id": "bahmni.ipd.patients.search.patientsToAdmit",
+    "bahmniAdtPatientsSearchPatientsAdmittoRc":{
+        "id": "bahmni.ipd.patients.search.patientsAdmittoRc",
         "extensionPointId": "org.bahmni.patient.search",
         "type": "config",
         "extensionParams": {
             "view": "tabular",
-            "searchHandler": "emrapi.sqlSearch.patientsToAdmit",
-            "translationKey": "MODULE_LABEL_TO_ADMIT_KEY",
+            "searchHandler": "emrapi.sqlSearch.patientsAdmittoRc",
+            "translationKey": "MODULE_LABEL_TO_ADMIT_TO_RC_KEY",
             "forwardUrl":"#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
             "linkColumn": "Status"
         },
-        "label": "To Admit",
+        "label": "Admit to RC",
         "order": 1,
         "requiredPrivilege": "app:adt"
     },
-    "bahmniAdtPatientsSearchPatientsAdmitted":{
-        "id": "bahmni.ipd.patients.search.patientsAdmitted",
+    "bahmniAdtPatientsSearchPatientsAdmittoKahramana":{
+        "id": "bahmni.ipd.patients.search.patientsAdmittoKahramana",
         "extensionPointId": "org.bahmni.patient.search",
         "type": "config",
         "extensionParams": {
-            "searchHandler": "emrapi.sqlSearch.admittedPatients",
+            "searchHandler": "emrapi.sqlSearch.admitttokahramana",
             "view": "tabular",
-            "translationKey": "MODULE_LABEL_ADMITTED_KEY",
+            "translationKey": "MODULE_LABEL_TO_ADMIT_TO_KAHRAMANA_KEY",
             "forwardUrl" : "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "Action"
+            "linkColumn": "Status"
         },
-        "label": "Admitted",
+        "label": "Admit to Kahramana",
         "order": 2,
+        "requiredPrivilege": "app:adt"
+    },
+    "bahmniAdtPatientsSearchPatientsMovementtoWard": {
+        "id": "bahmni.ipd.patients.search.patientsMovementtoWard",
+        "extensionPointId": "org.bahmni.patient.search",
+        "type": "config",
+        "extensionParams": {
+            "searchHandler": "emrapi.sqlSearch.PatientsMovementtoWard",
+            "view": "tabular",
+            "translationKey": "MODULE_LABEL_TO_MOVEMENT_TO_WARD_KEY",
+            "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
+            "linkColumn": "Status"
+        },
+        "label": "Movement to Ward",
+        "order": 3,
+        "requiredPrivilege": "app:adt"
+    },
+    "bahmniAdtPatientsSearchPatientsMovementtoRc": {
+        "id": "bahmni.ipd.patients.search.patientsMovementtoRc",
+        "extensionPointId": "org.bahmni.patient.search",
+        "type": "config",
+        "extensionParams": {
+            "searchHandler": "emrapi.sqlSearch.PatientsMovementtoRc",
+            "view": "tabular",
+            "translationKey": "MODULE_LABEL_TO_MOVEMENT_TO_RC_KEY",
+            "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
+            "linkColumn": "Status"
+        },
+        "label": "Movement to Rc",
+        "order": 4,
+        "requiredPrivilege": "app:adt"
+    },
+    "bahmniAdtPatientsSearchPatientsMovementtoKahramana": {
+        "id": "bahmni.ipd.patients.search.patientsMovementtoKahramana",
+        "extensionPointId": "org.bahmni.patient.search",
+        "type": "config",
+        "extensionParams": {
+            "searchHandler": "emrapi.sqlSearch.PatientsMovementtoKahramana",
+            "view": "tabular",
+            "translationKey": "MODULE_LABEL_TO_MOVEMENT_TO_KAHRAMANA_KEY",
+            "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
+            "linkColumn": "Status"
+        },
+        "label": "Movement to Kahramana",
+        "order": 5,
+        "requiredPrivilege": "app:adt"
+    },
+    "bahmniAdtPatientsSearchPatientsTransferHome": {
+        "id": "bahmni.ipd.patients.search.patientsTransferHome",
+        "extensionPointId": "org.bahmni.patient.search",
+        "type": "config",
+        "extensionParams": {
+            "searchHandler": "emrapi.sqlSearch.PatientsTransferHome",
+            "view": "tabular",
+            "translationKey": "MODULE_LABEL_TO_TRANSFER_TO_HOME_KEY",
+            "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
+            "linkColumn": "Status"
+        },
+        "label": "Transfer Home",
+        "order": 6,
         "requiredPrivilege": "app:adt"
     }
 }
