@@ -4,6 +4,7 @@
       "inputOptionsConfig": {
         "defaultDurationUnit": "Day(s)",
         "defaultInstructions": "As directed",
+        "hideOrderSet" : true,
         "frequencyDefaultDurationUnitsMap": [
           {
             "minFrequency": 5,
