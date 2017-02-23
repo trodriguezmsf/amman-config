@@ -17,6 +17,7 @@
             "activeVisitUuid"
         ],
         "config" : {
+            "showBirthTime": false,
             "mandatoryPersonAttributes" : [
                 "id1Document",
                 "id1FullNameEnglish",
