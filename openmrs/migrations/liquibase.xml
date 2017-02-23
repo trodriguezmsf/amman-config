@@ -290,24 +290,27 @@
     <changeSet id="Amman-201702211501" author="Shiva Kumar">
         <comment>Adding new Dispositions</comment>
         <sql>
-            SELECT concept_id INTO @ConceptID FROM concept_name WHERE name ="Disposition" AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @Disposition1 FROM concept_name WHERE name ="Admit to RC" AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @Disposition2 FROM concept_name WHERE name ="Admit to Kahramana" AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @Disposition3 FROM concept_name WHERE name ="Movement to Ward" AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @Disposition4 FROM concept_name WHERE name ="Movement to RC" AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @Disposition5 FROM concept_name WHERE name ="Movement to Kahramana" AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @Disposition6 FROM concept_name WHERE name ="Transfer Home" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @ConceptID FROM concept_name WHERE name ='Disposition' AND concept_name_type='FULLY_SPECIFIED';
+            SELECT concept_id INTO @Disposition1 FROM concept_name WHERE name ='Admit to RC' AND concept_name_type='FULLY_SPECIFIED';
+            SELECT concept_id INTO @Disposition2 FROM concept_name WHERE name ='Admit to Ward' AND concept_name_type='FULLY_SPECIFIED';
+            SELECT concept_id INTO @Disposition3 FROM concept_name WHERE name ='Admit to Kahramana' AND concept_name_type='FULLY_SPECIFIED';
+            SELECT concept_id INTO @Disposition4 FROM concept_name WHERE name ='Movement to Ward' AND concept_name_type='FULLY_SPECIFIED';
+            SELECT concept_id INTO @Disposition5 FROM concept_name WHERE name ='Movement to RC' AND concept_name_type='FULLY_SPECIFIED';
+            SELECT concept_id INTO @Disposition6 FROM concept_name WHERE name ='Movement to Kahramana' AND concept_name_type='FULLY_SPECIFIED';
+            SELECT concept_id INTO @Disposition7 FROM concept_name WHERE name ='Transfer Home' AND concept_name_type='FULLY_SPECIFIED';
             INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@ConceptID,@Disposition1,1,now(),0,uuid());
             INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@ConceptID,@Disposition2,1,now(),1,uuid());
             INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@ConceptID,@Disposition3,1,now(),2,uuid());
             INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@ConceptID,@Disposition4,1,now(),3,uuid());
             INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@ConceptID,@Disposition5,1,now(),4,uuid());
             INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@ConceptID,@Disposition6,1,now(),5,uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@ConceptID,@Disposition7,1,now(),6,uuid());
         </sql>
     </changeSet>
     <changeSet id="Amman-201702171623" author="Shiva kumar" runOnChange="true">
         <comment>Resetting bed layout for hospital with 3rd, 4th and 5th floor</comment>
         <sqlFile path="bedManagement/patientsAdmittoRc.sql"/>
+        <sqlFile path="bedManagement/patientsAdmittoWard.sql"/>
         <sqlFile path="bedManagement/patientsadmitttokahramana.sql"/>
         <sqlFile path="bedManagement/PatientsMovementtoKahramana.sql"/>
         <sqlFile path="bedManagement/patientsMovementtoRc.sql"/>

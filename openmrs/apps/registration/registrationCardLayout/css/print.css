@@ -47,7 +47,7 @@ h1, h2, h3 ,h4 {
     margin-left: 0.9cm;
     margin-right: 0.86cm;
     margin-bottom: 0.86cm;
-    font-size: 9px;
+    font-size: 11px;
     line-height: 0.9;
 }
 .subpage ul{
@@ -72,7 +72,7 @@ h1, h2, h3 ,h4 {
 .subpage ul li span.localname{
   display: block;
   line-height: 1;
-  font-size: 11px;
+  font-size: 13px;
 }
 /* line 24, print.scss */
 .registrationCard-print-table td.registrationCard-photo {

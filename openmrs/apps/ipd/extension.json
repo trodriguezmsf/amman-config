@@ -30,6 +30,21 @@
         "order": 1,
         "requiredPrivilege": "app:adt"
     },
+    "bahmniAdtPatientsSearchPatientsAdmittoWard":{
+        "id": "bahmni.ipd.patients.search.patientsAdmittoWard",
+        "extensionPointId": "org.bahmni.patient.search",
+        "type": "config",
+        "extensionParams": {
+            "view": "tabular",
+            "searchHandler": "emrapi.sqlSearch.patientsAdmittoWard",
+            "translationKey": "MODULE_LABEL_TO_ADMIT_TO_WARD_KEY",
+            "forwardUrl":"#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
+            "linkColumn": "Status"
+        },
+        "label": "Admit to Ward",
+        "order": 2,
+        "requiredPrivilege": "app:adt"
+    },
     "bahmniAdtPatientsSearchPatientsAdmittoKahramana":{
         "id": "bahmni.ipd.patients.search.patientsAdmittoKahramana",
         "extensionPointId": "org.bahmni.patient.search",
@@ -42,7 +57,7 @@
             "linkColumn": "Status"
         },
         "label": "Admit to Kahramana",
-        "order": 2,
+        "order": 3,
         "requiredPrivilege": "app:adt"
     },
     "bahmniAdtPatientsSearchPatientsMovementtoWard": {
@@ -57,7 +72,7 @@
             "linkColumn": "Status"
         },
         "label": "Movement to Ward",
-        "order": 3,
+        "order": 4,
         "requiredPrivilege": "app:adt"
     },
     "bahmniAdtPatientsSearchPatientsMovementtoRc": {
@@ -72,7 +87,7 @@
             "linkColumn": "Status"
         },
         "label": "Movement to Rc",
-        "order": 4,
+        "order": 5,
         "requiredPrivilege": "app:adt"
     },
     "bahmniAdtPatientsSearchPatientsMovementtoKahramana": {
@@ -87,7 +102,7 @@
             "linkColumn": "Status"
         },
         "label": "Movement to Kahramana",
-        "order": 5,
+        "order": 6,
         "requiredPrivilege": "app:adt"
     },
     "bahmniAdtPatientsSearchPatientsTransferHome": {
@@ -102,7 +117,7 @@
             "linkColumn": "Status"
         },
         "label": "Transfer Home",
-        "order": 6,
+        "order": 7,
         "requiredPrivilege": "app:adt"
     }
 }
