@@ -29,7 +29,14 @@
             "onTransferForwardTo": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
             "onDischargeForwardTo": "#/bedManagement/bed/{{bedId}}",
             "defaultVisitType": "First Stage Validation",
+            "expectedDateOfDischarge" : "IPD Expected DD",
             "maxPatientsPerBed" : 2,
+            "conceptSetUI": {
+                "Expected Date of Discharge": {
+                    "disableAddNotes": true,
+                    "allowFutureDates": true
+                }
+            },
             "dashboard":{
                 "translationKey": "DASHBOARD_TAB_GENERAL_KEY",
                 "conceptName": "Adt Notes",
