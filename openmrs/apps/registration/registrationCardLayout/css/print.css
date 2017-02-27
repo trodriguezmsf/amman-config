@@ -153,12 +153,13 @@ h1, h2, h3 ,h4 {
 
 /* line 77, print.scss */
 .registrationCard-details-name {
-  width: 70px;
+  width: 100 px;
+  text-align: left;
 }
 
 /* line 80, print.scss */
 .registrationCard-details-seperator {
-  width: 20px;
+  width: 25px;
   text-align: center;
 }
 
