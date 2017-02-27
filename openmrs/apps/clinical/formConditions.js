@@ -77,12 +77,12 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
-    'SMH, Smoking history': function (formName, formFieldValues) {
+    'SMH, Current smoker': function (formName, formFieldValues) {
         var conditions = {
             show: [],
             hide: []
          };
-         var conditionConcept = formFieldValues['SMH, Smoking history'];
+         var conditionConcept = formFieldValues['SMH, Current smoker'];
         if (conditionConcept == "Yes"){
             conditions.show.push("SMH, Number of cigarettes per day","SMH, Duration of smoking (in years)")
         }
