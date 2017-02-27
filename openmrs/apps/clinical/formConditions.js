@@ -273,10 +273,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['PHIA, Amputee patient?'];
         if (conditionConcept == "Yes"){
-            conditions.show.push("PHIA, Type of amputation","PHIA, Comments about amputation")
+            conditions.show.push("PHIA, Type of amputation","PHIA, Side of amputation","PHIA, Comments about amputation","PHIA, Is the patient coming with a prostheses?")
         }
         else {
-            conditions.hide.push("PHIA, Type of amputation","PHIA, Comments about amputation")
+            conditions.hide.push("PHIA, Type of amputation","PHIA, Side of amputation","PHIA, Comments about amputation","PHIA, Is the patient coming with a prostheses?")
         }
         return conditions;
     },
@@ -287,11 +287,11 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['PHIA, Is the patient coming with a prostheses?'];
         if (conditionConcept == "Yes"){
-            conditions.show.push("PHIA, Is the patient using the prostheses?","PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification")
+            conditions.show.push("PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification")
             conditions.hide.push("PHIA, Comment about new prosthesis or modification")
         }
         else {
-            conditions.hide.push("PHIA, Is the patient using the prostheses?","PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification","PHIA, Comment about new prosthesis or modification")
+            conditions.hide.push("PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification","PHIA, Comment about new prosthesis or modification")
         }
         return conditions;
     },
