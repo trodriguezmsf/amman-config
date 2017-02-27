@@ -354,4 +354,20 @@
             INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@child2_concept_id,@concept_id,1,8,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201702271852" author="Shiva kumar">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from program_workflow_state where concept_id = (select concept_id from concept_name where name="Surgical" and concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new work flow states</comment>
+        <sql>
+            select concept_id into @workflow1 from concept_name where name="Surgical" and concept_name_type="FULLY_SPECIFIED";
+            Insert into program_workflow_state(program_workflow_id,concept_id,creator,date_created,uuid) values (2,@workflow1,8,now(),uuid());
+            select concept_id into @workflow2 from concept_name where name="Pre-Operative" and concept_name_type="FULLY_SPECIFIED";
+            Insert into program_workflow_state(program_workflow_id,concept_id,creator,date_created,uuid) values (2,@workflow2,8,now(),uuid());
+            select concept_id into @workflow3 from concept_name where name="Rehabilitation" and concept_name_type="FULLY_SPECIFIED";
+            Insert into program_workflow_state(program_workflow_id,concept_id,creator,date_created,uuid) values (2,@workflow3,8,now(),uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
