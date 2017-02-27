@@ -327,7 +327,7 @@
     <changeSet id="Amman-201702241601" author="Shireesha" context="rel2.3">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                SELECT count(*) from concept_set where concept_id in (SELECT concept_id from concept_name where name = 'IPD Expected DD' and concept_name_type="FULLY_SPECIFIED");
+                SELECT count(*) from concept_set cs where cs.concept_set in (SELECT concept_id from concept_name where name = 'IPD Expected DD' and concept_name_type="FULLY_SPECIFIED");
             </sqlCheck>
         </preConditions>
         <comment>Adding the concepts for expected date of discharge</comment>
