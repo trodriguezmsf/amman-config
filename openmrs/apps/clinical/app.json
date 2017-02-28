@@ -296,8 +296,30 @@
             },
             "PHIA, Level of Amputation":{
                 "allowAddMore": true
+            },
+            "DIA, Diagnosis":{
+                "autocomplete":true,
+                "multiSelect": true
+            },
+            "Diagnosis Data":{
+                "allowAddMore": true
+            },
+            "DIA, Side":{
+                "multiSelect":true
+            },
+            "defaults" : {
+
+                "PE, General examination": "Well developed female / male in no acute distress",
+                "PE, HEENT examination": "Pupils equal, regular, reactive to light and accomodation, normal extraocular muscles, normocephalic, normal dentition, clear throat, normal neck motion, no jugular vien distension",
+                "PE, Chest examination": "Clear lung bilaterally to auscultation and percussion, normal chest wall motion",
+                "PE, Heart examination": "Normal S1 & S2, no murmurs, intact pulses",
+                "PE, Abdomen examination": "Soft, no hepatosplenomegaly, no tenderness, no mass",
+                "PE, Rectal and genitalia examination": "Deferred",
+                "PE, Extremities examination": "No clubbing, cyanosis or edema, normal joints with full range of motion",
+                "PE, Neurologic examination": "Cranial nerves intact, normal muscular deep tendon reflexes, normal strength, normal sensitivity"
             }
-        },
+
+    },
         "visitPage": {
             "observationDisplay": {
                 "conceptNames": []
