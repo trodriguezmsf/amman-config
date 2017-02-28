@@ -265,10 +265,7 @@
             "SMH, Pain Assessment":{
                 "allowAddMore": true
             },
-          "PHIA, Type of amputation":{
-            "multiSelect":true
-          },
-          "SAP, Need consultations":{
+            "SAP, Need consultations":{
             "multiSelect":true
           },
             "SAP, Investigations needed":{
@@ -296,6 +293,9 @@
                 "nonCodedConceptName":"MD, Non-Coded Procedures performed outside AMH",
                 "durationRequired": false,
                 "allowAddMore": false
+            },
+            "PHIA, Level of Amputation":{
+                "allowAddMore": true
             }
         },
         "visitPage": {
