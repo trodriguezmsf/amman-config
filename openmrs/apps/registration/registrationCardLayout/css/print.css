@@ -8,7 +8,7 @@
 /* line 10, print.scss */
 p, h1, h2, h3, tr, div, span, li {
   margin: 0px;
-  padding: 5px;
+  padding: 3px;
   text-align:center;
 }
 
@@ -46,7 +46,7 @@ h1, h2, h3 ,h4 {
     margin-top: 0.9cm;
     margin-left: 0.9cm;
     margin-right: 0.86cm;
-    margin-bottom: 0.86cm;
+    margin-bottom: 0.56cm;
     font-size: 11px;
     line-height: 0.9;
 }
