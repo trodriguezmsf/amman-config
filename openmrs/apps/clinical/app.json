@@ -305,9 +305,6 @@
             "Diagnosis Data":{
                 "allowAddMore": true
             },
-            "DIA, Side":{
-                "multiSelect":true
-            },
             "defaults" : {
 
                 "PE, General examination": "Well developed female / male in no acute distress",
