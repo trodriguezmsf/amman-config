@@ -49,6 +49,7 @@
 
         "allowConsultationWhenNoOpenVisit": false,
         "defaultVisitType": "First Stage Validation",
+        "hideGoToIPDButton": true,
         "visitTypeForRetrospectiveEntries": "First Stage Validation",
         "maxConceptSetLevels": 3,
         "allowOnlyCodedDiagnosis": false,
