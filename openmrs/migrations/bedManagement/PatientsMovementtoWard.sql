@@ -20,15 +20,11 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.PatientsMovementt
           LEFT JOIN visit v ON v.visit_id = en.visit_id AND en.encounter_type =
             (SELECT encounter_type_id
               FROM encounter_type
-            WHERE name = 'ADMISSION')) v1 on v1.visit_id = v.visit_id
+            WHERE name = 'TRANSFER')) v1 on v1.visit_id = v.visit_id
         INNER JOIN encounter e ON v.visit_id = e.visit_id
         INNER JOIN obs o ON e.encounter_id = o.encounter_id
         INNER JOIN concept_name cn ON o.value_coded = cn.concept_id AND cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.voided is FALSE
         JOIN location l on l.uuid=${visit_location_uuid} and v.location_id = l.location_id
         left outer join visit_attribute va on va.visit_id = v.visit_id and va.attribute_type_id =
           (select visit_attribute_type_id from visit_attribute_type where name='Admission Status')
-        LEFT OUTER JOIN encounter e1 ON e1.visit_id = v.visit_id AND e1.encounter_type = (
-          SELECT encounter_type_id
-            FROM encounter_type
-          WHERE name = 'TRANSFER') AND e1.voided is FALSE
-        WHERE v.date_stopped IS NULL AND v.voided = 0 AND o.voided = 0 AND cn.name = 'Movement to Ward' AND e1.encounter_id IS NULL;",'Patients Movement to Ward',@uuid);
+        WHERE v.date_stopped IS NULL AND v.voided = 0 AND o.voided = 0 AND cn.name = 'Movement to Ward';",'Patients Movement to Ward',@uuid);
