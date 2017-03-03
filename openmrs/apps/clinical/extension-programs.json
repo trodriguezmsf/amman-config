@@ -36,7 +36,7 @@
       "translationKey": "MODULE_LABEL_AWAITING_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
-      "searchColumns": ["identifier", "name", "Name of MLO", "Nationality", "Specialty", "Name of Surgeon 1", "Name of Surgeon 1"]
+      "searchColumns": ["identifier", "name", "Date of File Received", "Name of MLO", "Nationality", "Specialty"]
     },
     "order": 3,
     "requiredPrivilege": "app:clinical"
@@ -50,7 +50,7 @@
       "translationKey": "MODULE_LABEL_AWAITING_FOLLOWUP_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
-      "searchColumns": ["identifier", "name", "Date of File Received", "Name of MLO", "Nationality", "Specialty"]
+      "searchColumns": ["identifier", "name", "Name of MLO", "Nationality", "Specialty", "Name of Surgeon 1", "Name of Surgeon 2"]
     },
     "order": 4,
     "requiredPrivilege": "app:clinical"
@@ -65,7 +65,7 @@
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
       "searchColumns": ["identifier", "name", "Date of Presentation", "Name of MLO", "Nationality", "Specialty", "Outcomes for 1st stage surgical validation",
-        "Outcomes for 1st stage Anaesthesia validation", "Type of Medical Information Needed for Next Submission"]
+        "Outcomes for 1st stage Anaesthesia validation", "Postpone Reason"]
     },
     "order": 5,
     "requiredPrivilege": "app:clinical"
