@@ -1,14 +1,16 @@
 UPDATE global_property SET property_value = "SELECT DISTINCT
-  pi.identifier                                    AS identifier,
-  concat(pn.given_name, ' ', pn.family_name)       AS name,
-  FLOOR(DATEDIFF(CURDATE(), p.birthdate) / 365)    AS age,
-  p.gender                                         AS gender,
-  parentLocation.name                              AS department,
-  b.bed_number                                     AS `Bed No`,
-  DATE_FORMAT(bpam.date_started, '%Y-%m-%d %H:%i') AS `Admitted On`,
-  'Transfer/Discharge'                             AS 'Action',
-  concat('', p.uuid)                               AS uuid,
-  concat('', v.uuid)                               AS activeVisitUuid
+  pi.identifier                                         AS identifier,
+  concat(pn.given_name, ' ', pn.family_name)            AS name,
+  IF(va.value_reference = 'Admitted', 'true', 'false')  AS hasBeenAdmitted,
+  FLOOR(DATEDIFF(CURDATE(), p.birthdate) / 365)         AS age,
+  p.gender                                              AS gender,
+  parentLocation.name                                   AS department,
+  b.bed_number                                          AS `Bed No`,
+  DATE_FORMAT(bpam.date_started, '%Y-%m-%d %H:%i')      AS `Admitted On`,
+  'Transfer/Discharge'                                  AS action,
+  concat('', p.uuid)                                    AS uuid,
+  concat('', v.uuid)                                    AS activeVisitUuid
+
 FROM visit v
   JOIN person_name pn ON v.patient_id = pn.person_id AND pn.voided IS FALSE
   JOIN patient_identifier pi ON v.patient_id = pi.patient_id AND pi.voided IS FALSE

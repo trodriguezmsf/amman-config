@@ -3,19 +3,19 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.PatientsMovementt
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.PatientsMovementtoWard',
 "SELECT DISTINCT
-          concat(pn.given_name, ' ', pn.family_name) AS name,
-          pi.identifier AS identifier,
-          concat('', p.uuid) AS uuid,
-          concat('', v.uuid) AS activeVisitUuid,
-            'Transfer to home'                                               AS 'Status',
-          IF(va.value_reference = 'Admitted', 'true', 'false') as hasBeenAdmitted
+          pi.identifier                                         AS identifier,
+          concat(pn.given_name, ' ', pn.family_name)            AS name,
+          'Movement to Ward'                                    AS status,
+          IF(va.value_reference = 'Admitted', 'true', 'false')  AS hasBeenAdmitted,
+          CONCAT('', p.uuid)                                    AS uuid,
+          CONCAT('', v.uuid)                                    AS activeVisitUuid
         FROM visit v
         INNER JOIN person_name pn ON v.patient_id = pn.person_id and pn.voided is FALSE
         INNER JOIN patient_identifier pi ON v.patient_id = pi.patient_id and pi.voided is FALSE
         INNER JOIN patient_identifier_type pit on pi.identifier_type = pit.patient_identifier_type_id
         INNER JOIN global_property gp on gp.property='emr.primaryIdentifierType' and gp.property_value=pit.uuid
         INNER JOIN person p ON v.patient_id = p.person_id
-        Inner Join (SELECT DISTINCT v.visit_id
+        INNER JOIN (SELECT DISTINCT v.visit_id
           FROM encounter en
           LEFT JOIN visit v ON v.visit_id = en.visit_id AND en.encounter_type =
             (SELECT encounter_type_id

@@ -3,12 +3,12 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.PatientsMovementt
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.PatientsMovementtoKahramana',
 "SELECT DISTINCT
-          concat(pn.given_name, ' ', pn.family_name) AS name,
-          pi.identifier AS identifier,
-          concat('', p.uuid) AS uuid,
-          concat('', v.uuid) AS activeVisitUuid,
-            'Transfer to home'                                               AS 'Status',
-          IF(va.value_reference = 'Admitted', 'true', 'false') as hasBeenAdmitted
+            concat(pn.given_name, ' ', pn.family_name)                      AS name,
+            pi.identifier                                                   AS identifier,
+            'Movement to Kahramana'                                         AS status,
+            concat('', p.uuid)                                              AS uuid,
+            concat('', v.uuid)                                              AS activeVisitUuid,
+            IF(va.value_reference = 'Admitted', 'true', 'false')            AS hasBeenAdmitted
         FROM visit v
         INNER JOIN person_name pn ON v.patient_id = pn.person_id and pn.voided is FALSE
         INNER JOIN patient_identifier pi ON v.patient_id = pi.patient_id and pi.voided is FALSE

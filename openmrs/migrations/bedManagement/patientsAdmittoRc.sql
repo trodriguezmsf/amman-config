@@ -5,10 +5,10 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.patientsAdmittoRc
 "SELECT DISTINCT
   pi.identifier                                         AS identifier,
   concat(pn.given_name, ' ', pn.family_name)            AS name,
-  p.gender                                              AS Gender,
-  floor(DATEDIFF(CURDATE(), p.birthdate) / 365)         AS 'Age',
-  MAX(DATE_FORMAT(o.obs_datetime,'%d %b %Y %h:%i %p'))  as 'Disposition Date',
-  'Admit To RC'                                               AS 'Status',
+  p.gender                                              AS gender,
+  floor(DATEDIFF(CURDATE(), p.birthdate) / 365)         AS age,
+  MAX(DATE_FORMAT(o.obs_datetime,'%d %b %Y %h:%i %p'))  AS 'Disposition Date',
+  'Admit To RC'                                         AS status,
   concat('', p.uuid)                                    AS uuid,
   concat('', v.uuid)                                    AS activeVisitUuid
 FROM person p
