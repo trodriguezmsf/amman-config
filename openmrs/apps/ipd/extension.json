@@ -9,7 +9,8 @@
             "view": "tabular",
             "translationKey": "MODULE_LABEL_ADMITTED_PATIENT_KEY",
             "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "Action"
+            "linkColumn": "action",
+            "searchColumns": ["identifier", "name", "gender", "department", "age", "Bed No","Admitted On"]
         },
         "label": "Admitted",
         "order": 0,
@@ -24,7 +25,8 @@
             "searchHandler": "emrapi.sqlSearch.patientsAdmittoRc",
             "translationKey": "MODULE_LABEL_TO_ADMIT_TO_RC_KEY",
             "forwardUrl":"#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "Status"
+            "linkColumn": "status",
+            "searchColumns": ["identifier", "name", "gender", "age", "Disposition Date"]
         },
         "label": "Admit to RC",
         "order": 1,
@@ -39,7 +41,8 @@
             "searchHandler": "emrapi.sqlSearch.patientsAdmittoWard",
             "translationKey": "MODULE_LABEL_TO_ADMIT_TO_WARD_KEY",
             "forwardUrl":"#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "Status"
+            "linkColumn": "status",
+            "searchColumns": ["identifier", "name", "gender", "age", "Disposition Date"]
         },
         "label": "Admit to Ward",
         "order": 2,
@@ -54,7 +57,8 @@
             "view": "tabular",
             "translationKey": "MODULE_LABEL_TO_ADMIT_TO_KAHRAMANA_KEY",
             "forwardUrl" : "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "Status"
+            "linkColumn": "status",
+            "searchColumns": ["identifier", "name", "gender", "age", "Disposition Date"]
         },
         "label": "Admit to Kahramana",
         "order": 3,
@@ -69,7 +73,8 @@
             "view": "tabular",
             "translationKey": "MODULE_LABEL_TO_MOVEMENT_TO_WARD_KEY",
             "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "Status"
+            "linkColumn": "status",
+            "searchColumns": ["identifier", "name"]
         },
         "label": "Movement to Ward",
         "order": 4,
@@ -84,7 +89,8 @@
             "view": "tabular",
             "translationKey": "MODULE_LABEL_TO_MOVEMENT_TO_RC_KEY",
             "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "Status"
+            "linkColumn": "status",
+            "searchColumns": ["identifier", "name"]
         },
         "label": "Movement to Rc",
         "order": 5,
@@ -99,7 +105,8 @@
             "view": "tabular",
             "translationKey": "MODULE_LABEL_TO_MOVEMENT_TO_KAHRAMANA_KEY",
             "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "Status"
+            "linkColumn": "status",
+            "searchColumns": ["identifier", "name"]
         },
         "label": "Movement to Kahramana",
         "order": 6,
@@ -114,7 +121,8 @@
             "view": "tabular",
             "translationKey": "MODULE_LABEL_TO_TRANSFER_TO_HOME_KEY",
             "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "Status"
+            "linkColumn": "status",
+            "searchColumns": ["identifier", "name"]
         },
         "label": "Transfer Home",
         "order": 7,
