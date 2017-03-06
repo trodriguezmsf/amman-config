@@ -65,7 +65,7 @@
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
       "searchColumns": ["identifier", "name", "Date of Presentation", "Name of MLO", "Nationality", "Specialty", "Outcomes for 1st stage surgical validation",
-        "Outcomes for 1st stage Anaesthesia validation", "Postpone Reason"]
+        "Outcomes for 1st stage Anaesthesia validation", "Postpone reason"]
     },
     "order": 5,
     "requiredPrivilege": "app:clinical"
