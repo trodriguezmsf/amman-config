@@ -385,17 +385,4 @@
 
         </sql>
     </changeSet>
-    <changeSet id="Amman-201703071603" author="Shiva kumar" >
-
-        <comment>updating program workflow states </comment>
-        <sql>
-
-            update program_workflow_state set concept_id =622 where program_workflow_state_id =2 and program_workflow_id =2;
-            update program_workflow_state set concept_id =1913 where program_workflow_state_id =8 and program_workflow_id =2;
-            update program_workflow_state set concept_id =1914 where program_workflow_state_id =9 and program_workflow_id =2;
-            update program_workflow_state set concept_id =1915 where program_workflow_state_id =10 and program_workflow_id =2;
-            update program_workflow_state set concept_id =822 where program_workflow_state_id =11 and program_workflow_id =2;
-
-        </sql>
-    </changeSet>
-</databaseChangeLog>
+    </databaseChangeLog>
