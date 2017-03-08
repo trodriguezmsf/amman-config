@@ -34,7 +34,7 @@ h1, h2, h3 ,h4 {
 
 /* line 20, print.scss */
 .registrationCard-print-table {
-  width: 100%;
+  width: 90%;
   height: 100%;
   overflow: scroll;
   margin: 0 auto;
