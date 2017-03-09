@@ -359,7 +359,10 @@
             INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id1,88,12,8,now(),uuid());
             SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'Diagnosis Details' AND concept_name_type="FULLY_SPECIFIED";
             INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id2,88,13,8,now(),uuid());
-
         </sql>
     </changeSet>
-    </databaseChangeLog>
+    <changeSet id="Amman-201703100949450" author="David Oh" runOnChange="true">
+        <comment>Updating SQL query for Bed Management List View</comment>
+        <sqlFile path="bedManagement/PatientWardDetails.sql"/>
+    </changeSet>
+</databaseChangeLog>
