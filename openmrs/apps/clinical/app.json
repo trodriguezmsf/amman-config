@@ -291,15 +291,13 @@
                 "autocomplete":true,
                 "codedConceptName":"SAP, Planned procedure (surgical)",
                 "nonCodedConceptName":"SAP, Non-coded Planned procedure",
-                "durationRequired": false,
-                "allowAddMore": false
+                "allowAddMore": true
             },
             "MD, Surgical Procedures Outside AMH Data": {
                 "autocomplete":true,
                 "codedConceptName":"MD, Procedures performed outside AMH",
                 "nonCodedConceptName":"MD, Non-Coded Procedures performed outside AMH",
-                "durationRequired": false,
-                "allowAddMore": false
+                "allowAddMore": true
             },
             "PHIA, Level of Amputation":{
                 "allowAddMore": true
@@ -321,6 +319,15 @@
                 "PE, Rectal and genitalia examination": "Deferred",
                 "PE, Extremities examination": "No clubbing, cyanosis or edema, normal joints with full range of motion",
                 "PE, Neurologic examination": "Cranial nerves intact, normal muscular deep tendon reflexes, normal strength, normal sensitivity"
+            },
+            "MD, Site of procedure":{
+                "autocomplete":true
+            },
+            "SAP, Anatomical site":{
+                "autocomplete":true
+            },
+            "SAP, Site of surgical objective":{
+                "autocomplete":true
             }
 
     },

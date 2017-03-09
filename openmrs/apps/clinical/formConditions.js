@@ -522,7 +522,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['SAP, Sites (donor areas excluded)'];
-        if (conditionConcept == "More than one site that can be tackled in different surgeries"){
+        if (conditionConcept == "Multi-site, different surgery"){
             conditions.show.push("SAP, Spacing between surgeries")
         }
         else {
