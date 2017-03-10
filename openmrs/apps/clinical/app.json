@@ -328,6 +328,12 @@
             },
             "SAP, Site of surgical objective":{
                 "autocomplete":true
+            },
+            "SAP, Site of injury":{
+                "autocomplete":true
+            },
+            "SAP, Site of surgical procedure":{
+                "autocomplete":true
             }
 
     },

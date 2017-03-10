@@ -475,11 +475,11 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['SAP, Initial general plan'];
-        if (conditionConcept == "The patient needs immediate physiotherapy or other consultation before deciding plan"){
+        if (conditionConcept == "Needs Physio / Other consultation"){
             conditions.show.push("SAP, Objectives of physiotherapy")
             conditions.hide.push("SAP, Anatomical site")
         }
-        else if (conditionConcept == "Aim of admission is to improve function"){
+        else if (conditionConcept == "Improve function"){
             conditions.show.push("SAP, Anatomical site")
             conditions.hide.push("SAP, Objectives of physiotherapy")
         }
