@@ -1,9 +1,9 @@
-DROP PROCEDURE IF EXISTS addRcBed;
+DROP PROCEDURE IF EXISTS insertBedIntoLocation;
 DELIMITER //
-CREATE PROCEDURE addRcBed
+CREATE PROCEDURE insertBedIntoLocation
    (
       IN bedNumber nvarchar(30),
-      IN locationName nvarchar(30),
+      IN locationName nvarchar(50),
       IN rowNumber nvarchar(20),
       IN columnNumber nvarchar(20)
    )
@@ -14,6 +14,7 @@ BEGIN
     INSERT INTO bed_location_map(location_id, row_number, column_number, bed_id) VALUES (@locationId, rowNumber, columnNumber, @bedId);
 END//
 DELIMITER ;
+
 CALL insertBedIntoLocation('406/1', 'Rehabilitation Center (4th floor)',1,1);
 CALL insertBedIntoLocation('406/2', 'Rehabilitation Center (4th floor)',1,2);
 CALL insertBedIntoLocation('405', 'Rehabilitation Center (4th floor)',1,3);

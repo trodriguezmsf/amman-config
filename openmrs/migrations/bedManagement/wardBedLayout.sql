@@ -1,6 +1,6 @@
-DROP PROCEDURE IF EXISTS addWardBed;
+DROP PROCEDURE IF EXISTS insertBedIntoLocation;
 DELIMITER //
-CREATE PROCEDURE addWardBed
+CREATE PROCEDURE insertBedIntoLocation
    (
       IN bedNumber nvarchar(30),
       IN locationName nvarchar(30),
@@ -17,7 +17,7 @@ DELIMITER ;
 CALL insertBedIntoLocation('200', 'Ward (2nd floor)',1,1);
 CALL insertBedIntoLocation('202', 'Ward (2nd floor)',1,2);
 CALL insertBedIntoLocation('203', 'Ward (2nd floor)',1,3);
-CALL insertBedIntoLocation('204', 'Ward (2nd floor)',1,4)
+CALL insertBedIntoLocation('204', 'Ward (2nd floor)',1,4);
 CALL insertBedIntoLocation('205', 'Ward (2nd floor)',1,5);
 CALL insertBedIntoLocation('212/1', 'Ward (2nd floor)',1,6);
 CALL insertBedIntoLocation('212/2', 'Ward (2nd floor)',1,7);
@@ -55,7 +55,7 @@ CALL insertBedIntoLocation('218/4', 'Ward (2nd floor)',11,6);
 CALL insertBedIntoLocation('305', 'Ward (3rd floor)',1,1);
 CALL insertBedIntoLocation('304', 'Ward (3rd floor)',1,2);
 CALL insertBedIntoLocation('303', 'Ward (3rd floor)',1,3);
-CALL insertBedIntoLocation('302', 'Ward (3rd floor)',1,4)
+CALL insertBedIntoLocation('302', 'Ward (3rd floor)',1,4);
 CALL insertBedIntoLocation('300', 'Ward (3rd floor)',1,5);
 CALL insertBedIntoLocation('312/1', 'Ward (3rd floor)',1,6);
 CALL insertBedIntoLocation('312/2', 'Ward (3rd floor)',1,7);

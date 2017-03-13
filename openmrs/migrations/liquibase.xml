@@ -223,6 +223,26 @@
 
         </sql>
     </changeSet>
+    <changeSet id="Amman-201703131208" author="Shiva kumar">
+        <comment>Deleting all bed location tags and bed location maps</comment>
+        <sqlFile path="bedManagement/clearBedLayout.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201703131210" author="Shiva kumar">
+        <comment>Adding All Parent and child Bed locations</comment>
+        <sqlFile path="bedManagement/addLocationsforBedLayouts.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201703131211" author="Shiva kumar">
+        <comment>Adding bed layout to Rehabilitation Center</comment>
+        <sqlFile path="bedManagement/rehabilitationBedLayout.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201703131213" author="Shiva kumar">
+        <comment>Adding bed layout to Ward</comment>
+        <sqlFile path="bedManagement/wardBedLayout.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201703131215" author="Shiva kumar">
+        <comment>Adding bed layout to Hotel Kahramana</comment>
+        <sqlFile path="bedManagement/kahramanaBedLayout.sql"/>
+    </changeSet>
        <changeSet id="Amman-201702151757" author="Santhosh" context="rel2.3">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -246,6 +266,7 @@
             VALUES ('emr.concept.diagnosisSetOfSets',@conceptID,'Diagnosis Set of Sets',@uuid);
         </sql>
     </changeSet>
+
     <changeSet id="Amman-201702211105" author="Santhosh" context="rel2.3">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">

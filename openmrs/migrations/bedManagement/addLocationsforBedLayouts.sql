@@ -24,7 +24,7 @@ SELECT location_id INTO @rc_location FROM location where name = 'Rehabilitation 
 INSERT INTO location (name, description, retired, uuid, date_created, creator, parent_location) VALUES ('Rehabilitation Center (4th floor)', 'Rehabilitation Center (4th floor)', FALSE, uuid(), NOW(), 1, @rc_location);
 INSERT INTO location (name, description, retired, uuid, date_created, creator, parent_location) VALUES ('Rehabilitation Center (5th floor)', 'Rehabilitation Center (4th floor)', FALSE, uuid(), NOW(), 1, @rc_location);
 
-SELECT location_tag_id INTO @location_tag_id2 FROM location_tag WHERE name = 'Admission Location' AND description = 'Rehabilitaion center';
+SELECT location_tag_id INTO @location_tag_id2 FROM location_tag WHERE name = 'Admission Location' and description = 'Rehabilitation center' ;
 SELECT location_id INTO @location_id4 FROM location WHERE location.name='Rehabilitation Center' and description = 'Rehabilitation Center in Hospital';
 INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id4, @location_tag_id2);
 
