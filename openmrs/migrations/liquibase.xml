@@ -231,6 +231,10 @@
         <comment>Adding All Parent and child Bed locations</comment>
         <sqlFile path="bedManagement/addLocationsforBedLayouts.sql"/>
     </changeSet>
+    <changeSet id="Amman-201703131539" author="Shiva kumar, David">
+        <comment>Stored Procedure to insert beds into locations</comment>
+        <sqlFile path="bedManagement/insertBedIntoLocationStoredProcedure.sql" endDelimiter="#"/>
+    </changeSet>
     <changeSet id="Amman-201703131211" author="Shiva kumar">
         <comment>Adding bed layout to Rehabilitation Center</comment>
         <sqlFile path="bedManagement/rehabilitationBedLayout.sql"/>
