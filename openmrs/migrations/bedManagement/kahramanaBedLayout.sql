@@ -1,5 +1,5 @@
 DROP PROCEDURE IF EXISTS insertBedIntoLocation;
-DELIMITER |
+#
 CREATE PROCEDURE insertBedIntoLocation
    (
       IN bedNumber nvarchar(30),
@@ -13,8 +13,8 @@ BEGIN
     SELECT bed.bed_id INTO @bedId FROM bed LEFT OUTER JOIN bed_location_map ON bed_location_map.bed_id = bed.bed_id WHERE bed.bed_number=bedNumber AND bed_location_map.location_id IS NULL;
     INSERT INTO bed_location_map(location_id, row_number, column_number, bed_id) VALUES (@locationId, rowNumber, columnNumber, @bedId);
 END
-|
-DELIMITER ;
+#
+
 CALL insertBedIntoLocation('110/1', 'Kahramana(1st floor)',1,1);
 CALL insertBedIntoLocation('110/2', 'Kahramana(1st floor)',1,2);
 CALL insertBedIntoLocation('111/1', 'Kahramana(1st floor)',1,3);
