@@ -34,8 +34,8 @@ h1, h2, h3 ,h4 {
 
 /* line 20, print.scss */
 .registrationCard-print-table {
-  width: 90%;
-  height: 100%;
+  width: 203px;
+  height: 128px;
   overflow: scroll;
   margin: 0 auto;
   table-layout: fixed;
@@ -148,7 +148,7 @@ h1, h2, h3 ,h4 {
 
 /* line 74, print.scss */
 .registrationCard-details {
-  padding: 0mm 5mm 0mm 5mm;
+  padding: 0mm 0mm 0mm 0mm;
 }
 
 /* line 77, print.scss */
