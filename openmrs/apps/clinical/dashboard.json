@@ -196,7 +196,17 @@
                     "MH, Medical History",
                     "First Stage Validation",
                     "Follow-up validation",
-                    "FV, Final validation"
+                    "FV, Final validation",
+                    "Baseline Vital Signs",
+                    "Social and Medical History",
+                    "Health Education",
+                    "Initial Anesthesia Assessment",
+                    "Physiotherapy initial assessment",
+                    "MD Initial Assessment",
+                    "Surgeon Pre-Op Assessment and Treatment Plan",
+                    "Physical Examination",
+                    "Diagnosis Details"
+
 
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
