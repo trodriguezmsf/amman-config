@@ -294,7 +294,7 @@
                 "nonCodedConceptName":"SAP, Non-coded Planned procedure",
                 "allowAddMore": true
             },
-            "MD, Surgical Procedures Performed Outside AMH Data ": {
+            "MD, Surgical Procedures Performed Outside AMH Data": {
                 "autocomplete":true,
                 "codedConceptName":"MD, Procedures performed outside AMH",
                 "nonCodedConceptName":"MD, Non-Coded Procedures performed outside AMH",
