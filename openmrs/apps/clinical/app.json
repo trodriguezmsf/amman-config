@@ -267,7 +267,8 @@
                 "autocomplete":true
             },
             "SAP, Anatomical site":{
-                "multiSelect":true
+                "multiSelect":true,
+                "autocomplete":true
             },
             "SMH, Pain Assessment":{
                 "allowAddMore": true
