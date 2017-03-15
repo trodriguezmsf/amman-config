@@ -18,7 +18,7 @@ SET
 FROM
   bed
   INNER JOIN bed_location_map blm ON blm.bed_id = bed.bed_id
-  INNER JOIN location l ON l.location_id = blm.location_id AND l.name = ${location_name}
+  INNER JOIN location l ON l.location_id = blm.location_id AND l.name = ${location_name} AND l.retired IS FALSE
   LEFT OUTER JOIN bed_patient_assignment_map bpam ON bpam.bed_id = bed.bed_id AND bpam.date_stopped IS NULL
   LEFT OUTER JOIN person p ON p.person_id = bpam.patient_id
   LEFT OUTER JOIN person_name pn ON pn.person_id = p.person_id
@@ -30,7 +30,7 @@ FROM
                       GROUP_CONCAT(DISTINCT bed_tag.name ORDER BY bed_tag.name) AS 'bed_tags'
                     FROM
                       bed_tag_map
-                      INNER JOIN bed_tag ON bed_tag.bed_tag_id = bed_tag_map.bed_tag_id
+                      INNER JOIN bed_tag ON bed_tag.bed_tag_id = bed_tag_map.bed_tag_id AND bed_tag_map.voided IS FALSE
                     GROUP BY bed_tag_map.bed_id
                   ) bed_tags ON bed_tags.bed_id = bed.bed_id
   LEFT OUTER JOIN (
@@ -41,7 +41,7 @@ FROM
                       person_attribute pa
                       INNER JOIN person_attribute_type pat
                         ON pat.person_attribute_type_id = pa.person_attribute_type_id AND
-                           pat.name = 'isCaretakerRequired'
+                           pat.name = 'isCaretakerRequired' AND pa.voided IS FALSE
                   ) isCaretakerRequired ON isCaretakerRequired.person_id = p.person_id
   LEFT OUTER JOIN (
                     SELECT
@@ -51,30 +51,28 @@ FROM
                       person_attribute pa
                       INNER JOIN person_attribute_type pat
                         ON pat.person_attribute_type_id = pa.person_attribute_type_id AND
-                           pat.name = 'CaretakerGender'
+                           pat.name = 'CaretakerGender' AND pa.voided IS FALSE
                       INNER JOIN concept_name cn ON cn.concept_id = pa.value
                   ) caretakerGender ON caretakerGender.person_id = p.person_id
   LEFT OUTER JOIN (
-                    SELECT
-                      o.person_id      AS 'person_id',
-                      o.value_datetime AS 'date'
-                    FROM
-                      obs o
-                      INNER JOIN
-                      (
-                        SELECT
-                          o.person_id,
-                          o.concept_id,
-                          MAX(o.date_created) AS 'date_created'
-                        FROM
-                          obs o
-                          INNER JOIN concept_name cn
-                            ON cn.concept_id = o.concept_id AND cn.name = 'Expected Date of Discharge' AND
-                               cn.concept_name_type = 'FULLY_SPECIFIED'
-                        GROUP BY o.person_id
-                      ) most_recent_obs
-                        ON most_recent_obs.person_id = o.person_id AND most_recent_obs.concept_id = o.concept_id AND
-                           most_recent_obs.date_created = o.date_created
+                    SELECT o.value_datetime AS 'date', o.person_id
+                    FROM obs o
+                     INNER JOIN concept_name cn ON o.concept_id = cn.concept_id AND
+                                              cn.name = 'Expected Date of Discharge' AND
+                                              cn.concept_name_type = 'FULLY_SPECIFIED' AND
+                                              o.voided IS FALSE
+                                              INNER JOIN
+                                              (SELECT
+                                                 MAX(parentObs.obs_id) AS 'obs_id', parentObs.person_id
+                                               FROM obs parentObs
+                                                INNER JOIN concept_name cn
+                                                   ON cn.concept_id = parentObs.concept_id AND cn.name = 'IPD Expected DD' AND
+                                                      cn.concept_name_type = 'FULLY_SPECIFIED'
+                                                      AND parentObs.voided IS FALSE
+                                               GROUP BY
+                                                 parentObs.person_id
+                                              ) ipd_expected_dd ON ipd_expected_dd.person_id = o.person_id AND
+                                                                   ipd_expected_dd.obs_id = o.obs_group_id
                   ) expected_date_of_discharge ON expected_date_of_discharge.person_id = p.person_id
   LEFT OUTER JOIN (
                     SELECT
@@ -106,7 +104,7 @@ FROM
                                      INNER JOIN obs o ON o.encounter_id = e.encounter_id AND e.voided IS FALSE AND o.voided IS FALSE
                                      INNER JOIN concept_name cn
                                        ON cn.concept_id = o.concept_id AND cn.voided IS FALSE AND
-                                          cn.name = 'Medical Files'
+                                          cn.name = 'FSTG, Specialty determined by MLO'
                                    GROUP BY
                                      e.patient_id
                                  ) latest_encounter ON latest_encounter.patient_id = e.patient_id AND
