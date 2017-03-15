@@ -323,9 +323,7 @@
             "MD, Site of procedure":{
                 "autocomplete":true
             },
-            "SAP, Anatomical site":{
-                "autocomplete":true
-            },
+
             "SAP, Site of surgical objective":{
                 "autocomplete":true
             },
@@ -334,7 +332,34 @@
             },
             "SAP, Site of surgical procedure":{
                 "autocomplete":true
-            }
+            },
+            "DIA, Surgical Diagnosis":{
+              "autocomplete":true
+            },
+            "DIA, Medical Diagnosis":{
+              "autocomplete":true
+            },
+            "DIA, Site":{
+              "autocomplete":true
+            },
+            "DIA, Surgical Diagnois Section":{
+              "allowAddMore":true
+            },
+            "Surgical Diagnosis Section":{
+              "allowAddMore":true
+            },
+          "Surgical Diagnosis Data": {
+            "autocomplete":true,
+            "codedConceptName":"DIA, Surgical Diagnosis coded",
+            "nonCodedConceptName":"DIA, Surgical Diagnosis non coded",
+            "allowAddMore": true
+          },
+          "Medical Diagnosis Data": {
+            "autocomplete":true,
+            "codedConceptName":"DIA, Medical Diagnosis coded",
+            "nonCodedConceptName":"DIA, Medical Diagnosis non coded",
+            "allowAddMore": true
+          }
 
     },
         "visitPage": {
