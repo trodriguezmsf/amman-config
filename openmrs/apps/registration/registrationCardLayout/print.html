@@ -39,10 +39,7 @@
             <table>
                 <tr>
 
-                    <td class="print-table-right-header">
 
-
-                    </td>
                     <td class="registrationCard-photo">
                         <img ng-src="{{patient.image}}" style="width: 20mm; height: 20mm; "
                              onerror="this.onerror=null;this.src='../images/blank.jpeg';"/>
@@ -50,38 +47,38 @@
                 </tr>
 
             </table>
-            <table class="registrationCard-details">
+            <table   class="registrationCard-details">
                 <tbody>
                 <tr>
                     <td class="registrationCard-details-name">
-                        <span class="data-text">Patient ID</span>
+                      Patient ID
                     </td>
                     <td class="registrationCard-details-seperator"> :  </td>
                     <td>{{patient.primaryIdentifier.identifier}} </td>
                 </tr>
                 <tr>
                     <td class="registrationCard-details-name">
-                        <span class="data-text">Name(English)</span>
+                       Name(English)
                     </td>
 
                     <td class="registrationCard-details-seperator"> :  </td>
                     <td>
-                        <span class="data-text">{{patient.givenName}}&nbsp;{{patient.familyName}}</span>
+                        {{patient.givenName}}&nbsp;{{patient.familyName}}
                     </td>
                 </tr>
                 <tr>
                     <td class="registrationCard-details-name">
-                        <span class="data-text">Name(Arabic)</span>
+                       Name(Arabic)
                     </td>
 
                     <td class="registrationCard-details-seperator"> :  </td>
                     <td>
-                        <span class="data-text">{{patient.givenNameLocal}}&nbsp;{{patient.familyNameLocal}}</span>
+                       {{patient.givenNameLocal}}&nbsp;{{patient.familyNameLocal}}
                     </td>
                 </tr>
                 <tr>
                     <td class="registrationCard-details-name">
-                        <span class="data-text">Age</span>
+                        Age
                     </td>
                     <td class="registrationCard-details-seperator"> :  </td>
                     <td>{{patient.age | age}} </td>
@@ -89,14 +86,14 @@
 
                              <tr>
                     <td class="registrationCard-details-name">
-                        <span class="data-text">Country</span>
+                        Country
                     </td>
                     <td class="registrationCard-details-seperator"> :  </td>
                     <td>{{patient.address.address3}} </td>
                 </tr>
                 <tr>
                     <td class="registrationCard-details-name">
-                        <span class="data-text">Is caretaker required</span>
+                        Is caretaker required
                     </td>
                     <td class="registrationCard-details-seperator"> :  </td>
                     <td ng-if="patient.isCareTakerRequired">Yes</td>
@@ -104,7 +101,7 @@
                 </tr>
                 <tr>
                     <td class="registrationCard-details-name">
-                        <span class="data-text">Date</span>
+                        Date
                     </td>
                     <td class="registrationCard-details-seperator"> :  </td>
                     <td>{{patient.dateofArrival | date:'dd MMM yyyy'}} </td>

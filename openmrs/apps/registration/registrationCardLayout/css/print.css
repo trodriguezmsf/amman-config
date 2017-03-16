@@ -15,8 +15,9 @@ p, h1, h2, h3, tr, div, span, li {
 
 td {
 margin: 0px;
-  padding: 5px;
+  padding: 2px;
   text-align:left;
+  font-size:12px;
 
 }
 .arabic{
@@ -34,8 +35,8 @@ h1, h2, h3 ,h4 {
 
 /* line 20, print.scss */
 .registrationCard-print-table {
-  width: 203px;
-  height: 128px;
+
+  height: 3.38in;
   overflow: scroll;
   margin: 0 auto;
   table-layout: fixed;
@@ -77,11 +78,12 @@ h1, h2, h3 ,h4 {
 /* line 24, print.scss */
 .registrationCard-print-table td.registrationCard-photo {
   padding-top: 2px;
+  padding-left:100px;
 }
 
 /* line 27, print.scss */
 .print-table-left {
-  width: 77mm;
+  width: 2.13in;
 }
 
 /* line 30, print.scss */
@@ -121,7 +123,7 @@ h1, h2, h3 ,h4 {
 
 /* line 55, print.scss */
 .print-table-right {
-  width: 77mm;
+  width : 2.13in;
 }
 
 /* line 58, print.scss */
@@ -136,9 +138,8 @@ h1, h2, h3 ,h4 {
 /* line 65, print.scss */
 .print-table-right-header {
   text-align: center;
-  width: 42mm;
+  width: 22mm;
   text-align: left;
-  height: 12mm;
 }
 
 /* line 71, print.scss */
@@ -147,24 +148,22 @@ h1, h2, h3 ,h4 {
 }
 
 /* line 74, print.scss */
-.registrationCard-details {
-  padding: 0mm 0mm 0mm 0mm;
-}
+
 
 /* line 77, print.scss */
 .registrationCard-details-name {
-  width: 100 px;
-  text-align: left;
+  text-align:left;
+  text-size:5px;
 }
 
 /* line 80, print.scss */
 .registrationCard-details-seperator {
-  width: 25px;
-  text-align: center;
+  width: 2px;
+
 }
 
 /* line 84, print.scss */
 .data-text {
-  vertical-align: bottom;
+ text-size:5px;
 
 }
