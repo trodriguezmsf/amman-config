@@ -360,6 +360,12 @@
             "codedConceptName":"DIA, Medical Diagnosis coded",
             "nonCodedConceptName":"DIA, Medical Diagnosis non coded",
             "allowAddMore": true
+          },
+          "MD, Type of internal fixation": {
+            "multiSelect":true
+          },
+          "AIA, ASA score":{
+            "required":true
           }
 
     },

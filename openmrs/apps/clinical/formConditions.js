@@ -316,19 +316,19 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['PHIA, Location of assessment'];
         if (conditionConcept == "Lower limb"){
-            conditions.show.push("PHIA, FIM Score","PHIA, Tinnetti Score","PHIA, MMT Score")
-            conditions.hide.push("PHIA, 20 Function Test Score","PHIA, Basic Grip Test Score","PHIA, Kapandji Score","PHIA, Functional Evaluation Mouth Score","PHIA, Mouth Opening Score")
+            conditions.show.push("PHIA, Lower extremity functional index (>18 years)","PHIA, Lower extremity functional index (>18 years)","PHIA, Neuro QOL lower limb (<18 years)","PHIA, Tinetti","PHIA, Muscle power test (MMT)")
+            conditions.hide.push("PHIA, Upper extremity functional index (>18 years)","PHIA, Neuro QOL upper limb (<18 years)","PHIA, Basic grip test","PHIA, Functional evaluation of mouth","PHIA, Mouth opening test")
         }
         else if (conditionConcept == "Upper limb"){
-            conditions.show.push("PHIA, FIM Score","PHIA, MMT Score","PHIA, 20 Function Test Score","PHIA, Basic Grip Test Score","PHIA, Kapandji Score")
-            conditions.hide.push("PHIA, Tinnetti Score","PHIA, Functional Evaluation Mouth Score","PHIA, Mouth Opening Score")
+            conditions.show.push("PHIA, Upper extremity functional index (>18 years)","PHIA, Neuro QOL upper limb (<18 years)","PHIA, Basic grip test","PHIA, Muscle power test (MMT)")
+            conditions.hide.push("PHIA, Lower extremity functional index (>18 years)","PHIA, Neuro QOL lower limb (<18 years)","PHIA, Tinetti","PHIA, Functional evaluation of mouth","PHIA, Mouth opening test")
         }
         else if (conditionConcept == "Maxillo-facial"){
-            conditions.show.push("PHIA, FIM Score","PHIA, Functional Evaluation Mouth Score","PHIA, Mouth Opening Score")
-            conditions.hide.push("PHIA, Tinnetti Score","PHIA, MMT Score","PHIA, 20 Function Test Score","PHIA, Basic Grip Test Score","PHIA, Kapandji Score")
+            conditions.show.push("PHIA, Functional evaluation of mouth","PHIA, Mouth opening test")
+            conditions.hide.push("PHIA, Upper extremity functional index (>18 years)","PHIA, Neuro QOL upper limb (<18 years)","PHIA, Basic grip test","PHIA, Muscle power test (MMT)","PHIA, Lower extremity functional index (>18 years)","PHIA, Neuro QOL lower limb (<18 years)","PHIA, Tinetti")
         }
         else {
-            conditions.hide.push("PHIA, FIM Score","PHIA, Tinnetti Score","PHIA, MMT Score","PHIA, 20 Function Test Score","PHIA, Basic Grip Test Score","PHIA, Kapandji Score","PHIA, Functional Evaluation Mouth Score","PHIA, Mouth Opening Score")
+            conditions.hide.push("PHIA, Upper extremity functional index (>18 years)","PHIA, Neuro QOL upper limb (<18 years)","PHIA, Basic grip test","PHIA, Muscle power test (MMT)","PHIA, Lower extremity functional index (>18 years)","PHIA, Neuro QOL lower limb (<18 years)","PHIA, Tinetti","PHIA, Functional evaluation of mouth","PHIA, Mouth opening test");
         }
         return conditions;
     },
