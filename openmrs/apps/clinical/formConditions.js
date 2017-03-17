@@ -236,12 +236,12 @@ Bahmni.ConceptSet.FormConditions.rules = {
         return conditions;
     },
 
-    'PHIA, Does the patient use an assistive device?': function (formName, formFieldValues) {
+    'PHIA, Does the patient use an assistive device or orthosis?': function (formName, formFieldValues) {
         var conditions = {
             show: [],
             hide: []
         };
-        var conditionConcept = formFieldValues['PHIA, Does the patient use an assistive device?'];
+        var conditionConcept = formFieldValues['PHIA, Does the patient use an assistive device or orthosis?'];
         if (conditionConcept == "Yes"){
             conditions.show.push("PHIA, Type of assistive device")
             conditions.hide.push("PHIA, Other type of assistive device")
