@@ -1,30 +1,47 @@
-DELETE FROM global_property where property = 'emrapi.sqlSearch.PatientsMovementtoKahramana';
- select uuid() into @uuid;
- INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
- VALUES ('emrapi.sqlSearch.PatientsMovementtoKahramana',
+DELETE FROM global_property WHERE property = 'emrapi.sqlSearch.PatientsMovementtoKahramana';
+SELECT uuid() INTO @uuid;
+INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
+VALUES ('emrapi.sqlSearch.PatientsMovementtoKahramana',
 "SELECT DISTINCT
-            concat(pn.given_name, ' ', pn.family_name)                      AS name,
             pi.identifier                                                   AS identifier,
-            'Movement to Kahramana'                                         AS status,
+            concat(pn.given_name, ' ', pn.family_name)                      AS PATIENT_LISTING_QUEUES_HEADER_NAME,
+            floor(DATEDIFF(CURDATE(), p.birthdate) / 365)                   AS age,
+            p.gender                                                        AS gender,
+            parentLocation.name                                             AS department,
+            b.bed_number                                                    AS `Bed No`,
+            DATE_FORMAT(o.obs_datetime,'%d %b %Y %h:%i %p')                 AS 'Disposition Date',
+            'Movement to Kahramana'                                         AS action,
             concat('', p.uuid)                                              AS uuid,
-            concat('', v.uuid)                                              AS activeVisitUuid,
-            IF(va.value_reference = 'Admitted', 'true', 'false')            AS hasBeenAdmitted
+            concat('', v.uuid)                                              AS activeVisitUuid
         FROM visit v
         INNER JOIN person_name pn ON v.patient_id = pn.person_id and pn.voided is FALSE
         INNER JOIN patient_identifier pi ON v.patient_id = pi.patient_id and pi.voided is FALSE
         INNER JOIN patient_identifier_type pit on pi.identifier_type = pit.patient_identifier_type_id
         INNER JOIN global_property gp on gp.property='emr.primaryIdentifierType' and gp.property_value=pit.uuid
         INNER JOIN person p ON v.patient_id = p.person_id
-        Inner Join (SELECT DISTINCT v.visit_id
+        INNER JOIN bed_patient_assignment_map bpam ON bpam.patient_id = p.person_id AND bpam.date_stopped IS NULL AND bpam.voided IS FALSE
+        INNER JOIN bed b ON bpam.bed_id = b.bed_id
+        INNER JOIN bed_location_map blm ON bpam.bed_id = blm.bed_id
+        INNER JOIN location childLocation on blm.location_id = childLocation.location_id AND childLocation.retired IS FALSE
+        INNER JOIN location parentLocation ON parentLocation.location_id = childLocation.parent_location AND parentLocation.retired IS FALSE
+        INNER JOIN encounter bpame ON bpam.encounter_id = bpame.encounter_id
+        INNER JOIN (SELECT DISTINCT v.visit_id
           FROM encounter en
           LEFT JOIN visit v ON v.visit_id = en.visit_id AND en.encounter_type =
             (SELECT encounter_type_id
               FROM encounter_type
-            WHERE name = 'TRANSFER')) v1 on v1.visit_id = v.visit_id
-        INNER JOIN encounter e ON v.visit_id = e.visit_id
-        INNER JOIN obs o ON e.encounter_id = o.encounter_id
+            WHERE name = 'ADMISSION')) v1 on v1.visit_id = v.visit_id
+        INNER JOIN (SELECT
+                        en.patient_id,
+                        max(en.date_created) AS dateCreated
+                    FROM encounter en
+                    INNER JOIN obs o ON en.encounter_id = o.encounter_id
+                    INNER JOIN concept_name cn ON o.concept_id = cn.concept_id AND cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.voided is FALSE AND cn.name = 'Disposition'
+                    GROUP BY en.patient_id) latestEncounterWithDisposition ON v.patient_id = latestEncounterWithDisposition.patient_id
+        INNER JOIN encounter e ON v.visit_id = e.visit_id AND e.date_created = latestEncounterWithDisposition.dateCreated
+                                                          AND e.patient_id = latestEncounterWithDisposition.patient_id
+        INNER JOIN obs o ON e.encounter_id = o.encounter_id AND o.voided IS FALSE
         INNER JOIN concept_name cn ON o.value_coded = cn.concept_id AND cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.voided is FALSE
-        JOIN location l on l.uuid=${visit_location_uuid} and v.location_id = l.location_id
-        left outer join visit_attribute va on va.visit_id = v.visit_id and va.attribute_type_id =
-          (select visit_attribute_type_id from visit_attribute_type where name='Admission Status')
-        WHERE v.date_stopped IS NULL AND v.voided = 0 AND o.voided = 0 AND cn.name = 'Movement to Kahramana';",'Patients Movement to Kahramana',@uuid);
+                                                                    AND cn.name = 'Movement to Kahramana' AND o.obs_datetime > bpame.date_created
+    WHERE v.date_stopped IS NULL AND v.voided = 0
+    ORDER BY o.obs_datetime",'Patients Movement to Kahramana',@uuid);

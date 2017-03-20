@@ -310,7 +310,7 @@
         </sql>
     </changeSet>
     <changeSet id="Amman-201702171623" author="Shiva kumar" runOnChange="true">
-        <comment>Resetting bed layout for hospital with 3rd, 4th and 5th floor</comment>
+        <comment>Bed management patient listing queues for RC, Ward, Kahramana</comment>
         <sqlFile path="bedManagement/patientsAdmittoRc.sql"/>
         <sqlFile path="bedManagement/patientsAdmittoWard.sql"/>
         <sqlFile path="bedManagement/patientsadmitttokahramana.sql"/>
