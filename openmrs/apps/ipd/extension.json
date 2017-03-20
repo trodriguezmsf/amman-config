@@ -8,8 +8,18 @@
             "searchHandler": "emrapi.sqlSearch.admittedPatients",
             "view": "tabular",
             "translationKey": "MODULE_LABEL_ADMITTED_PATIENT_KEY",
-            "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "action",
+            "links": [
+                {
+                    "url": "/bahmni/ipd/#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
+                    "linkColumn": "identifier",
+                    "newTab": false
+                },
+                {
+                    "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard/disposition?programUuid={{programUuid}}&enrollment={{enrollment}}",
+                    "linkColumn": "disposition",
+                    "newTab": true
+                }
+            ],
             "searchColumns": ["identifier", "name", "gender", "department", "age", "Bed No","Admitted On"]
         },
         "label": "Admitted",
@@ -25,7 +35,7 @@
             "searchHandler": "emrapi.sqlSearch.patientsAdmittoRc",
             "translationKey": "MODULE_LABEL_TO_ADMIT_TO_RC_KEY",
             "forwardUrl":"#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "status",
+            "linkColumn": "action",
             "searchColumns": ["identifier", "name", "gender", "age", "Disposition Date"]
         },
         "label": "Admit to RC",
@@ -41,7 +51,7 @@
             "searchHandler": "emrapi.sqlSearch.patientsAdmittoWard",
             "translationKey": "MODULE_LABEL_TO_ADMIT_TO_WARD_KEY",
             "forwardUrl":"#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "status",
+            "linkColumn": "action",
             "searchColumns": ["identifier", "name", "gender", "age", "Disposition Date"]
         },
         "label": "Admit to Ward",
@@ -57,7 +67,7 @@
             "view": "tabular",
             "translationKey": "MODULE_LABEL_TO_ADMIT_TO_KAHRAMANA_KEY",
             "forwardUrl" : "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "status",
+            "linkColumn": "action",
             "searchColumns": ["identifier", "name", "gender", "age", "Disposition Date"]
         },
         "label": "Admit to Kahramana",
@@ -73,7 +83,7 @@
             "view": "tabular",
             "translationKey": "MODULE_LABEL_TO_MOVEMENT_TO_WARD_KEY",
             "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "status",
+            "linkColumn": "action",
             "searchColumns": ["identifier", "name"]
         },
         "label": "Movement to Ward",
@@ -89,7 +99,7 @@
             "view": "tabular",
             "translationKey": "MODULE_LABEL_TO_MOVEMENT_TO_RC_KEY",
             "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "status",
+            "linkColumn": "action",
             "searchColumns": ["identifier", "name"]
         },
         "label": "Movement to Rc",
@@ -105,7 +115,7 @@
             "view": "tabular",
             "translationKey": "MODULE_LABEL_TO_MOVEMENT_TO_KAHRAMANA_KEY",
             "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "status",
+            "linkColumn": "action",
             "searchColumns": ["identifier", "name"]
         },
         "label": "Movement to Kahramana",
@@ -121,7 +131,7 @@
             "view": "tabular",
             "translationKey": "MODULE_LABEL_TO_TRANSFER_TO_HOME_KEY",
             "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
-            "linkColumn": "status",
+            "linkColumn": "action",
             "searchColumns": ["identifier", "name"]
         },
         "label": "Transfer Home",
