@@ -2,7 +2,7 @@
  select uuid() into @uuid;
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.continueUnderFollowup',
-"SELECT  `Date Of Presentation`,`identifier`, name , uuid , `Specialty` , `Name of MLO`, `Time for next medical follow-up`, `Comments`
+"SELECT  `Date Of Presentation`,`identifier`, name AS PATIENT_LISTING_QUEUES_HEADER_NAME, uuid , `Specialty` , `Name of MLO`, `Time for next medical follow-up`, `Comments`
 FROM (SELECT
         concat(pn.given_name, ' ', pn.family_name) AS name,
         pi.identifier                              AS `identifier`,

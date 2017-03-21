@@ -3,7 +3,7 @@
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.awaitingValidationFirstStage',
 "SELECT
-  `Date of File Received`, `identifier`, name, uuid, `Name of MLO`, `Nationality`, `Specialty`
+  `Date of File Received`, `identifier`, name AS PATIENT_LISTING_QUEUES_HEADER_NAME, uuid, `Name of MLO`, `Nationality`, `Specialty`
 FROM (
        SELECT
          personData.name,

@@ -5,14 +5,21 @@
  INSERT INTO global_property (property, property_value, description, uuid)
  VALUES ('emrapi.sqlSearch.expectedArrival',
 "SELECT
-        `identifier`, name, `Age`, uuid, `Country`, `Nationality`, `Specialty`, `Stage`,
-        DATE_FORMAT(`ExpectedDateOfArrival`, '%d/%m/%Y') AS `Expected Date of Arrival`,
+        `identifier`,
+        name                                                AS PATIENT_LISTING_QUEUES_HEADER_NAME,
+        `Age`,
+        `Country`,
+        `Nationality`,
+        `Specialty`,
+        `Stage`,
+        DATE_FORMAT(`ExpectedDateOfArrival`, '%d/%m/%Y')    AS `Expected Date of Arrival`,
         `Does the Patient need Accommodation?`,
         `Type of Admission Recommended`,
+        'Admit'                                             AS `bed management`,
+        'Enter Disposition'                                 AS disposition,
+        uuid,
         programUuid,
-        enrollment,
-        'Admit'                                     AS `bed management`,
-        'Enter Disposition'                         AS disposition
+        enrollment
 FROM
   (
 

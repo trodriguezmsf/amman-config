@@ -24,6 +24,10 @@
             );
         </sql>
     </changeSet>
+    <changeSet id="Amman-201703211715" author="Santhosh, Maharjun" runOnChange="true">
+        <comment>Updating the program active patients listing queue</comment>
+        <sqlFile path="programsActivePatientsQueue.sql"/>
+    </changeSet>
     <changeSet id="Amman-183504102016" author="Shiva kumar" context="rel1" runOnChange="true">
         <comment>Adding patient listing queues for patients whose are in first stage date of file recieved filled and date of presentation is not filled</comment>
         <sqlFile path="awaitingValidationPatientQueue.sql"/>

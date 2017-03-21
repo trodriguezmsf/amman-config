@@ -6,7 +6,7 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.awaitingValidatio
  VALUES ('emrapi.sqlSearch.awaitingValidationFollowup',
 "
 SELECT
-  `identifier`, name, uuid, `Name of MLO`, `Nationality`, `Specialty`, `Name of Surgeon 1`, `Name of Surgeon 2`
+  `identifier`, name AS PATIENT_LISTING_QUEUES_HEADER_NAME, uuid, `Name of MLO`, `Nationality`, `Specialty`, `Name of Surgeon 1`, `Name of Surgeon 2`
 FROM (
        SELECT
          person_data.name                                                                           AS name,

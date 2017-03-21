@@ -4,7 +4,7 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.incompleteMedical
 
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.incompleteMedicalFile',
-"SELECT `Date of File Received`, `identifier`, name , uuid , `Name of MLO` , `Documents Needed to be Complete`
+"SELECT `Date of File Received`, `identifier`, name AS PATIENT_LISTING_QUEUES_HEADER_NAME, uuid , `Name of MLO` , `Documents Needed to be Complete`
 FROM (SELECT
         concat(pn.given_name, ' ', pn.family_name) AS name,
         pi.identifier                              AS `identifier`,
