@@ -91,7 +91,23 @@
     "extensionParams": {
       "searchHandler": "emrapi.sqlSearch.expectedArrival",
       "translationKey": "MODULE_LABEL_ARRIVAL_KEY",
-      "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
+      "links": [
+        {
+          "url": "#/programs/patient/{{patientUuid}}/consultationContext",
+          "linkColumn": "identifier",
+          "newTab": false
+        },
+        {
+          "url": "/bahmni/ipd/#/bedManagement/patient/{{patientUuid}}",
+          "linkColumn": "bed management",
+          "newTab": true
+        },
+        {
+          "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard/disposition?programUuid={{programUuid}}&enrollment={{enrollment}}",
+          "linkColumn": "disposition",
+          "newTab": true
+        }
+      ],
       "view": "tabular",
       "searchColumns": ["identifier", "name", "Age", "Country", "Nationality", "Specialty", "Stage", "Expected Date of Arrival", "Does the Patient need Accommodation?", "Type of Admission Recommended"]
     },

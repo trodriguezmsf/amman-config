@@ -5,17 +5,24 @@
  INSERT INTO global_property (property, property_value, description, uuid)
  VALUES ('emrapi.sqlSearch.expectedArrival',
 "SELECT
-  `identifier`, name, `Age`, uuid, `Country`, `Nationality`, `Specialty`, `Stage`,
-  DATE_FORMAT(`ExpectedDateOfArrival`, '%d/%m/%Y') AS `Expected Date of Arrival`,
-  `Does the Patient need Accommodation?`, `Type of Admission Recommended`
+        `identifier`, name, `Age`, uuid, `Country`, `Nationality`, `Specialty`, `Stage`,
+        DATE_FORMAT(`ExpectedDateOfArrival`, '%d/%m/%Y') AS `Expected Date of Arrival`,
+        `Does the Patient need Accommodation?`,
+        `Type of Admission Recommended`,
+        programUuid,
+        enrollment,
+        'Admit'                                     AS `bed management`,
+        'Enter Disposition'                         AS disposition
 FROM
   (
 
     SELECT
+      expectedPerson.uuid                                                                        AS  uuid,
+      concat('', prog.uuid)                                                                      AS programUuid,
+      concat('', pp.uuid)                                                                        AS enrollment,
       expectedPerson.name                                                                        AS name,
       expectedPerson.age                                                                         AS `Age`,
-      expectedPerson.patient_identifier                                                                   AS `identifier`,
-      expectedPerson.uuid                                                                        AS  uuid,
+      expectedPerson.patient_identifier                                                          AS `identifier`,
       expectedPerson.country                                                                     AS 'Country',
       expectedPerson.nationality                                                                 AS 'Nationality',
       expectedPerson.expectedDateOfArrival                                                       AS 'ExpectedDateOfArrival',
@@ -121,7 +128,7 @@ FROM
                                                    AND coded_scn.voided IS FALSE
                GROUP BY obs.person_id
               ) obs_across_visits ON expectedPerson.person_id = obs_across_visits.person_id
-    JOIN patient_program pp
-    ON expectedPerson.person_id = pp.patient_id AND pp.date_completed IS NULL AND pp.voided IS FALSE
+    JOIN patient_program pp ON expectedPerson.person_id = pp.patient_id AND pp.date_completed IS NULL AND pp.voided IS FALSE
+    JOIN program prog ON pp.program_id = prog.program_id
     GROUP BY expectedPerson.person_id
     ORDER BY expectedDateOfArrival) result", 'Expected Arrival Patient Queue', @uuid);
