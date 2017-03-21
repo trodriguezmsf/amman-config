@@ -63,7 +63,7 @@
     "id": "bahmni.ipd",
     "extensionPointId": "org.bahmni.home.dashboard",
     "type": "link",
-    "translationKey": "Inpatient Department",
+    "translationKey": "Bed Management",
     "label": "InPatient",
     "url": "../ipd/#/admit",
     "icon": "fa-bed",
