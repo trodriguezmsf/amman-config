@@ -16,7 +16,7 @@
                 }, {
                     "url": "/bahmni/ipd/#/bedManagement/patient/{{patientUuid}}",
                     "linkColumn": "Bed Management",
-                    "newTab": false
+                    "newTab": true
                 }, {
                     "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard/disposition?programUuid={{programUuid}}&enrollment={{enrollment}}",
                     "linkColumn": "disposition",
