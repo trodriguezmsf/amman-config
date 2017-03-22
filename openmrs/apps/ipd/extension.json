@@ -10,11 +10,11 @@
             "translationKey": "MODULE_LABEL_ADMITTED_PATIENT_KEY",
             "links": [
                 {
-                    "url": "/bahmni/ipd/#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
+                    "url": "/bahmni/ipd/#/bedManagement/patient/{{patientUuid}}",
                     "linkColumn": "identifier",
                     "newTab": false
                 }, {
-                    "url": "/bahmni/ipd/#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
+                    "url": "/bahmni/ipd/#/bedManagement/patient/{{patientUuid}}",
                     "linkColumn": "Bed Management",
                     "newTab": false
                 }, {
@@ -23,6 +23,8 @@
                     "newTab": true
                 }
             ],
+            "forwardUrl": "#/bedManagement/patient/{{patientUuid}}",
+            "linkColumn": "action",
             "searchColumns": ["identifier", "name", "gender", "department", "age", "Bed No","Admitted On"]
         },
         "label": "Admitted",
@@ -37,8 +39,8 @@
             "view": "tabular",
             "searchHandler": "emrapi.sqlSearch.patientsAdmittoRc",
             "translationKey": "MODULE_LABEL_TO_ADMIT_TO_RC_KEY",
-            "forwardUrl":"#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
             "linkColumn": "action",
+            "forwardUrl":"#/bedManagement/patient/{{patientUuid}}",
             "searchColumns": ["identifier", "name", "gender", "age", "Disposition Date"]
         },
         "label": "Admit to RC",
@@ -53,7 +55,7 @@
             "view": "tabular",
             "searchHandler": "emrapi.sqlSearch.patientsAdmittoWard",
             "translationKey": "MODULE_LABEL_TO_ADMIT_TO_WARD_KEY",
-            "forwardUrl":"#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
+            "forwardUrl":"#/bedManagement/patient/{{patientUuid}}",
             "linkColumn": "action",
             "searchColumns": ["identifier", "name", "gender", "age", "Disposition Date"]
         },
@@ -69,7 +71,7 @@
             "searchHandler": "emrapi.sqlSearch.admitttokahramana",
             "view": "tabular",
             "translationKey": "MODULE_LABEL_TO_ADMIT_TO_KAHRAMANA_KEY",
-            "forwardUrl" : "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
+            "forwardUrl" : "#/bedManagement/patient/{{patientUuid}}",
             "linkColumn": "action",
             "searchColumns": ["identifier", "name", "gender", "age", "Disposition Date"]
         },
@@ -85,7 +87,7 @@
             "searchHandler": "emrapi.sqlSearch.PatientsMovementtoWard",
             "view": "tabular",
             "translationKey": "MODULE_LABEL_TO_MOVEMENT_TO_WARD_KEY",
-            "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
+            "forwardUrl": "#/bedManagement/patient/{{patientUuid}}",
             "linkColumn": "action",
             "searchColumns": ["identifier", "name"]
         },
@@ -101,7 +103,7 @@
             "searchHandler": "emrapi.sqlSearch.PatientsMovementtoRc",
             "view": "tabular",
             "translationKey": "MODULE_LABEL_TO_MOVEMENT_TO_RC_KEY",
-            "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
+            "forwardUrl": "#/bedManagement/patient/{{patientUuid}}",
             "linkColumn": "action",
             "searchColumns": ["identifier", "name"]
         },
@@ -117,7 +119,7 @@
             "searchHandler": "emrapi.sqlSearch.PatientsMovementtoKahramana",
             "view": "tabular",
             "translationKey": "MODULE_LABEL_TO_MOVEMENT_TO_KAHRAMANA_KEY",
-            "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
+            "forwardUrl": "#/bedManagement/patient/{{patientUuid}}",
             "linkColumn": "action",
             "searchColumns": ["identifier", "name"]
         },
@@ -133,7 +135,7 @@
             "searchHandler": "emrapi.sqlSearch.PatientsTransferHome",
             "view": "tabular",
             "translationKey": "MODULE_LABEL_TO_TRANSFER_TO_HOME_KEY",
-            "forwardUrl": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
+            "forwardUrl": "#/bedManagement/patient/{{patientUuid}}",
             "linkColumn": "action",
             "searchColumns": ["identifier", "name"]
         },

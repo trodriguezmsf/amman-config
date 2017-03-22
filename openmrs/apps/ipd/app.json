@@ -28,7 +28,7 @@
             "onAdmissionForwardTo": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
             "onTransferForwardTo": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
             "onDischargeForwardTo": "#/bedManagement/bed/{{bedId}}",
-            "defaultVisitType": "First Stage Validation",
+            "defaultVisitType": "Hospital",
             "expectedDateOfDischarge" : "IPD Expected DD",
             "maxPatientsPerBed" : 2,
             "conceptSetUI": {
