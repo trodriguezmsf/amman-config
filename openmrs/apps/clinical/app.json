@@ -212,7 +212,7 @@
             "SMH, Date of consultation":{
                 "default":true
             },
-            "PHIA, Type of assistive device":{
+            "PHIA, Type of assistive device or orthosis":{
                 "multiSelect":true
             },
             "VS, Blood glucose":{
