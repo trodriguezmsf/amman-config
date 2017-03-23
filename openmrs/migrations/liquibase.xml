@@ -418,4 +418,109 @@
             INSERT INTO visit_type (name,description,creator,date_created,uuid) VALUES ("Hospital","Hospital visit type",1,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201703230227" author="Shiva kumar" context="rel2.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from location where name ="OPD Pre-OP";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding OPD Pre-OP Location  </comment>
+        <sql>
+            SELECT location_id INTO @locationID FROM location where name = 'Al Mowasah Hospital' and description = 'Al Mowasah Hospital';
+            INSERT INTO location (name, description, retired, uuid, date_created, creator, parent_location) VALUES ('OPD Pre-OP', 'OPD Pre-OP', FALSE, uuid(), NOW(), 1, @locationID);
+            SELECT location_tag_id INTO @location_tagID1 FROM location_tag WHERE name = 'Login Location' and description = 'When a user logs in and chooses a session location, they may only choose one with this tag';
+            SELECT location_id INTO @location_ID1 FROM location WHERE location.name='OPD Pre-OP' and description = 'OPD Pre-OP';
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201703230235" author="Shiva kumar" context="rel2.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from location where name ="Physiotherapy";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Physiotherapy Location </comment>
+        <sql>
+            SELECT location_id INTO @locationID FROM location where name = 'Al Mowasah Hospital' and description = 'Al Mowasah Hospital';
+            INSERT INTO location (name, description, retired, uuid, date_created, creator, parent_location) VALUES ('Physiotherapy', 'Physiotherapy', FALSE, uuid(), NOW(), 1, @locationID);
+            SELECT location_tag_id INTO @location_tagID1 FROM location_tag WHERE name = 'Login Location' and description = 'When a user logs in and chooses a session location, they may only choose one with this tag';
+            SELECT location_id INTO @location_ID1 FROM location WHERE location.name='Physiotherapy' and description = 'Physiotherapy';
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201703230237" author="Shiva kumar" context="rel2.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from location where name ="Psycho-Social, Mental Health";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Psycho-Social, Mental Health Location </comment>
+        <sql>
+            SELECT location_id INTO @locationID FROM location where name = 'Al Mowasah Hospital' and description = 'Al Mowasah Hospital';
+            INSERT INTO location (name, description, retired, uuid, date_created, creator, parent_location) VALUES ('Psycho-Social, Mental Health', 'Psycho-Social, Mental Health', FALSE, uuid(), NOW(), 1, @locationID);
+            SELECT location_tag_id INTO @location_tagID1 FROM location_tag WHERE name = 'Login Location' and description = 'When a user logs in and chooses a session location, they may only choose one with this tag';
+            SELECT location_id INTO @location_ID1 FROM location WHERE location.name='Psycho-Social, Mental Health' and description = 'Psycho-Social, Mental Health';
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201703230240" author="Shiva kumar" context="rel2.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from location where name ="Surgical Ward";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Surgical Ward Location </comment>
+        <sql>
+            SELECT location_id INTO @locationID FROM location where name = 'Al Mowasah Hospital' and description = 'Al Mowasah Hospital';
+            INSERT INTO location (name, description, retired, uuid, date_created, creator, parent_location) VALUES ('Surgical Ward', 'Surgical Ward', FALSE, uuid(), NOW(), 1, @locationID);
+            SELECT location_tag_id INTO @location_tagID1 FROM location_tag WHERE name = 'Login Location' and description = 'When a user logs in and chooses a session location, they may only choose one with this tag';
+            SELECT location_id INTO @location_ID1 FROM location WHERE location.name='Surgical Ward' and description = 'Surgical Ward';
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201703230241" author="Shiva kumar" context="rel2.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from location where name ="Operating Theatre";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Operating Theatre Location </comment>
+        <sql>
+            SELECT location_id INTO @locationID FROM location where name = 'Al Mowasah Hospital' and description = 'Al Mowasah Hospital';
+            INSERT INTO location (name, description, retired, uuid, date_created, creator, parent_location) VALUES ('Operating Theatre', 'Operating Theatre', FALSE, uuid(), NOW(), 1, @locationID);
+            SELECT location_tag_id INTO @location_tagID1 FROM location_tag WHERE name = 'Login Location' and description = 'When a user logs in and chooses a session location, they may only choose one with this tag';
+            SELECT location_id INTO @location_ID1 FROM location WHERE location.name='Operating Theatre' and description = 'Operating Theatre';
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201703230247" author="Shiva kumar" context="rel2.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from location where name ="Operating Theatre";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Operating Theatre Location </comment>
+        <sql>
+            SELECT location_id INTO @locationID FROM location where name = 'Al Mowasah Hospital' and description = 'Al Mowasah Hospital';
+            INSERT INTO location (name, description, retired, uuid, date_created, creator, parent_location) VALUES ('Operating Theatre', 'Operating Theatre', FALSE, uuid(), NOW(), 1, @locationID);
+            SELECT location_tag_id INTO @location_tagID1 FROM location_tag WHERE name = 'Login Location' and description = 'When a user logs in and chooses a session location, they may only choose one with this tag';
+            SELECT location_id INTO @location_ID1 FROM location WHERE location.name='Operating Theatre' and description = 'Operating Theatre';
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201703230250" author="Shiva kumar" context="rel2.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from location where name ="OPD Follow-up";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding OPD Follow-up Location </comment>
+        <sql>
+            SELECT location_id INTO @locationID FROM location where name = 'Al Mowasah Hospital' and description = 'Al Mowasah Hospital';
+            INSERT INTO location (name, description, retired, uuid, date_created, creator, parent_location) VALUES ('OPD Follow-up', 'OPD Follow-up', FALSE, uuid(), NOW(), 1, @locationID);
+            SELECT location_tag_id INTO @location_tagID1 FROM location_tag WHERE name = 'Login Location' and description = 'When a user logs in and chooses a session location, they may only choose one with this tag';
+            SELECT location_id INTO @location_ID1 FROM location WHERE location.name='OPD Follow-up' and description = 'OPD Follow-up';
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
