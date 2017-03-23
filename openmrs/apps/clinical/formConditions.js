@@ -494,7 +494,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['SAP, Surgical objective'];
-        if (conditionConcept == "Uncertain"){
+        if (conditionConcept.indexOf("Uncertain")>=0){
             conditions.show.push("SAP, Comments of uncertainty")
         }
         else {

@@ -366,6 +366,12 @@
           },
           "AIA, ASA score":{
             "required":true
+          },
+          "SAP, Surgical Objectives for Patient":{
+            "allowAddMore": true
+          },
+          "SAP, Surgical objective":{
+            "multiSelect":true
           }
 
     },
