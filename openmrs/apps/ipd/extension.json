@@ -25,7 +25,7 @@
             ],
             "forwardUrl": "#/bedManagement/patient/{{patientUuid}}",
             "linkColumn": "action",
-            "searchColumns": ["identifier", "name", "gender", "department", "age", "Bed No","Admitted On"]
+            "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "gender", "department", "age", "Bed No","Admitted On"]
         },
         "label": "Admitted",
         "order": 0,
@@ -41,7 +41,7 @@
             "translationKey": "MODULE_LABEL_TO_ADMIT_TO_RC_KEY",
             "linkColumn": "action",
             "forwardUrl":"#/bedManagement/patient/{{patientUuid}}",
-            "searchColumns": ["identifier", "name", "gender", "age", "Disposition Date"]
+            "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "gender", "age", "Disposition Date"]
         },
         "label": "Admit to RC",
         "order": 1,
@@ -57,7 +57,7 @@
             "translationKey": "MODULE_LABEL_TO_ADMIT_TO_WARD_KEY",
             "forwardUrl":"#/bedManagement/patient/{{patientUuid}}",
             "linkColumn": "action",
-            "searchColumns": ["identifier", "name", "gender", "age", "Disposition Date"]
+            "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "gender", "age", "Disposition Date"]
         },
         "label": "Admit to Ward",
         "order": 2,
@@ -73,7 +73,7 @@
             "translationKey": "MODULE_LABEL_TO_ADMIT_TO_KAHRAMANA_KEY",
             "forwardUrl" : "#/bedManagement/patient/{{patientUuid}}",
             "linkColumn": "action",
-            "searchColumns": ["identifier", "name", "gender", "age", "Disposition Date"]
+            "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "gender", "age", "Disposition Date"]
         },
         "label": "Admit to Kahramana",
         "order": 3,
@@ -89,7 +89,7 @@
             "translationKey": "MODULE_LABEL_TO_MOVEMENT_TO_WARD_KEY",
             "forwardUrl": "#/bedManagement/patient/{{patientUuid}}",
             "linkColumn": "action",
-            "searchColumns": ["identifier", "name"]
+            "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME"]
         },
         "label": "Movement to Ward",
         "order": 4,
@@ -105,7 +105,7 @@
             "translationKey": "MODULE_LABEL_TO_MOVEMENT_TO_RC_KEY",
             "forwardUrl": "#/bedManagement/patient/{{patientUuid}}",
             "linkColumn": "action",
-            "searchColumns": ["identifier", "name"]
+            "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME"]
         },
         "label": "Movement to Rc",
         "order": 5,
@@ -121,7 +121,7 @@
             "translationKey": "MODULE_LABEL_TO_MOVEMENT_TO_KAHRAMANA_KEY",
             "forwardUrl": "#/bedManagement/patient/{{patientUuid}}",
             "linkColumn": "action",
-            "searchColumns": ["identifier", "name"]
+            "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME"]
         },
         "label": "Movement to Kahramana",
         "order": 6,
@@ -137,7 +137,7 @@
             "translationKey": "MODULE_LABEL_TO_TRANSFER_TO_HOME_KEY",
             "forwardUrl": "#/bedManagement/patient/{{patientUuid}}",
             "linkColumn": "action",
-            "searchColumns": ["identifier", "name"]
+            "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME"]
         },
         "label": "Transfer Home",
         "order": 7,

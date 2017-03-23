@@ -8,7 +8,7 @@
       "translationKey": "MODULE_LABEL_PROGRAMS_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
-      "searchColumns": ["identifier", "name"]
+      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME"]
     },
     "order": 1,
     "requiredPrivilege": "app:clinical"
@@ -22,7 +22,7 @@
       "translationKey": "MODULE_LABEL_INCOMPLETE_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
-      "searchColumns": ["identifier", "name", "Date of File Received", "Name of MLO"]
+      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Date of File Received", "Name of MLO"]
     },
     "order": 2,
     "requiredPrivilege": "app:clinical"
@@ -36,7 +36,7 @@
       "translationKey": "MODULE_LABEL_AWAITING_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
-      "searchColumns": ["identifier", "name", "Date of File Received", "Name of MLO", "Nationality", "Specialty"]
+      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Date of File Received", "Name of MLO", "Nationality", "Specialty"]
     },
     "order": 3,
     "requiredPrivilege": "app:clinical"
@@ -50,7 +50,7 @@
       "translationKey": "MODULE_LABEL_AWAITING_FOLLOWUP_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
-      "searchColumns": ["identifier", "name", "Name of MLO", "Nationality", "Specialty", "Name of Surgeon 1", "Name of Surgeon 2"]
+      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Name of MLO", "Nationality", "Specialty", "Name of Surgeon 1", "Name of Surgeon 2"]
     },
     "order": 4,
     "requiredPrivilege": "app:clinical"
@@ -64,7 +64,7 @@
       "translationKey": "MODULE_LABEL_MORE_INFORMATION_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
-      "searchColumns": ["identifier", "name", "Date of Presentation", "Name of MLO", "Nationality", "Specialty", "Outcomes for 1st stage surgical validation",
+      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Date of Presentation", "Name of MLO", "Nationality", "Specialty", "Outcomes for 1st stage surgical validation",
         "Outcomes for 1st stage Anaesthesia validation", "Postpone reason"]
     },
     "order": 5,
@@ -79,7 +79,7 @@
       "translationKey": "MODULE_LABEL_CONTINUE_UNDER_FOLLOWUP_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
-      "searchColumns": ["identifier", "name", "Date Of Presentation", "Name of MLO", "Specialty", "Time for next medical follow-up"]
+      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Date Of Presentation", "Name of MLO", "Specialty", "Time for next medical follow-up"]
     },
     "order": 6,
     "requiredPrivilege": "app:clinical"
@@ -109,7 +109,7 @@
         }
       ],
       "view": "tabular",
-      "searchColumns": ["identifier", "name", "Age", "Country", "Nationality", "Specialty", "Stage", "Expected Date of Arrival", "Does the Patient need Accommodation?", "Type of Admission Recommended"]
+      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Nationality", "Specialty", "Stage", "Expected Date of Arrival", "Does the Patient need Accommodation?", "Type of Admission Recommended"]
     },
     "order": 7,
     "requiredPrivilege": "app:clinical"
