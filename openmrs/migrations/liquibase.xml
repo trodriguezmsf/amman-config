@@ -407,4 +407,15 @@
             INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id2,88,14,8,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201703231212" author="Shiva kumar" context="rel2.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from visit_type where name = "Hospital";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new Visit type</comment>
+        <sql>
+            INSERT INTO visit_type (name,description,creator,date_created,uuid) VALUES ("Hospital","Hospital visit type",1,now(),uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
