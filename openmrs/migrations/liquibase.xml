@@ -523,4 +523,93 @@
             INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
         </sql>
     </changeSet>
+    <changeSet id="Amman-201703221746" author="Santhosh, Maharjun" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role WHERE role = 'InPatient-Edit-BedTags-Only';
+            </sqlCheck>
+        </preConditions>
+        <comment>Creating new role for editing bed tags only</comment>
+        <sql>
+            INSERT INTO role(role, description, uuid) VALUES ("InPatient-Edit-BedTags-Only", "Ability to view the Inpatient app and edit bed tags only", uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201703221750" author="Santhosh, Maharjun" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_role WHERE parent_role = "InPatient-App-Read-Only" AND child_role = "InPatient-Edit-BedTags-Only";
+            </sqlCheck>
+        </preConditions>
+        <comment>Inheriting privileges from InPatient-App-Read-Only role to InPatient-Edit-BedTags-Only role</comment>
+        <sql>
+            INSERT INTO role_role(parent_role, child_role) VALUES ("InPatient-App-Read-Only", "InPatient-Edit-BedTags-Only");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201703221754" author="Santhosh, Maharjun" context="rel2.2" >
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM privilege WHERE privilege = "Edit Tags";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "InPatient-Edit-BedTags-Only" AND privilege = "Edit Tags";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Edit Tags privilege to InPatient-Edit-BedTags-Only role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("InPatient-Edit-BedTags-Only", "Edit Tags");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201703221756" author="Santhosh, Maharjun" context="rel2.2" >
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM privilege WHERE privilege = "Get Tags";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "InPatient-App-Read-Only" AND privilege = "Get Tags"
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Get Tags privilege to InPatient-App-Read-Only role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("InPatient-App-Read-Only", "Get Tags");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201703221800" author="Santhosh, Maharjun" context="rel2.2" >
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM privilege WHERE privilege = "Get Tags";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "InPatient-Read" AND privilege = "Get Tags"
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Get Tags privilege to InPatient-Read role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("InPatient-Read", "Get Tags");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201703221805" author="Santhosh, Maharjun" context="rel2.2" >
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM privilege WHERE privilege = "Edit Tags";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "InPatient-App" AND privilege = "Edit Tags"
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Edit Tags privilege to InPatient-App role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("InPatient-App", "Edit Tags");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201703221810" author="Santhosh, Maharjun" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "InPatient-Read" AND privilege = "app:adt";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding app:adt privilege to InPatient-Read role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("InPatient-Read", "app:adt");
+        </sql>
+    </changeSet>
 </databaseChangeLog>
