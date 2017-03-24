@@ -372,6 +372,12 @@
           },
           "SAP, Surgical objective":{
             "multiSelect":true
+          },
+          "FV, Name (s) of Surgeon 1":{
+            "dropdown":true
+          },
+          "FV, Name (s) of Surgeon 2":{
+            "dropdown":true
           }
 
     },
