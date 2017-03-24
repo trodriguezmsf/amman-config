@@ -601,15 +601,32 @@
             INSERT INTO role_privilege(role, privilege) VALUES ("InPatient-App", "Edit Tags");
         </sql>
     </changeSet>
-    <changeSet id="Amman-201703221810" author="Santhosh, Maharjun" context="rel2.2" >
+     <changeSet id="Amman-201703241255" author="shiva kumar" context="rel2.3" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                SELECT count(*) FROM role_privilege WHERE role = "InPatient-Read" AND privilege = "app:adt";
+             SELECT concept_id INTO @concept_set from concept_name where name= 'FV, Final validation' AND concept_name_type="FULLY_SPECIFIED";
+             SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="FV, Name (s) of Surgeon 1" and concept_name_type = "FULLY_SPECIFIED") and concept_set =@concept_set;
             </sqlCheck>
         </preConditions>
-        <comment>Adding app:adt privilege to InPatient-Read role</comment>
+        <comment>Adding Name of Surgeon 1 in Final Validation form </comment>
         <sql>
-            INSERT INTO role_privilege(role, privilege) VALUES ("InPatient-Read", "app:adt");
+            SELECT concept_id INTO @concept_set from concept_name where name= 'FV, Final validation' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'FV, Name (s) of Surgeon 1' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id1,@concept_set,7,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201703241259" author="shiva kumar" context="rel2.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT concept_id INTO @concept_set from concept_name where name= 'FV, Final validation' AND concept_name_type="FULLY_SPECIFIED";
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="FV, Name (s) of Surgeon 2" and concept_name_type = "FULLY_SPECIFIED") and concept_set =@concept_set;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Name of Surgeon 2 in Final Validation form </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set from concept_name where name= 'FV, Final validation' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'FV, Name (s) of Surgeon 2' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id1,@concept_set,8,8,now(),uuid());
         </sql>
     </changeSet>
 </databaseChangeLog>
