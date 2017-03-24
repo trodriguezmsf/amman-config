@@ -604,8 +604,7 @@
      <changeSet id="Amman-201703241255" author="shiva kumar" context="rel2.3" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-             SELECT concept_id INTO @concept_set from concept_name where name= 'FV, Final validation' AND concept_name_type="FULLY_SPECIFIED";
-             SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="FV, Name (s) of Surgeon 1" and concept_name_type = "FULLY_SPECIFIED") and concept_set =@concept_set;
+             SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="FV, Name (s) of Surgeon 1" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(SELECT concept_id  from concept_name where name= 'FV, Final validation' AND concept_name_type="FULLY_SPECIFIED");
             </sqlCheck>
         </preConditions>
         <comment>Adding Name of Surgeon 1 in Final Validation form </comment>
@@ -618,8 +617,7 @@
     <changeSet id="Amman-201703241259" author="shiva kumar" context="rel2.3" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                SELECT concept_id INTO @concept_set from concept_name where name= 'FV, Final validation' AND concept_name_type="FULLY_SPECIFIED";
-                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="FV, Name (s) of Surgeon 2" and concept_name_type = "FULLY_SPECIFIED") and concept_set =@concept_set;
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="FV, Name (s) of Surgeon 2" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(SELECT concept_id  from concept_name where name= 'FV, Final validation' AND concept_name_type="FULLY_SPECIFIED");
             </sqlCheck>
         </preConditions>
         <comment>Adding Name of Surgeon 2 in Final Validation form </comment>
