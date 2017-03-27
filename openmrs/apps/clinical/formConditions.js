@@ -243,11 +243,11 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['PHIA, Does the patient use an assistive device or orthosis?'];
         if (conditionConcept == "Yes"){
-            conditions.show.push("PHIA, Type of assistive device or orthosis")
-            conditions.hide.push("PHIA, Other type of assistive device or orthosis")
+            conditions.show.push("PHIA, Type of assistive device or orthosis","PHIA, Comments about assistive device or orthosis")
+            conditions.hide.push("PHIA, Other type of assistive device")
         }
         else {
-            conditions.hide.push("PHIA, Type of assistive device or orthosis","PHIA, Other type of assistive device or orthosis")
+            conditions.hide.push("PHIA, Type of assistive device or orthosis","PHIA, Other type of assistive device","PHIA, Comments about assistive device or orthosis")
         }
         return conditions;
     },
@@ -259,10 +259,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['PHIA, Type of assistive device or orthosis'];
 
         if (conditionConcept.indexOf("Other")>=0){
-            conditions.show.push("PHIA, Other type of assistive device or orthosis")
+            conditions.show.push("PHIA, Other type of assistive device")
         }
         else {
-            conditions.hide.push("PHIA, Other type of assistive device or orthosis")
+            conditions.hide.push("PHIA, Other type of assistive device")
         }
         return conditions;
     },
@@ -273,10 +273,12 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['PHIA, Amputee patient?'];
         if (conditionConcept == "Yes"){
-            conditions.show.push("PHIA, Type of amputation","PHIA, Side of amputation","PHIA, Comments about amputation","PHIA, Is the patient coming with a prostheses?")
+            conditions.show.push("PHIA, Level of Amputation")
+            conditions.hide.push("PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification","PHIA, Comment about new prosthesis or modification")
+
         }
         else {
-            conditions.hide.push("PHIA, Type of amputation","PHIA, Side of amputation","PHIA, Comments about amputation","PHIA, Is the patient coming with a prostheses?")
+            conditions.hide.push("PHIA, Level of Amputation")
         }
         return conditions;
     },
@@ -396,17 +398,32 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['MD, Type of previous fixation'];
-        if (conditionConcept == "Internal"){
-            conditions.show.push("MD, Type of internal fixation")
+        if(conditionConcept.indexOf("Internal")>=0 && conditionConcept.indexOf("External")>=0 && conditionConcept.indexOf("Other")>=0) {
+            conditions.show.push("MD, Type of internal fixation","MD, Duration of External fixation","MD, Other type of fixation")
+        }
+        else if(conditionConcept.indexOf("Internal")>=0 && conditionConcept.indexOf("External")>=0){
+             conditions.show.push("MD, Type of internal fixation","MD, Duration of External fixation")
+             conditions.hide.push("MD, Other type of fixation")
+        }
+        else if(conditionConcept.indexOf("Internal")>=0 && conditionConcept.indexOf("Other")>=0){
+             conditions.show.push("MD, Type of internal fixation","MD, Other type of fixation")
+             conditions.hide.push("MD, Duration of External fixation")
+        }
+        else if(conditionConcept.indexOf("External")>=0 && conditionConcept.indexOf("Other")>=0){
+         conditions.show.push("MD, Duration of External fixation","MD, Other type of fixation")
+         conditions.hide.push("MD, Type of internal fixation")
+        }
+        else if (conditionConcept.indexOf("Internal")>=0){
             conditions.hide.push("MD, Duration of External fixation","MD, Other type of fixation")
+            conditions.show.push("MD, Type of internal fixation")
         }
-        else if (conditionConcept == "External"){
-            conditions.show.push("MD, Duration of External fixation")
+        else if(conditionConcept.indexOf("External")>=0){
             conditions.hide.push("MD, Type of internal fixation","MD, Other type of fixation")
+            conditions.show.push("MD, Duration of External fixation")
         }
-        else if (conditionConcept == "Other"){
-            conditions.show.push("MD, Other type of fixation")
+        else if(conditionConcept.indexOf("Other")>=0){
             conditions.hide.push("MD, Type of internal fixation","MD, Duration of External fixation")
+            conditions.show.push("MD, Other type of fixation")
         }
         else {
             conditions.hide.push("MD, Type of internal fixation","MD, Duration of External fixation","MD, Other type of fixation")
@@ -494,11 +511,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['SAP, Surgical objective'];
-        if (conditionConcept.indexOf("Uncertain")>=0){
-            conditions.show.push("SAP, Comments of uncertainty")
-        }
+        if (conditionConcept.length == 1 && conditionConcept.indexOf("Uncertain") >= 0){
+              conditions.show.push("SAP, Comments of uncertainty")
+              conditions.hide.push("SAP, Side of surgical objective","SAP, Site of surgical objective");
+                              }
+        else  if(conditionConcept.length > 1 && conditionConcept.indexOf("Uncertain")<0){
+        conditions.show.push("SAP, Side of surgical objective","SAP, Site of surgical objective");
+        conditions.hide.push("SAP, Comments of uncertainty")
+                }
+        else if(conditionConcept.length > 1 && conditionConcept.indexOf("Repair anatomy")>=0 ){
+                conditions.show.push("SAP, Side of surgical objective","SAP, Site of surgical objective","SAP, Comments of uncertainty");
+                }
+
         else {
-            conditions.hide.push("SAP, Comments of uncertainty")
+            conditions.hide.push("SAP, Side of surgical objective","SAP, Site of surgical objective","SAP, Comments of uncertainty")
         }
         return conditions;
     },

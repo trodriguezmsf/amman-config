@@ -149,17 +149,6 @@
     "order": 10,
     "requiredPrivilege": "app:clinical:dispositionTab"
   },
-  "diagnosis": {
-    "id": "bahmni.clinical.consultation.diagnosis",
-    "extensionPointId": "org.bahmni.clinical.consultation.board",
-    "type": "link",
-    "label": "Diagnosis",
-    "translationKey": "DIAGNOSIS_BOARD_LABEL_KEY",
-    "url": "diagnosis",
-    "icon": "fa-user-md",
-    "order":11 ,
-    "requiredPrivilege": "app:clinical:diagnosisTab"
-  },
   "bahmniClinicalBillingTreatment": {
     "id": "bahmni.clinical.billing.treatment",
     "extensionPointId": "org.bahmni.clinical.consultation.board",

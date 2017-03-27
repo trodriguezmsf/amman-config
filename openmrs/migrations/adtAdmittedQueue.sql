@@ -8,7 +8,7 @@ SET property_value = "SELECT DISTINCT
         parentLocation.name                                   AS department,
         b.bed_number                                          AS `Bed No`,
         DATE_FORMAT(bpam.date_started, '%d %b %Y %h:%i %p')   AS `Admitted On`,
-        'Transfer/Discharge'                                  AS `Bed Management`,
+        'Movement/Discharge'                                  AS `Bed Management`,
         'Enter Disposition'                                   AS disposition,
         concat('', p.uuid)                                    AS uuid,
         concat('', v.uuid)                                    AS activeVisitUuid,

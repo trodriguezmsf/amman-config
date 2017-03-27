@@ -332,7 +332,8 @@
                 "autocomplete":true
             },
             "SAP, Site of surgical procedure":{
-                "autocomplete":true
+                "autocomplete":true,
+              "multiSelect":true
             },
             "DIA, Surgical Diagnosis":{
               "autocomplete":true
@@ -378,6 +379,9 @@
           },
           "FV, Name (s) of Surgeon 2":{
             "dropdown":true
+          },
+          "MD, Type of previous fixation":{
+            "multiSelect":true
           }
 
     },
