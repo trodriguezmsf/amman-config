@@ -601,6 +601,17 @@
             INSERT INTO role_privilege(role, privilege) VALUES ("InPatient-App", "Edit Tags");
         </sql>
     </changeSet>
+    <changeSet id="Amman-201703221810" author="Santhosh, Maharjun" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "InPatient-Read" AND privilege = "app:adt";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding app:adt privilege to InPatient-Read role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("InPatient-Read", "app:adt");
+        </sql>
+    </changeSet>
      <changeSet id="Amman-201703241255" author="shiva kumar" context="rel2.3" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
