@@ -14,11 +14,6 @@
         },
 
           "hiddenFields": [
-            "quantityUnits",
-            "quantity",
-            "duration",
-            "durationUnits",
-            "sos"
           ]
 
       }
