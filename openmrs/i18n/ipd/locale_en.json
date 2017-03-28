@@ -17,7 +17,9 @@
   "PATIENT_VISIT_PAGE_KEY":"Patient Visit Page",
   "PATIENT_BED_MANAGEMENT_PAGE_KE":"Patient Bed Management",
   "HOME_DASHBOARD_KEY":"Home Dashboard",
-
+  "DASHBOARD_DIAGNOSES_KEY":"Diagnoses",
+  "DASHBOARD_SURGICAL_PROCEDURES_KEY":"Surgical Procedures",
+  "DASHBOARD_VITAL_FORM_KEY":"Vital form",
 
   "DASHBOARD_TITLE_VITALS_KEY":"Vitals",
   "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY": "Patient Information",

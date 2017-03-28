@@ -54,16 +54,88 @@
                 "disposition":{
                     "translationKey":"DASHBOARD_TITLE_DISPOSITION_KEY",
                     "type": "disposition",
-                    "numberOfVisits": 1,
+                    "numberOfVisits": 6,
                     "displayOrder": 1
                 },
-                "diagnosis":{
-                    "translationKey":"DASHBOARD_TITLE_DIAGNOSIS_KEY",
-                    "type": "diagnosis",
-                    "numberOfVisits": 1,
-                    "showDetailsButton":true,
-                    "displayOrder": 2
-                },
+                "diagnoses":{
+                     "translationKey": "DASHBOARD_DIAGNOSES_KEY",
+                     "type": "vitals",
+                     "isObservation": true,
+                     "displayOrder": 2,
+                       "dashboardConfig": {
+                            "showDetailsButton": true,
+                            "isEditable": true,
+                            "conceptNames": [
+                                "OBS, Surgical Diagnoses",
+                                "OBS, Medical Diagnoses"
+                            ],
+                            "showGroupDateTime": true
+                        },
+                        "expandedViewConfig": {
+                            "conceptNames": [
+                                "OBS, Surgical Diagnoses",
+                                "OBS, Medical Diagnoses"
+                            ],
+                            "isEditable": true,
+                            "numberOfVisits": 3,
+                            "showDetailsButton": true,
+                            "pivotTable": {}
+                        }
+                    },
+                    "Vitalform":{
+                        "translationKey": "DASHBOARD_VITAL_FORM_KEY",
+                        "type": "vitals",
+                        "isObservation": true,
+                        "displayOrder": 2,
+                        "dashboardConfig": {
+                            "showDetailsButton": true,
+                            "isEditable": true,
+                            "conceptNames": [
+                                "Weight",
+                                "Height",
+                                "BMI Data",
+                                "VS, Blood pressure",
+                                "VS, Blood glucose"
+                            ],
+                            "showGroupDateTime": true
+                        },
+                        "expandedViewConfig": {
+                            "conceptNames": [
+                                "Weight",
+                                "Height",
+                                "BMI Data",
+                                "VS, Blood pressure",
+                                "VS, Blood glucose"
+                            ],
+                            "isEditable": true,
+                            "numberOfVisits": 3,
+                            "showDetailsButton": true,
+                            "pivotTable": {}
+                        }
+                    },
+                    "Surgical Procedures":{
+                        "translationKey": "DASHBOARD_SURGICAL_PROCEDURES_KEY",
+                        "type": "vitals",
+                        "isObservation": true,
+                        "displayOrder": 2,
+                        "dashboardConfig": {
+                            "showDetailsButton": true,
+                            "isEditable": true,
+                            "conceptNames": [
+                                "SAP, Planned Surgical procedures"
+                            ],
+                            "showGroupDateTime": true
+                        },
+                        "expandedViewConfig": {
+                            "conceptNames": [
+                                "SAP, Planned Surgical procedures"
+                            ],
+                            "isEditable": true,
+                            "numberOfVisits": 3,
+                            "showDetailsButton": true,
+                            "pivotTable": {}
+                        }
+                    },
                 "patientInformation":{
                     "translationKey": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
                     "type": "patientInformation",
@@ -74,7 +146,12 @@
                 "admissionDetails":{
                     "translationKey":"DASHBOARD_TITLE_ADMISSION_DETAILS_KEY",
                     "type":"admissionDetails",
-                    "displayOrder": 4
+                    "displayOrder": 4,
+                 "expandedViewConfig": {
+                        "numberOfVisits": 3,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
                 },
                 "navigationLinksControl":{
                     "translationKey":"DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
