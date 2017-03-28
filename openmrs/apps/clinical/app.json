@@ -382,6 +382,9 @@
           },
           "MD, Type of previous fixation":{
             "multiSelect":true
+          },
+          "SAP, Side of surgical objective":{
+            "multiSelect":true
           }
 
     },
