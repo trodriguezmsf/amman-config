@@ -42,7 +42,9 @@ FROM
                  ON pa.person_attribute_type_id = pat.person_attribute_type_id AND pat.retired IS FALSE AND pat.name = 'isCareTakerRequired' AND pa.voided IS FALSE
              GROUP BY  pa.person_id
     )  careTakerRequired ON careTakerRequired.person_id = personData.person_id
-  LEFT JOIN (SELECT DATE_FORMAT(pa.value, '%d/%m/%Y') AS dateOfArrival, pa.person_id
+  LEFT JOIN (SELECT DATE_FORMAT(pa.value, '%d/%m/%Y') AS dateOfArrival,
+            pa.value AS date_of_arrival,
+            pa.person_id
              FROM person_attribute pa
                JOIN person_attribute_type pat
                  ON pa.person_attribute_type_id = pat.person_attribute_type_id AND pat.retired IS FALSE AND pat.name = 'dateofArrival' AND pa.voided IS FALSE
@@ -102,4 +104,4 @@ FROM
                   ON parentLocation.location_id = childLocation.parent_location AND parentLocation.retired IS FALSE
               GROUP BY bpam.patient_id
             ) bed_allocation ON bed_allocation.patient_id = personData.person_id
-ORDER BY dateOfArrival.dateOfArrival", 'Hospital RSP Queue', @uuid);
+ORDER BY dateOfArrival.date_of_arrival", 'Hospital RSP Queue', @uuid);
