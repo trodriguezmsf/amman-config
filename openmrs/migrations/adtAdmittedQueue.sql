@@ -20,8 +20,8 @@ SET property_value = "SELECT DISTINCT
         INNER JOIN patient_identifier_type pit ON pi.identifier_type = pit.patient_identifier_type_id AND pit.retired IS FALSE
         INNER JOIN global_property gp ON gp.property = 'emr.primaryIdentifierType' AND gp.property_value = pit.uuid
         INNER JOIN person p ON v.patient_id = p.person_id AND p.voided IS FALSE
-        INNER JOIN patient_program pp ON p.person_id = pp.patient_id
-        INNER JOIN program prog ON pp.program_id = prog.program_id
+        INNER JOIN patient_program pp ON p.person_id = pp.patient_id AND pp.voided IS FALSE AND pp.date_completed IS NULL
+        INNER JOIN program prog ON pp.program_id = prog.program_id AND prog.retired IS FALSE
         INNER JOIN bed_patient_assignment_map bpam ON bpam.patient_id = p.person_id AND bpam.date_stopped IS NULL AND bpam.voided IS FALSE
         INNER JOIN bed b ON b.bed_id = bpam.bed_id AND b.voided IS FALSE
         INNER JOIN bed_location_map blm ON b.bed_id = blm.bed_id
