@@ -638,4 +638,16 @@
             INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id1,@concept_set,8,8,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201703281115" author="Shireesha, Pramida" context="rel2.2" runOnChange="true">
+        <comment>Adding patient listing queues for patients whos expected date of arrival is not filled AND follow up
+            validation outcome is further stage admission OR first stage outcome is valid and anaesthesia criteria is
+            fit with no follow up validation form filled
+        </comment>
+        <sqlFile path="validatedPatientsQueue.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201703281524" author="Shireesha, Pramida" context="rel2.2" runOnChange="true">
+        <comment>Adding patient listing queues for patients in the either pre-operative/surgical/rehabilitation workflow state
+        </comment>
+        <sqlFile path="hospitalRSPQueue.sql"/>
+    </changeSet>
 </databaseChangeLog>

@@ -109,9 +109,38 @@
         }
       ],
       "view": "tabular",
-      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Nationality", "Specialty", "Stage", "Expected Date of Arrival", "Does the Patient need Accommodation?", "Type of Admission Recommended"]
+      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Nationality", "Specialty", "Priority",  "Name of Surgeon 1", "Name of Surgeon 2", "Expected Date of Arrival",
+        "Patient General Condition",  "Does the Patient need Accommodation?", "Type of Admission Recommended", "Need for a caretaker", "Caretaker Gender", "Caretaker Name"]
     },
     "order": 7,
+    "requiredPrivilege": "app:clinical"
+  },
+  "bahmniClinicalPatientsSearchAllvalidatedPatients": {
+    "id": "bahmni.clinical.patients.search.validatedPatients",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "searchHandler": "emrapi.sqlSearch.validatedPatients",
+      "translationKey": "MODULE_LABEL_VALIDATED_PATIENTS_KEY",
+      "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
+      "view": "tabular",
+      "searchColumns": ["identifier","Date of presentation", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Name of MLO", "Stage", "Specialty", "Priority", "Expected Month/Year of Arrival","Is care taker required", "Status of Official ID Documents"]
+    },
+    "order": 8,
+    "requiredPrivilege": "app:clinical"
+  },
+  "bahmniClinicalPatientsSearchAllhospitalRSP": {
+    "id": "bahmni.clinical.patients.search.hospitalRSP",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "searchHandler": "emrapi.sqlSearch.hospitalRSP",
+      "translationKey": "MODULE_LABEL_HOSPITAL_RSP_KEY",
+      "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
+      "view": "tabular",
+      "searchColumns": ["identifier","PATIENT_LISTING_QUEUES_HEADER_NAME", "Date of Arrival", "Age", "Country", "Need for a caretaker?", "Specialty", "Name of Surgeon 1", "Name of Surgeon 2", "Date of consultation (Anaesth.)", "Date of consultation (Surgeon)", "Bed allocation"]
+    },
+    "order": 9,
     "requiredPrivilege": "app:clinical"
   },
   "bahmniClinicalPatientsSearchAllPatients": {
@@ -123,7 +152,7 @@
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext"
     },
     "label": "All",
-    "order": 8,
+    "order": 10,
     "requiredPrivilege": "app:clinical"
   },
   "observations": {
