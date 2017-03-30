@@ -385,6 +385,12 @@
           },
           "SAP, Side of surgical objective":{
             "multiSelect":true
+          },
+          "NW, IV/IM needed?":{
+            "multiSelect":true
+          },
+          "NW, Injection (subcutaneous)?":{
+            "multiSelect":true
           }
 
     },

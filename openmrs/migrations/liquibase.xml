@@ -650,4 +650,16 @@
         </comment>
         <sqlFile path="hospitalRSPQueue.sql"/>
     </changeSet>
+    <changeSet id="Amman-201703301007" author="shiva kumar" context="rel2.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="Nursing Needs - Ward" and concept_name_type = "FULLY_SPECIFIED") and concept_set =88;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new observation templates </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'Nursing Needs - Ward' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id1,88,15,8,now(),uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
