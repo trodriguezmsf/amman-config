@@ -12,11 +12,11 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.validatedPatients
   paddress.address3 AS `Country`,
   obs_across_visits.`Name of MLO`,
   obs_across_visits.Stage,
-  obs_across_visits.Specialty,
+  Specialty,
   priority.Priority,
   comments.`Comments about Validation`,
   obs_across_visits.`Expected Month/Year of Arrival`,
-  careTakerRequired.`Is care taker required`,
+  careTakerRequired.`Is care taker required` AS `Is Caretaker Required?`,
   statusOfOfficialDocuments.`Status of Official ID Documents`,
   personWithoutExpectedDate.uuid AS uuid
 
@@ -102,8 +102,6 @@ FROM
   LEFT JOIN (SELECT
                obs.person_id,
                c_name                                                                       AS name,
-               GROUP_CONCAT(DISTINCT (IF(c_name = 'FSTG, Specialty determined by MLO',
-                                         COALESCE(coded_fscn.name, coded_scn.name), NULL))) AS 'Specialty',
                GROUP_CONCAT(DISTINCT (IF(c_name = 'MH, Name of MLO',
                                          COALESCE(coded_fscn.name, coded_scn.name), NULL))) AS 'Name of MLO',
                GROUP_CONCAT(DISTINCT (IF(c_name = 'FV, Expected Date of Arrival',
@@ -117,7 +115,7 @@ FROM
                      o.concept_id
                    FROM obs o
                      JOIN concept_name cn ON cn.name IN
-                                             ('FSTG, Specialty determined by MLO', 'MH, Name of MLO', 'FV, Expected Date of Arrival','Stage')
+                                             ('MH, Name of MLO', 'FV, Expected Date of Arrival','Stage')
                                              AND cn.concept_id = o.concept_id AND cn.voided IS FALSE AND
                                              o.voided IS FALSE
                    GROUP BY person_id, concept_id) result
@@ -131,6 +129,26 @@ FROM
                                                    AND coded_scn.voided IS FALSE
              GROUP BY obs.person_id
             ) obs_across_visits ON personWithoutExpectedDate.person_id = obs_across_visits.person_id
+  LEFT JOIN (
+              SELECT
+                GROUP_CONCAT(COALESCE(cv.concept_short_name, cv.concept_full_name)) AS 'Specialty',
+                obs.person_id
+              FROM (SELECT
+                      cn.name             AS c_name,
+                      o.person_id,
+                      max(o.obs_id) AS latest_obs_id,
+                      o.concept_id
+                    FROM obs o
+                      JOIN concept_name cn ON cn.name IN
+                                              ('FSTG, Medical Files')
+                                              AND cn.concept_id = o.concept_id AND cn.voided IS FALSE AND
+                                              o.voided IS FALSE
+                    GROUP BY person_id) latest_medical_files
+                JOIN obs ON obs.obs_group_id = latest_medical_files.latest_obs_id AND obs.voided IS FALSE
+                JOIN concept_name cn ON cn.concept_id = obs.concept_id AND cn.name= 'FSTG, Specialty determined by MLO' AND cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.voided IS FALSE
+                JOIN concept_view cv ON cv.concept_id = obs.value_coded
+              GROUP BY obs.person_id
+            ) specialty ON personWithoutExpectedDate.person_id = specialty.person_id
   LEFT JOIN (
               SELECT
                 DATE_FORMAT(presentation_obs.value_datetime, '%d/%m/%Y') AS 'Date of presentation',

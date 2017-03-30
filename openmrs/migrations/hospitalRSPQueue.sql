@@ -10,8 +10,8 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.hospitalRSP';
   personData.name AS 'PATIENT_LISTING_QUEUES_HEADER_NAME',
   personData.age AS 'Age',
   paddress.address3 AS 'Country',
-  careTakerRequired.isCareTakerRequired AS 'Need for a caretaker?',
-  latest_obs.Specialty,
+  careTakerRequired.isCareTakerRequired AS 'Is Caretaker Required?',
+  specialty.Specialty,
   latest_obs.`Name of Surgeon 1`,
   latest_obs.`Name of Surgeon 2`,
   latest_obs.`Date of consultation (Anaesth.)`,
@@ -53,8 +53,6 @@ FROM
   LEFT JOIN (SELECT
                obs.person_id,
                c_name                                                                       AS name,
-               GROUP_CONCAT(DISTINCT (IF(c_name = 'FSTG, Specialty determined by MLO',
-                                         COALESCE(coded_fscn.name, coded_scn.name), NULL))) AS 'Specialty',
                GROUP_CONCAT(DISTINCT (IF(c_name = 'FV, Name (s) of Surgeon 1',
                                          COALESCE(coded_fscn.name, coded_scn.name), NULL))) AS 'Name of Surgeon 1',
                GROUP_CONCAT(DISTINCT (IF(c_name = 'FV, Name (s) of Surgeon 2',
@@ -74,7 +72,6 @@ FROM
                      JOIN concept_name cn ON cn.name IN
                                              ('FV, Name (s) of Surgeon 1',
                                               'FV, Name (s) of Surgeon 2',
-                                              'FSTG, Specialty determined by MLO',
                                               'AIA, Date of consultation',
                                               'SAP, Date of consultation')
                                              AND cn.concept_id = o.concept_id AND cn.voided IS FALSE AND
@@ -90,6 +87,26 @@ FROM
                                                    AND coded_scn.voided IS FALSE
              GROUP BY obs.person_id
             ) latest_obs ON personData.person_id = latest_obs.person_id
+  LEFT JOIN (
+              SELECT
+                GROUP_CONCAT(COALESCE(cv.concept_short_name, cv.concept_full_name)) AS 'Specialty',
+                obs.person_id
+              FROM (SELECT
+                      cn.name             AS c_name,
+                      o.person_id,
+                      max(o.obs_id) AS latest_obs_id,
+                      o.concept_id
+                    FROM obs o
+                      JOIN concept_name cn ON cn.name IN
+                                              ('FSTG, Medical Files')
+                                              AND cn.concept_id = o.concept_id AND cn.voided IS FALSE AND
+                                              o.voided IS FALSE
+                    GROUP BY person_id) latest_medical_files
+                JOIN obs ON obs.obs_group_id = latest_medical_files.latest_obs_id AND obs.voided IS FALSE
+                JOIN concept_name cn ON cn.concept_id = obs.concept_id AND cn.name= 'FSTG, Specialty determined by MLO' AND cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.voided IS FALSE
+                JOIN concept_view cv ON cv.concept_id = obs.value_coded
+              GROUP BY obs.person_id
+            ) specialty ON personData.person_id = specialty.person_id
   LEFT JOIN (
               SELECT
                 parentLocation.name,

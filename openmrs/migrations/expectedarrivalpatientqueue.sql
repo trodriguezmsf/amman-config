@@ -9,7 +9,7 @@
   personData.name AS PATIENT_LISTING_QUEUES_HEADER_NAME,
   personData.age  AS 'Age',
   paddress.address3  AS  'Country',
-  latest_obs.Specialty,
+  specialty.Specialty,
   priority.Priority,
   comments.`Comments about Validation`,
   latest_obs.`Name of Surgeon 1`,
@@ -18,7 +18,7 @@
   latest_obs.`Patient General Condition`,
   latest_obs.`Does the patient need accomodation`,
   latest_obs.`Type of Admission Recommended`,
-  careTakerRequired.isCareTakerRequired AS 'Need for a caretaker',
+  careTakerRequired.isCareTakerRequired AS 'Is Caretaker Required?',
   careTakerGender.`Caretaker Gender`,
   careTakerName.`Caretaker Name`,
   'Admit'                                             AS `bed management`,
@@ -86,8 +86,6 @@ FROM  (SELECT
                                           COALESCE(coded_fscn.name, coded_scn.name), NULL))) AS 'Does the patient need accomodation',
                 GROUP_CONCAT(DISTINCT (IF(c_name = 'FV, Type of Admission Recommended',
                                           COALESCE(coded_fscn.name, coded_scn.name), NULL))) AS 'Type of Admission Recommended',
-                GROUP_CONCAT(DISTINCT (IF(c_name = 'FSTG, Specialty determined by MLO',
-                                          COALESCE(coded_fscn.name, coded_scn.name), NULL))) AS 'Specialty',
                 GROUP_CONCAT(DISTINCT (IF(c_name = 'FV, Name (s) of Surgeon 1',
                                           COALESCE(coded_fscn.name, coded_scn.name), NULL))) AS 'Name of Surgeon 1',
                 GROUP_CONCAT(DISTINCT (IF(c_name = 'FV, Name (s) of Surgeon 2',
@@ -102,7 +100,6 @@ FROM  (SELECT
                                               ('MH, Patient General Condition',
                                                'FV, Does the Patient need Accommodation?',
                                                'FV, Type of Admission Recommended',
-                                               'FSTG, Specialty determined by MLO',
                                                'FV, Name (s) of Surgeon 1',
                                                'FV, Name (s) of Surgeon 2')
                                               AND cn.concept_id = o.concept_id AND cn.voided IS FALSE AND
@@ -118,7 +115,26 @@ FROM  (SELECT
                                                     AND coded_scn.voided IS FALSE
               GROUP BY obs.person_id
             ) latest_obs ON personData.person_id = latest_obs.person_id
-
+  LEFT JOIN (
+              SELECT
+                GROUP_CONCAT(COALESCE(cv.concept_short_name, cv.concept_full_name)) AS 'Specialty',
+                obs.person_id
+              FROM (SELECT
+                      cn.name             AS c_name,
+                      o.person_id,
+                      max(o.obs_id) AS latest_obs_id,
+                      o.concept_id
+                    FROM obs o
+                      JOIN concept_name cn ON cn.name IN
+                                              ('FSTG, Medical Files')
+                                              AND cn.concept_id = o.concept_id AND cn.voided IS FALSE AND
+                                              o.voided IS FALSE
+                    GROUP BY person_id) latest_medical_files
+                JOIN obs ON obs.obs_group_id = latest_medical_files.latest_obs_id AND obs.voided IS FALSE
+                JOIN concept_name cn ON cn.concept_id = obs.concept_id AND cn.name= 'FSTG, Specialty determined by MLO' AND cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.voided IS FALSE
+                JOIN concept_view cv ON cv.concept_id = obs.value_coded
+              GROUP BY obs.person_id
+            ) specialty ON personData.person_id = specialty.person_id
   LEFT JOIN (
               SELECT
                 coalesce(priority_answer.concept_short_name, priority_answer.concept_full_name) AS 'Priority',
