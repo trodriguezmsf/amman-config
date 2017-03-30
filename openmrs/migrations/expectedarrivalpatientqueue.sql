@@ -39,7 +39,7 @@ FROM  (SELECT
         expected_date_of_arrival.value AS expected_date
       FROM person p
         JOIN patient_identifier pi ON p.person_id = pi.patient_id AND p.voided IS FALSE AND pi.voided IS FALSE
-        JOIN patient_program pp ON pp.patient_id = p.person_id AND pp.voided IS FALSE
+        JOIN patient_program pp ON pp.patient_id = p.person_id AND pp.voided IS FALSE AND pp.date_completed IS NULL
         JOIN program prog ON prog.program_id = pp.program_id  AND prog.retired IS FALSE
         JOIN person_name pn ON p.person_id = pn.person_id AND pn.voided IS FALSE
         JOIN person_attribute_type expected_pat ON expected_pat.retired IS FALSE AND
@@ -48,6 +48,14 @@ FROM  (SELECT
                                                           expected_date_of_arrival.person_attribute_type_id = expected_pat.person_attribute_type_id AND expected_date_of_arrival.voided IS FALSE
         GROUP BY p.person_id) personData
   LEFT JOIN person_address paddress ON personData.person_id = paddress.person_id AND paddress.voided IS FALSE
+  LEFT JOIN (SELECT
+               pa.value AS dateOfArrival, pa.person_id
+               FROM person_attribute pa
+                 JOIN person_attribute_type pat
+                   ON pat.retired IS FALSE AND
+                      pat.name = 'dateofArrival' AND pa.person_attribute_type_id = pat.person_attribute_type_id AND pa.voided IS FALSE
+    GROUP BY pa.person_id
+  ) dateOfArrival ON dateOfArrival.person_id = personData.person_id
   LEFT JOIN (SELECT
                if(pa.value = 'true', 'Yes', NULL) AS isCareTakerRequired,
                pa.person_id
@@ -180,5 +188,5 @@ FROM  (SELECT
                                                                                     ('FSTG, Comments', 'FUP, Comments about further stage admission')
                                         AND cv.retired IS FALSE
             ) comments ON comments.person_id = personData.person_id
-
-ORDER BY personData.expected_date", 'Expected Arrival Patient Queue', @uuid);
+WHERE dateOfArrival.dateOfArrival IS NULL
+ORDER BY personData.expected_date ", 'Expected Arrival Patient Queue', @uuid);
