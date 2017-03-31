@@ -1,8 +1,8 @@
-CALL insertBedIntoLocation('200', 'Ward (2nd floor)',1,1);
-CALL insertBedIntoLocation('202', 'Ward (2nd floor)',1,2);
+CALL insertBedIntoLocation('205', 'Ward (2nd floor)',1,1);
+CALL insertBedIntoLocation('204', 'Ward (2nd floor)',1,2);
 CALL insertBedIntoLocation('203', 'Ward (2nd floor)',1,3);
-CALL insertBedIntoLocation('204', 'Ward (2nd floor)',1,4);
-CALL insertBedIntoLocation('205', 'Ward (2nd floor)',1,5);
+CALL insertBedIntoLocation('202', 'Ward (2nd floor)',1,4);
+CALL insertBedIntoLocation('200', 'Ward (2nd floor)',1,5);
 CALL insertBedIntoLocation('212/1', 'Ward (2nd floor)',1,6);
 CALL insertBedIntoLocation('212/2', 'Ward (2nd floor)',1,7);
 CALL insertBedIntoLocation('207/1', 'Ward (2nd floor)',2,1);
