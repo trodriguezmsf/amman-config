@@ -668,7 +668,7 @@
             INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="israa_aj"),"InPatient-Read");
             UPDATE user_property SET property_value="MH, Medical History###First Stage Validation###Follow-up validation###FV, Final validation" WHERE property="favouriteObsTemplates" and user_id=(SELECT user_id FROM users WHERE username ="ajeeb_am");
             INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ajeeb_am"),"InPatient-Read");
-            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="eman_f"),"InPatient-Read");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="eman_f"),"InPatient-Read"),((SELECT user_id FROM users WHERE username ="eman_f"),"Clinical:ReadOnly");
             UPDATE user_property SET property_value="MH, Medical History###First Stage Validation###Follow-up validation###FV, Final validation" WHERE property="favouriteObsTemplates" and user_id=(SELECT user_id FROM users WHERE username ="mahmoud_h");
             INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mahmoud_h"),"InPatient-Read");
             UPDATE user_property SET property_value="MH, Medical History###First Stage Validation###Follow-up validation###FV, Final validation" WHERE property="favouriteObsTemplates" and user_id=(SELECT user_id FROM users WHERE username ="hani_i");
@@ -1428,6 +1428,13 @@
             INSERT INTO user_property VALUES ((SELECT max(user_id) from users), "defaultLocale","en"),((SELECT max(user_id) from users),"favouriteObsTemplates","Initial Anesthesia Assessment"),((SELECT max(user_id) from users),"favouriteWards",""),((SELECT max(user_id) from users),"lockoutTimestamp",""),((SELECT max(user_id) from users),"loginAttempts",0),((SELECT max(user_id) from users),"recentlyViewedPatients",'[]');
             INSERT INTO user_role VALUES ((SELECT max(user_id) from users),"Bahmni-User"),((SELECT max(user_id) from users),"Registration-Read"),((SELECT max(user_id) from users),"Clinical:FullAccess"),((SELECT max(user_id) from users),"Clinical:ReadOnly"),((SELECT max(user_id) from users),"InPatient-Read");
             INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201703311604" author="shiva kumar" context="rel2.3" >
+        <comment>Adding and Deleting bed managment edit permissions for user</comment>
+        <sql>
+            DELETE FROM user_role WHERE role="InPatient-Patient-Movement" AND user_id =(SELECT user_id FROM users WHERE username ="hani_i");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="dyala_o"),"Registration-Read");
         </sql>
     </changeSet>
 </databaseChangeLog>
