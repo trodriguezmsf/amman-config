@@ -237,14 +237,19 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Vital Signs"
+            "VS, Date recorded",
+            "Height",
+            "Weight",
+            "BMI Data"
           ],
           "showGroupDateTime": true
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "Vital Signs"
-
+            "VS, Date recorded",
+            "Height",
+            "Weight",
+            "BMI Data"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -252,8 +257,8 @@
           "pivotTable": {}
         }
       },
-      "Social and Medical History":{
-        "translationKey": "DASHBOARD_TITLE_SOCIAL_MEDICAL_HISTORY",
+      "Orders":{
+        "translationKey": "DASHBOARD_TITLE_ORDERS",
         "type": "vitals",
         "isObservation": true,
         "displayOrder": 1,
@@ -261,13 +266,15 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Social and Medical History"
+            "AIA, Pre-anaesthesia orders",
+            "SAP, Investigations needed"
           ],
           "showGroupDateTime": true
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "Social and Medical History"
+            "AIA, Pre-anaesthesia orders",
+            "SAP, Investigations needed"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -275,8 +282,8 @@
           "pivotTable": {}
         }
       },
-      "Health Education":{
-        "translationKey": "DASHBOARD_TITLE_HEALTH_EDUCATION",
+      "Diagnoses":{
+        "translationKey": "DASHBOARD_TITLE_DIAGNOSES",
         "type": "vitals",
         "isObservation": true,
         "displayOrder": 2,
@@ -284,36 +291,15 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Health Education"
+            "OBS, Surgical Diagnoses",
+            "OBS, Medical Diagnoses"
           ],
           "showGroupDateTime": true
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "Health Education"
-          ],
-          "isEditable": true,
-          "numberOfVisits": 3,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
-      "Anesthesia Initial Assessment":{
-        "translationKey": "DASHBOARD_TITLE_ANESTHESIA_ASSESSMENT",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 2,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "Initial Anesthesia Assessment"
-          ],
-          "showGroupDateTime": true
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "Initial Anesthesia Assessment"
+            "OBS, Surgical Diagnoses",
+            "OBS, Medical Diagnoses"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -325,7 +311,7 @@
         "translationKey": "DASHBOARD_MD_ASSESSMENT",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 2,
+        "displayOrder": 3,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -344,22 +330,46 @@
           "pivotTable": {}
         }
       },
-      "Psycho-Social initial assessment":{
-        "translationKey": "DASHBOARD_PSYCHO_SOCIAL_ASSESSMENT",
+      "treatments":{
+        "translationKey":"DASHBOARD_TITLE_MEDICATION_KEY",
+        "type":"treatment",
+        "displayOrder":4,
+        "dashboardConfig":{
+          "showFlowSheet":true,
+          "showListView":true,
+          "showRoute":true,
+          "showDrugForm":true,
+          "numberOfVisits":5,
+          "showOtherActive":true,
+          "showDetailsButton":true
+        },
+        "expandedViewConfig":{
+          "translationKey":"DASHBOARD_TITLE_MEDICATION_KEY",
+          "showFlowSheet":true,
+          "showListView":true,
+          "showRoute":true,
+          "showDrugForm":true,
+          "numberOfVisits":10,
+          "showOtherActive":true,
+          "showDetailsButton":true
+        }
+      },
+      "Nursing Assessment":{
+        "translationKey": "DASHBOARD_TITLE_NURSING_ASSESSMENT",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 2,
+        "displayOrder": 7,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Psychology initial assessment"
+          "Social and Medical History"
           ],
           "showGroupDateTime": true
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "Psychology initial assessment"
+            "Social and Medical History"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -367,22 +377,22 @@
           "pivotTable": {}
         }
       },
-      "Physiotherapy initial assessment":{
-        "translationKey": "DASHBOARD_PHYSIOTHERAPY_ASSESSMENT",
+      "Physical Examination":{
+          "translationKey": "DASHBOARD_TITLE_PHYSICAL_EXAMINATION",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 2,
+        "displayOrder": 6,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Physiotherapy initial assessment"
+            "Physical Examination"
           ],
           "showGroupDateTime": true
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "Physiotherapy initial assessment"
+            "Physical Examination"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -390,22 +400,32 @@
           "pivotTable": {}
         }
       },
+
+
       "Surgeon Pre-Op Assessment and Treatment Plan":{
         "translationKey": "DASHBOARD_SURGEON_AND_TREATMENT_PLAN_ASSESSMENT",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 2,
+        "displayOrder": 8,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Surgeon Pre-Op Assessment and Treatment Plan"
+            "SAP, Planned procedure data",
+            "SAP, Site of surgical procedure",
+            "SAP, Side of surgical procedure",
+            "SAP, Estimated length of stay",
+            "SAP, Does the patient need further admissions"
           ],
           "showGroupDateTime": true
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "Surgeon Pre-Op Assessment and Treatment Plan"
+            "SAP, Planned procedure data",
+            "SAP, Site of surgical procedure",
+            "SAP, Side of surgical procedure",
+            "SAP, Estimated length of stay",
+            "SAP, Does the patient need further admissions"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
