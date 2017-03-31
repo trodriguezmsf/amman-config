@@ -18,7 +18,7 @@ SET
   latest_obs.`Draining wound(s)?`,
   latest_obs.`IV/IM needed?`,
   latest_obs.`Twice daily Physiotherapy`,
-  latest_obs.`Non-amblulatory?`,
+  latest_obs.`Non-ambulatory?`,
   latest_obs.`Special needs?`,
   latest_obs.`Injection (subcutaneous)?`
 FROM
@@ -106,9 +106,9 @@ FROM
         GROUP_CONCAT(DISTINCT (IF(c_name = 'NW, Twice daily Physiotherapy',
                                   COALESCE(coded_fscn.name, coded_scn.name),
                                   NULL))) AS 'Twice daily Physiotherapy',
-        GROUP_CONCAT(DISTINCT (IF(c_name = 'NW, Non-amblulatory?',
+        GROUP_CONCAT(DISTINCT (IF(c_name = 'NW, Non-ambulatory?',
                                   COALESCE(coded_fscn.name, coded_scn.name),
-                                  NULL))) AS 'Non-amblulatory?',
+                                  NULL))) AS 'Non-ambulatory?',
         GROUP_CONCAT(DISTINCT (IF(c_name = 'NW, Special needs?',
                                   COALESCE(coded_fscn.name, coded_scn.name),
                                   NULL))) AS 'Special needs?',
@@ -127,7 +127,7 @@ FROM
                                        'NW, Draining wound(s)?',
                                        'NW, IV/IM needed?',
                                        'NW, Twice daily Physiotherapy',
-                                       'NW, Non-amblulatory?',
+                                       'NW, Non-ambulatory?',
                                        'NW, Special needs?',
                                        'NW, Injection (subcutaneous)?')
                                       AND cn.concept_id = o.concept_id AND cn.voided IS FALSE
