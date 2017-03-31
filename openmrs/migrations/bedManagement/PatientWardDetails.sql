@@ -10,11 +10,17 @@ SET
   CONCAT(pn.given_name, ' ', pn.family_name)                                         AS 'Patient Name',
   TIMESTAMPDIFF(YEAR, p.birthdate, CURDATE())                                        AS 'Age',
   address.address3                                                                   AS 'Country',
-  speciality.names                                                                   AS 'Speciality',
+  latest_obs.Specialty                                                               AS 'Speciality',
   IF(isCaretakerRequired.required = 'true', 'Yes', '')                               AS 'Is Caretaker Required?',
   caretakerGender.gender                                                             AS 'Caretaker Gender',
   CAST(DATE_FORMAT(latestAdmissionEncounter.admission_datetime, '%Y-%m-%d') AS CHAR) AS 'Admission Date',
-  DATE_FORMAT(expected_date_of_discharge.date, '%Y-%m-%d')                           AS 'Expected Date of Discharge'
+  DATE_FORMAT(expected_date_of_discharge.date, '%Y-%m-%d')                           AS 'Expected Date of Discharge',
+  latest_obs.`Draining wound(s)?`,
+  latest_obs.`IV/IM needed?`,
+  latest_obs.`Twice daily Physiotherapy`,
+  latest_obs.`Non-amblulatory?`,
+  latest_obs.`Special needs?`,
+  latest_obs.`Injection (subcutaneous)?`
 FROM
   bed
   INNER JOIN bed_location_map blm ON blm.bed_id = bed.bed_id
@@ -85,35 +91,57 @@ FROM
                       e.patient_id
                   ) latestAdmissionEncounter ON p.person_id = latestAdmissionEncounter.patient_id
   LEFT OUTER JOIN (
-                    SELECT
-                      e.patient_id,
-                      GROUP_CONCAT(DISTINCT scn.name ORDER BY scn.name) AS 'names'
-                    FROM
-                      obs o
-                      INNER JOIN encounter e
-                        ON e.encounter_id = o.encounter_id AND e.voided IS FALSE AND o.voided IS FALSE
-                      INNER JOIN concept_name cn
-                        ON cn.concept_id = o.concept_id AND cn.name = 'FSTG, Specialty determined by MLO' AND
-                           cn.voided IS FALSE
-                      INNER JOIN (
-                                   SELECT
-                                     e.patient_id,
-                                     MAX(e.encounter_datetime) AS 'encounter_datetime'
-                                   FROM
-                                     encounter e
-                                     INNER JOIN obs o ON o.encounter_id = e.encounter_id AND e.voided IS FALSE AND o.voided IS FALSE
-                                     INNER JOIN concept_name cn
-                                       ON cn.concept_id = o.concept_id AND cn.voided IS FALSE AND
-                                          cn.name = 'FSTG, Specialty determined by MLO'
-                                   GROUP BY
-                                     e.patient_id
-                                 ) latest_encounter ON latest_encounter.patient_id = e.patient_id AND
-                                                       latest_encounter.encounter_datetime = e.encounter_datetime
-                      INNER JOIN concept_name scn
-                        ON scn.concept_id = o.value_coded AND scn.concept_name_type = 'FULLY_SPECIFIED' AND
-                           scn.voided IS FALSE
-                    GROUP BY e.patient_id
-                  ) speciality ON speciality.patient_id = p.person_id
-ORDER BY bed.bed_number;"
+        SELECT
+        obs.person_id,
+        c_name                            AS name,
+        GROUP_CONCAT(DISTINCT (IF(c_name = 'FSTG, Specialty determined by MLO',
+                                  COALESCE(coded_fscn.name, coded_scn.name),
+                                  NULL))) AS 'Specialty',
+        GROUP_CONCAT(DISTINCT (IF(c_name = 'NW, Draining wound(s)?',
+                                  COALESCE(coded_fscn.name, coded_scn.name),
+                                  NULL))) AS 'Draining wound(s)?',
+        GROUP_CONCAT(DISTINCT (IF(c_name = 'NW, IV/IM needed?',
+                                  COALESCE(coded_fscn.name, coded_scn.name),
+                                  NULL))) AS 'IV/IM needed?',
+        GROUP_CONCAT(DISTINCT (IF(c_name = 'NW, Twice daily Physiotherapy',
+                                  COALESCE(coded_fscn.name, coded_scn.name),
+                                  NULL))) AS 'Twice daily Physiotherapy',
+        GROUP_CONCAT(DISTINCT (IF(c_name = 'NW, Non-amblulatory?',
+                                  COALESCE(coded_fscn.name, coded_scn.name),
+                                  NULL))) AS 'Non-amblulatory?',
+        GROUP_CONCAT(DISTINCT (IF(c_name = 'NW, Special needs?',
+                                  COALESCE(coded_fscn.name, coded_scn.name),
+                                  NULL))) AS 'Special needs?',
+        GROUP_CONCAT(DISTINCT (IF(c_name = 'NW, Injection (subcutaneous)?',
+                                  COALESCE(coded_fscn.name, coded_scn.name),
+                                  NULL))) AS 'Injection (subcutaneous)?'
+      FROM (SELECT
+              cn.name             AS c_name,
+              o.person_id,
+              max(e.encounter_datetime) AS latest_encounter_datetime,
+              o.concept_id
+            FROM obs o
+              JOIN encounter e ON e.encounter_id = o.encounter_id AND e.voided IS FALSE AND o.voided IS FALSE
+              JOIN concept_name cn ON cn.name IN
+                                      ('FSTG, Specialty determined by MLO',
+                                       'NW, Draining wound(s)?',
+                                       'NW, IV/IM needed?',
+                                       'NW, Twice daily Physiotherapy',
+                                       'NW, Non-amblulatory?',
+                                       'NW, Special needs?',
+                                       'NW, Injection (subcutaneous)?')
+                                      AND cn.concept_id = o.concept_id AND cn.voided IS FALSE
+            GROUP BY person_id, concept_id) latest_encounter
+        JOIN obs ON obs.concept_id = latest_encounter.concept_id  AND obs.voided IS FALSE
+        JOIN encounter e ON e.encounter_id = obs.encounter_id AND latest_encounter.latest_encounter_datetime = e.encounter_datetime AND e.voided IS FALSE
+        LEFT JOIN concept_name coded_fscn ON coded_fscn.concept_id = obs.value_coded
+                                             AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
+                                             AND coded_fscn.voided IS FALSE
+        LEFT JOIN concept_name coded_scn ON coded_scn.concept_id = obs.value_coded
+                                            AND coded_fscn.concept_name_type = 'SHORT'
+                                            AND coded_scn.voided IS FALSE
+      GROUP BY obs.person_id
+  )  latest_obs ON latest_obs.person_id =  p.person_id
+ORDER BY bed.bed_number"
 WHERE
   property = 'emrapi.sqlGet.wardsListDetails';
