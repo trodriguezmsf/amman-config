@@ -1437,4 +1437,13 @@
             INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="dyala_o"),"Registration-Read");
         </sql>
     </changeSet>
+    <changeSet id="Amman-201704031823" author="shiva kumar" context="rel2.3" >
+        <comment>pinning forms to users</comment>
+        <sql>
+            update user_property set property_value="Psychology initial assessment" where property ="favouriteObsTemplates" and user_id =(select user_id from users where username="muntaha_m");
+            update user_property set property_value="Psychology initial assessment" where property ="favouriteObsTemplates" and user_id =(select user_id from users where username="qutaiba_am");
+            update user_property set property_value="Psychology initial assessment" where property ="favouriteObsTemplates" and user_id =(select user_id from users where username="naseer_j");
+            update user_property set property_value="Initial Anesthesia Assessment" where property ="favouriteObsTemplates" and user_id =(select user_id from users where username="hadeel_aa");
+        </sql>
+    </changeSet>
 </databaseChangeLog>
