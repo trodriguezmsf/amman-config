@@ -4,19 +4,38 @@
       "inputOptionsConfig": {
         "defaultDurationUnit": "Day(s)",
         "defaultInstructions": "As directed",
-        "hideOrderSet" : true,
-
-        "frequencyDefaultDurationUnitsMap": [
-
-        ],
+        "hideOrderSet": true,
         "drugFormDefaults": {
 
-        },
-
-          "hiddenFields": [
-            
-          ]
-
+          "TABLET": {
+            "doseUnits": "Tablet(s)",
+            "route": "Oral"
+          },
+          "Injection":{
+            "doseUnits": "Injection",
+            "route": "Intravenous"
+          },
+          "Solution":{
+            "doseUnits": "Solution",
+            "route": "Oral"
+          },
+          "Cream":{
+            "doseUnits" : "Cream",
+            "route": "Topical"
+          },
+          "Oral suspension":{
+            "doseUnits" : "Oral suspension",
+            "route": "Oral"
+          },
+          "Eye drops":{
+            "doseUnits" : "Eye drops",
+            "route": "Eyes"
+          },
+          "Ointment":{
+            "doseUnits" : "Ointment",
+            "route": "Topical"
+          }
+        }
       }
     }
   }
