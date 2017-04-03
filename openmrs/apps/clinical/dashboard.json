@@ -239,8 +239,8 @@
           "isEditable": true,
           "conceptNames": [
             "VS, Date recorded",
-            "Height",
             "Weight",
+            "Height",
             "BMI Data"
           ],
           "showGroupDateTime": true
@@ -248,8 +248,8 @@
         "expandedViewConfig": {
           "conceptNames": [
             "VS, Date recorded",
-            "Height",
             "Weight",
+            "Height",
             "BMI Data"
           ],
           "isEditable": true,
