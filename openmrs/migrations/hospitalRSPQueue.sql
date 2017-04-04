@@ -11,7 +11,7 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.hospitalRSP';
   personData.age AS 'Age',
   paddress.address3 AS 'Country',
   careTakerRequired.isCareTakerRequired AS 'Is Caretaker Required?',
-  specialty.Specialty,
+  latest_obs.Specialty,
   latest_obs.`Name of Surgeon 1`,
   latest_obs.`Name of Surgeon 2`,
   latest_obs.`Date of consultation (Anaesth.)`,
@@ -41,15 +41,15 @@ FROM
                JOIN person_attribute_type pat
                  ON pa.person_attribute_type_id = pat.person_attribute_type_id AND pat.retired IS FALSE AND pat.name = 'isCareTakerRequired' AND pa.voided IS FALSE
              GROUP BY  pa.person_id
-    )  careTakerRequired ON careTakerRequired.person_id = personData.person_id
+            )  careTakerRequired ON careTakerRequired.person_id = personData.person_id
   LEFT JOIN (SELECT DATE_FORMAT(pa.value, '%d/%m/%Y') AS dateOfArrival,
-            pa.value AS date_of_arrival,
-            pa.person_id
+                    pa.value AS date_of_arrival,
+               pa.person_id
              FROM person_attribute pa
                JOIN person_attribute_type pat
                  ON pa.person_attribute_type_id = pat.person_attribute_type_id AND pat.retired IS FALSE AND pat.name = 'dateofArrival' AND pa.voided IS FALSE
-               GROUP BY  pa.person_id
-    )  dateOfArrival ON dateOfArrival.person_id = personData.person_id
+             GROUP BY  pa.person_id
+            )  dateOfArrival ON dateOfArrival.person_id = personData.person_id
   LEFT JOIN (SELECT
                obs.person_id,
                c_name                                                                       AS name,
@@ -62,23 +62,28 @@ FROM
                                          NULL)))                                            AS 'Date of consultation (Anaesth.)',
                GROUP_CONCAT(DISTINCT (IF(c_name = 'SAP, Date of consultation',
                                          DATE_FORMAT(obs.value_datetime, '%d/%m/%Y'),
-                                         NULL)))                                            AS 'Date of consultation (Surgeon)'
+                                         NULL)))                                            AS 'Date of consultation (Surgeon)',
+               GROUP_CONCAT(DISTINCT (IF(c_name = 'FSTG, Specialty determined by MLO',
+                                         COALESCE(coded_fscn.name, coded_scn.name),
+                                         NULL)))                                            AS 'Specialty'
              FROM (SELECT
                      cn.name             AS c_name,
                      o.person_id,
-                     max(o.obs_datetime) AS max_obs_datetime,
+                     max(e.encounter_datetime) AS latest_encounter_datetime,
                      o.concept_id
                    FROM obs o
                      JOIN concept_name cn ON cn.name IN
                                              ('FV, Name (s) of Surgeon 1',
                                               'FV, Name (s) of Surgeon 2',
                                               'AIA, Date of consultation',
-                                              'SAP, Date of consultation')
+                                              'SAP, Date of consultation',
+                                              'FSTG, Specialty determined by MLO' )
                                              AND cn.concept_id = o.concept_id AND cn.voided IS FALSE AND
                                              o.voided IS FALSE
+                     JOIN encounter e ON e.encounter_id = o.encounter_id AND e.voided IS FALSE
                    GROUP BY person_id, concept_id) result
-               JOIN obs ON obs.concept_id = result.concept_id AND obs.obs_datetime = result.max_obs_datetime AND
-                           obs.voided IS FALSE
+               JOIN obs ON obs.concept_id = result.concept_id AND obs.person_id = result.person_id AND obs.voided IS FALSE
+               JOIN encounter e ON e.encounter_datetime = result.latest_encounter_datetime  AND e.encounter_id = obs.encounter_id AND e.voided IS FALSE
                LEFT JOIN concept_name coded_fscn ON coded_fscn.concept_id = obs.value_coded
                                                     AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
                                                     AND coded_fscn.voided IS FALSE
@@ -87,26 +92,6 @@ FROM
                                                    AND coded_scn.voided IS FALSE
              GROUP BY obs.person_id
             ) latest_obs ON personData.person_id = latest_obs.person_id
-  LEFT JOIN (
-              SELECT
-                GROUP_CONCAT(COALESCE(cv.concept_short_name, cv.concept_full_name)) AS 'Specialty',
-                obs.person_id
-              FROM (SELECT
-                      cn.name             AS c_name,
-                      o.person_id,
-                      max(o.obs_id) AS latest_obs_id,
-                      o.concept_id
-                    FROM obs o
-                      JOIN concept_name cn ON cn.name IN
-                                              ('FSTG, Medical Files')
-                                              AND cn.concept_id = o.concept_id AND cn.voided IS FALSE AND
-                                              o.voided IS FALSE
-                    GROUP BY person_id) latest_medical_files
-                JOIN obs ON obs.obs_group_id = latest_medical_files.latest_obs_id AND obs.voided IS FALSE
-                JOIN concept_name cn ON cn.concept_id = obs.concept_id AND cn.name= 'FSTG, Specialty determined by MLO' AND cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.voided IS FALSE
-                JOIN concept_view cv ON cv.concept_id = obs.value_coded
-              GROUP BY obs.person_id
-            ) specialty ON personData.person_id = specialty.person_id
   LEFT JOIN (
               SELECT
                 parentLocation.name,

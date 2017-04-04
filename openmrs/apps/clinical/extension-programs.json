@@ -84,6 +84,20 @@
     "order": 6,
     "requiredPrivilege": "app:clinical"
   },
+  "bahmniClinicalPatientsSearchAllvalidatedPatients": {
+    "id": "bahmni.clinical.patients.search.validatedPatients",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "searchHandler": "emrapi.sqlSearch.validatedPatients",
+      "translationKey": "MODULE_LABEL_VALIDATED_PATIENTS_KEY",
+      "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
+      "view": "tabular",
+      "searchColumns": ["identifier","Date of presentation", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Name of MLO", "Stage", "Specialty", "Priority", "Expected Month/Year of Arrival","Is Caretaker Required?", "Status of Official ID Documents"]
+    },
+    "order": 7,
+    "requiredPrivilege": "app:clinical"
+  },
   "bahmniClinicalPatientsSearchAllexpectedArrival": {
     "id": "bahmni.clinical.patients.search.expectedArrival",
     "extensionPointId": "org.bahmni.patient.search",
@@ -111,20 +125,6 @@
       "view": "tabular",
       "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Nationality", "Specialty", "Priority",  "Name of Surgeon 1", "Name of Surgeon 2", "Expected Date of Arrival",
         "Patient General Condition",  "Does the patient need accomodation", "Type of Admission Recommended", "Is Caretaker Required?", "Caretaker Gender", "Caretaker Name"]
-    },
-    "order": 7,
-    "requiredPrivilege": "app:clinical"
-  },
-  "bahmniClinicalPatientsSearchAllvalidatedPatients": {
-    "id": "bahmni.clinical.patients.search.validatedPatients",
-    "extensionPointId": "org.bahmni.patient.search",
-    "type": "config",
-    "extensionParams": {
-      "searchHandler": "emrapi.sqlSearch.validatedPatients",
-      "translationKey": "MODULE_LABEL_VALIDATED_PATIENTS_KEY",
-      "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
-      "view": "tabular",
-      "searchColumns": ["identifier","Date of presentation", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Name of MLO", "Stage", "Specialty", "Priority", "Expected Month/Year of Arrival","Is Caretaker Required?", "Status of Official ID Documents"]
     },
     "order": 8,
     "requiredPrivilege": "app:clinical"
