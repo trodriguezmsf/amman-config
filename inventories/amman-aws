@@ -71,4 +71,4 @@ bahmni-event-log-service
 
 [local:vars]
 implementation_name=amman
-bahmni_repo_url=https://bahmni-repo.twhosted.com/rpm/bahmni/
+bahmni_repo_url=http://repo.mybahmni.org.s3.amazonaws.com/rpm/bahmni/

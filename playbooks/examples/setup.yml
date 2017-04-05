@@ -1,4 +1,4 @@
-bahmni_repo_url: https://bahmni-repo.twhosted.com/rpm/bahmni/
+bahmni_repo_url: http://repo.mybahmni.org.s3.amazonaws.com/rpm/bahmni/
 two_factor_auth: disabled
 implementation_name: amman
 timezone: Asia/Amman
