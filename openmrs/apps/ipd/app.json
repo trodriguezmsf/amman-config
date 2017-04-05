@@ -41,48 +41,27 @@
                 "translationKey": "DASHBOARD_TAB_GENERAL_KEY",
                 "conceptName": "Adt Notes",
                 "sections": {
-                "vitals":{
-                    "translationKey":"DASHBOARD_TITLE_VITALS_KEY",
-                    "type": "vitals",
+                "patientInformation":{
+                    "translationKey": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
+                    "type": "patientInformation",
                     "displayOrder": 0,
-                    "isObservation": true,
-                    "dashboardConfig": {
-                        "conceptNames": ["Vitals"],
-                        "numberOfVisits": 2
-                    }
+                    "patientAttributes": ["caste", "class", "education", "occupation", "debt", "distanceFromCenter", "isUrban", "cluster","RationCard", "familyIncome"],
+                    "addressFields": ["address1", "address2", "cityVillage", "countryDistrict"]
                 },
-                "disposition":{
-                    "translationKey":"DASHBOARD_TITLE_DISPOSITION_KEY",
-                    "type": "disposition",
-                    "numberOfVisits": 6,
-                    "displayOrder": 1
+                "navigationLinksControl":{
+                        "translationKey":"DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
+                        "type": "navigationLinksControl",
+                        "displayOrder": 1,
+                        "showLinks" : ["home", "registration", "enrolment"],
+                        "customLinks" : [
+                            {
+                                "name": "bedManagement",
+                                "translationKey": "PATIENT_BED_MANAGEMENT_PAGE_KE",
+                                "url": "../ipd/#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}"
+                            }
+                        ]
                 },
-                "diagnoses":{
-                     "translationKey": "DASHBOARD_DIAGNOSES_KEY",
-                     "type": "vitals",
-                     "isObservation": true,
-                     "displayOrder": 2,
-                       "dashboardConfig": {
-                            "showDetailsButton": true,
-                            "isEditable": true,
-                            "conceptNames": [
-                                "OBS, Surgical Diagnoses",
-                                "OBS, Medical Diagnoses"
-                            ],
-                            "showGroupDateTime": true
-                        },
-                        "expandedViewConfig": {
-                            "conceptNames": [
-                                "OBS, Surgical Diagnoses",
-                                "OBS, Medical Diagnoses"
-                            ],
-                            "isEditable": true,
-                            "numberOfVisits": 3,
-                            "showDetailsButton": true,
-                            "pivotTable": {}
-                        }
-                    },
-                    "Vitalform":{
+                "Vitalform":{
                         "translationKey": "DASHBOARD_VITAL_FORM_KEY",
                         "type": "vitals",
                         "isObservation": true,
@@ -112,12 +91,54 @@
                             "showDetailsButton": true,
                             "pivotTable": {}
                         }
-                    },
-                    "Surgical Procedures":{
+                },
+                "admissionDetails":{
+                        "translationKey":"DASHBOARD_TITLE_ADMISSION_DETAILS_KEY",
+                        "type":"admissionDetails",
+                        "displayOrder": 3,
+                        "expandedViewConfig": {
+                            "numberOfVisits": 3,
+                            "showDetailsButton": true,
+                            "pivotTable": {}
+                        }
+                },
+
+                "disposition":{
+                    "translationKey":"DASHBOARD_TITLE_DISPOSITION_KEY",
+                    "type": "disposition",
+                    "numberOfVisits": 6,
+                    "displayOrder": 4
+                },
+                "diagnoses":{
+                     "translationKey": "DASHBOARD_DIAGNOSES_KEY",
+                     "type": "vitals",
+                     "isObservation": true,
+                     "displayOrder": 5,
+                       "dashboardConfig": {
+                            "showDetailsButton": true,
+                            "isEditable": true,
+                            "conceptNames": [
+                                "OBS, Surgical Diagnoses",
+                                "OBS, Medical Diagnoses"
+                            ],
+                            "showGroupDateTime": true
+                        },
+                        "expandedViewConfig": {
+                            "conceptNames": [
+                                "OBS, Surgical Diagnoses",
+                                "OBS, Medical Diagnoses"
+                            ],
+                            "isEditable": true,
+                            "numberOfVisits": 3,
+                            "showDetailsButton": true,
+                            "pivotTable": {}
+                        }
+                },
+                "Surgical Procedures":{
                         "translationKey": "DASHBOARD_SURGICAL_PROCEDURES_KEY",
                         "type": "vitals",
                         "isObservation": true,
-                        "displayOrder": 2,
+                        "displayOrder": 6,
                         "dashboardConfig": {
                             "showDetailsButton": true,
                             "isEditable": true,
@@ -135,39 +156,9 @@
                             "showDetailsButton": true,
                             "pivotTable": {}
                         }
-                    },
-                "patientInformation":{
-                    "translationKey": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
-                    "type": "patientInformation",
-                    "displayOrder": 3,
-                    "patientAttributes": ["caste", "class", "education", "occupation", "debt", "distanceFromCenter", "isUrban", "cluster","RationCard", "familyIncome"],
-                    "addressFields": ["address1", "address2", "cityVillage", "countryDistrict"]
-                },
-                "admissionDetails":{
-                    "translationKey":"DASHBOARD_TITLE_ADMISSION_DETAILS_KEY",
-                    "type":"admissionDetails",
-                    "displayOrder": 4,
-                 "expandedViewConfig": {
-                        "numberOfVisits": 3,
-                        "showDetailsButton": true,
-                        "pivotTable": {}
-                    }
-                },
-                "navigationLinksControl":{
-                    "translationKey":"DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
-                    "type": "navigationLinksControl",
-                    "displayOrder": 5,
-                    "showLinks" : ["home", "registration", "enrolment"],
-                    "customLinks" : [
-                        {
-                            "name": "bedManagement",
-                            "translationKey": "PATIENT_BED_MANAGEMENT_PAGE_KE",
-                            "url": "../ipd/#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}"
-                        }
-                    ]
                 }
-
-            }},
+            }
+        },
             "colorForTags": [
                 {"name": "Lost", "color": "#da2121"},
                 {"name": "Isolation", "color": "#3462f3"},
