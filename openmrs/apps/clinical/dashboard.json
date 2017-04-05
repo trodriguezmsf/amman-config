@@ -243,7 +243,9 @@
             "Height",
             "BMI Data"
           ],
-          "showGroupDateTime": true
+          "persistOrderOfConcepts": true,
+          "showGroupDateTime": false,
+          "scope": "latest"
         },
         "expandedViewConfig": {
           "conceptNames": [
@@ -270,7 +272,9 @@
             "AIA, Pre-anaesthesia orders",
             "SAP, Investigations needed"
           ],
-          "showGroupDateTime": true
+          "persistOrderOfConcepts": true,
+          "showGroupDateTime": false,
+          "scope": "latest"
         },
         "expandedViewConfig": {
           "conceptNames": [
@@ -295,7 +299,9 @@
             "OBS, Surgical Diagnoses",
             "OBS, Medical Diagnoses"
           ],
-          "showGroupDateTime": true
+          "persistOrderOfConcepts": true,
+          "showGroupDateTime": false,
+          "scope": "latest"
         },
         "expandedViewConfig": {
           "conceptNames": [
@@ -352,7 +358,9 @@
             "MD, Description and duration of symptom (musculoskeletal)",
             "MD, Other ROS musculoskeletal symptoms"
           ],
-          "showGroupDateTime": true
+          "persistOrderOfConcepts": true,
+          "showGroupDateTime": false,
+          "scope": "latest"
         },
         "expandedViewConfig": {
           "conceptNames": [
@@ -448,7 +456,10 @@
             "SMH, Date of last dose",
             "SMH, Pain Assessment"
           ],
-          "showGroupDateTime": true
+          "persistOrderOfConcepts": true,
+          "showGroupDateTime": false,
+          "scope": "latest"
+
         },
         "expandedViewConfig": {
           "conceptNames": [
@@ -493,8 +504,8 @@
             "PE, Rectal and genitalia examination",
             "PE, Extremities examination",
             "PE, Neurologic examination"
-          ],
-          "showGroupDateTime": true
+          ]
+
         },
         "expandedViewConfig": {
           "conceptNames": [
@@ -530,7 +541,9 @@
             "SAP, Estimated length of stay",
             "SAP, Does the patient need further admissions"
           ],
-          "showGroupDateTime": true
+          "persistOrderOfConcepts": true,
+          "showGroupDateTime": false,
+          "scope": "latest"
         },
         "expandedViewConfig": {
           "conceptNames": [
