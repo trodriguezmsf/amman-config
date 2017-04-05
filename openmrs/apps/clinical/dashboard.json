@@ -342,9 +342,6 @@
             "MD, Review of systems, gastrointestinal",
             "MD, Description and duration of symptom (gastrointestinal)",
             "MD, Other ROS gastrointestinal symptoms",
-            "MD, Review of systems, genitourinary",
-            "MD, Description and duration of symptom (genitourinary)",
-            "MD, Other ROS genitourinary symptoms",
             "MD, Review of systems, central nervous system",
             "MD, Description and duration of symptom (central nervous system)",
             "MD, Other ROS central nervous system symptoms",
@@ -384,9 +381,6 @@
             "MD, Review of systems, gastrointestinal",
             "MD, Description and duration of symptom (gastrointestinal)",
             "MD, Other ROS gastrointestinal symptoms",
-            "MD, Review of systems, genitourinary",
-            "MD, Description and duration of symptom (genitourinary)",
-            "MD, Other ROS genitourinary symptoms",
             "MD, Review of systems, central nervous system",
             "MD, Description and duration of symptom (central nervous system)",
             "MD, Other ROS central nervous system symptoms",
@@ -446,7 +440,12 @@
             "SMH, Drug and Alcohol use",
             "SMH, Medical History",
             "SMH, Other medical problems",
-            "SMH, Allergy and Medication history",
+            "SMH, History of Allergy",
+            "SMH, Comments about allergy",
+            "SMH, Currently taking medication",
+            "SMH, Type of medication",
+            "SMH, Dose and freqency",
+            "SMH, Date of last dose",
             "SMH, Pain Assessment"
           ],
           "showGroupDateTime": true
@@ -463,7 +462,12 @@
             "SMH, Drug and Alcohol use",
             "SMH, Medical History",
             "SMH, Other medical problems",
-            "SMH, Allergy and Medication history",
+            "SMH, History of Allergy",
+            "SMH, Comments about allergy",
+            "SMH, Currently taking medication",
+            "SMH, Type of medication",
+            "SMH, Dose and freqency",
+            "SMH, Date of last dose",
             "SMH, Pain Assessment"
           ],
           "isEditable": true,
@@ -481,13 +485,27 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Physical Examination"
+            "PE, General examination",
+            "PE, HEENT examination",
+            "PE, Chest examination",
+            "PE, Heart examination",
+            "PE, Abdomen examination",
+            "PE, Rectal and genitalia examination",
+            "PE, Extremities examination",
+            "PE, Neurologic examination"
           ],
           "showGroupDateTime": true
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "Physical Examination"
+            "PE, General examination",
+            "PE, HEENT examination",
+            "PE, Chest examination",
+            "PE, Heart examination",
+            "PE, Abdomen examination",
+            "PE, Rectal and genitalia examination",
+            "PE, Extremities examination",
+            "PE, Neurologic examination"
           ],
           "isEditable": true,
           "numberOfVisits": 3,

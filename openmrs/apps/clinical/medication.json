@@ -11,13 +11,17 @@
             "doseUnits": "Tablet(s)",
             "route": "Oral"
           },
+          "Solution":{
+            "doseUnits": "Solution",
+            "route": "Oral"
+          },
           "Injection":{
             "doseUnits": "Injection",
             "route": "Intravenous"
           },
-          "Solution":{
-            "doseUnits": "Solution",
-            "route": "Oral"
+          "Capsule":{
+            "doseUnits":"Capsule",
+            "route":"Oral"
           },
           "Cream":{
             "doseUnits" : "Cream",
@@ -31,9 +35,69 @@
             "doseUnits" : "Eye drops",
             "route": "Eyes"
           },
+          "Eye/Nose drops":{
+            "doseUnits":"Eye/Nose drops",
+            "route":"Eyes/Nasogastric"
+          },
           "Ointment":{
             "doseUnits" : "Ointment",
             "route": "Topical"
+          },
+          "Lotion":{
+            "doseUnits":"Lotion",
+            "route":"Topical"
+          },
+          "Aerosol":{
+            "doseUnits":"Aerosol",
+            "route":"Nasogastric"
+          },
+          "Syrup":{
+            "doseUnits":"Syrup",
+            "route":"Oral"
+          },
+          "Turbuhaler":{
+            "doseUnits":"Turbuhaler",
+            "route":"Oral"
+          },
+          "Ear drops":{
+            "doseUnits":"Ear drops",
+            "route":"Ears"
+          },
+          "Vaginal tablet":{
+            "doseUnits":"Vaginal tablet",
+            "route":"Vaginal"
+          },
+          "Gel":{
+            "doseUnits":"Gel",
+            "route":"Tpoical"
+          },
+          "Suppository":{
+            "doseUnits":"Suppository",
+            "route":"Rectal"
+          },
+          "Vaccine":{
+            "doseUnits":"Vaccine",
+            "route":"Intramuscular"
+          },
+          "Powder":{
+            "doseUnits":"Powder",
+            "route":"Oral"
+          },
+          "Lubricating jelly":{
+            "doseUnits":"Lubricating jelly",
+            "route":"Topical"
+          },
+          "Jelly":{
+            "doseUnits":"Jelly",
+            "route":"Topical"
+          },
+          "Infusion":{
+            "doseUnits":"Infusion",
+            "route":"Intravenous"
+          },
+          "Topical powder":{
+            "doseUnits":"Topical powder",
+            "route":"Topical"
           }
         }
       }
