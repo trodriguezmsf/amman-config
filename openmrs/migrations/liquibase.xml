@@ -1446,4 +1446,24 @@
             update user_property set property_value="Initial Anesthesia Assessment" where property ="favouriteObsTemplates" and user_id =(select user_id from users where username="hadeel_aa");
         </sql>
     </changeSet>
+    <changeSet id="Amman-201704051005" author="shiva kumar" context="rel2.3" >
+        <comment>Ordering program workflow states</comment>
+        <sql>
+            UPDATE program_workflow_state SET concept_id =(select concept_id from concept_name where name="Pre-Operative") where program_workflow_id=2 and program_workflow_state_id =8;
+            UPDATE program_workflow_state SET concept_id =(select concept_id from concept_name where name="Surgical") where program_workflow_id=2 and program_workflow_state_id =9;
+            UPDATE program_workflow_state SET concept_id =(select concept_id from concept_name where name="Rehabilitation") where program_workflow_id=2 and program_workflow_state_id =10;
+            UPDATE program_workflow_state SET concept_id =(select concept_id from concept_name where name="Network Follow-up" and concept_name_type="FULLY_SPECIFIED") where program_workflow_id=2 and program_workflow_state_id =11;
+       </sql>
+    </changeSet>
+    <changeSet id="Amman-201704051026" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "Clinical:FullAccess" AND privilege = "app:clinical:dispositionTab";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding app:clinical:dispositionTab privilege to Clinical:fullaccess role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("Clinical:FullAccess","app:clinical:dispositionTab");
+        </sql>
+    </changeSet>
 </databaseChangeLog>
