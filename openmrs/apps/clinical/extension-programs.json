@@ -93,7 +93,7 @@
       "translationKey": "MODULE_LABEL_VALIDATED_PATIENTS_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
-      "searchColumns": ["identifier","Date of presentation", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Name of MLO", "Stage", "Specialty", "Priority", "Expected Month/Year of Arrival","Is Caretaker Required?", "Status of Official ID Documents"]
+      "searchColumns": ["identifier","Date of presentation", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Name of MLO", "Stage", "Specialty", "Priority", "Does the patient need surgical final validation", "Expected Month/Year of Arrival","Is Caretaker Required?", "Status of Official ID Documents"]
     },
     "order": 7,
     "requiredPrivilege": "app:clinical"
