@@ -551,7 +551,7 @@
           "isEditable": true,
           "numberOfVisits": 3,
           "showDetailsButton": true,
-          "pivotTable": {}
+          "pivotTable": {}  
         }
       }
     }
