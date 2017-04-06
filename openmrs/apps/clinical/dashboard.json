@@ -535,21 +535,16 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "SAP, Planned procedure data",
-            "SAP, Site of surgical procedure",
-            "SAP, Side of surgical procedure",
+            "SAP, Planned Surgical procedures",
             "SAP, Estimated length of stay",
             "SAP, Does the patient need further admissions"
           ],
-          "persistOrderOfConcepts": true,
-          "showGroupDateTime": false,
-          "scope": "latest"
+
+          "showGroupDateTime": true
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "SAP, Planned procedure data",
-            "SAP, Site of surgical procedure",
-            "SAP, Side of surgical procedure",
+            "SAP, Planned Surgical procedures",
             "SAP, Estimated length of stay",
             "SAP, Does the patient need further admissions"
           ],
