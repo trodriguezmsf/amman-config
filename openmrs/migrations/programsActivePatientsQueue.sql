@@ -1,7 +1,7 @@
 UPDATE
     global_property
 SET property_value = "SELECT DISTINCT
-    concat(pn.given_name,' ', pn.family_name)       AS PATIENT_LISTING_QUEUES_HEADER_NAME,
+    concat(pn.given_name,' ', pn.family_name)       AS name,
     pi.identifier                                   AS identifier,
     concat('', p.uuid)                              AS uuid
 FROM patient_program ppr
