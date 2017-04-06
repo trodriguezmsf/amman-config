@@ -260,6 +260,30 @@
           "pivotTable": {}
         }
       },
+      "treatments":{
+        "translationKey":"DASHBOARD_TITLE_MEDICATION_KEY",
+        "type":"treatment",
+        "displayOrder":1,
+        "dashboardConfig":{
+          "showFlowSheet":true,
+          "showListView":true,
+          "showRoute":true,
+          "showDrugForm":true,
+          "numberOfVisits":5,
+          "showOtherActive":true,
+          "showDetailsButton":true
+        },
+        "expandedViewConfig":{
+          "translationKey":"DASHBOARD_TITLE_MEDICATION_KEY",
+          "showFlowSheet":true,
+          "showListView":true,
+          "showRoute":true,
+          "showDrugForm":true,
+          "numberOfVisits":10,
+          "showOtherActive":true,
+          "showDetailsButton":true
+        }
+      },
       "Orders":{
         "translationKey": "DASHBOARD_TITLE_ORDERS",
         "type": "vitals",
@@ -287,26 +311,36 @@
           "pivotTable": {}
         }
       },
-      "Diagnoses":{
-        "translationKey": "DASHBOARD_TITLE_DIAGNOSES",
+      "Physical Examination":{
+        "translationKey": "DASHBOARD_TITLE_PHYSICAL_EXAMINATION",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 7,
+        "displayOrder": 3,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "OBS, Surgical Diagnoses",
-            "OBS, Medical Diagnoses"
-          ],
-          "persistOrderOfConcepts": true,
-          "showGroupDateTime": false,
-          "scope": "latest"
+            "PE, General examination",
+            "PE, HEENT examination",
+            "PE, Chest examination",
+            "PE, Heart examination",
+            "PE, Abdomen examination",
+            "PE, Rectal and genitalia examination",
+            "PE, Extremities examination",
+            "PE, Neurologic examination"
+          ]
+
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "OBS, Surgical Diagnoses",
-            "OBS, Medical Diagnoses"
+            "PE, General examination",
+            "PE, HEENT examination",
+            "PE, Chest examination",
+            "PE, Heart examination",
+            "PE, Abdomen examination",
+            "PE, Rectal and genitalia examination",
+            "PE, Extremities examination",
+            "PE, Neurologic examination"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -405,35 +439,11 @@
           "pivotTable": {}
         }
       },
-      "treatments":{
-        "translationKey":"DASHBOARD_TITLE_MEDICATION_KEY",
-        "type":"treatment",
-        "displayOrder":1,
-        "dashboardConfig":{
-          "showFlowSheet":true,
-          "showListView":true,
-          "showRoute":true,
-          "showDrugForm":true,
-          "numberOfVisits":5,
-          "showOtherActive":true,
-          "showDetailsButton":true
-        },
-        "expandedViewConfig":{
-          "translationKey":"DASHBOARD_TITLE_MEDICATION_KEY",
-          "showFlowSheet":true,
-          "showListView":true,
-          "showRoute":true,
-          "showDrugForm":true,
-          "numberOfVisits":10,
-          "showOtherActive":true,
-          "showDetailsButton":true
-        }
-      },
       "Nursing Assessment":{
         "translationKey": "DASHBOARD_TITLE_NURSING_ASSESSMENT",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 7,
+        "displayOrder": 5,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -487,45 +497,6 @@
           "pivotTable": {}
         }
       },
-      "Physical Examination":{
-          "translationKey": "DASHBOARD_TITLE_PHYSICAL_EXAMINATION",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 3,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "PE, General examination",
-            "PE, HEENT examination",
-            "PE, Chest examination",
-            "PE, Heart examination",
-            "PE, Abdomen examination",
-            "PE, Rectal and genitalia examination",
-            "PE, Extremities examination",
-            "PE, Neurologic examination"
-          ]
-
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "PE, General examination",
-            "PE, HEENT examination",
-            "PE, Chest examination",
-            "PE, Heart examination",
-            "PE, Abdomen examination",
-            "PE, Rectal and genitalia examination",
-            "PE, Extremities examination",
-            "PE, Neurologic examination"
-          ],
-          "isEditable": true,
-          "numberOfVisits": 3,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
-
-
       "Surgeon Pre-Op Assessment and Treatment Plan":{
         "translationKey": "DASHBOARD_SURGEON_AND_TREATMENT_PLAN_ASSESSMENT",
         "type": "vitals",
@@ -551,7 +522,34 @@
           "isEditable": true,
           "numberOfVisits": 3,
           "showDetailsButton": true,
-          "pivotTable": {}  
+          "pivotTable": {}
+        }
+      },
+      "Diagnoses":{
+        "translationKey": "DASHBOARD_TITLE_DIAGNOSES",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 7,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "OBS, Surgical Diagnoses",
+            "OBS, Medical Diagnoses"
+          ],
+          "persistOrderOfConcepts": true,
+          "showGroupDateTime": false,
+          "scope": "latest"
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "OBS, Surgical Diagnoses",
+            "OBS, Medical Diagnoses"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
         }
       }
     }
