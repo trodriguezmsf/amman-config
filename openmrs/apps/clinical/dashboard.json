@@ -264,7 +264,7 @@
         "translationKey": "DASHBOARD_TITLE_ORDERS",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 1,
+        "displayOrder": 2,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -291,7 +291,7 @@
         "translationKey": "DASHBOARD_TITLE_DIAGNOSES",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 2,
+        "displayOrder": 7,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -318,7 +318,7 @@
         "translationKey": "DASHBOARD_MD_ASSESSMENT",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 3,
+        "displayOrder": 4,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -408,7 +408,7 @@
       "treatments":{
         "translationKey":"DASHBOARD_TITLE_MEDICATION_KEY",
         "type":"treatment",
-        "displayOrder":4,
+        "displayOrder":1,
         "dashboardConfig":{
           "showFlowSheet":true,
           "showListView":true,
@@ -491,7 +491,7 @@
           "translationKey": "DASHBOARD_TITLE_PHYSICAL_EXAMINATION",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 6,
+        "displayOrder": 3,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -530,7 +530,7 @@
         "translationKey": "DASHBOARD_SURGEON_AND_TREATMENT_PLAN_ASSESSMENT",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 8,
+        "displayOrder": 6,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -557,3 +557,4 @@
     }
   }
 }
+  
