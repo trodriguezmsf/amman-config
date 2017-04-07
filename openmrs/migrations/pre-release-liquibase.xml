@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="Amman-201704071421" author="Shivakumar" context="preRelease" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_source where name = "CIEL";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding CIEL concept_reference_sources</comment>
+        <sql>
+            INSERT INTO concept_reference_source(name,description,creator,date_created,uuid) values ("CIEL","CIEL Bacteriology concept source",1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704071422" author="Shivakumar" context="preRelease" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_source where name = "SNOMED CT";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding SNOMED CT concept_reference_sources</comment>
+        <sql>
+            INSERT INTO concept_reference_source(name,description,creator,date_created,uuid) values ("SNOMED CT","SNOMED CT Bacteriology concept source",1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704071423" author="Shivakumar" context="preRelease" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_source where name = "ICD-10-WHO";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding ICD-10-WHO concept_reference_sources</comment>
+        <sql>
+            INSERT INTO concept_reference_source(name,description,creator,date_created,uuid) values ("ICD-10-WHO","ICD-10-WHO Bacteriology concept source",1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704071424" author="Shivakumar" context="preRelease" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_source where name ="ICHI";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding ICHI concept_reference_sources</comment>
+        <sql>
+            INSERT INTO concept_reference_source(name,description,creator,date_created,uuid) values ("ICHI","ICHI Bacteriology concept source",1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704071425" author="Shivakumar" context="preRelease" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_source where name ="MSF-INTERNAL";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding MSF INTERNAL concept_reference_sources</comment>
+        <sql>
+            INSERT INTO concept_reference_source(name,description,creator,date_created,uuid) values ("MSF-INTERNAL","MSF INTERNAL  concept source",1,now(),uuid());
+        </sql>
+    </changeSet>
+</databaseChangeLog>
