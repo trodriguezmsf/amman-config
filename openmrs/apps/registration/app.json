@@ -236,7 +236,7 @@
                 {
                     "visitType": "Hospital",
                     "forwardUrl": "../clinical/#/programs/patient/{{patientUuid}}/consultationContext",
-                    "translationKey": "Enter Follow-Up Details",
+                    "translationKey": "Enter hospital visit Details",
                     "shortcutKey": "h"
                 }
 
