@@ -8,7 +8,7 @@
       "translationKey": "MODULE_LABEL_PROGRAMS_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
-      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME"]
+      "searchColumns": ["identifier", "name"]
     },
     "order": 1,
     "requiredPrivilege": "app:clinical"
