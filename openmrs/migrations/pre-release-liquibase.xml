@@ -12,7 +12,7 @@
         </preConditions>
         <comment>Adding CIEL concept_reference_sources</comment>
         <sql>
-            INSERT INTO concept_reference_source(name,description,creator,date_created,uuid) values ("CIEL","CIEL Bacteriology concept source",1,now(),uuid());
+            INSERT INTO concept_reference_source(name,description,hl7_code,creator,date_created,uuid) values ("CIEL","CIEL Bacteriology concept source",NULL,1,now(),uuid());
         </sql>
     </changeSet>
     <changeSet id="Amman-201704071422" author="Shivakumar" context="preRelease" >
@@ -23,7 +23,7 @@
         </preConditions>
         <comment>Adding SNOMED CT concept_reference_sources</comment>
         <sql>
-            INSERT INTO concept_reference_source(name,description,creator,date_created,uuid) values ("SNOMED CT","SNOMED CT Bacteriology concept source",1,now(),uuid());
+            INSERT INTO concept_reference_source(name,description,hl7_code,creator,date_created,uuid) values ("SNOMED CT","SNOMED CT Bacteriology concept source",NULL,1,now(),uuid());
         </sql>
     </changeSet>
     <changeSet id="Amman-201704071423" author="Shivakumar" context="preRelease" >
@@ -34,7 +34,7 @@
         </preConditions>
         <comment>Adding ICD-10-WHO concept_reference_sources</comment>
         <sql>
-            INSERT INTO concept_reference_source(name,description,creator,date_created,uuid) values ("ICD-10-WHO","ICD-10-WHO Bacteriology concept source",1,now(),uuid());
+            INSERT INTO concept_reference_source(name,description,hl7_code,creator,date_created,uuid) values ("ICD-10-WHO","ICD-10-WHO Bacteriology concept source",NULL,1,now(),uuid());
         </sql>
     </changeSet>
     <changeSet id="Amman-201704071424" author="Shivakumar" context="preRelease" >
@@ -45,7 +45,7 @@
         </preConditions>
         <comment>Adding ICHI concept_reference_sources</comment>
         <sql>
-            INSERT INTO concept_reference_source(name,description,creator,date_created,uuid) values ("ICHI","ICHI Bacteriology concept source",1,now(),uuid());
+            INSERT INTO concept_reference_source(name,description,hl7_code,creator,date_created,uuid) values ("ICHI","ICHI Bacteriology concept source",NULL,1,now(),uuid());
         </sql>
     </changeSet>
     <changeSet id="Amman-201704071425" author="Shivakumar" context="preRelease" >
@@ -56,7 +56,7 @@
         </preConditions>
         <comment>Adding MSF INTERNAL concept_reference_sources</comment>
         <sql>
-            INSERT INTO concept_reference_source(name,description,creator,date_created,uuid) values ("MSF-INTERNAL","MSF INTERNAL  concept source",1,now(),uuid());
+            INSERT INTO concept_reference_source(name,description,hl7_code,creator,date_created,uuid) values ("MSF-INTERNAL","MSF INTERNAL  concept source",NULL,1,now(),uuid());
         </sql>
     </changeSet>
 </databaseChangeLog>
