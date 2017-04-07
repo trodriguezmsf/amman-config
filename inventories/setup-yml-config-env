@@ -9,6 +9,4 @@ omods: ["file:///tmp/bahmnimsf-1.0.omod", "file:///tmp/bahmnicore-0.86-SNAPSHOT.
 SSLCertificateFilePath: /etc/letsencrypt/live/config-amman.mybahmni.org/cert.pem
 SSLCertificateKeyFilePath: /etc/letsencrypt/live/config-amman.mybahmni.org/privkey.pem
 SSLCertificateChainFilePath: /etc/letsencrypt/live/config-amman.mybahmni.org/chain.pem
-nagios_contact_email: randomsome8@gmail.com
-ssmtp_auth_user: randomsome8@gmail.com
-ssmtp_auth_pass: pass123123
+
