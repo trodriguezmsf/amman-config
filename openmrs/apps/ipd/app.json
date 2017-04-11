@@ -159,7 +159,7 @@
                 }
             }
         },
-          "hideStartNewVisitPopUp": true,
+          "hideStartNewVisitPopUp": false,
           "colorForTags": [
               {"name": "Lost", "color": "#da2121"},
               {"name": "Isolation", "color": "#3462f3"},
