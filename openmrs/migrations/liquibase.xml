@@ -180,7 +180,7 @@
         <comment>Migrating the consultation encounters that were part of clinical to programs</comment>
         <sqlFile path="migrateClinicalEncountersToProgram.sql"/>
     </changeSet>
-             <changeSet id="Amman-201612281718" author="Shiva kumar" context="rel2.3" >
+    <changeSet id="Amman-201612281718" author="Shiva kumar" context="rel2.3" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="Baseline Vital Signs" and concept_name_type = "FULLY_SPECIFIED") and concept_set =88;
@@ -663,19 +663,17 @@
         </sql>
     </changeSet>
     <changeSet id="Amman-201703301601" author="shiva kumar" context="rel2.3" >
-        <comment>Adding roles and pinning forms to existing users</comment>
+        <validCheckSum>3:faab834d9c747e83a73cbf248d6d5361</validCheckSum>
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username = "ajeeb_am";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating property value for property favouriteObsTemplates for the user ajeeb_am</comment>
         <sql>
-            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="israa_aj"),"InPatient-Read");
-            UPDATE user_property SET property_value="MH, Medical History###First Stage Validation###Follow-up validation###FV, Final validation" WHERE property="favouriteObsTemplates" and user_id=(SELECT user_id FROM users WHERE username ="ajeeb_am");
-            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ajeeb_am"),"InPatient-Read");
-            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="eman_f"),"InPatient-Read"),((SELECT user_id FROM users WHERE username ="eman_f"),"Clinical:ReadOnly");
-            UPDATE user_property SET property_value="MH, Medical History###First Stage Validation###Follow-up validation###FV, Final validation" WHERE property="favouriteObsTemplates" and user_id=(SELECT user_id FROM users WHERE username ="mahmoud_h");
-            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mahmoud_h"),"InPatient-Read");
-            UPDATE user_property SET property_value="MH, Medical History###First Stage Validation###Follow-up validation###FV, Final validation" WHERE property="favouriteObsTemplates" and user_id=(SELECT user_id FROM users WHERE username ="hani_i");
-            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hani_i"),"InPatient-Read");
-            UPDATE user_property SET property_value="MH, Medical History###First Stage Validation###Follow-up validation###FV, Final validation" WHERE property="favouriteObsTemplates" and user_id=(SELECT user_id FROM users WHERE username ="dyala_o");
-            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="dyala_o"),"InPatient-Read");
-            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sandrine_v"),"InPatient-Read");
+            UPDATE user_property
+                SET property_value="MH, Medical History###First Stage Validation###Follow-up validation###FV, Final validation"
+            WHERE property="favouriteObsTemplates" and user_id=(SELECT user_id FROM users WHERE username ="ajeeb_am");
         </sql>
     </changeSet>
     <changeSet id="Amman-201703301602" author="shiva kumar" context="rel2.3" >
@@ -1431,9 +1429,32 @@
         </sql>
     </changeSet>
     <changeSet id="Amman-201703311604" author="shiva kumar" context="rel2.3" >
-        <comment>Adding and Deleting bed managment edit permissions for user</comment>
+        <validCheckSum>3:2a5a2c5ccc7950614104bad22512a6c0</validCheckSum>
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username ="hani_i";
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM user_role WHERE role = "InPatient-Patient-Movement" AND user_id IN (SELECT user_id FROM users WHERE username = "hani_i")
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing InPatient-Patient-Movement role for the user hani_i</comment>
         <sql>
             DELETE FROM user_role WHERE role="InPatient-Patient-Movement" AND user_id =(SELECT user_id FROM users WHERE username ="hani_i");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201703311605" author="Santhosh, Pramida" context="rel2.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username ="dyala_o";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "Registration-Read" AND user_id IN (SELECT user_id FROM
+                users WHERE username = "dyala_o")
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding InPatient-Read role to the user dyala_o</comment>
+        <sql>
             INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="dyala_o"),"Registration-Read");
         </sql>
     </changeSet>
@@ -1464,6 +1485,169 @@
         <comment>Adding app:clinical:dispositionTab privilege to Clinical:fullaccess role</comment>
         <sql>
             INSERT INTO role_privilege(role, privilege) VALUES ("Clinical:FullAccess","app:clinical:dispositionTab");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704111300" author="Santhosh, Pramida" context="rel2.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username = "dyala_o";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating property value for property favouriteObsTemplates for the user dyala_o</comment>
+        <sql>
+            UPDATE user_property
+            SET property_value="MH, Medical History###First Stage Validation###Follow-up validation###FV, Final
+            validation"
+            WHERE property="favouriteObsTemplates" and user_id=(SELECT user_id FROM users WHERE username ="dyala_o");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704111301" author="Santhosh, Pramida" context="rel2.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username = "hani_i";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating property value for property favouriteObsTemplates for the user hani_i</comment>
+        <sql>
+            UPDATE user_property
+            SET property_value="MH, Medical History###First Stage Validation###Follow-up validation###FV, Final
+            validation"
+            WHERE property="favouriteObsTemplates" and user_id=(SELECT user_id FROM users WHERE username ="hani_i");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704111302" author="Santhosh, Pramida" context="rel2.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username = "mahmoud_h";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating property value for property favouriteObsTemplates for the user mahmoud_h</comment>
+        <sql>
+            UPDATE user_property
+            SET property_value="MH, Medical History###First Stage Validation###Follow-up validation###FV, Final
+            validation"
+            WHERE property="favouriteObsTemplates" and user_id=(SELECT user_id FROM users WHERE username ="mahmoud_h");
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-201704111303" author="Santhosh, Pramida" context="rel2.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username = "israa_aj";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "InPatient-Read" AND user_id IN (SELECT user_id FROM users
+                WHERE username = "israa_aj")
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding InPatient-Read role to the user israa_aj</comment>
+        <sql>
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="israa_aj"),"InPatient-Read");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704111304" author="Santhosh, Pramida" context="rel2.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username = "sandrine_v";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "InPatient-Read" AND user_id IN (SELECT user_id FROM users
+                WHERE username = "sandrine_v")
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding InPatient-Read role to the user sandrine_v</comment>
+        <sql>
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sandrine_v"),"InPatient-Read");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704111305" author="Santhosh, Pramida" context="rel2.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username = "dyala_o";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "InPatient-Read" AND user_id IN (SELECT user_id FROM users
+                WHERE username = "dyala_o")
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding InPatient-Read role to the user dyala_o</comment>
+        <sql>
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="dyala_o"),"InPatient-Read");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704111306" author="Santhosh, Pramida" context="rel2.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username = "hani_i";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "InPatient-Read" AND user_id IN (SELECT user_id FROM users
+                WHERE username = "hani_i")
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding InPatient-Read role to the user hani_i</comment>
+        <sql>
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hani_i"),"InPatient-Read");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704111307" author="Santhosh, Pramida" context="rel2.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username = "mahmoud_h";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "InPatient-Read" AND user_id IN (SELECT user_id FROM users
+                WHERE username = "mahmoud_h")
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding InPatient-Read role to the user mahmoud_h</comment>
+        <sql>
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mahmoud_h"),"InPatient-Read");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704111308" author="Santhosh, Pramida" context="rel2.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username = "eman_f";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "InPatient-Read" AND user_id IN (SELECT user_id FROM users
+                WHERE username = "eman_f")
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding InPatient-Read role to the user eman_f</comment>
+        <sql>
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="eman_f"),"InPatient-Read");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704111309" author="Santhosh, Pramida" context="rel2.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username = "eman_f";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "Clinical:ReadOnly" AND user_id IN (SELECT user_id FROM
+                users WHERE username = "eman_f")
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical:ReadOnly role to the user eman_f</comment>
+        <sql>
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="eman_f"), "Clinical:ReadOnly");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704111310" author="Santhosh, Pramida" context="rel2.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username = "ajeeb_am";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "InPatient-Read" AND user_id IN (SELECT user_id FROM users
+                WHERE username = "ajeeb_am")
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding InPatient-Read role to the user ajeeb_am</comment>
+        <sql>
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ajeeb_am"),"InPatient-Read");
         </sql>
     </changeSet>
 </databaseChangeLog>
