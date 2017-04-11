@@ -238,21 +238,12 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "VS, Date recorded",
-            "Weight",
-            "Height",
-            "BMI Data"
-          ],
-          "persistOrderOfConcepts": true,
-          "showGroupDateTime": false,
-          "scope": "latest"
+            "Baseline Vital Signs"
+          ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "VS, Date recorded",
-            "Weight",
-            "Height",
-            "BMI Data"
+            "Baseline Vital Signs"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -295,10 +286,7 @@
           "conceptNames": [
             "AIA, Pre-anaesthesia orders",
             "SAP, Investigations needed"
-          ],
-          "persistOrderOfConcepts": true,
-          "showGroupDateTime": false,
-          "scope": "latest"
+          ]
         },
         "expandedViewConfig": {
           "conceptNames": [
@@ -329,7 +317,6 @@
             "PE, Extremities examination",
             "PE, Neurologic examination"
           ]
-
         },
         "expandedViewConfig": {
           "conceptNames": [
@@ -357,81 +344,12 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "MD, Date of consultation",
-            "MD, Chief complaint",
-            "MD, History of present illness",
-            "MD, Associated neural injury",
-            "MD, Associated vascular injury",
-            "MD, Function of injured part",
-            "MD, Sensation of injured part",
-            "MD, History of previous surgery",
-            "MD, HIstory of infection",
-            "MD, Comments about previous infection",
-            "MD, Discharging sinus",
-            "MD, Duration of discharging sinus",
-            "MD, Bone Loss",
-            "MD, Cm of bone loss",
-            "MD, Shortening",
-            "MD, Cm of shortening",
-            "MD, Review of systems, general",
-            "MD, Description and duration of symptom (general)",
-            "MD, Other ROS general symptoms",
-            "MD, Review of systems, cardiopulmonary",
-            "MD, Description and duration of symptom (cardiopulmonary)",
-            "MD, Other ROS cardiopulmonary symptoms",
-            "MD, Review of systems, gastrointestinal",
-            "MD, Description and duration of symptom (gastrointestinal)",
-            "MD, Other ROS gastrointestinal symptoms",
-            "MD, Review of systems, central nervous system",
-            "MD, Description and duration of symptom (central nervous system)",
-            "MD, Other ROS central nervous system symptoms",
-            "MD, Review of systems, HEENT",
-            "MD, Description and duration of symptom (HEENT)",
-            "MD, Other ROS HEENT symptoms",
-            "MD, Review of systems, musculoskeletal",
-            "MD, Description and duration of symptom (musculoskeletal)",
-            "MD, Other ROS musculoskeletal symptoms"
-          ],
-          "persistOrderOfConcepts": true,
-          "showGroupDateTime": false,
-          "scope": "latest"
+            "MD Initial Assessment"
+          ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "MD, Date of consultation",
-            "MD, Chief complaint",
-            "MD, History of present illness",
-            "MD, Associated neural injury",
-            "MD, Associated vascular injury",
-            "MD, Function of injured part",
-            "MD, Sensation of injured part",
-            "MD, History of previous surgery",
-            "MD, HIstory of infection",
-            "MD, Comments about previous infection",
-            "MD, Discharging sinus",
-            "MD, Duration of discharging sinus",
-            "MD, Bone Loss",
-            "MD, Cm of bone loss",
-            "MD, Shortening",
-            "MD, Cm of shortening",
-            "MD, Review of systems, general",
-            "MD, Description and duration of symptom (general)",
-            "MD, Other ROS general symptoms",
-            "MD, Review of systems, cardiopulmonary",
-            "MD, Description and duration of symptom (cardiopulmonary)",
-            "MD, Other ROS cardiopulmonary symptoms",
-            "MD, Review of systems, gastrointestinal",
-            "MD, Description and duration of symptom (gastrointestinal)",
-            "MD, Other ROS gastrointestinal symptoms",
-            "MD, Review of systems, central nervous system",
-            "MD, Description and duration of symptom (central nervous system)",
-            "MD, Other ROS central nervous system symptoms",
-            "MD, Review of systems, HEENT",
-            "MD, Description and duration of symptom (HEENT)",
-            "MD, Other ROS HEENT symptoms",
-            "MD, Review of systems, musculoskeletal",
-            "MD, Description and duration of symptom (musculoskeletal)",
-            "MD, Other ROS musculoskeletal symptoms"
+            "MD Initial Assessment"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -448,48 +366,12 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "SMH, Date of consultation",
-            "SMH, Marital status",
-            "SMH, Highest education level",
-            "SMH, Pregnancy status",
-            "SMH, Current smoker",
-            "SMH, Number of cigarettes per day",
-            "SMH, Duration of smoking (in years)",
-            "SMH, Drug and Alcohol use",
-            "SMH, Medical History",
-            "SMH, Other medical problems",
-            "SMH, History of Allergy",
-            "SMH, Comments about allergy",
-            "SMH, Currently taking medication",
-            "SMH, Type of medication",
-            "SMH, Dose and freqency",
-            "SMH, Date of last dose",
-            "SMH, Pain Assessment"
-          ],
-          "persistOrderOfConcepts": true,
-          "showGroupDateTime": false,
-          "scope": "latest"
-
+            "Social and Medical History"
+          ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "SMH, Date of consultation",
-            "SMH, Marital status",
-            "SMH, Highest education level",
-            "SMH, Pregnancy status",
-            "SMH, Current smoker",
-            "SMH, Number of cigarettes per day",
-            "SMH, Duration of smoking (in years)",
-            "SMH, Drug and Alcohol use",
-            "SMH, Medical History",
-            "SMH, Other medical problems",
-            "SMH, History of Allergy",
-            "SMH, Comments about allergy",
-            "SMH, Currently taking medication",
-            "SMH, Type of medication",
-            "SMH, Dose and freqency",
-            "SMH, Date of last dose",
-            "SMH, Pain Assessment"
+            "Social and Medical History"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -509,9 +391,7 @@
             "SAP, Planned Surgical procedures",
             "SAP, Estimated length of stay",
             "SAP, Does the patient need further admissions"
-          ],
-
-          "showGroupDateTime": true
+          ]
         },
         "expandedViewConfig": {
           "conceptNames": [
@@ -536,10 +416,7 @@
           "conceptNames": [
             "OBS, Surgical Diagnoses",
             "OBS, Medical Diagnoses"
-          ],
-          "persistOrderOfConcepts": true,
-          "showGroupDateTime": false,
-          "scope": "latest"
+          ]
         },
         "expandedViewConfig": {
           "conceptNames": [
