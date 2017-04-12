@@ -1650,4 +1650,610 @@
             INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ajeeb_am"),"InPatient-Read");
         </sql>
     </changeSet>
+    <changeSet id="Amman-201704111801" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="eman_f") and role ="Clinical-App-Read-Only";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Read-Only role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="eman_f"),"Clinical-App-Read-Only");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704111802" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="dyala_o") and role ="Clinical-App-Read-Only";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Read-Only role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="dyala_o"),"Clinical-App-Read-Only");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704111803" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="william_t") and role ="Clinical-App-Read-Only";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Read-Only role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="william_t"),"Clinical-App-Read-Only");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704120949" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="sandrine_v") and role ="Clinical-App-Read-Only";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Read-Only role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="sandrine_v"),"Clinical-App-Read-Only");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704120950" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="birgit_s") and role ="Clinical-App-Read-Only";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Read-Only role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="birgit_s"),"Clinical-App-Read-Only");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704120955" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="elisa_b") and role ="Clinical-App-Read-Only";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Read-Only role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="elisa_b"),"Clinical-App-Read-Only");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704120957" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="rasheed_as") and role ="Clinical-App-Read-Only";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Read-Only role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="rasheed_as"),"Clinical-App-Read-Only");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704120958" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="marc_s") and role ="Clinical-App-Read-Only";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Read-Only role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="marc_s"),"Clinical-App-Read-Only");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704120959" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="yahya_k") and role ="Clinical-App-Read-Only";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Read-Only role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="yahya_k"),"Clinical-App-Read-Only");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121000" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="nabil_j") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="nabil_j"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121001" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="israa_aj") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="israa_aj"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121002" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="ajeeb_am") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="ajeeb_am"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121003" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="mahmoud_h") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="mahmoud_h"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121004" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="hani_i") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="hani_i"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121005" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="nabil_j") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="nabil_j"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121006" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="weaam_a") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="weaam_a"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121007" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="osama_n") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="osama_n"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121008" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="mohammad_b") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="mohammad_b"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121009" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="radah_l") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="radah_l"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121010" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="haya_aq") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="haya_aq"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121012" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="haya_aq") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="haya_aq"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121013" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="firas_q") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="firas_q"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121014" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="salam_s") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="salam_s"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121015" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="yazan_h") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="yazan_h"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121016" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="sufiyan_aq") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="sufiyan_aq"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121017" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="ali_aa") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="ali_aa"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121018" author="Shivakumar" context="rel2.2" >
+    <preConditions onFail="MARK_RAN">
+        <sqlCheck expectedResult="0">
+            select count(*) from user_role where user_id =(select user_id from users where username="ashraf_n") and role ="Clinical-App-Treatment";
+        </sqlCheck>
+    </preConditions>
+    <comment>Adding Clinical-App-Treatment role to user </comment>
+    <sql>
+    INSERT INTO user_role Values((select user_id from users where username="ashraf_n"),"Clinical-App-Treatment");
+    </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121019" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="hanna_j") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="hanna_j"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121020" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="moukhallad_s") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="moukhallad_s"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121021" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="ashraf_b") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="ashraf_b"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121022" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="abdelraouf_ah") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="abdelraouf_ah"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121022" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="hadeel_aa") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="hadeel_aa"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121023" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="ammar_s") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="ammar_s"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121024" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="zaid_se") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="zaid_se"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121026" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="hussein_am") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="hussein_am"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121027" author="Shivakumar" context="rel2.2" >
+    <preConditions onFail="MARK_RAN">
+        <sqlCheck expectedResult="0">
+            select count(*) from user_role where user_id =(select user_id from users where username="lina_am") and role ="Clinical-App-Treatment";
+        </sqlCheck>
+    </preConditions>
+    <comment>Adding Clinical-App-Treatment role to user </comment>
+    <sql>
+    INSERT INTO user_role Values((select user_id from users where username="lina_am"),"Clinical-App-Treatment");
+    </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121029" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="ahmad_ad") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="ahmad_ad"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121030" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="saleem_aa") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="saleem_aa"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121032" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="zuhier_h") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="zuhier_h"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121033" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="sajdi_m") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="sajdi_m"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121034" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="yazan_k") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="yazan_k"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121035" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="ahmad_ar") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="ahmad_ar"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121036" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="samar_i") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="samar_i"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121037" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="razan_a") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="razan_a"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121039" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="rawan_ag") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="rawan_ag"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121040" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="amani_az") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="amani_az"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121041" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="muntaha_m") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="muntaha_m"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121042" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="qutaiba_am") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="qutaiba_am"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121043" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="naseer_j") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="naseer_j"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121044" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="ruba_h") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="ruba_h"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121045" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="alaa_s") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="alaa_s"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121046" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="hilana_a") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="hilana_a"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121047" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="mohammed_d") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="mohammed_d"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121050" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="suleiman_ak") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="suleiman_ak"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704121057" author="Shivakumar" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from user_role where user_id =(select user_id from users where username="michael_h") and role ="Clinical-App-Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Clinical-App-Treatment role to user </comment>
+        <sql>
+            INSERT INTO user_role Values((select user_id from users where username="michael_h"),"Clinical-App-Treatment");
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
