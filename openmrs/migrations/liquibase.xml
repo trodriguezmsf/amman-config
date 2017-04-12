@@ -1991,7 +1991,7 @@
             INSERT INTO user_role Values((select user_id from users where username="abdelraouf_ah"),"Clinical-App-Treatment");
         </sql>
     </changeSet>
-    <changeSet id="Amman-201704121022" author="Shivakumar" context="rel2.2" >
+    <changeSet id="Amman-201704121122" author="Shivakumar" context="rel2.2" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from user_role where user_id =(select user_id from users where username="hadeel_aa") and role ="Clinical-App-Treatment";
