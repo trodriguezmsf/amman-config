@@ -2255,5 +2255,54 @@
             INSERT INTO user_role Values((select user_id from users where username="michael_h"),"Clinical-App-Treatment");
         </sql>
     </changeSet>
-
+    <changeSet id="Amman-201704171122" author="Santhosh, Shireesha" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*)
+                    FROM concept_name
+                WHERE name = "Network Follow-up" AND concept_name_type = "FULLY_SPECIFIED" AND voided IS FALSE;
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*)
+                    FROM program_workflow_state
+                WHERE program_workflow_id = 2 AND program_workflow_state_id = 8 AND retired IS FALSE
+                        AND concept_id IN (SELECT concept_id
+                                                FROM concept_name
+                                            WHERE name = "Network Follow-up" AND concept_name_type = "FULLY_SPECIFIED" AND voided IS FALSE);
+            </sqlCheck>
+        </preConditions>
+        <comment>Setting the program workflow state id back to Network Follow-up</comment>
+        <sql>
+            UPDATE program_workflow_state
+                SET concept_id = (SELECT concept_id
+                                        FROM concept_name
+                                  WHERE name = "Network Follow-up" AND concept_name_type = "FULLY_SPECIFIED" AND voided IS FALSE)
+                WHERE program_workflow_id = 2 AND program_workflow_state_id = 8 AND retired IS FALSE;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704171123" author="Santhosh, Shireesha" context="rel2.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*)
+                FROM concept_name
+                WHERE name = "Pre-Operative" AND concept_name_type = "FULLY_SPECIFIED" AND voided IS FALSE;
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*)
+                    FROM program_workflow_state
+                WHERE program_workflow_id = 2 AND program_workflow_state_id = 11 AND retired IS FALSE
+                        AND concept_id IN (SELECT concept_id
+                                                FROM concept_name
+                                            WHERE name = "Pre-Operative" AND concept_name_type = "FULLY_SPECIFIED" AND voided IS FALSE);
+            </sqlCheck>
+        </preConditions>
+        <comment>Setting the program workflow state id back to Pre-Operative</comment>
+        <sql>
+            UPDATE program_workflow_state
+                SET concept_id = (SELECT concept_id
+                                        FROM concept_name
+                                    WHERE name = "Pre-Operative" AND concept_name_type = "FULLY_SPECIFIED")
+            WHERE program_workflow_id = 2 AND program_workflow_state_id = 11;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
