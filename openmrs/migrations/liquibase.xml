@@ -2305,4 +2305,36 @@
             WHERE program_workflow_id = 2 AND program_workflow_state_id = 11;
         </sql>
     </changeSet>
+    <changeSet id="Amman-201704181425" author="Santhosh, Shireesha" context="rel3.0">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM provider WHERE identifier = 'LABMANAGER';
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM person_name WHERE person_id = (SELECT person_id FROM provider WHERE identifier = 'LABMANAGER');
+            </sqlCheck>
+        </preConditions>
+        <comment>Add person name for provider with name 'Lab Manager' required for openMrs upgrade</comment>
+        <sql>
+            SELECT person_id INTO @person_id FROM provider WHERE identifier = 'LABMANAGER';
+            INSERT INTO person_name (person_id, given_name, family_name, creator, date_created, voided, uuid) VALUES
+            (@person_id, 'Lab', 'Manager', 8, NOW(), 0, UUID());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201704181444" author="Santhosh, Shireesha" context="rel3.0">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM provider WHERE identifier = 'LABSYSTEM';
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM person_name WHERE person_id = (SELECT person_id FROM provider WHERE identifier = 'LABSYSTEM');
+            </sqlCheck>
+        </preConditions>
+        <comment>Add person name for provider with name 'Lab System' required for openMrs upgrade</comment>
+        <sql>
+            SELECT person_id INTO @person_id FROM provider WHERE identifier = 'LABSYSTEM';
+            INSERT INTO person_name (person_id, given_name, family_name, creator, date_created, voided, uuid) VALUES
+            (@person_id, 'Lab', 'System', 8, NOW(), 0, UUID());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
