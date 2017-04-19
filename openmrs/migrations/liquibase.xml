@@ -2337,4 +2337,18 @@
             (@person_id, 'Lab', 'System', 8, NOW(), 0, UUID());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201704191850" author="Santhosh, Shireesha" context="rel3.0">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="metadatamapping_metadata_term_mapping" schemaName="openmrs"/>
+            <indexExists indexName="metadatamapping_idx_mdtm_mdclass"/>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM liquibasechangelog WHERE id='metadatamapping-2016-02-07-1310-b-non-mysql';
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            Dropping the index on the column metadata_class in metadatamapping_metadata_term_mapping table as it will be created as part of the migration metadatamapping-2016-02-07-1310-b-non-mysql
+        </comment>
+        <dropIndex indexName="metadatamapping_idx_mdtm_mdclass" schemaName="openmrs"
+                   tableName="metadatamapping_metadata_term_mapping"/>
+    </changeSet>
 </databaseChangeLog>
