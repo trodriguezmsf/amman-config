@@ -1,0 +1,9 @@
+{
+  "id": "bahmni.ot.scheduling",
+  "extensionPoints": [
+  ],
+  "config": {
+    "diagnosisStatus": "Inactive"
+  }
+
+}
