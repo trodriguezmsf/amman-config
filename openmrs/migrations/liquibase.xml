@@ -2351,4 +2351,8 @@
         <dropIndex indexName="metadatamapping_idx_mdtm_mdclass" schemaName="openmrs"
                    tableName="metadatamapping_metadata_term_mapping"/>
     </changeSet>
+    <changeSet id="Amman-201705031542" author="Kaustav, Shireesha" context="rel3.0" runOnChange="true">
+        <comment>Add operation theater locations and OT tag</comment>
+        <sqlFile path="operationTheater/otLocations.sql"/>
+    </changeSet>
 </databaseChangeLog>
