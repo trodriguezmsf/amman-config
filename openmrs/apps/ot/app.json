@@ -3,7 +3,8 @@
   "extensionPoints": [
   ],
   "config": {
-    "diagnosisStatus": "Inactive"
+    "diagnosisStatus": "Inactive",
+    "primarySurgeonsForOT" : ["55b4ebe6-a00b-4ee1-8691-a71513bc3253", "176cc01a-1617-11e7-85a5-080027b18094"]
   }
 
 }
