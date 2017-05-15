@@ -793,5 +793,243 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.show.push("SAP, Side of injury","SAP, Condition of soft tissue at presentation")
         }
         return conditions;
-    }
+    },
+    'ANA, Pain Severity': function (formName, formFieldValues) {
+             var conditions = {
+                 show: [],
+                 hide: []
+             };
+             var conditionConcept = formFieldValues['ANA, Pain Severity'];
+             if (conditionConcept >= 1){
+                 conditions.show.push("ANA, Side of pain","ANA, Site of pain","ANA, Type of pain","ANA, When does the pain occur")
+             }
+             else {
+                 conditions.hide.push("ANA, Side of pain","ANA, Site of pain","ANA, Type of pain","ANA, When does the pain occur")
+             }
+             return conditions;
+         },
+    'ANA, Patient mood': function (formName, formFieldValues) {
+            var conditions = {
+                show: [],
+                hide: []
+            };
+            var conditionConcept = formFieldValues['ANA, Patient mood'];
+            if (conditionConcept == "Other"){
+            conditions.show.push("ANA, Patient mood, other")
+            }
+            else {
+            conditions.hide.push("ANA, Patient mood, other")
+            }
+            return conditions;
+        },
+    'ANA, Nutritional Assessment': function (formName, formFieldValues) {
+             var conditions = {
+                 show: [],
+                 hide: []
+             };
+             var conditionConcept = formFieldValues['ANA, Nutritional Assessment'];
+             if (conditionConcept.indexOf("Other")>=0){
+                 conditions.show.push("ANA, Nutritional Assessment, other")
+             }
+             else {
+                 conditions.hide.push("ANA, Nutritional Assessment, other")
+             }
+             return conditions;
+         },
+    'ONN, Pain Severity': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['ONN, Pain Severity'];
+              if (conditionConcept >= 1){
+                  conditions.show.push("ONN, Side of pain","ONN, Site of pain","ONN, Type of pain","ONN, When does the pain occur")
+              }
+              else {
+                   conditions.hide.push("ONN, Side of pain","ONN, Site of pain","ONN, Type of pain","ONN, When does the pain occur")
+               }
+              return conditions;
+          },
+    'ONN, Description of wound': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['ONN, Description of wound'];
+              if (conditionConcept == "Other"){
+                 conditions.show.push("ONN, Description of wound, other")
+              }
+              else {
+              conditions.hide.push("ONN, Description of wound, other")
+              }
+              return conditions;
+         },
+    'ONN, Does the patient have a tissue expander?': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['ONN, Does the patient have a tissue expander?'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("ONN, Tissue Expander")
+              }
+              else {
+              conditions.hide.push("ONN, Tissue Expander")
+              }
+              return conditions;
+         },
+    'ONN, Does the patient have a dressing?': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['ONN, Does the patient have a dressing?'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("ONN, Dressing")
+              }
+              else {
+              conditions.hide.push("ONN, Dressing")
+              }
+              return conditions;
+         },
+    'POW, Pain Severity': function (formName, formFieldValues) {
+             var conditions = {
+                 show: [],
+                 hide: []
+             };
+             var conditionConcept = formFieldValues['POW, Pain Severity'];
+             if (conditionConcept >= 1){
+                 conditions.show.push("POW, Side of pain","POW, Site of pain","POW, Type of pain","POW, When does the pain occur")
+             }
+             else {
+                 conditions.hide.push("POW, Side of pain","POW, Site of pain","POW, Type of pain","POW, When does the pain occur")
+             }
+             return conditions;
+         },
+    'POW, Description of wound': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['POW, Description of wound'];
+              if (conditionConcept == "Other"){
+                 conditions.show.push("POW, Description of wound, other")
+              }
+              else {
+              conditions.hide.push("POW, Description of wound, other")
+              }
+              return conditions;
+         },
+    'POW, Does the patient have a drain?': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['POW, Does the patient have a drain?'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("POW, Drainage Set")
+              }
+              else {
+              conditions.hide.push("POW, Drainage Set")
+              }
+              return conditions;
+         },
+    'WWN, Pain Severity': function (formName, formFieldValues) {
+             var conditions = {
+                 show: [],
+                 hide: []
+             };
+             var conditionConcept = formFieldValues['WWN, Pain Severity'];
+             if (conditionConcept >= 1){
+                 conditions.show.push("WWN, Side of pain","WWN, Site of pain","WWN, Type of pain","WWN, When does the pain occur")
+             }
+             else {
+                 conditions.hide.push("WWN, Side of pain","WWN, Site of pain","WWN, Type of pain","WWN, When does the pain occur")
+             }
+             return conditions;
+         },
+    'WWN, Does the patient have a drain?': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['WWN, Does the patient have a drain?'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("WWN, Drainage Set")
+              }
+              else {
+              conditions.hide.push("WWN, Drainage Set")
+              }
+              return conditions;
+         },
+    'WWN, Does the patient have a dressing?': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['WWN, Does the patient have a dressing?'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("WWN, Dressing")
+              }
+              else {
+              conditions.hide.push("WWN, Dressing")
+              }
+              return conditions;
+         },
+    'WWN, Does the patient have a tissue expander?': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['WWN, Does the patient have a tissue expander?'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("WWN, Tissue Expander")
+              }
+              else {
+              conditions.hide.push("WWN, Tissue Expander")
+              }
+              return conditions;
+         },
+    'WWN, Description of wound': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['WWN, Description of wound'];
+              if (conditionConcept == "Other"){
+                 conditions.show.push("WWN, Description of wound, other")
+              }
+              else {
+              conditions.hide.push("WWN, Description of wound, other")
+              }
+              return conditions;
+         },
+    'WWN, Does the patient have a peripheral line?': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['WWN, Does the patient have a peripheral line?'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("WWN, Site of peripheral line","WWN, Date of insertion, peripheral line","WWN, Date of removal, peripheral line","WWN, Comments, peripheral line")
+              }
+              else {
+              conditions.hide.push("WWN, Site of peripheral line","WWN, Date of insertion, peripheral line","WWN, Date of removal, peripheral line","WWN, Comments, peripheral line")
+              }
+              return conditions;
+         },
+    'WWN, Does the patient have a PICC line?': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['WWN, Does the patient have a PICC line?'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("WWN, Date of insertion, PICC line","WWN, Date of dressing","WWN, Comments, dressing PICC line","WWN, Date of removal, PICC line")
+              }
+              else {
+              conditions.hide.push("WWN, Date of insertion, PICC line","WWN, Date of dressing","WWN, Comments, dressing PICC line","WWN, Date of removal, PICC line")
+              }
+              return conditions;
+         }
 }

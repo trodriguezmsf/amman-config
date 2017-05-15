@@ -391,7 +391,86 @@
           },
           "NW, Injection (subcutaneous)?":{
             "multiSelect":true
+          },
+          "ANA, Orientation of the patient":{
+            "multiSelect":true
+          },
+          "ANA, Nutritional Assessment":{
+            "multiSelect":true
+          },
+          "ANA, Site of wound":{
+            "multiSelect":true
+          },
+          "ANA, Pain Assessment":{
+            "allowAddMore": true
+          },
+          "ANA, Site of pain":{
+            "autocomplete":true
+          },
+          "ONN, Pain Assessment":{
+            "allowAddMore":true
+          },
+          "ONN, Site of pain":{
+            "autocomplete":true
+          },
+          "ONN, Dressing":{
+            "allowAddMore":true
+          },
+          "ONN, Site of dressing":{
+            "autocomplete":true
+          },
+          "ONN, Tissue Expander":{
+            "allowAddMore":true
+          },
+          "ONN, Site of tissue expander":{
+            "autocomplete":true
+          },
+          "POW, Pain Assessment":{
+            "allowAddMore":true
+          },
+          "POW, Site of pain":{
+            "autocomplete":true
+          },
+          "POW, Dressing":{
+            "allowAddMore":true
+          },
+          "POW, Site of dressing":{
+            "autocomplete":true
+          },
+          "POW, Drainage Set":{
+            "allowAddMore":true
+          },
+          "POW, Site of drain":{
+            "autocomplete":true
+          },
+          "WWN, Site of pain":{
+            "autocomplete":true
+          },
+          "WWN, Site of drain":{
+            "autocomplete":true
+          },
+          "WWN, Site of dressing":{
+            "autocomplete":true
+          },
+          "WWN, Drainage Set":{
+            "allowAddMore":true
+          },
+          "WWN, Dressing":{
+            "allowAddMore":true
+          },
+          "WWN, Site of peripheral line":{
+            "autocomplete":true
+          },
+          "WWN, Tissue Expander":{
+            "allowAddMore":true
+          },
+          "WWN, Site of tissue expander":{
+            "autocomplete":true
+          },
+          "WWN, Pain Assessment":{
+            "autocomplete":true
           }
+
 
     },
         "visitPage": {
