@@ -399,7 +399,8 @@
             "multiSelect":true
           },
           "ANA, Site of wound":{
-            "multiSelect":true
+            "multiSelect":true,
+            "autocomplete":true
           },
           "ANA, Pain Assessment":{
             "allowAddMore": true
@@ -500,6 +501,9 @@
           },
           "PPN, Specify site of drain removal":{
             "autocomplete":true
+          },
+          "WWN, Pain Assessment":{
+            "allowAddMore":true
           }
     },
         "visitPage": {
