@@ -1031,5 +1031,173 @@ Bahmni.ConceptSet.FormConditions.rules = {
               conditions.hide.push("WWN, Date of insertion, PICC line","WWN, Date of dressing","WWN, Comments, dressing PICC line","WWN, Date of removal, PICC line")
               }
               return conditions;
-         }
+         },
+    'PPN, Patient complaints': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PPN, Patient complaints'];
+        if (conditionConcept.indexOf("Other")>=0){
+            conditions.show.push("PPN, Patient complaints, other")
+        }
+        else {
+            conditions.hide.push("PPN, Patient complaints, other")
+        }
+        return conditions;
+    },
+    'PPN, Wound assessment': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PPN, Wound assessment'];
+        if (conditionConcept == "Wound seen") {
+            conditions.show.push("PPN, Description of wound","PPN, Description of wound, other")
+            var conditionConcept2 = formFieldValues['PPN, Description of wound'];
+            if (conditionConcept2 == "Other") {
+                conditions.show.push("PPN, Description of wound, other")
+            }
+            else {
+                conditions.hide.push("PPN, Description of wound, other")
+            }
+        } else {
+            conditions.hide.push("PPN, Description of wound")
+        }
+        return conditions;
+    },
+    'PPN, Description of wound': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PPN, Description of wound'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("PPN, Description of wound, other")
+        }
+        else {
+            conditions.hide.push("PPN, Description of wound, other")
+        }
+        return conditions;
+    },
+    'PPN, Drainage': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PPN, Drainage'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("PPN, Drainage, other")
+        }
+        else {
+            conditions.hide.push("PPN, Drainage, other")
+        }
+        return conditions;
+    },
+    'PPN, Assessment of patient': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PPN, Assessment of patient'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("PPN, Assessment of patient, other")
+        }
+        else {
+            conditions.hide.push("PPN, Assessment of patient, other")
+        }
+        return conditions;
+    },
+    'PPN, Surgical ward patient care plan': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PPN, Surgical ward patient care plan'];
+        if (conditionConcept.indexOf("Other")>=0){
+            conditions.show.push("PPN, Surgical ward patient care plan, other")
+        }
+        else {
+            conditions.hide.push("PPN, Surgical ward patient care plan, other")
+        }
+        if (conditionConcept.indexOf("Removal of drain")>=0){
+            conditions.show.push("PPN, Removal of Drain")
+        }
+        else {
+            conditions.hide.push("PPN, Removal of Drain")
+        }
+        return conditions;
+    },
+    'CC, Patient complication': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CC, Patient complication'];
+        if (conditionConcept){
+            conditions.show.push("CC, Start date of complication","CC, Outcome of complication","CC, Description of complication")
+            if(conditionConcept.indexOf("Anemia due to acute blood loss")>=0){
+                conditions.show.push("CC, Anemia due to acute blood loss, description")
+                conditions.hide.push("CC, Description of complication")
+            } else {
+                conditions.hide.push("CC, Anemia due to acute blood loss, description")
+            }
+            if(conditionConcept.indexOf("Anaesthetic complication in OT")>=0){
+                conditions.show.push("CC, Anaesthetic complication in OT, description")
+                conditions.hide.push("CC, Description of complication")
+            } else {
+                conditions.hide.push("CC, Anaesthetic complication in OT, description")
+            }
+        if(conditionConcept.indexOf("Antibiotic Adverse Reaction")>=0){
+                conditions.show.push("CC, Antibiotic adverse reaction, description")
+                conditions.hide.push("CC, Description of complication")
+            } else {
+                conditions.hide.push("CC, Antibiotic adverse reaction, description")
+            }
+            if(conditionConcept.indexOf("Cardiac Arrhythmia")>=0){
+                conditions.show.push("CC, Cardiac arrhythmia, description")
+                conditions.hide.push("CC, Description of complication")
+            } else {
+                conditions.hide.push("CC, Cardiac arrhythmia, description")
+            }
+            if(conditionConcept.indexOf("Flap Necrosis")>=0){
+                conditions.show.push("CC, Flap necrosis, description")
+                conditions.hide.push("CC, Description of complication")
+            } else {
+                conditions.hide.push("CC, Flap necrosis, description")
+            }
+            if(conditionConcept.indexOf("Pressure Ulcer")>=0){
+                conditions.show.push("CC, Pressure ulcer, description")
+                conditions.hide.push("CC, Description of complication")
+            } else {
+                conditions.hide.push("CC, Pressure ulcer, description")
+            }
+            var conditionConcept = formFieldValues['CC, Outcome of complication'];
+            if (conditionConcept == "Resolved"){
+                conditions.show.push("CC, End date of complication")
+            } else {
+                conditions.hide.push("CC, End date of complication")
+            }
+            }
+        else {
+                    conditions.hide.push("CC, Start date of complication","CC, Outcome of complication","CC, End date of complication","CC, Anemia due to acute blood loss, description","CC, Anaesthetic complication in OT, description","CC, Cardiac arrhythmia, description","CC, Antibiotic adverse reaction, description","CC, Flap necrosis, description","CC, Pressure ulcer, description","CC, Description of complication")
+             }
+                return conditions;
+            },
+         'CC, Outcome of complication': function (formName, formFieldValues) {
+                var conditions = {
+                    show: [],
+                    hide: []
+                };
+                var conditionConcept = formFieldValues['CC, Outcome of complication'];
+                if (conditionConcept == "Resolved"){
+                    conditions.show.push("CC, End date of complication")
+                }
+                else {
+                    conditions.hide.push("CC, End date of complication")
+                }
+                return conditions;
+            },
+
+
 }

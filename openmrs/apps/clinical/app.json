@@ -469,9 +469,38 @@
           },
           "WWN, Pain Assessment":{
             "autocomplete":true
+          },
+          "CC, Patient complication" : {
+            "dropdown" : true,
+            "multiSelect" : false
+          },
+          "Complications Set" : {
+            "allowAddMore" : true
+          },
+          "PPN, Patient complaints" : {
+            "multiSelect" : true
+          },
+          "PPN, Surgical ward patient care plan" : {
+            "multiSelect" : true
+          },
+          "PPN, Assessment of Wound" : {
+            "allowAddMore" : true
+          },
+          "PPN, Removal of Drain" : {
+            "allowAddMore" : true
+          },
+          "CC, Anaesthetic complication in OT, description":{
+            "multiSelect": true
+          },
+          "CC, Antibiotic adverse reaction, description":{
+            "multiSelect":true
+          },
+          "PPN, Site of wound":{
+            "autocomplete":true
+          },
+          "PPN, Specify site of drain removal":{
+            "autocomplete":true
           }
-
-
     },
         "visitPage": {
             "observationDisplay": {
