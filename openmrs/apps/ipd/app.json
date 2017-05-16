@@ -24,6 +24,7 @@
             "visitUuid"
         ],
         "config" : {
+            "wardListSqlSearchHandler": "emrapi.sqlGet.allWardsListDetails",
             "diagnosisStatus": "Inactive",
             "onAdmissionForwardTo": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
             "onTransferForwardTo": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",

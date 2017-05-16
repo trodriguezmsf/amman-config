@@ -1,8 +1,7 @@
-UPDATE
-  global_property
-SET
-  description = 'SQL query to get list of bed details in ward',
-  property_value =
+DELETE FROM global_property WHERE property = 'emrapi.sqlGet.allWardsListDetails';
+SELECT uuid() INTO @uuid;
+INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
+VALUES ('emrapi.sqlGet.allWardsListDetails',
 "SELECT
   bed_tags.bed_tags                                                                  AS 'Bed Tags',
   bed.bed_number                                                                     AS 'Bed Number',
@@ -142,6 +141,4 @@ FROM
                                             AND coded_scn.voided IS FALSE
       GROUP BY obs.person_id
   )  latest_obs ON latest_obs.person_id =  p.person_id
-ORDER BY bed.bed_number"
-WHERE
-  property = 'emrapi.sqlGet.wardsListDetails';
+ORDER BY bed.bed_number;",'SQL query to get list of bed details in ward',@uuid);

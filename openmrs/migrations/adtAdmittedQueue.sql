@@ -1,6 +1,8 @@
-UPDATE
-    global_property
-SET property_value = "SELECT DISTINCT
+DELETE FROM global_property WHERE property = 'emrapi.sqlSearch.patientsAdmitted';
+SELECT uuid() INTO @uuid;
+INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
+VALUES ('emrapi.sqlSearch.patientsAdmitted',
+"SELECT DISTINCT
         pi.identifier                                         AS identifier,
         concat(pn.given_name, ' ', pn.family_name)            AS PATIENT_LISTING_QUEUES_HEADER_NAME,
         FLOOR(DATEDIFF(CURDATE(), p.birthdate) / 365)         AS age,
@@ -18,7 +20,7 @@ SET property_value = "SELECT DISTINCT
         INNER JOIN person_name pn ON v.patient_id = pn.person_id AND pn.voided IS FALSE
         INNER JOIN patient_identifier pi ON v.patient_id = pi.patient_id AND pi.voided IS FALSE
         INNER JOIN patient_identifier_type pit ON pi.identifier_type = pit.patient_identifier_type_id AND pit.retired IS FALSE
-        INNER JOIN global_property gp ON gp.property = 'emr.primaryIdentifierType' AND gp.property_value = pit.uuid
+        INNER JOIN global_property gp ON gp.property = 'bahmni.primaryIdentifierType' AND gp.property_value = pit.uuid
         INNER JOIN person p ON v.patient_id = p.person_id AND p.voided IS FALSE
         INNER JOIN patient_program pp ON p.person_id = pp.patient_id AND pp.voided IS FALSE AND pp.date_completed IS NULL
         INNER JOIN program prog ON pp.program_id = prog.program_id AND prog.retired IS FALSE
@@ -28,5 +30,4 @@ SET property_value = "SELECT DISTINCT
         INNER JOIN location childLocation on blm.location_id = childLocation.location_id AND childLocation.retired IS FALSE
         INNER JOIN location parentLocation ON parentLocation.location_id = childLocation.parent_location AND parentLocation.retired IS FALSE
     WHERE v.date_stopped IS NULL AND v.voided IS FALSE
-    ORDER BY bpam.date_started;"
-WHERE property = "emrapi.sqlSearch.admittedPatients";
+    ORDER BY bpam.date_started;",'All Admitted Patients',@uuid);

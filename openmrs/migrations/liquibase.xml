@@ -72,7 +72,7 @@
         <sqlFile path="adtPatientsToAdmit.sql"/>
     </changeSet>
     <changeSet id="Amman-11406122016" author="Sourav" context="rel2.2" runOnChange="true">
-        <comment>Updating the property emrapi.sqlSearch.admittedPatients</comment>
+        <comment>Updating the property emrapi.sqlSearch.patientsAdmitted</comment>
         <sqlFile path="adtAdmittedQueue.sql"/>
     </changeSet>
     <changeSet id="Amman-114707122016" author="Shiva kumar" context="rel2.1" runOnChange="true" >
