@@ -17,7 +17,7 @@ VALUES ('emrapi.sqlSearch.PatientsMovementtoRc',
         INNER JOIN person_name pn ON v.patient_id = pn.person_id and pn.voided is FALSE
         INNER JOIN patient_identifier pi ON v.patient_id = pi.patient_id and pi.voided is FALSE
         INNER JOIN patient_identifier_type pit on pi.identifier_type = pit.patient_identifier_type_id
-        INNER JOIN global_property gp on gp.property='emr.primaryIdentifierType' and gp.property_value=pit.uuid
+        INNER JOIN global_property gp on gp.property='bahmni.primaryIdentifierType' and gp.property_value=pit.uuid
         INNER JOIN person p ON v.patient_id = p.person_id
         INNER JOIN bed_patient_assignment_map bpam ON bpam.patient_id = p.person_id AND bpam.date_stopped IS NULL AND bpam.voided IS FALSE
         INNER JOIN bed b ON bpam.bed_id = b.bed_id
