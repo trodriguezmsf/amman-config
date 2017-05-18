@@ -475,7 +475,7 @@
             "dropdown" : true,
             "multiSelect" : false
           },
-          "Complications Set" : {
+          "CC, Complications" : {
             "allowAddMore" : true
           },
           "PPN, Patient complaints" : {
@@ -504,6 +504,12 @@
           },
           "WWN, Pain Assessment":{
             "allowAddMore":true
+          },
+          "WWN, Date of removal, PICC line":{
+            "allowFutureDates": true
+          },
+          "WWN, Date of removal, peripheral line":{
+            "allowFutureDates":true
           }
     },
         "visitPage": {

@@ -1201,6 +1201,19 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 }
                 return conditions;
             },
-
+    'ANA, Reason for admission': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['ANA, Reason for admission'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("ANA, Reason for admission, other")
+        }
+        else {
+            conditions.hide.push("ANA, Reason for admission, other")
+        }
+        return conditions;
+    }
 
 }
