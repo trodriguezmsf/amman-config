@@ -2355,4 +2355,84 @@
         <comment>Add operation theater locations and OT tag</comment>
         <sqlFile path="operationTheater/otLocations.sql"/>
     </changeSet>
+    <changeSet id="Amman-201705191053" author="Shiva kumar" context="rel3.1">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'Dr. Wafa Al-Shawa' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="MH, Name of MLO");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Dr.wafa Al-shawa into name of mlo concept_answers </comment>
+        <sql>
+            SELECT concept_id INTO @conceptid1 FROM concept_name where name ="MH, Name of MLO" and concept_name_type = "FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptid2 FROM concept_name where name ="Dr. Wafa Al-Shawa" and concept_name_type = "FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptid1,@conceptid2,1,now(),15,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201705191137" author="shiva kumar" context="rel3.1" >
+        <comment>changing stage location</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = 'Follow-up validation' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id1 from concept_name where name = 'FUP, Qualitative outcome-Union' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id2 from concept_name where name = 'FUP, Qualitative outcome - Infection' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id3 from concept_name where name = 'FUP, Qualitative outcome - SMFA' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id4 from concept_name where name = 'FUP, Outcomes for follow-up surgical validation' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id5 from concept_name where name = 'FUP, Time for next medical follow-up to be done' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id6 from concept_name where name = 'FUP, Comments about next follow-up' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id7 from concept_name where name = 'FUP, Comments about MBA' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id8 from concept_name where name = 'FUP, Dismissal reason' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id9 from concept_name where name = 'FUP, Comments about Defaulter' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id10 from concept_name where name = 'FUP, Reason for re-admission' AND concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @concept_id11 from concept_name where name = 'Stage' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET sort_weight=2 WHERE concept_id=@concept_id1 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=3 WHERE concept_id=@concept_id2 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=4 WHERE concept_id=@concept_id3 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=5 WHERE concept_id=@concept_id4 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=6 WHERE concept_id=@concept_id5 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=7 WHERE concept_id=@concept_id6 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=8 WHERE concept_id=@concept_id7 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=9 WHERE concept_id=@concept_id8 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=10 WHERE concept_id=@concept_id9 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=11 WHERE concept_id=@concept_id10 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=12 WHERE concept_id=@concept_id11 and concept_set=@concept_id;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201705191239" author="Shiva kumar" context="rel3.1">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'Debridement of bone' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="MD, Procedures performed outside AMH");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Debridement of bone into MD, Procedures performed outside AMH concept_answers </comment>
+        <sql>
+            SELECT concept_id INTO @conceptid1 FROM concept_name where name ="MD, Procedures performed outside AMH" and concept_name_type = "FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptid2 FROM concept_name where name ="Debridement of bone" and concept_name_type = "FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptid1,@conceptid2,1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201705191240" author="Shiva kumar" context="rel3.1">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'Debridement of bone' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="SAP, Planned procedure (surgical)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Debridement of bone into name of mlo concept_answers </comment>
+        <sql>
+            SELECT concept_id INTO @conceptid1 FROM concept_name where name ="SAP, Planned procedure (surgical)" and concept_name_type = "FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptid2 FROM concept_name where name ="Debridement of bone" and concept_name_type = "FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptid1,@conceptid2,1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201705191242" author="Shiva kumar" context="rel3.1">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'Stiffness of joint' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="DIA, Surgical Diagnosis coded");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding DIA, Surgical Diagnosis coded into DIA, Surgical Diagnosis coded concept_answers </comment>
+        <sql>
+            SELECT concept_id INTO @conceptid1 FROM concept_name where name ="DIA, Surgical Diagnosis coded" and concept_name_type = "FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptid2 FROM concept_name where name ="Stiffness of joint" and concept_name_type = "FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptid1,@conceptid2,1,now(),uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
