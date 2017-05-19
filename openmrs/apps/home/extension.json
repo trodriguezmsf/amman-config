@@ -76,7 +76,7 @@
     "type": "link",
     "translationKey": "Operation Theatre",
     "url": "../ot/",
-    "icon": "fa-ambulance",
+    "icon": "fa-hospital-o",
     "order": 9,
     "requiredPrivilege": "app:adt"
   }
