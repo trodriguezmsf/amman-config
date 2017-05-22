@@ -2461,4 +2461,35 @@
             VALUES('circulatingNurse', 'Circulating Nurse', 'java.lang.String' ,'9', 8, NOW(), UUID());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201705221512" author="Shiva kumar" context="rel3.1">
+        <comment>Adding DIA, Surgical Diagnosis coded into DIA, Surgical Diagnosis coded concept_answers </comment>
+        <sql>
+            update concept_name set name ="PHIA, Physical Functional Score (FDI)" where name ="PHIA, Functional evaluation of mouth" and concept_name_type ="FULLY_SPECIFIED";
+            update concept_name set name ="Physical Functional Score (FDI)" where name = "Functional evaluation of mouth" and concept_name_type="SHORT";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201705221523" author="Shiva kumar" context="rel2.1" runOnChange="true" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_set where concept_set =(select concept_id from concept_name where name ='PA, Location of Assessment') and concept_id =(select concept_id from concept_name where name ='PHIA, Social / Well-bieng Score (FDI)');            </sqlCheck>
+        </preConditions>
+        <comment>Adding Social /well-being score in loaction of assessment</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'PA, Location of Assessment' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id2 FROM concept_name where name = 'PHIA, Social / Well-being Score (FDI)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id2,@concept_id1,11,1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201705221600" author="shiva kumar" context="rel3.1" >
+        <comment>Updating order of Location of assessment</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'PA, Location of Assessment' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name where name = 'PHIA, Social / Well-being Score (FDI)' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id2 FROM concept_name where name = 'PHIA, Mouth opening test' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id3 from concept_name where name = 'PHIA, Physiotherapy remarks initial assessment' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET sort_weight=9 WHERE concept_id=@concept_id1 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=10 WHERE concept_id=@concept_id2 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=11 WHERE concept_id=@concept_id3 and concept_set=@concept_id;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
