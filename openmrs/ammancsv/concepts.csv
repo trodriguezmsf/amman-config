@@ -280,4 +280,4 @@ uuid,name,description,class,shortname,datatype,units,High Normal,Low Normal,Allo
 ,"ONN, Total volume in tissue expander",,finding,Total volume in tissue expander,Numeric,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,"ONN, Condition of tissue expander",,finding,Condition of tissue expander,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,"ONN, Nursing consultation notes",,finding,Nursing consultation notes,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,"PHIA, Social / Well-bieng Score (FDI)",,finding,Social / Well-bieng Score (FDI),text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Social / Well-being Score (FDI)",,finding,Social / Well-being Score (FDI),text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
