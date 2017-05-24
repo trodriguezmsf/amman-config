@@ -10,6 +10,7 @@ SELECT
   `Stage`,
   `Status of Official ID Documents`,
   DATE_FORMAT(`Date of presentation`, "%d/%m/%Y") AS 'Date of presentation',
+  `Type of medical information received`,
   `Outcomes for 1st stage surgical validation`,
   `Comments about valid`,
   `Priority`,
@@ -37,6 +38,7 @@ FROM (SELECT
         GROUP_CONCAT(DISTINCT(IF(pat.name = 'statusofOfficialIDdocuments', coalesce(scn.name, fscn.name), NULL))) AS 'Status of Official ID Documents',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FV, Expected Date of Arrival' AND latest_encounter.person_id IS NOT NULL, DATE_FORMAT(o.value_datetime, "%m/%Y"), NULL)) ORDER BY o.obs_id DESC) AS 'Expected Date of Arrival',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Date of presentation at 1st stage' AND latest_encounter.person_id IS NOT NULL, o.value_datetime, NULL)) ORDER BY o.obs_id DESC) AS 'Date of presentation',
+        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Type of medical information received' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Type of medical information received',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Outcomes for 1st stage surgical validation' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Outcomes for 1st stage surgical validation',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Comments' AND latest_encounter.person_id IS NOT NULL, o.value_text, NULL)) ORDER BY o.obs_id DESC) AS 'Comments about valid',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Priority' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Priority',
@@ -66,6 +68,7 @@ FROM (SELECT
              obs_fscn.name IN (
                'Stage',
                'FSTG, Date of presentation at 1st stage',
+               'FSTG, Type of medical information received',
                'FSTG, Outcomes for 1st stage surgical validation',
                'FSTG, Comments',
                'FSTG, Priority',
