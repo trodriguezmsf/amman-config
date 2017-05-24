@@ -2487,9 +2487,9 @@
             SELECT concept_id INTO @concept_id1 FROM concept_name where name = 'PHIA, Social / Well-being Score (FDI)' AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @concept_id2 FROM concept_name where name = 'PHIA, Mouth opening test' AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @concept_id3 from concept_name where name = 'PHIA, Physiotherapy remarks initial assessment' AND concept_name_type="FULLY_SPECIFIED";
-            UPDATE concept_set SET sort_weight=9 WHERE concept_id=@concept_id1 and concept_set=@concept_id;
-            UPDATE concept_set SET sort_weight=10 WHERE concept_id=@concept_id2 and concept_set=@concept_id;
-            UPDATE concept_set SET sort_weight=11 WHERE concept_id=@concept_id3 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=1091 WHERE concept_id=@concept_id1 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=1092 WHERE concept_id=@concept_id2 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=1093 WHERE concept_id=@concept_id3 and concept_set=@concept_id;
         </sql>
     </changeSet>
 </databaseChangeLog>
