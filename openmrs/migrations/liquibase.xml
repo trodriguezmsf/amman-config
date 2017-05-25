@@ -2468,7 +2468,7 @@
             update concept_name set name ="Physical Functional Score (FDI)" where name = "Functional evaluation of mouth" and concept_name_type="SHORT";
         </sql>
     </changeSet>
-    <changeSet id="Amman-201705221523" author="Shiva kumar" context="rel2.1" runOnChange="true" >
+    <changeSet id="Amman-201705221523" author="Shiva kumar" context="rel3.1" runOnChange="true" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 SELECT count(*) FROM concept_set where concept_set =(select concept_id from concept_name where name ='PA, Location of Assessment') and concept_id =(select concept_id from concept_name where name ='PHIA, Social / Well-bieng Score (FDI)');            </sqlCheck>
@@ -2490,6 +2490,19 @@
             UPDATE concept_set SET sort_weight=1091 WHERE concept_id=@concept_id1 and concept_set=@concept_id;
             UPDATE concept_set SET sort_weight=1092 WHERE concept_id=@concept_id2 and concept_set=@concept_id;
             UPDATE concept_set SET sort_weight=1093 WHERE concept_id=@concept_id3 and concept_set=@concept_id;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201705251058" author="shiva kumar" context="rel3.1" >
+        <comment>Updating range in Location of assessment form</comment>
+        <sql>
+        SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name like 'PHIA, Neuro QOL upper limb (%18 years)' AND concept_name_type="FULLY_SPECIFIED";
+        UPDATE concept_numeric SET hi_normal =100 ,units = "%" where concept_id = @conceptID1;
+        SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name like 'PHIA, Lower extremity functional index (%18 years)' AND concept_name_type="FULLY_SPECIFIED";
+        UPDATE concept_numeric SET hi_normal =100 ,units = "%"  where concept_id = @conceptID2;
+        SELECT concept_id INTO @conceptID3 FROM concept_name WHERE name like 'PHIA, Upper extremity functional index (%18 years)' AND concept_name_type="FULLY_SPECIFIED";
+        UPDATE concept_numeric SET hi_normal =100 , units = "%" where concept_id = @conceptID3;
+        SELECT concept_id INTO @conceptID4 FROM concept_name WHERE name like 'PHIA, Neuro QOL lower limb (%18 years)' AND concept_name_type="FULLY_SPECIFIED";
+        UPDATE concept_numeric SET hi_normal =100 , units = "%" where concept_id = @conceptID4;
         </sql>
     </changeSet>
 </databaseChangeLog>
