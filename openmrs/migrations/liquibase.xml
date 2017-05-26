@@ -2505,4 +2505,11 @@
         UPDATE concept_numeric SET hi_normal =100 , units = "%" where concept_id = @conceptID4;
         </sql>
     </changeSet>
+    <changeSet id="Amman-201705261458" author="shiva kumar" context="rel3.1" >
+        <comment>Updating units of PHIA, Mouth opening test</comment>
+        <sql>
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name = 'PHIA, Mouth opening test' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_numeric SET hi_normal =100 ,units = "cm" where concept_id = @conceptID1;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
