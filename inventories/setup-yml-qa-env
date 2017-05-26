@@ -4,6 +4,7 @@ implementation_name: amman
 two_factor_auth: disabled
 selinux_state: disabled
 implementer_interface: disabled
+java_file_url: /opt/jre-8u131-linux-x64.rpm
 omods: ["file:///tmp/bahmnimsf-2.0-SNAPSHOT.omod", "file:///tmp/bedmanagement-5.6-SNAPSHOT.omod", "file:///tmp/bahmnicore-0.89-SNAPSHOT.omod", "file:///tmp/operationtheater-1.0.0-SNAPSHOT.omod"]
 SSLCertificateFilePath: /etc/letsencrypt/live/qa-amman.mybahmni.org/cert.pem
 SSLCertificateKeyFilePath: /etc/letsencrypt/live/qa-amman.mybahmni.org/privkey.pem
