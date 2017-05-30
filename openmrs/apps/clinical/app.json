@@ -54,7 +54,7 @@
         },
 
         "allowConsultationWhenNoOpenVisit": false,
-        "defaultVisitType": "First Stage Validation",
+        "defaultVisitType": "Hospital",
         "hideGoToIPDButton": true,
         "visitTypeForRetrospectiveEntries": "First Stage Validation",
         "maxConceptSetLevels": 3,

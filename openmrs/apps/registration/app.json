@@ -178,7 +178,7 @@
                 "Doctor":"provider",
                 "Parent":"patient"
             },
-            "defaultVisitType": "Hospital",
+            "defaultVisitType": "First Stage Validation",
             "searchByIdForwardUrl": "/patient/{{patientUuid}}",
             "showMiddleName": false,
             "showCasteSameAsLastNameCheckbox": false,
