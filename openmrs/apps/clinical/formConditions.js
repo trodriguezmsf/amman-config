@@ -1214,6 +1214,34 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("ANA, Reason for admission, other")
         }
         return conditions;
-    }
+    },
+    'WWN, Blood sugar': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['WWN, Blood sugar'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("WWN, RBS before meal","WWN, RBS after meal","WWN, FBS")
+              }
+              else {
+              conditions.hide.push("WWN, RBS before meal","WWN, RBS after meal","WWN, FBS")
+              }
+              return conditions;
+         },
+    'WWN, Insulin given': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['WWN, Insulin given'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("WWN, How much insulin given")
+              }
+              else {
+              conditions.hide.push("WWN, How much insulin given")
+              }
+              return conditions;
+         }
 
 }

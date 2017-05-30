@@ -399,7 +399,6 @@
             "multiSelect":true
           },
           "ANA, Site of wound":{
-            "multiSelect":true,
             "autocomplete":true
           },
           "ANA, Pain Assessment":{
@@ -510,6 +509,9 @@
           },
           "WWN, Date of removal, peripheral line":{
             "allowFutureDates":true
+          },
+          "ANA, Wound Assessment":{
+            "allowAddMore":true
           }
     },
         "visitPage": {
