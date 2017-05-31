@@ -208,7 +208,13 @@
                     "Psychology initial assessment",
                     "OBS, Surgical Diagnoses",
                     "OBS, Medical Diagnoses",
-                    "Nursing Needs - Ward"
+                    "Nursing Needs - Ward",
+                    "OPD Nursing Note",
+                    "Surgical Ward Admission Nursing Assessment",
+                    "Ward Nursing Note",
+                    "Physician Progress Note-Ward",
+                    "Complications Set",
+                    "Post-Op Ward Monitoring"
 
 
                 ],
@@ -428,8 +434,140 @@
           "showDetailsButton": true,
           "pivotTable": {}
         }
+        },
+        "OPD Nursing Note":{
+          "translationKey": "DASHBOARD_TITLE_OPD_NURSING_NOTE_ASSESSMENT",
+          "type": "vitals",
+          "isObservation": true,
+          "displayOrder": 8,
+          "dashboardConfig": {
+            "showDetailsButton": true,
+            "isEditable": true,
+            "conceptNames": [
+              "OPD Nursing Note"
+            ]
+          },
+          "expandedViewConfig": {
+            "conceptNames": [
+              "OPD Nursing Note"
+            ],
+            "isEditable": true,
+            "numberOfVisits": 3,
+            "showDetailsButton": true,
+            "pivotTable": {}
+          }
+        },
+        "Surgical Ward Assessment":{
+          "translationKey": "DASHBOARD_TITLE_SURGICAL_WARD_ADMISSION_NURSING_ASSESSMENT",
+          "type": "vitals",
+          "isObservation": true,
+          "displayOrder": 9,
+          "dashboardConfig": {
+            "showDetailsButton": true,
+            "isEditable": true,
+            "conceptNames": [
+              "Surgical Ward Admission Nursing Assessment"
+            ]
+          },
+          "expandedViewConfig": {
+            "conceptNames": [
+              "Surgical Ward Admission Nursing Assessment"
+            ],
+            "isEditable": true,
+            "numberOfVisits": 3,
+            "showDetailsButton": true,
+            "pivotTable": {}
+          }
+        },
+        "Ward Nursing Note":{
+          "translationKey": "DASHBOARD_TITLE_WARD_NURSING_NOTE",
+          "type": "vitals",
+          "isObservation": true,
+          "displayOrder": 10,
+          "dashboardConfig": {
+            "showDetailsButton": true,
+            "isEditable": true,
+            "conceptNames": [
+              "Ward Nursing Note"
+            ]
+          },
+          "expandedViewConfig": {
+            "conceptNames": [
+              "Ward Nursing Note"
+            ],
+            "isEditable": true,
+            "numberOfVisits": 3,
+            "showDetailsButton": true,
+            "pivotTable": {}
+          }
+        },
+        "Physician Progress Note":{
+          "translationKey": "DASHBOARD_TITLE_PHYSICIAN_PROGRESS_NOTE_ASSESSMENT",
+          "type": "vitals",
+          "isObservation": true,
+          "displayOrder": 11,
+          "dashboardConfig": {
+            "showDetailsButton": true,
+            "isEditable": true,
+            "conceptNames": [
+              "Physician Progress Note-Ward"
+            ]
+          },
+          "expandedViewConfig": {
+            "conceptNames": [
+              "Physician Progress Note-Ward"
+            ],
+            "isEditable": true,
+            "numberOfVisits": 3,
+            "showDetailsButton": true,
+            "pivotTable": {}
+          }
+        },
+        "Complications":{
+          "translationKey": "DASHBOARD_COMPLICATIONS",
+          "type": "vitals",
+          "isObservation": true,
+          "displayOrder": 12,
+          "dashboardConfig": {
+            "showDetailsButton": true,
+            "isEditable": true,
+            "conceptNames": [
+              "Complications Set"
+            ]
+          },
+          "expandedViewConfig": {
+            "conceptNames": [
+              "Complications Set"
+            ],
+            "isEditable": true,
+            "numberOfVisits": 3,
+            "showDetailsButton": true,
+            "pivotTable": {}
+          }
+        },
+        "Post-Op Ward Monitoring":{
+          "translationKey": "DASHBOARD_POST_OP_WARD_MONITORING",
+          "type": "vitals",
+          "isObservation": true,
+          "displayOrder": 13,
+          "dashboardConfig": {
+            "showDetailsButton": true,
+            "isEditable": true,
+            "conceptNames": [
+              "Post-Op Ward Monitoring"
+            ]
+          },
+          "expandedViewConfig": {
+            "conceptNames": [
+              "Post-Op Ward Monitoring"
+            ],
+            "isEditable": true,
+            "numberOfVisits": 3,
+            "showDetailsButton": true,
+            "pivotTable": {}
+          }
+        }
       }
-    }
   }
 }
   
