@@ -73,7 +73,7 @@ FROM (
                                                 JOIN (SELECT
                                                         patient_id AS patient_id, max(date_started) AS date_started
                                                       FROM visit
-                                                      WHERE visit.voided IS FALSE
+                                                      WHERE visit.voided IS FALSE AND visit_type_id IN (SELECT visit_type_id FROM visit_type WHERE name = 'First Stage Validation')
                                                       GROUP BY patient_id) latest_visit
                                                 ON v.date_started = latest_visit.date_started AND
                                                    v.patient_id = latest_visit.patient_id AND v.voided IS FALSE)
