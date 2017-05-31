@@ -2512,4 +2512,76 @@
             UPDATE concept_numeric SET units = "cm" where concept_id = @conceptID1;
         </sql>
     </changeSet>
+    <changeSet id="Amman-201705311051" author="Shiva kumar" context="rel3.1" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name = "Surgical Ward Admission Nursing Assessment" and concept_name_type = "FULLY_SPECIFIED") and concept_set =88;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new observation templates </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'Surgical Ward Admission Nursing Assessment' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id1,88,16,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201705311052" author="Shiva kumar" context="rel3.1" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name = "OPD Nursing Note" and concept_name_type = "FULLY_SPECIFIED") and concept_set =88;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new observation templates </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'OPD Nursing Note' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id2,88,17,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201705311053" author="Shiva kumar" context="rel3.1" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name = "Ward Nursing Note" and concept_name_type = "FULLY_SPECIFIED") and concept_set =88;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new observation templates </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = 'Ward Nursing Note' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id3,88,18,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201705311054" author="Shiva kumar" context="rel3.1" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name = "Complications Set" and concept_name_type = "FULLY_SPECIFIED") and concept_set =88;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new observation templates </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name = 'Complications Set' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id4,88,19,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201705311055" author="Shiva kumar" context="rel2.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name = "Physician Progress Note-Ward" and concept_name_type = "FULLY_SPECIFIED") and concept_set =88;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new observation templates </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id5 FROM concept_name WHERE name = 'Physician Progress Note-Ward' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id5,88,20,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201705311056" author="Shiva kumar" context="rel3.1" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name = "Post-Op Ward Monitoring" and concept_name_type = "FULLY_SPECIFIED") and concept_set =88;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new observation templates </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id6 FROM concept_name WHERE name = 'Post-Op Ward Monitoring' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id6,88,21,8,now(),uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
