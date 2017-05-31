@@ -2595,6 +2595,7 @@
             INSERT INTO provider_attribute_type (name, description, datatype, min_occurs, creator, date_created, retired, uuid)
             VALUES ("otCalendarColor","Color for provider on OT calendar", "org.openmrs.customdatatype.datatype.FreeTextDatatype", 0, 8, NOW(), 0, UUID());
         </sql>
+    </changeSet>
     <changeSet id="Amman-201705311605" author="shiva kumar" context="rel3.1">
         <comment>Updating spelling of clinical</comment>
         <sql>
