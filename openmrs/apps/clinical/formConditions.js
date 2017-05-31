@@ -1222,10 +1222,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
                };
               var conditionConcept = formFieldValues['WWN, Blood sugar'];
               if (conditionConcept == "Yes"){
-                 conditions.show.push("WWN, RBS before meal","WWN, RBS after meal","WWN, FBS")
+                 conditions.show.push("WWN, RBS before meal","WWN, RBS after meal","WWN, FBS","WWN, Insulin given")
               }
               else {
-              conditions.hide.push("WWN, RBS before meal","WWN, RBS after meal","WWN, FBS")
+              conditions.hide.push("WWN, RBS before meal","WWN, RBS after meal","WWN, FBS","WWN, Insulin given")
               }
               return conditions;
          },
