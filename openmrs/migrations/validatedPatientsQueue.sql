@@ -7,7 +7,7 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.validatedPatients
 SELECT
 	DATE_FORMAT(dateOfPresentation.value_datetime, '%d/%m/%Y') AS 'Date of presentation',
     pi.identifier AS 'identifier',
-    CONCAT(pn.given_name, ' ', pn.family_name) AS 'Name',
+    CONCAT(pn.given_name, ' ', pn.family_name) AS 'PATIENT_LISTING_QUEUES_HEADER_NAME',
     FLOOR(DATEDIFF(CURDATE(), p.birthdate) / 365) AS 'Age',
     pa.address3 AS 'Country',
     latest_obs.nameOfMLO AS 'Name of MLO',
