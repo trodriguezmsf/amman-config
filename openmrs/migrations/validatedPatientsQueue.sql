@@ -77,7 +77,7 @@ LEFT OUTER JOIN (
         o.person_id,
 		GROUP_CONCAT(DISTINCT (IF(cn.name = 'MH, Name of MLO', COALESCE(coded_fscn.name, coded_scn.name), NULL))) AS 'nameOfMLO',
 		GROUP_CONCAT(DISTINCT (IF(cn.name = 'FV, Expected Date of Arrival', DATE_FORMAT(o.value_datetime, '%b/%Y'), NULL))) AS 'expectedArrival',
-		MAX(o.value_numeric) AS 'stage',
+		IF(MAX(IF(cn.name ='Stage', o.value_numeric, 0)) = 0, NULL, MAX(IF(cn.name ='Stage', o.value_numeric, 0)))  AS 'stage',
 		GROUP_CONCAT(DISTINCT (IF(cn.name = 'FSTG, Specialty determined by MLO', COALESCE(coded_fscn.name, coded_scn.name), NULL))) AS 'speciality'
     FROM
 		obs o
@@ -85,10 +85,10 @@ LEFT OUTER JOIN (
 		AND o.voided IS FALSE
         AND e.voided IS FALSE
 	INNER JOIN concept_name cn ON cn.concept_id = o.concept_id AND cn.voided IS FALSE
-    INNER JOIN concept_name coded_fscn ON coded_fscn.concept_id = o.value_coded
+    LEFT OUTER JOIN concept_name coded_fscn ON coded_fscn.concept_id = o.value_coded
         AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
         AND coded_fscn.voided IS FALSE
-    LEFT JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
+    LEFT OUTER JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
         AND coded_fscn.concept_name_type = 'SHORT'
         AND coded_scn.voided IS FALSE
 	INNER JOIN (
