@@ -60,7 +60,7 @@ FROM (
           coded_fscn.voided IS FALSE
        LEFT JOIN concept_name coded_scn
        ON coded_scn.concept_id = o.value_coded AND coded_fscn.concept_name_type = 'SHORT' AND coded_scn.voided IS FALSE
-       LEFT JOIN (SELECT
+       JOIN (SELECT
                     person_id,
                     obs.concept_id,
                     max(encounter_datetime) AS max_encounter_datetime
@@ -73,17 +73,17 @@ FROM (
                                                 JOIN (SELECT
                                                         patient_id AS patient_id, max(date_started) AS date_started
                                                       FROM visit
-                                                      WHERE visit.voided IS FALSE AND visit_type_id IN (SELECT visit_type_id FROM visit_type WHERE name = 'First Stage Validation')
+                                                      WHERE visit.voided IS FALSE
                                                       GROUP BY patient_id) latest_visit
                                                 ON v.date_started = latest_visit.date_started AND
                                                    v.patient_id = latest_visit.patient_id AND v.voided IS FALSE)
                   GROUP BY obs.person_id, obs.concept_id) latest_encounter
        ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id AND
           e.encounter_datetime = latest_encounter.max_encounter_datetime
-       LEFT JOIN visit v ON e.visit_id = v.visit_id AND v.voided IS FALSE AND v.visit_type_id = (SELECT visit_type_id
+       JOIN visit v ON e.visit_id = v.visit_id AND v.voided IS FALSE AND v.visit_type_id = (SELECT visit_type_id
                                                                                                  FROM visit_type
                                                                                                  WHERE name =
-                                                                                                       'First Stage Validation')
+                                                                                                'First Stage Validation')
        LEFT JOIN (SELECT
                     obs.person_id,
                     encounter.encounter_id,
