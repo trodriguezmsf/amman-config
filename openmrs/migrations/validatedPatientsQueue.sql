@@ -6,7 +6,7 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.validatedPatients
  VALUES ('emrapi.sqlSearch.validatedPatients',"
 SELECT
 	DATE_FORMAT(dateOfPresentation.value_datetime, '%d/%m/%Y') AS 'Date of presentation',
-    pi.identifier AS 'Patient ID',
+    pi.identifier AS 'identifier',
     CONCAT(pn.given_name, ' ', pn.family_name) AS 'Name',
     FLOOR(DATEDIFF(CURDATE(), p.birthdate) / 365) AS 'Age',
     pa.address3 AS 'Country',
@@ -368,10 +368,10 @@ WHERE latest_visit_type.name IN ('First Stage Validation' , 'Follow-Up Validatio
 		latest_first_stage_form.surgicalOutcome = 'Valid'
 			AND latest_first_stage_form.anaesthesiaOutcome = 'Fits anaesthesia criteria'
             AND latest_followup_form.patient_id IS NULL
-            AND program_state.name != 'Identification'
+            AND program_state.name = 'Identification'
 	) OR (
 		latest_followup_form.outcome = 'Further stage admission'
-            AND program_state.name != 'Network Follow-up'
+            AND program_state.name = 'Network Follow-up'
 	))
     AND (
 		latest_final_validation_form.outcome IS NULL OR latest_final_validation_form.outcome NOT IN (
