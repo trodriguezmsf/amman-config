@@ -138,7 +138,7 @@
       "translationKey": "MODULE_LABEL_HOSPITAL_RSP_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
-      "searchColumns": ["identifier","PATIENT_LISTING_QUEUES_HEADER_NAME", "Date of Arrival", "Age", "Country", "Is Caretaker Required?", "Specialty","Stage","Name of Surgeon","Date of consultation (Anaesth.)", "Date of consultation (Surgeon)", "Bed allocation"]
+      "searchColumns": ["identifier","PATIENT_LISTING_QUEUES_HEADER_NAME", "Date of Arrival", "Age", "Country", "Is Caretaker Required?", "Specialty","Stage","Name of Surgeon","Date of consultation (Anaesth.)", "Date of consultation (Surgeon)", "Bed allocation","Phase of treatment"]
     },
     "order": 9,
     "requiredPrivilege": "app:clinical"
