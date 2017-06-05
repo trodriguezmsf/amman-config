@@ -47,6 +47,7 @@ set	password = '4a1750c8607dfa237de36c6305715c223415189',
 	salt = 'c788c6ad82a157b712392ca695dfcf2eed193d7f',
 	secret_question = null,
 	secret_answer = null;
+where username NOT IN ('admin', 'superman', 'reports-user');
 
 -- clear out the username/password stored in the db
 update global_property set property_value = 'admin' where property like '%.username';
