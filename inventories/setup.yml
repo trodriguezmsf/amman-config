@@ -1,10 +1,10 @@
 timezone: Asia/Amman
-bahmni_repo_url: http://repo.mybahmni.org.s3.amazonaws.com/rpm/bahmni/
+bahmni_repo_url: http://dl.bintray.com/bahmni/rpm/
 implementation_name: amman
 two_factor_auth: disabled
 implementer_interface: disabled
-omods: ["https://bahmni-msf.s3.amazonaws.com/artifacts/1.0/bahmnimsf-1.0-SNAPSHOT.omod", "https://bahmni-msf.s3.amazonaws.com/artifacts/2.1/bahmni-core/5.1/bahmnicore-0.86-SNAPSHOT.omod"]
-bahmniapps_url: https://bahmni-msf.s3.amazonaws.com/artifacts/2.1/bahmniApps/19.1/bahmniapps.zip
+omods: ["https://s3.ap-south-1.amazonaws.com/bahmni-msf/release-artifacts/release-3.1/bahmnimsf-2.0-SNAPSHOT.omod", "https://s3.ap-south-1.amazonaws.com/bahmni-msf/release-artifacts/release-3.1/bedmanagement-5.6-SNAPSHOT.omod"]
+bahmniapps_url: https://s3.ap-south-1.amazonaws.com/bahmni-msf/release-artifacts/release-3.1/bahmniapps.zip
 nagios_contact_email: randomsome8@gmail.com
 ssmtp_auth_user: randomsome8@gmail.com
 ssmtp_auth_pass: pass123123

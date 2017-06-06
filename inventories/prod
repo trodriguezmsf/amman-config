@@ -1,7 +1,8 @@
 192.168.33.10 ansible_connection=ssh ansible_ssh_user=root
-192.168.33.11 ansible_connection=ssh ansible_ssh_user=root 
+192.168.33.11 ansible_connection=ssh ansible_ssh_user=root
 
 [nagios-server]
+192.168.33.10
 
 [bahmni-emr]
 192.168.33.10
@@ -29,6 +30,14 @@
 192.168.33.10
 192.168.33.11 passive=yes
 
+[bahmni-reports-db]
+192.168.33.10
+
+[bahmni-reports-db-slave]
+192.168.33.11
+
+[atomfeed-console]
+
 [pacs-integration]
 
 [pacs-integration-db]
@@ -45,6 +54,12 @@
 
 [bahmni-offline]
 
+[mysql-backup-tool]
+
+[postgres-backup-tool]
+
+[bahmni-backup-artifacts]
+
 [local:children]
 nagios-server
 bahmni-emr
@@ -57,6 +72,8 @@ bahmni-erp
 bahmni-erp-db
 bahmni-erp-db-slave
 bahmni-reports
+bahmni-reports-db
+bahmni-reports-db-slave
 pacs-integration
 pacs-integration-db
 pacs-integration-db-slave
@@ -65,3 +82,7 @@ dcm4chee-db
 dcm4chee-db-slave
 bahmni-event-log-service
 bahmni-offline
+atomfeed-console
+mysql-backup-tool
+postgres-backup-tool
+bahmni-backup-artifacts
