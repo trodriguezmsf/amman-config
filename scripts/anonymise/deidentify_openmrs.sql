@@ -11,7 +11,10 @@ truncate table notification_alert;
 SET FOREIGN_KEY_CHECKS=1;
 
 -- randomize the person names (given_name and family_name to contain random 8 alpha-numeric characters)
-update person_name set given_name = upper(substring(uuid(),1,8)), family_name = upper(substring(uuid(),1,8));
+UPDATE person_name
+    SET given_name = upper(substring(uuid(),1,8)),
+     family_name = upper(substring(uuid(),1,8));
+    WHERE person_id NOT IN (SELECT person_id FROM provider));
 
 -- randomize +/- 6 months for persons older than ~15 yrs old
 update person set birthdate = date_add(birthdate, interval cast(rand()*182-182 as signed) day) where birthdate is not null and datediff(now(), birthdate) > 15*365;
@@ -44,6 +47,7 @@ set	password = '4a1750c8607dfa237de36c6305715c223415189',
 	salt = 'c788c6ad82a157b712392ca695dfcf2eed193d7f',
 	secret_question = null,
 	secret_answer = null;
+where username NOT IN ('admin', 'superman', 'reports-user');
 
 -- clear out the username/password stored in the db
 update global_property set property_value = 'admin' where property like '%.username';
