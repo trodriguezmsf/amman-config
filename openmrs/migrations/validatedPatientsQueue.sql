@@ -47,7 +47,8 @@ INNER JOIN (
 INNER JOIN (
 	SELECT
         v.patient_id,
-        vt.name
+        vt.name,
+        v.visit_id
     FROM
         visit v
     INNER JOIN visit_type vt ON vt.visit_type_id = v.visit_type_id
@@ -166,8 +167,6 @@ LEFT OUTER JOIN (
         AND cv.concept_full_name IN ('FSTG, Comments' , 'FUP, Comments about further stage admission')
         AND cv.retired IS FALSE
         AND o.voided IS FALSE
-    INNER JOIN concept_view cv_answer ON cv_answer.concept_id = o.value_coded
-        AND cv_answer.retired IS FALSE
 	INNER JOIN (
 		SELECT
 			o.person_id,
@@ -259,6 +258,7 @@ LEFT OUTER JOIN	(
 LEFT OUTER JOIN (
 	SELECT
 		e.patient_id,
+		e.visit_id,
 		surgical_answer_cn.name AS 'surgicalOutcome',
 		anaesthesia_answer_cn.name As 'anaesthesiaOutcome'
 	FROM
@@ -297,10 +297,11 @@ LEFT OUTER JOIN (
 			AND e.voided IS FALSE
 		GROUP BY o.person_id
 	) latest_first_stage_encounter ON latest_first_stage_encounter.person_id = e.patient_id AND latest_first_stage_encounter.encounter_datetime = e.encounter_datetime
-) latest_first_stage_form ON latest_first_stage_form.patient_id = p.person_id
+) latest_first_stage_form ON latest_first_stage_form.patient_id = p.person_id AND latest_first_stage_form.visit_id = latest_visit_type.visit_id
 LEFT OUTER JOIN (
 	SELECT
 		e.patient_id,
+		e.visit_id,
 		outcome_answer_cn.name AS 'outcome'
 	FROM
 		encounter e
@@ -329,10 +330,11 @@ LEFT OUTER JOIN (
 			AND e.voided IS FALSE
 		GROUP BY o.person_id
 	) latest_followup_encounter ON latest_followup_encounter.person_id = e.patient_id AND latest_followup_encounter.encounter_datetime = e.encounter_datetime
-) latest_followup_form ON latest_followup_form.patient_id = p.person_id
+) latest_followup_form ON latest_followup_form.patient_id = p.person_id AND latest_followup_form.visit_id = latest_visit_type.visit_id
 LEFT OUTER JOIN (
 	SELECT
 		e.patient_id,
+		e.visit_id,
 		outcome_answer_cn.name AS 'outcome'
 		FROM
 		encounter e
@@ -361,7 +363,7 @@ LEFT OUTER JOIN (
 			AND e.voided IS FALSE
 		GROUP BY o.person_id
 	) latest_final_validation_encounter ON latest_final_validation_encounter.person_id = e.patient_id AND latest_final_validation_encounter.encounter_datetime = e.encounter_datetime
-) latest_final_validation_form ON latest_final_validation_form.patient_id = p.person_id
+) latest_final_validation_form ON latest_final_validation_form.patient_id = p.person_id AND latest_final_validation_form.visit_id = latest_visit_type.visit_id
 WHERE latest_visit_type.name IN ('First Stage Validation' , 'Follow-Up Validation')
 	AND expectedDateOfArrival.value IS NULL
     AND ((
