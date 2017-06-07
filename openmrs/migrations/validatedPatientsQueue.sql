@@ -10,14 +10,14 @@ SELECT
     CONCAT(pn.given_name, ' ', pn.family_name) AS 'PATIENT_LISTING_QUEUES_HEADER_NAME',
     FLOOR(DATEDIFF(CURDATE(), p.birthdate) / 365) AS 'Age',
     pa.address3 AS 'Country',
-    latest_obs.nameOfMLO AS 'Name of MLO',
-    latest_obs.stage AS 'Stage',
-    latest_obs.speciality AS 'Specialty',
+    nameOfMLO.name AS 'Name of MLO',
+    stage.value_numeric AS 'Stage',
+    speciality.name AS 'Speciality',
     surgeon_name.name AS 'Name of Surgeon',
     priority.name AS 'Priority',
     comments.value_text AS 'Comments about Validation',
     surgical_final_validation.name AS 'Does the patient need surgical final validation',
-    latest_obs.expectedArrival AS 'Expected Month/Year of Arrival',
+    finalValidationExpectedDateOfArrival.monthYear AS 'Expected Month/Year of Arrival',
     careTakerRequired.value AS 'Is Caretaker Required?',
     statusOfOfficialDocuments.name AS 'Status of Official ID Documents',
     p.uuid AS uuid
@@ -76,16 +76,16 @@ LEFT OUTER JOIN (
 LEFT OUTER JOIN (
 	SELECT
         o.person_id,
-		GROUP_CONCAT(DISTINCT (IF(cn.name = 'MH, Name of MLO', COALESCE(coded_fscn.name, coded_scn.name), NULL))) AS 'nameOfMLO',
-		GROUP_CONCAT(DISTINCT (IF(cn.name = 'FV, Expected Date of Arrival', DATE_FORMAT(o.value_datetime, '%b/%Y'), NULL))) AS 'expectedArrival',
-		IF(MAX(IF(cn.name ='Stage', o.value_numeric, 0)) = 0, NULL, MAX(IF(cn.name ='Stage', o.value_numeric, 0)))  AS 'stage',
-		GROUP_CONCAT(DISTINCT (IF(cn.name = 'FSTG, Specialty determined by MLO', COALESCE(coded_fscn.name, coded_scn.name), NULL))) AS 'speciality'
+		GROUP_CONCAT(DISTINCT(COALESCE(coded_fscn.name, coded_scn.name))) AS 'name'
     FROM
 		obs o
-    JOIN encounter e ON e.encounter_id = o.encounter_id
+    INNER JOIN encounter e ON e.encounter_id = o.encounter_id
 		AND o.voided IS FALSE
         AND e.voided IS FALSE
-	INNER JOIN concept_name cn ON cn.concept_id = o.concept_id AND cn.voided IS FALSE
+	INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+		AND cn.voided IS FALSE
+		AND cn.concept_name_type = 'FULLY_SPECIFIED'
+		AND cn.name = 'MH, Name of MLO'
     LEFT OUTER JOIN concept_name coded_fscn ON coded_fscn.concept_id = o.value_coded
         AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
         AND coded_fscn.voided IS FALSE
@@ -95,22 +95,132 @@ LEFT OUTER JOIN (
 	INNER JOIN (
 		SELECT
 			o.person_id,
-			o.concept_id,
 			MAX(e.encounter_datetime) AS encounter_datetime
 		FROM
 			obs o
-		JOIN concept_name cn ON cn.name IN ('MH, Name of MLO' , 'FV, Expected Date of Arrival', 'Stage', 'FSTG, Specialty determined by MLO')
-			AND cn.concept_id = o.concept_id
+		INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+			AND cn.name = 'MH, Name of MLO'
+			AND cn.concept_name_type = 'FULLY_SPECIFIED'
 			AND cn.voided IS FALSE
 			AND o.voided IS FALSE
-		JOIN encounter e ON e.encounter_id = o.encounter_id
+		INNER JOIN encounter e ON e.encounter_id = o.encounter_id
 			AND e.voided IS FALSE
-		GROUP BY person_id , concept_id
-	) latest_encounter_obs ON latest_encounter_obs.concept_id = o.concept_id
-        AND latest_encounter_obs.encounter_datetime = e.encounter_datetime
-        AND latest_encounter_obs.person_id = o.person_id
+		GROUP BY person_id
+	) latest_encounter ON latest_encounter.encounter_datetime = e.encounter_datetime
+        AND latest_encounter.person_id = o.person_id
+	GROUP BY o.person_id
+) nameOfMLO ON nameOfMLO.person_id = p.person_id
+LEFT OUTER JOIN (
+	SELECT
+        o.person_id,
+		GROUP_CONCAT(DISTINCT(DATE_FORMAT(o.value_datetime, '%b/%Y'))) AS 'monthYear'
+    FROM
+		obs o
+    INNER JOIN encounter e ON e.encounter_id = o.encounter_id
+		AND o.voided IS FALSE
+        AND e.voided IS FALSE
+	INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+		AND cn.voided IS FALSE
+		AND cn.concept_name_type = 'FULLY_SPECIFIED'
+		AND cn.name = 'FV, Expected Date of Arrival'
+    LEFT OUTER JOIN concept_name coded_fscn ON coded_fscn.concept_id = o.value_coded
+        AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
+        AND coded_fscn.voided IS FALSE
+    LEFT OUTER JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
+        AND coded_fscn.concept_name_type = 'SHORT'
+        AND coded_scn.voided IS FALSE
+	INNER JOIN (
+		SELECT
+			o.person_id,
+			MAX(e.encounter_datetime) AS encounter_datetime
+		FROM
+			obs o
+		INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+			AND cn.name = 'FV, Expected Date of Arrival'
+			AND cn.concept_name_type = 'FULLY_SPECIFIED'
+			AND cn.voided IS FALSE
+			AND o.voided IS FALSE
+		INNER JOIN encounter e ON e.encounter_id = o.encounter_id
+			AND e.voided IS FALSE
+		GROUP BY person_id
+	) latest_encounter ON latest_encounter.encounter_datetime = e.encounter_datetime
+        AND latest_encounter.person_id = o.person_id
+	GROUP BY o.person_id
+) finalValidationExpectedDateOfArrival ON finalValidationExpectedDateOfArrival.person_id = p.person_id
+LEFT OUTER JOIN (
+	SELECT
+        o.person_id,
+		GROUP_CONCAT(DISTINCT(COALESCE(coded_fscn.name, coded_scn.name))) AS 'name'
+    FROM
+		obs o
+    INNER JOIN encounter e ON e.encounter_id = o.encounter_id
+		AND o.voided IS FALSE
+        AND e.voided IS FALSE
+	INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+		AND cn.voided IS FALSE
+		AND cn.concept_name_type = 'FULLY_SPECIFIED'
+		AND cn.name = 'FSTG, Specialty determined by MLO'
+    LEFT OUTER JOIN concept_name coded_fscn ON coded_fscn.concept_id = o.value_coded
+        AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
+        AND coded_fscn.voided IS FALSE
+    LEFT OUTER JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
+        AND coded_fscn.concept_name_type = 'SHORT'
+        AND coded_scn.voided IS FALSE
+	INNER JOIN (
+		SELECT
+			o.person_id,
+			MAX(e.encounter_datetime) AS encounter_datetime
+		FROM
+			obs o
+		INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+			AND cn.name = 'FSTG, Specialty determined by MLO'
+			AND cn.concept_name_type = 'FULLY_SPECIFIED'
+			AND cn.voided IS FALSE
+			AND o.voided IS FALSE
+		INNER JOIN encounter e ON e.encounter_id = o.encounter_id
+			AND e.voided IS FALSE
+		GROUP BY person_id
+	) latest_encounter ON latest_encounter.encounter_datetime = e.encounter_datetime
+        AND latest_encounter.person_id = o.person_id
+	GROUP BY o.person_id
+) speciality ON speciality.person_id = p.person_id
+LEFT OUTER JOIN (
+	SELECT
+        o.person_id,
+		MAX(o.value_numeric) AS 'value_numeric'
+    FROM
+		obs o
+    INNER JOIN encounter e ON e.encounter_id = o.encounter_id
+		AND o.voided IS FALSE
+        AND e.voided IS FALSE
+	INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+		AND cn.voided IS FALSE
+		AND cn.concept_name_type = 'FULLY_SPECIFIED'
+		AND cn.name = 'Stage'
+    LEFT OUTER JOIN concept_name coded_fscn ON coded_fscn.concept_id = o.value_coded
+        AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
+        AND coded_fscn.voided IS FALSE
+    LEFT OUTER JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
+        AND coded_fscn.concept_name_type = 'SHORT'
+        AND coded_scn.voided IS FALSE
+	INNER JOIN (
+		SELECT
+			o.person_id,
+			MAX(e.encounter_datetime) AS encounter_datetime
+		FROM
+			obs o
+		INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+			AND cn.name = 'Stage'
+			AND cn.concept_name_type = 'FULLY_SPECIFIED'
+			AND cn.voided IS FALSE
+			AND o.voided IS FALSE
+		INNER JOIN encounter e ON e.encounter_id = o.encounter_id
+			AND e.voided IS FALSE
+		GROUP BY person_id
+    ) latest_encounter ON latest_encounter.encounter_datetime = e.encounter_datetime
+        AND latest_encounter.person_id = o.person_id
     GROUP BY o.person_id
-) latest_obs ON p.person_id = latest_obs.person_id
+) stage ON stage.person_id = p.person_id
 LEFT OUTER JOIN (
 	SELECT
 		o.person_id,
