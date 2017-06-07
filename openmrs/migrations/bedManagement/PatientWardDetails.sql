@@ -58,7 +58,7 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                        INNER JOIN person_attribute_type pat
                          ON pat.person_attribute_type_id = pa.person_attribute_type_id AND
                             pat.name = 'CaretakerGender' AND pa.voided IS FALSE
-                       INNER JOIN concept_name cn ON cn.concept_id = pa.value
+                       INNER JOIN concept_name cn ON cn.concept_id = pa.value AND cn.concept_name_type = 'FULLY_SPECIFIED'
                    ) caretakerGender ON caretakerGender.person_id = p.person_id
    LEFT OUTER JOIN (
                      SELECT
@@ -101,7 +101,8 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                        obs o
                      INNER JOIN concept_name cn ON cn.concept_id = o.concept_id AND o.voided IS FALSE AND cn.voided IS FALSE AND
                        cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.name ='FV, Name (s) of Surgeon 1'
-                     INNER JOIN concept_name cv ON cv.concept_id = o.value_coded AND cv.voided IS FALSE
+                     INNER JOIN concept_name cv ON cv.concept_id = o.value_coded AND cv.voided IS FALSE AND
+                      cv.concept_name_type = 'FULLY_SPECIFIED'
                      INNER JOIN (
                        SELECT
                          o.person_id,
@@ -154,6 +155,7 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                                          'NW, Special needs?',
                                          'NW, Injection (subcutaneous)?')
                                        AND cn.concept_id = o.concept_id AND cn.voided IS FALSE
+                                       AND cn.concept_name_type = 'FULLY_SPECIFIED'
              GROUP BY person_id, concept_id) latest_encounter
          JOIN obs ON obs.concept_id = latest_encounter.concept_id  AND obs.voided IS FALSE
          JOIN encounter e ON e.encounter_id = obs.encounter_id AND latest_encounter.latest_encounter_datetime = e.encounter_datetime AND e.voided IS FALSE
