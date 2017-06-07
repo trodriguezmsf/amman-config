@@ -26,10 +26,10 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
    INNER JOIN bed_location_map blm ON blm.bed_id = bed.bed_id
    INNER JOIN location l ON l.location_id = blm.location_id AND l.name = ${location_name} AND l.retired IS FALSE
    LEFT OUTER JOIN bed_patient_assignment_map bpam ON bpam.bed_id = bed.bed_id AND bpam.date_stopped IS NULL
-   LEFT OUTER JOIN person p ON p.person_id = bpam.patient_id
-   LEFT OUTER JOIN person_name pn ON pn.person_id = p.person_id
-   LEFT OUTER JOIN patient_identifier ON patient_identifier.patient_id = p.person_id
-   LEFT OUTER JOIN person_address address ON address.person_id = p.person_id
+   LEFT OUTER JOIN person p ON p.person_id = bpam.patient_id AND p.voided IS FALSE
+   LEFT OUTER JOIN person_name pn ON pn.person_id = p.person_id AND pn.voided IS FALSE
+   LEFT OUTER JOIN patient_identifier ON patient_identifier.patient_id = p.person_id AND patient_identifier.voided IS FALSE
+   LEFT OUTER JOIN person_address address ON address.person_id = p.person_id AND address.voided IS FALSE
    LEFT OUTER JOIN (
                      SELECT
                        bed_tag_map.bed_id                                        AS 'bed_id',
@@ -58,7 +58,7 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                        INNER JOIN person_attribute_type pat
                          ON pat.person_attribute_type_id = pa.person_attribute_type_id AND
                             pat.name = 'CaretakerGender' AND pa.voided IS FALSE
-                       INNER JOIN concept_name cn ON cn.concept_id = pa.value
+                       INNER JOIN concept_name cn ON cn.concept_id = pa.value AND cn.concept_name_type = 'FULLY_SPECIFIED'
                    ) caretakerGender ON caretakerGender.person_id = p.person_id
    LEFT OUTER JOIN (
                      SELECT
@@ -74,15 +74,25 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                                                (SELECT
                                                   MAX(parentObs.obs_id) AS 'obs_id', parentObs.person_id
                                                 FROM obs parentObs
-                                                 INNER JOIN concept_name cn
-                                                    ON cn.concept_id = parentObs.concept_id AND cn.name = 'IPD Expected DD' AND
-                                                       cn.concept_name_type = 'FULLY_SPECIFIED'
-                                                       AND parentObs.voided IS FALSE
-                                                GROUP BY
-                                                  parentObs.person_id
-                                               ) ipd_expected_dd ON ipd_expected_dd.person_id = o.person_id AND
-                                                                    ipd_expected_dd.obs_id = o.obs_group_id
-                   ) expected_date_of_discharge ON expected_date_of_discharge.person_id = p.person_id
+                         INNER JOIN encounter e ON e.encounter_id = parentObs.encounter_id AND e.voided IS FALSE
+                         INNER JOIN visit ON visit.visit_id = e.visit_id AND visit.voided IS FALSE
+                         INNER JOIN concept_name cn
+                           ON cn.concept_id = parentObs.concept_id AND cn.name = 'IPD Expected DD' AND
+                              cn.concept_name_type = 'FULLY_SPECIFIED'
+                              AND parentObs.voided IS FALSE
+                         INNER JOIN (
+                                      SELECT
+                                        v.patient_id,
+                                        MAX(v.date_started) AS date_started
+                                      FROM
+                                        visit v
+                                      GROUP BY v.patient_id
+                           ) latest_visit ON latest_visit.patient_id = parentObs.person_id AND latest_visit.date_started = visit.date_started
+                       GROUP BY
+                         parentObs.person_id
+                      ) ipd_expected_dd ON ipd_expected_dd.person_id = o.person_id AND
+                                            ipd_expected_dd.obs_id = o.obs_group_id
+                  ) expected_date_of_discharge ON expected_date_of_discharge.person_id = p.person_id
    LEFT OUTER JOIN (
                      SELECT
                        e.patient_id,
@@ -101,7 +111,8 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                        obs o
                      INNER JOIN concept_name cn ON cn.concept_id = o.concept_id AND o.voided IS FALSE AND cn.voided IS FALSE AND
                        cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.name ='FV, Name (s) of Surgeon 1'
-                     INNER JOIN concept_name cv ON cv.concept_id = o.value_coded AND cv.voided IS FALSE
+                     INNER JOIN concept_name cv ON cv.concept_id = o.value_coded AND cv.voided IS FALSE AND
+                      cv.concept_name_type = 'FULLY_SPECIFIED'
                      INNER JOIN (
                        SELECT
                          o.person_id,
@@ -111,7 +122,7 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                        INNER JOIN concept_name cn ON cn.concept_id = o.concept_id AND o.voided IS FALSE AND cn.voided IS FALSE AND
                          cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.name ='FV, Name (s) of Surgeon 1'
                        GROUP BY o.person_id
-                     ) latest_obs_datetime ON latest_obs_datetime.obs_datetime = o.obs_datetime
+                     ) latest_obs_datetime ON latest_obs_datetime.obs_datetime = o.obs_datetime AND latest_obs_datetime.person_id = o.person_id
                    ) surgeon_name ON surgeon_name.person_id = p.person_id
    LEFT OUTER JOIN (
          SELECT
@@ -154,6 +165,7 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                                          'NW, Special needs?',
                                          'NW, Injection (subcutaneous)?')
                                        AND cn.concept_id = o.concept_id AND cn.voided IS FALSE
+                                       AND cn.concept_name_type = 'FULLY_SPECIFIED'
              GROUP BY person_id, concept_id) latest_encounter
          JOIN obs ON obs.concept_id = latest_encounter.concept_id  AND obs.voided IS FALSE
          JOIN encounter e ON e.encounter_id = obs.encounter_id AND latest_encounter.latest_encounter_datetime = e.encounter_datetime AND e.voided IS FALSE
