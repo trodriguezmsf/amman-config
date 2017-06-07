@@ -74,15 +74,25 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                                                (SELECT
                                                   MAX(parentObs.obs_id) AS 'obs_id', parentObs.person_id
                                                 FROM obs parentObs
-                                                 INNER JOIN concept_name cn
-                                                    ON cn.concept_id = parentObs.concept_id AND cn.name = 'IPD Expected DD' AND
-                                                       cn.concept_name_type = 'FULLY_SPECIFIED'
-                                                       AND parentObs.voided IS FALSE
-                                                GROUP BY
-                                                  parentObs.person_id
-                                               ) ipd_expected_dd ON ipd_expected_dd.person_id = o.person_id AND
-                                                                    ipd_expected_dd.obs_id = o.obs_group_id
-                   ) expected_date_of_discharge ON expected_date_of_discharge.person_id = p.person_id
+                         INNER JOIN encounter e ON e.encounter_id = parentObs.encounter_id AND e.voided IS FALSE
+                         INNER JOIN visit ON visit.visit_id = e.visit_id AND visit.voided IS FALSE
+                         INNER JOIN concept_name cn
+                           ON cn.concept_id = parentObs.concept_id AND cn.name = 'IPD Expected DD' AND
+                              cn.concept_name_type = 'FULLY_SPECIFIED'
+                              AND parentObs.voided IS FALSE
+                         INNER JOIN (
+                                      SELECT
+                                        v.patient_id,
+                                        MAX(v.date_started) AS date_started
+                                      FROM
+                                        visit v
+                                      GROUP BY v.patient_id
+                           ) latest_visit ON latest_visit.patient_id = parentObs.person_id AND latest_visit.date_started = visit.date_started
+                       GROUP BY
+                         parentObs.person_id
+                      ) ipd_expected_dd ON ipd_expected_dd.person_id = o.person_id AND
+                                            ipd_expected_dd.obs_id = o.obs_group_id
+                  ) expected_date_of_discharge ON expected_date_of_discharge.person_id = p.person_id
    LEFT OUTER JOIN (
                      SELECT
                        e.patient_id,
