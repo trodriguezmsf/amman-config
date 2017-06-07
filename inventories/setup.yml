@@ -2,6 +2,7 @@ timezone: Asia/Amman
 bahmni_repo_url: http://dl.bintray.com/bahmni/rpm/
 implementation_name: amman
 two_factor_auth: disabled
+selinux_state: disabled
 implementer_interface: disabled
 omods: ["https://s3.ap-south-1.amazonaws.com/bahmni-msf/release-artifacts/release-3.1/bahmnimsf-2.0-SNAPSHOT.omod", "https://s3.ap-south-1.amazonaws.com/bahmni-msf/release-artifacts/release-3.1/bedmanagement-5.6-SNAPSHOT.omod"]
 bahmniapps_url: https://s3.ap-south-1.amazonaws.com/bahmni-msf/release-artifacts/release-3.1/bahmniapps.zip
