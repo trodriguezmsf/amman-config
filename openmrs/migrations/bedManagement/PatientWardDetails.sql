@@ -26,10 +26,10 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
    INNER JOIN bed_location_map blm ON blm.bed_id = bed.bed_id
    INNER JOIN location l ON l.location_id = blm.location_id AND l.name = ${location_name} AND l.retired IS FALSE
    LEFT OUTER JOIN bed_patient_assignment_map bpam ON bpam.bed_id = bed.bed_id AND bpam.date_stopped IS NULL
-   LEFT OUTER JOIN person p ON p.person_id = bpam.patient_id
-   LEFT OUTER JOIN person_name pn ON pn.person_id = p.person_id
-   LEFT OUTER JOIN patient_identifier ON patient_identifier.patient_id = p.person_id
-   LEFT OUTER JOIN person_address address ON address.person_id = p.person_id
+   LEFT OUTER JOIN person p ON p.person_id = bpam.patient_id AND p.voided IS FALSE
+   LEFT OUTER JOIN person_name pn ON pn.person_id = p.person_id AND pn.voided IS FALSE
+   LEFT OUTER JOIN patient_identifier ON patient_identifier.patient_id = p.person_id AND patient_identifier.voided IS FALSE
+   LEFT OUTER JOIN person_address address ON address.person_id = p.person_id AND address.voided IS FALSE
    LEFT OUTER JOIN (
                      SELECT
                        bed_tag_map.bed_id                                        AS 'bed_id',
@@ -112,7 +112,7 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                        INNER JOIN concept_name cn ON cn.concept_id = o.concept_id AND o.voided IS FALSE AND cn.voided IS FALSE AND
                          cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.name ='FV, Name (s) of Surgeon 1'
                        GROUP BY o.person_id
-                     ) latest_obs_datetime ON latest_obs_datetime.obs_datetime = o.obs_datetime
+                     ) latest_obs_datetime ON latest_obs_datetime.obs_datetime = o.obs_datetime AND latest_obs_datetime.person_id = o.person_id
                    ) surgeon_name ON surgeon_name.person_id = p.person_id
    LEFT OUTER JOIN (
          SELECT
