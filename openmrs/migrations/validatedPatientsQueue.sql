@@ -207,7 +207,7 @@ LEFT OUTER JOIN (
 LEFT OUTER JOIN (
 	SELECT
 		o.person_id,
-        COALESCE(cv_answer.concept_short_name, cv_answer.concept_full_name) AS 'name'
+        GROUP_CONCAT(DISTINCT(COALESCE(cv_answer.concept_short_name, cv_answer.concept_full_name))) AS 'name'
     FROM obs o
     INNER JOIN concept_view cv ON cv.concept_id = o.concept_id
         AND cv.concept_full_name IN ('FUP, Name (s) of Surgeon 1' , 'FV, Name (s) of Surgeon 1')
@@ -227,6 +227,7 @@ LEFT OUTER JOIN (
 			AND o.voided IS FALSE
 		GROUP BY o.person_id
 	) latest_obs ON latest_obs.person_id = o.person_id AND latest_obs.obs_datetime = o.obs_datetime
+	GROUP BY o.person_id
 ) surgeon_name ON surgeon_name.person_id = p.person_id
 LEFT OUTER JOIN (
 	SELECT
