@@ -2602,4 +2602,15 @@
             UPDATE concept_name set name ="Referred to clinical psychologist" where name ="Referred to clincal psychologist" and concept_name_type="FULLY_SPECIFIED";
         </sql>
     </changeSet>
+    <changeSet id="Amman-201706081139" author="shiva kumar" context="rel3.1">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name ="R2D: Refused to Under Surgery" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating R2D: Refused to Under Surgery to R2D: Refused to Undergo Surgery</comment>
+        <sql>
+            UPDATE concept_name set name ="R2D: Refused to Undergo Surgery" where name ="R2D: Refused to Under Surgery" and concept_name_type ="FULLY_SPECIFIED";
+        </sql>
+    </changeSet>
 </databaseChangeLog>
