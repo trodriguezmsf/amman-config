@@ -1,24 +1,30 @@
 SELECT user_id INTO @userid1 FROM users WHERE username ="osama_n";
-REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid1, 'favouriteObsTemplates', "OPD Nursing Note###Nursing Needs - Ward###Surgical Ward Admission Nursing Assessment###Ward Nursing Note###Post-Op Ward Monitoring");
+SELECT property_value INTO @existingProperty FROM user_property WHERE user_id = @userid1 AND property='favouriteObsTemplates';
+REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid1, 'favouriteObsTemplates', CONCAT(@existingProperty,  "###OPD Nursing Note###Nursing Needs - Ward###Surgical Ward Admission Nursing Assessment###Ward Nursing Note###Post-Op Ward Monitoring"));
 
 SELECT user_id INTO @userid2 FROM users WHERE username ="mohammad_b";
-REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid2, 'favouriteObsTemplates', "OPD Nursing Note###Surgical Ward Admission Nursing Assessment###Ward Nursing Note###Post-Op Ward Monitoring");
+SELECT property_value INTO @existingProperty FROM user_property WHERE user_id = @userid2 AND property='favouriteObsTemplates';
+REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid2, 'favouriteObsTemplates', CONCAT(@existingProperty,  "###OPD Nursing Note###Surgical Ward Admission Nursing Assessment###Ward Nursing Note###Post-Op Ward Monitoring"));
 
 
 SELECT user_id INTO @userid3 FROM users WHERE username ="haya_aq";
-REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid3, 'favouriteObsTemplates', "OPD Nursing Note###Surgical Ward Admission Nursing Assessment###Ward Nursing Note###Post-Op Ward Monitoring");
+SELECT property_value INTO @existingProperty FROM user_property WHERE user_id = @userid3 AND property='favouriteObsTemplates';
+REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid3, 'favouriteObsTemplates', CONCAT(@existingProperty,  "###OPD Nursing Note###Surgical Ward Admission Nursing Assessment###Ward Nursing Note###Post-Op Ward Monitoring"));
 
 
 SELECT user_id INTO @userid4 FROM users WHERE username ="firas_q";
-REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid4, 'favouriteObsTemplates', "OPD Nursing Note###Surgical Ward Admission Nursing Assessment###Ward Nursing Note###Post-Op Ward Monitoring");
+SELECT property_value INTO @existingProperty FROM user_property WHERE user_id = @userid4 AND property='favouriteObsTemplates';
+REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid4, 'favouriteObsTemplates', CONCAT(@existingProperty,  "###OPD Nursing Note###Surgical Ward Admission Nursing Assessment###Ward Nursing Note###Post-Op Ward Monitoring"));
 
 
 SELECT user_id INTO @userid5 FROM users WHERE username ="salam_s";
-REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid5, 'favouriteObsTemplates', "OPD Nursing Note###Surgical Ward Admission Nursing Assessment###Ward Nursing Note###Post-Op Ward Monitoring");
+SELECT property_value INTO @existingProperty FROM user_property WHERE user_id = @userid5 AND property='favouriteObsTemplates';
+REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid5, 'favouriteObsTemplates', CONCAT(@existingProperty,  "###OPD Nursing Note###Surgical Ward Admission Nursing Assessment###Ward Nursing Note###Post-Op Ward Monitoring"));
 
 
 SELECT user_id INTO @userid6 FROM users WHERE username ="yazan_h";
-REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid6, 'favouriteObsTemplates', "OPD Nursing Note###Surgical Ward Admission Nursing Assessment###Ward Nursing Note###Post-Op Ward Monitoring");
+SELECT property_value INTO @existingProperty FROM user_property WHERE user_id = @userid6 AND property='favouriteObsTemplates';
+REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid6, 'favouriteObsTemplates', CONCAT(@existingProperty,  "###OPD Nursing Note###Surgical Ward Admission Nursing Assessment###Ward Nursing Note###Post-Op Ward Monitoring"));
 
 
 SELECT user_id INTO @userid7 FROM users WHERE username ="sami_ak";
@@ -72,7 +78,8 @@ REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid18, 
 
 
 SELECT user_id INTO @userid19 FROM users WHERE username ="suleiman_ak";
-REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid19, 'favouriteObsTemplates', "OPD Nursing Note###Nursing Needs - Ward###Surgical Ward Admission Nursing Assessment###Ward Nursing Note###Post-Op Ward Monitoring");
+SELECT property_value INTO @existingProperty FROM user_property WHERE user_id = @userid19 AND property='favouriteObsTemplates';
+REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid19, 'favouriteObsTemplates', CONCAT(@existingProperty,  "###OPD Nursing Note###Nursing Needs - Ward###Surgical Ward Admission Nursing Assessment###Ward Nursing Note###Post-Op Ward Monitoring"));
 
 
 SELECT user_id INTO @userid20 FROM users WHERE username ="maamoun_j";
@@ -210,7 +217,8 @@ REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid51, 
 
 
 SELECT user_id INTO @userid52 FROM users WHERE username ="qutaiba_am";
-REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid52, 'favouriteObsTemplates', "Psychology initial assessment");
+SELECT property_value INTO @existingProperty FROM user_property WHERE user_id = @userid52 AND property='favouriteObsTemplates';
+REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid52, 'favouriteObsTemplates', CONCAT(@existingProperty,  "###Psychology initial assessment"));
 
 
 
@@ -227,7 +235,8 @@ REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid55, 
 
 
 SELECT user_id INTO @userid56 FROM users WHERE username ="alaa_s";
-REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid56, 'favouriteObsTemplates', "Social and Medical History###Health Education");
+SELECT property_value INTO @existingProperty FROM user_property WHERE user_id = @userid56 AND property='favouriteObsTemplates';
+REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid56, 'favouriteObsTemplates', CONCAT(@existingProperty,  "###Social and Medical History###Health Education"));
 
 
 SELECT user_id INTO @userid57 FROM users WHERE username ="naser_r";
@@ -239,7 +248,8 @@ REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid58, 
 
 
 SELECT user_id INTO @userid59 FROM users WHERE username ="rinad_h";
-REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid59, 'favouriteObsTemplates', "MD Initial Assessment###Complications Set###Physician Progress Note-Ward");
+SELECT property_value INTO @existingProperty FROM user_property WHERE user_id = @userid59 AND property='favouriteObsTemplates';
+REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid59, 'favouriteObsTemplates', CONCAT(@existingProperty,  "###MD Initial Assessment###Complications Set###Physician Progress Note-Ward"));
 
 
 SELECT user_id INTO @userid60 FROM users WHERE username ="dima_h";
@@ -259,4 +269,5 @@ REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid63, 
 
 
 SELECT user_id INTO @userid64 FROM users WHERE username ="zaid_se";
-REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid64, 'favouriteObsTemplates', "MD Initial Assessment###Complications Set###Physician Progress Note-Ward");
+SELECT property_value INTO @existingProperty FROM user_property WHERE user_id = @userid64 AND property='favouriteObsTemplates';
+REPLACE INTO user_property(user_id, property, property_value) VALUES(@userid64, 'favouriteObsTemplates', CONCAT(@existingProperty,  "###MD Initial Assessment###Complications Set###Physician Progress Note-Ward"));
