@@ -5,7 +5,6 @@ truncate table concept_proposal;
 truncate table hl7_in_archive;
 truncate table hl7_in_error;
 truncate table hl7_in_queue;
-truncate table user_property;
 truncate table notification_alert_recipient;
 truncate table notification_alert;
 SET FOREIGN_KEY_CHECKS=1;
@@ -52,6 +51,10 @@ where username NOT IN ('admin', 'superman', 'reports-user');
 -- clear out the username/password stored in the db
 update global_property set property_value = 'admin' where property like '%.username';
 update global_property set property_value = 'test' where property like '%.password';
+
+-- Clearing out all the user properties except favouriteObsTemplates
+DELETE FROM user_property
+    WHERE property NOT IN ('favouriteObsTemplates');
 
 --
 -- Shift the person addresses around
