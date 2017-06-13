@@ -2613,4 +2613,16 @@
             UPDATE concept_name set name ="R2D: Refused to Undergo Surgery" where name ="R2D: Refused to Under Surgery" and concept_name_type ="FULLY_SPECIFIED";
         </sql>
     </changeSet>
+    <changeSet id="Amman-201706131005" author="Shireesha, Pramida" context="rel3.1">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from surgical_appointment_attribute_type where name = 'notes';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding surgical appointment attribute type for Notes</comment>
+        <sql>
+            INSERT INTO surgical_appointment_attribute_type (name, description, format, sort_weight, creator, date_created, uuid)
+            VALUES('notes', 'Notes', 'java.lang.String' ,'10', 8, NOW(), UUID());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
