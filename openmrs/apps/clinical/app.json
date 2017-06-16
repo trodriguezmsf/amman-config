@@ -319,7 +319,15 @@
                 "PE, Abdomen examination": "Soft, no hepatosplenomegaly, no tenderness, no mass",
                 "PE, Rectal and genitalia examination": "Deferred",
                 "PE, Extremities examination": "No clubbing, cyanosis or edema, normal joints with full range of motion",
-                "PE, Neurologic examination": "Cranial nerves intact, normal muscular deep tendon reflexes, normal strength, normal sensitivity"
+                "PE, Neurologic examination": "Cranial nerves intact, normal muscular deep tendon reflexes, normal strength, normal sensitivity",
+              "OMF, General examination": "Well developed female / male in no acute distress",
+              "OMF, HEENT examination": "Pupils equal, regular, reactive to light and accomodation, normal extraocular muscles, normocephalic, normal dentition, clear throat, normal neck motion, no jugular vien distension",
+              "OMF, Chest examination": "Clear lung bilaterally to auscultation and percussion, normal chest wall motion",
+              "OMF, Heart examination": "Normal S1 & S2, no murmurs, intact pulses",
+              "OMF, Abdomen examination": "Soft, no hepatosplenomegaly, no tenderness, no mass",
+              "OMF, Rectal and genitalia examination": "Deferred",
+              "OMF, Extremities examination": "No clubbing, cyanosis or edema, normal joints with full range of motion",
+              "OMF, Neurologic examination": "Cranial nerves intact, normal muscular deep tendon reflexes, normal strength, normal sensitivity"
             },
             "MD, Site of procedure":{
                 "autocomplete":true
@@ -512,6 +520,25 @@
           },
           "ANA, Wound Assessment":{
             "allowAddMore":true
+          },
+          "SFP, Type of complications":{
+            "dropdown":true
+          },
+          "SFP, Planned Procedure (surgical)":{
+           "autocomplete":true,
+           "allowAddMore":true
+          },
+          "SFP, Site of surgical procedure":{
+            "dropdown":true
+          },
+          "OMF, Chief complaint":{
+            "multiSelect":true
+          },
+          "OMF, Last surgery":{
+            "dropdown":true
+          },
+          "OMF, Current treatment":{
+            "multiSelect":true
           }
     },
         "visitPage": {

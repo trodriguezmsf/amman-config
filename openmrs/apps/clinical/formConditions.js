@@ -1242,6 +1242,36 @@ Bahmni.ConceptSet.FormConditions.rules = {
               conditions.hide.push("WWN, How much insulin given")
               }
               return conditions;
-         }
+         },
+        'OMF, Chief complaint': function (formName, formFieldValues) {
+                 var conditions = {
+                     show: [],
+                     hide: []
+                 };
+                 var conditionConcept = formFieldValues['OMF, Chief complaint'];
+
+                 if (conditionConcept.indexOf("Other")>=0){
+                     conditions.show.push("OMF, Other chief complaint")
+                 }
+                 else {
+                     conditions.hide.push("OMF, Other chief complaint")
+                 }
+                 return conditions;
+             },
+        'OMF, Current treatment': function (formName, formFieldValues) {
+                 var conditions = {
+                     show: [],
+                     hide: []
+                 };
+                 var conditionConcept = formFieldValues['OMF, Current treatment'];
+
+                 if (conditionConcept.indexOf("Other")>=0){
+                     conditions.show.push("OMF, Other current treatment")
+                 }
+                 else {
+                     conditions.hide.push("OMF, Other current treatment")
+                 }
+                 return conditions;
+             }
 
 }
