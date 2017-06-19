@@ -8,7 +8,7 @@
       "link": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard?dateEnrolled={{dateEnrolled}}&programUuid={{programUuid}}&enrollment={{enrollment}}&currentTab=DASHBOARD_TAB_PATIENT_SUMMARY_KEY",
       "errorMessage": "The patient is not enrolled to the program"
     },
-    "primarySurgeonsForOT" : ["55b4ebe6-a00b-4ee1-8691-a71513bc3253", "176cc01a-1617-11e7-85a5-080027b18094"],
+    "primarySurgeonsForOT" : [ "Yahya Kalilah", "Eman Fawzi"],
     "calendarView": {
       "dayViewStart": "08:00",
       "dayViewEnd": "18:00",
