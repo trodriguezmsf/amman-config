@@ -1272,6 +1272,24 @@ Bahmni.ConceptSet.FormConditions.rules = {
                      conditions.hide.push("OMF, Other current treatment")
                  }
                  return conditions;
-             }
-
+             },
+    'SFP, Early Follow-up': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['SFP, Early Follow-up'];
+        if (conditionConcept == "Partial achievement of objective"){
+            conditions.show.push("SFP, Partial achievement of objective")
+            conditions.hide.push("SFP, Complications developed","SFP, Type of complications")
+        }
+        else if(conditionConcept == "Complications developed") {
+            conditions.show.push("SFP, Complications developed","SFP, Type of complications")
+            conditions.hide.push("SFP, Partial achievement of objective")
+        }
+        else {
+            conditions.hide.push("SFP, Partial achievement of objective","SFP, Complications developed","SFP, Type of complications" )
+        }
+        return conditions;
+    }
 }

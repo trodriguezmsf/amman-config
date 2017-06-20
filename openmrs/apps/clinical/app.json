@@ -529,7 +529,8 @@
            "allowAddMore":true
           },
           "SFP, Site of surgical procedure":{
-            "dropdown":true
+            "autocomplete":true,
+            "multiSelect":true
           },
           "OMF, Chief complaint":{
             "multiSelect":true
@@ -539,6 +540,12 @@
           },
           "OMF, Current treatment":{
             "multiSelect":true
+          },
+          "OR , Drainage Section":{
+            "allowAddMore":true
+          },
+          "OR, Site of drain":{
+            "autocomplete":true
           }
     },
         "visitPage": {
