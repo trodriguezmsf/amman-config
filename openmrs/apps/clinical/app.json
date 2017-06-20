@@ -546,6 +546,12 @@
           },
           "OR, Site of drain":{
             "autocomplete":true
+          },
+          "OR, Pre-operative diagnoses":{
+            "dropdown":true
+          },
+          "OR, Operation":{
+            "dropdown":true
           }
     },
         "visitPage": {

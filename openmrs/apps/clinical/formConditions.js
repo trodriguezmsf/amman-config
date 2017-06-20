@@ -1291,5 +1291,33 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("SFP, Partial achievement of objective","SFP, Complications developed","SFP, Type of complications" )
         }
         return conditions;
-    }
+    },
+    'OR, Does the patient have a drain?': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['OR, Does the patient have a drain?'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("OR , Drainage Section")
+              }
+              else {
+              conditions.hide.push("OR , Drainage Section")
+              }
+              return conditions;
+         },
+    'OR, Blood transfusion': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['OR, Blood transfusion'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("OR, Number of units")
+              }
+              else {
+              conditions.hide.push("OR, Number of units")
+              }
+              return conditions;
+         }
 }
