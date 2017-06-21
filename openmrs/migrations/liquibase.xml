@@ -2625,4 +2625,84 @@
             VALUES('notes', 'Notes', 'java.lang.String' ,'10', 8, NOW(), UUID());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201706211408" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="SAP, Is patient for surgery" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(SELECT concept_id  from concept_name where name= 'SAP, Injury Site' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding SAP, Is patient for surgery in Final SAP, Injury Site </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set from concept_name where name= 'SAP, Injury Site' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'SAP, Is patient for surgery' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id1,@concept_set,1021,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706211410" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="SAP, Has Patient Consent Been Obtained?" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(SELECT concept_id  from concept_name where name= 'SAP, Injury Site' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding SAP, Has Patient Consent Been Obtained? in Final SAP, Injury Site </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set from concept_name where name= 'SAP, Injury Site' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'SAP, Has Patient Consent Been Obtained?' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id2,@concept_set,1022,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706211412" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="SAP, Surgical summary" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(SELECT concept_id  from concept_name where name= 'SAP, Injury Site' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding SAP, Surgical summary in Final SAP, Injury Site </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set from concept_name where name= 'SAP, Injury Site' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = 'SAP, Surgical summary' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id3,@concept_set,1023,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706211414" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="SAP, Estimated duration of procedure" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(SELECT concept_id  from concept_name where name= 'SAP, Planned Surgical procedures' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding SAP, Estimated duration of procedure in SAP, Planned Surgical procedures </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set from concept_name where name= 'SAP, Planned Surgical procedures' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'SAP, Estimated duration of procedure' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id1,@concept_set,1021,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706211416" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where concept_id = "SAP, Planned Surgical procedures" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>updateing  Planned Surgical procedures to Planned Surgical procedures for next OT</comment>
+        <sql>
+            Update concept_name set name = "SAP, Planned Surgical Procedures for next OT" where name = "SAP, Planned Surgical procedures" and concept_name_type ="FULLY_SPECIFIED";
+            select concept_id INTO @conceptid from concept_name where name ="SAP, Planned Surgical Procedures for next OT" and concept_name_type ="FULLY_SPECIFIED";
+            Update concept_name set name = "Planned Surgical Procedures for next OT" where concept_id = @conceptid and concept_name_type ="SHORT";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706211420" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_name where concept_id = "SAP, Planned Surgical procedures" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>deleting Surgical summary from Surgeon Pre-Op Assessment and Treatment Plan form </comment>
+        <sql>
+            delete  from concept_set where concept_id =(select concept_id  from concept_name where name ="SAP, Surgical summary" AND concept_name_type="FULLY_SPECIFIED") and concept_set = (select concept_id  from concept_name where name ="Surgeon Pre-Op Assessment and Treatment Plan" AND concept_name_type="FULLY_SPECIFIED");
+        </sql>
+    </changeSet>
 </databaseChangeLog>
+
+
+
+
