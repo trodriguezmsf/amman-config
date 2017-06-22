@@ -2701,6 +2701,45 @@
             delete  from concept_set where concept_id =(select concept_id  from concept_name where name ="SAP, Surgical summary" AND concept_name_type="FULLY_SPECIFIED") and concept_set = (select concept_id  from concept_name where name ="Surgeon Pre-Op Assessment and Treatment Plan" AND concept_name_type="FULLY_SPECIFIED");
         </sql>
     </changeSet>
+    <changeSet id="Amman-201706221502" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from person_name where given_name ="Muckhaled" and family_name ="Naseef";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new person and making him as provider</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Muckhaled","Naseef",8, now(), uuid());
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706221504" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from person_name where given_name ="Ghassan" and family_name ="S.Abu-Sittah";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new person and making him as provider</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Ghassan","S.Abu-Sittah",8, now(), uuid());
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706221506" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from person_name where given_name ="Other" and family_name ="Surgeon";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new person and making him as provider</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Other","Surgeon",8, now(), uuid());
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
