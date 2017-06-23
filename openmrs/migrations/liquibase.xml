@@ -2680,7 +2680,7 @@
     <changeSet id="Amman-201706211416" author="shiva kumar" context="rel3.2" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
-                SELECT count(*) from concept_name where concept_id = "SAP, Planned Surgical procedures" and concept_name_type ="FULLY_SPECIFIED";
+                SELECT count(*) from concept_name where name = "SAP, Planned Surgical procedures" and concept_name_type ="FULLY_SPECIFIED";
             </sqlCheck>
         </preConditions>
         <comment>updateing  Planned Surgical procedures to Planned Surgical procedures for next OT</comment>
@@ -2693,7 +2693,7 @@
     <changeSet id="Amman-201706211420" author="shiva kumar" context="rel3.2" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                SELECT count(*) from concept_name where concept_id = "SAP, Planned Surgical procedures" and concept_name_type ="FULLY_SPECIFIED";
+                SELECT count(*) from concept_name where name = "SAP, Planned Surgical procedures" and concept_name_type ="FULLY_SPECIFIED";
             </sqlCheck>
         </preConditions>
         <comment>deleting Surgical summary from Surgeon Pre-Op Assessment and Treatment Plan form </comment>
