@@ -1,0 +1,29 @@
+<div id="customControl">
+    <h2 class="section-title">{{title | titleTranslate}} </h2>
+    <section class="block hierarchy">
+        <div ng-if="surgicalHistory.length > 0">
+            <table>
+                <thead>
+                <tr>
+                    <th ng-repeat="header in ::headings track by $index">
+                        <span>{{header}}</span>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="entry in ::surgicalHistory track by $index">
+                    <td autoclose="true" ng-repeat="header in ::headings track by $index"
+                        ng-class="::{'is-abnormal': (columnResult.abnormal == true)}">
+                        <span ng-class="::{'is-abnormal': (columnResult.abnormal == true)}">{{ entry[header]}}</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div ng-if="surgicalHistory.length == 0">
+            <div class="placeholder-text" ><p translate="DISPLAY_CONTROL_ERROR_MESSAGE_KEY"
+                                              translate-values="::{displayControl : '{{'Surgical Appointments' | translate}}'}"></p>
+            </div>
+        </div>
+    </section>
+</div>

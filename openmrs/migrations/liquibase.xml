@@ -2740,6 +2740,10 @@
             INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201706231636" author="Santhosh, Maharjun" context="rel3.2" runOnChange="true">
+        <comment>Adding global property for surgical history display control</comment>
+        <sqlFile path="operationTheater/surgicalHistoryDisplayControl.sql"/>
+    </changeSet>
 </databaseChangeLog>
 
 
