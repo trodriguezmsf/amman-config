@@ -5,7 +5,7 @@ INSERT INTO global_property (property, property_value, description, uuid)
  VALUES ('bahmni.sqlGet.otSurgicalHistory',
 "SELECT
     surgical_appointment_with_stage.stage      AS Stage,
-    DATE_FORMAT(sb.start_datetime, '%Y/%m/%d') AS 'Date of Surgery',
+    DATE_FORMAT(sb.start_datetime, '%d/%m/%Y') AS 'Date of Surgery',
     CONCAT(pn.given_name, ' ', pn.family_name) AS Surgeon,
     surgical_appointment_procedure.value       AS Procedures,
     sa.status                                  AS `Appointment Status`,
