@@ -2757,7 +2757,7 @@
                                                                                                           (@conceptid3,@conceptset,1013,8,now(),uuid());
         </sql>
     </changeSet>
-    <changeSet id="Amman-201706281234" author="shiva kumar" context="rel3.2" >
+    <changeSet id="Amman-201706281236" author="shiva kumar" context="rel3.2" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
                 select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='SAP, Injury Site' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='SAP, Is patient for surgery' and concept_name_type = "FULLY_SPECIFIED");
