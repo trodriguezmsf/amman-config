@@ -396,14 +396,14 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "SAP, Planned Surgical procedures",
+            "SAP, Planned Surgical procedures for next OT",
             "SAP, Estimated length of stay",
             "SAP, Does the patient need further admissions"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "SAP, Planned Surgical procedures",
+            "SAP, Planned Surgical Procedures for next OT",
             "SAP, Estimated length of stay",
             "SAP, Does the patient need further admissions"
           ],
