@@ -282,7 +282,7 @@
             "SAP, Injury Site":{
             "allowAddMore": true
           },
-            "SAP, Planned Surgical procedures":{
+            "SAP, Planned Surgical Procedures for next OT":{
             "allowAddMore": true
             },
             "MD, Surgical Procedures Outside AMH":{

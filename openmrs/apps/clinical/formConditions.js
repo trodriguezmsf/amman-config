@@ -1319,5 +1319,19 @@ Bahmni.ConceptSet.FormConditions.rules = {
               conditions.hide.push("OR, Number of units")
               }
               return conditions;
+         },
+    'SAP, Is patient for surgery': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['SAP, Is patient for surgery'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT")
+              }
+              else {
+              conditions.hide.push("SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT")
+              }
+              return conditions;
          }
 }

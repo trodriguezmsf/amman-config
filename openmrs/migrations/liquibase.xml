@@ -2740,6 +2740,40 @@
             INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201706281234" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='Surgeon Pre-Op Assessment and Treatment Plan' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='SAP, Is patient for surgery' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concepts into Surgeon Pre-Op Assessment and Tx Plan form</comment>
+        <sql>
+            select concept_id INTO @conceptset from concept_name where name ='Surgeon Pre-Op Assessment and Treatment Plan' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid1 from concept_name where name ='SAP, Is patient for surgery' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid2 from concept_name where name ='SAP, Has Patient Consent Been Obtained?' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid3 from concept_name where name ='SAP, Surgical summary' and concept_name_type = "FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) values (@conceptid1,@conceptset,1011,8,now(),uuid()),
+                                                                                                          (@conceptid2,@conceptset,1012,8,now(),uuid()),
+                                                                                                          (@conceptid3,@conceptset,1013,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706281234" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='SAP, Injury Site' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='SAP, Is patient for surgery' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting concepts from site of injury set</comment>
+        <sql>
+            select concept_id INTO @conceptset from concept_name where name ='SAP, Injury Site' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid1 from concept_name where name ='SAP, Is patient for surgery' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid2 from concept_name where name ='SAP, Has Patient Consent Been Obtained?' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid3 from concept_name where name ='SAP, Surgical summary' and concept_name_type = "FULLY_SPECIFIED";
+            Delete from concept_set where concept_set =@conceptset and concept_id =@conceptid1;
+            Delete from concept_set where concept_set =@conceptset and concept_id =@conceptid2;
+            Delete from concept_set where concept_set =@conceptset and concept_id =@conceptid3;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
