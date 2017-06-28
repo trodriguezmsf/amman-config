@@ -13,7 +13,6 @@ INSERT INTO global_property (property, property_value, description, uuid)
 FROM surgical_block sb
     INNER JOIN location l ON sb.location_id = l.location_id
                              AND l.retired IS FALSE
-                             AND sb.voided IS FALSE
     INNER JOIN surgical_appointment sa ON sa.surgical_block_id = sb.surgical_block_id
                                           AND sa.voided IS FALSE
     INNER JOIN person person ON person.person_id = sa.patient_id
@@ -41,7 +40,6 @@ FROM surgical_block sb
         FROM
             surgical_block sb
             INNER JOIN surgical_appointment sa ON sa.surgical_block_id = sb.surgical_block_id
-                                                  AND sb.voided IS FALSE
                                                   AND sa.voided IS FALSE
             LEFT OUTER JOIN (
                                 SELECT
