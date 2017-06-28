@@ -568,8 +568,16 @@
             "showDetailsButton": true,
             "pivotTable": {}
           }
+        },
+      "surgicalHistory": {
+        "type": "custom",
+        "displayOrder": 14,
+        "config": {
+          "title": "DASHBOARD_TITLE_SURGICAL_APPOINTMENTS_KEY",
+          "template": "<surgical-history section='section' patient='patient'></surgical-history>"
         }
       }
+    }
   }
 }
   

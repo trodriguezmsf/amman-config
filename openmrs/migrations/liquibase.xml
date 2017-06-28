@@ -2774,6 +2774,10 @@
             Delete from concept_set where concept_set =@conceptset and concept_id =@conceptid3;
         </sql>
     </changeSet>
+    <changeSet id="Amman-201706231636" author="Santhosh, Maharjun" context="rel3.2" runOnChange="true">
+    <comment>Adding global property for surgical history display control</comment>
+    <sqlFile path="operationTheater/surgicalHistoryDisplayControl.sql"/>
+    </changeSet>
 </databaseChangeLog>
 
 
