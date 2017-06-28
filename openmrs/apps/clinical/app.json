@@ -524,9 +524,11 @@
           "SFP, Type of complications":{
             "dropdown":true
           },
-          "SFP, Planned Procedure (surgical)":{
-           "autocomplete":true,
-           "allowAddMore":true
+          "FP, Planned Procedure (surgical) data": {
+            "autocomplete":true,
+            "codedConceptName":"SFP, Planned Procedure (surgical)",
+            "nonCodedConceptName":"SFP, Non coded Planned Procedure (surgical)",
+            "allowAddMore": true
           },
           "SFP, Site of surgical procedure":{
             "autocomplete":true,
@@ -552,6 +554,9 @@
           },
           "OR, Operation":{
             "dropdown":true
+          },
+          "FP, Planned Surgical Procedures":{
+            "allowAddMore":true
           }
     },
         "visitPage": {
