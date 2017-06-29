@@ -2810,10 +2810,10 @@
                 SELECT count(*) from concept_name where name = "SAP, Planned procedure data" and concept_name_type ="FULLY_SPECIFIED";
             </sqlCheck>
         </preConditions>
-        <comment>updateing  Planned procedure to Planned procedure(surgical)</comment>
+        <comment>updateing  Planned procedure to Planned Procedure (surgical)</comment>
         <sql>
             select concept_id INTO @conceptid from concept_name where name ="SAP, Planned procedure data" and concept_name_type ="FULLY_SPECIFIED";
-            Update concept_name set name = "Planned procedure(surgical)" where concept_id = @conceptid and concept_name_type ="SHORT";
+            Update concept_name set name = "Planned Procedure (surgical)" where concept_id = @conceptid and concept_name_type ="SHORT";
         </sql>
     </changeSet>
 </databaseChangeLog>
