@@ -2775,16 +2775,16 @@
         </sql>
     </changeSet>
     <changeSet id="Amman-201706231636" author="Santhosh, Maharjun" context="rel3.2" runOnChange="true">
-    <comment>Adding global property for surgical history display control</comment>
-    <sqlFile path="operationTheater/surgicalHistoryDisplayControl.sql"/>
+        <comment>Adding global property for surgical history display control</comment>
+        <sqlFile path="operationTheater/surgicalHistoryDisplayControl.sql"/>
     </changeSet>
     <changeSet id="Amman-201706281650" author="Santhosh, Maharjun">
-        <comment>Updating the global property for webservices maxResultsDefault</comment>
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
                 SELECT count(*) FROM global_property WHERE property = "webservices.rest.maxResultsDefault";
             </sqlCheck>
         </preConditions>
+        <comment>Updating the global property for webservices maxResultsDefault</comment>
         <sql>
             UPDATE global_property
             SET property_value = 200
