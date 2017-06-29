@@ -2816,6 +2816,10 @@
             Update concept_name set name = "Planned Procedure (surgical)" where concept_id = @conceptid and concept_name_type ="SHORT";
         </sql>
     </changeSet>
+    <changeSet id="Amman-201706291730" author="Santhosh, Maharjun" context="rel3.2" runOnChange="true">
+        <comment>Adding patient listing queues for patients whose are in to be scheduled queue</comment>
+        <sqlFile path="operationTheater/patientListingQueueToBeScheduled.sql"/>
+    </changeSet>
 </databaseChangeLog>
 
 
