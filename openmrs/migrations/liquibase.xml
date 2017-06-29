@@ -2804,7 +2804,7 @@
             Update concept_name set name = "Dose and frequency" where concept_id = @conceptid and concept_name_type ="SHORT";
         </sql>
     </changeSet>
-    <changeSet id="Amman-201706291059" author="shiva kumar" context="rel3.2" >
+    <changeSet id="Amman-201706291208" author="shiva kumar" context="rel3.2" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
                 SELECT count(*) from concept_name where name = "SAP, Planned procedure data" and concept_name_type ="FULLY_SPECIFIED";
