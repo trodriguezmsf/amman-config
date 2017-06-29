@@ -2791,6 +2791,31 @@
             WHERE property = "webservices.rest.maxResultsDefault";
         </sql>
     </changeSet>
+    <changeSet id="Amman-201706291059" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name = "SMH, Dose and freqency" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>updateing  SMH, Dose and freqency to SMH, Dose and frequency</comment>
+        <sql>
+            Update concept_name set name = "SMH, Dose and frequency" where name = "SMH, Dose and freqency" and concept_name_type ="FULLY_SPECIFIED";
+            select concept_id INTO @conceptid from concept_name where name ="SMH, Dose and frequency" and concept_name_type ="FULLY_SPECIFIED";
+            Update concept_name set name = "Dose and frequency" where concept_id = @conceptid and concept_name_type ="SHORT";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706291059" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name = "SAP, Planned procedure data" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>updateing  Planned procedure to Planned procedure(surgical)</comment>
+        <sql>
+            select concept_id INTO @conceptid from concept_name where name ="SAP, Planned procedure data" and concept_name_type ="FULLY_SPECIFIED";
+            Update concept_name set name = "Planned procedure(surgical)" where concept_id = @conceptid and concept_name_type ="SHORT";
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
