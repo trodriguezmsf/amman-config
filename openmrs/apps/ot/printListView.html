@@ -1,0 +1,64 @@
+<div>
+    <table>
+        <thead>
+        <tr>
+            <td>
+                Date
+            </td>
+            <td>
+                Identifier
+            </td>
+            <td>
+                Patient Name
+            </td>
+            <td>
+                Start Time
+            </td>
+            <td>
+                Time Est.
+            </td>
+            <td>
+                Procedures
+            </td>
+            <td>
+                Surgeon
+            </td>
+            <td>
+                Appointment Status
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="appointment in surgicalAppointmentList">
+            <td>
+                {{appointment.derivedAttributes.expectedStartDate | bahmniDate}}
+            </td>
+            <td>
+                {{appointment.derivedAttributes.patientIdentifier}}
+            </td>
+            <td>
+                {{appointment.derivedAttributes.patientName}}
+            </td>
+            <td>
+                {{appointment.derivedAttributes.expectedStartTime | bahmniTime}}
+            </td>
+            <td>
+                {{appointment.surgicalAppointmentAttributes.estTimeHours.value}} {{'OT_SURGICAL_APPOINTMENT_HOURS' |
+                translate}} : {{appointment.surgicalAppointmentAttributes.estTimeMinutes.value}}
+                {{'OT_SURGICAL_APPOINTMENT_MINUTES' | translate}}
+                + {{appointment.surgicalAppointmentAttributes.cleaningTime.value}} {{'OT_SURGICAL_APPOINTMENT_MINUTES' |
+                translate}}
+            </td>
+            <td>
+                {{appointment.surgicalAppointmentAttributes.procedure.value}}
+            </td>
+            <td>
+                {{appointment.surgicalBlock.provider.person.display}}
+            </td>
+            <td>
+                {{appointment.status}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
