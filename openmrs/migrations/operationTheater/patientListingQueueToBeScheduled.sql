@@ -20,19 +20,35 @@ FROM patient p
                SELECT
                  o.person_id,
                  o.date_created AS date_created,
-                 CONCAT(
-                     group_concat(IF(cn.name = 'SAP, Planned procedure (surgical)' ||
-                                     cn.name = 'SFP, Planned procedure (surgical)',
-                                     coded_fscn.name, '') SEPARATOR
-                                  ''), ' ',
-                     group_concat(
-                         IF(cn.name = 'SAP, Site of surgical procedure' || cn.name = 'SFP, Site of surgical procedure',
-                            coded_fscn.name, '') SEPARATOR
-                         ''), ' ',
-                     group_concat(
-                         IF(cn.name = 'SAP, Side of surgical procedure' || cn.name = 'SFP, Side of surgical procedure',
-                            coded_fscn.name, '') SEPARATOR
-                         ''))   AS 'procedure'
+                 CONCAT_WS(' ',
+                           GROUP_CONCAT(
+                               (IF(cn.name = 'SAP, Planned procedure (surgical)' ||
+                                   cn.name = 'SFP, Planned procedure (surgical)' ||
+                                   cn.name = 'SAP, Non-coded Planned procedure' ||
+                                   cn.name = 'SFP, Non coded Planned Procedure (surgical)',
+                                   COALESCE(o.value_text, coded_fscn.name), NULL)) SEPARATOR
+                               ', '
+                           ),
+                           IF(GROUP_CONCAT(
+                                  (IF(cn.name = 'SAP, Planned procedure (surgical)' ||
+                                      cn.name = 'SFP, Planned procedure (surgical)' ||
+                                      cn.name = 'SAP, Non-coded Planned procedure' ||
+                                      cn.name = 'SFP, Non coded Planned Procedure (surgical)',
+                                      COALESCE(o.value_text, coded_fscn.name), NULL)) SEPARATOR
+                                  ', '
+                              ) IS NOT NULL, 'on', ''),
+                           GROUP_CONCAT(
+                               IF(cn.name = 'SAP, Side of surgical procedure' ||
+                                  cn.name = 'SFP, Side of surgical procedure',
+                                  coded_fscn.name, NULL) SEPARATOR
+                               ''),
+                           GROUP_CONCAT(
+                               IF(cn.name = 'SAP, Site of surgical procedure' ||
+                                  cn.name = 'SFP, Site of surgical procedure',
+                                  coded_scn.name, NULL) SEPARATOR
+                               ', ')
+                 )
+                                AS 'procedure'
                FROM encounter e
                  INNER JOIN obs o ON o.encounter_id = e.encounter_id
                                      AND e.voided IS FALSE
@@ -61,7 +77,7 @@ FROM patient p
                                                       AND latest_encounter.person_id = e.patient_id
                                                       AND e.voided IS FALSE
                                 INNER JOIN obs o ON o.encounter_id = e.encounter_id
-                                                  AND o.voided IS FALSE
+                                                    AND o.voided IS FALSE
                                 INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
                                                               AND cn.voided IS FALSE
                                                               AND cn.concept_name_type = 'FULLY_SPECIFIED'
@@ -74,21 +90,23 @@ FROM patient p
                               WHERE consent_answer.name = 'Yes'
                             ) latest_encounter_with_consent
                    ON latest_encounter_with_consent.encounter_id = e.encounter_id
-                 LEFT OUTER JOIN concept_name cn ON cn.concept_id = o.concept_id
-                                                    AND cn.voided IS FALSE
-                                                    AND cn.concept_name_type = 'FULLY_SPECIFIED'
-                                                    AND cn.name IN (
+                 INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+                                               AND cn.voided IS FALSE
+                                               AND cn.concept_name_type = 'FULLY_SPECIFIED'
+                                               AND cn.name IN (
                    'SAP, Planned procedure (surgical)',
+                   'SAP, Non-coded Planned procedure',
                    'SAP, Site of surgical procedure',
                    'SAP, Side of surgical procedure',
                    'SFP, Planned procedure (surgical)',
+                   'SFP, Non coded Planned Procedure (surgical)'
                    'SFP, Site of surgical procedure',
                    'SFP, Side of surgical procedure')
                  LEFT OUTER JOIN concept_name coded_fscn ON coded_fscn.concept_id = o.value_coded
                                                             AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
                                                             AND coded_fscn.voided IS FALSE
                  LEFT OUTER JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
-                                                           AND coded_fscn.concept_name_type = 'SHORT'
+                                                           AND coded_scn.concept_name_type = 'SHORT'
                                                            AND coded_scn.voided IS FALSE
                GROUP BY o.person_id
              ) procedureBlock ON procedureBlock.person_id = p.patient_id
@@ -109,7 +127,7 @@ FROM patient p
                                                                  AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
                                                                  AND coded_fscn.voided IS FALSE
                       LEFT OUTER JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
-                                                                AND coded_fscn.concept_name_type = 'SHORT'
+                                                                AND coded_scn.concept_name_type = 'SHORT'
                                                                 AND coded_scn.voided IS FALSE
                       INNER JOIN (
                                    SELECT
@@ -146,7 +164,7 @@ FROM patient p
                                                                  AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
                                                                  AND coded_fscn.voided IS FALSE
                       LEFT OUTER JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
-                                                                AND coded_fscn.concept_name_type = 'SHORT'
+                                                                AND coded_scn.concept_name_type = 'SHORT'
                                                                 AND coded_scn.voided IS FALSE
                       INNER JOIN (
                                    SELECT
@@ -184,7 +202,7 @@ FROM patient p
                                                                  AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
                                                                  AND coded_fscn.voided IS FALSE
                       LEFT OUTER JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
-                                                                AND coded_fscn.concept_name_type = 'SHORT'
+                                                                AND coded_scn.concept_name_type = 'SHORT'
                                                                 AND coded_scn.voided IS FALSE
                       INNER JOIN (
                                    SELECT
@@ -225,13 +243,12 @@ FROM patient p
                                       WHERE sa.voided IS FALSE
                                       GROUP BY sa.patient_id
                                      ) latest_appointment ON latest_appointment.patient_id = sa.patient_id
-                                                           AND latest_appointment.date_created = sa.date_created
-                                                           AND sa.voided IS FALSE) appoinment
+                                                             AND latest_appointment.date_created = sa.date_created
+                                                             AND sa.voided IS FALSE) appoinment
         ON appoinment.patient_id = p.patient_id AND p.voided IS FALSE
   ) appointment_block ON appointment_block.patient_id = p.patient_id
 WHERE
-  procedureBlock.date_created > appointment_block.date_created
-  OR
   appointment_block.status = 'POSTPONED'
-  OR appointment_block.date_created IS NULL;"
+  OR
+  appointment_block.date_created IS NULL;"
    ,'SQL for to be scheduled patient listing queues for OT module',@uuid);
