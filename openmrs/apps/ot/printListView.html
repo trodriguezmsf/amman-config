@@ -1,31 +1,40 @@
-<div>
-    <table>
+<link rel="stylesheet" href="/bahmni_config/openmrs/apps/ot/css/otPrintList.css"/>
+<h4 style="text-align: center;"> OT Schedule </h4>
+<p style="text-align: center;" ng-if="weekOrDay === 'day'">
+    {{viewDate | date : 'dd MMM yyyy, EEE'}}
+</p>
+
+<p style="text-align: center;" ng-if="weekOrDay === 'week'">
+    {{weekStartDate | date : 'dd MMM yyyy, EEE'}} to {{weekEndDate | date : 'dd MMM yyyy, EEE'}}
+</p>
+<p></p>
+    <table  style="border:none;" border="1" cellpadding="2" cellspacing="0">
         <thead>
         <tr>
-            <td>
+            <th>
                 Date
-            </td>
-            <td>
+            </th>
+            <th>
                 Identifier
-            </td>
-            <td>
+            </th>
+            <th>
                 Patient Name
-            </td>
-            <td>
+            </th>
+            <th>
                 Start Time
-            </td>
-            <td>
+            </th>
+            <th>
                 Time Est.
-            </td>
-            <td>
-                Procedures
-            </td>
-            <td>
+            </th>
+            <th>
+                Procedure(s)
+            </th>
+            <th>
                 Surgeon
-            </td>
-            <td>
+            </th>
+            <th>
                 Appointment Status
-            </td>
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -61,4 +70,4 @@
         </tr>
         </tbody>
     </table>
-</div>
+
