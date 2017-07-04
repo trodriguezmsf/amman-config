@@ -216,7 +216,8 @@
                     "Complications Set",
                     "Post-Op Ward Monitoring",
                     "Surgeon Follow-up Form",
-                    "OPD MD Follow-Up Note"
+                    "OPD MD Follow-Up Note",
+                    "Operation Report"
 
 
                 ],
@@ -601,6 +602,72 @@
           ],
           "isEditable": true,
           "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Surgeon Follow-up Form":{
+        "translationKey": "DASHBOARD_SURGEON_FOLLOWUP_FORM",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 16,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "Surgeon Follow-up Form"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+           "Surgeon Follow-up Form"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 10,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "OPD MD Follow-Up Note":{
+        "translationKey": "DASHBOARD_OPD_MD_FOLLOWUP_FORM",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 17,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "OPD MD Follow-Up Note"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "OPD MD Follow-Up Note"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 10,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Operation Report":{
+        "translationKey": "DASHBOARD_OPERATION_REPORT",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 18,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "Operation Report"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Operation Report"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 10,
           "showDetailsButton": true,
           "pivotTable": {}
         }
