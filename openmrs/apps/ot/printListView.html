@@ -15,6 +15,9 @@
     table td:first-child {
         border-left: 1px solid #444;
     }
+    .current-date {
+        font-weight: bold;
+    }
 </style>
 <h4> OT Schedule alive</h4>
 <p ng-if="weekOrDay === 'day'">
@@ -40,7 +43,7 @@
                 Start Time
             </th>
             <th>
-                Time Est.
+                Est Time
             </th>
             <th>
                 Procedure(s)
@@ -54,7 +57,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="appointment in surgicalAppointmentList">
+        <tr ng-repeat="appointment in surgicalAppointmentList" ng-class="{'current-date': isCurrentDate(appointment.derivedAttributes.expectedStartDate)}">
             <td>
                 {{appointment.derivedAttributes.expectedStartDate | bahmniDate}}
             </td>
