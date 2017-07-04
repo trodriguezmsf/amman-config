@@ -1,14 +1,30 @@
-<link rel="stylesheet" href="/bahmni_config/openmrs/apps/ot/css/otPrintList.css"/>
-<h4 style="text-align: center;"> OT Schedule </h4>
-<p style="text-align: center;" ng-if="weekOrDay === 'day'">
+<style>
+    h4, p {
+        text-align: center;
+    }
+    table {
+        border: none;
+    }
+    table th, table td {
+        border: 1px solid #444;
+        border-left: none;
+    }
+    table th:first-child {
+        border-left: 1px solid #444;
+    }
+    table td:first-child {
+        border-left: 1px solid #444;
+    }
+</style>
+<h4> OT Schedule alive</h4>
+<p ng-if="weekOrDay === 'day'">
     {{viewDate | date : 'dd MMM yyyy, EEE'}}
 </p>
 
-<p style="text-align: center;" ng-if="weekOrDay === 'week'">
+<p ng-if="weekOrDay === 'week'">
     {{weekStartDate | date : 'dd MMM yyyy, EEE'}} to {{weekEndDate | date : 'dd MMM yyyy, EEE'}}
 </p>
-<p></p>
-    <table  style="border:none;" border="1" cellpadding="2" cellspacing="0">
+    <table cellpadding="2" cellspacing="0">
         <thead>
         <tr>
             <th>
