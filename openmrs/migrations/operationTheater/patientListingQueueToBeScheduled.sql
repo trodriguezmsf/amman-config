@@ -4,13 +4,13 @@ SELECT uuid() INTO @uuid;
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
 VALUES ('emrapi.sqlSearch.otToBeScheduledQueue',
 "SELECT
-  pi.identifier                              AS PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER,
-  concat(pn.given_name, ' ', pn.family_name) AS PATIENT_LISTING_QUEUES_HEADER_NAME,
-  procedureBlock.`procedure`                 AS `Planned Procedure`,
-  finalValidationSurgeon.name                AS `Surgeon Name`,
-  speciality.name                            AS Speciality,
-  appointment_block.status                   AS `Appointment Status`,
-  anaesthesiaOutcome.name                    AS `Outcome of Anaesthesia`
+  pi.identifier                                                                                                                                        AS PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER,
+  concat(pn.given_name, ' ', pn.family_name)                                                                                                           AS PATIENT_LISTING_QUEUES_HEADER_NAME,
+  procedureBlock.`procedure`                                                                                                                           AS `Planned Procedure`,
+  finalValidationSurgeon.name                                                                                                                          AS `Surgeon Name`,
+  speciality.name                                                                                                                                      AS Speciality,
+  if(appointment_block.date_created IS NOT NULL AND procedureBlock.date_created < appointment_block.date_created, appointment_block.status, NULL)      AS `Appointment Status`,
+  anaesthesiaOutcome.name                                                                                                                              AS `Outcome of Anaesthesia`
 FROM patient p
   INNER JOIN patient_identifier pi ON pi.patient_id = p.patient_id
                                       AND pi.voided IS FALSE
@@ -248,6 +248,8 @@ FROM patient p
         ON appoinment.patient_id = p.patient_id AND p.voided IS FALSE
   ) appointment_block ON appointment_block.patient_id = p.patient_id
 WHERE
+  procedureBlock.date_created > appointment_block.date_created
+  OR
   appointment_block.status = 'POSTPONED'
   OR
   appointment_block.date_created IS NULL;"
