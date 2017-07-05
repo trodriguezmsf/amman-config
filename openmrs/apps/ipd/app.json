@@ -18,7 +18,7 @@
                 "description": "Bahmni patient search, lookup Page"
             }
         ],
-        "contextModel": [ 
+        "contextModel": [
             "patientUuid",
             "encounterUuid",
             "visitUuid"
@@ -157,6 +157,13 @@
                             "showDetailsButton": true,
                             "pivotTable": {}
                         }
+                },
+              "surgicalHistory": {
+                "type": "custom",
+                "displayOrder": 7,
+                "config": {
+                  "title": "DASHBOARD_TITLE_SURGICAL_APPOINTMENTS_KEY",
+                  "template": "<surgical-history section='section' patient='patient'></surgical-history>"
                 }
             }
         },
