@@ -20,7 +20,7 @@
         min-width: 100px;
     }
 </style>
-<h4> OT Schedule alive</h4>
+<h4> OT Schedule</h4>
 <p ng-if="weekOrDay === 'day'">
     {{viewDate | date : 'dd MMM yyyy, EEE'}}
 </p>
@@ -31,10 +31,10 @@
     <table cellpadding="2" cellspacing="0">
         <thead>
         <tr>
-            <th>
+            <th width="80px">
                 Date
             </th>
-            <th >
+            <th width="80px">
                 Identifier
             </th>
             <th class="largeWidth">
@@ -44,7 +44,7 @@
                 Start Time
             </th>
             <th>
-                Time Est
+                Est Time
             </th>
             <th class="largeWidth">
                 Procedure(s)
@@ -59,10 +59,10 @@
         </thead>
         <tbody>
         <tr ng-repeat="appointment in surgicalAppointmentList" ng-class="{'current-date': isCurrentDate(appointment.derivedAttributes.expectedStartDate)}">
-            <td>
+            <td width="80px">
                 {{appointment.derivedAttributes.expectedStartDate | bahmniDate}}
             </td>
-            <td>
+            <td width="80px">
                 {{appointment.derivedAttributes.patientIdentifier}}
             </td>
             <td  class="largeWidth">
