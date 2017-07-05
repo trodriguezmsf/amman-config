@@ -4,7 +4,7 @@ SELECT uuid() INTO @uuid;
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
 VALUES ('emrapi.sqlSearch.otToBeScheduledQueue',
 "SELECT
-  pi.identifier                                                                                                                                        AS PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER,
+  pi.identifier                                                                                                                                        AS identifier,
   concat(pn.given_name, ' ', pn.family_name)                                                                                                           AS PATIENT_LISTING_QUEUES_HEADER_NAME,
   procedureBlock.`procedure`                                                                                                                           AS `Planned Procedure`,
   finalValidationSurgeon.name                                                                                                                          AS `Surgeon Name`,
