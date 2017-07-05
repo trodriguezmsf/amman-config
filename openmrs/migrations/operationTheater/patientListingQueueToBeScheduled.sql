@@ -90,7 +90,7 @@ FROM patient p
                               WHERE consent_answer.name = 'Yes'
                             ) latest_encounter_with_consent
                    ON latest_encounter_with_consent.encounter_id = e.encounter_id
-                 INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+                 LEFT OUTER JOIN concept_name cn ON cn.concept_id = o.concept_id
                                                AND cn.voided IS FALSE
                                                AND cn.concept_name_type = 'FULLY_SPECIFIED'
                                                AND cn.name IN (
