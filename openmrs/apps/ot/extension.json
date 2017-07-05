@@ -10,7 +10,7 @@
           "linkColumn": "identifier",
           "newTab": true
         }
-      ]
+      ],
       "view": "tabular",
       "searchHandler": "emrapi.sqlSearch.otToBeScheduledQueue",
       "translationKey": "PATIENT_LISTING_QUEUE_TO_BE_SCHEDULED_LABEL_KEY",
