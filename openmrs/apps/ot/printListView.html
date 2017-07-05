@@ -8,6 +8,7 @@
     table th, table td {
         border: 1px solid #444;
         border-left: none;
+        text-align: center;
     }
     table th:first-child {
         border-left: 1px solid #444;
@@ -15,8 +16,8 @@
     table td:first-child {
         border-left: 1px solid #444;
     }
-    .current-date {
-        font-weight: bold;
+    .largeWidth {
+        min-width: 100px;
     }
 </style>
 <h4> OT Schedule alive</h4>
@@ -33,22 +34,22 @@
             <th>
                 Date
             </th>
-            <th>
+            <th >
                 Identifier
             </th>
-            <th>
+            <th class="largeWidth">
                 Patient Name
             </th>
             <th>
                 Start Time
             </th>
             <th>
-                Est Time
+                Time Est
             </th>
-            <th>
+            <th class="largeWidth">
                 Procedure(s)
             </th>
-            <th>
+            <th class="largeWidth">
                 Surgeon
             </th>
             <th>
@@ -64,7 +65,7 @@
             <td>
                 {{appointment.derivedAttributes.patientIdentifier}}
             </td>
-            <td>
+            <td  class="largeWidth">
                 {{appointment.derivedAttributes.patientName}}
             </td>
             <td>
@@ -77,10 +78,10 @@
                 + {{appointment.surgicalAppointmentAttributes.cleaningTime.value}} {{'OT_SURGICAL_APPOINTMENT_MINUTES' |
                 translate}}
             </td>
-            <td>
+            <td class="largeWidth">
                 {{appointment.surgicalAppointmentAttributes.procedure.value}}
             </td>
-            <td>
+            <td class="largeWidth">
                 {{appointment.surgicalBlock.provider.person.display}}
             </td>
             <td>
