@@ -1281,14 +1281,14 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['SFP, Early Follow-up'];
         if (conditionConcept == "Partial achievement of objective"){
             conditions.show.push("SFP, Partial achievement of objective")
-            conditions.hide.push("SFP, Complications developed","SFP, Type of complications")
+            conditions.hide.push("SFP, Type of complications","SFP, Impact of complications")
         }
         else if(conditionConcept == "Complications developed") {
-            conditions.show.push("SFP, Complications developed","SFP, Type of complications")
+            conditions.show.push("SFP, Type of complications","SFP, Impact of complications")
             conditions.hide.push("SFP, Partial achievement of objective")
         }
         else {
-            conditions.hide.push("SFP, Partial achievement of objective","SFP, Complications developed","SFP, Type of complications" )
+            conditions.hide.push("SFP, Partial achievement of objective","SFP, Type of complications","SFP, Impact of complications" )
         }
         return conditions;
     },
@@ -1333,5 +1333,19 @@ Bahmni.ConceptSet.FormConditions.rules = {
               conditions.hide.push("SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT")
               }
               return conditions;
+         },
+     'SFP, Is patient for surgery': function (formName, formFieldValues) {
+         var conditions = {
+             show: [],
+             hide: []
+         };
+         var conditionConcept = formFieldValues['SFP, Is patient for surgery'];
+         if (conditionConcept == "Yes"){
+             conditions.show.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures","SFP, Estimated duration","SFP, Surgical summary")
          }
+         else {
+             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures","SFP, Estimated duration","SFP, Surgical summary")
+         }
+         return conditions;
+     }
 }

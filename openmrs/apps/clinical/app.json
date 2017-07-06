@@ -522,7 +522,9 @@
             "allowAddMore":true
           },
           "SFP, Type of complications":{
-            "dropdown":true
+            "multiSelect":true,
+              "autocomplete":true
+
           },
           "FP, Planned Procedure (surgical) data": {
             "autocomplete":true,
