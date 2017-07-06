@@ -212,4 +212,4 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                                               AND coded_scn.voided IS FALSE
         GROUP BY obs.person_id
  		)latest_obs ON latest_obs.person_id =  p.person_id
- 	ORDER BY bed.bed_number;",'SQL query to get list of bed details in ward',@uuid);
+ 	GROUP BY bed.bed_number;",'SQL query to get list of bed details in ward',@uuid);
