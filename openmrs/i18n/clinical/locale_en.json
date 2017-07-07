@@ -101,6 +101,6 @@
   "DASHBOARD_PATIENT_INFORMATION": "Patient Information",
   "DASHBOARD_OPERATION_REPORT":"Operation Report",
   "DASHBOARD_OPD_MD_FOLLOWUP_FORM":"OPD MD Follow-Up Note",
-  "DASHBOARD_SURGEON_FOLLOWUP_FORM":"Surgeon Follow-up"
+  "DASHBOARD_SURGEON_FOLLOWUP":"Surgeon Follow-up"
 
 }

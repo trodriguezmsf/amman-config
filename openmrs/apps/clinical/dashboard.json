@@ -215,7 +215,7 @@
                     "Physician Progress Note-Ward",
                     "Complications Set",
                     "Post-Op Ward Monitoring",
-                    "Surgeon Follow-up Form",
+                    "Surgeon Follow-up",
                     "OPD MD Follow-Up Note",
                     "Operation Report"
 
@@ -606,8 +606,8 @@
           "pivotTable": {}
         }
       },
-      "Surgeon Follow-up Form":{
-        "translationKey": "DASHBOARD_SURGEON_FOLLOWUP_FORM",
+      "Surgeon Follow-up":{
+        "translationKey": "DASHBOARD_SURGEON_FOLLOWUP",
         "type": "vitals",
         "isObservation": true,
         "displayOrder": 16,
@@ -615,12 +615,12 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Surgeon Follow-up Form"
+            "Surgeon Follow-up"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-           "Surgeon Follow-up Form"
+           "Surgeon Follow-up"
           ],
           "isEditable": true,
           "numberOfVisits": 10,

@@ -521,7 +521,7 @@
           "ANA, Wound Assessment":{
             "allowAddMore":true
           },
-          "SFP, Type of complications":{
+          "SFP, Type of complication":{
             "multiSelect":true,
               "autocomplete":true
 
@@ -557,7 +557,7 @@
           "OR, Operation":{
             "dropdown":true
           },
-          "FP, Planned Surgical Procedures":{
+          "FP, Planned Surgical Procedures for next OT":{
             "allowAddMore":true
           }
     },

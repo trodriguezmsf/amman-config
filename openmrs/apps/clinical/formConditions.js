@@ -1279,16 +1279,16 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['SFP, Early Follow-up'];
-        if (conditionConcept == "Partial achievement of objective"){
+        if (conditionConcept == "Paritial achievement of objectives without complications"){
             conditions.show.push("SFP, Partial achievement of objective")
-            conditions.hide.push("SFP, Type of complications","SFP, Impact of complications")
+            conditions.hide.push("SFP, Type of complication","SFP, Impact of complication")
         }
         else if(conditionConcept == "Complications developed") {
-            conditions.show.push("SFP, Type of complications","SFP, Impact of complications")
+            conditions.show.push("SFP, Type of complication","SFP, Impact of complication")
             conditions.hide.push("SFP, Partial achievement of objective")
         }
         else {
-            conditions.hide.push("SFP, Partial achievement of objective","SFP, Type of complications","SFP, Impact of complications" )
+            conditions.hide.push("SFP, Partial achievement of objective","SFP, Type of complication","SFP, Impact of complication" )
         }
         return conditions;
     },
@@ -1341,10 +1341,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
          };
          var conditionConcept = formFieldValues['SFP, Is patient for surgery'];
          if (conditionConcept == "Yes"){
-             conditions.show.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures","SFP, Estimated duration","SFP, Surgical summary")
+             conditions.show.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary")
          }
          else {
-             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures","SFP, Estimated duration","SFP, Surgical summary")
+             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary")
          }
          return conditions;
      }
