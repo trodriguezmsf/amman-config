@@ -4,9 +4,9 @@ SELECT uuid() INTO @uuid;
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
 VALUES ('emrapi.sqlSearch.plannedProcedureForPatient',
 "SELECT
-    CONCAT(grouped_proc) AS all_procedures,
-    SUM(est_hrs)                               AS esthrs,
-    SUM(est_mins)                              AS estmins
+    GROUP_CONCAT(grouped_proc SEPARATOR ' + ') AS all_procedures,
+    MAX(est_hrs)                               AS esthrs,
+    MAX(est_mins)                              AS estmins
 FROM
     (
         SELECT
@@ -68,7 +68,7 @@ FROM
                     INNER JOIN concept_name planned_sp_cn
                         ON planned_sp_cn.concept_id = planned_surgical_procedures.concept_id
                            AND planned_sp_cn.name IN
-                               ('SAP, Planned Surgical Procedures for next OT', 'FP, Planned Surgical Procedures')
+                               ('SAP, Planned Surgical Procedures for next OT', 'FP, Planned Surgical Procedures for next OT')
                            AND planned_sp_cn.concept_name_type = 'FULLY_SPECIFIED' AND planned_sp_cn.voided IS FALSE
                     INNER JOIN concept_name planned_proc_cn
                         ON planned_proc_cn.concept_name_type = 'FULLY_SPECIFIED'
@@ -89,7 +89,7 @@ FROM
                         ON estimated_duration_cn.concept_name_type = 'FULLY_SPECIFIED'
                            AND estimated_duration_cn.voided IS FALSE
                            AND estimated_duration_cn.name IN
-                               ('SAP, Estimated duration of procedure', 'SFP, Estimated duration')
+                               ('SAP, Estimated duration', 'SFP, Estimated duration')
                     INNER JOIN concept_name estimated_hrs_cn
                         ON estimated_hrs_cn.concept_name_type = 'FULLY_SPECIFIED'
                            AND estimated_hrs_cn.voided IS FALSE

@@ -83,7 +83,7 @@ FROM
                     INNER JOIN concept_name planned_sp_cn
                         ON planned_sp_cn.concept_id = planned_surgical_procedures.concept_id
                            AND planned_sp_cn.name IN
-                               ('SAP, Planned Surgical Procedures for next OT', 'FP, Planned Surgical Procedures')
+                               ('SAP, Planned Surgical Procedures for next OT', 'FP, Planned Surgical Procedures for next OT')
                            AND planned_sp_cn.concept_name_type = 'FULLY_SPECIFIED' AND planned_sp_cn.voided IS FALSE
                     INNER JOIN concept_name planned_proc_cn
                         ON planned_proc_cn.concept_name_type = 'FULLY_SPECIFIED'
@@ -104,7 +104,7 @@ FROM
                         ON estimated_duration_cn.concept_name_type = 'FULLY_SPECIFIED'
                            AND estimated_duration_cn.voided IS FALSE
                            AND estimated_duration_cn.name IN
-                               ('SAP, Estimated duration of procedure', 'SFP, Estimated duration')
+                               ('SAP, Estimated duration', 'SFP, Estimated duration')
                     LEFT OUTER JOIN obs planned_procedure
                         ON planned_procedure.obs_group_id = planned_surgical_procedures.obs_id
                            AND planned_procedure.concept_id = planned_proc_cn.concept_id
