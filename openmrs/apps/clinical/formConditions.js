@@ -1375,5 +1375,34 @@ Bahmni.ConceptSet.FormConditions.rules = {
               conditions.hide.push("SAP, Comments (vascular injury)")
               }
               return conditions;
-         }
+         },
+     'OR, Operations performed': function (formName, formFieldValues) {
+               var conditions = {
+                   show: [],
+                   hide: []
+                };
+               var conditionConcept = formFieldValues['OR, Operations performed'];
+               if (conditionConcept == "Insertion of tissue expander"){
+                  conditions.show.push("OR, Size of tissue")
+               }
+               else {
+               conditions.hide.push("OR, Size of tissue")
+               }
+               return conditions;
+          },
+      'OMF, Current plan': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['OMF, Current plan'];
+
+          if (conditionConcept.indexOf("Other")>=0){
+              conditions.show.push("OMF, Other current plan")
+          }
+          else {
+              conditions.hide.push("OMF, Other current plan")
+          }
+          return conditions;
+      }
 }
