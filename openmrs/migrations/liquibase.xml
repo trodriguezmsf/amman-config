@@ -2891,13 +2891,13 @@
     <changeSet id="Amman-20170707101115" author="shiva kumar" context="rel3.2" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SAP, Site of injury" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, jaw' AND concept_name_type="FULLY_SPECIFIED");
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SAP, Site of injury" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Jaw' AND concept_name_type="FULLY_SPECIFIED");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Site, jaw into SAP, Site of injury</comment>
+        <comment>Adding Site, Jaw into SAP, Site of injury</comment>
         <sql>
             SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Site of injury' AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Site, jaw' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Site, Jaw' AND concept_name_type="FULLY_SPECIFIED";
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
         </sql>
     </changeSet>
@@ -2967,13 +2967,13 @@
     <changeSet id="Amman-20170707100108" author="shiva kumar" context="rel3.2" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SAP, Site of surgical procedure" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, jaw' AND concept_name_type="FULLY_SPECIFIED");
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SAP, Site of surgical procedure" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Jaw' AND concept_name_type="FULLY_SPECIFIED");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Site, jaw into SAP, SAP, Site of surgical procedure</comment>
+        <comment>Adding Site, Jaw into SAP, SAP, Site of surgical procedure</comment>
         <sql>
             SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Site of surgical procedure' AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Site, jaw' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Site, Jaw' AND concept_name_type="FULLY_SPECIFIED";
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
         </sql>
     </changeSet>
@@ -2988,6 +2988,14 @@
             SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Site of surgical procedure' AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Site, Abdomen' AND concept_name_type="FULLY_SPECIFIED";
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707100233" author="shiva kumar" context="rel3.2" >
+        <comment>Updating side and site in surgeon pre-op assessment form</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set FROM concept_name WHERE name = 'SAP, Planned Surgical Procedures for next OT' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Side of surgical procedure' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET sort_weight=1005 WHERE concept_id=@concept_id AND concept_set=@concept_set;
         </sql>
     </changeSet>
 </databaseChangeLog>
