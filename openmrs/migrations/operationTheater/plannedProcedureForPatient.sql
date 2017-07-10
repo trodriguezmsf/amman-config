@@ -12,7 +12,7 @@ FROM
         SELECT
             row_id,
             form_id,
-            CONCAT_WS("", procedures, ', ', procedures_non_coded, ' on ', side, ' ', site) AS grouped_proc,
+            CONCAT_WS('', procedures, ', ', procedures_non_coded, ' on ', side, ' ', site) AS grouped_proc,
             est_hrs,
             est_mins
         FROM
