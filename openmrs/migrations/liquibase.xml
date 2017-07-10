@@ -2824,6 +2824,10 @@
         <comment>Adding patient listing queues for patients whose are in scheduled queue</comment>
         <sqlFile path="operationTheater/patientListingQueueScheduled.sql"/>
     </changeSet>
+    <changeSet id="Amman-201707101010" author="Shireesha, Pramida" context="rel3.2" runOnChange="true">
+        <comment>Adding sql for pulling planned procedures for </comment>
+        <sqlFile path="operationTheater/plannedProcedureForPatient.sql"></sqlFile>
+    </changeSet>
 </databaseChangeLog>
 
 
