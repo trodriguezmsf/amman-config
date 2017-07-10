@@ -3083,7 +3083,6 @@
             INSERT INTO role(role, description, uuid) VALUES ("OT: FullAccess", "Ability to access and modify OT schedules", uuid());
         </sql>
     </changeSet>
-
     <changeSet id="Amman-201707101152" author="Shireesha, Pramida" context="rel3.2">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -3095,7 +3094,6 @@
             INSERT INTO role(role, description, uuid) VALUES ("OT: ReadOnly", "Ability to access and modify OT schedules", uuid());
         </sql>
     </changeSet>
-
     <changeSet id="Amman-201707101154" author="Shireesha, Pramida" context="rel3.2">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -3107,7 +3105,6 @@
             INSERT INTO privilege(privilege, description, uuid) VALUES ("app:ot", "Ability to view OT module", uuid());
         </sql>
     </changeSet>
-
     <changeSet id="Amman-201707101156" author="Shireesha, Pramida" context="rel3.2">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -3119,8 +3116,6 @@
             INSERT INTO privilege(privilege, description, uuid) VALUES ("app:ot:write", "Ability to view new surgical block and other buttons to edit on OT module", uuid());
         </sql>
     </changeSet>
-
-
     <changeSet id="Amman-201707101106" author="Shireesha, Pramida" context="rel3.2">
         <preConditions onFail="CONTINUE">
             <sqlCheck expectedResult="1">
@@ -3138,7 +3133,6 @@
             INSERT INTO role_privilege(role, privilege) VALUES ("OT: FullAccess", "app:ot:write");
         </sql>
     </changeSet>
-
     <changeSet id="Amman-201707101159" author="Shireesha, Pramida" context="rel3.2">
         <preConditions onFail="CONTINUE">
             <sqlCheck expectedResult="1">
@@ -3152,6 +3146,30 @@
         <sql>
             INSERT INTO role_privilege(role, privilege) VALUES ("OT: ReadOnly", "View OT Schedules");
             INSERT INTO role_privilege(role, privilege) VALUES ("OT: ReadOnly", "app:ot");
+    <changeSet id="Amman-20170707101855" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="OR, Operation performed coded" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Dental extraction' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Dental extraction into OR, Operation performed coded</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Dental extraction' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707101859" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="OR, Operation performed coded" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Quadricepsplasty' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Quadricepsplasty into OR, Operation performed coded)</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Quadricepsplasty' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
         </sql>
     </changeSet>
 </databaseChangeLog>
