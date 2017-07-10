@@ -18,7 +18,7 @@
     },
     "label": "To Be Scheduled",
     "order": 1,
-    "requiredPrivilege": "app:adt"
+    "requiredPrivilege": "app:ot:write"
   },
   "bahmniOperationTheatreScheduledQueue":{
     "id": "bahmni.ipd.patients.search.patientsScheduled",

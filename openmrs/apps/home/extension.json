@@ -78,6 +78,6 @@
     "url": "../ot/",
     "icon": "fa-hospital-o",
     "order": 9,
-    "requiredPrivilege": "app:adt"
+    "requiredPrivilege": "app:ot"
   }
 }
