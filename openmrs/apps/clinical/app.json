@@ -559,6 +559,12 @@
           },
           "FP, Planned Surgical Procedures for next OT":{
             "allowAddMore":true
+          },
+          "OR, Surgeon":{
+            "multiSelect":true
+          },
+          "OR, Anaesthetist":{
+            "multiSelect":true
           }
     },
         "visitPage": {
