@@ -2949,7 +2949,7 @@
         <comment>Adding Sinusectomy into SAP, Planned procedure (surgical)</comment>
         <sql>
             SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Planned procedure (surgical)' AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Sinusectomy' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Sinusectomy' AND concept_name_type="FULLY_SPECIFIED";
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
         </sql>
     </changeSet>
