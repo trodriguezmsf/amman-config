@@ -2998,6 +2998,68 @@
             UPDATE concept_set SET sort_weight=1005 WHERE concept_id=@concept_id AND concept_set=@concept_set;
         </sql>
     </changeSet>
+    <changeSet id="Amman-201707071544" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SAP, Site of surgical procedure" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Zygoma' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding  new Sites into SAP, Site of surgical procedure</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Site of surgical procedure' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, Zygoma' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer1,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Zygomatico-orbital complex' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer3 FROM concept_name WHERE name = 'Site, Maxilla' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer3,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer4 FROM concept_name WHERE name = 'Site, Premaxilla' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer4,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer5 FROM concept_name WHERE name = 'Site, Anterior maxilla' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer5,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer6 FROM concept_name WHERE name = 'Site, Upper lip' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer6,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer7 FROM concept_name WHERE name = 'Site, Lower lip' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer7,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer8 FROM concept_name WHERE name = 'Site, Commissure' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer8,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer9 FROM concept_name WHERE name = 'Site, Upper jaw' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer9,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer10 FROM concept_name WHERE name = 'Site, Anterior mandible' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer10,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707071546" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SAP, Site of injury" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Zygoma' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding  new Sites into SAP, Site of injury</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Site of injury' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, Zygoma' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer1,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Zygomatico-orbital complex' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer3 FROM concept_name WHERE name = 'Site, Maxilla' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer3,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer4 FROM concept_name WHERE name = 'Site, Premaxilla' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer4,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer5 FROM concept_name WHERE name = 'Site, Anterior maxilla' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer5,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer6 FROM concept_name WHERE name = 'Site, Upper lip' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer6,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer7 FROM concept_name WHERE name = 'Site, Lower lip' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer7,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer8 FROM concept_name WHERE name = 'Site, Commissure' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer8,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer9 FROM concept_name WHERE name = 'Site, Upper jaw' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer9,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer10 FROM concept_name WHERE name = 'Site, Anterior mandible' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer10,8,now(),uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
