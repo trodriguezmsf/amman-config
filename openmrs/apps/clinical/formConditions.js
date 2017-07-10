@@ -1327,10 +1327,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
                };
               var conditionConcept = formFieldValues['SAP, Is patient for surgery'];
               if (conditionConcept == "Yes"){
-                 conditions.show.push("SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT")
+                 conditions.show.push("SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT","SAP, Estimated duration")
               }
               else {
-              conditions.hide.push("SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT")
+              conditions.hide.push("SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT","SAP, Estimated duration")
               }
               return conditions;
          },
@@ -1347,5 +1347,33 @@ Bahmni.ConceptSet.FormConditions.rules = {
              conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary")
          }
          return conditions;
-     }
+     },
+    'SAP, Associated neural injury': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['SAP, Associated neural injury'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("SAP, Comments (neural injury)")
+              }
+              else {
+              conditions.hide.push("SAP, Comments (neural injury)")
+              }
+              return conditions;
+       },
+    'SAP, Associated vascular injury': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['SAP, Associated vascular injury'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("SAP, Comments (vascular injury)")
+              }
+              else {
+              conditions.hide.push("SAP, Comments (vascular injury)")
+              }
+              return conditions;
+         }
 }
