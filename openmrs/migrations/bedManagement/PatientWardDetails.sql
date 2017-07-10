@@ -3,19 +3,19 @@ SELECT uuid() INTO @uuid;
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
 VALUES ('emrapi.sqlGet.allWardsListDetails',
 "SELECT
-    bed_tags.bed_tags                                                                  AS 'Bed Tags',
-    bed.bed_number                                                                     AS 'Bed Number',
-    patient_identifier.identifier                                                      AS 'Patient ID',
-    CONCAT(pn.given_name, ' ', pn.family_name)                                         AS 'Patient Name',
-    TIMESTAMPDIFF(YEAR, p.birthdate, CURDATE())                                        AS 'Age',
-    address.address3                                                                   AS 'Country',
-    latest_obs.Specialty                                                               AS 'Speciality',
-    surgeon_name.name                                             					   AS 'Name of Surgeon',
-    DATE_FORMAT(appointment_date.startdate, '%Y-%m-%d' )							   AS 'Date of Surgery',
-    IF(isCaretakerRequired.required = 'true', 'Yes', '')                               AS 'Is Caretaker Required?',
-    caretakerGender.gender                                                             AS 'Caretaker Gender',
-    CAST(DATE_FORMAT(latestAdmissionEncounter.admission_datetime, '%Y-%m-%d') AS CHAR) AS 'Admission Date',
-    DATE_FORMAT(expected_date_of_discharge.date, '%Y-%m-%d')                           AS 'Expected Date of Discharge',
+    bed_tags.bed_tags                                                                  											 AS 'Bed Tags',
+    bed.bed_number                                                                     											 AS 'Bed Number',
+    patient_identifier.identifier                                                      											 AS 'Patient ID',
+    CONCAT(pn.given_name, ' ', pn.family_name)                                         											 AS 'Patient Name',
+    TIMESTAMPDIFF(YEAR, p.birthdate, CURDATE())                                        											 AS 'Age',
+    address.address3                                                                   											 AS 'Country',
+    latest_obs.Specialty                                                               											 AS 'Speciality',
+    surgeon_name.name                                             					  											 AS 'Name of Surgeon',
+    CAST(DATE_FORMAT(COALESCE(nearestFutureAppointment.blockStartTime,latestPastAppointment.blockStartTime), '%Y-%m-%d') AS CHAR) AS 'Date of Surgery',
+    IF(isCaretakerRequired.required = 'true', 'Yes', '')                               											 AS 'Is Caretaker Required?',
+    caretakerGender.gender                                                             											 AS 'Caretaker Gender',
+    CAST(DATE_FORMAT(latestAdmissionEncounter.admission_datetime, '%Y-%m-%d') AS CHAR) 											 AS 'Admission Date',
+    DATE_FORMAT(expected_date_of_discharge.date, '%Y-%m-%d')                           											 AS 'Expected Date of Discharge',
     latest_obs.`Draining wound(s)?`,
     latest_obs.`IV/IM needed?`,
     latest_obs.`Twice daily Physiotherapy`,
@@ -125,40 +125,27 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                         GROUP BY o.person_id
                       ) latest_obs_datetime ON latest_obs_datetime.obs_datetime = o.obs_datetime AND latest_obs_datetime.person_id = o.person_id
                     ) surgeon_name ON surgeon_name.person_id = p.person_id
-    LEFT OUTER JOIN (
- 					SELECT
- 					   sa.patient_id,
-                       sa.status,
- 					   COALESCE(nearestFutureAppointment.blockStartTime,latestPastAppointment.blockStartTime) AS startdate
- 					FROM
- 					  surgical_block sb
-                    INNER JOIN surgical_appointment sa ON sb.surgical_block_id = sa.surgical_block_id
-                                    AND sa.voided IS FALSE
-                                    AND sb.voided IS FALSE
- 					LEFT OUTER JOIN (SELECT
+    LEFT OUTER JOIN (SELECT
                      sa.patient_id,
-                     min(sb.start_datetime)             AS blockStartTime
-                    FROM
-                     surgical_block sb
-                     INNER JOIN surgical_appointment sa
-                         ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE
-                    WHERE sb.start_datetime > now()
-                    GROUP BY sa.patient_id
-                    ) nearestFutureAppointment ON nearestFutureAppointment.patient_id = sa.patient_id
-                                    AND nearestFutureAppointment.blockStartTime = sb.start_datetime
- 	                LEFT OUTER JOIN (SELECT
+                     min(sb.start_datetime) AS blockStartTime
+                   FROM
+                     surgical_appointment sa
+                     INNER JOIN surgical_block sb
+                       ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE
+                   WHERE sb.start_datetime >= now() AND sa.status != 'CANCELLED' AND sa.status != 'POSTPONED'
+                   GROUP BY sa.patient_id
+                  ) nearestFutureAppointment   ON nearestFutureAppointment.patient_id = p.person_id
+  LEFT OUTER JOIN (SELECT
                      sa.patient_id,
-                     max(sb.start_datetime)             AS blockStartTime
-                     FROM
-                     surgical_block sb
-                    INNER JOIN surgical_appointment sa
-                     ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE
-                    WHERE sb.start_datetime <= now()
-                    GROUP BY sa.patient_id
-                    ) latestPastAppointment ON latestPastAppointment.patient_id = sa.patient_id
- 			        AND latestPastAppointment.blockStartTime = sb.start_datetime
-                    WHERE  sa.status != 'CANCELLED' and sa.status != 'POSTPONED'
-                  ) appointment_date ON appointment_date.patient_id = p.person_id
+                     max(sb.start_datetime) AS blockStartTime
+                   FROM
+                     surgical_appointment sa
+                     INNER JOIN surgical_block sb
+                       ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE
+                   WHERE sb.start_datetime < now() AND sa.status != 'CANCELLED' AND sa.status != 'POSTPONED'
+                   GROUP BY sa.patient_id
+                  ) latestPastAppointment ON latestPastAppointment.patient_id = p.person_id
+
     LEFT OUTER JOIN (
           SELECT
           obs.person_id,
