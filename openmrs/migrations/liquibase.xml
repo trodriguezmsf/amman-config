@@ -3060,6 +3060,18 @@
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer10,8,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201707101607" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name = "Surgeon Pre-Op Assessment and Treatment Plan" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>updateing  urgeon Pre-Op Assessment and Treatment Plan short name</comment>
+        <sql>
+            select concept_id INTO @conceptid from concept_name where name ="Surgeon Pre-Op Assessment and Treatment Plan" and concept_name_type ="FULLY_SPECIFIED";
+            Update concept_name set name = "Surgeon Pre-Op Assessment and Treatment Plan" where concept_id = @conceptid and concept_name_type ="SHORT";
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
