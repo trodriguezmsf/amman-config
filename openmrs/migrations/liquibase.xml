@@ -3146,6 +3146,8 @@
         <sql>
             INSERT INTO role_privilege(role, privilege) VALUES ("OT: ReadOnly", "View OT Schedules");
             INSERT INTO role_privilege(role, privilege) VALUES ("OT: ReadOnly", "app:ot");
+        </sql>
+    </changeSet>
     <changeSet id="Amman-20170707101855" author="shiva kumar" context="rel3.2" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -3301,7 +3303,7 @@
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
         </sql>
     </changeSet>
-    <changeSet id="Amman-20170707111549" author="shiva kumar" context="rel3.2" >
+    <changeSet id="Amman-20170707111550" author="shiva kumar" context="rel3.2" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="WWN, Drainage Set" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'WWN, Total quantity evacuated from the drain' AND concept_name_type="FULLY_SPECIFIED");
