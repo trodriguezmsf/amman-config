@@ -3146,8 +3146,6 @@
         <sql>
             INSERT INTO role_privilege(role, privilege) VALUES ("OT: ReadOnly", "View OT Schedules");
             INSERT INTO role_privilege(role, privilege) VALUES ("OT: ReadOnly", "app:ot");
-        </sql>
-    </changeSet>
     <changeSet id="Amman-20170707101855" author="shiva kumar" context="rel3.2" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -3241,6 +3239,79 @@
         <comment>Updating Deformed, stiff to Limitation of function</comment>
         <sql>
             UPDATE concept_name SET name ="Limitation of function" WHERE name ="Deformed, stiff" AND concept_name_type="FULLY_SPECIFIED";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111542" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="POW, Site of dressing" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, lliac' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding lliac and femut into site of dressing</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'POW, Site of dressing' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, lliac' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer1,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Femur' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111545" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="ONN, Site of dressing" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, lliac' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding lliac and femut into site of dressing</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'ONN, Site of dressing' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, lliac' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer1,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Femur' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111547" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="WWN, Site of dressing" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, lliac' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding lliac and femut into site of dressing</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'WWN, Site of dressing' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, lliac' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer1,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Femur' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111549" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="MH, Name of MLO" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Dr. Medya Rasheed' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Dr. Aziz Abu Azizeh and Dr. Medya Rasheed into MH, Name of MLO</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'MH, Name of MLO' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Dr. Aziz Abu Azizeh' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer1,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Dr. Medya Rasheed' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111549" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="WWN, Drainage Set" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'WWN, Total quantity evacuated from the drain' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding WWN, Total quantity evacuated from the drain into WWN, Drainage Set</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set  from concept_name where name= 'WWN, Drainage Set' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'WWN, Total quantity evacuated from the drain' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id,@concept_set,1021,8,now(),uuid());
         </sql>
     </changeSet>
 </databaseChangeLog>
