@@ -3146,6 +3146,8 @@
         <sql>
             INSERT INTO role_privilege(role, privilege) VALUES ("OT: ReadOnly", "View OT Schedules");
             INSERT INTO role_privilege(role, privilege) VALUES ("OT: ReadOnly", "app:ot");
+        </sql>
+    </changeSet>
     <changeSet id="Amman-20170707101855" author="shiva kumar" context="rel3.2" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
