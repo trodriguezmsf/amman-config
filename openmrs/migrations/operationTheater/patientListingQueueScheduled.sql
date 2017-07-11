@@ -50,5 +50,6 @@ FROM surgical_block sb
                                           AND bpam.date_stopped IS NULL
                       INNER JOIN bed_location_map blm ON blm.bed_id = b.bed_id
                       INNER JOIN location l ON l.location_id = blm.location_id AND l.retired IS FALSE
-                  ) bed_info ON bed_info.patient_id = sa.patient_id;"
+                  ) bed_info ON bed_info.patient_id = sa.patient_id
+  ORDER BY sb.start_datetime DESC;"
    ,'SQL for scheduled patient listing queues for OT module',@uuid);

@@ -131,8 +131,6 @@ FROM
                         ON side_coded_answer_cn.concept_id = side_of_surgical_procedure.value_coded
                            AND side_coded_answer_cn.concept_name_type = 'FULLY_SPECIFIED' AND
                            side_coded_answer_cn.voided IS FALSE
---                 WHERE
---                     p.uuid = '6ca1edde-8abe-4b14-99d9-1e430c2bcc67'
                 GROUP BY planned_surgical_procedures.obs_id) innerQuery) outerQuery
 GROUP BY form_id
              ) procedureBlock ON procedureBlock.person_id = p.patient_id
@@ -276,7 +274,8 @@ GROUP BY form_id
 WHERE
   procedureBlock.date_created > appointment_block.date_created
   OR
-  appointment_block.status = 'POSTPONED'
+  appointment_block.status = 'POSTPONED' AND procedureBlock.date_created < appointment_block.date_created
   OR
-  appointment_block.date_created IS NULL;"
+  appointment_block.date_created IS NULL AND procedureBlock.date_created IS NOT NULL
+ORDER BY procedureBlock.date_created DESC;"
    ,'SQL for to be scheduled patient listing queues for OT module',@uuid);
