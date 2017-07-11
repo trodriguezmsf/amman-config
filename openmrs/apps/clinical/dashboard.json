@@ -217,7 +217,7 @@
                     "Post-Op Ward Monitoring",
                     "Surgeon Follow-up",
                     "OPD MD Follow-Up Note",
-                    "Operation Report"
+                    "Operative Report"
 
 
                 ],
@@ -650,8 +650,8 @@
           "pivotTable": {}
         }
       },
-      "Operation Report":{
-        "translationKey": "DASHBOARD_OPERATION_REPORT",
+      "Operative Report":{
+        "translationKey": "DASHBOARD_OPERATIVE_REPORT",
         "type": "vitals",
         "isObservation": true,
         "displayOrder": 18,
@@ -659,12 +659,12 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Operation Report"
+            "Operative Report"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "Operation Report"
+            "Operative Report"
           ],
           "isEditable": true,
           "numberOfVisits": 10,

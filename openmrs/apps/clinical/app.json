@@ -576,6 +576,9 @@
            },
            "OMF, Current plan":{
                "multiSelect":true
+           },
+           "Post-Op Ward Monitoring":{
+               "allowAddMore":true
            }
     },
         "visitPage": {

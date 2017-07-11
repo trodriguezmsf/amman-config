@@ -1355,10 +1355,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 };
                var conditionConcept = formFieldValues['OR, Operations performed'];
                if (conditionConcept == "Insertion of tissue expander"){
-                  conditions.show.push("OR, Size of tissue")
+                  conditions.show.push("OR, Size of tissue expander")
                }
                else {
-               conditions.hide.push("OR, Size of tissue")
+               conditions.hide.push("OR, Size of tissue expander")
                }
                return conditions;
           },
