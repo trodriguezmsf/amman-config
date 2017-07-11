@@ -319,7 +319,7 @@
                 "PE, Abdomen examination": "Soft, no hepatosplenomegaly, no tenderness, no mass",
                 "PE, Rectal and genitalia examination": "Deferred",
                 "PE, Extremities examination": "No clubbing, cyanosis or edema, normal joints with full range of motion",
-                "PE, Neurologic examination": "Cranial nerves intact, normal muscular deep tendon reflexes, normal strength, normal sensitivity"
+                "PE, Neurologic examination": "Cranial nerves intact, normal muscular deep tendon reflexes, muscle power intact, sensation intact throughout, gait intact, mental status intact "
             },
             "MD, Site of procedure":{
                 "autocomplete":true

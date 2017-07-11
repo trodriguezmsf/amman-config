@@ -570,34 +570,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
-    'MD, Associated neural injury': function (formName, formFieldValues) {
-        var conditions = {
-            show: [],
-            hide: []
-        };
-        var conditionConcept = formFieldValues['MD, Associated neural injury'];
-        if (conditionConcept == "Yes"){
-            conditions.show.push("MD, Comments (neural injury)")
-        }
-        else {
-            conditions.hide.push("MD, Comments (neural injury)")
-        }
-        return conditions;
-    },
-    'MD, Associated vascular injury': function (formName, formFieldValues) {
-        var conditions = {
-            show: [],
-            hide: []
-        };
-        var conditionConcept = formFieldValues['MD, Associated vascular injury'];
-        if (conditionConcept == "Yes"){
-            conditions.show.push("MD, Comments (vascular injury)")
-        }
-        else {
-            conditions.hide.push("MD, Comments (vascular injury)")
-        }
-        return conditions;
-    },
     'MD, Review of systems, general': function (formName, formFieldValues) {
         var conditions = {
             show: [],

@@ -3174,7 +3174,77 @@
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-20170707111220" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name ="MD, Chief complaint" AND concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating MD, Chief complaint to MD, Reason for admission to program</comment>
+        <sql>
+            UPDATE concept_name SET name = "MD, Reason for admission to program" WHERE name = "MD, Chief complaint" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptid FROM concept_name WHERE name ="MD, Reason for admission to program" AND concept_name_type ="FULLY_SPECIFIED";
+            UPDATE concept_name SET name = "Reason for admission to program" WHERE concept_id = @conceptid AND concept_name_type ="SHORT";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111222" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_set where concept_id in(select concept_id from concept_name where name ="MD, Associated neural injury" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'MD Initial Assessment' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting concepts from MD Initial Assessment</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set FROM concept_name WHERE name ="MD Initial Assessment" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptid1 FROM concept_name WHERE name ="MD, Associated neural injury" AND concept_name_type ="FULLY_SPECIFIED";
+            DELETE FROM concept_set WHERE concept_id = @conceptid1 AND concept_set = @concept_set;
+            SELECT concept_id INTO @conceptid2 FROM concept_name WHERE name ="MD, Comments (neural injury)" AND concept_name_type ="FULLY_SPECIFIED";
+            DELETE FROM concept_set WHERE concept_id = @conceptid2 AND concept_set = @concept_set;
+            SELECT concept_id INTO @conceptid3 FROM concept_name WHERE name ="MD, Associated vascular injury" AND concept_name_type ="FULLY_SPECIFIED";
+            DELETE FROM concept_set WHERE concept_id = @conceptid3 AND concept_set = @concept_set;
+            SELECT concept_id INTO @conceptid4 FROM concept_name WHERE name ="MD, Comments (vascular injury)" AND concept_name_type ="FULLY_SPECIFIED";
+            DELETE FROM concept_set WHERE concept_id = @conceptid4 AND concept_set = @concept_set;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111225" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="MD, Site of procedure" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Jaw' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding jaw and abdomn into site of procedures</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'MD, Site of procedure' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, Jaw' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer1,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Abdomen' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111230" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name ="Deformed, mobile" AND concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating Deformed, mobile to Visible deformity</comment>
+        <sql>
+            UPDATE concept_name SET name ="Visible deformity" WHERE name ="Deformed, mobile" AND concept_name_type="FULLY_SPECIFIED";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111232" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name ="Deformed, stiff" AND concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating Deformed, stiff to Limitation of function</comment>
+        <sql>
+            UPDATE concept_name SET name ="Limitation of function" WHERE name ="Deformed, stiff" AND concept_name_type="FULLY_SPECIFIED";
+        </sql>
+    </changeSet>
 </databaseChangeLog>
+
 
 
 
