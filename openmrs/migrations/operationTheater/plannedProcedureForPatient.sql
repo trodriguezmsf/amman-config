@@ -12,21 +12,21 @@ FROM
         SELECT
             row_id,
             form_id,
-            CONCAT_WS('', procedures, ', ', procedures_non_coded, ' on ', side, ' ', site) AS grouped_proc,
+            CONCAT_WS('', procedures, IF(procedures_non_coded IS NOT NULL, concat(', ', procedures_non_coded), ''), ' on ', side, ' ', site) AS grouped_proc,
             est_hrs,
             est_mins
         FROM
             (
                 SELECT
-                    planned_surgical_procedures.obs_id                                      AS row_id,
-                    form_obs.obs_id                                                         AS form_id,
-                    GROUP_CONCAT(DISTINCT proc_coded_answer_cn.name)                        AS procedures,
-                    GROUP_CONCAT(DISTINCT planned_proc_answer.value_text)                   AS procedures_non_coded,
+                    planned_surgical_procedures.obs_id                                                      AS row_id,
+                    form_obs.obs_id                                                                         AS form_id,
+                    GROUP_CONCAT(DISTINCT proc_coded_answer_cn.name SEPARATOR ', ')                         AS procedures,
+                    GROUP_CONCAT(DISTINCT planned_proc_answer.value_text SEPARATOR ', ')                    AS procedures_non_coded,
                     GROUP_CONCAT(DISTINCT COALESCE(site_coded_answer_cn.concept_short_name,
-                                                   site_coded_answer_cn.concept_full_name)) AS site,
-                    GROUP_CONCAT(DISTINCT side_coded_answer_cn.name)                        AS side,
-                    GROUP_CONCAT(DISTINCT estimated_hrs.value_numeric)                      AS est_hrs,
-                    GROUP_CONCAT(DISTINCT estimated_mins.value_numeric)                     AS est_mins
+                                                   site_coded_answer_cn.concept_full_name) SEPARATOR ', ')  AS site,
+                    GROUP_CONCAT(DISTINCT side_coded_answer_cn.name)                                        AS side,
+                    GROUP_CONCAT(DISTINCT estimated_hrs.value_numeric)                                      AS est_hrs,
+                    GROUP_CONCAT(DISTINCT estimated_mins.value_numeric)                                     AS est_mins
                 FROM
                     person p
                     INNER JOIN
