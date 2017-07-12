@@ -3316,6 +3316,18 @@
             INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id,@concept_set,1021,8,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-20170707121212" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name ="Site, Iliac" AND concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating Site, lliac to Site, Iliac</comment>
+        <sql>
+            Update concept_name set name ="Site, Iliac" where name ="Site, lliac" and concept_name_type = "FULLY_SPECIFIED";
+            Update concept_name set name ="Iliac" where name ="lliac" and concept_name_type = "SHORT";;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
