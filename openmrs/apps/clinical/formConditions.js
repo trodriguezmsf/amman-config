@@ -1348,20 +1348,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
               }
               return conditions;
          },
-     'OR, Operation performed': function (formName, formFieldValues) {
-               var conditions = {
-                   show: [],
-                   hide: []
-                };
-               var conditionConcept = formFieldValues['OR, Operation performed'];
-               if (conditionConcept == "Insertion of tissue expander"){
-                  conditions.show.push("OR, Size of tissue expander")
-               }
-               else {
-               conditions.hide.push("OR, Size of tissue expander")
-               }
-               return conditions;
-          },
       'OMF, Current plan': function (formName, formFieldValues) {
           var conditions = {
               show: [],
