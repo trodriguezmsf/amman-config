@@ -3,7 +3,6 @@
   "extensionPoints": [
   ],
   "config": {
-    "diagnosisStatus": "Inactive",
     "patientDashboardUrl": {
       "link": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard?dateEnrolled={{dateEnrolled}}&programUuid={{programUuid}}&enrollment={{enrollment}}&currentTab=DASHBOARD_TAB_PATIENT_SUMMARY_KEY",
       "errorMessage": "The patient is not enrolled to the program"

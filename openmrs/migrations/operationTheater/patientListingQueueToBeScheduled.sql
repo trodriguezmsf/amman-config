@@ -37,10 +37,10 @@ FROM
                     form_obs.obs_id                                                         AS form_id,
 		    form_obs.person_id							    AS person_id,
 		    form_obs.date_created						    AS date_created,
-                    GROUP_CONCAT(DISTINCT proc_coded_answer_cn.name)                        AS procedures,
-                    GROUP_CONCAT(DISTINCT planned_proc_answer.value_text)                   AS procedures_non_coded,
+                    GROUP_CONCAT(DISTINCT proc_coded_answer_cn.name SEPARATOR ', ')                        AS procedures,
+                    GROUP_CONCAT(DISTINCT planned_proc_answer.value_text SEPARATOR ', ')                   AS procedures_non_coded,
                     GROUP_CONCAT(DISTINCT COALESCE(site_coded_answer_cn.concept_short_name,
-                                                   site_coded_answer_cn.concept_full_name)) AS site,
+                                                   site_coded_answer_cn.concept_full_name) SEPARATOR ', ') AS site,
                     GROUP_CONCAT(DISTINCT side_coded_answer_cn.name)                        AS side
                 FROM
                     person p
