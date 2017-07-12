@@ -1348,12 +1348,12 @@ Bahmni.ConceptSet.FormConditions.rules = {
               }
               return conditions;
          },
-     'OR, Operations performed': function (formName, formFieldValues) {
+     'OR, Operation performed': function (formName, formFieldValues) {
                var conditions = {
                    show: [],
                    hide: []
                 };
-               var conditionConcept = formFieldValues['OR, Operations performed'];
+               var conditionConcept = formFieldValues['OR, Operation performed'];
                if (conditionConcept == "Insertion of tissue expander"){
                   conditions.show.push("OR, Size of tissue expander")
                }
