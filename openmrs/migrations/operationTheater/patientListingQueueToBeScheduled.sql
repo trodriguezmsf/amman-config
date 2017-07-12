@@ -9,7 +9,7 @@ VALUES ('emrapi.sqlSearch.otToBeScheduledQueue',
   procedureBlock.`procedure`                                                                                                                           AS `Planned Procedure`,
   finalValidationSurgeon.name                                                                                                                          AS `Surgeon Name`,
   speciality.name                                                                                                                                      AS Speciality,
-  if(appointment_block.date_created IS NOT NULL AND procedureBlock.date_created < appointment_block.date_created, appointment_block.status, NULL)      AS `Appointment Status`,
+  if(appointment_block.date_created IS NOT NULL AND procedureBlock.date_created < appointment_block.date_created, appointment_block.status, NULL)      AS `Status`,
   anaesthesiaOutcome.name                                                                                                                              AS `Outcome of Anaesthesia`
 FROM patient p
   INNER JOIN patient_identifier pi ON pi.patient_id = p.patient_id
