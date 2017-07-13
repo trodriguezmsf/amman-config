@@ -8,7 +8,7 @@ INSERT INTO global_property (property, property_value, description, uuid)
     DATE_FORMAT(sb.start_datetime, '%d/%m/%Y') AS 'Date of Surgery',
     CONCAT(pn.given_name, ' ', pn.family_name) AS Surgeon,
     surgical_appointment_procedure.value       AS Procedures,
-    sa.status                                  AS `Appointment Status`,
+    sa.status                                  AS `Status`,
     l.name                                     AS OT
 FROM surgical_block sb
     INNER JOIN location l ON sb.location_id = l.location_id
