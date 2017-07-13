@@ -44,6 +44,6 @@
     },
     "label": "Scheduled",
     "order": 1,
-    "requiredPrivilege": "app:adt"
+    "requiredPrivilege": "app:ot"
   }
 }
