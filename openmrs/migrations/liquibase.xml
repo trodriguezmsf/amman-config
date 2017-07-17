@@ -3769,6 +3769,97 @@
             INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="khouloud_s"),"OT: ReadOnly");
         </sql>
     </changeSet>
+    <changeSet id="Amman-201707170225" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+             select count(*) from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Ali" and family_name ="Al Ani";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding specific colors to surgeon to display on calender</comment>
+        <sql>
+            select provider_id INTO @providerID from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Ali" and family_name ="Al Ani";
+            select provider_attribute_type_id INTO @provideratID from provider_attribute_type where name ="otCalendarColor";
+            INSERT into provider_attribute(provider_id,attribute_type_id,value_reference,uuid,creator,date_created) values (@providerID,@provideratID,60,uuid(),8,now());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707170226" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Sufyan" and family_name ="Al Qasab";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding specific colors to surgeon to display on calender</comment>
+        <sql>
+            select provider_id INTO @providerID from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Sufyan" and family_name ="Al Qasab";
+            select provider_attribute_type_id INTO @provideratID from provider_attribute_type where name ="otCalendarColor";
+            INSERT into provider_attribute(provider_id,attribute_type_id,value_reference,uuid,creator,date_created) values (@providerID,@provideratID,120,uuid(),8,now());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707170227" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Ashraf" and family_name ="Nabhan";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding specific colors to surgeon to display on calender</comment>
+        <sql>
+            select provider_id INTO @providerID from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Ashraf" and family_name ="Nabhan";
+            select provider_attribute_type_id INTO @provideratID from provider_attribute_type where name ="otCalendarColor";
+            INSERT into provider_attribute(provider_id,attribute_type_id,value_reference,uuid,creator,date_created) values (@providerID,@provideratID,240,uuid(),8,now());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707170228" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Rasheed" and family_name ="Al Sammarraie";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding specific colors to surgeon to display on calender</comment>
+        <sql>
+            select provider_id INTO @providerID from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Rasheed" and family_name ="Al Sammarraie";
+            select provider_attribute_type_id INTO @provideratID from provider_attribute_type where name ="otCalendarColor";
+            INSERT into provider_attribute(provider_id,attribute_type_id,value_reference,uuid,creator,date_created) values (@providerID,@provideratID,300,uuid(),8,now());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707170229" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+            select count(*) from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Muckhaled" and family_name ="Naseef";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding specific colors to surgeon to display on calender</comment>
+        <sql>
+        select provider_id INTO @providerID from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Ashraf" and family_name ="Bustanji";
+        select provider_attribute_type_id INTO @provideratID from provider_attribute_type where name ="otCalendarColor";
+        INSERT into provider_attribute(provider_id,attribute_type_id,value_reference,uuid,creator,date_created) values (@providerID,@provideratID,345,uuid(),8,now());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707170231" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Ghassan" and family_name ="S.Abu-Sittah";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding specific colors to surgeon to display on calender</comment>
+        <sql>
+            select provider_id INTO @providerID from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Ghassan" and family_name ="S.Abu-Sittah";
+            select provider_attribute_type_id INTO @provideratID from provider_attribute_type where name ="otCalendarColor";
+            INSERT into provider_attribute(provider_id,attribute_type_id,value_reference,uuid,creator,date_created) values (@providerID,@provideratID,210,uuid(),8,now());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707170233" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+              select count(*) from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Other" and family_name ="Surgeon";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding specific colors to surgeon to display on calender</comment>
+        <sql>
+            select provider_id INTO @providerID from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Other" and family_name ="Surgeon";
+            select provider_attribute_type_id INTO @provideratID from provider_attribute_type where name ="otCalendarColor";
+            INSERT into provider_attribute(provider_id,attribute_type_id,value_reference,uuid,creator,date_created) values (@providerID,@provideratID,75,uuid(),8,now());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
