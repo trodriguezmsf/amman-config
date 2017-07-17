@@ -3364,6 +3364,411 @@
             INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id6,88,24,8,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201707171203" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="suha_q";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Suha","Qasem",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("suha_q","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:ReadOnly"),
+            ((SELECT max(user_id) FROM users),"Patient-Documents-Upload"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) from users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171205" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="anneliese_c";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Anneliese","Coury",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("anneliese_c","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:ReadOnly"),
+            ((SELECT max(user_id) FROM users),"Emr-Reports"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) from users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171207" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="safa_h";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Safa","Herfat",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("safa_h","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:ReadOnly"),
+            ((SELECT max(user_id) FROM users),"Emr-Reports"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) from users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171209" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="pierre_m";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Pierre","Moreau",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("pierre_m","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:ReadOnly"),
+            ((SELECT max(user_id) FROM users),"Emr-Reports"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) from users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171212" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="alaa_t";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Alaa Al","Toum",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("alaa_t","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"Emr-Reports"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) from users),"InPatient-Patient-Movement"),
+            ((SELECT max(user_id) from users),"InPatient-Edit-BedTags-Only"),
+            ((SELECT max(user_id) from users),"OT: FullAccess");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171214" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="ahmad_n";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Ahmad","Nasralla",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("ahmad_n","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171216" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="ahmad_n";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Ahmad","Nasralla",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("ahmad_n","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171218" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="waqqad_h";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Waqqad","Hamdan",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("waqqad_h","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171220" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="ahmad_l";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Ahmad","Ijdoua",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("ahmad_l","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171222" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="abeer_m";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Ahmad","Ijdoua",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("abeer_m","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171224" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="diya_g";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Diya Al","Ghoul",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("diya_g","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171226" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="ghadeer_b";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Ghadeer  Al","Bakkar",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("ghadeer_b","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"Clinical:ReadOnly"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171228" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="Shadi_k";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Shadi","Alkhawaldeh",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("Shadi_k","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"Clinical:ReadOnly"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171230" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="Ghassan_h";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Ghassan Al","Hourani",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("Ghassan_h","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"Clinical:ReadOnly"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171232" author="shivakumar" context="rel3.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username ="abdallah_ad";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "OT: ReadOnly" AND user_id IN (SELECT user_id FROM
+                users WHERE username = "abdallah_ad")
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding OT: ReadOnly role to all users</comment>
+        <sql>
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abdallah_ad"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abdelraouf_ah"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abdullah_al"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abdulrahman_af"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abeer_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="adham_by"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ahmad_ad"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ahmad_ar"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ajeeb_am"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ala_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="alaa_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ali_aa"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="amani_az"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ammar_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="amro_ahm"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ashraf_b"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ashraf_n"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="asma_z"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ayman_ao"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="aziz_az"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="baraa_ah"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="birgit_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="deyaa_eb"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="dima_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="dina_aah"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="doaa_as"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="duaa_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="dyala_o"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="elisa_b"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="eman_af"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="eman_f"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="firas_q"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hadeel_aa"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hamza_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hamzah_me"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hamzah_m"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hani_i"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hanna_j"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="harith_k"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="haya_aq"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="helana_ak"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hilana_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hulya_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hussein_am"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="israa_aj"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="iyad_y"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="julien_f"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="kamelah_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="khaldoon_ad"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="khaled_ah"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="lina_am"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="loay_m"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="maamoun_j"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mahmoud_ah"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mahmoud_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="majdi_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mamon_q"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="manar_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="marc_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="michael_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_ab"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_am"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_b"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_d"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammed_r"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohd_b"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="moukhallad_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="muhannad_m"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="muntaha_m"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="nabil_j"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="Nagham_H"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="naseer_j"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="naser_r"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="nasser_ej"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="nisreen_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="noor_n"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="noor_ak"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="osama_b"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="osama_n"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="qusay_o"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="qutaiba_am"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="radah_l"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rami_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rand_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rasheed_as"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rawan_ag"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="razan_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rinad_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ruba_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="safa_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sajdi_m"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="salam_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="saleem_aa"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="saleh_ar"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="samah_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="samar_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sami_ak"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sandrine_v"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="shadi_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="shahinaz_n"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sufyan_aq"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="suleiman_ak"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="tareq_f"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="waleed_bo"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="weaam_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="william_t"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yahya_k"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yara_ae"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yazan_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yazan_k"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yousef_aa"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="zaid_se"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="zuheir_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="khouloud_s"),"OT: ReadOnly");
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
