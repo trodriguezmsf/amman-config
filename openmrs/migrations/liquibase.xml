@@ -3485,25 +3485,6 @@
             INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
         </sql>
     </changeSet>
-    <changeSet id="Amman-201707171216" author="shiva kumar" context="rel3.2" >
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from users where username="ahmad_n";
-            </sqlCheck>
-        </preConditions>
-        <comment>Adding new user and roles to the user</comment>
-        <sql>
-            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
-            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Ahmad","Nasralla",8, now(), uuid());
-            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("ahmad_n","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
-            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
-            ((SELECT max(user_id) FROM users),"Registration-Read"),
-            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
-            ((SELECT max(user_id) FROM users),"InPatient-Read"),
-            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
-            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
-        </sql>
-    </changeSet>
     <changeSet id="Amman-201707171218" author="shiva kumar" context="rel3.2" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -3551,7 +3532,7 @@
         <comment>Adding new user and roles to the user</comment>
         <sql>
             INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
-            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Ahmad","Ijdoua",8, now(), uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Abeer","Abusamour",8, now(), uuid());
             INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("abeer_m","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
             INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
             ((SELECT max(user_id) FROM users),"Registration-Read"),
