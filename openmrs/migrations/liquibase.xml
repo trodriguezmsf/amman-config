@@ -3841,6 +3841,54 @@
             INSERT into provider_attribute(provider_id,attribute_type_id,value_reference,uuid,creator,date_created) values (@providerID,@provideratID,75,uuid(),8,now());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201707191147" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from users where username="suha_q";
+            </sqlCheck>
+        </preConditions>
+        <comment>updating gender of the user</comment>
+        <sql>
+            select p.person_id into @personID from users as u join person as p on u.user_id = p.person_id where u.username ='suha_q';
+            update person set gender = 'F' where person_id = @personID ;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707191149" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from users where username="anneliese_c";
+            </sqlCheck>
+        </preConditions>
+        <comment>updating gender of the user</comment>
+        <sql>
+            select p.person_id into @personID from users as u join person as p on u.user_id = p.person_id where u.username ='anneliese_c';
+            update person set gender = 'F' where person_id = @personID ;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707191151" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from users where username="abeer_m";
+            </sqlCheck>
+        </preConditions>
+        <comment>updating gender of the user</comment>
+        <sql>
+            select p.person_id into @personID from users as u join person as p on u.user_id = p.person_id where u.username ='abeer_m';
+            update person set gender = 'F' where person_id = @personID ;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707191153" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from users where username="ghadeer_b";
+            </sqlCheck>
+        </preConditions>
+        <comment>updating gender of the user</comment>
+        <sql>
+            select p.person_id into @personID from users as u join person as p on u.user_id = p.person_id where u.username ='ghadeer_b';
+            update person set gender = 'F' where person_id = @personID;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
