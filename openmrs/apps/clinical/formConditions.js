@@ -570,34 +570,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
-    'MD, Associated neural injury': function (formName, formFieldValues) {
-        var conditions = {
-            show: [],
-            hide: []
-        };
-        var conditionConcept = formFieldValues['MD, Associated neural injury'];
-        if (conditionConcept == "Yes"){
-            conditions.show.push("MD, Comments (neural injury)")
-        }
-        else {
-            conditions.hide.push("MD, Comments (neural injury)")
-        }
-        return conditions;
-    },
-    'MD, Associated vascular injury': function (formName, formFieldValues) {
-        var conditions = {
-            show: [],
-            hide: []
-        };
-        var conditionConcept = formFieldValues['MD, Associated vascular injury'];
-        if (conditionConcept == "Yes"){
-            conditions.show.push("MD, Comments (vascular injury)")
-        }
-        else {
-            conditions.hide.push("MD, Comments (vascular injury)")
-        }
-        return conditions;
-    },
     'MD, Review of systems, general': function (formName, formFieldValues) {
         var conditions = {
             show: [],
@@ -1242,6 +1214,153 @@ Bahmni.ConceptSet.FormConditions.rules = {
               conditions.hide.push("WWN, How much insulin given")
               }
               return conditions;
-         }
+         },
+        'OMF, Chief complaint': function (formName, formFieldValues) {
+                 var conditions = {
+                     show: [],
+                     hide: []
+                 };
+                 var conditionConcept = formFieldValues['OMF, Chief complaint'];
 
+                 if (conditionConcept.indexOf("Other")>=0){
+                     conditions.show.push("OMF, Other chief complaint")
+                 }
+                 else {
+                     conditions.hide.push("OMF, Other chief complaint")
+                 }
+                 return conditions;
+             },
+        'OMF, Current treatment': function (formName, formFieldValues) {
+                 var conditions = {
+                     show: [],
+                     hide: []
+                 };
+                 var conditionConcept = formFieldValues['OMF, Current treatment'];
+
+                 if (conditionConcept.indexOf("Other")>=0){
+                     conditions.show.push("OMF, Other current treatment")
+                 }
+                 else {
+                     conditions.hide.push("OMF, Other current treatment")
+                 }
+                 return conditions;
+             },
+    'SFP, Early Follow-up': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['SFP, Early Follow-up'];
+        if (conditionConcept == "Paritial achievement of objectives without complications"){
+            conditions.show.push("SFP, Partial achievement of objective")
+            conditions.hide.push("SFP, Type of complication","SFP, Impact of complication")
+        }
+        else if(conditionConcept == "Complications developed") {
+            conditions.show.push("SFP, Type of complication","SFP, Impact of complication")
+            conditions.hide.push("SFP, Partial achievement of objective")
+        }
+        else {
+            conditions.hide.push("SFP, Partial achievement of objective","SFP, Type of complication","SFP, Impact of complication" )
+        }
+        return conditions;
+    },
+    'OR, Does the patient have a drain?': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['OR, Does the patient have a drain?'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("OR , Drainage Section")
+              }
+              else {
+              conditions.hide.push("OR , Drainage Section")
+              }
+              return conditions;
+         },
+    'OR, Blood transfusion': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['OR, Blood transfusion'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("OR, Number of units")
+              }
+              else {
+              conditions.hide.push("OR, Number of units")
+              }
+              return conditions;
+         },
+    'SAP, Is patient for surgery': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['SAP, Is patient for surgery'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT","SAP, Estimated duration")
+              }
+              else {
+              conditions.hide.push("SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT","SAP, Estimated duration")
+              }
+              return conditions;
+         },
+     'SFP, Is patient for surgery': function (formName, formFieldValues) {
+         var conditions = {
+             show: [],
+             hide: []
+         };
+         var conditionConcept = formFieldValues['SFP, Is patient for surgery'];
+         if (conditionConcept == "Yes"){
+             conditions.show.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary")
+         }
+         else {
+             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary")
+         }
+         return conditions;
+     },
+    'SAP, Associated neural injury': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['SAP, Associated neural injury'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("SAP, Comments (neural injury)")
+              }
+              else {
+              conditions.hide.push("SAP, Comments (neural injury)")
+              }
+              return conditions;
+       },
+    'SAP, Associated vascular injury': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['SAP, Associated vascular injury'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("SAP, Comments (vascular injury)")
+              }
+              else {
+              conditions.hide.push("SAP, Comments (vascular injury)")
+              }
+              return conditions;
+         },
+      'OMF, Current plan': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['OMF, Current plan'];
+
+          if (conditionConcept.indexOf("Other")>=0){
+              conditions.show.push("OMF, Other current plan")
+          }
+          else {
+              conditions.hide.push("OMF, Other current plan")
+          }
+          return conditions;
+      }
 }

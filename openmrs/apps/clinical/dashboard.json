@@ -214,7 +214,10 @@
                     "Ward Nursing Note",
                     "Physician Progress Note-Ward",
                     "Complications Set",
-                    "Post-Op Ward Monitoring"
+                    "Post-Op Ward Monitoring",
+                    "Surgeon Follow-up",
+                    "OPD MD Follow-Up Note",
+                    "Operative Report"
 
 
                 ],
@@ -239,7 +242,7 @@
         "translationKey": "DASHBOARD_TITLE_VITAL_SIGNS",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 0,
+        "displayOrder": 1,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -260,7 +263,7 @@
       "treatments":{
         "translationKey":"DASHBOARD_TITLE_MEDICATION_KEY",
         "type":"treatment",
-        "displayOrder":1,
+        "displayOrder":2,
         "dashboardConfig":{
           "showFlowSheet":true,
           "showListView":true,
@@ -285,7 +288,7 @@
         "translationKey": "DASHBOARD_TITLE_ORDERS",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 2,
+        "displayOrder": 3,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -309,7 +312,7 @@
         "translationKey": "DASHBOARD_TITLE_PHYSICAL_EXAMINATION",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 3,
+        "displayOrder": 4,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -345,7 +348,7 @@
         "translationKey": "DASHBOARD_MD_ASSESSMENT",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 4,
+        "displayOrder": 5,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -367,7 +370,7 @@
         "translationKey": "DASHBOARD_TITLE_NURSING_ASSESSMENT",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 5,
+        "displayOrder": 6,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -389,19 +392,19 @@
         "translationKey": "DASHBOARD_SURGEON_AND_TREATMENT_PLAN_ASSESSMENT",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 6,
+        "displayOrder": 7,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "SAP, Planned Surgical procedures",
+            "SAP, Planned Surgical procedures for next OT",
             "SAP, Estimated length of stay",
             "SAP, Does the patient need further admissions"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "SAP, Planned Surgical procedures",
+            "SAP, Planned Surgical Procedures for next OT",
             "SAP, Estimated length of stay",
             "SAP, Does the patient need further admissions"
           ],
@@ -415,7 +418,7 @@
         "translationKey": "DASHBOARD_TITLE_DIAGNOSES",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 7,
+        "displayOrder": 8,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -439,7 +442,7 @@
           "translationKey": "DASHBOARD_TITLE_OPD_NURSING_NOTE_ASSESSMENT",
           "type": "vitals",
           "isObservation": true,
-          "displayOrder": 8,
+          "displayOrder": 9,
           "dashboardConfig": {
             "showDetailsButton": true,
             "isEditable": true,
@@ -461,7 +464,7 @@
           "translationKey": "DASHBOARD_TITLE_SURGICAL_WARD_ADMISSION_NURSING_ASSESSMENT",
           "type": "vitals",
           "isObservation": true,
-          "displayOrder": 9,
+          "displayOrder": 10,
           "dashboardConfig": {
             "showDetailsButton": true,
             "isEditable": true,
@@ -483,7 +486,7 @@
           "translationKey": "DASHBOARD_TITLE_WARD_NURSING_NOTE",
           "type": "vitals",
           "isObservation": true,
-          "displayOrder": 10,
+          "displayOrder": 11,
           "dashboardConfig": {
             "showDetailsButton": true,
             "isEditable": true,
@@ -505,7 +508,7 @@
           "translationKey": "DASHBOARD_TITLE_PHYSICIAN_PROGRESS_NOTE_ASSESSMENT",
           "type": "vitals",
           "isObservation": true,
-          "displayOrder": 11,
+          "displayOrder": 12,
           "dashboardConfig": {
             "showDetailsButton": true,
             "isEditable": true,
@@ -527,7 +530,7 @@
           "translationKey": "DASHBOARD_COMPLICATIONS",
           "type": "vitals",
           "isObservation": true,
-          "displayOrder": 12,
+          "displayOrder": 13,
           "dashboardConfig": {
             "showDetailsButton": true,
             "isEditable": true,
@@ -549,7 +552,7 @@
           "translationKey": "DASHBOARD_POST_OP_WARD_MONITORING",
           "type": "vitals",
           "isObservation": true,
-          "displayOrder": 13,
+          "displayOrder": 14,
           "dashboardConfig": {
             "showDetailsButton": true,
             "isEditable": true,
@@ -566,8 +569,110 @@
             "showDetailsButton": true,
             "pivotTable": {}
           }
+        },
+      "surgicalHistory": {
+        "type": "custom",
+        "displayOrder": 15,
+        "config": {
+          "title": "DASHBOARD_TITLE_SURGICAL_APPOINTMENTS_KEY",
+          "template": "<surgical-history section='section' patient='patient'></surgical-history>"
+        }
+      },
+      "Patient Information":{
+        "translationKey": "DASHBOARD_PATIENT_INFORMATION",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 0,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "FV, Name (s) of Surgeon 1",
+            "Stage",
+            "FSTG, Specialty determined by MLO"
+          ],
+          "scope": "latest",
+          "showGroupDateTime": false
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "FV, Name (s) of Surgeon 1",
+            "Stage",
+            "FSTG, Specialty determined by MLO"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Surgeon Follow-up":{
+        "translationKey": "DASHBOARD_SURGEON_FOLLOWUP",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 16,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "Surgeon Follow-up"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+           "Surgeon Follow-up"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 10,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "OPD MD Follow-Up Note":{
+        "translationKey": "DASHBOARD_OPD_MD_FOLLOWUP_FORM",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 17,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "OPD MD Follow-Up Note"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "OPD MD Follow-Up Note"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 10,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Operative Report":{
+        "translationKey": "DASHBOARD_OPERATIVE_REPORT",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 18,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "Operative Report"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Operative Report"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 10,
+          "showDetailsButton": true,
+          "pivotTable": {}
         }
       }
+    }
   }
 }
   

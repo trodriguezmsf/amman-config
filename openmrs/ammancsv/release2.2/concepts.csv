@@ -1,0 +1,593 @@
+uuid,name,description,class,shortname,datatype,units,High Normal,Low Normal,Allow Decimal,locale,synonym.1,answer.1,answer.2,answer.3,answer.4,answer.5,answer.6,answer.7,answer.8,answer.9,answer.10,answer.11,answer.12,answer.13,answer.14,answer.15,answer.16,answer.17,answer.18,answer.19,answer.20,answer.21,answer.22,answer.23,answer.24,answer.25,answer.26,answer.27,answer.28,answer.29,answer.30,answer.31,answer.32,answer.33,answer.34,answer.35,answer.36,answer.37,answer.38,answer.39,answer.40,answer.41,answer.42,answer.43,answer.44,answer.45,answer.46,answer.47,answer.48,answer.49,answer.50,answer.51,answer.52,answer.53,answer.54,answer.55,answer.56,answer.57,answer.58,answer.59,answer.60,answer.61,answer.62,answer.63,answer.64,answer.65,answer.66,reference-term-source,reference-term-code,reference-term-relationship
+,Single,,Misc,Single,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Married,,Misc,Married,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Divorced,,Misc,Divorced,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Widowed,,Misc,Widowed,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Child,,Misc,Child,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,No formal education,,Misc,No formal education,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,160294,SAME-AS
+,Primary school education,,Misc,Primary school education,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1713,SAME-AS
+,Secondary school education,,Misc,Secondary school education,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1714,SAME-AS
+,University,,Misc,University,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,159785,SAME-AS
+,In the past,,Misc,In the past,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,159452,SAME-AS
+,Currently,,Misc,Currently,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,159450,SAME-AS
+,Never,,Misc,Never,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1090,SAME-AS
+,Hypertension,,Misc,Hypertension,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICD-10-WHO,I10,SAME-AS
+,Palpitations,,Misc,Palpitations,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,130987,SAME-AS
+,Dyspnea,,Misc,Dyspnea,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,122496,SAME-AS
+,Asthma,,Misc,Asthma,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICD-10-WHO,J45.9,SAME-AS
+,Tuberculosis,,Misc,Tuberculosis,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,112141,SAME-AS
+,Diabetes mellitus,,Misc,Diabetes mellitus,N/A,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,119481,SAME-AS
+,Angina,,Misc,Angina,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Peptic Ulcer,,Misc,Peptic Ulcer,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,114262,SAME-AS
+,Jaundice,,Misc,Jaundice,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICD-10-WHO,R17,SAME-AS
+,Epilepsy,,Misc,Epilepsy,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICD-10-WHO,G40.9,SAME-AS
+,Hepatitis,,Misc,Hepatitis,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,111479,SAME-AS
+,Kidney problems,,Misc,Kidney problems,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,High cholesterol,,Misc,High cholesterol,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,117460,SAME-AS
+,COPD,,Misc,COPD,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Other,,Misc,Other,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,None,,Misc,None,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Drugs,,Misc,Drugs,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Food,,Misc,Food,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Other,,Misc,Other,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Right,,Misc,Right,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Left,,Misc,Left,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Face",,Misc,Face,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Finger",,Misc,Finger,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Breast",,Misc,Breast,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Trunk",,Misc,Trunk,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Groin",,Misc,Groin,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Toe",,Misc,Toe,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Eye",,Misc,Eye,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Ear",,Misc,Ear,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Nose",,Misc,Nose,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Mouth",,Misc,Mouth,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Cheek",,Misc,Cheek,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Chin",,Misc,Chin,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Scalp",,Misc,Scalp,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Neck",,Misc,Neck,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Shoulder",,Misc,Shoulder,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Axilla",,Misc,Axilla,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Arm",,Misc,Arm,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Elbow",,Misc,Elbow,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Forearm",,Misc,Forearm,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Wrist",,Misc,Wrist,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Hand",,Misc,Hand,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Hip",,Misc,Hip,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Gluteal",,Misc,Gluteal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Thigh",,Misc,Thigh,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Knee",,Misc,Knee,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Leg",,Misc,Leg,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Ankle",,Misc,Ankle,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Foot",,Misc,Foot,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Median",,Misc,Median,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Ulnar",,Misc,Ulnar,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Brachial plexus",,Misc,Brachial plexus,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Radial",,Misc,Radial,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Axillary",,Misc,Axillary,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Sciatic",,Misc,Sciatic,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Tibial",,Misc,Tibial,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Craniofacial",,Misc,Craniofacial,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Mid-face excl. orbit",,Misc,Mid-face excl. orbit,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Orbit",,Misc,Orbit,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Mandible",,Misc,Mandible,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Craniofacial",,Misc,Craniofacial,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Mid-face excl. orbit",,Misc,Mid-face excl. orbit,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Site, Mandible",,Misc,Mandible,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,According to medical plan,,Misc,According to medical plan,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Different from medical plan,,Misc,Different from medical plan,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,No need for specific follow-up,,Misc,No need for specific follow-up,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Followed daily by counselor,,Misc,Followed daily by counselor,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Referred to clincal psychologist,,Misc,Referred to clincal psychologist,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Referred to psychiatrist,,Misc,Referred to psychiatrist,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Ex-fix,,Misc,Ex-fix,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Foley catheter,,Misc,Foley catheter,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Condom catheter,,Misc,Condom catheter,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Colostomy bag,,Misc,Colostomy bag,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Big tube,,Misc,Big tube,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Tracheostomy,,Misc,Tracheostomy,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Other,,Misc,Other,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Regular,,Misc,Regular,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Low salt,,Misc,Low salt,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,High protein,,Misc,High protein,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Diabetic diet,,Misc,Diabetic diet,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Orthosis,,Misc,Orthosis,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Wheelchair,,Misc,Wheelchair,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,One axillary crutch,,Misc,One axillary crutch,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Two axillary crutches,,Misc,Two axillary crutches,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,One elbow crutch,,Misc,One elbow crutch,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Two elbow crutches,,Misc,Two elbow crutches,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,cane,,Misc,cane,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,splint,,Misc,splint,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Above Knee,,Misc,Above Knee,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Below Knee,,Misc,Below Knee,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Foot",,Misc,Foot,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Above Elbow,,Misc,Above Elbow,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Below Elbow,,Misc,Below Elbow,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Wrist",,Misc,Wrist,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Hand",,Misc,Hand,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Lower limb,,Misc,Lower limb,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Upper limb,,Misc,Upper limb,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Maxillo-facial,,Misc,Maxillo-facial,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Normal,,Misc,Normal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Good,,Misc,Good,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Deformed, mobile",,Misc,"Deformed, mobile",N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Deformed, stiff",,Misc,"Deformed, stiff",N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Normal,,Misc,Normal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Reduced (Regional),,Misc,Reduced (Regional),N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Senseless,,Misc,Senseless,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Internal,,Misc,Internal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,External,,Misc,External,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Plate,,Misc,Plate,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Wires,,Misc,Wires,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Screws,,Misc,Screws,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Intramedullary nails,,Misc,Intramedullary nails,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,More than 6 months,,Misc,More than 6 months,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Less than 6 months,,Misc,Less than 6 months,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Negative,,Misc,Negative,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,664,SAME-AS
+,Weight Loss,,Misc,Weight Loss,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,832,SAME-AS
+,Fatigue,,Misc,Fatigue,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,140501,SAME-AS
+,Fever,,Misc,Fever,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,140238,SAME-AS
+,Night Sweats,,Misc,Night Sweats,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,133027,SAME-AS
+,Pain,,Misc,Pain,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICD-10-WHO,R52.9,SAME-AS
+,Other,,Misc,Other,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Negative,,Misc,Negative,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,664,SAME-AS
+,Cough,,Misc,Cough,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,143264,SAME-AS
+,Shortness Of Breath,,Misc,Shortness Of Breath,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,141600,SAME-AS
+,Chest Pain,,Misc,Chest Pain,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,120749,SAME-AS
+,Angina,,Misc,Angina,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Jaundice,,Misc,Jaundice,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICD-10-WHO,R17,SAME-AS
+,Edema,,Misc,Edema,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,460,SAME-AS
+,Other,,Misc,Other,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Negative,,Misc,Negative,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,664,SAME-AS
+,Nausea,,Misc,Nausea,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,5978,SAME-AS
+,Pain after meals,,Misc,Pain after meals,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Heartburn,,Misc,Heartburn,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,139059,SAME-AS
+,Diarrhea,,Misc,Diarrhea,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,142412,SAME-AS
+,Constipation,,Misc,Constipation,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,996,SAME-AS
+,Vomiting,,Misc,Vomiting,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,122983,SAME-AS
+,Black/Tarry Stool,,Misc,Black/Tarry Stool,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,110055,SAME-AS
+,Bloody Stool,,Misc,Bloody Stool,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Other,,Misc,Other,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Negative,,Misc,Negative,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,664,SAME-AS
+,Incontinence,,Misc,Incontinence,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Hesitancy,,Misc,Hesitancy,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Hematuria,,Misc,Hematuria,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,840,SAME-AS
+,Dysuria,,Misc,Dysuria,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,118771,SAME-AS
+,Abnormal menses,,Misc,Abnormal menses,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Kidney Stones,,Misc,Kidney Stones,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,116500,SAME-AS
+,Other,,Misc,Other,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Negative,,Misc,Negative,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,664,SAME-AS
+,Paresthesia,,Misc,Paresthesia,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,6004,SAME-AS
+,Focal Weakness,,Misc,Focal Weakness,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,6005,SAME-AS
+,Confusion,,Misc,Confusion,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,120345,SAME-AS
+,Headache,,Misc,Headache,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,139084,SAME-AS
+,Dizziness,,Misc,Dizziness,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Other,,Misc,Other,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Negative,,Misc,Negative,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,664,SAME-AS
+,Vision Difficulties,,Misc,Vision Difficulties,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,5953,SAME-AS
+,Decreased Hearing,,Misc,Decreased Hearing,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Epistaxis,,Misc,Epistaxis,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Gum Bleeding,,Misc,Gum Bleeding,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Dental Caries,,Misc,Dental Caries,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Difficulty Chewing,,Misc,Difficulty Chewing,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Dysphagia,,Misc,Dysphagia,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Other,,Misc,Other,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Joint Pain,,Misc,Joint Pain,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICD-10-WHO,M25.5,SAME-AS
+,"Edema, Legs",,Misc,"Edema, Legs",N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,590,SAME-AS
+,"Pain, Lower Extremities",,Misc,"Pain, Lower Extremities",N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,6035,SAME-AS
+,Joint Swelling,,Misc,Joint Swelling,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,5312,SAME-AS
+,Muscle Pain,,Misc,Muscle Pain,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,133632,SAME-AS
+,Limitation of movement,,Misc,Limitation of movement,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Stiffness of joints,,Misc,Stiffness of joints,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Redness,,Misc,Redness,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Hotness,,Misc,Hotness,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Deformity,,Misc,Deformity,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Within Normal LImits,,Misc,Within Normal LImits,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Other,,Misc,Other,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Excellent,,misc,Excellent,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Good (healed scar),,misc,Good (healed scar),N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Bad (need soft tissue coverage),,misc,Bad (need soft tissue coverage),N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,No coverage,,misc,No coverage,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Needs Physio / Other consultation,,misc,Needs Physio / Other consultation,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Improve function,,misc,Improve function,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,One Operation,,misc,One Operation,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Two Operations,,misc,Two Operations,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Multiple Operations (+2),,misc,Multiple Operations (+2),N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Indeterminable,,misc,Indeterminable,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,All objectives one site,,misc,All objectives one site,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Multi-site, same surgery",,misc,"Multi-site, same surgery",N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Multi-site, different surgery",,misc,"Multi-site, different surgery",N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Multi-site different spacing,,misc,Multi-site different spacing,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Less than 30 days,,misc,Less than 30 days,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,30-60 days,,misc,30-60 days,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,61-90 days,,misc,61-90 days,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,91-120 days,,misc,91-120 days,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,More than 120 days,,misc,More than 120 days,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Unpredictable,,misc,Unpredictable,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,EMG & NCS,,misc,EMG & NCS,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Swab for c/s,,misc,Swab for c/s,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,GAI,,Misc,GAI,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,GAO,,Misc,GAO,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,GAL,,Misc,GAL,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,RSA,,Misc,RSA,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,RPX,,Misc,RPX,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,RTA,,Misc,RTA,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,RAO,,Misc,RAO,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,LOA,,Misc,LOA,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,SED,,Misc,SED,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,INF,,Misc,INF,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,None,,Misc,None,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Class I,,Misc,Class I,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Class II,,Misc,Class II,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Class III,,Misc,Class III,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Class IV,,Misc,Class IV,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,ASA I,,Misc,ASA I,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,ASA II,,Misc,ASA II,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,ASA III,,Misc,ASA III,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,ASA IV,,Misc,ASA IV,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,ASA V,,Misc,ASA V,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,ASA VI,,Misc,ASA VI,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,CBC,,Misc,CBC,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,CRP,,Misc,CRP,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,KFT,,Misc,KFT,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,LFT,,Misc,LFT,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Electrolytes,,Misc,Electrolytes,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Blood glucose level,,Misc,Blood glucose level,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Blood type and Rh,,Misc,Blood type and Rh,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Lipid profile,,Misc,Lipid profile,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,HbA1c,,Misc,HbA1c,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Chest X-ray,,Misc,Chest X-ray,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,ECG,,Misc,ECG,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Other lab orders,,Misc,Other lab orders,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Ready for surgery,,Misc,Ready for surgery,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,One week of preparation and consultation,,Misc,One week of preparation and consultation,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Few weeks of preparation,,Misc,Few weeks of preparation,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Return home for preparation,,Misc,Return home for preparation,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Unfit completely for this project,,Misc,Unfit completely for this project,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Advancement of flap,,Misc,Advancement of flap,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 71928005,SAME-AS
+,Amputation,,Misc,Amputation,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,MZZ JN AA,SAME-AS
+,Reamputation of stump,,Misc,Reamputation of stump,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,MZZ JN AA,SAME-AS
+,Revision of amputation stump,,Misc,Revision of amputation stump,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,MZZ JN AA,SAME-AS
+,Secondary closure of stump,,Misc,Secondary closure of stump,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,MZZ JN AA,SAME-AS
+,Trimming of stump,,Misc,Trimming of stump,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,MZZ JN AA,SAME-AS
+,Application of an external fixation device,,Misc,Application of an external fixation device,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,PZZ LC AH,SAME-AS
+,Application of back slab,,Misc,Application of back slab,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 239672004,SAME-AS
+,Application of cast,,Misc,Application of cast,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,PZX LC AH,SAME-AS
+,Arthrodesis of other and unspecified joints,,Misc,Arthrodesis of other and unspecified joints,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,MRJ LE AA,SAME-AS
+,Arthrolysis,,Misc,Arthrolysis,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 359913006,SAME-AS
+,Axial Flap,,Misc,Axial Flap,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 260986001,SAME-AS
+,Biopsy of bone of other and unspecified site,,Misc,Biopsy of bone of other and unspecified site,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,MRB AD AA,SAME-AS
+,Biopsy of joint structure of other and unspecified site,,Misc,Biopsy of joint structure of other and unspecified site,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,MRJ AD AA,SAME-AS
+,Bone graft / Osteoclasis,,Misc,Bone graft / Osteoclasis,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,MRB ML AA,SAME-AS
+,Bone lengthening,,Misc,Bone lengthening,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 288057006,SAME-AS
+,Capsulectomy procedure,,Misc,Capsulectomy procedure,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 118444003,SAME-AS
+,Change of dressing,,Misc,Change of dressing,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,LZZ DK AZ,SAME-AS
+,Change or adjustment of external fixation device / Management of an external fixation device,,Misc,Change or adjustment of external fixation device / Management of an external fixation device,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,PZZ SM AH,SAME-AS
+,"Closed biopsy of skin and subcutaneous cell tissue, site not specified",,Misc,"Closed biopsy of skin and subcutaneous cell tissue, site not specified",N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,LZZ AD AE,SAME-AS
+,Commissuroplasty,,Misc,Commissuroplasty,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Coronoidectomy ,,Misc,Coronoidectomy ,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 56577007,SAME-AS
+,Delayed suture of wound,,Misc,Delayed suture of wound,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 74230002,SAME-AS
+,Dermabrasion,,Misc,Dermabrasion,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,LZZ JG AH,SAME-AS
+,Division of flap,,Misc,Division of flap,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 240988007,SAME-AS
+,Excision of peripheral neuroma,,Misc,Excision of peripheral neuroma,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,ACA JJ AA,SAME-AS
+,"Excisional debridement of wound, infection, or burn",,Misc,"Excisional debridement of wound, infection, or burn",N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,LZZ JG AA,SAME-AS
+,Exploration of nerve,,Misc,Exploration of nerve,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 10689006,SAME-AS
+,Fascial sling for facial weakness,,Misc,Fascial sling for facial weakness,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 37539001,SAME-AS
+,Filling of segmental defect by bone transport,,Misc,Filling of segmental defect by bone transport,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 178996008,SAME-AS
+,Fixation of fracture using pins,,Misc,Fixation of fracture using pins,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 239280002,SAME-AS
+,Frontal sinusectomy,,Misc,Frontal sinusectomy,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,JAG JJ AA,SAME-AS
+,Full thickness skin graft,,Misc,Full thickness skin graft,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 71406001,SAME-AS
+,Grafting of cartilage,,Misc,Grafting of cartilage,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 392323002,SAME-AS
+,Injection of steroid,,Misc,Injection of steroid,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 296778005,SAME-AS
+,Insertion of peripherally inserted central catheter,,Misc,Insertion of peripherally inserted central catheter,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 425196008,SAME-AS
+,Insertion of tissue expander,,Misc,Insertion of tissue expander,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,LZZ DN AA,SAME-AS
+,Insertion or replacement of (cement) spacer,,Misc,Insertion or replacement of (cement) spacer,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,MRB DN AA,SAME-AS
+,Insertion/Removal of Drain or Tube,,Misc,Insertion/Removal of Drain or Tube,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,PZX DL AE,SAME-AS
+,Integra skin graft,,Misc,Integra skin graft,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 312405003,SAME-AS
+,Internal fixation using intramedullary nail,,Misc,Internal fixation using intramedullary nail,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 257836008,SAME-AS
+,Internal fixation using plate,,Misc,Internal fixation using plate,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 257835007,SAME-AS
+,Internal fixation using screw,,Misc,Internal fixation using screw,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 257834006,SAME-AS
+,Internal fixation using wire,,Misc,Internal fixation using wire,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 311464004,SAME-AS
+,Interpolation / regional flap,,Misc,Interpolation / regional flap,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Joint capsulodesis,,Misc,Joint capsulodesis,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 12523007,SAME-AS
+,Local rotation flap,,Misc,Local rotation flap,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 304102003,SAME-AS
+,Local subcutaneous pedicled V-Y flap,,Misc,Local subcutaneous pedicled V-Y flap,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 304087005,SAME-AS
+,Lysis of adhesions of tendon / tenolysis,,Misc,Lysis of adhesions of tendon / tenolysis,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 44322007,SAME-AS
+,Manipulation under anesthesia,,Misc,Manipulation under anesthesia,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 274470005,SAME-AS
+,Nerve block,,Misc,Nerve block,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 56333001,SAME-AS
+,Nerve graft,,Misc,Nerve graft,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 307253003,SAME-AS
+,Neurorrhaphy / suture of nerve,,Misc,Neurorrhaphy / suture of nerve,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 73164003,SAME-AS
+,"Open biopsy of soft tissue, not elsewhere classified",,Misc,"Open biopsy of soft tissue, not elsewhere classified",N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,MRS AD AA,SAME-AS
+,Osteotomy,,Misc,Osteotomy,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 150062003,SAME-AS
+,Other skeletal traction,,Misc,Other skeletal traction,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,MZZ LC AH,SAME-AS
+,Paranasal sinusectomy,,Misc,Paranasal sinusectomy,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,JAE JJ AA,SAME-AS
+,Partial thickness skin graft,,Misc,Partial thickness skin graft,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 3734003,SAME-AS
+,Peripheral nerve or ganglion decompression or lysis of adhesions,,Misc,Peripheral nerve or ganglion decompression or lysis of adhesions,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,ACA FC AA,SAME-AS
+,Peripheral vascular shunt or bypass,,Misc,Peripheral vascular shunt or bypass,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 76580007,SAME-AS
+,Plaster of Paris,,Misc,Plaster of Paris,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,PZX LC AH,SAME-AS
+,Plastic repair by z plasty,,Misc,Plastic repair by z plasty,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 70515000,SAME-AS
+,Prosthetic dental implant / Endosseous dental implant,,Misc,Prosthetic dental implant / Endosseous dental implant,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,KAE DN AC,SAME-AS
+,Reconstruction procedure,,Misc,Reconstruction procedure,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 122465003,SAME-AS
+,Reconstruction with free flap,,Misc,Reconstruction with free flap,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 240985005,SAME-AS
+,Reconstruction with local flap,,Misc,Reconstruction with local flap,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 240983003,SAME-AS
+,Release [excision] scar contracture,,Misc,Release [excision] scar contracture,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,LAA JJ AA,SAME-AS
+,Removal of an external fixation device,,Misc,Removal of an external fixation device,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,PZZ KB AH,SAME-AS
+,Removal of external fixator pin,,Misc,Removal of external fixator pin,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 239622001,SAME-AS
+,Removal of foreign body or device from skin and subcutaneous cell tissue,,Misc,Removal of foreign body or device from skin and subcutaneous cell tissue,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,LZZ JD AA,SAME-AS
+,Removal of K-wire,,Misc,Removal of K-wire,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 310635006,SAME-AS
+,Removal of nail,,Misc,Removal of nail,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 386018007,SAME-AS
+,Removal of plate from bone,,Misc,Removal of plate from bone,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 285662005,SAME-AS
+,Removal of screws from bone,,Misc,Removal of screws from bone,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 285663000,SAME-AS
+,"Removal of sutures (clips etc.), skin",,Misc,"Removal of sutures (clips etc.), skin",N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,LZZ JD AA,SAME-AS
+,Removal of tissue expander from skin or soft tissue,,Misc,Removal of tissue expander from skin or soft tissue,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,LZZ JD AA,SAME-AS
+,Repair of tendon,,Misc,Repair of tendon,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 281758003,SAME-AS
+,Revision of scar,,Misc,Revision of scar,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 284079008,SAME-AS
+,Sequestrectomy,,Misc,Sequestrectomy,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,MRB JJ AA,SAME-AS
+,"Sinusectomy, maxillary",,Misc,"Sinusectomy, maxillary",N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,JAF JJ AA,SAME-AS
+,Skin flap operation,,Misc,Skin flap operation,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 304039000,SAME-AS
+,Skin graft operation,,Misc,Skin graft operation,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 304040003,SAME-AS
+,"Specimen collection for microbiology, swab",,Misc,"Specimen collection for microbiology, swab",N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 23248003,SAME-AS
+,Surgical extraction of tooth,,Misc,Surgical extraction of tooth,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,KAE JE AC,SAME-AS
+,Tendon graft,,Misc,Tendon graft,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,MRT ML AA,SAME-AS
+,Tendon release,,Misc,Tendon release,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,MRT FB AA,SAME-AS
+,Tendon transfer or transplantation,,Misc,Tendon transfer or transplantation,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,MRT LJ AA,SAME-AS
+,Tenorrhaphy / suture of tendon,,Misc,Tenorrhaphy / suture of tendon,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 66583008,SAME-AS
+,Thinning of skin flap,,Misc,Thinning of skin flap,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,SNOMED CT,SCTID: 302407000,SAME-AS
+,Wound drainage,,Misc,Wound drainage,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ICHI,PZX JB AE,SAME-AS
+,X-plasty,,Misc,X-plasty,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Repair anatomy,,Misc,Repair anatomy,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Replace the loss of,,Misc,Replace the loss of,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Stop pathology,,Misc,Stop pathology,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Prevent future problems,,Misc,Prevent future problems,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Uncertain,,Misc,Uncertain,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Humerus proximal,,Misc,Humerus proximal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Humerus shaft,,Misc,Humerus shaft,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Humerus distal,,Misc,Humerus distal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Radius proximal,,Misc,Radius proximal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Radius shaft,,Misc,Radius shaft,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Radius distal,,Misc,Radius distal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Ulna proximal,,Misc,Ulna proximal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Ulna shaft,,Misc,Ulna shaft,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Ulna distal,,Misc,Ulna distal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Carpal,,Misc,Carpal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Metacarpals,,Misc,Metacarpals,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Phalanges,,Misc,Phalanges,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Hip joint,,Misc,Hip joint,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Femur proximal,,Misc,Femur proximal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Femur shaft,,Misc,Femur shaft,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Femur distal,,Misc,Femur distal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Tibia proximal,,Misc,Tibia proximal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Tibia shaft,,Misc,Tibia shaft,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Tibia distal,,Misc,Tibia distal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Fibula proximal,,Misc,Fibula proximal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Fibula shaft,,Misc,Fibula shaft,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Fibula distal,,Misc,Fibula distal,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Joint Stiffness,,Misc,Joint Stiffness,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Assistive Device,,Misc,Assistive Device,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Muscular Soreness,,Misc,Muscular Soreness,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Generalized Weakness,,Misc,Generalized Weakness,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, MRI",,Misc,MRI,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Independent,,Misc,Independent,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,With Assistance,,Misc,With Assistance,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Dependent,,Misc,Dependent,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Manage long-term pathology,,Misc,Manage long-term pathology,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,IV Antibiotics,,Misc,IV Antibiotics,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,PICC line,,Misc,PICC line,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,IM Narcotics,,Misc,IM Narcotics,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,IV Narcotics,,Misc,IV Narcotics,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Insulin,,Misc,Insulin,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,DVT Prophylaxis,,Misc,DVT Prophylaxis,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"VS, Date recorded",,Question,Date recorded,Date,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,162869,SAME-AS
+,Weight,,Finding,Weight,Numeric,Kg,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,5089,SAME-AS
+,Height,,Finding,Height,Numeric,cm,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,5090,SAME-AS
+,BMI,,Computed,BMI,Numeric,Kg/m2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1342,SAME-AS
+,"VS, Respiratory Rate",,Finding,Respiratory rate,Numeric,breaths/minute,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,5242,SAME-AS
+,"VS, Temperature",,Finding,Temperature,Numeric,C,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,5088,SAME-AS
+,"VS, Pulse",,Finding,Pulse,Numeric,bpm,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,5087,SAME-AS
+,"VS, Systolic blood pressure",,Finding,Systolic blood pressure,Numeric,mmHg,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,5085,SAME-AS
+,"VS, Diastolic blood pressure",,Finding,Diastolic blood pressure,Numeric,mmHg,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,5086,SAME-AS
+,"VS, Blood oxygen saturation",,Test,Blood oxygen saturation,Numeric,%,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,5092,SAME-AS
+,"VS, Fasting",,Question,Fasting,Numeric,mg/dl,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"VS, Random",,Question,Random,Numeric,mg/dl,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"VS, Comments about baseline vital signs",,Question,Comments about baseline vital signs,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SMH, Date of consultation",,Question,Date of consultation,Date,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,162869,SAME-AS
+,"SMH, Marital status",,Question,Marital status,Coded,,,,,,,Single,Married,Divorced,Widowed,Child,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1054,SAME-AS
+,"SMH, Highest education level",,Question,Highest education level,Coded,,,,,,,No formal education,Primary school education,Secondary school education,University,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1712,SAME-AS
+,"SMH, Pregnancy status",,Question,Pregnancy status,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,5272,SAME-AS
+,"SMH, Current smoker",,Question,Current smoker,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SMH, Number of cigarettes per day",,Finding,Number of cigarettes per day,Numeric,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SMH, Duration of smoking (in years)",,Finding,Duration of smoking (in years),Numeric,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,159449,SAME-AS
+,"SMH, Drug and Alcohol use",,Question,Drug and Alcohol use,Coded,,,,,,,In the past,Currently,Never,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SMH, Medical History",,Question,Medical History,Coded,,,,,,,Hypertension,Palpitations,Dyspnea,Asthma,Tuberculosis,Diabetes mellitus,Angina,Peptic Ulcer,Jaundice,Epilepsy,Hepatitis,Kidney problems,High cholesterol,COPD,Other,None,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1633,SAME-AS
+,"SMH, Other medical problems",,Finding,Other medical problems,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SMH, History of Allergy",,Question,History of Allergy,Coded,,,,,,,None,Drugs,Food,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,110247,SAME-AS
+,"SMH, Comments about allergy",,Finding,Comments about allergy,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SMH, Currently taking medication",,Question,Currently taking medication,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SMH, Type of medication",,Finding,Type of medication,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SMH, Dose and freqency",,Finding,Dose and freqency,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SMH, Date of last dose",,Question,Date of last dose,Date,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SMH, Pain severity",,Finding,Pain severity,Numeric,,10,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,160287,SAME-AS
+,"SMH, Side of pain",,Finding,Side of pain,Coded,,,,,,,Right,Left,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SMH, Site of pain",,Finding,Site of pain,Coded,,,,,,,"Site, Eye","Site, Ear","Site, Nose","Site, Mouth","Site, Cheek","Site, Chin","Site, Scalp","Site, Neck","Site, Face","Site, Finger","Site, Breast","Site, Trunk","Site, Groin","Site, Toe","Site, Shoulder","Site, Axilla","Site, Arm","Site, Elbow","Site, Forearm","Site, Wrist","Site, Hand","Site, Gluteal","Site, Hip","Site, Thigh","Site, Knee","Site, Leg","Site, Ankle","Site, Foot",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SMH, Number of wounds",,Finding,Number of wounds,Numeric,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SMH, Site",,Finding,Site,Coded,,,,,,,"Site, Eye","Site, Ear","Site, Nose","Site, Mouth","Site, Cheek","Site, Chin","Site, Scalp","Site, Neck","Site, Face","Site, Finger","Site, Breast","Site, Trunk","Site, Groin","Site, Toe","Site, Shoulder","Site, Axilla","Site, Arm","Site, Elbow","Site, Forearm","Site, Wrist","Site, Hand","Site, Gluteal","Site, Hip","Site, Thigh","Site, Knee","Site, Leg","Site, Ankle","Site, Foot",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SMH, Description",,Finding,Description,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SMH, Nursing notes",,Finding,Nursing notes,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"HE, Date of consultation",,Question,Date of consultation,Date,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,162869,SAME-AS
+,"HE, External devices, present",,Finding,"External devices, present",Coded,,,,,,,None,Ex-fix,Foley catheter,Condom catheter,Colostomy bag,Big tube,Tracheostomy,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"HE, Other type of external device",,Finding,Other type of external device,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"HE, Nutritional Assessment",,Finding,Nutritional Assessment,Coded,,,,,,,Regular,Low salt,High protein,Diabetic diet,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"HE, Personal hygiene",,Question,Personal hygiene (presence of head lice / bugs),Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"HE, SMFA functional index",,Finding,SMFA functional index,Numeric,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"HE, SMFA bothersome index",,Finding,SMFA bothersome index,Numeric,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"HE, Education learning needs",,Finding,Education learning needs,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"HE, Referral care Plan",,Finding,Referral care plan,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, Date of consultation",,Question,Date of consultation,Date,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,162869,SAME-AS
+,"PIA, Future expectations about care plan",,Finding,Future expectations about care plan,Coded,,,,,,,According to medical plan,Different from medical plan,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, Comments about expectations",,Finding,Comments about expectations,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, Past history of psychological or counselling care for patient",,Question,Past history of psychological or counselling care for patient,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, By who (NGO / private) ccp",,Question,By who (NGO / private),Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, Past history of psychological or counselling care of family member",,Question,Past history of psychological or counselling care of family member,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, By who (NGO / private) ccf",,Question,By who (NGO / private),Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, Past history of psychiatric care for patient",,Question,Past history of psychiatric care for patient,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, By who (NGO / private) pcp",,Question,By who (NGO / private),Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, Past history of psychiatric care of family member",,Question,Past history of psychiatric care of family member,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, By who (NGO / private) pcf",,Question,By who (NGO / private),Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, History of psychotropic drugs",,Finding,History of psychotropic drugs,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, Drug",,Finding,Drug,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, SQR20 (score)",,Finding,SQR20 (score),Numeric,,20,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, PTSD (score)",,Finding,PTSD (score),Numeric,,4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, PSYca 3-6 (child)",,Finding,PSYca 3-6 (child),Numeric,,44,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, Needed Mental Health Support",,Finding,Needed Mental Health Support,Coded,,,,,,,No need for specific follow-up,Followed daily by counselor,Referred to clincal psychologist,Referred to psychiatrist,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PIA, Comments from counsellor",,Finding,Comments from counsellor,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Date of consultation",,Question,Date of consultation,Date,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,162869,SAME-AS
+,"PHIA, Grooming",,Finding,Grooming,Coded,,,,,,,Independent,With Assistance,Dependent,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Feeding",,Finding,Feeding,Coded,,,,,,,Independent,With Assistance,Dependent,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Dressing",,Finding,Dressing,Coded,,,,,,,Independent,With Assistance,Dependent,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Toilet use",,Finding,Toilet use,Coded,,,,,,,Independent,With Assistance,Dependent,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Transfers",,Finding,Transfers,Coded,,,,,,,Independent,With Assistance,Dependent,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Stairs",,Finding,Stairs,Coded,,,,,,,Independent,With Assistance,Dependent,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Mobility",,Finding,Mobility,Coded,,,,,,,Independent,Assistive Device,Wheelchair,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Does the patient use an assistive device or orthosis?",,Question,Does the patient use an assistive device or orthosis?,Coded,,,,,,,Yes,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Type of assistive device or orthosis",,Finding,Type of assistive device or orthosis,Coded,,,,,,,Orthosis,One axillary crutch,Two axillary crutches,One elbow crutch,Two elbow crutches,cane,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Other type of assistive device",,Finding,Other type of assistive device,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Comments about assistive device or orthosis",,Finding,Comments about assistive device or orthosis,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Amputee patient?",,Finding,Amputee patient?,Coded,,,,,,,Yes,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Type of amputation",,Finding,Type of amputation,Coded,,,,,,,Above Knee,Below Knee,"PHIA, Foot",Above Elbow,Below Elbow,"PHIA, Wrist","PHIA, Hand",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Side of amputation",,Finding,Side of amputation,Coded,,,,,,,Right,Left,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Comments about amputation",,Finding,Comments about amputation,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Is the patient coming with a prostheses?",,Finding,Is the patient coming with a prostheses?,Coded,,,,,,,Yes,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Comment about prostheses usage",,Finding,Comment about prostheses usage,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Is there a need of new prosthesis or modification",,Finding,Is there a need of new prosthesis or modification,Coded,,,,,,,Yes,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Comment about new prosthesis or modification",,Finding,Comment about new prosthesis or modification,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Location of assessment",,Question,Location of assessment,Coded,,,,,,,Lower limb,Upper limb,Maxillo-facial,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Upper extremity functional index (>18 years)",,Finding,Upper extremity functional index (>18 years),Numeric,,100,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Neuro QOL upper limb (<18 years)",,Finding,Neuro QOL upper limb (<18 years),Numeric,,80,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Basic grip test",,Finding,Basic grip test,Numeric,,12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Muscle power test (MMT)",,Finding,Muscle power test (MMT),Numeric,%,100,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Lower extremity functional index (>18 years)",,Finding,Lower extremity functional index (>18 years),Numeric,,80,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Neuro QOL lower limb (<18 years)",,Finding,Neuro QOL lower limb (<18 years),Numeric,,80,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Tinetti ",,Finding,Tinetti ,Numeric,,28,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Functional evaluation of mouth",,Finding,Functional evaluation of mouth,Numeric,%,100,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Mouth opening test",,Finding,Mouth opening test,Numeric,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PHIA, Physiotherapy remarks initial assessment",,Finding,Physiotherapy remarks initial assessment,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Date of consultation",,Question,Date of consultation,Date,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,162869,SAME-AS
+,"MD, Chief complaint",,Finding,Chief complaint,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,160531,SAME-AS
+,"MD, History of present illness",,Finding,History of present illness,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1390,SAME-AS
+,"MD, Associated neural injury",,Finding,Associated neural injury,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Comments (neural injury)",,Finding,Comments (neural injury),Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Associated vascular injury",,Finding,Associated vascular injury,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Comments (vascular injury)",,Finding,Comments (vascular injury),Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Function of injured part",,Finding,Function of injured part,Coded,,,,,,,Normal,Good,"Deformed, mobile","Deformed, stiff",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Sensation of injured part",,Finding,Sensation of injured part,Coded,,,,,,,Normal,Reduced (Regional),Senseless,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, History of previous surgery",,Finding,History of previous surgery,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Non-Coded Procedures performed outside AMH",,Misc,Non-Coded Procedures performed outside AMH,text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Procedures performed outside AMH",,Finding,Procedures performed outside AMH,Coded,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1651,SAME-AS
+,"MD, Site of procedure",,Finding,Site of procedure,Coded,,,,,,,"Site, Eye","Site, Ear","Site, Nose","Site, Mouth","Site, Cheek","Site, Chin","Site, Scalp","Site, Neck","Site, Face","Site, Finger","Site, Breast","Site, Trunk","Site, Groin","Site, Toe","Site, Shoulder","Site, Axilla","Site, Arm","Site, Elbow","Site, Forearm","Site, Wrist","Site, Hand","Site, Gluteal","Site, Hip","Site, Thigh","Site, Knee","Site, Leg","Site, Ankle","Site, Foot",Humerus proximal,Humerus shaft,Humerus distal,Radius proximal,Radius shaft,Radius distal,Ulna proximal,Ulna shaft,Ulna distal,Carpal,Metacarpals,Phalanges,Hip joint,Femur proximal,Femur shaft,Femur distal,Tibia proximal,Tibia shaft,Tibia distal,Fibula proximal,Fibula shaft,Fibula distal,"Site, Median","Site, Ulnar","Site, Brachial plexus","Site, Radial","Site, Axillary","Site, Sciatic","Site, Tibial","Site, Craniofacial","Site, Mid-face excl. orbit","Site, Orbit","Site, Mandible",,,,,,,,
+,"MD, Side of procedure",,Finding,Side of procedure,Coded,,,,,,,Left,Right,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Comment of procedure",,Finding,Comment of procedure,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Date of procedure",,Finding,Date of procedure,Date,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,160715,SAME-AS
+,"MD, Type of previous fixation",,Finding,Type of previous fixation,Coded,,,,,,,Internal,External,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Type of internal fixation",,Finding,Type of internal fixation,Coded,,,,,,,Plate,Wires,Screws,Intramedullary nails,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Duration of External fixation",,Finding,Duration of External fixation,Coded,,,,,,,More than 6 months,Less than 6 months,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Other type of fixation",,Finding,Other type of fixation,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, HIstory of infection",,Finding,History of infection,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Comments about previous infection",,Finding,Comments about previous infection,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Discharging sinus",,Finding,Discharging sinus,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Duration of discharging sinus",,Finding,Duration of discharging sinus,Coded,,,,,,,More than 6 months,Less than 6 months,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Bone Loss",,Finding,Bone Loss,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Cm of bone loss",,Finding,Cm of bone loss,Numeric,,99,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, United fracture",,Finding,United fracture,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Shortening",,Finding,Shortening,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Cm of shortening",,Finding,Cm of shortening,Numeric,,99,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Review of systems, general",,Question,"Review of systems, general",Coded,,,,,,,Negative,Weight Loss,Fatigue,Fever,Night Sweats,Pain,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1069,SAME-AS
+,"MD, Description and duration of symptom (general)",,Question,Description and duration of symptom (general),Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Other ROS general symptoms",,Question,Other ROS general symptoms,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Review of systems, cardiopulmonary",,Question,"Review of systems, cardiopulmonary",Coded,,,,,,,Negative,Cough,Shortness Of Breath,Chest Pain,Angina,Edema,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1071,SAME-AS
+,"MD, Description and duration of symptom (cardiopulmonary)",,Question,Description and duration of symptom (cardiopulmonary),Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Other ROS cardiopulmonary symptoms",,Question,Other ROS cardiopulmonary symptoms,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Review of systems, gastrointestinal",,Question,"Review of systems, gastrointestinal",Coded,,,,,,,Negative,Nausea,Pain after meals,Heartburn,Diarrhea,Constipation,Vomiting,Black/Tarry Stool,Bloody Stool,Jaundice,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1078,SAME-AS
+,"MD, Description and duration of symptom (gastrointestinal)",,Question,Description and duration of symptom (gastrointestinal),Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Other ROS gastrointestinal symptoms",,Question,Other ROS gastrointestinal symptoms,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Review of systems, genitourinary",,Question,"Review of systems, genitourinary",Coded,,,,,,,Negative,Incontinence,Hesitancy,Hematuria,Dysuria,Abnormal menses,Kidney Stones,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1080,SAME-AS
+,"MD, Description and duration of symptom (genitourinary)",,Question,Description and duration of symptom (genitourinary),Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Other ROS genitourinary symptoms",,Question,Other ROS genitourinary symptoms,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Review of systems, central nervous system",,Question,"Review of systems, central nervous system",Coded,,,,,,,Negative,Paresthesia,Focal Weakness,Confusion,Headache,Dizziness,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1082,SAME-AS
+,"MD, Description and duration of symptom (central nervous system)",,Question,Description and duration of symptom (central nervous system),Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Other ROS central nervous system symptoms",,Question,Other ROS central nervous system symptoms,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Review of systems, HEENT",,Question,"Review of systems, HEENT",Coded,,,,,,,Negative,Vision Difficulties,Decreased Hearing,Epistaxis,Gum Bleeding,Dental Caries,Difficulty Chewing,Dysphagia,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1070,SAME-AS
+,"MD, Description and duration of symptom (HEENT)",,Question,Description and duration of symptom (HEENT),Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Other ROS HEENT symptoms",,Question,Other ROS HEENT symptoms,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Review of systems, musculoskeletal",,Question,"Review of systems, musculoskeletal",Coded,,,,,,,Negative,Joint Pain,Joint Stiffness,Muscular Soreness,Generalized Weakness,Joint Swelling,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1081,SAME-AS
+,"MD, Description and duration of symptom (musculoskeletal)",,Question,Description and duration of symptom (musculoskeletal),Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"MD, Other ROS musculoskeletal symptoms",,Question,Other ROS musculoskeletal symptoms,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Date of consultation",,question,Date of consultation,date,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Site of injury",,finding,Site of injury,coded,,,,,,,"Site, Eye","Site, Ear","Site, Nose","Site, Mouth","Site, Cheek","Site, Chin","Site, Scalp","Site, Neck","Site, Face","Site, Finger","Site, Breast","Site, Trunk","Site, Groin","Site, Toe","Site, Shoulder","Site, Axilla","Site, Arm","Site, Elbow","Site, Forearm","Site, Wrist","Site, Hand","Site, Gluteal","Site, Hip","Site, Thigh","Site, Knee","Site, Leg","Site, Ankle","Site, Foot",Humerus proximal,Humerus shaft,Humerus distal,Radius proximal,Radius shaft,Radius distal,Ulna proximal,Ulna shaft,Ulna distal,Carpal,Metacarpals,Phalanges,Hip joint,Femur proximal,Femur shaft,Femur distal,Tibia proximal,Tibia shaft,Tibia distal,Fibula proximal,Fibula shaft,Fibula distal,"Site, Craniofacial","Site, Mid-face excl. orbit","Site, Orbit","Site, Mandible",,,,,,,,,,,,,,,
+,"SAP, Side of injury",,finding,Side of injury,coded,,,,,,,Right,Left,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Condition of soft tissue at presentation",,finding,Condition of soft tissue at presentation,coded,,,,,,,Excellent,Good (healed scar),Bad (need soft tissue coverage),No coverage,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Non-coded Planned procedure",,Misc,Non-coded Planned procedure,text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Site of surgical procedure",,finding,Site of surgical procedure,coded,,,,,,,"Site, Eye","Site, Ear","Site, Nose","Site, Mouth","Site, Cheek","Site, Chin","Site, Scalp","Site, Neck","Site, Face","Site, Finger","Site, Breast","Site, Trunk","Site, Groin","Site, Toe","Site, Shoulder","Site, Axilla","Site, Arm","Site, Elbow","Site, Forearm","Site, Wrist","Site, Hand","Site, Gluteal","Site, Hip","Site, Thigh","Site, Knee","Site, Leg","Site, Ankle","Site, Foot",Humerus proximal,Humerus shaft,Humerus distal,Radius proximal,Radius shaft,Radius distal,Ulna proximal,Ulna shaft,Ulna distal,Carpal,Metacarpals,Phalanges,Hip joint,Femur proximal,Femur shaft,Femur distal,Tibia proximal,Tibia shaft,Tibia distal,Fibula proximal,Fibula shaft,Fibula distal,"Site, Median","Site, Ulnar","Site, Brachial plexus","Site, Radial","Site, Axillary","Site, Sciatic","Site, Tibial","Site, Craniofacial","Site, Mid-face excl. orbit","Site, Orbit","Site, Mandible",,,,,,,,
+,"SAP, Side of surgical procedure",,finding,Side of surgical procedure,coded,,,,,,,Right,Left,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Surgical summary",,finding,Surgical summary,text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Initial general plan",,question,Initial general plan,coded,,,,,,,Needs Physio / Other consultation,Improve function,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Objectives of physiotherapy",,finding,Objectives of physiotherapy,text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Anatomical site",,finding,Anatomical site,coded,,,,,,,"Site, Eye","Site, Ear","Site, Nose","Site, Mouth","Site, Cheek","Site, Chin","Site, Scalp","Site, Neck","Site, Face","Site, Finger","Site, Breast","Site, Trunk","Site, Groin","Site, Toe","Site, Shoulder","Site, Axilla","Site, Arm","Site, Elbow","Site, Forearm","Site, Wrist","Site, Hand","Site, Gluteal","Site, Hip","Site, Thigh","Site, Knee","Site, Leg","Site, Ankle","Site, Foot",Humerus proximal,Humerus shaft,Humerus distal,Radius proximal,Radius shaft,Radius distal,Ulna proximal,Ulna shaft,Ulna distal,Carpal,Metacarpals,Phalanges,Hip joint,Femur proximal,Femur shaft,Femur distal,Tibia proximal,Tibia shaft,Tibia distal,Fibula proximal,Fibula shaft,Fibula distal,"Site, Median","Site, Ulnar","Site, Brachial plexus","Site, Radial","Site, Axillary","Site, Sciatic","Site, Tibial","Site, Craniofacial","Site, Mid-face excl. orbit","Site, Orbit","Site, Mandible",,,,,,,,
+,"SAP, Surgical objective",,finding,Surgical objective,coded,,,,,,,Repair anatomy,Replace the loss of,Manage long-term pathology,Prevent future problems,Uncertain,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Side of surgical objective",,finding,Side of surgical objective,coded,,,,,,,Right,Left,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Site of surgical objective",,finding,Site of surgical objective,coded,,,,,,,"Site, Eye","Site, Ear","Site, Nose","Site, Mouth","Site, Cheek","Site, Chin","Site, Scalp","Site, Neck","Site, Face","Site, Finger","Site, Breast","Site, Trunk","Site, Groin","Site, Toe","Site, Shoulder","Site, Axilla","Site, Arm","Site, Elbow","Site, Forearm","Site, Wrist","Site, Hand","Site, Gluteal","Site, Hip","Site, Thigh","Site, Knee","Site, Leg","Site, Ankle","Site, Foot",Humerus proximal,Humerus shaft,Humerus distal,Radius proximal,Radius shaft,Radius distal,Ulna proximal,Ulna shaft,Ulna distal,Carpal,Metacarpals,Phalanges,Hip joint,Femur proximal,Femur shaft,Femur distal,Tibia proximal,Tibia shaft,Tibia distal,Fibula proximal,Fibula shaft,Fibula distal,"Site, Median","Site, Ulnar","Site, Brachial plexus","Site, Radial","Site, Axillary","Site, Sciatic","Site, Tibial","Site, Craniofacial","Site, Mid-face excl. orbit","Site, Orbit","Site, Mandible",,,,,,,,
+,"SAP, Comments of uncertainty ",,finding,Comments of uncertainty ,text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Comments about sugical objectives",,finding,Comments about sugical objectives,text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Frequency of Operations",,finding,Frequency of Operations,coded,,,,,,,One Operation,Two Operations,Multiple Operations (+2),Indeterminable,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Estimated number of surgeries",,finding,Estimated number of surgeries,numeric,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Sites (donor areas excluded)",,finding,Sites (donor areas excluded),coded,,,,,,,All objectives one site,"Multi-site, same surgery","Multi-site, different surgery",Multi-site different spacing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Spacing between surgeries",,finding,Spacing between surgeries,numeric,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Estimated length of stay",,finding,Estimated length of stay,coded,,,,,,,Less than 30 days,30-60 days,61-90 days,91-120 days,More than 120 days,Unpredictable,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Does the patient need further admissions",,finding,Does the patient need further admissions,coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Investigations needed",,finding,Investigations needed,coded,,,,,,,X-ray,CBC,CRP,"SAP, MRI",CT scan,EMG & NCS,Swab for c/s,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Need consultations",,finding,Need consultations,coded ,,,,,,,Orthopedic,Maxillo-facial,Plastic,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"SAP, Other consultation needed",,finding,Other consultation needed,text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"AIA, Date of consultation",,Question,Date of consultation,Date,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,162869,SAME-AS
+,"AIA, Previous Anaesthesia history",,Finding,Previous Anaesthesia history,Coded,,,,,,,GAI,GAO,GAL,RSA,RPX,RTA,RAO,LOA,SED,INF,None,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"AIA, Adverse reaction to anaesthesia",,Finding,Adverse reaction to anaesthesia,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"AIA, Comments about adverse reaction",,Finding,Comments about adverse reaction,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"AIA, Personal history of blood transfusion",,Finding,Personal history of blood transfusion,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,CIEL,1871,SAME-AS
+,"AIA, Did an incident occur during previous blood transfusion",,Finding,Did an incident occur during previous blood transfusion,Coded,,,,,,,Yes,No,Unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"AIA, Describe",,Finding,Describe,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"AIA, Mallampati class",,Finding,Mallampati class,Coded,,,,,,,Class I,Class II,Class III,Class IV,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"AIA, ASA score",,Finding,ASA score,Coded,,,,,,,ASA I,ASA II,ASA III,ASA IV,ASA V,ASA VI,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"AIA, Planned anaesthesia technique",,Finding,Planned anaesthesia technique,Coded,,,,,,,GAI,GAO,GAL,RSA,RPX,RTA,RAO,LOA,SED,INF,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"AIA, Remarks-anaesthetist",,Finding,Remarks-anaesthetist,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"AIA, Pre-anaesthesia orders",,Finding,Pre-anaesthesia orders,Coded,,,,,,,CBC,CRP,KFT,LFT,Electrolytes,Blood glucose level,Blood type and Rh,Lipid profile,HbA1c,Chest X-ray,ECG,Other lab orders,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"AIA, Comments about other lab orders",,Finding,Comments about other lab orders,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"AIA, Outcome of anaesthesia initial assessment",,Finding,Outcome of anaesthesia initial assessment,Coded,,,,,,,Ready for surgery,One week of preparation and consultation,Few weeks of preparation,Return home for preparation,Unfit completely for this project,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"AIA, I discussed the risks and benefits of anaesthesia and answered all questions",,Question,I discussed the risks and benefits of anaesthesia and answered all questions,Coded,,,,,,,Yes,No,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Admit to RC,,Misc,Admit to RC,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,org.openmrs.module.emrapi,Admit to RC,SAME-AS
+,Admit to Ward,,Misc,Admit to Ward,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,org.openmrs.module.emrapi,Admit to Ward,SAME-AS
+,Admit to Kahramana,,Misc,Admit to Kahramana,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,org.openmrs.module.emrapi,Admit to Kahramana,SAME-AS
+,Movement to Ward,,Misc,Movement to Ward,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,org.openmrs.module.emrapi,Movement to Ward,SAME-AS
+,Movement to RC,,Misc,Movement to RC,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,org.openmrs.module.emrapi,Movement to RC,SAME-AS
+,Movement to Kahramana,,Misc,Movement to Kahramana,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,org.openmrs.module.emrapi,Movement to Kahramana,SAME-AS
+,Transfer Home,,Misc,Transfer Home,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,org.openmrs.module.emrapi,Transfer Home,SAME-AS
+,Pre-Operative,,Misc,Pre-Operative,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Surgical,,Misc,Surgical,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Rehabilitation,,Misc,Rehabilitation,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"DIA, Site",,Finding,Site,Coded,,,,,,,"Site, Eye","Site, Ear","Site, Nose","Site, Mouth","Site, Cheek","Site, Chin","Site, Scalp","Site, Neck","Site, Face","Site, Finger","Site, Breast","Site, Trunk","Site, Groin","Site, Toe","Site, Shoulder","Site, Axilla","Site, Arm","Site, Elbow","Site, Forearm","Site, Wrist","Site, Hand","Site, Gluteal","Site, Hip","Site, Thigh","Site, Knee","Site, Leg","Site, Ankle","Site, Foot",Humerus proximal,Humerus shaft,Humerus distal,Radius proximal,Radius shaft,Radius distal,Ulna proximal,Ulna shaft,Ulna distal,Carpal,Metacarpals,Phalanges,Hip joint,Femur proximal,Femur shaft,Femur distal,Tibia proximal,Tibia shaft,Tibia distal,Fibula proximal,Fibula shaft,Fibula distal,,,,,,,,,,,,,,,,,,,
+,"DIA, Side",,Finding,Side,Coded,,,,,,,Right,Left,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PE, General examination",,Finding,General examination,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PE, HEENT examination",,Finding,HEENT examination,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PE, Chest examination",,Finding,Chest examination,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PE, Heart examination",,Finding,Heart examination,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PE, Abdomen examination",,Finding,Abdomen examination,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PE, Rectal and genitalia examination",,Finding,Rectal and genitalia examination,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PE, Extremities examination",,Finding,Extremities examination,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"PE, Neurologic examination",,Finding,Neurologic examination,Text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"FV, Name (s) of Surgeon 1",,Finding,Name of Surgeon 1,Coded,,,,,,,Dr. Ali Al-Ani,Dr. Sofian Al-Qassab,Dr. Hanna Janho,Dr. Ashraf Nabhan,Dr. Rasheed Al Samerai,Dr. Muckhaled Naseef,Dr. Nasr Al-Omari,Dr. Ashraf Bustangi,Dr. Remy Zilliox,Dr.Ghassan S. Abu-Sittah,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"FV, Name (s) of Surgeon 2",,Finding,Name of Surgeon 2,Coded,,,,,,,Dr. Ali Al-Ani,Dr. Sofian Al-Qassab,Dr. Hanna Janho,Dr. Ashraf Nabhan,Dr. Rasheed Al Samerai,Dr. Muckhaled Naseef,Dr. Nasr Al-Omari,Dr. Ashraf Bustangi,Dr. Remy Zilliox,Dr.Ghassan S. Abu-Sittah,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Nw, Date recorded",,Question,Date recorded,Date,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"NW, Draining wound(s)?",,Question,Draining wound(s)?,Coded,,,,,,,Yes,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"NW, IV/IM needed?",,Question,IV/IM needed?,Coded,,,,,,,IV Antibiotics,PICC line,IM Narcotics,IV Narcotics,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"NW, Twice daily Physiotherapy",,Question,Twice daily Physiotherapy,Coded,,,,,,,Yes,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"NW, Non-ambulatory?",,Question,Non-ambulatory?,Coded,,,,,,,Yes,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"NW, Special needs?",,Question,Special needs?,Coded,,,,,,,Yes,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"NW, Injection (subcutaneous)?",,Question,Injection (subcutaneous)?,Coded,,,,,,,Insulin,DVT Prophylaxis,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

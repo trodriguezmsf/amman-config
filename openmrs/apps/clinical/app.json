@@ -282,7 +282,7 @@
             "SAP, Injury Site":{
             "allowAddMore": true
           },
-            "SAP, Planned Surgical procedures":{
+            "SAP, Planned Surgical Procedures for next OT":{
             "allowAddMore": true
             },
             "MD, Surgical Procedures Outside AMH":{
@@ -319,7 +319,7 @@
                 "PE, Abdomen examination": "Soft, no hepatosplenomegaly, no tenderness, no mass",
                 "PE, Rectal and genitalia examination": "Deferred",
                 "PE, Extremities examination": "No clubbing, cyanosis or edema, normal joints with full range of motion",
-                "PE, Neurologic examination": "Cranial nerves intact, normal muscular deep tendon reflexes, normal strength, normal sensitivity"
+                "PE, Neurologic examination": "Cranial nerves intact, normal muscular deep tendon reflexes, muscle power intact, sensation intact throughout, gait intact, mental status intact "
             },
             "MD, Site of procedure":{
                 "autocomplete":true
@@ -512,7 +512,74 @@
           },
           "ANA, Wound Assessment":{
             "allowAddMore":true
-          }
+          },
+          "SFP, Type of complication":{
+            "multiSelect":true,
+              "autocomplete":true
+
+          },
+          "FP, Planned Procedure (surgical) data": {
+            "autocomplete":true,
+            "codedConceptName":"SFP, Planned Procedure (surgical)",
+            "nonCodedConceptName":"SFP, Non coded Planned Procedure (surgical)",
+            "allowAddMore": true
+          },
+          "SFP, Site of surgical procedure":{
+            "autocomplete":true,
+            "multiSelect":true
+          },
+          "OMF, Chief complaint":{
+            "multiSelect":true
+          },
+          "OMF, Last surgery":{
+            "dropdown":true
+          },
+          "OMF, Current treatment":{
+            "multiSelect":true
+          },
+          "OR , Drainage Section":{
+            "allowAddMore":true
+          },
+          "OR, Site of drain":{
+            "autocomplete":true
+          },
+          "OR, Pre-operative diagnoses":{
+            "dropdown":true
+          },
+          "OR, Operation":{
+            "dropdown":true
+          },
+          "FP, Planned Surgical Procedures for next OT":{
+            "allowAddMore":true
+          },
+          "OR, Surgeon":{
+            "multiSelect":true
+          },
+          "OR, Anaesthetist":{
+            "multiSelect":true
+          },
+          "OR, Type of anaesthesia":{
+             "multiSelect":true
+          },
+          "OR, Operation performed": {
+             "autocomplete":true,
+             "codedConceptName":"OR, Operation performed coded",
+             "nonCodedConceptName":"OR, Operation performed non coded",
+             "allowAddMore": true
+           },
+           "OR, Operations performed in the OT":{
+               "allowAddMore":true
+           },
+           "OR, Site of operation":{
+               "multiSelect":true,
+               "autocomplete":true
+           },
+           "OMF, Current plan":{
+               "multiSelect":true
+           },
+           "Post-Op Ward Monitoring":{
+               "allowAddMore":true
+           }
     },
         "visitPage": {
             "observationDisplay": {

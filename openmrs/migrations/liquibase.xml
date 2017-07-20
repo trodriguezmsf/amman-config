@@ -2613,4 +2613,1285 @@
             UPDATE concept_name set name ="R2D: Refused to Undergo Surgery" where name ="R2D: Refused to Under Surgery" and concept_name_type ="FULLY_SPECIFIED";
         </sql>
     </changeSet>
+    <changeSet id="Amman-201706131005" author="Shireesha, Pramida" context="rel3.1">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from surgical_appointment_attribute_type where name = 'notes';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding surgical appointment attribute type for Notes</comment>
+        <sql>
+            INSERT INTO surgical_appointment_attribute_type (name, description, format, sort_weight, creator, date_created, uuid)
+            VALUES('notes', 'Notes', 'java.lang.String' ,'10', 8, NOW(), UUID());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706211408" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="SAP, Is patient for surgery" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(SELECT concept_id  from concept_name where name= 'SAP, Injury Site' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding SAP, Is patient for surgery in Final SAP, Injury Site </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set from concept_name where name= 'SAP, Injury Site' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'SAP, Is patient for surgery' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id1,@concept_set,1021,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706211410" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="SAP, Has Patient Consent Been Obtained?" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(SELECT concept_id  from concept_name where name= 'SAP, Injury Site' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding SAP, Has Patient Consent Been Obtained? in Final SAP, Injury Site </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set from concept_name where name= 'SAP, Injury Site' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'SAP, Has Patient Consent Been Obtained?' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id2,@concept_set,1022,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706211412" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name ="SAP, Surgical summary" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(SELECT concept_id  from concept_name where name= 'SAP, Injury Site' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding SAP, Surgical summary in Final SAP, Injury Site </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set from concept_name where name= 'SAP, Injury Site' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = 'SAP, Surgical summary' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id3,@concept_set,1023,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706211416" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name = "SAP, Planned Surgical procedures" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>updateing  Planned Surgical procedures to Planned Surgical procedures for next OT</comment>
+        <sql>
+            Update concept_name set name = "SAP, Planned Surgical Procedures for next OT" where name = "SAP, Planned Surgical procedures" and concept_name_type ="FULLY_SPECIFIED";
+            select concept_id INTO @conceptid from concept_name where name ="SAP, Planned Surgical Procedures for next OT" and concept_name_type ="FULLY_SPECIFIED";
+            Update concept_name set name = "Planned Surgical Procedures for next OT" where concept_id = @conceptid and concept_name_type ="SHORT";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706211420" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_name where name = "SAP, Planned Surgical procedures" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>deleting Surgical summary from Surgeon Pre-Op Assessment and Treatment Plan form </comment>
+        <sql>
+            delete  from concept_set where concept_id =(select concept_id  from concept_name where name ="SAP, Surgical summary" AND concept_name_type="FULLY_SPECIFIED") and concept_set = (select concept_id  from concept_name where name ="Surgeon Pre-Op Assessment and Treatment Plan" AND concept_name_type="FULLY_SPECIFIED");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706221502" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from person_name where given_name ="Muckhaled" and family_name ="Naseef";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new person and making him as provider</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Muckhaled","Naseef",8, now(), uuid());
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706221504" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from person_name where given_name ="Ghassan" and family_name ="S.Abu-Sittah";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new person and making him as provider</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Ghassan","S.Abu-Sittah",8, now(), uuid());
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706221506" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from person_name where given_name ="Other" and family_name ="Surgeon";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new person and making him as provider</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Other","Surgeon",8, now(), uuid());
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706281234" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='Surgeon Pre-Op Assessment and Treatment Plan' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='SAP, Is patient for surgery' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concepts into Surgeon Pre-Op Assessment and Tx Plan form</comment>
+        <sql>
+            select concept_id INTO @conceptset from concept_name where name ='Surgeon Pre-Op Assessment and Treatment Plan' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid1 from concept_name where name ='SAP, Is patient for surgery' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid2 from concept_name where name ='SAP, Has Patient Consent Been Obtained?' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid3 from concept_name where name ='SAP, Surgical summary' and concept_name_type = "FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) values (@conceptid1,@conceptset,1011,8,now(),uuid()),
+                                                                                                          (@conceptid2,@conceptset,1012,8,now(),uuid()),
+                                                                                                          (@conceptid3,@conceptset,1013,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706281236" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='SAP, Injury Site' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='SAP, Is patient for surgery' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting concepts from site of injury set</comment>
+        <sql>
+            select concept_id INTO @conceptset from concept_name where name ='SAP, Injury Site' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid1 from concept_name where name ='SAP, Is patient for surgery' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid2 from concept_name where name ='SAP, Has Patient Consent Been Obtained?' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid3 from concept_name where name ='SAP, Surgical summary' and concept_name_type = "FULLY_SPECIFIED";
+            Delete from concept_set where concept_set =@conceptset and concept_id =@conceptid1;
+            Delete from concept_set where concept_set =@conceptset and concept_id =@conceptid2;
+            Delete from concept_set where concept_set =@conceptset and concept_id =@conceptid3;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706231636" author="Santhosh, Maharjun" context="rel3.2" runOnChange="true">
+        <comment>Adding global property for surgical history display control</comment>
+        <sqlFile path="operationTheater/surgicalHistoryDisplayControl.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201706281650" author="Santhosh, Maharjun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM global_property WHERE property = "webservices.rest.maxResultsDefault";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating the global property for webservices maxResultsDefault</comment>
+        <sql>
+            UPDATE global_property
+            SET property_value = 200
+            WHERE property = "webservices.rest.maxResultsDefault";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706291059" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name = "SMH, Dose and freqency" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>updateing  SMH, Dose and freqency to SMH, Dose and frequency</comment>
+        <sql>
+            Update concept_name set name = "SMH, Dose and frequency" where name = "SMH, Dose and freqency" and concept_name_type ="FULLY_SPECIFIED";
+            select concept_id INTO @conceptid from concept_name where name ="SMH, Dose and frequency" and concept_name_type ="FULLY_SPECIFIED";
+            Update concept_name set name = "Dose and frequency" where concept_id = @conceptid and concept_name_type ="SHORT";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706291208" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name = "SAP, Planned procedure data" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>updateing  Planned procedure to Planned Procedure (surgical)</comment>
+        <sql>
+            select concept_id INTO @conceptid from concept_name where name ="SAP, Planned procedure data" and concept_name_type ="FULLY_SPECIFIED";
+            Update concept_name set name = "Planned Procedure (surgical)" where concept_id = @conceptid and concept_name_type ="SHORT";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201706291730" author="Santhosh, Maharjun" context="rel3.2" runOnChange="true">
+        <comment>Adding patient listing queues for patients whose are in to be scheduled queue</comment>
+        <sqlFile path="operationTheater/patientListingQueueToBeScheduled.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201707031330" author="Santhosh, Maharjun" context="rel3.2" runOnChange="true">
+        <comment>Adding patient listing queues for patients whose are in scheduled queue</comment>
+        <sqlFile path="operationTheater/patientListingQueueScheduled.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201707101010" author="Shireesha, Pramida" context="rel3.2" runOnChange="true">
+        <comment>Adding sql for pulling planned procedures for </comment>
+        <sqlFile path="operationTheater/plannedProcedureForPatient.sql"></sqlFile>
+    </changeSet>
+    <changeSet id="Amman-201707071540" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in(select concept_id from concept_name where name ="SAP, Associated neural injury" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'Surgeon Pre-Op Assessment and Treatment Plan' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding concepts into surgeon pre-op assessment form</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set from concept_name where name= 'Surgeon Pre-Op Assessment and Treatment Plan' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'SAP, Associated neural injury' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id1,@concept_set,1011,8,now(),uuid());
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'SAP, Comments (neural injury)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id2,@concept_set,1012,8,now(),uuid());
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = 'SAP, Associated vascular injury' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id3,@concept_set,1013,8,now(),uuid());
+            SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name = 'SAP, Comments (vascular injury)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id4,@concept_set,1014,8,now(),uuid());
+            SELECT concept_id INTO @concept_id5 FROM concept_name WHERE name = 'SAP, Estimated duration' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id5,@concept_set,1021,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707071545" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_set where concept_id in(select concept_id from concept_name where name ="SAP, Is patient for surgery" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'Surgeon Pre-Op Assessment and Treatment Plan' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>updating order of SAP, Is patient for surgery in Surgeon Pre-Op Assessment and Treatment Plan form</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set from concept_name where name= 'Surgeon Pre-Op Assessment and Treatment Plan' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'SAP, Is patient for surgery' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET sort_weight = 1015 where concept_id = @concept_id1;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707071548" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_set where concept_id in(select concept_id from concept_name where name ="SAP, Has Patient Consent Been Obtained?" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'Surgeon Pre-Op Assessment and Treatment Plan' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>updating order of SAP, Has Patient Consent Been Obtained? in Surgeon Pre-Op Assessment and Treatment Plan form</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set from concept_name where name= 'Surgeon Pre-Op Assessment and Treatment Plan' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'SAP, Has Patient Consent Been Obtained?' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET sort_weight = 1016 where concept_id = @concept_id1;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707071554" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_set where concept_id in(select concept_id from concept_name where name ="SAP, Surgical summary" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'Surgeon Pre-Op Assessment and Treatment Plan' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>updating order of SAP, Surgical summary in Surgeon Pre-Op Assessment and Treatment Plan form</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set from concept_name where name= 'Surgeon Pre-Op Assessment and Treatment Plan' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'SAP, Surgical summary' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET sort_weight = 1022 where concept_id = @concept_id1;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707101112" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in(select concept_id from concept_name where name ="SAP, Reason for consultation" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'SAP, Length of Plan' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding SAP, Reason for consultation into SAP, Length of Plan</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set  from concept_name where name= 'SAP, Length of Plan' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Reason for consultation' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id,@concept_set,1071,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707101115" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SAP, Site of injury" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Jaw' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Site, Jaw into SAP, Site of injury</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Site of injury' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Site, Jaw' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707101116" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SAP, Site of injury" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Abdomen' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Site, Abdomen into SAP, Site of injury</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Site of injury' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Site, Abdomen' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707101118" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SAP, Planned procedure (surgical)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Dental extraction' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Dental extraction into SAP, Planned procedure (surgical)</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Planned procedure (surgical)' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Dental extraction' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707101125" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SAP, Planned procedure (surgical)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Quadricepsplasty' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Quadricepsplasty into SAP, Planned procedure (surgical)</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Planned procedure (surgical)' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Quadricepsplasty' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707101120" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SAP, Planned procedure (surgical)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Sinusectomy' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Sinusectomy into SAP, Planned procedure (surgical)</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Planned procedure (surgical)' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Sinusectomy' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707101227" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name = 'Comments about sugical objectives' AND concept_name_type ="SHORT";
+            </sqlCheck>
+        </preConditions>
+        <comment>updating Comments about sugical objectives to Comments about surgical objectives </comment>
+        <sql>
+            UPDATE concept_name SET name = 'Comments about surgical objectives' WHERE name = 'Comments about sugical objectives' AND concept_name_type ="SHORT";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707100108" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SAP, Site of surgical procedure" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Jaw' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Site, Jaw into SAP, SAP, Site of surgical procedure</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Site of surgical procedure' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Site, Jaw' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707100110" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SAP, Site of surgical procedure" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Abdomen' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Site, Abdomen into SAP, Site of surgical procedure</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Site of surgical procedure' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Site, Abdomen' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707100233" author="shiva kumar" context="rel3.2" >
+        <comment>Updating side and site in surgeon pre-op assessment form</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set FROM concept_name WHERE name = 'SAP, Planned Surgical Procedures for next OT' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Side of surgical procedure' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET sort_weight=1005 WHERE concept_id=@concept_id AND concept_set=@concept_set;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707071544" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SAP, Site of surgical procedure" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Zygoma' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding  new Sites into SAP, Site of surgical procedure</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Site of surgical procedure' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, Zygoma' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer1,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Zygomatico-orbital complex' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer3 FROM concept_name WHERE name = 'Site, Maxilla' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer3,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer4 FROM concept_name WHERE name = 'Site, Premaxilla' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer4,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer5 FROM concept_name WHERE name = 'Site, Anterior maxilla' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer5,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer6 FROM concept_name WHERE name = 'Site, Upper lip' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer6,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer7 FROM concept_name WHERE name = 'Site, Lower lip' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer7,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer8 FROM concept_name WHERE name = 'Site, Commissure' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer8,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer9 FROM concept_name WHERE name = 'Site, Upper jaw' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer9,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer10 FROM concept_name WHERE name = 'Site, Anterior mandible' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer10,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707071546" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SAP, Site of injury" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Zygoma' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding  new Sites into SAP, Site of injury</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SAP, Site of injury' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, Zygoma' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer1,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Zygomatico-orbital complex' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer3 FROM concept_name WHERE name = 'Site, Maxilla' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer3,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer4 FROM concept_name WHERE name = 'Site, Premaxilla' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer4,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer5 FROM concept_name WHERE name = 'Site, Anterior maxilla' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer5,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer6 FROM concept_name WHERE name = 'Site, Upper lip' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer6,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer7 FROM concept_name WHERE name = 'Site, Lower lip' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer7,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer8 FROM concept_name WHERE name = 'Site, Commissure' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer8,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer9 FROM concept_name WHERE name = 'Site, Upper jaw' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer9,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer10 FROM concept_name WHERE name = 'Site, Anterior mandible' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer10,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707101607" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name = "Surgeon Pre-Op Assessment and Treatment Plan" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>updateing  urgeon Pre-Op Assessment and Treatment Plan short name</comment>
+        <sql>
+            select concept_id INTO @conceptid from concept_name where name ="Surgeon Pre-Op Assessment and Treatment Plan" and concept_name_type ="FULLY_SPECIFIED";
+            Update concept_name set name = "Surgeon Pre-Op Assessment and Treatment Plan" where concept_id = @conceptid and concept_name_type ="SHORT";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707101139" author="Shireesha, Pramida" context="rel3.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role where role = "OT: FullAccess";
+            </sqlCheck>
+        </preConditions>
+        <comment> Creating a role for OT: FullAccess</comment>
+        <sql>
+            INSERT INTO role(role, description, uuid) VALUES ("OT: FullAccess", "Ability to access and modify OT schedules", uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707101152" author="Shireesha, Pramida" context="rel3.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role where role = "OT: ReadOnly";
+            </sqlCheck>
+        </preConditions>
+        <comment> Creating a role for OT- ReadOnly</comment>
+        <sql>
+            INSERT INTO role(role, description, uuid) VALUES ("OT: ReadOnly", "Ability to access and modify OT schedules", uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707101154" author="Shireesha, Pramida" context="rel3.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM privilege where privilege = "app:ot";
+            </sqlCheck>
+        </preConditions>
+        <comment> Creating a privilege for viewing the OT module</comment>
+        <sql>
+            INSERT INTO privilege(privilege, description, uuid) VALUES ("app:ot", "Ability to view OT module", uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707101156" author="Shireesha, Pramida" context="rel3.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM privilege where privilege = "app:ot:write";
+            </sqlCheck>
+        </preConditions>
+        <comment> Creating a privilege for viewing the OT module</comment>
+        <sql>
+            INSERT INTO privilege(privilege, description, uuid) VALUES ("app:ot:write", "Ability to view new surgical block and other buttons to edit on OT module", uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707101106" author="Shireesha, Pramida" context="rel3.2">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM privilege WHERE privilege = "Manage OT Schedules";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "OT: FullAccess" AND privilege = "Manage OT Schedules";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Manage OT Schedules privilege to OT: FullAccess role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("OT: FullAccess", "Manage OT Schedules");
+            INSERT INTO role_privilege(role, privilege) VALUES ("OT: FullAccess", "View OT Schedules");
+            INSERT INTO role_privilege(role, privilege) VALUES ("OT: FullAccess", "app:ot");
+            INSERT INTO role_privilege(role, privilege) VALUES ("OT: FullAccess", "app:ot:write");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707101159" author="Shireesha, Pramida" context="rel3.2">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM privilege WHERE privilege = "View OT Schedules";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "OT: ReadOnly" AND privilege = "View OT Schedules";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding view OT Schedules privilege to OT: ReadOnly role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("OT: ReadOnly", "View OT Schedules");
+            INSERT INTO role_privilege(role, privilege) VALUES ("OT: ReadOnly", "app:ot");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707101855" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="OR, Operation performed coded" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Dental extraction' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Dental extraction into OR, Operation performed coded</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Dental extraction' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707101859" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="OR, Operation performed coded" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Quadricepsplasty' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Quadricepsplasty into OR, Operation performed coded)</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Quadricepsplasty' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111220" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name ="MD, Chief complaint" AND concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating MD, Chief complaint to MD, Reason for admission to program</comment>
+        <sql>
+            UPDATE concept_name SET name = "MD, Reason for admission to program" WHERE name = "MD, Chief complaint" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptid FROM concept_name WHERE name ="MD, Reason for admission to program" AND concept_name_type ="FULLY_SPECIFIED";
+            UPDATE concept_name SET name = "Reason for admission to program" WHERE concept_id = @conceptid AND concept_name_type ="SHORT";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111222" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_set where concept_id in(select concept_id from concept_name where name ="MD, Associated neural injury" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'MD Initial Assessment' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting concepts from MD Initial Assessment</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set FROM concept_name WHERE name ="MD Initial Assessment" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptid1 FROM concept_name WHERE name ="MD, Associated neural injury" AND concept_name_type ="FULLY_SPECIFIED";
+            DELETE FROM concept_set WHERE concept_id = @conceptid1 AND concept_set = @concept_set;
+            SELECT concept_id INTO @conceptid2 FROM concept_name WHERE name ="MD, Comments (neural injury)" AND concept_name_type ="FULLY_SPECIFIED";
+            DELETE FROM concept_set WHERE concept_id = @conceptid2 AND concept_set = @concept_set;
+            SELECT concept_id INTO @conceptid3 FROM concept_name WHERE name ="MD, Associated vascular injury" AND concept_name_type ="FULLY_SPECIFIED";
+            DELETE FROM concept_set WHERE concept_id = @conceptid3 AND concept_set = @concept_set;
+            SELECT concept_id INTO @conceptid4 FROM concept_name WHERE name ="MD, Comments (vascular injury)" AND concept_name_type ="FULLY_SPECIFIED";
+            DELETE FROM concept_set WHERE concept_id = @conceptid4 AND concept_set = @concept_set;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111225" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="MD, Site of procedure" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Jaw' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding jaw and abdomn into site of procedures</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'MD, Site of procedure' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, Jaw' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer1,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Abdomen' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111230" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name ="Deformed, mobile" AND concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating Deformed, mobile to Visible deformity</comment>
+        <sql>
+            UPDATE concept_name SET name ="Visible deformity" WHERE name ="Deformed, mobile" AND concept_name_type="FULLY_SPECIFIED";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111232" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name ="Deformed, stiff" AND concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating Deformed, stiff to Limitation of function</comment>
+        <sql>
+            UPDATE concept_name SET name ="Limitation of function" WHERE name ="Deformed, stiff" AND concept_name_type="FULLY_SPECIFIED";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111542" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="POW, Site of dressing" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, lliac' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding lliac and femut into site of dressing</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'POW, Site of dressing' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, lliac' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer1,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Femur' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111545" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="ONN, Site of dressing" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, lliac' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding lliac and femut into site of dressing</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'ONN, Site of dressing' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, lliac' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer1,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Femur' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111547" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="WWN, Site of dressing" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, lliac' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding lliac and femut into site of dressing</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'WWN, Site of dressing' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, lliac' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer1,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Femur' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111549" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="MH, Name of MLO" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Dr. Medya Rasheed' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Dr. Aziz Abu Azizeh and Dr. Medya Rasheed into MH, Name of MLO</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'MH, Name of MLO' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Dr. Aziz Abu Azizeh' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer1,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Dr. Medya Rasheed' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707111550" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="WWN, Drainage Set" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'WWN, Total quantity evacuated from the drain' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding WWN, Total quantity evacuated from the drain into WWN, Drainage Set</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set  from concept_name where name= 'WWN, Drainage Set' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'WWN, Total quantity evacuated from the drain' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id,@concept_set,1021,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20170707121212" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name ="Site, lliac" AND concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating Site, lliac to Site, Iliac</comment>
+        <sql>
+            Update concept_name set name ="Site, Iliac" where name ="Site, lliac" and concept_name_type = "FULLY_SPECIFIED";
+            Update concept_name set name ="Iliac" where name ="lliac" and concept_name_type = "SHORT";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707121238" author="Shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name = "Surgeon Follow-up" and concept_name_type = "FULLY_SPECIFIED") and concept_set =88;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new observation templates </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id6 FROM concept_name WHERE name = 'Surgeon Follow-up' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id6,88,22,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707121240" author="Shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name = "OPD MD Follow-Up Note" and concept_name_type = "FULLY_SPECIFIED") and concept_set =88;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new observation templates </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id6 FROM concept_name WHERE name = 'OPD MD Follow-Up Note' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id6,88,23,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707121242" author="Shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name = "Operative Report" and concept_name_type = "FULLY_SPECIFIED") and concept_set =88;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new observation templates </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id6 FROM concept_name WHERE name = 'Operative Report' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id6,88,24,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171203" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="suha_q";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Suha","Qasem",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("suha_q","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:ReadOnly"),
+            ((SELECT max(user_id) FROM users),"Patient-Documents-Upload"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) from users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171205" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="anneliese_c";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Anneliese","Coury",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("anneliese_c","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:ReadOnly"),
+            ((SELECT max(user_id) FROM users),"Emr-Reports"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) from users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171207" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="safa_h";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Safa","Herfat",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("safa_h","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:ReadOnly"),
+            ((SELECT max(user_id) FROM users),"Emr-Reports"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) from users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171209" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="pierre_m";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Pierre","Moreau",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("pierre_m","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:ReadOnly"),
+            ((SELECT max(user_id) FROM users),"Emr-Reports"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) from users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171212" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="alaa_t";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Alaa Al","Toum",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("alaa_t","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"Emr-Reports"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) from users),"InPatient-Patient-Movement"),
+            ((SELECT max(user_id) from users),"InPatient-Edit-BedTags-Only"),
+            ((SELECT max(user_id) from users),"OT: FullAccess");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171214" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="ahmad_n";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Ahmad","Nasralla",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("ahmad_n","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171218" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="waqqad_h";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Waqqad","Hamdan",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("waqqad_h","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171220" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="ahmad_l";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Ahmad","Ijdoua",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("ahmad_l","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171222" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="abeer_m";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Abeer","Abusamour",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("abeer_m","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171224" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="diya_g";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Diya Al","Ghoul",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("diya_g","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171226" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="ghadeer_b";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Ghadeer  Al","Bakkar",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("ghadeer_b","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"Clinical:ReadOnly"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171228" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="Shadi_k";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Shadi","Alkhawaldeh",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("Shadi_k","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"Clinical:ReadOnly"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171230" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username="Ghassan_h";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new user and roles to the user</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Ghassan Al","Hourani",8, now(), uuid());
+            INSERT INTO users (username, password, salt, creator, date_created, changed_by, person_id,retired,uuid) VALUES ("Ghassan_h","5cf456be925a6b403454ea4bfbf444d406789cf05614bf164068ff29ea648dcea17f9f34137505d8c6dad3d1102bd8832ab34c545353cc47ec0532e7d6d2e938","bb27aaf6dd5590a09923659f89a7c51197273c058947a5bb902bd9a1eb19ed9b68152fc2d7d3e1f5d097b51b0720dac1acddb55a113c806cdeb2949170e9ba1a",8,now(),8,(SELECT max(person_id) FROM person),0,uuid());
+            INSERT INTO user_role VALUES ((SELECT max(user_id) FROM users),"Bahmni-User"),
+            ((SELECT max(user_id) FROM users),"Registration-Read"),
+            ((SELECT max(user_id) FROM users),"Clinical:FullAccess"),
+            ((SELECT max(user_id) FROM users),"Clinical:ReadOnly"),
+            ((SELECT max(user_id) FROM users),"InPatient-Read"),
+            ((SELECT max(user_id) FROM users),"OT: ReadOnly");
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707171232" author="shivakumar" context="rel3.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username ="abdallah_ad";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "OT: ReadOnly" AND user_id IN (SELECT user_id FROM
+                users WHERE username = "abdallah_ad")
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding OT: ReadOnly role to all users</comment>
+        <sql>
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abdallah_ad"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abdelraouf_ah"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abdullah_al"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abdulrahman_af"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abeer_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="adham_by"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ahmad_ad"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ahmad_ar"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ajeeb_am"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ala_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="alaa_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ali_aa"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="amani_az"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ammar_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="amro_ahm"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ashraf_b"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ashraf_n"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="asma_z"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ayman_ao"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="aziz_az"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="baraa_ah"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="birgit_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="deyaa_eb"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="dima_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="dina_aah"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="doaa_as"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="duaa_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="dyala_o"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="elisa_b"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="eman_af"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="eman_f"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="firas_q"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hadeel_aa"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hamza_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hamzah_me"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hamzah_m"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hani_i"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hanna_j"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="harith_k"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="haya_aq"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="helana_ak"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hilana_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hulya_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hussein_am"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="israa_aj"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="iyad_y"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="julien_f"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="kamelah_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="khaldoon_ad"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="khaled_ah"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="lina_am"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="loay_m"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="maamoun_j"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mahmoud_ah"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mahmoud_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="majdi_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mamon_q"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="manar_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="marc_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="michael_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_ab"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_am"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_b"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_d"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammed_r"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohd_b"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="moukhallad_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="muhannad_m"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="muntaha_m"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="nabil_j"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="Nagham_H"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="naseer_j"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="naser_r"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="nasser_ej"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="nisreen_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="noor_n"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="noor_ak"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="osama_b"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="osama_n"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="qusay_o"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="qutaiba_am"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="radah_l"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rami_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rand_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rasheed_as"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rawan_ag"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="razan_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rinad_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ruba_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="safa_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sajdi_m"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="salam_s"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="saleem_aa"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="saleh_ar"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="samah_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="samar_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sami_ak"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sandrine_v"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="shadi_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="shahinaz_n"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sufyan_aq"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="suleiman_ak"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="tareq_f"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="waleed_bo"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="weaam_a"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="william_t"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yahya_k"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yara_ae"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yazan_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yazan_k"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yousef_aa"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="zaid_se"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="zuheir_h"),"OT: ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="khouloud_s"),"OT: ReadOnly");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707170225" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+             select count(*) from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Ali" and family_name ="Al Ani";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding specific colors to surgeon to display on calender</comment>
+        <sql>
+            select provider_id INTO @providerID from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Ali" and family_name ="Al Ani";
+            select provider_attribute_type_id INTO @provideratID from provider_attribute_type where name ="otCalendarColor";
+            INSERT into provider_attribute(provider_id,attribute_type_id,value_reference,uuid,creator,date_created) values (@providerID,@provideratID,60,uuid(),8,now());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707170226" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Sufyan" and family_name ="Al Qasab";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding specific colors to surgeon to display on calender</comment>
+        <sql>
+            select provider_id INTO @providerID from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Sufyan" and family_name ="Al Qasab";
+            select provider_attribute_type_id INTO @provideratID from provider_attribute_type where name ="otCalendarColor";
+            INSERT into provider_attribute(provider_id,attribute_type_id,value_reference,uuid,creator,date_created) values (@providerID,@provideratID,120,uuid(),8,now());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707170227" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Ashraf" and family_name ="Nabhan";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding specific colors to surgeon to display on calender</comment>
+        <sql>
+            select provider_id INTO @providerID from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Ashraf" and family_name ="Nabhan";
+            select provider_attribute_type_id INTO @provideratID from provider_attribute_type where name ="otCalendarColor";
+            INSERT into provider_attribute(provider_id,attribute_type_id,value_reference,uuid,creator,date_created) values (@providerID,@provideratID,240,uuid(),8,now());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707170228" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Rasheed" and family_name ="Al Sammarraie";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding specific colors to surgeon to display on calender</comment>
+        <sql>
+            select provider_id INTO @providerID from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Rasheed" and family_name ="Al Sammarraie";
+            select provider_attribute_type_id INTO @provideratID from provider_attribute_type where name ="otCalendarColor";
+            INSERT into provider_attribute(provider_id,attribute_type_id,value_reference,uuid,creator,date_created) values (@providerID,@provideratID,300,uuid(),8,now());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707170229" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+            select count(*) from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Muckhaled" and family_name ="Naseef";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding specific colors to surgeon to display on calender</comment>
+        <sql>
+        select provider_id INTO @providerID from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Ashraf" and family_name ="Bustanji";
+        select provider_attribute_type_id INTO @provideratID from provider_attribute_type where name ="otCalendarColor";
+        INSERT into provider_attribute(provider_id,attribute_type_id,value_reference,uuid,creator,date_created) values (@providerID,@provideratID,345,uuid(),8,now());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707170231" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Ghassan" and family_name ="S.Abu-Sittah";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding specific colors to surgeon to display on calender</comment>
+        <sql>
+            select provider_id INTO @providerID from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Ghassan" and family_name ="S.Abu-Sittah";
+            select provider_attribute_type_id INTO @provideratID from provider_attribute_type where name ="otCalendarColor";
+            INSERT into provider_attribute(provider_id,attribute_type_id,value_reference,uuid,creator,date_created) values (@providerID,@provideratID,210,uuid(),8,now());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707170233" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+              select count(*) from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Other" and family_name ="Surgeon";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding specific colors to surgeon to display on calender</comment>
+        <sql>
+            select provider_id INTO @providerID from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Other" and family_name ="Surgeon";
+            select provider_attribute_type_id INTO @provideratID from provider_attribute_type where name ="otCalendarColor";
+            INSERT into provider_attribute(provider_id,attribute_type_id,value_reference,uuid,creator,date_created) values (@providerID,@provideratID,75,uuid(),8,now());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707191147" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from users where username="suha_q";
+            </sqlCheck>
+        </preConditions>
+        <comment>updating gender of the user</comment>
+        <sql>
+            select p.person_id into @personID from users as u join person as p on u.user_id = p.person_id where u.username ='suha_q';
+            update person set gender = 'F' where person_id = @personID ;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707191149" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from users where username="anneliese_c";
+            </sqlCheck>
+        </preConditions>
+        <comment>updating gender of the user</comment>
+        <sql>
+            select p.person_id into @personID from users as u join person as p on u.user_id = p.person_id where u.username ='anneliese_c';
+            update person set gender = 'F' where person_id = @personID ;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707191151" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from users where username="abeer_m";
+            </sqlCheck>
+        </preConditions>
+        <comment>updating gender of the user</comment>
+        <sql>
+            select p.person_id into @personID from users as u join person as p on u.user_id = p.person_id where u.username ='abeer_m';
+            update person set gender = 'F' where person_id = @personID ;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201707191153" author="shiva kumar" context="rel3.2" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from users where username="ghadeer_b";
+            </sqlCheck>
+        </preConditions>
+        <comment>updating gender of the user</comment>
+        <sql>
+            select p.person_id into @personID from users as u join person as p on u.user_id = p.person_id where u.username ='ghadeer_b';
+            update person set gender = 'F' where person_id = @personID;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
+
+
+
+
+

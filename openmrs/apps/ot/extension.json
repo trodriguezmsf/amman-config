@@ -1,3 +1,49 @@
 {
-
+  "bahmniOperationTheatreToBeScheduledQueue":{
+    "id": "bahmni.ipd.patients.search.patientsToBeScheduled",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "links": [
+        {
+          "url": "/bahmni/ot/#/otScheduling",
+          "linkColumn": "identifier",
+          "newTab": true
+        }
+      ],
+      "view": "tabular",
+      "searchHandler": "emrapi.sqlSearch.otToBeScheduledQueue",
+      "translationKey": "PATIENT_LISTING_QUEUE_TO_BE_SCHEDULED_LABEL_KEY",
+      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Planned Procedure", "Surgeon Name", "Speciality", "Status", "Outcome of Anaesthesia"]
+    },
+    "label": "To Be Scheduled",
+    "order": 1,
+    "requiredPrivilege": "app:ot:write"
+  },
+  "bahmniOperationTheatreScheduledQueue":{
+    "id": "bahmni.ipd.patients.search.patientsScheduled",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "links": [
+        {
+          "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/consultationContext",
+          "linkColumn": "Program State",
+          "newTab": true
+        },
+        {
+          "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard/disposition?programUuid={{programUuid}}&enrollment={{enrollment}}",
+          "linkColumn": "disposition",
+          "newTab": true
+        }
+      ],
+      "view": "tabular",
+      "searchHandler": "emrapi.sqlSearch.otScheduledQueue",
+      "translationKey": "PATIENT_LISTING_QUEUE_SCHEDULED_LABEL_KEY",
+      "searchColumns": ["PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Current Department", "Bed Number", "Current Program State", "Date of Surgery", "Status"]
+    },
+    "label": "Scheduled",
+    "order": 1,
+    "requiredPrivilege": "app:ot"
+  }
 }

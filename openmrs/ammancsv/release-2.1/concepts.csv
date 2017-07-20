@@ -1,0 +1,10 @@
+uuid,name,description,class,datatype,shortname,synonym.1,synonym.2,synonym.3,answer.1,reference-term-source,reference-term-code,reference-term-relationship
+,"FV, Date of Presentation",,misc,Date,Date of Presentation,,,,,,,
+,R2A : Surgery Outside,,misc,N/A,,,,,,,,
+,R2B: Refused Treatment or Follow-up,,misc,N/A,,,,,,,,
+,R2C: Refused Travel to Amman, ,misc,N/A,,,,,,,,
+,R2D: Refused to Under Surgery,,misc,N/A,R2D: Refused to Undergo Surgery,,,,,,,
+,Orthopantogram (OPG) ,,misc,N/A,,,,,,,,
+,Electrocardiogram (ECG),,misc,N/A,,,,,,,,
+,Blood Investigations,,misc,N/A,,,,,,,,
+,Cardiac Echo,,misc,N/A,,,,,,,,

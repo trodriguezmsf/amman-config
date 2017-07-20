@@ -3,8 +3,13 @@
   "extensionPoints": [
   ],
   "config": {
-    "diagnosisStatus": "Inactive",
-    "primarySurgeonsForOT" : ["55b4ebe6-a00b-4ee1-8691-a71513bc3253", "176cc01a-1617-11e7-85a5-080027b18094"],
+    "patientDashboardUrl": {
+      "link": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard?dateEnrolled={{dateEnrolled}}&programUuid={{programUuid}}&enrollment={{enrollment}}&currentTab=DASHBOARD_TAB_PATIENT_SUMMARY_KEY",
+      "errorMessage": "The patient is not enrolled to the program"
+    },
+    "primarySurgeonsForOT" : ["Ali Al Ani","Sufyan Al Qasab","Hanna Janho","Ashraf Nabhan","Rasheed Al Sammarraie","Muckhaled Naseef","Ashraf Bustanji","Ghassan S.Abu-Sittah","Other Surgeon"],
+    "printListViewTemplateUrl" : "/bahmni_config/openmrs/apps/ot/printListView.html",
+    "procedureSQLGlobalProperty": "emrapi.sqlSearch.plannedProcedureForPatient",
     "calendarView": {
       "dayViewStart": "08:00",
       "dayViewEnd": "18:00",
