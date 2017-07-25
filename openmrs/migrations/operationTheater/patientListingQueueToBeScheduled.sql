@@ -71,8 +71,8 @@ FROM
                       planned_procedure_group_id
                     FROM
                       (SELECT
-                         CONCAT_WS(' ', CONCAT_WS(' on ', (CONCAT_WS(' , ', procedures, procedures_non_coded)), side),
-                                   site)                                                     AS planned_procedure,
+                         CONCAT_WS(' on ', CONCAT_WS(' , ', procedures, procedures_non_coded), NULLIF(CONCAT_WS(' ', side, site), ' '))
+                                                                              AS planned_procedure,
                          planned_surgical_procedures_on_form.planned_procedure__obs_group_id AS planned_procedure_group_id
                        FROM
 
