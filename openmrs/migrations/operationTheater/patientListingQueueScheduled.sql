@@ -25,7 +25,7 @@ FROM surgical_block sb
   INNER JOIN person_name pn ON pn.person_id = sa.patient_id
                                AND pn.voided IS FALSE
   INNER JOIN patient_identifier pi ON pi.patient_id = pn.person_id AND pi.voided IS FALSE
-  INNER JOIN patient_program pp ON pp.patient_id = sa.patient_id AND pp.voided IS FALSE
+  INNER JOIN patient_program pp ON pp.patient_id = sa.patient_id AND pp.voided IS FALSE AND pp.date_completed IS NULL
   INNER JOIN program prog ON prog.program_id = pp.program_id AND prog.retired IS FALSE
   JOIN concept_name prog_cn ON prog_cn.concept_id = prog.concept_id
                                AND prog_cn.name = 'Reconstructive surgery'
