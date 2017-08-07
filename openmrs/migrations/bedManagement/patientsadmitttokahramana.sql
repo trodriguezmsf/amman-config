@@ -40,7 +40,7 @@ WHERE v.date_stopped IS NULL AND cn.name = 'Admit to Kahramana' AND p.person_id 
                                                                                    WHERE bpam.date_stopped IS NULL
                                                                                    GROUP BY patient_id)
                             AND CASE
-                                    WHEN lastDischargeTime.date_stopped IS NOT NULL AND o.obs_datetime > lastDischargeTime.date_stopped THEN 1
+                                    WHEN lastDischargeTime.date_stopped IS NOT NULL AND o.date_created > lastDischargeTime.date_stopped THEN 1
                                     WHEN lastDischargeTime.date_stopped IS NULL THEN 1
                                 END
 GROUP BY pi.identifier
