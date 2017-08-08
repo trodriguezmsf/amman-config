@@ -198,7 +198,7 @@
                     "Follow-up validation",
                     "FV, Final validation",
                     "Baseline Vital Signs",
-                    "Social and Medical History",
+                    "OPD Nursing Initial Assessment",
                     "Health Education",
                     "Initial Anesthesia Assessment",
                     "Physiotherapy initial assessment",
@@ -375,12 +375,12 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Social and Medical History"
+            "OPD Nursing Initial Assessment"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "Social and Medical History"
+            "OPD Nursing Initial Assessment"
           ],
           "isEditable": true,
           "numberOfVisits": 3,

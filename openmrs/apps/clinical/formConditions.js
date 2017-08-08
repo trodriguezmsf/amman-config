@@ -77,34 +77,34 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
-    'SMH, Current smoker': function (formName, formFieldValues) {
+    'HE, Current smoker': function (formName, formFieldValues) {
         var conditions = {
             show: [],
             hide: []
          };
-         var conditionConcept = formFieldValues['SMH, Current smoker'];
+         var conditionConcept = formFieldValues['HE, Current smoker'];
         if (conditionConcept == "Yes"){
-            conditions.show.push("SMH, Number of cigarettes per day","SMH, Duration of smoking (in years)")
+            conditions.show.push("HE, Number of cigarettes per day","HE, Duration of smoking (in years)")
         }
         else if(conditionConcept == "No" || conditionConcept == "Unknown") {
-            conditions.hide.push("SMH, Number of cigarettes per day","SMH, Duration of smoking (in years)")
+            conditions.hide.push("HE, Number of cigarettes per day","HE, Duration of smoking (in years)")
         }
         else {
-            conditions.hide.push("SMH, Number of cigarettes per day","SMH, Duration of smoking (in years)")
+            conditions.hide.push("HE, Number of cigarettes per day","HE, Duration of smoking (in years)")
         }
         return conditions;
     },
-    'SMH, Currently taking medication': function (formName, formFieldValues) {
+    'MD, Currently taking medication': function (formName, formFieldValues) {
         var conditions = {
             show: [],
             hide: []
         };
-        var conditionConcept = formFieldValues['SMH, Currently taking medication'];
+        var conditionConcept = formFieldValues['MD, Currently taking medication'];
         if (conditionConcept == "Yes"){
-            conditions.show.push("SMH, Medication")
+            conditions.show.push("MD, Medication")
         }
         else {
-            conditions.hide.push("SMH, Medication")
+            conditions.hide.push("MD, Medication")
         }
         return conditions;
     },
