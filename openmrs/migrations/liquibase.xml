@@ -3889,6 +3889,32 @@
             update person set gender = 'F' where person_id = @personID;
         </sql>
     </changeSet>
+    <changeSet id="Amman-201708081101" author="Shiva kumar" context="rel3.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='Ward Nursing Note' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='WWN, Vital Signs' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting vital signs set from Ward Nursing note form </comment>
+        <sql>
+            SELECT concept_id INTO @conceptID FROM concept_name WHERE name ="WWN, Vital Signs" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="Ward Nursing Note" AND concept_name_type="FULLY_SPECIFIED";
+            DELETE from concept_set where concept_set=@conceptsetID and concept_id =@conceptID;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201708081108" author="Shiva kumar" context="rel3.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='Surgical Ward Admission Nursing Assessment' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='ANA, Vital Signs' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting vital signs set from Surgical Ward Admission Nursing Assessment form </comment>
+        <sql>
+            SELECT concept_id INTO @conceptID FROM concept_name WHERE name ="ANA, Vital Signs" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="Surgical Ward Admission Nursing Assessment" AND concept_name_type="FULLY_SPECIFIED";
+            DELETE from concept_set where concept_set=@conceptsetID and concept_id =@conceptID;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
