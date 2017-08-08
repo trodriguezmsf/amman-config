@@ -4052,6 +4052,19 @@
             UPDATE concept_name SET name ="OPD Nursing Initial Assessment" WHERE name ="Social and Medical History" AND concept_name_type="FULLY_SPECIFIED";
         </sql>
     </changeSet>
+    <changeSet id="Amman-201708081710" author="Shiva kumar" context="rel3.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='All Observation Templates' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='Vital Signs form' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Inserting Vital Signs form into All Observation Templates </comment>
+        <sql>
+            SELECT concept_id INTO @conceptID FROM concept_name WHERE name ="Vital Signs form" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="All Observation Templates" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID,@conceptsetID,25,8,now(),uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
