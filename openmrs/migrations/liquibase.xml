@@ -4096,6 +4096,29 @@
             CALL migrateObservationsFromSourceFormToDestinationForm('OPD Nursing Initial Assessment', 'Health Education', @listOfConcepts);
         </sql>
     </changeSet>
+    <changeSet id="Amman-201708161856" author="Santhosh, Maharjun">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*)
+                FROM INFORMATION_SCHEMA.ROUTINES
+                WHERE ROUTINE_TYPE = 'PROCEDURE'
+                AND ROUTINE_SCHEMA ='openmrs'
+                AND ROUTINE_NAME = 'migrateObservationsFromSourceFormToDestinationForm';
+            </sqlCheck>
+        </preConditions>
+        <comment>Migrating form data from the Social and Medical History form to MD Initial Assessment form</comment>
+        <sql>
+            SET @listOfConcepts = NULL;
+            SELECT group_concat(concept_id) INTO @listOfConcepts
+            FROM concept_name
+            WHERE name IN (
+            'MD, Medical History',
+            'MD, Other medical problems',
+            'MD, Allergy and Medication history'
+            );
+            CALL migrateObservationsFromSourceFormToDestinationForm('OPD Nursing Initial Assessment', 'MD Initial Assessment', @listOfConcepts);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
