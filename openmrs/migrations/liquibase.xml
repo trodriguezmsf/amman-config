@@ -4065,6 +4065,10 @@
             INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID,@conceptsetID,25,8,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201708161100" author="Santhosh" runOnChange="true">
+        <comment>Adding procedure for migration of observations from the source form to destination form</comment>
+        <sqlFile path="migrateObservationsFromSourceFormToDestinationForm.sql" endDelimiter="#"/>
+    </changeSet>
 </databaseChangeLog>
 
 
