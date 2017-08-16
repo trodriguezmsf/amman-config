@@ -4069,6 +4069,33 @@
         <comment>Adding procedure for migration of observations from the source form to destination form</comment>
         <sqlFile path="migrateObservationsFromSourceFormToDestinationForm.sql" endDelimiter="#"/>
     </changeSet>
+    <changeSet id="Amman-201708161656" author="Santhosh, Maharjun">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*)
+                FROM INFORMATION_SCHEMA.ROUTINES
+                WHERE ROUTINE_TYPE = 'PROCEDURE'
+                    AND ROUTINE_SCHEMA ='openmrs'
+                    AND ROUTINE_NAME = 'migrateObservationsFromSourceFormToDestinationForm';
+            </sqlCheck>
+        </preConditions>
+        <comment>Migrating form data from the Social and Medical History form to Health Education form</comment>
+        <sql>
+            SET @listOfConcepts = NULL;
+            SELECT group_concat(concept_id) INTO @listOfConcepts
+            FROM concept_name
+            WHERE name IN (
+                'HE, Marital status',
+                'HE, Highest education level',
+                'HE, Pregnancy status',
+                'HE, Current smoker',
+                'HE, Number of cigarettes per day',
+                'HE, Duration of smoking (in years)',
+                'HE, Drug and Alcohol use'
+            );
+            CALL migrateObservationsFromSourceFormToDestinationForm('OPD Nursing Initial Assessment', 'Health Education', @listOfConcepts);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
