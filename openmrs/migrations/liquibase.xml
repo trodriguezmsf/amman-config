@@ -4119,6 +4119,164 @@
             CALL migrateObservationsFromSourceFormToDestinationForm('OPD Nursing Initial Assessment', 'MD Initial Assessment', @listOfConcepts);
         </sql>
     </changeSet>
+    <changeSet id="Amman-201708181158" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'Pollicisation of finger or thumb' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="SAP, Planned procedure (surgical)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new procedures into SAP, Planned procedure (surgical) concept_answers </comment>
+        <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="SAP, Planned procedure (surgical)" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Pollicisation of finger or thumb" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="Dynamization of external fixator" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID3 FROM concept_name WHERE name ="Elongation of tendon achilles (ETA)" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID4 FROM concept_name WHERE name ="Posteromedial release of clubfoot" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID5 FROM concept_name WHERE name ="Excision of head of ulna" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID6 FROM concept_name WHERE name ="Ligament reconstruction" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID7 FROM concept_name WHERE name ="Epiphysiodesis" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID8 FROM concept_name WHERE name ="Corrective osteotomy" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID1,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID2,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID3,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID4,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID5,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID6,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID7,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID8,1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201708181200" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'Pollicisation of finger or thumb' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="SFP, Planned Procedure (surgical)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new procedures into SFP, Planned Procedure (surgical) concept_answers </comment>
+        <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="SFP, Planned Procedure (surgical)" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Pollicisation of finger or thumb" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="Dynamization of external fixator" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID3 FROM concept_name WHERE name ="Elongation of tendon achilles (ETA)" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID4 FROM concept_name WHERE name ="Posteromedial release of clubfoot" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID5 FROM concept_name WHERE name ="Excision of head of ulna" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID6 FROM concept_name WHERE name ="Ligament reconstruction" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID7 FROM concept_name WHERE name ="Epiphysiodesis" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID8 FROM concept_name WHERE name ="Corrective osteotomy" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID1,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID2,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID3,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID4,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID5,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID6,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID7,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID8,1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201708181202" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'Pollicisation of finger or thumb' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="OR, Operation performed coded");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new procedures into OR, Operation performed coded concept_answers </comment>
+        <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="OR, Operation performed coded" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Pollicisation of finger or thumb" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="Dynamization of external fixator" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID3 FROM concept_name WHERE name ="Elongation of tendon achilles (ETA)" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID4 FROM concept_name WHERE name ="Posteromedial release of clubfoot" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID5 FROM concept_name WHERE name ="Excision of head of ulna" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID6 FROM concept_name WHERE name ="Ligament reconstruction" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID7 FROM concept_name WHERE name ="Epiphysiodesis" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID8 FROM concept_name WHERE name ="Corrective osteotomy" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID1,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID2,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID3,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID4,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID5,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID6,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID7,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID8,1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201708181204" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'Site, Palatal fistula' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="SAP, Site of injury");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new sites into SAP, Site of injury concept_answers </comment>
+        <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="SAP, Site of injury" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Site, Palatal fistula" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="Site, Palatal defect" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID1,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID2,1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201708181206" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'Site, Palatal fistula' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="SAP, Site of surgical procedure");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new sites into SAP, Site of surgical procedure concept_answers </comment>
+        <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="SAP, Site of surgical procedure" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Site, Palatal fistula" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="Site, Palatal defect" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID1,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID2,1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201708181208" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'Site, Palatal fistula' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="SFP, Site of surgical procedure");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new sites into SFP, Site of surgical procedure concept_answers </comment>
+        <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="SFP, Site of surgical procedure" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Site, Palatal fistula" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="Site, Palatal defect" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID1,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID2,1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201708181210" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'Site, Palatal fistula' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="OR, Site of operation");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new sites into OR, Site of operation concept_answers </comment>
+        <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="OR, Site of operation" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Site, Palatal fistula" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="Site, Palatal defect" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID1,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID2,1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201708181218" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_name where name ="Arthrodesis of other and unspecified joints" AND concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating concept names</comment>
+        <sql>
+            UPDATE concept_name SET name ="Arthrodesis" WHERE name ="Arthrodesis of other and unspecified joints" AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_name SET name ="Biopsy of bone" WHERE name ="Biopsy of bone of other and unspecified site" AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_name SET name ="Biopsy of joint structure" WHERE name ="Biopsy of joint structure of other and unspecified site" AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_name SET name ="Bone graft" WHERE name ="Bone graft / Osteoclasis" AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_name SET name ="Regional flap" WHERE name ="Interpolation / regional flap" AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_name SET name ="Open biopsy of soft tissue" WHERE name ="Open biopsy of soft tissue, not elsewhere classified" AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_name SET name ="Plaster of Paris (POP)" WHERE name ="Plaster of Paris" AND concept_name_type="FULLY_SPECIFIED";
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
