@@ -4,7 +4,7 @@ implementation_name: amman
 two_factor_auth: disabled
 implementer_interface: disabled
 selinux_state: disabled
-omods: ["file:///tmp/bahmnimsf-2.0-SNAPSHOT.omod", "file:///tmp/bedmanagement-5.6-SNAPSHOT.omod", "file:///tmp/bahmnicore-0.89-SNAPSHOT.omod", "file:///tmp/operationtheater-1.0.0-SNAPSHOT.omod"]
+omods: ["file:///tmp/bahmnimsf-2.0-SNAPSHOT.omod", "file:///tmp/bedmanagement-5.6-SNAPSHOT.omod", "file:///tmp/bahmnicore-0.89-SNAPSHOT.omod", "file:///tmp/operationtheater-1.0.0.omod"]
 SSLCertificateFilePath: /etc/letsencrypt/live/gauge-amman.ehealthunit.org/cert.pem
 SSLCertificateKeyFilePath: /etc/letsencrypt/live/gauge-amman.ehealthunit.org/privkey.pem
 SSLCertificateChainFilePath: /etc/letsencrypt/live/gauge-amman.ehealthunit.org/chain.pem
