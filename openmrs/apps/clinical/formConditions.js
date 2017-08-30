@@ -1362,5 +1362,19 @@ Bahmni.ConceptSet.FormConditions.rules = {
               conditions.hide.push("OMF, Other current plan")
           }
           return conditions;
-      }
+      },
+    'APN, Blood transfusion': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['APN, Blood transfusion'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("APN, Blood product, intra-operatively","APN, Number of units given","APN, Intra-operative transfusion related reaction","APN, Intra-operative transfusion related reaction, comments")
+              }
+              else {
+              conditions.hide.push("APN, Blood product, intra-operatively","APN, Number of units given","APN, Intra-operative transfusion related reaction","APN, Intra-operative transfusion related reaction, comments")
+              }
+              return conditions;
+       }
 }

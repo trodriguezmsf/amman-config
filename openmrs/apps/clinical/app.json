@@ -579,7 +579,22 @@
            },
            "Post-Op Ward Monitoring":{
                "allowAddMore":true
-           }
+           },
+            "APN, Type of anaesthesia administered":{
+                "multiSelect":true
+            },
+            "APN, Complication of anaesthesia":{
+                "multiSelect":true
+            },
+            "APN, Blood product, intra-operatively":{
+                "multiSelect":true
+            },
+            "APN, Intra-operative transfusion related reaction":{
+                "multiSelect":true
+            },
+            "APN, Devices present":{
+                "multiSelect":true
+            }
     },
         "visitPage": {
             "observationDisplay": {
