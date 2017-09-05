@@ -594,6 +594,9 @@
             },
             "APN, Devices present":{
                 "multiSelect":true
+            },
+            "APN, Number of units given":{
+                "allowAddMore": true
             }
     },
         "visitPage": {
