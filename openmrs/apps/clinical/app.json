@@ -157,7 +157,7 @@
             "FUP, Outcomes for follow-up surgical validation":{
                 "dropdown":true
             },
-            "FUP, Time for next medical follow-up to be done":{
+            "FUP, Time for next medical follow-up":{
                 "dropdown":true
             },
             "FUP, Dismissal reason":{
@@ -595,8 +595,17 @@
             "APN, Devices present":{
                 "multiSelect":true
             },
-            "APN, Number of units given":{
-                "allowAddMore": true
+            "AIA, Past medical history":{
+               "multiSelect":true
+            },
+            "AIA, Adverse reaction to anaesthesia":{
+                "multiSelect":true
+            },
+            "FUP, Type of medical investigations requested":{
+                "multiSelect":true
+            },
+            "FUP, Date of next medical follow-up":{
+                "allowFutureDates": true
             }
     },
         "visitPage": {

@@ -4,11 +4,9 @@
 
       "inputOptionsConfig": {
         "hiddenFields":[
-          "duration",
           "dosingInstructions",
           "quantity",
-          "quantityUnits",
-          "durationUnits"
+          "quantityUnits"
         ],
         "defaultDurationUnit": "Day(s)",
         "defaultInstructions": "As directed",

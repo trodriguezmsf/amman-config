@@ -4277,6 +4277,100 @@
             UPDATE concept_name SET name ="Plaster of Paris (POP)" WHERE name ="Plaster of Paris" AND concept_name_type="FULLY_SPECIFIED";
         </sql>
     </changeSet>
+    <changeSet id="Amman-201709051708" author="Shiva kumar" context="rel3.3">
+       <comment>removing existing answer concepts in AIA, Previous Anaesthesia history </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'AIA, Previous Anaesthesia history' AND concept_name_type="FULLY_SPECIFIED";
+            DELETE FROM concept_answer WHERE concept_id =@concept_id;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709051730" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                select count(*) from concept_answer where concept_id =(SELECT concept_id  FROM concept_name WHERE name = 'AIA, Previous Anaesthesia history' AND concept_name_type='FULLY_SPECIFIED');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New answer concepts to AIA, Previous Anaesthesia history</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'AIA, Previous Anaesthesia history' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'None' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer1,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Local' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer3 FROM concept_name WHERE name = 'General' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer3,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer4 FROM concept_name WHERE name = 'Regional' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer4,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709051732" author="Shiva kumar" context="rel3.3">
+        <comment>removing existing concepts in AIA, Adverse reaction to anaesthesia</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'AIA, Adverse reaction to anaesthesia' AND concept_name_type="FULLY_SPECIFIED";
+            DELETE FROM concept_answer WHERE concept_id =@concept_id;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709051738" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                select count(*) from concept_answer where concept_id =(SELECT concept_id  FROM concept_name WHERE name = 'AIA, Adverse reaction to anaesthesia' AND concept_name_type='FULLY_SPECIFIED');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New answer concepts to AIA, Adverse reaction to anaesthesia</comment>
+        <sql>
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'None' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer1,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Delayed recovery' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer2,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer3 FROM concept_name WHERE name = 'Admission to ICU' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer3,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer4 FROM concept_name WHERE name = 'Suffocation or cyanosis' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer4,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer5 FROM concept_name WHERE name = 'Difficult intubation' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer5,8,now(),uuid());
+            SELECT concept_id INTO @concept_answer6 FROM concept_name WHERE name = 'Other' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer6,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709051748" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                Select count(*) from concept_set where concept_id = (select concept_id from concept_name where name = "SFP, Follow-up consultation notes" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(select concept_id from concept_name where name = "Surgeon Follow-up" and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding SFP, Follow-up consultation notes to Surgeon Follow-up form</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set  from concept_name where name= 'Surgeon Follow-up' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SFP, Follow-up consultation notes' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id,@concept_set,1055,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709051750" author="shiva kumar" context="rel3.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from person_name where given_name ="Anaesthetist";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Anaesthetist and making him as provider</comment>
+        <sql>
+            INSERT INTO person (gender,creator, date_created, uuid)VALUES ("M",8,now(),uuid());
+            INSERT INTO person_name (person_id, given_name, family_name,creator, date_created, uuid) VALUES ((SELECT max(person_id) FROM person),"Anaesthetist","",8, now(), uuid());
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES ((SELECT max(person_id) FROM person),8,now(),0,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709051755" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="FSTG, Type of medical information received" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Anaesthesia update' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New answer concepts to AIA, Adverse reaction to anaesthesia</comment>
+        <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="FSTG, Type of medical information received" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Anaesthesia update" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID1,1,now(),uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
