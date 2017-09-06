@@ -1364,5 +1364,34 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("AIA, Comments about adverse reaction")
         }
         return conditions;
-    }
+    },
+    'AIA, Personal history of blood transfusion': function (formName, formFieldValues) {
+         var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['AIA, Personal history of blood transfusion'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("AIA, Did an incident occur during previous blood transfusion")
+              conditions.hide.push("AIA, Describe")
+          }
+          else {
+              conditions.hide.push("AIA, Did an incident occur during previous blood transfusion","AIA, Describe")
+          }
+          return conditions;
+      },
+      'AIA, Did an incident occur during previous blood transfusion': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['AIA, Did an incident occur during previous blood transfusion'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("AIA, Describe")
+          }
+          else {
+              conditions.hide.push("AIA, Describe")
+         }
+          return conditions;
+      }
 }
