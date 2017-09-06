@@ -109,7 +109,7 @@
                 "FUP Patient Videos",
                 "FUP, Date of presentation at Followup",
                 "FUP, Outcomes for follow-up surgical validation",
-                "FUP, Time for next medical follow-up to be done",
+                "FUP, Time for next medical follow-up",
                 "FUP, Comments about next follow-up",
                 "FUP, Comments about MBA",
                 "FUP, Dismissal reason",
@@ -295,13 +295,11 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "AIA, Pre-anaesthesia orders",
             "SAP, Investigations needed"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "AIA, Pre-anaesthesia orders",
             "SAP, Investigations needed"
           ],
           "isEditable": true,

@@ -4447,6 +4447,19 @@
             UPDATE concept_name SET name ='Time for next medical follow-up' where name = 'Time for next medical follow-up to be done' AND concept_name_type="SHORT"
         </sql>
     </changeSet>
+    <changeSet id="Amman-201709061404" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="FSTG, Type of medical information received" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Anaesthesia update' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>updating order of concepts</comment>
+        <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="FSTG, Type of medical information received" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Anaesthesia update" AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_answer SET sort_weight=3 where concept_id =@conceptcoded and answer_concept=@conceptID1;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
