@@ -4406,7 +4406,7 @@
     <changeSet id="Amman-201709061219" author="Shiva kumar" context="rel3.3">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult = "1">
-                Select count(*) from concept_set where concept_id = (select concept_id from concept_name where name = "FUP, Comments about next follow-up" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(select concept_id from concept_name where name = "FSTG, First Stage Validation" and concept_name_type = "FULLY_SPECIFIED");
+                Select count(*) from concept_set where concept_id = (select concept_id from concept_name where name = "FUP, Comments about next follow-up" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(select concept_id from concept_name where name = "Follow-up validation" and concept_name_type = "FULLY_SPECIFIED");
             </sqlCheck>
         </preConditions>
         <comment>adding concepts to followup form</comment>
