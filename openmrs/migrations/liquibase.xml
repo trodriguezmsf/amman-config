@@ -4460,6 +4460,10 @@
             UPDATE concept_answer SET sort_weight=3 where concept_id =@conceptcoded and answer_concept=@conceptID1;
         </sql>
     </changeSet>
+    <changeSet id="Amman-201709061759" author="Santhosh" context="rel3.2" runOnChange="true">
+        <comment>Adding global property for patient movement history display control</comment>
+        <sqlFile path="bedManagement/patientMovementHistoryDisplayControl.sql"/>
+    </changeSet>
 </databaseChangeLog>
 
 
