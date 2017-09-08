@@ -4464,7 +4464,7 @@
         <comment>Adding global property for patient movement history display control</comment>
         <sqlFile path="bedManagement/patientMovementHistoryDisplayControl.sql"/>
     </changeSet>
-    <changeSet id="Amman-201709081408" author="Shiva kumar" context="rel3.3">
+            <changeSet id="Amman-201709081408" author="Shiva kumar" context="rel3.3">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult = "0">
                 Select count(*) from concept_set where concept_id = (select concept_id from concept_name where name = "SAP, Comments, pre-op assessment" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(select concept_id from concept_name where name = "Surgeon Pre-Op Assessment and Treatment Plan" and concept_name_type = "FULLY_SPECIFIED");
@@ -4474,7 +4474,7 @@
         <sql>
             select concept_id INTO @conceptset from concept_name where name ='Surgeon Pre-Op Assessment and Treatment Plan' and concept_name_type = "FULLY_SPECIFIED";
             select concept_id INTO @conceptid1 from concept_name where name ='SAP, Comments, pre-op assessment' and concept_name_type = "FULLY_SPECIFIED";
-            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) values (@conceptid1,@conceptset,11,8,now(),uuid());
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) values (@conceptid1,@conceptset,1023,8,now(),uuid());
         </sql>
     </changeSet>
     <changeSet id="Amman-201709081412" author="Shiva kumar" context="rel3.3">
@@ -4487,11 +4487,11 @@
         <sql>
             select concept_id INTO @conceptset from concept_name where name ='Surgeon Pre-Op Assessment and Treatment Plan' and concept_name_type = "FULLY_SPECIFIED";
             select concept_id INTO @conceptid1 from concept_name where name ='SAP, Treatment Plan' and concept_name_type = "FULLY_SPECIFIED";
-            update concept_set set sort_weight=12 where concept_id=@conceptid1 and concept_set =@conceptset;
+            update concept_set set sort_weight=1024 where concept_id=@conceptid1 and concept_set =@conceptset;
             select concept_id INTO @conceptid2 from concept_name where name ='SAP, Surgical Objectives for Patient' and concept_name_type = "FULLY_SPECIFIED";
-            update concept_set set sort_weight=13 where concept_id=@conceptid2 and concept_set =@conceptset;
+            update concept_set set sort_weight=1025 where concept_id=@conceptid2 and concept_set =@conceptset;
             select concept_id INTO @conceptid3 from concept_name where name ='SAP, Length of Plan' and concept_name_type = "FULLY_SPECIFIED";
-            update concept_set set sort_weight=14 where concept_id=@conceptid3 and concept_set =@conceptset;
+            update concept_set set sort_weight=1026 where concept_id=@conceptid3 and concept_set =@conceptset;
         </sql>
     </changeSet>
     <changeSet id="Amman-201709081414" author="Shiva kumar" context="rel3.3">
