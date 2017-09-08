@@ -6,23 +6,23 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['FSTG, Outcomes for 1st stage surgical validation'];
         if (conditionConcept == "Valid") {
-            conditions.show.push("FSTG, Priority", "FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Does the Patient need Surgical Final Validation","FSTG, Type of medical information needed for next submission")
-            conditions.hide.push("FSTG, Postpone reason", "FSTG, Medical file to be submitted again by", "FSTG, Refused Reason", "FSTG, Comments about postpone reason", "FSTG, Comments about refusal")
+            conditions.show.push("FSTG, Priority", "FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Does the Patient need Surgical Final Validation")
+            conditions.hide.push("FSTG, Postpone reason", "FSTG, Medical file to be submitted again by", "FSTG, Refused Reason", "FSTG, Comments about postpone reason", "FSTG, Comments about refusal","FSTG, Type of medical information needed for next submission")
         }
         else if (conditionConcept == "Postponed") {
             conditions.show.push("FSTG, Postpone reason", "FSTG, Medical file to be submitted again by", "FSTG, Comments about postpone reason")
-            conditions.hide.push("FSTG, Priority", "FSTG, Type of medical information needed for next submission", "FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Refused Reason", "FSTG, Comments about refusal", "FSTG, Name (s) of Anaesthetist", "FSTG, Comments about Anaesthesia validation", "FSTG, Does the Patient need Surgical Final Validation")
+            conditions.hide.push("FSTG, Priority", "FSTG, Type of medical information needed for next submission", "FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Refused Reason", "FSTG, Comments about refusal", "FSTG, Does the Patient need Surgical Final Validation")
         }
         else if (conditionConcept == "More Information") {
             conditions.show.push("FSTG, Type of medical information needed for next submission")
-            conditions.hide.push("FSTG, Priority", "FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Postpone reason", "FSTG, Medical file to be submitted again by", "FSTG, Refused Reason", "FSTG, Comments about postpone reason", "FSTG, Comments about refusal", "FSTG, Name (s) of Anaesthetist", "FSTG, Comments about Anaesthesia validation", "FSTG, Does the Patient need Surgical Final Validation")
+            conditions.hide.push("FSTG, Priority", "FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Postpone reason", "FSTG, Medical file to be submitted again by", "FSTG, Refused Reason", "FSTG, Comments about postpone reason", "FSTG, Comments about refusal", "FSTG, Does the Patient need Surgical Final Validation")
         }
         else if (conditionConcept == "Refused") {
             conditions.show.push("FSTG, Refused Reason", "FSTG, Comments about refusal")
-            conditions.hide.push("FSTG, Priority","FSTG, Type of medical information needed for next submission","FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Postpone reason", "FSTG, Medical file to be submitted again by", "FSTG, Comments about postpone reason",  "FSTG, Name (s) of Anaesthetist", "FSTG, Comments about Anaesthesia validation", "FSTG, Does the Patient need Surgical Final Validation")
+            conditions.hide.push("FSTG, Priority","FSTG, Type of medical information needed for next submission","FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Postpone reason", "FSTG, Medical file to be submitted again by", "FSTG, Comments about postpone reason", "FSTG, Does the Patient need Surgical Final Validation")
         }
         else {
-            conditions.hide.push("FSTG, Priority", "FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Postpone reason", "FSTG, Comments about postpone reason", "FSTG, Medical file to be submitted again by",  "FSTG, Refused Reason", "FSTG, Comments about refusal", "FSTG, Name (s) of Anaesthetist", "FSTG, Comments about Anaesthesia validation", "FSTG, Does the Patient need Surgical Final Validation","FSTG, Type of medical information needed for next submission")
+            conditions.hide.push("FSTG, Priority", "FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Postpone reason", "FSTG, Comments about postpone reason", "FSTG, Medical file to be submitted again by",  "FSTG, Refused Reason", "FSTG, Comments about refusal", "FSTG, Does the Patient need Surgical Final Validation","FSTG, Type of medical information needed for next submission")
         }
         return conditions;
     },
@@ -436,14 +436,12 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['SAP, Initial general plan'];
         if (conditionConcept == "Needs Physio / Other consultation"){
             conditions.show.push("SAP, Objectives of physiotherapy")
-            conditions.hide.push("SAP, Anatomical site")
         }
         else if (conditionConcept == "Improve function"){
-            conditions.show.push("SAP, Anatomical site")
             conditions.hide.push("SAP, Objectives of physiotherapy")
         }
         else {
-            conditions.hide.push("SAP, Objectives of physiotherapy","SAP, Anatomical site")
+            conditions.hide.push("SAP, Objectives of physiotherapy")
         }
         return conditions;
     },
@@ -453,20 +451,11 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['SAP, Surgical objective'];
-        if (conditionConcept.length == 1 && conditionConcept.indexOf("Uncertain") >= 0){
+        if (conditionConcept.indexOf("Uncertain") >= 0){
               conditions.show.push("SAP, Comments of uncertainty")
-              conditions.hide.push("SAP, Side of surgical objective","SAP, Site of surgical objective");
-                              }
-        else  if(conditionConcept.length > 1 && conditionConcept.indexOf("Uncertain")<0){
-        conditions.show.push("SAP, Side of surgical objective","SAP, Site of surgical objective");
-        conditions.hide.push("SAP, Comments of uncertainty")
-                }
-        else if(conditionConcept.length > 1 && conditionConcept.indexOf("Repair anatomy")>=0 ){
-                conditions.show.push("SAP, Side of surgical objective","SAP, Site of surgical objective","SAP, Comments of uncertainty");
-                }
-
+         }
         else {
-            conditions.hide.push("SAP, Side of surgical objective","SAP, Site of surgical objective","SAP, Comments of uncertainty")
+            conditions.hide.push("SAP, Comments of uncertainty")
         }
         return conditions;
     },
@@ -1242,9 +1231,14 @@ Bahmni.ConceptSet.FormConditions.rules = {
               var conditionConcept = formFieldValues['SAP, Is patient for surgery'];
               if (conditionConcept == "Yes"){
                  conditions.show.push("SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT","SAP, Estimated duration")
+                 conditions.hide.push("SAP, Comments, pre-op assessment");
+              }
+              else if (conditionConcept == "No" || conditionConcept =="No Surgery Planned"){
+              conditions.show.push("SAP, Comments, pre-op assessment");
+              conditions.hide.push("SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT","SAP, Estimated duration")
               }
               else {
-              conditions.hide.push("SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT","SAP, Estimated duration")
+              conditions.hide.push("SAP, Comments, pre-op assessment","SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT","SAP, Estimated duration")
               }
               return conditions;
          },

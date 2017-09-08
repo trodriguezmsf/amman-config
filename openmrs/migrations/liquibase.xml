@@ -4464,6 +4464,88 @@
         <comment>Adding global property for patient movement history display control</comment>
         <sqlFile path="bedManagement/patientMovementHistoryDisplayControl.sql"/>
     </changeSet>
+    <changeSet id="Amman-201709081408" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                Select count(*) from concept_set where concept_id = (select concept_id from concept_name where name = "SAP, Comments, pre-op assessment" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(select concept_id from concept_name where name = "Surgeon Pre-Op Assessment and Treatment Plan" and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>adding  concepts in Surgeon Pre-Op Assessment and Treatment Plan form</comment>
+        <sql>
+            select concept_id INTO @conceptset from concept_name where name ='Surgeon Pre-Op Assessment and Treatment Plan' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid1 from concept_name where name ='SAP, Comments, pre-op assessment' and concept_name_type = "FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) values (@conceptid1,@conceptset,11,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709081412" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                Select count(*) from concept_set where concept_id = (select concept_id from concept_name where name = "SAP, Treatment Plan" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(select concept_id from concept_name where name = "Surgeon Pre-Op Assessment and Treatment Plan" and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>updating sort_weight of  concepts in Surgeon Pre-Op Assessment and Treatment Plan form</comment>
+        <sql>
+            select concept_id INTO @conceptset from concept_name where name ='Surgeon Pre-Op Assessment and Treatment Plan' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid1 from concept_name where name ='SAP, Treatment Plan' and concept_name_type = "FULLY_SPECIFIED";
+            update concept_set set sort_weight=12 where concept_id=@conceptid1 and concept_set =@conceptset;
+            select concept_id INTO @conceptid2 from concept_name where name ='SAP, Surgical Objectives for Patient' and concept_name_type = "FULLY_SPECIFIED";
+            update concept_set set sort_weight=13 where concept_id=@conceptid2 and concept_set =@conceptset;
+            select concept_id INTO @conceptid3 from concept_name where name ='SAP, Length of Plan' and concept_name_type = "FULLY_SPECIFIED";
+            update concept_set set sort_weight=14 where concept_id=@conceptid3 and concept_set =@conceptset;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709081414" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                Select count(*) from concept_set where concept_id = (select concept_id from concept_name where name = "SAP, Anatomical site" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(select concept_id from concept_name where name = "SAP, Treatment Plan" and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>deleting  concept in Surgeon Pre-Op Assessment and Treatment Plan form</comment>
+        <sql>
+            select concept_id INTO @conceptset from concept_name where name ='SAP, Treatment Plan' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid1 from concept_name where name ='SAP, Anatomical site' and concept_name_type = "FULLY_SPECIFIED";
+            Delete from concept_set where concept_set =@conceptset and concept_id =@conceptid1;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709081416" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                Select count(*) from concept_set where concept_id = (select concept_id from concept_name where name = "SAP, Side of surgical objective" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(select concept_id from concept_name where name = "SAP, Surgical Objectives for Patient" and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>deleting  concept in Surgeon Pre-Op Assessment and Treatment Plan form</comment>
+        <sql>
+            select concept_id INTO @conceptset from concept_name where name ='SAP, Surgical Objectives for Patient' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid1 from concept_name where name ='SAP, Side of surgical objective' and concept_name_type = "FULLY_SPECIFIED";
+            Delete from concept_set where concept_set =@conceptset and concept_id =@conceptid1;
+            select concept_id INTO @conceptid2 from concept_name where name ='SAP, Site of surgical objective' and concept_name_type = "FULLY_SPECIFIED";
+            Delete from concept_set where concept_set =@conceptset and concept_id =@conceptid2;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709081418" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                Select count(*) from concept_set where concept_id = (select concept_id from concept_name where name = "SAP, Investigations needed" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(select concept_id from concept_name where name = "SAP, Length of Plan" and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>deleting  concept in Surgeon Pre-Op Assessment and Treatment Plan form</comment>
+        <sql>
+            select concept_id INTO @conceptset from concept_name where name ='SAP, Length of Plan' and concept_name_type = "FULLY_SPECIFIED";
+            select concept_id INTO @conceptid1 from concept_name where name ='SAP, Investigations needed' and concept_name_type = "FULLY_SPECIFIED";
+            Delete from concept_set where concept_set =@conceptset and concept_id =@conceptid1;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709081420" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                select count(*) from concept_name where name = "Replace the loss of" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>deleting  concept in Surgeon Pre-Op Assessment and Treatment Plan form</comment>
+        <sql>
+            Update concept_name set name = "Replace loss" where name = "Replace the loss of" and concept_name_type ="FULLY_SPECIFIED";
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
