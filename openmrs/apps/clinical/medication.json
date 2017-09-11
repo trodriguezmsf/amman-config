@@ -1,106 +1,167 @@
 {
   "tabConfig": {
     "allMedicationTabConfig": {
+
       "inputOptionsConfig": {
+        "hiddenFields":[
+          "dosingInstructions",
+          "quantity",
+          "quantityUnits"
+        ],
         "defaultDurationUnit": "Day(s)",
         "defaultInstructions": "As directed",
         "hideOrderSet": true,
         "drugFormDefaults": {
-
-          "TABLET": {
-            "doseUnits": "Tablet(s)",
+          "Aerosol": {
+            "doseUnits": "/",
+            "route": "Nasogastric"
+          },
+          "Capsule": {
+            "doseUnits": "mg",
             "route": "Oral"
           },
-          "Solution":{
-            "doseUnits": "Solution",
-            "route": "Oral"
-          },
-          "Injection":{
-            "doseUnits": "Injection",
-            "route": "Intravenous"
-          },
-          "Capsule":{
-            "doseUnits":"Capsule",
-            "route":"Oral"
-          },
-          "Cream":{
-            "doseUnits" : "Cream",
+          "Cream": {
+            "doseUnits": "Application(s)",
             "route": "Topical"
           },
-          "Oral suspension":{
-            "doseUnits" : "Oral suspension",
-            "route": "Oral"
+          "Ear drops": {
+            "doseUnits": "/",
+            "route": "Ears"
           },
-          "Eye drops":{
-            "doseUnits" : "Eye drops",
+          "Eye drops": {
+            "doseUnits": "/",
             "route": "Eyes"
           },
-          "Eye/Nose drops":{
-            "doseUnits":"Eye/Nose drops",
-            "route":"Eyes/Nasogastric"
+          "Eye gel": {
+            "doseUnits": "/",
+            "route": "Eyes"
           },
-          "Ointment":{
-            "doseUnits" : "Ointment",
+          "Eye ointment": {
+            "doseUnits": "/",
+            "route": "Eyes"
+          },
+          "Eye/Nose drops": {
+            "doseUnits": "/",
+            "route": "Eyes/Nasogastric"
+          },
+          "Gel": {
+            "doseUnits": "/",
             "route": "Topical"
           },
-          "Lotion":{
-            "doseUnits":"Lotion",
-            "route":"Topical"
+          "Infusion": {
+            "doseUnits": "/",
+            "route": "Intravenous"
           },
-          "Aerosol":{
-            "doseUnits":"Aerosol",
-            "route":"Nasogastric"
+          "Injection": {
+            "doseUnits": "mg",
+            "route": "Intravenous"
           },
-          "Syrup":{
-            "doseUnits":"Syrup",
-            "route":"Oral"
+          "Lotion": {
+            "doseUnits": "/",
+            "route": "Topical"
           },
-          "Turbuhaler":{
-            "doseUnits":"Turbuhaler",
-            "route":"Oral"
+          "Lubricating jelly": {
+            "doseUnits": "/",
+            "route": "Topical"
           },
-          "Ear drops":{
-            "doseUnits":"Ear drops",
-            "route":"Ears"
+          "Ointment": {
+            "doseUnits": "/",
+            "route": "Topical"
           },
-          "Vaginal tablet":{
-            "doseUnits":"Vaginal tablet",
-            "route":"Vaginal"
+          "Oral solution": {
+            "doseUnits": "/",
+            "route": "Oral"
           },
-          "Gel":{
-            "doseUnits":"Gel",
-            "route":"Tpoical"
+          "Oral suspension": {
+            "doseUnits": "/",
+            "route": "Oral"
           },
-          "Suppository":{
-            "doseUnits":"Suppository",
-            "route":"Rectal"
+          "Pencil": {
+            "doseUnits": "/",
+            "route": "Topical"
           },
-          "Vaccine":{
-            "doseUnits":"Vaccine",
-            "route":"Intramuscular"
+          "Powder": {
+            "doseUnits": "/",
+            "route": "Oral"
           },
-          "Powder":{
-            "doseUnits":"Powder",
-            "route":"Oral"
+          "Shampoo/Lotion": {
+            "doseUnits": "/",
+            "route": "Topical"
           },
-          "Lubricating jelly":{
-            "doseUnits":"Lubricating jelly",
-            "route":"Topical"
+          "Solution": {
+            "doseUnits": "mg",
+            "route": "Topical"
           },
-          "Jelly":{
-            "doseUnits":"Jelly",
-            "route":"Topical"
+          "Suppository": {
+            "doseUnits": "mg",
+            "route": "Rectal"
           },
-          "Infusion":{
-            "doseUnits":"Infusion",
-            "route":"Intravenous"
+          "Syrup": {
+            "doseUnits": "mg",
+            "route": "Oral"
           },
-          "Topical powder":{
-            "doseUnits":"Topical powder",
-            "route":"Topical"
+          "Tablet": {
+            "doseUnits": "mg",
+            "route": "Oral"
+          },
+          "Topical": {
+            "doseUnits": "/",
+            "route": "Topical"
+          },
+          "Topical powder": {
+            "doseUnits": "/",
+            "route": "Topical"
+          },
+          "Turbuhaler": {
+            "doseUnits": "Puff(s)",
+            "route": "Oral"
+          },
+          "Vaccine": {
+            "doseUnits": "/",
+            "route": "Intramuscular"
+          },
+          "Vaginal tablet": {
+            "doseUnits": "mg",
+            "route": "Vaginal"
           }
         }
       }
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

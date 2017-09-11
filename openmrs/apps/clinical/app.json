@@ -157,7 +157,7 @@
             "FUP, Outcomes for follow-up surgical validation":{
                 "dropdown":true
             },
-            "FUP, Time for next medical follow-up to be done":{
+            "FUP, Time for next medical follow-up":{
                 "dropdown":true
             },
             "FUP, Dismissal reason":{
@@ -188,7 +188,7 @@
                 "allowFutureDates": true,
                 "displayMonthAndYear": true
             },
-            "SMH, Medical History":{
+            "MD, Medical History":{
                 "multiSelect" :true
             },
             "SMH, Site":{
@@ -206,7 +206,7 @@
             "HE, External devices, present":{
                 "multiSelect":true
             },
-            "SMH, History of Allergy":{
+            "MD, History of Allergy":{
                 "multiSelect":true
             },
             "SMH, Date of consultation":{
@@ -579,7 +579,34 @@
            },
            "Post-Op Ward Monitoring":{
                "allowAddMore":true
-           }
+           },
+            "APN, Type of anaesthesia administered":{
+                "multiSelect":true
+            },
+            "APN, Complication of anaesthesia":{
+                "multiSelect":true
+            },
+            "APN, Blood product, intra-operatively":{
+                "multiSelect":true
+            },
+            "APN, Intra-operative transfusion related reaction":{
+                "multiSelect":true
+            },
+            "APN, Devices present":{
+                "multiSelect":true
+            },
+            "AIA, Past medical history":{
+               "multiSelect":true
+            },
+            "AIA, Adverse reaction to anaesthesia":{
+                "multiSelect":true
+            },
+            "FUP, Type of medical investigations requested":{
+                "multiSelect":true
+            },
+            "FUP, Date of next medical follow-up":{
+                "allowFutureDates": true
+            }
     },
         "visitPage": {
             "observationDisplay": {

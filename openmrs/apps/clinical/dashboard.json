@@ -109,7 +109,7 @@
                 "FUP Patient Videos",
                 "FUP, Date of presentation at Followup",
                 "FUP, Outcomes for follow-up surgical validation",
-                "FUP, Time for next medical follow-up to be done",
+                "FUP, Time for next medical follow-up",
                 "FUP, Comments about next follow-up",
                 "FUP, Comments about MBA",
                 "FUP, Dismissal reason",
@@ -198,7 +198,7 @@
                     "Follow-up validation",
                     "FV, Final validation",
                     "Baseline Vital Signs",
-                    "Social and Medical History",
+                    "OPD Nursing Initial Assessment",
                     "Health Education",
                     "Initial Anesthesia Assessment",
                     "Physiotherapy initial assessment",
@@ -217,7 +217,9 @@
                     "Post-Op Ward Monitoring",
                     "Surgeon Follow-up",
                     "OPD MD Follow-Up Note",
-                    "Operative Report"
+                    "Operative Report",
+                    "Vital Signs form",
+                    "Post-operative Anaesthesia Note"
 
 
                 ],
@@ -293,13 +295,11 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "AIA, Pre-anaesthesia orders",
             "SAP, Investigations needed"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "AIA, Pre-anaesthesia orders",
             "SAP, Investigations needed"
           ],
           "isEditable": true,
@@ -375,12 +375,12 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Social and Medical History"
+            "OPD Nursing Initial Assessment"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "Social and Medical History"
+            "OPD Nursing Initial Assessment"
           ],
           "isEditable": true,
           "numberOfVisits": 3,

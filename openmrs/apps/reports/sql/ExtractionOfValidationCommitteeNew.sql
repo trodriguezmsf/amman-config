@@ -2,7 +2,6 @@ SELECT
   `Patient Identifier`,
   `Patient Name`,
   `Age`,
-  `Birthdate`,
   `Gender`,
   `Country`,
   `MLO`,
@@ -21,9 +20,7 @@ SELECT
   `Medical file to be submitted again by`,
   `Type of medical information needed for next submission`,
   `Refused Reason`,
-  `Comments about refusal`,
-  `Does the Patient need Surgical Final Validation?`,
-  `Expected Date of Arrival`
+  `Comments about refusal`
 FROM (SELECT
         pi.identifier AS "Patient Identifier",
         concat(pn.given_name, " ", pn.family_name) AS "Patient Name",

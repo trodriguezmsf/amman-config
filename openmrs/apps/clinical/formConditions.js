@@ -6,23 +6,23 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['FSTG, Outcomes for 1st stage surgical validation'];
         if (conditionConcept == "Valid") {
-            conditions.show.push("FSTG, Priority", "FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Outcomes for 1st stage Anaesthesia validation", "FSTG, Does the Patient need Surgical Final Validation","FSTG, Type of medical information needed for next submission")
-            conditions.hide.push("FSTG, Postpone reason", "FSTG, Medical file to be submitted again by", "FSTG, Refused Reason", "FSTG, Comments about postpone reason", "FSTG, Comments about refusal")
+            conditions.show.push("FSTG, Priority", "FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Does the Patient need Surgical Final Validation")
+            conditions.hide.push("FSTG, Postpone reason", "FSTG, Medical file to be submitted again by", "FSTG, Refused Reason", "FSTG, Comments about postpone reason", "FSTG, Comments about refusal","FSTG, Type of medical information needed for next submission")
         }
         else if (conditionConcept == "Postponed") {
             conditions.show.push("FSTG, Postpone reason", "FSTG, Medical file to be submitted again by", "FSTG, Comments about postpone reason")
-            conditions.hide.push("FSTG, Priority", "FSTG, Outcomes for 1st stage Anaesthesia validation","FSTG, Type of medical information needed for next submission", "FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Refused Reason", "FSTG, Comments about refusal", "FSTG, Name (s) of Anaesthetist", "FSTG, Comments about Anaesthesia validation", "FSTG, Does the Patient need Surgical Final Validation")
+            conditions.hide.push("FSTG, Priority", "FSTG, Type of medical information needed for next submission", "FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Refused Reason", "FSTG, Comments about refusal", "FSTG, Does the Patient need Surgical Final Validation")
         }
         else if (conditionConcept == "More Information") {
             conditions.show.push("FSTG, Type of medical information needed for next submission")
-            conditions.hide.push("FSTG, Priority", "FSTG, Outcomes for 1st stage Anaesthesia validation", "FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Postpone reason", "FSTG, Medical file to be submitted again by", "FSTG, Refused Reason", "FSTG, Comments about postpone reason", "FSTG, Comments about refusal", "FSTG, Name (s) of Anaesthetist", "FSTG, Comments about Anaesthesia validation", "FSTG, Does the Patient need Surgical Final Validation")
+            conditions.hide.push("FSTG, Priority", "FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Postpone reason", "FSTG, Medical file to be submitted again by", "FSTG, Refused Reason", "FSTG, Comments about postpone reason", "FSTG, Comments about refusal", "FSTG, Does the Patient need Surgical Final Validation")
         }
         else if (conditionConcept == "Refused") {
             conditions.show.push("FSTG, Refused Reason", "FSTG, Comments about refusal")
-            conditions.hide.push("FSTG, Priority", "FSTG, Outcomes for 1st stage Anaesthesia validation", "FSTG, Type of medical information needed for next submission","FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Postpone reason", "FSTG, Medical file to be submitted again by", "FSTG, Comments about postpone reason",  "FSTG, Name (s) of Anaesthetist", "FSTG, Comments about Anaesthesia validation", "FSTG, Does the Patient need Surgical Final Validation")
+            conditions.hide.push("FSTG, Priority","FSTG, Type of medical information needed for next submission","FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Postpone reason", "FSTG, Medical file to be submitted again by", "FSTG, Comments about postpone reason", "FSTG, Does the Patient need Surgical Final Validation")
         }
         else {
-            conditions.hide.push("FSTG, Priority", "FSTG, Outcomes for 1st stage Anaesthesia validation", "FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Postpone reason", "FSTG, Comments about postpone reason", "FSTG, Medical file to be submitted again by",  "FSTG, Refused Reason", "FSTG, Comments about refusal", "FSTG, Name (s) of Anaesthetist", "FSTG, Comments about Anaesthesia validation", "FSTG, Does the Patient need Surgical Final Validation","FSTG, Type of medical information needed for next submission")
+            conditions.hide.push("FSTG, Priority", "FSTG, Name (s) of Surgeon 1", "FSTG, Name (s) of Surgeon 2", "FSTG, Comments", "FSTG, Postpone reason", "FSTG, Comments about postpone reason", "FSTG, Medical file to be submitted again by",  "FSTG, Refused Reason", "FSTG, Comments about refusal", "FSTG, Does the Patient need Surgical Final Validation","FSTG, Type of medical information needed for next submission")
         }
         return conditions;
     },
@@ -52,59 +52,59 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['FUP, Outcomes for follow-up surgical validation'];
         if (conditionConcept == "Continue under follow-up") {
-            conditions.show.push("FUP, Time for next medical follow-up to be done", "FUP, Comments about next follow-up")
+            conditions.show.push("FUP, Time for next medical follow-up","FUP, Date of next medical follow-up","FUP, Type of medical investigations requested", "FUP, Comments about next follow-up")
             conditions.hide.push("Stage","FUP, Comments about MBA", "FUP, Dismissal reason", "FUP, Dismissal confirmed", "FUP, Comments about dismissal", "FUP, Comments about Defaulter", "FUP, Reason for re-admission", "FUP, Name (s) of Surgeon 1", "FUP, Name (s) of Surgeon 2", "FUP, Comments about further stage admission", "FUP, Reason for re-admission", "FUP, Priority", "FUP, Name (s) of Surgeon 1", "FUP, Name (s) of Surgeon 2", "FUP, Comments about further stage admission", "FUP, Does the Patient need Surgical Final Validation")
         }
         else if (conditionConcept == "MBA") {
             conditions.show.push("FUP, Comments about MBA");
-            conditions.hide.push("Stage","FUP, Priority", "FUP, Time for next medical follow-up to be done", "FUP, Comments about next follow-up", "FUP, Dismissal reason", "FUP, Dismissal confirmed", "FUP, Comments about dismissal", "FUP, Comments about Defaulter", "FUP, Reason for re-admission", "FUP, Priority", "FUP, Name (s) of Surgeon 1", "FUP, Name (s) of Surgeon 2", "FUP, Comments about further stage admission", "FUP, Does the Patient need Surgical Final Validation")
+            conditions.hide.push("Stage","FUP, Priority", "FUP, Time for next medical follow-up","FUP, Date of next medical follow-up","FUP, Type of medical investigations requested", "FUP, Comments about next follow-up", "FUP, Dismissal reason", "FUP, Dismissal confirmed", "FUP, Comments about dismissal", "FUP, Comments about Defaulter", "FUP, Reason for re-admission", "FUP, Priority", "FUP, Name (s) of Surgeon 1", "FUP, Name (s) of Surgeon 2", "FUP, Comments about further stage admission", "FUP, Does the Patient need Surgical Final Validation")
         }
         else if (conditionConcept == "Dismissal") {
             conditions.show.push("FUP, Dismissal reason", "FUP, Dismissal confirmed", "FUP, Comments about dismissal")
-            conditions.hide.push("Stage","FUP, Priority", "FUP, Time for next medical follow-up to be done", "FUP, Comments about next follow-up", "FUP, Comments about MBA", "FUP, Comments about Defaulter", "FUP, Reason for re-admission", "FUP, Priority", "FUP, Name (s) of Surgeon 1", "FUP, Name (s) of Surgeon 2", "FUP, Comments about further stage admission")
+            conditions.hide.push("Stage","FUP, Priority", "FUP, Time for next medical follow-up","FUP, Date of next medical follow-up","FUP, Type of medical investigations requested", "FUP, Comments about next follow-up", "FUP, Comments about MBA", "FUP, Comments about Defaulter", "FUP, Reason for re-admission", "FUP, Priority", "FUP, Name (s) of Surgeon 1", "FUP, Name (s) of Surgeon 2", "FUP, Comments about further stage admission")
         }
         else if (conditionConcept == "Defaulter (D2)") {
             conditions.show.push("FUP, Comments about Defaulter");
-            conditions.hide.push("Stage","FUP, Priority", "FUP, Time for next medical follow-up to be done", "FUP, Comments about next follow-up", "FUP, Comments about MBA", "FUP, Dismissal reason", "FUP, Dismissal confirmed", "FUP, Comments about dismissal", "FUP, Reason for re-admission", "FUP, Priority", "FUP, Name (s) of Surgeon 1", "FUP, Name (s) of Surgeon 2", "FUP, Comments about further stage admission", "FUP, Does the Patient need Surgical Final Validation")
+            conditions.hide.push("Stage","FUP, Priority", "FUP, Time for next medical follow-up","FUP, Date of next medical follow-up","FUP, Type of medical investigations requested", "FUP, Comments about next follow-up", "FUP, Comments about MBA", "FUP, Dismissal reason", "FUP, Dismissal confirmed", "FUP, Comments about dismissal", "FUP, Reason for re-admission", "FUP, Priority", "FUP, Name (s) of Surgeon 1", "FUP, Name (s) of Surgeon 2", "FUP, Comments about further stage admission", "FUP, Does the Patient need Surgical Final Validation")
         }
         else if (conditionConcept == "Further stage admission") {
             conditions.show.push("Stage","FUP, Reason for re-admission", "FUP, Priority", "FUP, Name (s) of Surgeon 1", "FUP, Name (s) of Surgeon 2", "FUP, Comments about further stage admission", "FUP, Does the Patient need Surgical Final Validation")
-            conditions.hide.push("FUP, Time for next medical follow-up to be done", "FUP, Comments about next follow-up", "FUP, Comments about MBA", "FUP, Dismissal reason", "FUP, Dismissal confirmed", "FUP, Comments about dismissal", "FUP, Comments about Defaulter")
+            conditions.hide.push("FUP, Time for next medical follow-up", "FUP, Comments about next follow-up","FUP, Date of next medical follow-up","FUP, Type of medical investigations requested", "FUP, Comments about MBA", "FUP, Dismissal reason", "FUP, Dismissal confirmed", "FUP, Comments about dismissal", "FUP, Comments about Defaulter")
 
         }
         else {
-            conditions.hide.push("Stage","FUP, Priority", "FUP, Time for next medical follow-up to be done", "FUP, Comments about next follow-up", "FUP, Comments about MBA", "FUP, Dismissal reason", "FUP, Dismissal confirmed", "FUP, Comments about dismissal", "FUP, Comments about Defaulter", "FUP, Reason for re-admission", "FUP, Priority", "FUP, Name (s) of Surgeon 1", "FUP, Name (s) of Surgeon 2", "FUP, Comments about further stage admission", "FUP, Does the Patient need Surgical Final Validation")
+            conditions.hide.push("Stage","FUP, Priority", "FUP, Time for next medical follow-up", "FUP, Comments about next follow-up","FUP, Date of next medical follow-up","FUP, Type of medical investigations requested", "FUP, Comments about MBA", "FUP, Dismissal reason", "FUP, Dismissal confirmed", "FUP, Comments about dismissal", "FUP, Comments about Defaulter", "FUP, Reason for re-admission", "FUP, Priority", "FUP, Name (s) of Surgeon 1", "FUP, Name (s) of Surgeon 2", "FUP, Comments about further stage admission", "FUP, Does the Patient need Surgical Final Validation")
         }
         return conditions;
     },
-    'SMH, Current smoker': function (formName, formFieldValues) {
+    'HE, Current smoker': function (formName, formFieldValues) {
         var conditions = {
             show: [],
             hide: []
          };
-         var conditionConcept = formFieldValues['SMH, Current smoker'];
+         var conditionConcept = formFieldValues['HE, Current smoker'];
         if (conditionConcept == "Yes"){
-            conditions.show.push("SMH, Number of cigarettes per day","SMH, Duration of smoking (in years)")
+            conditions.show.push("HE, Number of cigarettes per day","HE, Duration of smoking (in years)")
         }
         else if(conditionConcept == "No" || conditionConcept == "Unknown") {
-            conditions.hide.push("SMH, Number of cigarettes per day","SMH, Duration of smoking (in years)")
+            conditions.hide.push("HE, Number of cigarettes per day","HE, Duration of smoking (in years)")
         }
         else {
-            conditions.hide.push("SMH, Number of cigarettes per day","SMH, Duration of smoking (in years)")
+            conditions.hide.push("HE, Number of cigarettes per day","HE, Duration of smoking (in years)")
         }
         return conditions;
     },
-    'SMH, Currently taking medication': function (formName, formFieldValues) {
+    'MD, Currently taking medication': function (formName, formFieldValues) {
         var conditions = {
             show: [],
             hide: []
         };
-        var conditionConcept = formFieldValues['SMH, Currently taking medication'];
+        var conditionConcept = formFieldValues['MD, Currently taking medication'];
         if (conditionConcept == "Yes"){
-            conditions.show.push("SMH, Medication")
+            conditions.show.push("MD, Medication")
         }
         else {
-            conditions.hide.push("SMH, Medication")
+            conditions.hide.push("MD, Medication")
         }
         return conditions;
     },
@@ -134,20 +134,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         else {
             conditions.hide.push("HE, Other type of external device")
-        }
-        return conditions;
-    },
-    'AIA, Adverse reaction to anaesthesia': function (formName, formFieldValues) {
-        var conditions = {
-            show: [],
-            hide: []
-        };
-        var conditionConcept = formFieldValues['AIA, Adverse reaction to anaesthesia'];
-        if (conditionConcept == "Yes"){
-            conditions.show.push("AIA, Comments about adverse reaction")
-        }
-        else {
-            conditions.hide.push("AIA, Comments about adverse reaction")
         }
         return conditions;
     },
@@ -334,50 +320,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
-    'AIA, Personal history of blood transfusion': function (formName, formFieldValues) {
-        var conditions = {
-            show: [],
-            hide: []
-        };
-        var conditionConcept = formFieldValues['AIA, Personal history of blood transfusion'];
-        if (conditionConcept == "Yes"){
-            conditions.show.push("AIA, Did an incident occur during previous blood transfusion")
-            conditions.hide.push("AIA, Describe")
-        }
-        else {
-            conditions.hide.push("AIA, Did an incident occur during previous blood transfusion","AIA, Describe")
-        }
-        return conditions;
-    },
-    'AIA, Did an incident occur during previous blood transfusion': function (formName, formFieldValues) {
-        var conditions = {
-            show: [],
-            hide: []
-        };
-        var conditionConcept = formFieldValues['AIA, Did an incident occur during previous blood transfusion'];
-        if (conditionConcept == "Yes"){
-            conditions.show.push("AIA, Describe")
-        }
-        else {
-            conditions.hide.push("AIA, Describe")
-        }
-        return conditions;
-    },
-    'AIA, Pre-anaesthesia orders': function (formName, formFieldValues) {
-        var conditions = {
-            show: [],
-            hide: []
-        };
-        var conditionConcept = formFieldValues['AIA, Pre-anaesthesia orders'];
-
-        if (conditionConcept.indexOf("Other lab orders")>=0){
-            conditions.show.push("AIA, Comments about other lab orders")
-        }
-        else {
-            conditions.hide.push("AIA, Comments about other lab orders")
-        }
-        return conditions;
-    },
     'MD, History of previous surgery': function (formName, formFieldValues) {
         var conditions = {
             show: [],
@@ -494,14 +436,12 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['SAP, Initial general plan'];
         if (conditionConcept == "Needs Physio / Other consultation"){
             conditions.show.push("SAP, Objectives of physiotherapy")
-            conditions.hide.push("SAP, Anatomical site")
         }
         else if (conditionConcept == "Improve function"){
-            conditions.show.push("SAP, Anatomical site")
             conditions.hide.push("SAP, Objectives of physiotherapy")
         }
         else {
-            conditions.hide.push("SAP, Objectives of physiotherapy","SAP, Anatomical site")
+            conditions.hide.push("SAP, Objectives of physiotherapy")
         }
         return conditions;
     },
@@ -511,20 +451,11 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['SAP, Surgical objective'];
-        if (conditionConcept.length == 1 && conditionConcept.indexOf("Uncertain") >= 0){
+        if (conditionConcept.indexOf("Uncertain") >= 0){
               conditions.show.push("SAP, Comments of uncertainty")
-              conditions.hide.push("SAP, Side of surgical objective","SAP, Site of surgical objective");
-                              }
-        else  if(conditionConcept.length > 1 && conditionConcept.indexOf("Uncertain")<0){
-        conditions.show.push("SAP, Side of surgical objective","SAP, Site of surgical objective");
-        conditions.hide.push("SAP, Comments of uncertainty")
-                }
-        else if(conditionConcept.length > 1 && conditionConcept.indexOf("Repair anatomy")>=0 ){
-                conditions.show.push("SAP, Side of surgical objective","SAP, Site of surgical objective","SAP, Comments of uncertainty");
-                }
-
+         }
         else {
-            conditions.hide.push("SAP, Side of surgical objective","SAP, Site of surgical objective","SAP, Comments of uncertainty")
+            conditions.hide.push("SAP, Comments of uncertainty")
         }
         return conditions;
     },
@@ -1300,9 +1231,14 @@ Bahmni.ConceptSet.FormConditions.rules = {
               var conditionConcept = formFieldValues['SAP, Is patient for surgery'];
               if (conditionConcept == "Yes"){
                  conditions.show.push("SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT","SAP, Estimated duration")
+                 conditions.hide.push("SAP, Comments, pre-op assessment");
+              }
+              else if (conditionConcept == "No" || conditionConcept =="No Surgery Planned"){
+              conditions.show.push("SAP, Comments, pre-op assessment");
+              conditions.hide.push("SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT","SAP, Estimated duration")
               }
               else {
-              conditions.hide.push("SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT","SAP, Estimated duration")
+              conditions.hide.push("SAP, Comments, pre-op assessment","SAP, Has Patient Consent Been Obtained?","SAP, Surgical summary","SAP, Planned Surgical Procedures for next OT","SAP, Estimated duration")
               }
               return conditions;
          },
@@ -1314,9 +1250,14 @@ Bahmni.ConceptSet.FormConditions.rules = {
          var conditionConcept = formFieldValues['SFP, Is patient for surgery'];
          if (conditionConcept == "Yes"){
              conditions.show.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary")
+             conditions.hide.push("SFP, Follow-up consultation notes");
          }
-         else {
+         else if(conditionConcept=="No" || conditionConcept=="No Surgery Planned"){
+             conditions.show.push("SFP, Follow-up consultation notes");
              conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary")
+        }
+         else {
+             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary","SFP, Follow-up consultation notes")
          }
          return conditions;
      },
@@ -1361,6 +1302,90 @@ Bahmni.ConceptSet.FormConditions.rules = {
           else {
               conditions.hide.push("OMF, Other current plan")
           }
+          return conditions;
+      },
+    'APN, Blood transfusion': function (formName, formFieldValues) {
+              var conditions = {
+                  show: [],
+                  hide: []
+               };
+              var conditionConcept = formFieldValues['APN, Blood transfusion'];
+              if (conditionConcept == "Yes"){
+                 conditions.show.push("APN, Blood product, intra-operatively","APN, Number of units given","APN, Intra-operative transfusion related reaction","APN, Intra-operative transfusion related reaction, comments")
+              }
+              else {
+              conditions.hide.push("APN, Blood product, intra-operatively","APN, Number of units given","APN, Intra-operative transfusion related reaction","APN, Intra-operative transfusion related reaction, comments")
+              }
+              return conditions;
+       },
+    'AIA, Past medical history': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['AIA, Past medical history'];
+        if (conditionConcept.indexOf("Other")>=0){
+            conditions.show.push("AIA, Past medical history, other")
+        }
+        else {
+            conditions.hide.push("AIA, Past medical history, other")
+        }
+        return conditions;
+    },
+    'AIA, Adverse reaction to anaesthesia': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['AIA, Adverse reaction to anaesthesia'];
+
+       if (conditionConcept.length >= 1 && conditionConcept.indexOf("Delayed recovery")>=0 ) {
+            conditions.show.push("AIA, Comments about adverse reaction")
+        }
+        else if (conditionConcept.length >= 1 && conditionConcept.indexOf("Admission to ICU")>=0 ) {
+            conditions.show.push("AIA, Comments about adverse reaction")
+        }
+        else if (conditionConcept.length >= 1 && conditionConcept.indexOf("Suffocation or cyanosis")>=0 ) {
+            conditions.show.push("AIA, Comments about adverse reaction")
+        }
+        else if (conditionConcept.length >= 1 && conditionConcept.indexOf("Difficult intubation")>=0 ) {
+            conditions.show.push("AIA, Comments about adverse reaction")
+        }
+        else if (conditionConcept.length >= 1 && conditionConcept.indexOf("Other")>=0 ) {
+             conditions.show.push("AIA, Comments about adverse reaction")
+        }
+        else {
+            conditions.hide.push("AIA, Comments about adverse reaction")
+        }
+        return conditions;
+    },
+    'AIA, Personal history of blood transfusion': function (formName, formFieldValues) {
+         var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['AIA, Personal history of blood transfusion'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("AIA, Did an incident occur during previous blood transfusion")
+              conditions.hide.push("AIA, Describe")
+          }
+          else {
+              conditions.hide.push("AIA, Did an incident occur during previous blood transfusion","AIA, Describe")
+          }
+          return conditions;
+      },
+      'AIA, Did an incident occur during previous blood transfusion': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['AIA, Did an incident occur during previous blood transfusion'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("AIA, Describe")
+          }
+          else {
+              conditions.hide.push("AIA, Describe")
+         }
           return conditions;
       }
 }

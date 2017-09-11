@@ -10,6 +10,7 @@ VALUES ('emrapi.sqlSearch.otToBeScheduledQueue',
   finalValidationSurgeon.name                                                                                                                          AS `Surgeon Name`,
   speciality.name                                                                                                                                      AS Speciality,
   if(appointment_block.date_created IS NOT NULL AND procedureBlock.date_created < appointment_block.date_created, appointment_block.status, NULL)      AS `Status`,
+  appointment_block.notes																															   AS  `Reason for Change`,
   anaesthesiaOutcome.name                                                                                                                              AS `Outcome of Anaesthesia`
 FROM patient p
   INNER JOIN patient_identifier pi ON pi.patient_id = p.patient_id
@@ -264,13 +265,15 @@ FROM
     SELECT
       p.patient_id,
       appoinment.date_created,
-      appoinment.status
+      appoinment.status,
+      appoinment.notes
     FROM patient p
       LEFT OUTER JOIN (
                         SELECT
                           sa.patient_id,
                           sa.date_created,
-                          sa.status
+                          sa.status,
+                          sa.notes
                         FROM
                           surgical_appointment sa
                           INNER JOIN (SELECT

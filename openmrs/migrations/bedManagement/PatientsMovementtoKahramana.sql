@@ -14,7 +14,7 @@ VALUES ('emrapi.sqlSearch.PatientsMovementtoKahramana',
             concat('', p.uuid)                                              AS uuid,
             concat('', v.uuid)                                              AS activeVisitUuid
         FROM visit v
-        INNER JOIN person_name pn ON v.patient_id = pn.person_id and pn.voided is FALSE
+        INNER JOIN person_name pn ON v.patient_id = pn.person_id and pn.voided is FALSE AND v.voided IS FALSE
         INNER JOIN patient_identifier pi ON v.patient_id = pi.patient_id and pi.voided is FALSE
         INNER JOIN patient_identifier_type pit on pi.identifier_type = pit.patient_identifier_type_id
         INNER JOIN global_property gp on gp.property='bahmni.primaryIdentifierType' and gp.property_value=pit.uuid
@@ -42,6 +42,6 @@ VALUES ('emrapi.sqlSearch.PatientsMovementtoKahramana',
                                                           AND e.patient_id = latestEncounterWithDisposition.patient_id
         INNER JOIN obs o ON e.encounter_id = o.encounter_id AND o.voided IS FALSE
         INNER JOIN concept_name cn ON o.value_coded = cn.concept_id AND cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.voided is FALSE
-                                                                    AND cn.name = 'Movement to Kahramana' AND o.obs_datetime > bpame.date_created
-    WHERE v.date_stopped IS NULL AND v.voided = 0
+                                                                    AND cn.name = 'Movement to Kahramana' AND o.date_created > bpam.date_created
+    WHERE v.date_stopped IS NULL
     ORDER BY o.obs_datetime",'Patients Movement to Kahramana',@uuid);

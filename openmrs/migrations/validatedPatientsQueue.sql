@@ -12,7 +12,7 @@ SELECT
     pa.address3 AS 'Country',
     nameOfMLO.name AS 'Name of MLO',
     stage.value_numeric AS 'Stage',
-    speciality.name AS 'Speciality',
+    speciality.name AS 'Specialty',
     surgeon_name.name AS 'Name of Surgeon',
     priority.name AS 'Priority',
     comments.value_text AS 'Comments about Validation',
