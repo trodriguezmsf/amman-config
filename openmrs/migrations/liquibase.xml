@@ -4119,6 +4119,11 @@
             CALL migrateObservationsFromSourceFormToDestinationForm('OPD Nursing Initial Assessment', 'MD Initial Assessment', @listOfConcepts);
         </sql>
     </changeSet>
+    <changeSet id="default-201709081630" author="Maharjun, Shireesha" runOnChange="true">
+        <comment>Adding upcoming and past appointments for patient</comment>
+        <sqlFile path="appointments/patientPastAppointments.sql"/>
+        <sqlFile path="appointments/patientUpcomingAppointments.sql"/>
+    </changeSet>
 </databaseChangeLog>
 
 
