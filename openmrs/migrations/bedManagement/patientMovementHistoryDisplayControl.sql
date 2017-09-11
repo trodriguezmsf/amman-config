@@ -36,16 +36,11 @@ FROM person p
                         INNER JOIN bed_patient_assignment_map bpam ON bpam.bed_id = btm.bed_id AND bpam.voided IS FALSE
                         INNER JOIN person p
                                 ON p.person_id = bpam.patient_id AND p.voided IS FALSE AND p.uuid = ${patientUuid}
-                                   AND
+                                   AND NOT
                                    (
-                                       (
-                                           btm.date_created BETWEEN bpam.date_started AND IFNULL(bpam.date_stopped, now())
-                                           AND
-                                           IF(btm.date_voided IS NOT NULL,
-                                              btm.date_voided BETWEEN bpam.date_started AND IFNULL(bpam.date_stopped, now()), TRUE)
-                                       )
+                                       btm.date_voided IS NOT NULL && btm.date_voided < bpam.date_started
                                        OR
-                                       btm.date_created < bpam.date_started AND IFNULL(btm.date_voided, now()) >= IFNULL(bpam.date_stopped, now())
+                                       bpam.date_stopped IS NOT NULL && btm.date_created > bpam.date_stopped
                                    )
                     GROUP BY btm.bed_id, bpam.date_started
                     ) bedTagsInfo ON bpam.bed_id = bedTagsInfo.bed_id AND bpam.bed_patient_assignment_map_id = bedTagsInfo.bed_patient_assignment_map_id
