@@ -184,18 +184,6 @@
                     "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY"
                 }
             },
-            "radiologyOrderControl":  {
-        "type": "order",
-        "title": "Radiology Order Display Control",
-        "config": {
-                           "title": "Radiology Order Display Control",
-                           "name": "ordersControl",
-                          "orderType": "Radiology Order",
-                          "conceptNames":["X-ray"]
-                }
-           },
-
-
             "validationForms": {
                 "type": "forms",
                 "displayOrder": 8,
