@@ -1,6 +1,6 @@
 {
   "general": {
-        "translationKey": "DASHBOARD_TAB_GENERAL_KEY",
+        "translationKey": "DASHBOARD_TAB_VALIDATION_COMMITTEE_KEY",
         "displayByDefault": true,
         "maxRecentlyViewedPatients": 1,
         "sections": {
@@ -184,6 +184,17 @@
                     "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY"
                 }
             },
+            "radiologyOrderControl":  {
+        "type": "order",
+        "title": "Radiology Order Display Control",
+        "config": {
+                           "title": "Radiology Order Display Control",
+                           "name": "ordersControl",
+                          "orderType": "Radiology Order",
+                          "conceptNames":["X-ray"]
+                }
+           },
+
 
             "validationForms": {
                 "type": "forms",
