@@ -238,7 +238,7 @@
     "displayByDefault": true,
     "maxRecentlyViewedPatients": 1,
     "printing": {
-      "title": "EndTB Patient Documents",
+      "title": "Patient Documents",
       "header": "Patient Documents",
       "logo": "../images/bahmniLogo.png",
       "showNameAndImage": true

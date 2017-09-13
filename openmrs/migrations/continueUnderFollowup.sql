@@ -86,4 +86,4 @@
                   ) obs_across_visits ON p.person_id = obs_across_visits.person_id
         JOIN patient_program pp ON p.person_id = pp.patient_id AND  pp.date_completed is NULL and pp.voided IS FALSE
         GROUP BY p.person_id) result
-  WHERE (`outcomeFollowupSurgicalValidation` = 'Continue under follow-up' OR `Current state` = 'Network Follow-up' and `Previous state` IN ('Pre-Operative','Surgical / Hospitalisation','Rehabilitation')) ",'Patients under follow up',@uuid);
+  WHERE (`outcomeFollowupSurgicalValidation` = 'Continue under follow-up' OR (`Current state` = 'Network Follow-up' and `Previous state` IN ('Pre-Operative','Surgical / Hospitalisation','Rehabilitation'))) ",'Patients under follow up',@uuid);
