@@ -4646,7 +4646,7 @@
             INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
         </sql>
     </changeSet>
-    <changeSet id="Amman-201709121430" author="Shiva kumar" context="rel2.3" >
+    <changeSet id="Amman-201709131313" author="Shiva kumar" context="rel2.3" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="DIA, Surgical Diagnosis coded" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Severe Microstomia' AND concept_name_type="FULLY_SPECIFIED");

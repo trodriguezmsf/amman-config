@@ -234,6 +234,38 @@
             }
         }
     },
+  "documents": {
+    "displayByDefault": true,
+    "maxRecentlyViewedPatients": 1,
+    "printing": {
+      "title": "EndTB Patient Documents",
+      "header": "Patient Documents",
+      "logo": "../images/bahmniLogo.png",
+      "showNameAndImage": true
+    },
+    "sections": {
+      "documents": {
+        "translationKey": "DASHBOARD_TITLE_PATIENT_DOCUMENTS",
+        "type": "obsToObsFlowSheet",
+        "headingConceptSource": "Abbreviation",
+        "dataConceptSource": "Abbreviation",
+        "displayType": "Full-Page",
+        "displayOrder": 1,
+        "dashboardConfig": {
+          "isEditable": true,
+          "groupByConcept": "Documents, Date",
+          "orderByConcept": "Documents, Date",
+          "templateName": "Documents",
+          "conceptNames": [
+            "Documents, Date",
+            "Documents, Image",
+            "Documents, Image Description"
+          ]
+        }
+      }
+    },
+    "translationKey": "DASHBOARD_TAB_PATIENT_DOCUMENTS_KEY"
+  },
   "patientSummary": {
     "translationKey": "DASHBOARD_TAB_PATIENT_SUMMARY_KEY",
     "displayByDefault": true,
