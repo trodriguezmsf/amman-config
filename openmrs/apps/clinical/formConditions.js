@@ -1311,10 +1311,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
                };
               var conditionConcept = formFieldValues['APN, Blood transfusion'];
               if (conditionConcept == "Yes"){
-                 conditions.show.push("APN, Blood product, intra-operatively","APN, Number of units given","APN, Intra-operative transfusion related reaction","APN, Intra-operative transfusion related reaction, comments")
+                 conditions.show.push("Intra-operative blood products","APN, Intra-operative transfusion related reaction","APN, Intra-operative transfusion related reaction, comments")
               }
               else {
-              conditions.hide.push("APN, Blood product, intra-operatively","APN, Number of units given","APN, Intra-operative transfusion related reaction","APN, Intra-operative transfusion related reaction, comments")
+              conditions.hide.push("Intra-operative blood products","APN, Intra-operative transfusion related reaction","APN, Intra-operative transfusion related reaction, comments")
               }
               return conditions;
        },

@@ -4646,6 +4646,21 @@
             INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
         </sql>
     </changeSet>
+    <changeSet id="Amman-201709121430" author="Shiva kumar" context="rel2.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="DIA, Surgical Diagnosis coded" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Severe Microstomia' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding concepts </comment>
+        <sql>
+            SELECT concept_id INTO @conceptid FROM concept_name where name ="DIA, Surgical Diagnosis coded" and concept_name_type = "FULLY_SPECIFIED";
+            SELECT concept_id INTO @codedanswer1 FROM concept_name where name ="Severe Microstomia" and concept_name_type = "FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptid,@codedanswer1,1,now(),uuid());
+            SELECT concept_id INTO @codedanswer2 FROM concept_name where name ="Microstomia" and concept_name_type = "FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptid,@codedanswer2,1,now(),uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
