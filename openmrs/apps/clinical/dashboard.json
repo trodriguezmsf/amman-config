@@ -255,7 +255,7 @@
           "isEditable": true,
           "groupByConcept": "Documents, Date",
           "orderByConcept": "Documents, Date",
-          "templateName": "Documents",
+          "templateName": "Radiology Documents",
           "conceptNames": [
             "Documents, Date",
             "Documents, Image",

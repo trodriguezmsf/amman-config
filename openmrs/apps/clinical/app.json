@@ -606,7 +606,14 @@
             },
             "Intra-operative blood products":{
                 "allowAddMore": true
+            },
+            "Documents, Date":{
+              "required":true
+            },
+            "Radiology Documents":{
+              "allowAddMore":true
             }
+           
     },
         "visitPage": {
             "observationDisplay": {
