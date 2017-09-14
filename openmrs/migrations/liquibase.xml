@@ -4661,6 +4661,44 @@
             INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptid,@codedanswer2,1,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201709141647" author="Shiva kumar" context="rel3.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name="Documents, Image";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding concepts </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Documents, Image' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_complex (concept_id,handler) values(@concept_id,"BinaryDataHandler");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709141652" author="Shiva kumar" context="rel3.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='All Observation Templates' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='Post-operative Anaesthesia Note' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Inserting Post-operative Anaesthesia Note form into All Observation Templates </comment>
+        <sql>
+            SELECT concept_id INTO @conceptID FROM concept_name WHERE name ="Post-operative Anaesthesia Note" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="All Observation Templates" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID,@conceptsetID,28,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709141656" author="Shiva kumar" context="rel3.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='All Observation Templates' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='Radiology Documents' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Inserting Radiology Documents form into All Observation Templates </comment>
+        <sql>
+            SELECT concept_id INTO @conceptID FROM concept_name WHERE name ="Radiology Documents" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="All Observation Templates" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID,@conceptsetID,29,8,now(),uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
