@@ -4664,7 +4664,7 @@
     <changeSet id="Amman-201709141647" author="Shiva kumar" context="rel3.3" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
-                select  * from concept_name where name ="Documents, Image" and concept_name_type="FULLY_SPECIFIED" and voided =0;
+                select  count(*) from concept_name where name ="Documents, Image" and concept_name_type="FULLY_SPECIFIED" and voided =0;
             </sqlCheck>
         </preConditions>
         <comment>Adding concepts </comment>
