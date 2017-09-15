@@ -1,1 +1,4 @@
 uuid,name,description,class,datatype,shortname,synonym.1,synonym.2,synonym.3,answer.1,reference-term-source,reference-term-code,reference-term-relationship
+,PHENYTOIN sodium 100 mg,,Drug,N/A,PHENYTOIN sodium 100 mg,,,,,MSF-INTERNAL,DORAPHEY1T-,SAME-AS
+,ENOXAPARIN SODIUM 4000 IU/ml,,Drug,N/A,ENOXAPARIN SODIUM 4000 IU/ml,,,,,MSF-INTERNAL,DINJZJO1036,SAME-AS
+,MAGNESIUM sulfate 0.5 mg/ml,,Drug,N/A,MAGNESIUM sulfate 0.5 mg/ml,,,,,MSF-INTERNAL,DINJMAGS5V-,SAME-AS
