@@ -4664,7 +4664,7 @@
     <changeSet id="Amman-201709141647" author="Shiva kumar" context="rel3.3" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
-                select  * from concept_name where name ="Documents, Image" and concept_name_type="FULLY_SPECIFIED";
+                select  * from concept_name where name ="Documents, Image" and concept_name_type="FULLY_SPECIFIED" and voided =0;
             </sqlCheck>
         </preConditions>
         <comment>Adding concepts </comment>
@@ -4699,9 +4699,27 @@
             INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID,@conceptsetID,29,8,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201709151645" author="Shiva kumar" context="rel3.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from drug where name ="ALCOHOL-BASED HAND RUB  500ml, bottle";
+            </sqlCheck>
+        </preConditions>
+        <comment>Inserting Radiology Documents form into All Observation Templates </comment>
+        <sql>
+            update drug set retire_reason="not reqiured", retired=1, retired_by=8, date_retired=now() where name ="ALCOHOL-BASED HAND RUB  500ml, bottle";
+            update drug set retire_reason="not reqiured", retired=1, retired_by=8, date_retired=now() where name ="DERMANIOS SCRUB POLYPOVIDINE IODIN 5 L, bottle";
+            update drug set retire_reason="not reqiured", retired=1, retired_by=8, date_retired=now() where name ="DERMANIOS, SCRUB CHLORHEXIDINE  1 L, bottle";
+            update drug set retire_reason="not reqiured", retired=1, retired_by=8, date_retired=now() where name ="HYDROGEN PEROXIDE 5% 1 L, bottle";
+            update drug set retire_reason="not reqiured", retired=1, retired_by=8, date_retired=now() where name ="ISOFLURANE 100 ml, bot.";
+            update drug set retire_reason="not reqiured", retired=1, retired_by=8, date_retired=now() where name ="LIDOCAINE 5.05 g/ 50 g Spray";
+            update drug set retire_reason="not reqiured", retired=1, retired_by=8, date_retired=now() where name ="SEVOFLURANE  250 ml, bot";
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
 
 
 
+    
