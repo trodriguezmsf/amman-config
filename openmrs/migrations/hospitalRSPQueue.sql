@@ -32,7 +32,7 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.hospitalRSP';
     ) personData
     JOIN patient_program pp
       ON personData.person_id = pp.patient_id AND pp.date_completed IS NULL AND pp.voided IS FALSE
-    JOIN concept_name cn ON cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.voided IS FALSE AND cn.name IN ('Pre-Operative', 'Surgical', 'Rehabilitation')
+    JOIN concept_name cn ON cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.voided IS FALSE AND cn.name IN ('Pre-Operative','Surgical / Hospitalisation', 'Rehabilitation')
     JOIN program_workflow_state pws ON pws.concept_id = cn.concept_id AND pws.retired IS FALSE
     JOIN patient_state ps
       ON ps.patient_program_id = pp.patient_program_id AND  ps.state = pws.program_workflow_state_id AND ps.end_date IS NULL AND ps.voided IS FALSE

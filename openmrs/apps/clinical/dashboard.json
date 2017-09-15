@@ -1,6 +1,6 @@
 {
   "general": {
-        "translationKey": "DASHBOARD_TAB_GENERAL_KEY",
+        "translationKey": "DASHBOARD_TAB_VALIDATION_COMMITTEE_KEY",
         "displayByDefault": true,
         "maxRecentlyViewedPatients": 1,
         "sections": {
@@ -184,7 +184,6 @@
                     "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY"
                 }
             },
-
             "validationForms": {
                 "type": "forms",
                 "displayOrder": 8,
@@ -235,6 +234,38 @@
             }
         }
     },
+  "documents": {
+    "displayByDefault": true,
+    "maxRecentlyViewedPatients": 1,
+    "printing": {
+      "title": "Patient Documents",
+      "header": "Patient Documents",
+      "logo": "../images/bahmniLogo.png",
+      "showNameAndImage": true
+    },
+    "sections": {
+      "documents": {
+        "translationKey": "DASHBOARD_TITLE_PATIENT_DOCUMENTS",
+        "type": "obsToObsFlowSheet",
+        "headingConceptSource": "Abbreviation",
+        "dataConceptSource": "Abbreviation",
+        "displayType": "Full-Page",
+        "displayOrder": 1,
+        "dashboardConfig": {
+          "isEditable": true,
+          "groupByConcept": "Documents, Date",
+          "orderByConcept": "Documents, Date",
+          "templateName": "Radiology Documents",
+          "conceptNames": [
+            "Documents, Date",
+            "Documents, Image",
+            "Documents, Image Description"
+          ]
+        }
+      }
+    },
+    "translationKey": "DASHBOARD_TAB_PATIENT_DOCUMENTS_KEY"
+  },
   "patientSummary": {
     "translationKey": "DASHBOARD_TAB_PATIENT_SUMMARY_KEY",
     "displayByDefault": true,

@@ -9,7 +9,7 @@ VALUES ('emrapi.sqlSearch.otToBeScheduledQueue',
   procedureBlock.`procedure`                                                                                                                           AS `Planned Procedure`,
   finalValidationSurgeon.name                                                                                                                          AS `Surgeon Name`,
   speciality.name                                                                                                                                      AS Speciality,
-  if(appointment_block.date_created IS NOT NULL AND procedureBlock.date_created < appointment_block.date_created, appointment_block.status, NULL)      AS `Status`,
+  if(appointment_block.date_created IS NOT NULL AND procedureBlock.obs_datetime < appointment_block.date_created, appointment_block.status, NULL)      AS `Status`,
   appointment_block.notes																															   AS  `Reason for Change`,
   anaesthesiaOutcome.name                                                                                                                              AS `Outcome of Anaesthesia`
 FROM patient p
@@ -21,14 +21,16 @@ FROM patient p
   SELECT
   p.person_id,
   planned_procedures.all_procedures AS `procedure`,
-  latest_form.date_created
+  latest_form.date_created,
+  latest_form.obs_datetime
 FROM
   person p
   INNER JOIN (
                SELECT
                  form_obs.obs_id,
                  form_obs.person_id,
-                 form_obs.date_created
+                 form_obs.date_created,
+                 form_obs.obs_datetime
                FROM
                  (SELECT
                     MAX(o.obs_datetime) AS max_obs_datetime,
@@ -288,10 +290,10 @@ FROM
         ON appoinment.patient_id = p.patient_id AND p.voided IS FALSE
   ) appointment_block ON appointment_block.patient_id = p.patient_id
 WHERE
-  procedureBlock.date_created > appointment_block.date_created
+  procedureBlock.obs_datetime > appointment_block.date_created
   OR
-  appointment_block.status = 'POSTPONED' AND procedureBlock.date_created < appointment_block.date_created
+  appointment_block.status = 'POSTPONED' AND procedureBlock.obs_datetime < appointment_block.date_created
   OR
-  appointment_block.date_created IS NULL AND procedureBlock.date_created IS NOT NULL
-ORDER BY procedureBlock.date_created DESC;"
+  appointment_block.date_created IS NULL AND procedureBlock.obs_datetime IS NOT NULL
+ORDER BY procedureBlock.obs_datetime DESC;"
    ,'SQL for to be scheduled patient listing queues for OT module',@uuid);
