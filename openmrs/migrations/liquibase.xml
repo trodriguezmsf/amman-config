@@ -4663,8 +4663,8 @@
     </changeSet>
     <changeSet id="Amman-201709141647" author="Shiva kumar" context="rel3.3" >
         <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from concept_name where name="Documents, Image";
+            <sqlCheck expectedResult="1">
+                select  * from concept_name where name ="Documents, Image" and concept_name_type="FULLY_SPECIFIED";
             </sqlCheck>
         </preConditions>
         <comment>Adding concepts </comment>
