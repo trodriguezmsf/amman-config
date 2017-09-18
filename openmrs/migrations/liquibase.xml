@@ -4716,7 +4716,7 @@
             update drug set retire_reason="not reqiured", retired=1, retired_by=8, date_retired=now() where name ="SEVOFLURANE  250 ml, bot";
         </sql>
     </changeSet>
-    <changeSet id="Amman-201709061404" author="Shiva kumar" context="rel3.3">
+    <changeSet id="Amman-201709181516" author="Shiva kumar" context="rel3.3">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult = "1">
                 select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='FSTG, First Stage Validation' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='FSTG, Type of medical information needed for next submission' and concept_name_type = "FULLY_SPECIFIED");
