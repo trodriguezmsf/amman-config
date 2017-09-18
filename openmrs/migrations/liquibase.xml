@@ -4664,12 +4664,12 @@
     <changeSet id="Amman-201709141647" author="Shiva kumar" context="rel3.3" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
-                select  count(*) from concept_name where name ="Documents, Image" and concept_name_type="FULLY_SPECIFIED" and voided =0;
+                select  count(*) from concept_name where name ="Image" and concept_name_type="FULLY_SPECIFIED" and voided =0;
             </sqlCheck>
         </preConditions>
         <comment>Adding concepts </comment>
         <sql>
-            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Documents, Image' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Image' AND concept_name_type="FULLY_SPECIFIED";
             INSERT INTO concept_complex (concept_id,handler) values(@concept_id,"BinaryDataHandler");
         </sql>
     </changeSet>
