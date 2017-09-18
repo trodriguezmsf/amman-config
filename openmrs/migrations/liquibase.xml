@@ -4716,6 +4716,19 @@
             update drug set retire_reason="not reqiured", retired=1, retired_by=8, date_retired=now() where name ="SEVOFLURANE  250 ml, bot";
         </sql>
     </changeSet>
+    <changeSet id="Amman-201709181516" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='FSTG, First Stage Validation' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='FSTG, Type of medical information needed for next submission' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>updating order of concepts</comment>
+        <sql>
+            SELECT concept_id   from concept_name where name= 'FSTG, First Stage Validation' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'FSTG, Type of medical information needed for next submission' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET sort_weight=20 where concept_id =@concept_id and concept_set = @concept_set;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
