@@ -4729,6 +4729,45 @@
             UPDATE concept_set SET sort_weight=20 where concept_id =@concept_id and concept_set = @concept_set;
         </sql>
     </changeSet>
+    <changeSet id="Amman-201709191204" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='FSTG, First Stage Validation' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='FSTG, Type of medical information needed for next submission' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>updating order of concepts</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set from concept_name where name= 'FSTG, First Stage Validation' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'FSTG, Type of medical information needed for next submission' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET sort_weight=13 where concept_id =@concept_id and concept_set = @concept_set;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709191206" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='FSTG, First Stage Validation' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='FST, Type of medical information needed for next submission' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>adding FST, Type of medical information needed for next submission to FSTG, First Stage Validation form</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set  from concept_name where name= 'FSTG, First Stage Validation' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'FST, Type of medical information needed for next submission' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id,@concept_set,20,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709191209" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='Post-operative Anaesthesia Note' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='APN, Date recorded' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting Date recorded from post-operative anaestesia form</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set  from concept_name where name= 'Post-operative Anaesthesia Note' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'APN, Date recorded' AND concept_name_type="FULLY_SPECIFIED";
+            DELETE from concept_set where concept_id=@concept_id and concept_set=@concept_set;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 

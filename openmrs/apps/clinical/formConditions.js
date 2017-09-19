@@ -34,15 +34,15 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['FSTG, Outcomes for 1st stage Anaesthesia validation'];
         if (conditionConcept == "Fits anaesthesia criteria") {
             conditions.show.push("FSTG, Name (s) of Anaesthetist", "FSTG, Comments about Anaesthesia validation")
-            conditions.hide.push("FSTG, Type of medical information needed for next submission")
+            conditions.hide.push("FST, Type of medical information needed for next submission")
 
         }
         else if (conditionConcept == "Need complementary investigation") {
-            conditions.show.push("FSTG, Type of medical information needed for next submission");
+            conditions.show.push("FST, Type of medical information needed for next submission");
             conditions.hide.push("FSTG, Name (s) of Anaesthetist", "FSTG, Comments about Anaesthesia validation")
         }
         else {
-            conditions.hide.push("FSTG, Comments about Anaesthesia validation", "FSTG, Name (s) of Anaesthetist","FSTG, Type of medical information needed for next submission")
+            conditions.hide.push("FSTG, Comments about Anaesthesia validation", "FSTG, Name (s) of Anaesthetist","FST, Type of medical information needed for next submission")
         }
         return conditions;
     },
