@@ -612,6 +612,9 @@
             },
             "Radiology Documents":{
               "allowAddMore":true
+            },
+            "MD, Allergy and Medication history":{
+                "allowAddMore":true
             }
            
     },
