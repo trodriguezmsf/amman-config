@@ -88,7 +88,7 @@ FROM person p
     LEFT JOIN (SELECT
                    pp.patient_id,
                    SUBSTRING_INDEX(
-                       GROUP_CONCAT(DISTINCT (IF(ps.end_date IS NOT NULL, cn.name, NULL)) ORDER BY ps.end_date DESC),
+                       GROUP_CONCAT(DISTINCT (IF(ps.end_date IS NOT NULL, cn.name, NULL)) ORDER BY ps.end_date, ps.start_date DESC),
                        ',', 1)                                                     AS 'previousProgramState',
                    GROUP_CONCAT(DISTINCT (IF(ps.end_date IS NULL, cn.name, NULL))) AS 'currentProgramState'
                FROM patient_program pp
