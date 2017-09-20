@@ -218,7 +218,8 @@
                     "OPD MD Follow-Up Note",
                     "Operative Report",
                     "Vital Signs form",
-                    "Post-operative Anaesthesia Note"
+                    "Post-operative Anaesthesia Note",
+                    "Radiology Documents"
 
 
                 ],
@@ -702,8 +703,51 @@
           "showDetailsButton": true,
           "pivotTable": {}
         }
+      },
+      "Vital Signs form":{
+        "translationKey": "DASHBOARD_VITAL_SIGNS_FORM",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 19,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "Operative Report"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Operative Report"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 10,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Post-operative Anaesthesia Note":{
+        "translationKey": "DASHBOARD_POST_OPERATIVE_ANAESTHESIA_FORM",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 20,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "Post-operative Anaesthesia Note"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Post-operative Anaesthesia Note"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 10,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
       }
     }
   }
 }
-  
