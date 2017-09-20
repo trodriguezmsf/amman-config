@@ -259,7 +259,7 @@
           "templateName": "Radiology Documents",
           "conceptNames": [
             "Documents, Date",
-            "Documents, Image",
+            "Image",
             "Documents, Image Description"
           ]
         }
