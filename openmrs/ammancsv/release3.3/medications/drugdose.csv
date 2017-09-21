@@ -1,5 +1,4 @@
 uuid,name,description,class,shortname,child.1,child.2,child.3,child.4,child.5,child.6,child.7,child.8,child.9,child.10,child.11,child.12,child.13,child.14,child.15,datatype,reference-term-source,reference-term-code,reference-term-relationship
-,"µg",,Misc,µg,,,,,,,,,,,,,,,,N/A,,,
 ,Application(s),,Misc,Application(s),,,,,,,,,,,,,,,,N/A,,,
 ,Capsule(s),,Misc,Capsule(s),,,,,,,,,,,,,,,,N/A,,,
 ,Dose,,Misc,Dose,,,,,,,,,,,,,,,,N/A,,,
@@ -23,5 +22,5 @@ uuid,name,description,class,shortname,child.1,child.2,child.3,child.4,child.5,ch
 ,Rectal,,Misc,Rectal,,,,,,,,,,,,,,,,N/A,,,
 ,Vaginal,,Misc,Vaginal,,,,,,,,,,,,,,,,N/A,,,
 ,Intramuscular,,Misc,Intramuscular,,,,,,,,,,,,,,,,N/A,,,
-,Dosing Units,,ConvSet,Dosing Units,µg,Application(s),Capsule(s),Dose,gram,IU,mg,ml,mmol,Puff(s),Tablespoon,Tablet(s),Teaspoon,mmol,,N/A,,,
+,Dosing Units,,ConvSet,Dosing Units,Application(s),Capsule(s),Dose,gram,IU,mg,ml,mmol,Puff(s),Tablespoon,Tablet(s),Teaspoon,mmol,,,N/A,,,
 ,Drug Routes,,ConvSet,Drug Routes,Nasogastric,Topical,Oral,Ears,Eyes,Eyes/Nasogastric,Intravenous,Rectal,Vaginal,Intramuscular,,,,,,N/A,,,
