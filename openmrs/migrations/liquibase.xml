@@ -4806,6 +4806,117 @@
             update drug set name ="VITAMIN B12 1 000 µg/1 mL 1 ml, amp",strength="1000 µg/1 mL" where concept_id =@concept_id14;
         </sql>
     </changeSet>
+    <changeSet id="Amman-201709211626" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                select count(*) from drug where name ="POLYVIDONE IODINE MOUTHWASH 1% 250 ml, flacon";
+            </sqlCheck>
+        </preConditions>
+        <comment>updating dose form to the drug</comment>
+        <sql>
+            select concept_id into @concept_id from drug where name ="POLYVIDONE IODINE MOUTHWASH 1% 250 ml, flacon";
+            select concept_id into @conceptID from concept_name where name ="Oral solution";
+            update drug set dosage_form=@conceptID where concept_id =@concept_id;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709211628" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                select count(*) from drug where name ="IRON 20 mg/ml Ampoule";
+            </sqlCheck>
+        </preConditions>
+        <comment>updating dose form to the drug</comment>
+        <sql>
+            select concept_id into @concept_id from drug where name ="IRON 20 mg/ml Ampoule";
+            select concept_id into @conceptID from concept_name where name ="Oral solution";
+            update drug set dosage_form=@conceptID where concept_id =@concept_id;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709211630" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                select count(*) from drug where name ="HEPATITIS B 20mcg/1ml Vial, monodose";
+            </sqlCheck>
+        </preConditions>
+        <comment>updating dose form to the drug</comment>
+        <sql>
+            select concept_id into @concept_id from drug where name ="HEPATITIS B 20mcg/1ml Vial, monodose";
+            select concept_id into @conceptID from concept_name where name ="Vaccine";
+            update drug set dosage_form=@conceptID where concept_id =@concept_id;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709211632" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                select count(*) from drug where name ="LIDOCAINE 2% Tube";
+            </sqlCheck>
+        </preConditions>
+        <comment>updating dose form to the drug</comment>
+        <sql>
+            select concept_id into @concept_id from drug where name ="LIDOCAINE 2% Tube";
+            select concept_id into @conceptID from concept_name where name ="Gel";
+            update drug set dosage_form=@conceptID where concept_id =@concept_id;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709211634" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                select count(*) from drug where name ="ACETIC ACID 7% Bottle";
+            </sqlCheck>
+        </preConditions>
+        <comment>updating dose form to the drug</comment>
+        <sql>
+            select concept_id into @concept_id from drug where name ="ACETIC ACID 7% Bottle";
+            select concept_id into @conceptID from concept_name where name ="Oral solution";
+            update drug set dosage_form=@conceptID where concept_id =@concept_id;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709211644" author="Shiva kumar" context="rel3.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from drug where name ="POLYVIDONE IODINE 10% 120 ml, flacon";
+            </sqlCheck>
+        </preConditions>
+        <comment>retireing POLYVIDONE IODINE drug </comment>
+        <sql>
+            update drug set retire_reason="not reqiured", retired=1, retired_by=8, date_retired=now() where name ="POLYVIDONE IODINE 10% 120 ml, flacon";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709211647" author="Shiva kumar">
+        <comment>Adding new add_concept procedure</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_concept;
+        </sql>
+        <sqlFile splitStatements="false" path="E1_1__AddConceptProc.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201709211649" author="Shiva" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set cs where cs.concept_set in (SELECT concept_id from concept_name where name = 'µg' and concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concept_set</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'µg', 'µg', 'N/A', 'misc', true);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201709211657" author="shiva kumar" context="rel3.3" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id = (select concept_id from concept_name where name ="µg" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'Dosing Units' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding µg to dosing units </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set  from concept_name where name= 'Dosing Units' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'µg' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,creator,date_created,uuid) VALUES (@concept_id,@concept_set,8,now(),uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 

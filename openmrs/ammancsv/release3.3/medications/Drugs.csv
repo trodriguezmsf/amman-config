@@ -1,4 +1,5 @@
 uuid,Name,Generic Name,Strength,Dosage Form,Minimum Dose,Maximum Dose
-,PHENYTOIN sodium 100 mg,PHENYTOIN sodium 100 mg,mg,Tablet,,
-,ENOXAPARIN SODIUM 4000 IU/ml,ENOXAPARIN SODIUM 4000 IU/ml,IU,Injection,,
-,MAGNESIUM sulfate 0.5 mg/ml,MAGNESIUM sulfate 0.5 mg/ml,mg,Injection,,
+,DIGOXIN 0.25 mg,DIGOXIN 0.25 mg,Tablets,Tablet,,
+,PHENYTOIN sodium 100 mg,PHENYTOIN sodium 100 mg,Tablets,Tablet,,
+,ENOXAPARIN SODIUM 4000 IU/ml 0.4 ml pre-filled syringue,ENOXAPARIN SODIUM 4000 IU/ml 0.4 ml pre-filled syringue,0.4 ml pre-filled syringue,Injection,,
+,"MAGNESIUM sulfate 0.5 mg/ml 10 ml, vial","MAGNESIUM sulfate 0.5 mg/ml 10 ml, vial","10 ml, vial",Injection,,
