@@ -713,12 +713,12 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Operative Report"
+            "Vital Signs form"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "Operative Report"
+            "Vital Signs form"
           ],
           "isEditable": true,
           "numberOfVisits": 10,
