@@ -4768,6 +4768,44 @@
             DELETE from concept_set where concept_id=@concept_id and concept_set=@concept_set;
         </sql>
     </changeSet>
+    <changeSet id="Amman-201709211205" author="Shiva kumar" context="rel3.3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                select count(*) from drug where name like "BUDESONIDE 160 ��g % FORMOTEROL Fumarate Dihydrate   4.5 ��g/dose 120 puffs, turbuhaler";
+            </sqlCheck>
+        </preConditions>
+        <comment>updating drug list</comment>
+        <sql>
+            select concept_id into @concept_id1 from drug where name like "BUDESONIDE 160 ��g % FORMOTEROL Fumarate Dihydrate   4.5 ��g/dose 120 puffs, turbuhaler";
+            update drug set name ="BUDESONIDE 160  µg and FORMOTEROL Fumarate Dihydrate   4.5  µg/dose 120 puffs, turbuhaler",strength="160 µg + 4.5 µg/dose" where concept_id =@concept_id1;
+            select concept_id into @concept_id2 from drug where name like "BUDESONIDE 160 ��g % FORMOTEROL Fumarate Dihydrate   4.5 ��g/dose 60 puffs, turbuhaler";
+            update drug set name ="BUDESONIDE 160 µg and FORMOTEROL Fumarate Dihydrate   4.5 µg/dose 60 puffs, turbuhaler",strength="160 µg + 4.5 µg/dose" where concept_id =@concept_id2;
+            select concept_id into @concept_id3 from drug where name like "CALCIPOTRIOL 5 mg %  B��TAM��THASONE (DAIBOVET)  50 mg 60g, tube";
+            update drug set name ="CALCIPOTRIOL 5 mg and  BETAMEHASONE (DAIBOVET)  50 mg 60g, tube" where concept_id =@concept_id3;
+            select concept_id into @concept_id4 from drug where name ="FLUTICASONE 125 ��g 120 doses, inhaler";
+            update drug set name ="FLUTICASONE 125 µg 120 doses, inhaler",strength="125 µg" where concept_id =@concept_id4;
+            select concept_id into @concept_id5 from drug where name ="FLUTICASONE 27.5 ��g Suspension, Inhaler";
+            update drug set name ="FLUTICASONE 27.5 µg Suspension, Inhaler",strength="27.5 µg" where concept_id =@concept_id5;
+            select concept_id into @concept_id6 from drug where name ="FLUTICASONE 50 ��g Inhaler";
+            update drug set name ="FLUTICASONE 50 µg Inhaler",strength="50 µg" where concept_id =@concept_id6;
+            select concept_id into @concept_id7 from drug where name ="FLUTICASONE 250 ��g 60 puffs, inhaler";
+            update drug set name ="FLUTICASONE 250 µg 60 puffs, inhaler",strength="250 µg" where concept_id =@concept_id7;
+            select concept_id into @concept_id8 from drug where name like "IPRATROPIUM BROMIDE 100 ��g % SALBUTAMOL SULFATE 20 ��g Inhaler, aerosol";
+            update drug set name ="IPRATROPIUM BROMIDE 100 µg and SALBUTAMOL SULFATE 20 µg Inhaler, aerosol",strength="100 µg + 20 µg" where concept_id =@concept_id8;
+            select concept_id into @concept_id9 from drug where name ="LEVOTHYROXINE 100 ��g";
+            update drug set name ="LEVOTHYROXINE 100 µg",strength="100 µg" where concept_id =@concept_id9;
+            select concept_id into @concept_id10 from drug where name ="LEVOTHYROXINE 50 ��g";
+            update drug set name ="LEVOTHYROXINE 50 µg",strength="50 µg" where concept_id =@concept_id10;
+            select concept_id into @concept_id11 from drug where name ="LEVOTHYROXINE 75 ��g";
+            update drug set name ="LEVOTHYROXINE 75 µg",strength="75 µg" where concept_id =@concept_id11;
+            select concept_id into @concept_id12 from drug where name ="LEVOTHYROXINE 25��g";
+            update drug set name ="LEVOTHYROXINE 25 µg",strength="25 µg" where concept_id =@concept_id12;
+            select concept_id into @concept_id13 from drug where name ="PHENYLEPHRINE hydrochloride eq. 50 ��g base/ ml 10 ml, amp.";
+            update drug set name ="PHENYLEPHRINE hydrochloride eq. 50 µg base/ ml 10 ml, amp.",strength="eq. 50 µg base/ ml" where concept_id =@concept_id13;
+            select concept_id into @concept_id14 from drug where name ="VITAMIN B12 1 000 ��g/1 mL 1 ml, amp";
+            update drug set name ="VITAMIN B12 1 000 µg/1 mL 1 ml, amp",strength="1000 µg/1 mL" where concept_id =@concept_id14;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
