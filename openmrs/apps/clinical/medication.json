@@ -93,6 +93,9 @@
           "Vaccine": {
             "route": "Intramuscular"
           },
+          "Vaccin":{
+            "route":"Intramuscular"
+          },
           "Vaginal tablet": {
             "route": "Vaginal"
           }
