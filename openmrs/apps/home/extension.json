@@ -67,7 +67,7 @@
     "label": "InPatient",
     "url": "../ipd/#/admit",
     "icon": "fa-bed",
-    "order": 8,
+    "order": 7,
     "requiredPrivilege": "app:adt"
   },
   "bahmniOT": {
@@ -77,7 +77,16 @@
     "translationKey": "Operation Theatre",
     "url": "../ot/",
     "icon": "fa-hospital-o",
-    "order": 9,
+    "order": 8,
     "requiredPrivilege": "app:ot"
+  },
+  "appointmentScheduling": {
+    "id": "bahmni.appointment.scheduling",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "MODULE_LABEL_APPOINTMENT_SCHEDULING_KEY",
+    "url": "../appointments",
+    "icon": "fa fa-calendar",
+    "order": 9
   }
 }
