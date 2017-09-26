@@ -59,7 +59,7 @@ FROM
                  INNER JOIN concept_name consent_cn
                    ON consent_cn.concept_id = consent_obs.concept_id
                       AND consent_cn.name IN
-                          ('SAP, Has Patient Consent Been Obtained?', 'SFP, Has patient consent been obtained?')
+                          ('SAP, Is patient for surgery', 'SFP, Is patient for surgery')
                       AND consent_cn.concept_name_type = 'FULLY_SPECIFIED' AND consent_cn.voided IS FALSE
                       AND consent_obs.voided IS FALSE
                  INNER JOIN concept_name consent_answer_cn
