@@ -1388,5 +1388,188 @@ Bahmni.ConceptSet.FormConditions.rules = {
               conditions.hide.push("AIA, Describe")
          }
           return conditions;
+      },
+      'LLA, Type of assessment': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Type of assessment'];
+          if (conditionConcept == "Initial"){
+              conditions.hide.push("LLA, Follow-up Plan","LLA, Details of previous physiotherapy")
+              conditions.show.push("LLA, Previous history of physiotherapy","LLA, Chief complaint of patient","LLA, Problem List")
+          }
+          else if (conditionConcept == "Post-operative"){
+              conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Details of previous physiotherapy","LLA, Chief complaint of patient","LLA, Problem List","LLA, Follow-up Plan")
+         }
+         else if (conditionConcept == "Final"){
+                       conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Details of previous physiotherapy","LLA, Chief complaint of patient","LLA, Problem List")
+                       conditions.show.push("LLA, Follow-up Plan")
+         }
+         else {
+             conditions.show.push("LLA, Previous history of physiotherapy","LLA, Details of previous physiotherapy","LLA, Chief complaint of patient","LLA, Problem List","LLA, Follow-up Plan")
+         }
+          return conditions;
+      },
+      'LLA, Previous history of physiotherapy': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Previous history of physiotherapy'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("LLA, Details of previous physiotherapy")
+          }
+          else {
+              conditions.hide.push("LLA, Details of previous physiotherapy")
+         }
+          return conditions;
+      },
+      'LLA, Does the patient use an assistive device or orthosis?': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Does the patient use an assistive device or orthosis?'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("LLA, Type of assistive device or orthosis","LLA, Comments about assistive device or orthosis")
+          }
+          else {
+              conditions.hide.push("LLA, Type of assistive device or orthosis","LLA, Other type of assistive device","LLA, Comments about assistive device or orthosis")
+         }
+          return conditions;
+      },
+      'LLA, Type of assistive device or orthosis': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Type of assistive device or orthosis'];
+          if (conditionConcept =="Other"){
+              conditions.show.push("LLA, Other type of assistive device")
+          }
+          else {
+              conditions.hide.push("LLA, Other type of assistive device")
+         }
+          return conditions;
+      },
+      'LLA, Amputee patient?': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Amputee patient?'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("LLA, Level of amputation")
+              conditions.hide.push("LLA, Other type of amputation","LLA, Comments about prostheses usage")
+          }
+          else {
+              conditions.hide.push("LLA, Level of amputation")
+         }
+          return conditions;
+      },
+      'LLA, Type of amputation': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Type of amputation'];
+          if (conditionConcept =="Other"){
+              conditions.show.push("LLA, Other type of amputation")
+          }
+          else {
+              conditions.hide.push("LLA, Other type of amputation")
+         }
+          return conditions;
+      },
+      'LLA, Is the patient using a prostheses?': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Is the patient using a prostheses?'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("LLA, Comments about prostheses usage")
+          }
+          else {
+              conditions.hide.push("LLA, Comments about prostheses usage")
+         }
+          return conditions;
+      },
+    'LLA, Pain Severity': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['LLA, Pain Severity'];
+        if (conditionConcept >= 1){
+            conditions.show.push("LLA, Side of pain","LLA, Site of pain","LLA, Type of pain","LLA, When does the pain occur")
+        }
+        else {
+            conditions.hide.push("LLA, Side of pain","LLA, Site of pain","LLA, Type of pain","LLA, When does the pain occur")
+        }
+        return conditions;
+    },
+    'LLA, Summary neurological examination (sensation)': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['LLA, Summary neurological examination (sensation)'];
+        if (conditionConcept == "Hypo-sensation" || conditionConcept == "Hyper-sensation"){
+            conditions.show.push("LLA, Summary neurological examination (sensation), comments")
+        }
+        else {
+            conditions.hide.push("LLA, Summary neurological examination (sensation), comments")
+        }
+        return conditions;
+    },
+      'LLA, Does the patient have a nerve injury?': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Does the patient have a nerve injury?'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("LLA, Motor")
+          }
+          else {
+              conditions.hide.push("LLA, Motor")
+         }
+          return conditions;
+      },
+       'LLA, How old is the patient': function (formName, formFieldValues) {
+           var conditions = {
+               show: [],
+               hide: []
+           };
+           var conditionConcept = formFieldValues['LLA, How old is the patient'];
+           if (conditionConcept =="< 18 years"){
+               conditions.show.push("LLA, Pediatric Lower Extremity Function(Mobility)")
+               conditions.hide.push("LLA, Lower Extremity Functional Index (LEFI)")
+
+           }
+           else if (conditionConcept =="18+ years") {
+               conditions.show.push("LLA, Lower Extremity Functional Index (LEFI)")
+               conditions.hide.push("LLA, Pediatric Lower Extremity Function(Mobility)")
+          }
+          else {
+               conditions.hide.push("LLA, Pediatric Lower Extremity Function(Mobility)","LLA, Lower Extremity Functional Index (LEFI)")
+          }
+           return conditions;
+       },
+      'LLA, Referral suggested': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Referral suggested'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("LLA, Prosthetic and orthotic center","LLA, Physiotherapy center")
+          }
+          else {
+              conditions.hide.push("LLA, Prosthetic and orthotic center","LLA, Physiotherapy center")
+         }
+          return conditions;
       }
 }

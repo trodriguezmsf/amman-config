@@ -615,6 +615,329 @@
             },
             "MD, Medication":{
                 "allowAddMore":true
+            },
+            "LLA, Stump circumference":{
+                "isTabular": true,
+                "allowAddMore":true
+            },
+            "LLA, R.O.M Test for Lower Limbs":{
+                "isTabular": true
+            },
+            "LLA, Femoral":{
+                "isTabular": true
+            },
+            "LLA, Peronial":{
+                "isTabular": true
+            },
+            "LLA, Tibial nerve":{
+                "isTabular": true
+            },
+            "LLA, Muscle Test for Lower Limbs":{
+                "isTabular": true
+            },
+            "LLA, Superior gluteal":{
+                "isTabular": true
+            },
+            "LLA, Inferior gluteal":{
+                "isTabular": true
+            },
+            "LLA, Left : Gluteus maxi":{
+                "conciseText": true
+            },
+            "LLA, Right : Gluteus maxi":{
+                "conciseText": true
+            },
+            "LLA, Left : Gluteus medius":{
+                "conciseText": true
+            },
+            "LLA, Right : Gluteus medius":{
+                "conciseText": true
+            },
+            "LLA, Left : Quadriceps":{
+                "conciseText": true
+            },
+            "LLA, Right : Quadriceps":{
+                "conciseText": true
+            },
+            "LLA, Left : Illiopsoas":{
+                "conciseText": true
+            },
+            "LLA, Right : Illiopsoas":{
+                "conciseText": true
+            },
+            "LLA, Obturator":{
+                "isTabular": true
+            },
+            "LLA, Left : Adductors":{
+                "conciseText": true
+            },
+            "LLA, Right : Adductors":{
+                "conciseText": true
+            },
+            "LLA ROM, Left : Hip flex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Hip ext":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Int. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Ext. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Abduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Adduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Knee flex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Knee ext":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Ankle dorsiflex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Ankle planterflex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Ankle inversion":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Ankle eversion":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Hip flex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Hip ext":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Int. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Ext. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Abduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Adduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Knee flex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Knee ext":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Ankle dorsiflex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Ankle planterflex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Ankle inversion":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Ankle eversion":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Hip flex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Hip ext":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Int. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Ext. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Abduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Adduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Knee flex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Knee ext":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Ankle dorsiflex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Ankle planterflex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Ankle inversion":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Ankle eversion":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Hip flex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Hip ext":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Int. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Ext. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Abduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Adduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Knee flex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Knee ext":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Ankle dorsiflex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Ankle planterflex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Ankle inversion":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Ankle eversion":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA, Left : Tibialis anterior":{
+                "conciseText": true
+            },
+            "LLA, Left : Peron. long. brev":{
+                "conciseText": true
+            },
+            "LLA, Left : Ext. digitorum":{
+                "conciseText": true
+            },
+            "LLA, Left : Ext. hallucis":{
+                "conciseText": true
+            },
+            "LLA, Right : Tibialis anterior":{
+                "conciseText": true
+            },
+            "LLA, Right : Peron. long. Brev":{
+                "conciseText": true
+            },
+            "LLA, Right : Ext. digitorum":{
+                "conciseText": true
+            },
+            "LLA, Right : Ext. hallucis":{
+                "conciseText": true
+            },
+            "LLA, Left : Gastrocnemius":{
+                "conciseText": true
+            },
+            "LLA, Left : Tibialis post":{
+                "conciseText": true
+            },
+            "LLA, Left : Flex. digi. long":{
+                "conciseText": true
+            },
+            "LLA, Left : Flex. hall. long":{
+                "conciseText": true
+            },
+            "LLA, Right : Gastrocnemius":{
+                "conciseText": true
+            },
+            "LLA, Right : Tibialis post":{
+                "conciseText": true
+            },
+            "LLA, Right : Flex. digi. long":{
+                "conciseText": true
+            },
+            "LLA, Right : Flex. hall. long":{
+                "conciseText": true
+            },
+            "LLA, Leg Length Discrepancy (LLD)":{
+                "isTabular": true
+            },
+            "LLA, Site of pain":{
+                "multiSelect":true,
+                "autocomplete":true
+            },
+            "LLA, cm":{
+                "disableAddNotes": true
+            },
+            "LLA, True (reference point)":{
+                "disableAddNotes": true
+            },
+            "LLA, Functional":{
+                "disableAddNotes": true
+            },
+            "LLA, Problem List":{
+                "allowAddMore":true
+            },
+            "LLA, Step length and height":{
+                "multiSelect":true
+            },
+            "LLA, Foot clearance":{
+                "multiSelect":true
             }
            
     },
