@@ -12,6 +12,12 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
     latest_obs.Specialty                                                               											 AS 'Speciality',
     surgeon_name.name                                             					  											 AS 'Name of Surgeon',
     CAST(DATE_FORMAT(COALESCE(nearestFutureAppointment.blockStartTime,latestPastAppointment.blockStartTime), '%Y-%m-%d') AS CHAR) AS 'Date of Surgery',
+    IF(latest_future_appointment.startdate IS NULL , DATE_FORMAT(latest_past_appointment.startdate, '%d/%m/%Y'),
+       DATE_FORMAT(latest_future_appointment.startdate, '%d/%m/%Y'))                                                              AS 'Date of Appointment',
+    IF(latest_future_appointment.startdate IS NULL,
+       CONCAT(DATE_FORMAT(latest_past_appointment.startdate, '%l:%i %p'), ' - ', DATE_FORMAT(latest_past_appointment.enddate, '%l:%i %p')),
+       CONCAT(DATE_FORMAT(latest_future_appointment.startdate, '%l:%i %p'), ' - ', DATE_FORMAT(latest_future_appointment.enddate, '%l:%i %p'))) AS 'Slot',
+    IF(latest_future_appointment.startdate IS NULL , latest_past_appointment.providername, latest_future_appointment.providername) AS 'Provider name',
     IF(isCaretakerRequired.required = 'true', 'Yes', '')                               											 AS 'Is Caretaker Required?',
     caretakerGender.gender                                                             											 AS 'Caretaker Gender',
     CAST(DATE_FORMAT(latestAdmissionEncounter.admission_datetime, '%Y-%m-%d') AS CHAR) 											 AS 'Admission Date',
@@ -199,4 +205,52 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                                               AND coded_scn.voided IS FALSE
         GROUP BY obs.person_id
  		)latest_obs ON latest_obs.person_id =  p.person_id
+ 	LEFT OUTER JOIN (
+                            SELECT
+                                patappoint.patient_id,
+                                patappoint.start_date_time                 AS startdate,
+                                patappoint.end_date_time                   AS enddate,
+                                patappoint.provider_id                     AS appointmentprovider,
+                                CONCAT(pn.given_name, ' ', pn.family_name) AS providername
+                            FROM
+                                patient_appointment patappoint
+                                INNER JOIN (
+                                               SELECT
+                                                   pa.patient_id           AS patient_id,
+                                                   MIN(pa.start_date_time) AS appointment_date
+                                               FROM
+                                                   patient_appointment pa
+                                               WHERE
+                                                   pa.start_date_time > NOW() AND pa.status NOT IN ('Cancelled')
+                                               GROUP BY
+                                                   pa.patient_id
+                                           ) next_appointment
+                                    ON patappoint.start_date_time = next_appointment.appointment_date
+                                LEFT OUTER JOIN provider prov ON prov.provider_id = patappoint.provider_id
+                                LEFT OUTER JOIN person_name pn ON pn.person_id = prov.person_id
+                        ) latest_future_appointment ON latest_future_appointment.patient_id = p.person_id
+        LEFT OUTER JOIN (
+                            SELECT
+                                patappoint.patient_id,
+                                patappoint.start_date_time                 AS startdate,
+                                patappoint.end_date_time                   AS enddate,
+                                patappoint.provider_id                     AS appointmentprovider,
+                                CONCAT(pn.given_name, ' ', pn.family_name) AS providername
+                            FROM
+                                patient_appointment patappoint
+                                INNER JOIN (
+                                               SELECT
+                                                   pa.patient_id           AS patient_id,
+                                                   MAX(pa.start_date_time) AS appointment_date
+                                               FROM
+                                                   patient_appointment pa
+                                               WHERE
+                                                   pa.start_date_time < NOW() AND pa.status NOT IN ('Cancelled')
+                                               GROUP BY
+                                                   pa.patient_id
+                                           ) next_appointment ON patappoint.patient_id = next_appointment.patient_id
+                                LEFT OUTER JOIN provider prov ON prov.provider_id = patappoint.provider_id
+                                LEFT OUTER JOIN person_name pn ON pn.person_id = prov.person_id
+
+                        ) latest_past_appointment ON latest_past_appointment.patient_id = p.person_id
  	GROUP BY bed.bed_number;",'SQL query to get list of bed details in ward',@uuid);
