@@ -1411,6 +1411,30 @@ Bahmni.ConceptSet.FormConditions.rules = {
          }
           return conditions;
       },
+	'ULA, Type of assessment': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Type of assessment'];
+          if (conditionConcept == "Initial"){
+              conditions.hide.push("ULA, Followup Plan","ULA, Details of previous physiotherapy")
+              conditions.show.push("ULA, Previous history of physiotherapy","ULA, Chief complaint of patient","ULA, Problem List")
+          }
+          else if (conditionConcept == "Post-operative"){
+              conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Details of previous physiotherapy","ULA, Chief complaint of patient","ULA, Problem List","ULA, Followup Plan")
+         }
+         else if (conditionConcept == "Final"){
+                       conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Details of previous physiotherapy","ULA, Chief complaint of patient","ULA, Problem List")
+                       conditions.show.push("ULA, Followup Plan")
+         }
+         else {
+             conditions.show.push("ULA, Previous history of physiotherapy","ULA, Details of previous physiotherapy","ULA, Chief complaint of patient","ULA, Problem List","ULA, Followup Plan")
+         }
+          return conditions;
+      },
+
+
       'LLA, Previous history of physiotherapy': function (formName, formFieldValues) {
           var conditions = {
               show: [],
@@ -1425,6 +1449,24 @@ Bahmni.ConceptSet.FormConditions.rules = {
          }
           return conditions;
       },
+
+	'ULA, Previous history of physiotherapy': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Previous history of physiotherapy'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("ULA, Details of previous physiotherapy")
+          }
+          else {
+              conditions.hide.push("ULA, Details of previous physiotherapy")
+         }
+          return conditions;
+      },
+
+
+
       'LLA, Does the patient use an assistive device or orthosis?': function (formName, formFieldValues) {
           var conditions = {
               show: [],
@@ -1439,7 +1481,24 @@ Bahmni.ConceptSet.FormConditions.rules = {
          }
           return conditions;
       },
-      'LLA, Type of assistive device or orthosis': function (formName, formFieldValues) {
+
+	'ULA, Does the patient use an assistive device or orthosis?': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Does the patient use an assistive device or orthosis?'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("ULA, Type of assistive device or orthosis","ULA, Comments about assistive device or orthosis")
+          }
+          else {
+              conditions.hide.push("ULA, Type of assistive device or orthosis","ULA, Other type of assistive device","ULA, Comments about assistive device or orthosis")
+         }
+          return conditions;
+      },
+
+
+	'LLA, Type of assistive device or orthosis': function (formName, formFieldValues) {
           var conditions = {
               show: [],
               hide: []
@@ -1453,6 +1512,23 @@ Bahmni.ConceptSet.FormConditions.rules = {
          }
           return conditions;
       },
+
+	'ULA, Type of assistive device or orthosis': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Type of assistive device or orthosis'];
+          if (conditionConcept =="Other"){
+              conditions.show.push("ULA, Other type of assistive device")
+          }
+          else {
+              conditions.hide.push("ULA, Other type of assistive device")
+         }
+          return conditions;
+      },
+
+
       'LLA, Amputee patient?': function (formName, formFieldValues) {
           var conditions = {
               show: [],
@@ -1468,6 +1544,23 @@ Bahmni.ConceptSet.FormConditions.rules = {
          }
           return conditions;
       },
+
+	'ULA, Amputee patient?': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Amputee patient?'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("ULA, Level of amputation")
+              conditions.hide.push("ULA, Other type of amputation","ULA, Comments about prostheses usage")
+          }
+          else {
+              conditions.hide.push("ULA, Level of amputation")
+         }
+          return conditions;
+      },
+
       'LLA, Type of amputation': function (formName, formFieldValues) {
           var conditions = {
               show: [],
@@ -1482,6 +1575,23 @@ Bahmni.ConceptSet.FormConditions.rules = {
          }
           return conditions;
       },
+
+	'ULA, Type of amputation': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Type of amputation'];
+          if (conditionConcept =="Other"){
+              conditions.show.push("ULA, Other type of amputation")
+          }
+          else {
+              conditions.hide.push("ULA, Other type of amputation")
+         }
+          return conditions;
+      },
+
+
       'LLA, Is the patient using a prostheses?': function (formName, formFieldValues) {
           var conditions = {
               show: [],
@@ -1496,6 +1606,22 @@ Bahmni.ConceptSet.FormConditions.rules = {
          }
           return conditions;
       },
+	
+	'ULA, Is the patient using a prostheses?': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Is the patient using a prostheses?'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("ULA, Comments about prostheses usage")
+          }
+          else {
+              conditions.hide.push("ULA, Comments about prostheses usage")
+         }
+          return conditions;
+      },
+
     'LLA, Pain Severity': function (formName, formFieldValues) {
         var conditions = {
             show: [],
@@ -1510,6 +1636,22 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
+
+	'ULA, Pain Severity': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['ULA, Pain Severity'];
+        if (conditionConcept >= 1){
+            conditions.show.push("ULA, Side of pain","ULA, Site of pain","ULA, Type of pain","ULA, When does the pain occur")
+        }
+        else {
+            conditions.hide.push("ULA, Side of pain","ULA, Site of pain","ULA, Type of pain","ULA, When does the pain occur")
+        }
+        return conditions;
+    },
+
     'LLA, Summary neurological examination (sensation)': function (formName, formFieldValues) {
         var conditions = {
             show: [],
@@ -1521,6 +1663,21 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         else {
             conditions.hide.push("LLA, Summary neurological examination (sensation), comments")
+        }
+        return conditions;
+    },
+
+	'ULA, Summary neurological examination (sensation)': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['ULA, Summary neurological examination (sensation)'];
+        if (conditionConcept == "Hypo-sensation" || conditionConcept == "Hyper-sensation"){
+            conditions.show.push("ULA, Summary neurological examination (sensation), comments")
+        }
+        else {
+            conditions.hide.push("ULA, Summary neurological examination (sensation), comments")
         }
         return conditions;
     },
@@ -1538,6 +1695,22 @@ Bahmni.ConceptSet.FormConditions.rules = {
          }
           return conditions;
       },
+
+	'ULA, Does the patient have a nerve injury?': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Does the patient have a nerve injury?'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("ULA, Motor")
+          }
+          else {
+              conditions.hide.push("ULA, Motor")
+         }
+          return conditions;
+      },
+
        'LLA, How old is the patient': function (formName, formFieldValues) {
            var conditions = {
                show: [],
@@ -1558,7 +1731,44 @@ Bahmni.ConceptSet.FormConditions.rules = {
           }
            return conditions;
        },
-      'LLA, Referral suggested': function (formName, formFieldValues) {
+
+	'ULA, How old is the patient': function (formName, formFieldValues) {
+           var conditions = {
+               show: [],
+               hide: []
+           };
+           var conditionConcept = formFieldValues['ULA, How old is the patient'];
+           if (conditionConcept =="< 18 years"){
+               conditions.show.push("ULA, Pediatric Upper Extremity Function ( Fine Motor, ADL)")
+               conditions.hide.push("ULA, (UEFI) Upper Extremity Functional Index")
+
+           }
+           else if (conditionConcept =="18+ years") {
+               conditions.show.push("ULA, (UEFI) Upper Extremity Functional Index")
+               conditions.hide.push("ULA, Pediatric Upper Extremity Function ( Fine Motor, ADL)")
+          }
+          else {
+               conditions.hide.push("ULA, Pediatric Upper Extremity Function ( Fine Motor, ADL)","ULA, (UEFI) Upper Extremity Functional Index")
+          }
+           return conditions;
+       },
+
+	'ULA, Referral suggested': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Referral suggested'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("ULA, Prosthetic and orthotic center","ULA, Physiotherapy center")
+          }
+          else {
+              conditions.hide.push("ULA, Prosthetic and orthotic center","ULA, Physiotherapy center")
+         }
+          return conditions;
+      },
+      
+	'LLA, Referral suggested': function (formName, formFieldValues) {
           var conditions = {
               show: [],
               hide: []
