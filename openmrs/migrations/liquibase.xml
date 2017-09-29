@@ -4917,6 +4917,11 @@
             INSERT INTO concept_set(concept_id,concept_set,creator,date_created,uuid) VALUES (@concept_id,@concept_set,8,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201709291109" author="Maharjun, Shireesha" context="rel3.3" runOnChange="true">
+        <comment>Adding upcoming and past appointments for patient</comment>
+        <sqlFile path="appointments/patientPastAppointments.sql"/>
+        <sqlFile path="appointments/patientUpcomingAppointments.sql"/>
+    </changeSet>
 </databaseChangeLog>
 
 

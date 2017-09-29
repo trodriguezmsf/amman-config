@@ -232,6 +232,14 @@
                     "title": "DASHBOARD_TITLE_PATIENT_ENCOUNTER_LOCATIONS_KEY",
                     "template": "<patient-encounter-locations section='section' patient='patient'></patient-encounter-locations>"
                 }
+            },
+            "patientAppointments": {
+                "type": "custom",
+                "displayOrder": 11,
+                "config": {
+                  "title": "DASHBOARD_TITLE_APPOINTMENTS_KEY",
+                  "template": "<patient-appointments-dashboard section='config' patient='patient'></patient-appointments-dashboard>"
+                }
             }
         }
     },
