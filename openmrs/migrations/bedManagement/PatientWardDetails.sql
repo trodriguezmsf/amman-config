@@ -225,7 +225,7 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                                                GROUP BY
                                                    pa.patient_id
                                            ) next_appointment
-                                    ON patappoint.start_date_time = next_appointment.appointment_date
+                                    ON patappoint.start_date_time = next_appointment.appointment_date AND patappoint.start_date_time = next_appointment.appointment_date
                                 LEFT OUTER JOIN provider prov ON prov.provider_id = patappoint.provider_id AND prov.retired IS FALSE
                                 LEFT OUTER JOIN person_name pn ON pn.person_id = prov.person_id AND pn.voided IS FALSE
                         ) latest_future_appointment ON latest_future_appointment.patient_id = p.person_id
@@ -248,7 +248,7 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                                                    pa.start_date_time < NOW() AND pa.status NOT IN ('Cancelled')
                                                GROUP BY
                                                    pa.patient_id
-                                           ) next_appointment ON patappoint.patient_id = next_appointment.patient_id
+                                           ) next_appointment ON patappoint.patient_id = next_appointment.patient_id AND patappoint.start_date_time = next_appointment.appointment_date
                                 LEFT OUTER JOIN provider prov ON prov.provider_id = patappoint.provider_id AND prov.retired IS FALSE
                                 LEFT OUTER JOIN person_name pn ON pn.person_id = prov.person_id AND pn.voided IS FALSE
 
