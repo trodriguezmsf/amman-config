@@ -226,8 +226,8 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                                                    pa.patient_id
                                            ) next_appointment
                                     ON patappoint.start_date_time = next_appointment.appointment_date
-                                LEFT OUTER JOIN provider prov ON prov.provider_id = patappoint.provider_id
-                                LEFT OUTER JOIN person_name pn ON pn.person_id = prov.person_id
+                                LEFT OUTER JOIN provider prov ON prov.provider_id = patappoint.provider_id AND prov.retired IS FALSE
+                                LEFT OUTER JOIN person_name pn ON pn.person_id = prov.person_id AND pn.voided IS FALSE
                         ) latest_future_appointment ON latest_future_appointment.patient_id = p.person_id
         LEFT OUTER JOIN (
                             SELECT
@@ -249,8 +249,8 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                                                GROUP BY
                                                    pa.patient_id
                                            ) next_appointment ON patappoint.patient_id = next_appointment.patient_id
-                                LEFT OUTER JOIN provider prov ON prov.provider_id = patappoint.provider_id
-                                LEFT OUTER JOIN person_name pn ON pn.person_id = prov.person_id
+                                LEFT OUTER JOIN provider prov ON prov.provider_id = patappoint.provider_id AND prov.retired IS FALSE
+                                LEFT OUTER JOIN person_name pn ON pn.person_id = prov.person_id AND pn.voided IS FALSE
 
                         ) latest_past_appointment ON latest_past_appointment.patient_id = p.person_id
  	GROUP BY bed.bed_number;",'SQL query to get list of bed details in ward',@uuid);
