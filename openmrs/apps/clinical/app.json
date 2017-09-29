@@ -1116,9 +1116,11 @@
 "ULA, Lateral or key pinch":{
 },
             "LLA, Stump circumference":{
-                "isTabular": true,
-                "allowAddMore":true
+                "isTabular": true    
             },
+	    "LLA, Level of amputation":{
+	    "allowAddMore":true
+	    },
             "LLA, R.O.M Test for Lower Limbs":{
                 "isTabular": true
             },
