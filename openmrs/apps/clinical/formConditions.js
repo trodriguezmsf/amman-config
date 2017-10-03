@@ -1433,6 +1433,88 @@ Bahmni.ConceptSet.FormConditions.rules = {
          }
           return conditions;
       },
+	'MPA, Type of assessment': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MPA, Type of assessment'];
+          if (conditionConcept == "Initial"){
+              conditions.hide.push("MPA, Followup Plan","MPA, Details of previous physiotherapy")
+              conditions.show.push("MPA, Previous history of physiotherapy","MPA, Chief complaint of patient","MPA, Problem List")
+          }
+          else if (conditionConcept == "Post-operative"){
+              conditions.hide.push("MPA, Previous history of physiotherapy","MPA, Details of previous physiotherapy","MPA, Chief complaint of patient","MPA, Problem List","MPA, Followup Plan")
+         }
+         else if (conditionConcept == "Final"){
+                       conditions.hide.push("MPA, Previous history of physiotherapy","MPA, Details of previous physiotherapy","MPA, Chief complaint of patient","MPA, Problem List")
+                       conditions.show.push("MPA, Followup Plan")
+         }
+         else {
+             conditions.show.push("MPA, Previous history of physiotherapy","MPA, Details of previous physiotherapy","MPA, Chief complaint of patient","MPA, Problem List","MPA, Followup Plan")
+         }
+          return conditions;
+      },
+
+	'MPA, Movement difficulty of facial muscles': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MPA, Movement difficulty of facial muscles'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("MPA, Describe difficulty of movement for facial muscles")
+          }
+          else {
+              conditions.hide.push("MPA, Describe difficulty of movement for facial muscles")
+         }
+          return conditions;
+      },
+
+	'MPA, Movement difficulty of eyes': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MPA, Movement difficulty of eyes'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("MPA, Describe difficulty of movement for eyes")
+          }
+          else {
+              conditions.hide.push("MPA, Describe difficulty of movement for eyes")
+         }
+          return conditions;
+      },
+
+	'MPA, Movement difficulty of mouth': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MPA, Movement difficulty of mouth'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("MPA, Describe difficulty of movement for mouth")
+          }
+          else {
+              conditions.hide.push("MPA, Describe difficulty of movement for mouth")
+         }
+          return conditions;
+      },
+
+	'MPA, Movement difficulty of tongue': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MPA, Movement difficulty of tongue'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("MPA, Describe difficulty of movement for tongue")
+          }
+          else {
+              conditions.hide.push("MPA, Describe difficulty of movement for tongue")
+         }
+          return conditions;
+      },
 
 
       'LLA, Previous history of physiotherapy': function (formName, formFieldValues) {
@@ -1464,7 +1546,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
          }
           return conditions;
       },
-
+	'MPA, Previous history of physiotherapy': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MPA, Previous history of physiotherapy'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("MPA, Details of previous physiotherapy")
+          }
+          else {
+              conditions.hide.push("MPA, Details of previous physiotherapy")
+         }
+          return conditions;
+      },
 
 
       'LLA, Does the patient use an assistive device or orthosis?': function (formName, formFieldValues) {
@@ -1652,6 +1747,21 @@ Bahmni.ConceptSet.FormConditions.rules = {
         return conditions;
     },
 
+	'MPA, Pain Severity': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MPA, Pain Severity'];
+        if (conditionConcept >= 1){
+            conditions.show.push("MPA, Side of pain","MPA, Site of pain","MPA, Type of pain","MPA, When does the pain occur")
+        }
+        else {
+            conditions.hide.push("MPA, Side of pain","MPA, Site of pain","MPA, Type of pain","MPA, When does the pain occur")
+        }
+        return conditions;
+    },
+
     'LLA, Summary neurological examination (sensation)': function (formName, formFieldValues) {
         var conditions = {
             show: [],
@@ -1681,6 +1791,23 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
+	'MPA, Summary neurological examination (sensation)': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MPA, Summary neurological examination (sensation)'];
+        if (conditionConcept == "Hypo-sensation" || conditionConcept == "Hyper-sensation"){
+            conditions.show.push("MPA, Summary neurological examination (sensation), comments")
+        }
+        else {
+            conditions.hide.push("MPA, Summary neurological examination (sensation), comments")
+        }
+        return conditions;
+    },
+
+
+
       'LLA, Does the patient have a nerve injury?': function (formName, formFieldValues) {
           var conditions = {
               show: [],
@@ -1764,6 +1891,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
           }
           else {
               conditions.hide.push("ULA, Prosthetic and orthotic center","ULA, Physiotherapy center")
+         }
+          return conditions;
+      },
+	'MPA, Referral suggested': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MPA, Referral suggested'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("MPA, Referral suggested, comments")
+          }
+          else {
+              conditions.hide.push("MPA, Referral suggested, comments")
          }
           return conditions;
       },
