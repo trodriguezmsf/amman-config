@@ -18,6 +18,8 @@
         ],
         "config" : {
             "showBirthTime": false,
+            "showLastName": true,
+            "isLastNameMandatory": true,
             "mandatoryPersonAttributes" : [
                 "id1Document",
                 "id1FullNameEnglish",
