@@ -1403,7 +1403,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
               conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Details of previous physiotherapy","LLA, Chief complaint of patient","LLA, Problem List","LLA, Follow-up Plan")
          }
          else if (conditionConcept == "Final"){
-                       conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Details of previous physiotherapy","LLA, Chief complaint of patient","LLA, Problem List")
+                       conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Details of previous physiotherapy","LLA, Chief complaint of patient","LLA, Problem List","LLA, Prosthetic and orthotic center","LLA, Physiotherapy center")
                        conditions.show.push("LLA, Follow-up Plan")
          }
          else {
@@ -1425,7 +1425,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
               conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Details of previous physiotherapy","ULA, Chief complaint of patient","ULA, Problem List","ULA, Followup Plan")
          }
          else if (conditionConcept == "Final"){
-                       conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Details of previous physiotherapy","ULA, Chief complaint of patient","ULA, Problem List")
+                       conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Details of previous physiotherapy","ULA, Chief complaint of patient","ULA, Problem List","ULA, Prosthetic and orthotic center","ULA, Physiotherapy center")
                        conditions.show.push("ULA, Followup Plan")
          }
          else {
@@ -1447,7 +1447,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
               conditions.hide.push("MPA, Previous history of physiotherapy","MPA, Details of previous physiotherapy","MPA, Chief complaint of patient","MPA, Problem List","MPA, Followup Plan")
          }
          else if (conditionConcept == "Final"){
-                       conditions.hide.push("MPA, Previous history of physiotherapy","MPA, Details of previous physiotherapy","MPA, Chief complaint of patient","MPA, Problem List")
+                       conditions.hide.push("MPA, Previous history of physiotherapy","MPA, Details of previous physiotherapy","MPA, Chief complaint of patient","MPA, Problem List","MPA, Referral suggested, comments  ")
                        conditions.show.push("MPA, Followup Plan")
          }
          else {
