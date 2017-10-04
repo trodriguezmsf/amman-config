@@ -219,9 +219,10 @@
                     "Operative Report",
                     "Vital Signs form",
                     "Post-operative Anaesthesia Note",
-                    "Radiology Documents"
-
-
+                    "Radiology Documents",
+                    "Lower Limb Physiotherapy Assessment",
+                    "Upper Limb Physiotherapy Assessment",
+                    "Maxillofacial Physio Assessment"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
             },
