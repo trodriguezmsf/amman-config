@@ -1152,10 +1152,10 @@
             "LLA, Inferior gluteal":{
                 "isTabular": true
             },
-            "LLA, Left : Gluteus maxi":{
+            "LLA, Left : Gluteus maxi.":{
                 "conciseText": true
             },
-            "LLA, Right : Gluteus maxi":{
+            "LLA, Right : Gluteus maxi.":{
                 "conciseText": true
             },
             "LLA, Left : Gluteus medius":{
@@ -1185,11 +1185,11 @@
             "LLA, Right : Adductors":{
                 "conciseText": true
             },
-            "LLA ROM, Left : Hip flex":{
+            "LLA ROM, Left : Hip flex.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA ROM, Left : Hip ext":{
+            "LLA ROM, Left : Hip ext.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
@@ -1209,15 +1209,15 @@
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA ROM, Left : Knee flex":{
+            "LLA ROM, Left : Knee flex.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA ROM, Left : Knee ext":{
+            "LLA ROM, Left : Knee ext.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA ROM, Left : Ankle dorsiflex":{
+            "LLA ROM, Left : Ankle dorsiflex.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
@@ -1233,11 +1233,11 @@
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA ROM, Right : Hip flex":{
+            "LLA ROM, Right : Hip flex.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA ROM, Right : Hip ext":{
+            "LLA ROM, Right : Hip ext.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
@@ -1257,15 +1257,15 @@
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA ROM, Right : Knee flex":{
+            "LLA ROM, Right : Knee flex.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA ROM, Right : Knee ext":{
+            "LLA ROM, Right : Knee ext.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA ROM, Right : Ankle dorsiflex":{
+            "LLA ROM, Right : Ankle dorsiflex.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
@@ -1281,11 +1281,11 @@
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA Muscle, Left : Hip flex":{
+            "LLA Muscle, Left : Hip flex.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA Muscle, Left : Hip ext":{
+            "LLA Muscle, Left : Hip ext.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
@@ -1305,15 +1305,15 @@
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA Muscle, Left : Knee flex":{
+            "LLA Muscle, Left : Knee flex.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA Muscle, Left : Knee ext":{
+            "LLA Muscle, Left : Knee ext.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA Muscle, Left : Ankle dorsiflex":{
+            "LLA Muscle, Left : Ankle dorsiflex.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
@@ -1329,11 +1329,11 @@
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA Muscle, Right : Hip flex":{
+            "LLA Muscle, Right : Hip flex.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA Muscle, Right : Hip ext":{
+            "LLA Muscle, Right : Hip ext.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
@@ -1353,15 +1353,15 @@
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA Muscle, Right : Knee flex":{
+            "LLA Muscle, Right : Knee flex.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA Muscle, Right : Knee ext":{
+            "LLA Muscle, Right : Knee ext.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
-            "LLA Muscle, Right : Ankle dorsiflex":{
+            "LLA Muscle, Right : Ankle dorsiflex.":{
                 "conciseText": true,
                 "disableAddNotes": true
             },
@@ -1404,7 +1404,7 @@
             "LLA, Left : Gastrocnemius":{
                 "conciseText": true
             },
-            "LLA, Left : Tibialis post":{
+            "LLA, Left : Tibialis post.":{
                 "conciseText": true
             },
             "LLA, Left : Flex. digi. long":{
@@ -1416,7 +1416,7 @@
             "LLA, Right : Gastrocnemius":{
                 "conciseText": true
             },
-            "LLA, Right : Tibialis post":{
+            "LLA, Right : Tibialis post.":{
                 "conciseText": true
             },
             "LLA, Right : Flex. digi. long":{
