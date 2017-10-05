@@ -1043,88 +1043,6 @@
 	    "MPA, Problem List":{
                 "allowAddMore":true
             },
-	    "ULA, ROM Flex : Wrist":{
-            },
-	    "ULA, ROM Ext. : Wrist":{
-	    },
-	    "ULA, ROM Flex : Thumb MC":{
-},
-"ULA, ROM Ext. : Thumb MC":{
-},
-"ULA, ROM Flex : Thumb DIP":{
-},
-"ULA, ROM Ext. : Thumb DIP":{
-},
-"ULA, ROM Flex : 2nd Finger MC":{
-},
-"ULA, ROM Ext. : 2nd Finger MC":{
-},
-"ULA, ROM Flex : 3rd Finger MC":{
-},
-"ULA, ROM Ext. : 3rd Finger MC":{
-},
-"ULA, ROM Flex : 4th Finger MC":{
-},
-"ULA, ROM Ext. : 4th Finger MC":{
-},
-"ULA, ROM Flex : 5th Finger MC":{
-},
-"ULA, ROM Ext. : 5th Finger MC":{
-},
-"ULA, ROM Flex : 2nd Finger PIP":{
-},
-"ULA, ROM Ext : 2nd Finger PIP":{
-},
-"ULA, ROM Flex : 3rd Finger PIP":{
-},
-"ULA, ROM Ext : 3rd Finger PIP":{
-},
-"ULA, ROM Flex : 4th Finger PIP":{
-},
-"ULA, ROM Ext : 4th Finger PIP":{
-},
-"ULA, ROM Flex : 5th Finger PIP":{
-},
-"ULA, ROM Ext : 5th Finger PIP":{
-},
-"ULA, ROM Flex : 2nd Finger DIP":{
-},
-"ULA, ROM Ext. : 2nd Finger DIP":{
-},
-"ULA, ROM Flex : 3rd Finger DIP":{
-},
-"ULA, ROM Ext. : 3rd Finger DIP":{
-},
-"ULA, ROM Flex : 4th Finger DIP":{
-},
-"ULA, ROM Ext. : 4th Finger DIP":{
-},
-"ULA, ROM Flex : 5th Finger DIP":{
-},
-"ULA, ROM Ext. : 5th Finger DIP":{
-},
-"ULA, ROM Distance tip (2nd -5th)":{
-},
-"ULA, ROM Distance tip (Thumb - 2nd)":{
-},
-
-"ULA, Chuck or three-fingered pinch":{
-},
-
-"ULA, Cylindrical grasp":{
-},
-
-"ULA, Spherical":{
-},
-
-"ULA, Hook":{
-},
-
-"ULA, Tip pinch (or tip to tip prehension)":{
-},
-
-"ULA, Lateral or key pinch":{
-},
             "LLA, Stump circumference":{
                 "isTabular": true    
             },
@@ -1449,9 +1367,108 @@
             },
             "LLA, Foot clearance":{
                 "multiSelect":true
+            },
+            "ULA, R.O.M hand and finger Flex : Wrist":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Flex : Thumb MC":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Flex : Thumb DIP":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Flex : 2nd Finger MC":{
+
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Flex : 3rd Finger MC":{
+
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Flex : 4th Finger MC":{
+
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Flex : 5th Finger MC":{
+
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Flex : 2nd Finger PIP":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Flex : 3rd Finger PIP":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Flex : 4th Finger PIP":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Flex : 5th Finger PIP":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Flex : 2nd Finger DIP":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Flex : 3rd Finger DIP":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Flex : 4th Finger DIP": {
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Distance tip (2nd -5th)":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Distance tip (Thumb - 2nd)":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Ext. : Wrist":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Ext. : Thumb MC":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Ext. : Thumb DIP":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Ext. : 2nd Finger MC":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Ext. : 3rd Finger MC":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Ext. : 4th Finger MC":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Ext. : 5th Finger MC":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Ext : 2nd Finger PIP":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Ext : 3rd Finger PIP":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Ext : 4th Finger PIP":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Ext : 5th Finger PIP":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Ext. : 2nd Finger DIP":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Ext. : 3rd Finger DIP":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Ext. : 4th Finger DIP":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Ext. : 5th Finger DIP":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Flex : 5th Finger DIP":{
+                "disableAddNotes": true
             }
-           
-    },
+            },
         "visitPage": {
             "observationDisplay": {
                 "conceptNames": []
