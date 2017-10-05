@@ -9,14 +9,14 @@
   ],
   "config": {
     "enableSpecialities": false,
-    "startOfWeek": 2,
-    "weekStart": "isoWeek",
+    "startOfWeek": 1,
+    "weekStart": "week",
     "calendarSlotDuration": "00:30:00",
     "calendarSlotLabelInterval": "01:00:00",
     "startOfDay":"09:00",
     "endOfDay":"19:00",
     "printListViewTemplateUrl": "/bahmni_config/openmrs/apps/appointments/printListView.html",
-    "enableServiceTypes": false,
+    "enableServiceTypes": true,
     "enableCalendarView": true,
     "isServiceOnAppointmentEditable": false,
     "colorsForAppointmentService": [
