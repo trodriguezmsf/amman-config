@@ -1,140 +1,290 @@
 import org.apache.commons.lang.StringUtils
-import org.hibernate.Query
-import org.hibernate.SessionFactory
-import org.openmrs.Obs
-import org.openmrs.Patient
-import org.openmrs.module.bahmniemrapi.encountertransaction.contract.BahmniObservation
-import org.openmrs.util.OpenmrsUtil;
+import org.openmrs.Concept
+import org.openmrs.ConceptSet
+import org.openmrs.api.ConceptService
 import org.openmrs.api.context.Context
-import org.openmrs.module.bahmniemrapi.obscalculator.ObsValueCalculator;
 import org.openmrs.module.bahmniemrapi.encountertransaction.contract.BahmniEncounterTransaction
-import org.openmrs.module.emrapi.encounter.domain.EncounterTransaction;
-
-import org.joda.time.LocalDate;
-import org.joda.time.Months;
+import org.openmrs.module.bahmniemrapi.encountertransaction.contract.BahmniObservation
+import org.openmrs.module.bahmniemrapi.obscalculator.ObsValueCalculator
+import org.openmrs.module.emrapi.encounter.domain.EncounterTransaction
 
 public class BahmniObsValueCalculator implements ObsValueCalculator {
 
-    static Double BMI_VERY_SEVERELY_UNDERWEIGHT = 16.0;
-    static Double BMI_SEVERELY_UNDERWEIGHT = 17.0;
-    static Double BMI_UNDERWEIGHT = 18.5;
-    static Double BMI_NORMAL = 25.0;
-    static Double BMI_OVERWEIGHT = 30.0;
-    static Double BMI_OBESE = 35.0;
-    static Double BMI_SEVERELY_OBESE = 40.0;
     static Double ZERO = 0.0;
-    static Map<BahmniObservation, BahmniObservation> obsParentMap = new HashMap<BahmniObservation, BahmniObservation>();
+    static Map<String, Double> conceptValues;
 
-    public static enum BmiStatus {
-        VERY_SEVERELY_UNDERWEIGHT("Very Severely Underweight"),
-        SEVERELY_UNDERWEIGHT("Severely Underweight"),
-        UNDERWEIGHT("Underweight"),
-        NORMAL("Normal"),
-        OVERWEIGHT("Overweight"),
-        OBESE("Obese"),
-        SEVERELY_OBESE("Severely Obese"),
-        VERY_SEVERELY_OBESE("Very Severely Obese");
+    static {
+        conceptValues = new HashMap<String, Double>();
+        conceptValues.put("(0) No difficulty", 0);
+        conceptValues.put("(1) With a little difficulty", 1);
+        conceptValues.put("(2) With moderate difficulty", 2);
+        conceptValues.put("(3) With much difficulty", 3);
+        conceptValues.put("(4) Extremely difficult or unable to do", 4);
 
-        private String status;
+        conceptValues.put("(0) Not able to do", 0);
+        conceptValues.put("(1) With a lot of trouble", 1);
+        conceptValues.put("(2) With some trouble", 2);
+        conceptValues.put("(3) With a little trouble", 3);
+        conceptValues.put("(4) With no trouble", 4);
 
-        BmiStatus(String status) {
-            this.status = status
+        conceptValues.put("0 = Any hesitancy or multiple attempts", 0)
+        conceptValues.put("1 = No hesitancy", 1)
+        conceptValues.put("0 = Steps to", 0)
+        conceptValues.put("1 = Steps through R", 1)
+        conceptValues.put("1 = Steps through L", 1)
+        conceptValues.put("0 = Foot drop", 0)
+        conceptValues.put("1 = L foot clears floor", 1)
+        conceptValues.put("1 = R foot clears floor", 1)
+        conceptValues.put("0 = Right and left step length not equal", 0)
+        conceptValues.put("1 = Right and left step length appear equal", 1)
+        conceptValues.put("0 = Stopping or discontinuity between steps", 0)
+        conceptValues.put("1 = Steps appear Continuous", 1)
+        conceptValues.put("0 = Marked deviation", 0)
+        conceptValues.put("1 = Mild/moderate deviation or uses w. Aid", 1)
+        conceptValues.put("2 = Straight without w. aid", 2)
+        conceptValues.put("0 = Marked sway or uses w. Aid", 0)
+        conceptValues.put("1 = No sway but flex. Knees or back or uses arms for stability", 1)
+        conceptValues.put("2 = No sway, flex., use of arms or w. Aid", 2)
+        conceptValues.put("0 = Heels apart", 0)
+        conceptValues.put("1 = Heels almot touching while walking", 1)
+    }
+
+    class ScoreDetails {
+        Double score;
+        Integer totalQuestions;
+        Integer answeredQuestions;
+
+        ScoreDetails(Double score, Integer totalQuestions, Integer answeredQuestions) {
+            this.score = score
+            this.totalQuestions = totalQuestions
+            this.answeredQuestions = answeredQuestions
+        }
+
+        Double getScore() {
+            return score
+        }
+
+        Integer getAnsweredQuestions() {
+            return answeredQuestions
+        }
+
+        boolean areAllQuestionsAnswered()  {
+            return this.answeredQuestions.equals(this.totalQuestions)
+        }
+    }
+
+    interface ScoreCalculationType {
+        ScoreDetails getScoreDetails(BahmniObservation bahmniObservation)
+    }
+
+    interface Formula {
+        Double applyFormulaOnScore(ScoreDetails scoreDetails)
+    }
+
+    class DefaultScoreCalculation implements ScoreCalculationType {
+        @Override
+        ScoreDetails getScoreDetails(BahmniObservation bahmniObservation) {
+            double score = 0
+            int answeredQuestions = 0, totalQuestions = 0
+
+            ConceptService conceptService = Context.getConceptService();
+            Concept concept = conceptService.getConceptByUuid(bahmniObservation.getConcept().getUuid());
+            for (ConceptSet conceptSet : concept.getConceptSets()) {
+                boolean isCodedConcept = conceptSet.getConcept().getDatatype().getName() == "Coded";
+                if (isCodedConcept) {
+                    totalQuestions += 1;
+                    String groupMemberName = conceptSet.getConcept().getName().getName();
+                    List<BahmniObservation> bahmniObservations = getAllGroupMembersWithConcept(groupMemberName, bahmniObservation.getGroupMembers());
+                    for (BahmniObservation observation : bahmniObservations) {
+                        if (observation != null && !observation.getVoided()) {
+                            String answer = observation.getValue().get('displayString') == null ? observation.getValue().get('name') : observation.getValue().get('displayString');
+                            score += conceptValues.get(answer);
+                            answeredQuestions += 1;
+                        }
+                    }
+                }
+            }
+            return new ScoreDetails(score, totalQuestions, answeredQuestions)
+        }
+    }
+
+    class AggregateScoreCalculation implements ScoreCalculationType {
+        private List<String> scoreConceptNames;
+
+        AggregateScoreCalculation(List<String> scoreConceptNames) {
+            this.scoreConceptNames = scoreConceptNames
         }
 
         @Override
-        public String toString() {
-            return status;
+        ScoreDetails getScoreDetails(BahmniObservation bahmniObservation) {
+            double score = 0
+            int answeredQuestions = 0, totalQuestions = 0
+
+            for (String scoreConcept : scoreConceptNames) {
+                totalQuestions += 1
+                BahmniObservation childObs = find(scoreConcept, bahmniObservation.getGroupMembers(), null)
+                if (childObs != null && !childObs.getVoided()) {
+                    score += childObs.getValue()
+                    answeredQuestions += 1;
+                }
+            }
+            return new ScoreDetails(score, totalQuestions, answeredQuestions)
         }
     }
 
-
-    public void run(BahmniEncounterTransaction bahmniEncounterTransaction) {
-        calculateAndAdd(bahmniEncounterTransaction);
+    class GaitSectionFormula implements Formula {
+        @Override
+        Double applyFormulaOnScore(ScoreDetails scoreDetails) {
+            if (scoreDetails.getAnsweredQuestions() == 0) {
+                return 0
+            }
+            double score = scoreDetails.getScore() / 12;
+            return roundOffToTwoDecimalPlaces(score)
+        }
     }
 
-    static def calculateAndAdd(BahmniEncounterTransaction bahmniEncounterTransaction) {
+    class ExtremityFunctionFormula implements Formula {
+        @Override
+        Double applyFormulaOnScore(ScoreDetails scoreDetails) {
+            if (scoreDetails.getAnsweredQuestions() == 0) {
+                return 0
+            }
+            double score = scoreDetails.areAllQuestionsAnswered() ? scoreDetails.getScore()* 1.25 : (scoreDetails.getScore() + scoreDetails.getScore() / scoreDetails.getAnsweredQuestions()) * 1.25;
+            return roundOffToTwoDecimalPlaces(score)
+        }
+    }
+
+    class AggregateFormula implements Formula {
+        @Override
+        Double applyFormulaOnScore(ScoreDetails scoreDetails) {
+            if (scoreDetails.getAnsweredQuestions() == 0) {
+                return 0
+            }
+            return roundOffToTwoDecimalPlaces(scoreDetails.getScore())
+        }
+    }
+
+    class Section {
+        private BahmniObservation sectionObservation;
+        private String scoreConceptName;
+        private ScoreCalculationType scoreType;
+        private Formula formula;
+
+        Section(ScoreCalculationType scoreType, Formula formula, BahmniObservation formObs, String scoreConceptName) {
+            this.scoreType = scoreType
+            this.sectionObservation = formObs
+            this.scoreConceptName = scoreConceptName
+            this.formula = formula
+        }
+
+        void setScore() {
+            if (sectionObservation != null) {
+                ScoreDetails scoreDetails = scoreType.getScoreDetails(sectionObservation)
+                BahmniObservation scoreObservation = find(this.scoreConceptName, sectionObservation.getGroupMembers(), null)
+                if (scoreDetails.getAnsweredQuestions() == 0) {
+                    voidObs(scoreObservation)
+                    voidObs(sectionObservation)
+                } else {
+                    scoreObservation = hasValue(scoreObservation) ? scoreObservation : createObs(scoreConceptName, sectionObservation, null, getDate(sectionObservation))
+                    double value = formula.applyFormulaOnScore(scoreDetails)
+                    scoreObservation.setValue(value)
+                }
+            }
+
+        }
+    }
+    void run(BahmniEncounterTransaction bahmniEncounterTransaction) {
         Collection<BahmniObservation> observations = bahmniEncounterTransaction.getObservations()
-        def nowAsOfEncounter = bahmniEncounterTransaction.getEncounterDateTime() != null ? bahmniEncounterTransaction.getEncounterDateTime() : new Date();
+        BahmniObservation baselineVitalsForm = find("Baseline Vital Signs", observations, null)
+        if (baselineVitalsForm != null) {
+            calculateBMIAndSave(baselineVitalsForm)
+        }
+        calculateScores(observations)
+        voidExistingObservationWithoutValue(observations)
+    }
+
+    static void voidExistingObservationWithoutValue(Collection<BahmniObservation> observations) {
+        for (BahmniObservation observation : observations) {
+            if(observation.getGroupMembers().size() > 0) {
+                voidExistingObservationWithoutValue(observation.getGroupMembers())
+                observation.getVoided() || observation.setVoided(canBeVoided(observation))
+            }
+        }
+    }
+
+    static boolean isGroupWithOnlyVoidedMembers(BahmniObservation observation) {
+        for (BahmniObservation groupMember : observation.getGroupMembers()) {
+            if(!groupMember.getVoided()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static boolean canBeVoided(BahmniObservation bahmniObservation){
+        return (bahmniObservation.getUuid()!= null && (bahmniObservation.getGroupMembers().size() == 0 || isGroupWithOnlyVoidedMembers(bahmniObservation)))
+    }
+
+    def calculateScores(Collection<BahmniObservation> observations) {
+        ScoreCalculationType defaultScoreCalculation = new DefaultScoreCalculation();
+        Formula extremityFunctionFormula = new ExtremityFunctionFormula()
+        Section lowerLimbExtremityFunction =  new Section(
+                defaultScoreCalculation,
+                extremityFunctionFormula,
+                find("LLA, Lower Extremity Functional Index (LEFI)", observations, null),
+                "LLA LEFI, Total Score")
+        Section lowerLimbPediatricExtremityFunction = new Section(
+                defaultScoreCalculation,
+                extremityFunctionFormula,
+                find("LLA, Pediatric Lower Extremity Function(Mobility)", observations, null),
+                "LLA Pediatric, Total Score");
+        Section lowerLimbGaitSection = new Section(
+                defaultScoreCalculation,
+                new GaitSectionFormula(),
+                find("LLA, Gait Section", observations, null),
+                "LLA, Gait Score")
+        Section lowerLimbBalanceAssessmentSection = new Section(
+                new AggregateScoreCalculation(Arrays.asList("LLA, Gait Score", "LLA, Balance Section")),
+                new AggregateFormula(),
+                find("LLA, Tinetti Balance Assessment Tool", observations, null),
+                "LLA, Total Score")
+        Section[] forms = [lowerLimbExtremityFunction, lowerLimbPediatricExtremityFunction, lowerLimbGaitSection, lowerLimbBalanceAssessmentSection]
+        for (Section form : forms) {
+            form.setScore();
+        }
+    }
+
+    static private List<BahmniObservation> getAllGroupMembersWithConcept(String conceptName, Collection<BahmniObservation> observations) {
+        List<BahmniObservation> groupMembers = new ArrayList<>();
+        for (BahmniObservation observation : observations) {
+            if (conceptName.equalsIgnoreCase(observation.getConcept().getName())) {
+                groupMembers.add(observation);
+            }
+        }
+        return groupMembers
+    }
+
+    static def calculateBMIAndSave(BahmniObservation baselineForm) {
+        Collection<BahmniObservation> observations = baselineForm.getGroupMembers()
         BahmniObservation heightObservation = find("Height", observations, null)
         BahmniObservation weightObservation = find("Weight", observations, null)
-        BahmniObservation parent = null;
         BahmniObservation bmiDataObservation = find("BMI Data", observations, null)
-        BahmniObservation bmiObservation = find("BMI", bmiDataObservation ? [bmiDataObservation] : [], null)
+        BahmniObservation bmiObservation = bmiDataObservation ? find("BMI", bmiDataObservation.getGroupMembers(), null): null
+
         if ((heightObservation && heightObservation.voided) || (weightObservation && weightObservation.voided)) {
-            voidObs(bmiDataObservation);
-            voidObs(bmiObservation);
-             return
+            voidObs(bmiDataObservation)
+            voidObs(bmiObservation)
+            return
         }
         if (hasValue(heightObservation) && hasValue(weightObservation)) {
-            Patient patient = Context.getPatientService().getPatientByUuid(bahmniEncounterTransaction.getPatientUuid())
-            def patientAgeInMonthsAsOfEncounter = Months.monthsBetween(new LocalDate(patient.getBirthdate()), new LocalDate(nowAsOfEncounter)).getMonths()
-            parent = obsParent(heightObservation, parent)
-            parent = obsParent(weightObservation, parent)
-
-            def previousHeightValue = fetchLatestValue("Height", bahmniEncounterTransaction.getPatientUuid(), heightObservation, nowAsOfEncounter)
-            def previousWeightValue = fetchLatestValue("Weight", bahmniEncounterTransaction.getPatientUuid(), weightObservation, nowAsOfEncounter)
-
-            Double height = hasValue(heightObservation) && !heightObservation.voided ? heightObservation.getValue() as Double : previousHeightValue
-            Double weight = hasValue(weightObservation) && !weightObservation.voided ? weightObservation.getValue() as Double : previousWeightValue
+            Double height =  heightObservation.getValue() as Double
+            Double weight =  weightObservation.getValue() as Double
             Date obsDatetime = getDate(weightObservation) != null ? getDate(weightObservation) : getDate(heightObservation)
 
-            if (height == null || weight == null) {
-                voidObs(bmiDataObservation)
-                voidObs(bmiObservation)
-                return
-            }
-
-            bmiDataObservation = bmiDataObservation ?: createObs("BMI Data", parent, bahmniEncounterTransaction, obsDatetime) as BahmniObservation
-            def bmi = bmi(height, weight)
-            bmiObservation = bmiObservation ?: createObs("BMI", bmiDataObservation, bahmniEncounterTransaction, obsDatetime) as BahmniObservation;
+            bmiDataObservation = bmiDataObservation ?: createObs("BMI Data", baselineForm, null, obsDatetime) as BahmniObservation
+            bmiObservation = bmiObservation ?: createObs("BMI", bmiDataObservation, null, obsDatetime) as BahmniObservation;
+            def bmi = calculateBMI(height, weight)
             bmiObservation.setValue(bmi);
-            return
-        }
-
-        BahmniObservation waistCircumferenceObservation = find("Waist Circumference", observations, null)
-        BahmniObservation hipCircumferenceObservation = find("Hip Circumference", observations, null)
-        if (hasValue(waistCircumferenceObservation) && hasValue(hipCircumferenceObservation)) {
-            def calculatedConceptName = "Waist/Hip Ratio"
-            BahmniObservation calculatedObs = find(calculatedConceptName, observations, null)
-            parent = obsParent(waistCircumferenceObservation, null)
-
-            Date obsDatetime = getDate(waistCircumferenceObservation)
-            def waistCircumference = waistCircumferenceObservation.getValue() as Double
-            def hipCircumference = hipCircumferenceObservation.getValue() as Double
-            def waistByHipRatio = waistCircumference/hipCircumference
-            if (calculatedObs == null)
-                calculatedObs = createObs(calculatedConceptName, parent, bahmniEncounterTransaction, obsDatetime) as BahmniObservation
-
-            calculatedObs.setValue(waistByHipRatio)
-            return
-        }
-
-        BahmniObservation lmpObservation = find("Obstetrics, Last Menstrual Period", observations, null)
-        def calculatedConceptName = "Estimated Date of Delivery"
-        if (hasValue(lmpObservation)) {
-            parent = obsParent(lmpObservation, null)
-            def calculatedObs = find(calculatedConceptName, observations, null)
-
-            Date obsDatetime = getDate(lmpObservation)
-
-            LocalDate edd = new LocalDate(lmpObservation.getValue()).plusMonths(9).plusWeeks(1)
-            if (calculatedObs == null)
-                calculatedObs = createObs(calculatedConceptName, parent, bahmniEncounterTransaction, obsDatetime) as BahmniObservation
-            calculatedObs.setValue(edd)
-            return
-        } else {
-            def calculatedObs = find(calculatedConceptName, observations, null)
-            if (hasValue(calculatedObs)) {
-                voidObs(calculatedObs)
-            }
-        }
-    }
-
-    private static BahmniObservation obsParent(BahmniObservation child, BahmniObservation parent) {
-        if (parent != null) return parent;
-
-        if(child != null) {
-            return obsParentMap.get(child)
         }
     }
 
@@ -161,7 +311,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         return newObservation
     }
 
-    static def bmi(Double height, Double weight) {
+    static def Double calculateBMI(Double height, Double weight) {
         if (height == ZERO) {
             throw new IllegalArgumentException("Please enter Height greater than zero")
         } else if (weight == ZERO) {
@@ -169,79 +319,16 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         }
         Double heightInMeters = height / 100;
         Double value = weight / (heightInMeters * heightInMeters);
+        return roundOffToTwoDecimalPlaces(value);
+    };
+
+    static Double roundOffToTwoDecimalPlaces(Double value) {
         return new BigDecimal(value).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-    };
-
-    static def bmiStatus(Double bmi, Integer ageInMonth, String gender) {
-        BMIChart bmiChart = readCSV(OpenmrsUtil.getApplicationDataDirectory() + "obscalculator/BMI_chart.csv");
-        def bmiChartLine = bmiChart.get(gender, ageInMonth);
-        if(bmiChartLine != null ) {
-            return bmiChartLine.getStatus(bmi);
-        }
-
-        if (bmi < BMI_VERY_SEVERELY_UNDERWEIGHT) {
-            return BmiStatus.VERY_SEVERELY_UNDERWEIGHT;
-        }
-        if (bmi < BMI_SEVERELY_UNDERWEIGHT) {
-            return BmiStatus.SEVERELY_UNDERWEIGHT;
-        }
-        if (bmi < BMI_UNDERWEIGHT) {
-            return BmiStatus.UNDERWEIGHT;
-        }
-        if (bmi < BMI_NORMAL) {
-            return BmiStatus.NORMAL;
-        }
-        if (bmi < BMI_OVERWEIGHT) {
-            return BmiStatus.OVERWEIGHT;
-        }
-        if (bmi < BMI_OBESE) {
-            return BmiStatus.OBESE;
-        }
-        if (bmi < BMI_SEVERELY_OBESE) {
-            return BmiStatus.SEVERELY_OBESE;
-        }
-        if (bmi >= BMI_SEVERELY_OBESE) {
-            return BmiStatus.VERY_SEVERELY_OBESE;
-        }
-        return null
-    }
-
-    static def bmiAbnormal(BmiStatus status) {
-        return status != BmiStatus.NORMAL;
-    };
-
-    static Double fetchLatestValue(String conceptName, String patientUuid, BahmniObservation excludeObs, Date tillDate) {
-        SessionFactory sessionFactory = Context.getRegisteredComponents(SessionFactory.class).get(0)
-        def excludedObsIsSaved = excludeObs != null && excludeObs.uuid != null
-        String excludeObsClause = excludedObsIsSaved ? " and obs.uuid != :excludeObsUuid" : ""
-        Query queryToGetObservations = sessionFactory.getCurrentSession()
-                .createQuery("select obs " +
-                " from Obs as obs, ConceptName as cn " +
-                " where obs.person.uuid = :patientUuid " +
-                " and cn.concept = obs.concept.conceptId " +
-                " and cn.name = :conceptName " +
-                " and obs.voided = false" +
-                " and obs.obsDatetime <= :till" +
-                excludeObsClause +
-                " order by obs.obsDatetime desc ");
-        queryToGetObservations.setString("patientUuid", patientUuid);
-        queryToGetObservations.setParameterList("conceptName", conceptName);
-        queryToGetObservations.setParameter("till", tillDate);
-        if (excludedObsIsSaved) {
-            queryToGetObservations.setString("excludeObsUuid", excludeObs.uuid)
-        }
-        queryToGetObservations.setMaxResults(1);
-        List<Obs> observations = queryToGetObservations.list();
-        if (observations.size() > 0) {
-            return observations.get(0).getValueNumeric();
-        }
-        return null
     }
 
     static BahmniObservation find(String conceptName, Collection<BahmniObservation> observations, BahmniObservation parent) {
         for (BahmniObservation observation : observations) {
             if (conceptName.equalsIgnoreCase(observation.getConcept().getName())) {
-                obsParentMap.put(observation, parent);
                 return observation;
             }
             BahmniObservation matchingObservation = find(conceptName, observation.getGroupMembers(), observation)
@@ -250,93 +337,4 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         return null
     }
 
-    static BMIChart readCSV(String fileName) {
-        def chart = new BMIChart();
-        try {
-            new File(fileName).withReader { reader ->
-                def header = reader.readLine();
-                reader.splitEachLine(",") { tokens ->
-                    chart.add(new BMIChartLine(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5]));
-                }
-            }
-        } catch (FileNotFoundException e) {
-        }
-        return chart;
-    }
-
-    static class BMIChartLine {
-        public String gender;
-        public Integer ageInMonth;
-        public Double third;
-        public Double fifteenth;
-        public Double eightyFifth;
-        public Double ninetySeventh;
-
-        BMIChartLine(String gender, String ageInMonth, String third, String fifteenth, String eightyFifth, String ninetySeventh) {
-            this.gender = gender
-            this.ageInMonth = ageInMonth.toInteger();
-            this.third = third.toDouble();
-            this.fifteenth = fifteenth.toDouble();
-            this.eightyFifth = eightyFifth.toDouble();
-            this.ninetySeventh = ninetySeventh.toDouble();
-        }
-
-        public BmiStatus getStatus(Double bmi) {
-            if(bmi < third) {
-                return BmiStatus.SEVERELY_UNDERWEIGHT
-            } else if(bmi < fifteenth) {
-                return BmiStatus.UNDERWEIGHT
-            } else if(bmi < eightyFifth) {
-                return BmiStatus.NORMAL
-            } else if(bmi < ninetySeventh) {
-                return BmiStatus.OVERWEIGHT
-            } else {
-                return BmiStatus.OBESE
-            }
-        }
-    }
-
-    static class BMIChart {
-        List<BMIChartLine> lines;
-        Map<BMIChartLineKey, BMIChartLine> map = new HashMap<BMIChartLineKey, BMIChartLine>();
-
-        public add(BMIChartLine line) {
-            def key = new BMIChartLineKey(line.gender, line.ageInMonth);
-            map.put(key, line);
-        }
-
-        public BMIChartLine get(String gender, Integer ageInMonth) {
-            def key = new BMIChartLineKey(gender, ageInMonth);
-            return map.get(key);
-        }
-    }
-
-    static class BMIChartLineKey {
-        public String gender;
-        public Integer ageInMonth;
-
-        BMIChartLineKey(String gender, Integer ageInMonth) {
-            this.gender = gender
-            this.ageInMonth = ageInMonth
-        }
-
-        boolean equals(o) {
-            if (this.is(o)) return true
-            if (getClass() != o.class) return false
-
-            BMIChartLineKey bmiKey = (BMIChartLineKey) o
-
-            if (ageInMonth != bmiKey.ageInMonth) return false
-            if (gender != bmiKey.gender) return false
-
-            return true
-        }
-
-        int hashCode() {
-            int result
-            result = (gender != null ? gender.hashCode() : 0)
-            result = 31 * result + (ageInMonth != null ? ageInMonth.hashCode() : 0)
-            return result
-        }
-    }
 }
