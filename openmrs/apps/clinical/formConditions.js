@@ -1396,7 +1396,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
           };
           var conditionConcept = formFieldValues['LLA, Type of assessment'];
           if (conditionConcept == "Initial"){
-              conditions.hide.push("LLA, Follow-up Plan")
+              conditions.hide.push("LLA, Follow-up Plan","LLA, Details of previous physiotherapy")
               conditions.show.push("LLA, Previous history of physiotherapy","LLA, Chief complaint of patient","LLA, Problem List")
           }
           else if (conditionConcept == "Post-operative"){
@@ -1407,7 +1407,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
                        conditions.show.push("LLA, Follow-up Plan")
          }
          else {
-             conditions.show.push("LLA, Previous history of physiotherapy","LLA, Details of previous physiotherapy","LLA, Chief complaint of patient","LLA, Problem List","LLA, Follow-up Plan")
+             conditions.show.push("LLA, Previous history of physiotherapy","LLA, Chief complaint of patient","LLA, Problem List","LLA, Follow-up Plan")
          }
           return conditions;
       },
@@ -1418,7 +1418,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
           };
           var conditionConcept = formFieldValues['ULA, Type of assessment'];
           if (conditionConcept == "Initial"){
-              conditions.hide.push("ULA, Followup Plan")
+              conditions.hide.push("ULA, Followup Plan","ULA, Details of previous physiotherapy")
               conditions.show.push("ULA, Previous history of physiotherapy","ULA, Chief complaint of patient","ULA, Problem List")
           }
           else if (conditionConcept == "Post-operative"){
@@ -1429,7 +1429,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
                        conditions.show.push("ULA, Followup Plan")
          }
          else {
-             conditions.show.push("ULA, Previous history of physiotherapy","ULA, Details of previous physiotherapy","ULA, Chief complaint of patient","ULA, Problem List","ULA, Followup Plan")
+             conditions.show.push("ULA, Previous history of physiotherapy","ULA, Chief complaint of patient","ULA, Problem List","ULA, Followup Plan")
          }
           return conditions;
       },
@@ -1440,7 +1440,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
           };
           var conditionConcept = formFieldValues['MPA, Type of assessment'];
           if (conditionConcept == "Initial"){
-              conditions.hide.push("MPA, Followup Plan")
+              conditions.hide.push("MPA, Followup Plan","MPA, Details of previous physiotherapy")
               conditions.show.push("MPA, Previous history of physiotherapy","MPA, Chief complaint of patient","MPA, Problem List")
           }
           else if (conditionConcept == "Post-operative"){
@@ -1451,7 +1451,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
                        conditions.show.push("MPA, Followup Plan")
          }
          else {
-             conditions.show.push("MPA, Previous history of physiotherapy","MPA, Details of previous physiotherapy","MPA, Chief complaint of patient","MPA, Problem List","MPA, Followup Plan")
+             conditions.show.push("MPA, Previous history of physiotherapy","MPA, Chief complaint of patient","MPA, Problem List","MPA, Followup Plan")
          }
           return conditions;
       },
