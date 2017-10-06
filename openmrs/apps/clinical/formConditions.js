@@ -1389,18 +1389,24 @@ Bahmni.ConceptSet.FormConditions.rules = {
          }
           return conditions;
       },
-      'LLA, Type of assessment': function (formName, formFieldValues) {
+      
+
+
+
+'LLA, Type of assessment': function (formName, formFieldValues) {
           var conditions = {
               show: [],
               hide: []
           };
           var conditionConcept = formFieldValues['LLA, Type of assessment'];
           if (conditionConcept == "Initial"){
-              conditions.hide.push("LLA, Follow-up Plan","LLA, Details of previous physiotherapy")
+              conditions.hide.push("LLA, Follow-up Plan")
               conditions.show.push("LLA, Previous history of physiotherapy","LLA, Chief complaint of patient","LLA, Problem List")
           }
           else if (conditionConcept == "Post-operative"){
-              conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Details of previous physiotherapy","LLA, Chief complaint of patient","LLA, Problem List","LLA, Follow-up Plan")
+              conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Details of previous physiotherapy","LLA, Chief complaint of patient","LLA, Problem List","LLA, Follow-up Plan", "LLA, Pain Assessment")
+
+
          }
          else if (conditionConcept == "Final"){
                        conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Details of previous physiotherapy","LLA, Chief complaint of patient","LLA, Problem List","LLA, Prosthetic and orthotic center","LLA, Physiotherapy center")
@@ -1408,21 +1414,29 @@ Bahmni.ConceptSet.FormConditions.rules = {
          }
          else {
              conditions.show.push("LLA, Previous history of physiotherapy","LLA, Chief complaint of patient","LLA, Problem List","LLA, Follow-up Plan")
+             conditions.hide.push("LLA, Physiotherapy center", "LLA, Prosthetic and orthotic center")
          }
           return conditions;
       },
-	'ULA, Type of assessment': function (formName, formFieldValues) {
+
+
+
+
+
+'ULA, Type of assessment': function (formName, formFieldValues) {
           var conditions = {
               show: [],
               hide: []
           };
           var conditionConcept = formFieldValues['ULA, Type of assessment'];
           if (conditionConcept == "Initial"){
-              conditions.hide.push("ULA, Followup Plan","ULA, Details of previous physiotherapy")
+              conditions.hide.push("ULA, Followup Plan")
               conditions.show.push("ULA, Previous history of physiotherapy","ULA, Chief complaint of patient","ULA, Problem List")
           }
           else if (conditionConcept == "Post-operative"){
               conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Details of previous physiotherapy","ULA, Chief complaint of patient","ULA, Problem List","ULA, Followup Plan")
+
+
          }
          else if (conditionConcept == "Final"){
                        conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Details of previous physiotherapy","ULA, Chief complaint of patient","ULA, Problem List","ULA, Prosthetic and orthotic center","ULA, Physiotherapy center")
@@ -1430,31 +1444,44 @@ Bahmni.ConceptSet.FormConditions.rules = {
          }
          else {
              conditions.show.push("ULA, Previous history of physiotherapy","ULA, Chief complaint of patient","ULA, Problem List","ULA, Followup Plan")
+             conditions.hide.push("ULA, Physiotherapy center", "ULA, Prosthetic and orthotic center")
          }
           return conditions;
-      },
-	'MPA, Type of assessment': function (formName, formFieldValues) {
+      },	
+
+
+
+
+
+
+'MPA, Type of assessment': function (formName, formFieldValues) {
           var conditions = {
               show: [],
               hide: []
           };
           var conditionConcept = formFieldValues['MPA, Type of assessment'];
           if (conditionConcept == "Initial"){
-              conditions.hide.push("MPA, Followup Plan","MPA, Details of previous physiotherapy")
+              conditions.hide.push("MPA, Followup Plan")
               conditions.show.push("MPA, Previous history of physiotherapy","MPA, Chief complaint of patient","MPA, Problem List")
           }
           else if (conditionConcept == "Post-operative"){
               conditions.hide.push("MPA, Previous history of physiotherapy","MPA, Details of previous physiotherapy","MPA, Chief complaint of patient","MPA, Problem List","MPA, Followup Plan")
+
+
          }
          else if (conditionConcept == "Final"){
-                       conditions.hide.push("MPA, Previous history of physiotherapy","MPA, Details of previous physiotherapy","MPA, Chief complaint of patient","MPA, Problem List","MPA, Referral suggested, comments  ")
+                       conditions.hide.push("MPA, Previous history of physiotherapy","MPA, Details of previous physiotherapy","MPA, Chief complaint of patient","MPA, Problem List","MPA, Referral suggested, comments")
                        conditions.show.push("MPA, Followup Plan")
          }
          else {
              conditions.show.push("MPA, Previous history of physiotherapy","MPA, Chief complaint of patient","MPA, Problem List","MPA, Followup Plan")
+             conditions.hide.push("MPA, Referral suggested, comments")
          }
           return conditions;
       },
+
+
+
 
 	'MPA, Movement difficulty of facial muscles': function (formName, formFieldValues) {
           var conditions = {

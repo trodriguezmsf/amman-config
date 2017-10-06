@@ -1022,7 +1022,10 @@
 	     "ULA, Site of pain":{
                 "multiSelect":true,
                 "autocomplete":true
-            },
+             },
+	     "ULA, Nail":{
+	        "multiSelect":true
+	     },
  	     "MPA, Site of pain":{
                 "multiSelect":true,
                 "autocomplete":true
