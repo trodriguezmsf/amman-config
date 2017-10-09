@@ -1470,6 +1470,9 @@
             },
             "ULA, R.O.M hand and finger Flex : 5th Finger DIP":{
                 "disableAddNotes": true
+            },
+            "Microbiology, Final Identification":{
+                "autocomplete":true
             }
             },
         "visitPage": {
