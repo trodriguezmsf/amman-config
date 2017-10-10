@@ -616,10 +616,18 @@
             "MD, Medication":{
                 "allowAddMore":true
             },
+	    "LLA, Type of assessment":{
+              "required" : true
+            },
+            "ULA, Type of assessment":{
+              "required" : true
+            },
+            "MPA, Type of assessment":{
+              "required" : true
+            },
 	    "ULA, Level of amputation":{
                 "allowAddMore":true
             },
-
 	    "ULA, Stump circumference":{
                 "isTabular": true
             },
