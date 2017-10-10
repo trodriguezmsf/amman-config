@@ -74,7 +74,7 @@ uuid,name,description,class,shortname,datatype,units,High Normal,Low Normal,loca
 ,"Streptococcus, beta-haem. Group A",,Misc,,N/A,,,,,bsa,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,"Streptococcus, beta-haem. Group B",,Misc,,N/A,,,,,bsb,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,Vibrio cholerae,,Misc,,N/A,,,,,vic,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,Specimen Sample Source,,Misc,Specimen Sample Source,Coded,,,,,,,Bones and Tissues,Swab,"Microbiology, Urine",CSF,Blood Culture,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Specimen Sample Source,,Misc,Specimen Sample Source,Coded,,,,,,,Bones and Tissues,Swab,"Microbiology, Urine",CSF,Blood Culture,Other,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,org.openmrs.module.bacteriology,SPECIMEN_SAMPLE_SOURCE,SAME-AS
 ,"Microbiology, Volume of collected blood",if sample type is blood culture,Misc,Volume of collected blood,Numeric,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,"Microbiology, Other Sample",,Misc,Other Sample,text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,"Microbiology, Macroscopic appearance",,Misc,Macroscopic appearance,text,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

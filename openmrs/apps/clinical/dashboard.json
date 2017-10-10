@@ -254,23 +254,27 @@
       "showNameAndImage": true
     },
     "sections": {
-      "documents": {
+      "Documents":{
         "translationKey": "DASHBOARD_TITLE_PATIENT_DOCUMENTS",
-        "type": "obsToObsFlowSheet",
-        "headingConceptSource": "Abbreviation",
-        "dataConceptSource": "Abbreviation",
-        "displayType": "Full-Page",
+        "type": "vitals",
+        "isObservation": true,
         "displayOrder": 1,
+        "displayType": "Full-Page",
         "dashboardConfig": {
+          "showDetailsButton": true,
           "isEditable": true,
-          "groupByConcept": "Documents, Date",
-          "orderByConcept": "Documents, Date",
-          "templateName": "Radiology Documents",
           "conceptNames": [
-            "Documents, Date",
-            "Image",
-            "Documents, Image Description"
+            "Radiology Documents"
           ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Radiology Documents"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 10,
+          "showDetailsButton": true,
+          "pivotTable": {}
         }
       }
     },
