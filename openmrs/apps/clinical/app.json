@@ -625,6 +625,12 @@
             "MPA, Type of assessment":{
               "required" : true
             },
+	    "MPA, Pain Assessment":{
+             "allowAddMore" : true
+            },
+	    "MPA, Summary neurological examination (sensation)":{
+             "multiSelect" : true
+            },
 	    "ULA, Level of amputation":{
                 "allowAddMore":true
             },
@@ -1035,9 +1041,8 @@
 	        "multiSelect":true
 	     },
  	     "MPA, Site of pain":{
-                "multiSelect":true,
-                "autocomplete":true
-            },
+                "multiSelect":true
+             },
 	     "MPA, AROM":{
                 "multiSelect":true  
             },

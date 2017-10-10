@@ -1800,7 +1800,21 @@ conditions.hide.push("MPA, Previous history of physiotherapy","MPA, Chief compla
             conditions.show.push("MPA, Side of pain","MPA, Site of pain","MPA, Type of pain","MPA, When does the pain occur")
         }
         else {
-            conditions.hide.push("MPA, Side of pain","MPA, Site of pain","MPA, Type of pain","MPA, When does the pain occur")
+            conditions.hide.push("MPA, Side of pain","MPA, Site of pain", "MPA, Site, Other", "MPA, Type of pain","MPA, When does the pain occur")
+        }
+        return conditions;
+    },
+	'MPA, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MPA, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("MPA, Site, Other")
+        }
+        else {
+            conditions.hide.push("MPA, Site, Other")
         }
         return conditions;
     },
@@ -1834,22 +1848,27 @@ conditions.hide.push("MPA, Previous history of physiotherapy","MPA, Chief compla
         }
         return conditions;
     },
-	'MPA, Summary neurological examination (sensation)': function (formName, formFieldValues) {
+
+
+       'MPA, Summary neurological examination (sensation)': function (formName, formFieldValues) {
         var conditions = {
             show: [],
             hide: []
         };
         var conditionConcept = formFieldValues['MPA, Summary neurological examination (sensation)'];
-        if (conditionConcept == "Hypo-sensation" || conditionConcept == "Hyper-sensation"){
+        if (conditionConcept.indexOf("Hypo-sensation")>=0){
             conditions.show.push("MPA, Summary neurological examination (sensation), comments")
         }
+
+        else if (conditionConcept.indexOf("Hyper-sensation")>=0){
+             conditions.show.push("MPA, Summary neurological examination (sensation), comments")
+        }
+
         else {
             conditions.hide.push("MPA, Summary neurological examination (sensation), comments")
         }
         return conditions;
-    },
-
-
+     },
 
       'LLA, Does the patient have a nerve injury?': function (formName, formFieldValues) {
           var conditions = {
