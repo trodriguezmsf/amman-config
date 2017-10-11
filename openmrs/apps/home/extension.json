@@ -89,5 +89,15 @@
     "icon": "fa fa-calendar",
     "order": 9,
     "requiredPrivilege": "app:appointments"
+  },
+  "bahmni_exports": {
+    "id": "bahmni.reports",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "MODULE_LABEL_EXPORTS_KEY",
+    "url": "../../bahmni_config/report.html",
+    "icon": "fa-download",
+    "order": 10,
+    "requiredPrivilege": "app:exports"
   }
 }
