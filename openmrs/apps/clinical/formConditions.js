@@ -1984,5 +1984,24 @@ conditions.hide.push("MPA, Previous history of physiotherapy","MPA, Chief compla
               conditions.hide.push("LLA, Prosthetic and orthotic center","LLA, Physiotherapy center")
          }
           return conditions;
+      },
+	'Microbiology, Type of identification': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['Microbiology, Type of identification'];
+          if (conditionConcept =="Answer, Intermediate Identification"){
+              conditions.show.push("Microbiology, Intermediate Identification","Microbiology, Comments for Intermediate Identification")
+              conditions.hide.push("Bacteriology, Final Identification")
+          }
+          else if(conditionConcept =="Answer, Final Identification") {
+              conditions.show.push("Bacteriology, Final Identification")
+              conditions.hide.push("Microbiology, Intermediate Identification","Microbiology, Comments for Intermediate Identification")
+          }
+          else {
+              conditions.hide.push("Bacteriology, Final Identification","Microbiology, Intermediate Identification","Microbiology, Comments for Intermediate Identification")
+         }
+          return conditions;
       }
 }

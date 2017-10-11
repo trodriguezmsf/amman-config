@@ -642,7 +642,7 @@
             },
 	    "ULA, hand and finger R.O.M":{
                 "isTabular": true,
-		"allowAddMore":true
+		        "allowAddMore":true
             },
             "ULA, Musculocutaneous nerve":{
                 "isTabular": true
@@ -1486,6 +1486,12 @@
             },
             "Microbiology, Final Identification":{
                 "autocomplete":true
+            },
+            "Bacteriology, Final Identification":{
+                "allowAddMore":true
+            },
+            "Microbiology, Intermediate Identification":{
+                "multiSelect":true
             }
             },
         "visitPage": {
