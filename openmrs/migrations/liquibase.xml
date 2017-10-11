@@ -4922,6 +4922,17 @@
         <sqlFile path="appointments/patientPastAppointments.sql"/>
         <sqlFile path="appointments/patientUpcomingAppointments.sql"/>
     </changeSet>
+    <changeSet id="Amman-201710111158" author="Santhosh, Pramida" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM privilege WHERE privilege="app:exports"
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding app:exports privilege for exports module</comment>
+        <sql>
+            INSERT INTO privilege(privilege, description, uuid) VALUES ("app:exports", "exports privilege for exports module", uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
