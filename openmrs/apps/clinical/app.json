@@ -661,6 +661,7 @@
 	    "ULA, Level of amputation":{
                 "allowAddMore":true
             },
+
 	    "ULA, Stump circumference":{
                 "isTabular": true,
 		"allowAddMore":true
@@ -675,7 +676,7 @@
                 "isTabular": true
             },
 	    "ULA, Left : Biceps brachii":{
-                "conciseText": true  
+                "conciseText": true
 	    },
 	    "ULA, Right : Biceps brachii":{
                 "conciseText": true
@@ -927,11 +928,11 @@
 	     "ULA, ROM Right : Shoulder flex.":{
                 "conciseText": true,
                 "disableAddNotes": true
-	     },         
+	     },
 	     "ULA, ROM Right : Shoulder Ext.":{
                 "conciseText": true,
                 "disableAddNotes": true
-	     }, 
+	     },
 	     "ULA, ROM Right : Int. Rotation":{
                 "conciseText": true,
                 "disableAddNotes": true
@@ -947,7 +948,7 @@
 	     "ULA, ROM Right : Adduction":{
                 "conciseText": true,
                 "disableAddNotes": true
-	     },            
+	     },
 	     "ULA, Muscle Left : Shoulder flex.":{
                 "conciseText": true,
                 "disableAddNotes": true
@@ -1003,7 +1004,7 @@
 	     "ULA, Muscle Left : Radial Dev.":{
                 "conciseText": true,
                 "disableAddNotes": true
-	     },            
+	     },
             "ULA, Muscle Right : Shoulder flex.":{
                 "conciseText": true,
                 "disableAddNotes": true
@@ -1067,8 +1068,9 @@
 	        "multiSelect":true
 	     },
  	     "MPA, Site of pain":{
-                "multiSelect":true
-             },
+                "multiSelect":true,
+                "autocomplete":true
+            },
 	     "MPA, AROM":{
                 "multiSelect":true  
             },
@@ -1544,6 +1546,9 @@
             },
             "Microbiology, Intermediate Identification":{
                 "multiSelect":true
+            },
+            "Image":{
+                "allowAddMore":true
             }
             },
         "visitPage": {

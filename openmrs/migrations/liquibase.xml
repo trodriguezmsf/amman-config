@@ -4933,6 +4933,383 @@
             INSERT INTO privilege(privilege, description, uuid) VALUES ("app:exports", "exports privilege for exports module", uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201710101234" author="Shiva kumar">
+        <comment>Adding new add_concept procedure</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_concept;
+        </sql>
+        <sqlFile splitStatements="false" path="E1_1__AddConceptProc.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201710101235" author="Shiva" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_name where name = 'PS, TC 75μg (Ticarcillin)' and concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PS, TC 75μg (Ticarcillin)', 'TC 75μg (Ticarcillin)', 'Coded', 'misc', false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710101243" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="PS, TC 75μg (Ticarcillin)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Susceptible' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding answer concepts </comment>
+        <sql>
+            select concept_id into @conceptID from concept_name where name = 'PS, TC 75μg (Ticarcillin)' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID1 from concept_name where name = 'Susceptible' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID2 from concept_name where name = 'Resistant' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID3 from concept_name where name = 'Intermediate' and concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID1,8,now(),0,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID2,8,now(),1,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID3,8,now(),2,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710101246" author="Shiva" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*)  from concept_name where name = 'PS, ATM 30μg (Aztreonam)' and concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concept_set</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PS, ATM 30μg (Aztreonam)', 'ATM 30μg (Aztreonam)', 'Coded', 'misc', false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-2017101247" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="PS, ATM 30μg (Aztreonam)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Susceptible' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding answer concepts </comment>
+        <sql>
+            select concept_id into @conceptID from concept_name where name = 'PS, ATM 30μg (Aztreonam)' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID1 from concept_name where name = 'Susceptible' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID2 from concept_name where name = 'Resistant' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID3 from concept_name where name = 'Intermediate' and concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID1,8,now(),0,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID2,8,now(),1,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID3,8,now(),2,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710101248" author="Shiva" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_name where name = 'PS, TOB 10μg (Tobramycine)' and concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concept_set</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PS, TOB 10μg (Tobramycine)', 'TOB 10μg (Tobramycine)', 'Coded', 'misc', false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-2017101249" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="PS, TOB 10μg (Tobramycine)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Susceptible' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding answer concepts </comment>
+        <sql>
+            select concept_id into @conceptID from concept_name where name = 'PS, TOB 10μg (Tobramycine)' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID1 from concept_name where name = 'Susceptible' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID2 from concept_name where name = 'Resistant' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID3 from concept_name where name = 'Intermediate' and concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID1,8,now(),0,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID2,8,now(),1,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID3,8,now(),2,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710101250" author="Shiva" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_name where name = 'PS, AK 30μg (Amikacin)' and concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concept_set</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PS, AK 30μg (Amikacin)', 'AK 30μg (Amikacin)', 'Coded', 'misc', false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-2017101251" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="PS, AK 30μg (Amikacin)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Susceptible' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding answer concepts </comment>
+        <sql>
+            select concept_id into @conceptID from concept_name where name = 'PS, AK 30μg (Amikacin)' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID1 from concept_name where name = 'Susceptible' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID2 from concept_name where name = 'Resistant' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID3 from concept_name where name = 'Intermediate' and concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID1,8,now(),0,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID2,8,now(),1,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID3,8,now(),2,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710101252" author="Shiva" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_name where name = 'PS, TTC 85μg (Ticar-clav ac)' and concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concept_set</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PS, TTC 85μg (Ticar-clav ac)', 'TTC 85μg (Ticar-clav ac)', 'Coded', 'misc', false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-2017101253" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="PS, TTC 85μg (Ticar-clav ac)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Susceptible' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding answer concepts </comment>
+        <sql>
+            select concept_id into @conceptID from concept_name where name = 'PS, TTC 85μg (Ticar-clav ac)' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID1 from concept_name where name = 'Susceptible' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID2 from concept_name where name = 'Resistant' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID3 from concept_name where name = 'Intermediate' and concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID1,8,now(),0,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID2,8,now(),1,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID3,8,now(),2,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710101254" author="Shiva" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*)  from concept_name where name = 'PS, FEP 30μg (Cefepime)' and concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concept_set</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PS, FEP 30μg (Cefepime)', 'FEP 30μg (Cefepime)', 'Coded', 'misc', false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-2017101255" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="PS, FEP 30μg (Cefepime)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Susceptible' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding answer concepts </comment>
+        <sql>
+            select concept_id into @conceptID from concept_name where name = 'PS, FEP 30μg (Cefepime)' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID1 from concept_name where name = 'Susceptible' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID2 from concept_name where name = 'Resistant' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID3 from concept_name where name = 'Intermediate' and concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID1,8,now(),0,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID2,8,now(),1,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID3,8,now(),2,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710101256" author="Shiva" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_name where name = 'PS, IMI 10μg (Imipenem)' and concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concept_set</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PS, IMI 10μg (Imipenem)', 'IMI 10μg (Imipenem)', 'Coded', 'misc', false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-2017101257" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="PS, IMI 10μg (Imipenem)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Susceptible' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding answer concepts </comment>
+        <sql>
+            select concept_id into @conceptID from concept_name where name = 'PS, IMI 10μg (Imipenem)' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID1 from concept_name where name = 'Susceptible' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID2 from concept_name where name = 'Resistant' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID3 from concept_name where name = 'Intermediate' and concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID1,8,now(),0,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID2,8,now(),1,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID3,8,now(),2,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710101258" author="Shiva" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_name where name = 'PS, CAZ 10μg (Ceftazidime)' and concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concept_set</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PS, CAZ 10μg (Ceftazidime)', 'CAZ 10μg (Ceftazidime)', 'Coded', 'misc', false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-2017101259" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="PS, CAZ 10μg (Ceftazidime)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Susceptible' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding answer concepts </comment>
+        <sql>
+            select concept_id into @conceptID from concept_name where name = 'PS, CAZ 10μg (Ceftazidime)' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID1 from concept_name where name = 'Susceptible' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID2 from concept_name where name = 'Resistant' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID3 from concept_name where name = 'Intermediate' and concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID1,8,now(),0,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID2,8,now(),1,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID3,8,now(),2,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710101260" author="Shiva" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_name where name = 'PS, CN 10μg (Gentamicine)' and concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concept_set</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PS, CN 10μg (Gentamicine)', 'CN 10μg (Gentamicine)', 'Coded', 'misc', false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-2017101261" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="PS, CN 10μg (Gentamicine)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Susceptible' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding answer concepts </comment>
+        <sql>
+            select concept_id into @conceptID from concept_name where name = 'PS, CN 10μg (Gentamicine)' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID1 from concept_name where name = 'Susceptible' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID2 from concept_name where name = 'Resistant' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID3 from concept_name where name = 'Intermediate' and concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID1,8,now(),0,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID2,8,now(),1,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID3,8,now(),2,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710101262" author="Shiva" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_name where name = 'PS, CIP 5μg (Ciprofloxacin)' and concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concept_set</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PS, CIP 5μg (Ciprofloxacin)', 'CIP 5μg (Ciprofloxacin)', 'Coded', 'misc', false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-2017101263" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="PS, CIP 5μg (Ciprofloxacin)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Susceptible' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding answer concepts </comment>
+        <sql>
+            select concept_id into @conceptID from concept_name where name = 'PS, CIP 5μg (Ciprofloxacin)' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID1 from concept_name where name = 'Susceptible' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID2 from concept_name where name = 'Resistant' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID3 from concept_name where name = 'Intermediate' and concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID1,8,now(),0,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID2,8,now(),1,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID3,8,now(),2,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710101264" author="Shiva" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_name where name = 'PS, MER 10μg (Meropenem)' and concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concept_set</comment>
+        <sql>
+
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PS, MER 10μg (Meropenem)', 'MER 10μg (Meropenem)', 'Coded', 'misc', false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710101265" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="PS, MER 10μg (Meropenem)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Susceptible' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding answer concepts </comment>
+        <sql>
+            select concept_id into @conceptID from concept_name where name = 'PS, MER 10μg (Meropenem)' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID1 from concept_name where name = 'Susceptible' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID2 from concept_name where name = 'Resistant' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID3 from concept_name where name = 'Intermediate' and concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID1,8,now(),0,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID2,8,now(),1,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID3,8,now(),2,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710111701" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="PS, MER 10μg (Meropenem)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Susceptible' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding answer concepts </comment>
+        <sql>
+            select concept_id into @conceptID from concept_name where name = 'PS, MER 10μg (Meropenem)' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID1 from concept_name where name = 'Susceptible' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID2 from concept_name where name = 'Resistant' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @answerconceptID3 from concept_name where name = 'Intermediate' and concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID1,8,now(),0,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID2,8,now(),1,uuid());
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID3,8,now(),2,uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
