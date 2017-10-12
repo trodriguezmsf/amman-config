@@ -619,8 +619,35 @@
 	    "LLA, Type of assessment":{
               "required" : true
             },
+	    "LLA, Type of assistive device or orthosis":{
+              "multiSelect":true
+            },
+	    "LLA, Pain Assessment":{
+             "allowAddMore" : true
+            },
+	    "LLA, Pain Severity":{
+             "allowAddMore" : true
+            },
+	    "LLA, Summary neurological examination (sensation)":{
+             "multiSelect" : true
+            },
             "ULA, Type of assessment":{
               "required" : true
+            },
+	    "ULA, Type of assistive device or orthosis":{
+             "multiSelect":true
+            },
+	    "ULA, Pain Assessment":{
+             "allowAddMore" : true
+            },
+	    "ULA, Summary neurological examination (sensation)":{
+             "multiSelect" : true
+            },
+	    "ULA, Pain Severity":{
+             "allowAddMore" : true
+            },
+	    "ULA, Hand and Finger":{
+             "allowAddMore":true
             },
             "MPA, Type of assessment":{
               "required" : true
@@ -635,14 +662,14 @@
                 "allowAddMore":true
             },
 	    "ULA, Stump circumference":{
-                "isTabular": true
+                "isTabular": true,
+		"allowAddMore":true
             },
             "ULA, R.O.M Test for Upper Limbs":{
                 "isTabular": true
             },
 	    "ULA, hand and finger R.O.M":{
-                "isTabular": true,
-		        "allowAddMore":true
+                "isTabular": true
             },
             "ULA, Musculocutaneous nerve":{
                 "isTabular": true
@@ -1034,8 +1061,7 @@
                 "disableAddNotes": true
 	     },
 	     "ULA, Site of pain":{
-                "multiSelect":true,
-                "autocomplete":true
+                "multiSelect":true
              },
 	     "ULA, Nail":{
 	        "multiSelect":true
@@ -1060,10 +1086,11 @@
                 "allowAddMore":true
             },
             "LLA, Stump circumference":{
-                "isTabular": true    
+                "isTabular": true,
+		"allowAddMore":true    
             },
 	    "LLA, Level of amputation":{
-	    "allowAddMore":true
+	    	"allowAddMore":true
 	    },
             "LLA, R.O.M Test for Lower Limbs":{
                 "isTabular": true
@@ -1363,8 +1390,7 @@
                 "isTabular": true
             },
             "LLA, Site of pain":{
-                "multiSelect":true,
-                "autocomplete":true
+                "multiSelect":true
             },
             "LLA, cm":{
                 "disableAddNotes": true
@@ -1385,50 +1411,60 @@
                 "multiSelect":true
             },
             "ULA, R.O.M hand and finger Flex : Wrist":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Flex : Thumb MC":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Flex : Thumb DIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Flex : 2nd Finger MC":{
-
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Flex : 3rd Finger MC":{
-
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Flex : 4th Finger MC":{
-
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Flex : 5th Finger MC":{
-
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Flex : 2nd Finger PIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Flex : 3rd Finger PIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Flex : 4th Finger PIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Flex : 5th Finger PIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Flex : 2nd Finger DIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Flex : 3rd Finger DIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Flex : 4th Finger DIP": {
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Distance tip (2nd -5th)":{
                 "disableAddNotes": true
@@ -1437,54 +1473,70 @@
                 "disableAddNotes": true
             },
             "ULA, R.O.M hand and finger Ext. : Wrist":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Ext. : Thumb MC":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Ext. : Thumb DIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Ext. : 2nd Finger MC":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Ext. : 3rd Finger MC":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Ext. : 4th Finger MC":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Ext. : 5th Finger MC":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Ext : 2nd Finger PIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Ext : 3rd Finger PIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Ext : 4th Finger PIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Ext : 5th Finger PIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Ext. : 2nd Finger DIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Ext. : 3rd Finger DIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Ext. : 4th Finger DIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Ext. : 5th Finger DIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
             "ULA, R.O.M hand and finger Flex : 5th Finger DIP":{
-                "disableAddNotes": true
+                "disableAddNotes": true,
+		"conciseText": true
             },
-            "Microbiology, Final Identification":{
+	    "Microbiology, Final Identification":{
                 "autocomplete":true
             },
             "Bacteriology, Final Identification":{
