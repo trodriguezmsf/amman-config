@@ -99,4 +99,4 @@ uuid,name,description,class,shortname,datatype,units,High Normal,Low Normal,loca
 ,Gram Negitive Bacilli,,Misc,,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,"Microbiology, Type of identification",,Misc,Type of identification,Coded,,,,,,,"Answer, Intermediate Identification","Answer, Final Identification",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,"Microbiology, Gram Stain",,Misc,Gram Stain,Coded,,,,,,,Gram Positive Cocci,Gram Negitive Bacilli,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,"Microbiology, Latex Agglutination",,Misc,Latex Agglutination,Coded,,,,,,,Positive,Negitive,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Microbiology, Latex Agglutination",,Misc,Latex Agglutination,Coded,,,,,,,Positive,Negative,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

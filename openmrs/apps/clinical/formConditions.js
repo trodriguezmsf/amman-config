@@ -2036,7 +2036,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy","MPA, Chief compla
           }
           else if(conditionConcept =="Answer, Final Identification") {
               conditions.show.push("Bacteriology, Final Identification")
-              conditions.hide.push("Microbiology, Intermediate Identification","Microbiology, Comments for Intermediate Identification","PS, TC 75μg (Ticarcillin)","PS, ATM 30μg (Aztreonam)","PS, TOB 10μg (Tobramycine)","PS, AK 30μg (Amikacin)","PS, TTC 85μg (Ticar-clav ac)","PS, FEP 30μg (Cefepime)","PS, IMI 10μg (Imipenem)","PS, CAZ 10μg (Ceftazidime)","PS, CN 10μg (Gentamicine)","PS, CIP 5μg (Ciprofloxacin)","PS, MER 10μg (Meropenem)")
+              conditions.hide.push("Microbiology, Intermediate Identification","Microbiology, Comments for Intermediate Identification","PS, TC 75μg (Ticarcillin)","PS, ATM 30μg (Aztreonam)","PS, TOB 10μg (Tobramycine)","PS, AK 30μg (Amikacin)","PS, TTC 85μg (Ticar-clav ac)","PS, FEP 30μg (Cefepime)","PS, IMI 10μg (Imipenem)","PS, CAZ 10μg (Ceftazidime)","PS, CN 10μg (Gentamicine)","PS, CIP 5μg (Ciprofloxacin)","PS, MER 10μg (Meropenem)","PS, PRL 30μg (Piperacillin)")
           }
           else {
               conditions.hide.push("Bacteriology, Final Identification","Microbiology, Intermediate Identification","Microbiology, Comments for Intermediate Identification")
@@ -2050,10 +2050,10 @@ conditions.hide.push("MPA, Previous history of physiotherapy","MPA, Chief compla
           };
           var conditionConcept = formFieldValues['Microbiology, Final Identification'];
           if (conditionConcept == "Pseudomonas aeruginosa") {
-              conditions.show.push("PS, TC 75μg (Ticarcillin)","PS, ATM 30μg (Aztreonam)","PS, TOB 10μg (Tobramycine)","PS, AK 30μg (Amikacin)","PS, TTC 85μg (Ticar-clav ac)","PS, FEP 30μg (Cefepime)","PS, IMI 10μg (Imipenem)","PS, CAZ 10μg (Ceftazidime)","PS, CN 10μg (Gentamicine)","PS, CIP 5μg (Ciprofloxacin)","PS, MER 10μg (Meropenem)")
+              conditions.show.push("PS, PRL 30μg (Piperacillin)","PS, TC 75μg (Ticarcillin)","PS, ATM 30μg (Aztreonam)","PS, TOB 10μg (Tobramycine)","PS, AK 30μg (Amikacin)","PS, TTC 85μg (Ticar-clav ac)","PS, FEP 30μg (Cefepime)","PS, IMI 10μg (Imipenem)","PS, CAZ 10μg (Ceftazidime)","PS, CN 10μg (Gentamicine)","PS, CIP 5μg (Ciprofloxacin)","PS, MER 10μg (Meropenem)")
           }
           else {
-              conditions.hide.push("PS, TC 75μg (Ticarcillin)","PS, ATM 30μg (Aztreonam)","PS, TOB 10μg (Tobramycine)","PS, AK 30μg (Amikacin)","PS, TTC 85μg (Ticar-clav ac)","PS, FEP 30μg (Cefepime)","PS, IMI 10μg (Imipenem)","PS, CAZ 10μg (Ceftazidime)","PS, CN 10μg (Gentamicine)","PS, CIP 5μg (Ciprofloxacin)","PS, MER 10μg (Meropenem)")
+              conditions.hide.push("PS, PRL 30μg (Piperacillin)","PS, TC 75μg (Ticarcillin)","PS, ATM 30μg (Aztreonam)","PS, TOB 10μg (Tobramycine)","PS, AK 30μg (Amikacin)","PS, TTC 85μg (Ticar-clav ac)","PS, FEP 30μg (Cefepime)","PS, IMI 10μg (Imipenem)","PS, CAZ 10μg (Ceftazidime)","PS, CN 10μg (Gentamicine)","PS, CIP 5μg (Ciprofloxacin)","PS, MER 10μg (Meropenem)")
          }
           return conditions;
       }

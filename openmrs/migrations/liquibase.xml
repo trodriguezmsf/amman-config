@@ -5293,21 +5293,89 @@
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID3,8,now(),2,uuid());
         </sql>
     </changeSet>
-    <changeSet id="Amman-201710111701" author="Shiva kumar" context="rel3.4" >
+    <changeSet id="Amman-2017101220" author="Shiva" context="rel3.4">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="PS, MER 10μg (Meropenem)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Susceptible' AND concept_name_type="FULLY_SPECIFIED");
+                SELECT count(*) from concept_name where name = 'PS, PRL 30μg (Piperacillin)' and concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concept_set</comment>
+        <sql>
+
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PS, PRL 30μg (Piperacillin)', 'PRL 30μg (Piperacillin)', 'Coded', 'misc', false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710121225" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="PS, PRL 30μg (Piperacillin)" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Susceptible' AND concept_name_type="FULLY_SPECIFIED");
             </sqlCheck>
         </preConditions>
         <comment>Adding answer concepts </comment>
         <sql>
-            select concept_id into @conceptID from concept_name where name = 'PS, MER 10μg (Meropenem)' and concept_name_type="FULLY_SPECIFIED";
+            select concept_id into @conceptID from concept_name where name = 'PS, PRL 30μg (Piperacillin)' and concept_name_type="FULLY_SPECIFIED";
             select concept_id into @answerconceptID1 from concept_name where name = 'Susceptible' and concept_name_type="FULLY_SPECIFIED";
             select concept_id into @answerconceptID2 from concept_name where name = 'Resistant' and concept_name_type="FULLY_SPECIFIED";
             select concept_id into @answerconceptID3 from concept_name where name = 'Intermediate' and concept_name_type="FULLY_SPECIFIED";
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID1,8,now(),0,uuid());
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID2,8,now(),1,uuid());
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptID,@answerconceptID3,8,now(),2,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710121246" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id = (select concept_id from concept_name where name ="PS, PRL 30μg (Piperacillin)" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'Bacteriology, Final Identification' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding concepts</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set  from concept_name where name= 'Bacteriology, Final Identification' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'PS, PRL 30μg (Piperacillin)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id1,@concept_set,3,8,now(),uuid());
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'PS, TC 75μg (Ticarcillin)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id1,@concept_set,4,8,now(),uuid());
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'PS, ATM 30μg (Aztreonam)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id2,@concept_set,5,8,now(),uuid());
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = 'PS, TOB 10μg (Tobramycine)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id3,@concept_set,6,8,now(),uuid());
+            SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name = 'PS, AK 30μg (Amikacin)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id4,@concept_set,7,8,now(),uuid());
+            SELECT concept_id INTO @concept_id5 FROM concept_name WHERE name = 'PS, TTC 85μg (Ticar-clav ac)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id5,@concept_set,8,8,now(),uuid());
+            SELECT concept_id INTO @concept_id6 FROM concept_name WHERE name = 'PS, FEP 30μg (Cefepime)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id6,@concept_set,9,8,now(),uuid());
+            SELECT concept_id INTO @concept_id7 FROM concept_name WHERE name = 'PS, IMI 10μg (Imipenem)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id7,@concept_set,10,8,now(),uuid());
+            SELECT concept_id INTO @concept_id8 FROM concept_name WHERE name = 'PS, CAZ 10μg (Ceftazidime)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id8,@concept_set,11,8,now(),uuid());
+            SELECT concept_id INTO @concept_id9 FROM concept_name WHERE name = 'PS, CN 10μg (Gentamicine)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id9,@concept_set,12,8,now(),uuid());
+            SELECT concept_id INTO @concept_id10 FROM concept_name WHERE name = 'PS, CIP 5μg (Ciprofloxacin)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id10,@concept_set,13,8,now(),uuid());
+            SELECT concept_id INTO @concept_id11 FROM concept_name WHERE name = 'PS, MER 10μg (Meropenem)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id11,@concept_set,14,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710120146" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_set where concept_id = (select concept_id from concept_name where name ="Microbiology, Final Identification" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'Bacteriology, Final Identification' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating sort weight of the concepts </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set  from concept_name where name= 'Bacteriology, Final Identification' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'Microbiology, Final Identification' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET sort_weight =0 WHERE concept_id =@concept_id1 and concept_set=@concept_set;
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'Microbiology, Gram Stain' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET sort_weight =1 WHERE concept_id =@concept_id2 and concept_set=@concept_set;
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = 'Microbiology, Latex Agglutination' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET sort_weight =2 WHERE concept_id =@concept_id3 and concept_set=@concept_set;
         </sql>
     </changeSet>
 </databaseChangeLog>
