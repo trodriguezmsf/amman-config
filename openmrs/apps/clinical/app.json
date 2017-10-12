@@ -625,9 +625,6 @@
 	    "LLA, Pain Assessment":{
              "allowAddMore" : true
             },
-	    "LLA, Pain Severity":{
-             "allowAddMore" : true
-            },
 	    "LLA, Summary neurological examination (sensation)":{
              "multiSelect" : true
             },
@@ -642,9 +639,6 @@
             },
 	    "ULA, Summary neurological examination (sensation)":{
              "multiSelect" : true
-            },
-	    "ULA, Pain Severity":{
-             "allowAddMore" : true
             },
 	    "ULA, Hand and Finger":{
              "allowAddMore":true
