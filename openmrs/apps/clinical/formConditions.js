@@ -1442,7 +1442,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
 
           else if (conditionConcept == "Post-operative"){
 
-              conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Chief complaint of patient","ULA, Problem List","ULA, Followup Plan", "ULA, Side of pain", "ULA, Site of pain", "ULA, Site, Other","ULA, Type of pain", "ULA, When does the pain occur", "ULA, Summary neurological examination (sensation), comments", "ULA, Motor")
+              conditions.hide.push("ULA, Previous history of physiotherapy", "ULA, Details of previous physiotherapy", "ULA, Chief complaint of patient","ULA, Problem List","ULA, Followup Plan", "ULA, Side of pain", "ULA, Site of pain", "ULA, Site, Other","ULA, Type of pain", "ULA, When does the pain occur", "ULA, Summary neurological examination (sensation), comments", "ULA, Motor")
 
               conditions.show.push("ULA, Dominant side", "ULA, Affected side", "ULA, Independence of Patient", "ULA, Does the patient use an assistive device or orthosis?", "ULA, Amputee patient?", "ULA, Pain Assessment", "ULA, Objective examination", "ULA, R.O.M Test for Upper Limbs", "ULA, Neurological exam of upper limb", "ULA, Muscle Test for Upper Limbs", "ULA, Hand and Finger", "ULA, hand and finger R.O.M", "ULA, Basic Grip Test", "ULA, How old is the patient", "ULA, Additional comments")
 
@@ -1451,7 +1451,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
 
          else if (conditionConcept == "Final"){
 
-	     conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Chief complaint of patient","ULA, Problem List","ULA, Prosthetic and orthotic center","ULA, Physiotherapy center", "ULA, Side of pain", "ULA, Site of pain", "ULA, Site, Other","ULA, Type of pain", "ULA, When does the pain occur", "ULA, Summary neurological examination (sensation), comments", "ULA, Motor")
+	     conditions.hide.push("ULA, Previous history of physiotherapy", "ULA, Details of previous physiotherapy", "ULA, Chief complaint of patient","ULA, Problem List","ULA, Prosthetic and orthotic center","ULA, Physiotherapy center", "ULA, Side of pain", "ULA, Site of pain", "ULA, Site, Other","ULA, Type of pain", "ULA, When does the pain occur", "ULA, Summary neurological examination (sensation), comments", "ULA, Motor")
 
              conditions.show.push("ULA, Followup Plan", "ULA, Dominant side", "ULA, Affected side", "ULA, Independence of Patient", "ULA, Does the patient use an assistive device or orthosis?", "ULA, Amputee patient?", "ULA, Pain Assessment", "ULA, Objective examination", "ULA, R.O.M Test for Upper Limbs", "ULA, Neurological exam of upper limb", "ULA, Muscle Test for Upper Limbs", "ULA, Hand and Finger", "ULA, hand and finger R.O.M", "ULA, Basic Grip Test", "ULA, How old is the patient", "ULA, Additional comments")
 
@@ -1478,14 +1478,14 @@ Bahmni.ConceptSet.FormConditions.rules = {
           }
           else if (conditionConcept == "Post-operative"){
 
-conditions.hide.push("MPA, Previous history of physiotherapy","MPA, Chief complaint of patient","MPA, Problem List","MPA, Followup Plan", "MPA, Describe difficulty of movement for facial muscles", "MPA, Describe difficulty of movement for eyes", "MPA, Describe difficulty of movement for mouth", "MPA, Describe difficulty of movement for tongue", "MPA, Side of pain", "MPA, Site of pain", "MPA, Site, Other", "MPA, Type of pain", "MPA, When does the pain occur")
+conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Details of previous physiotherapy", "MPA, Chief complaint of patient","MPA, Problem List","MPA, Followup Plan", "MPA, Describe difficulty of movement for facial muscles", "MPA, Describe difficulty of movement for eyes", "MPA, Describe difficulty of movement for mouth", "MPA, Describe difficulty of movement for tongue", "MPA, Side of pain", "MPA, Site of pain", "MPA, Site, Other", "MPA, Type of pain", "MPA, When does the pain occur")
 
               conditions.show.push("MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments")
 
          }
          else if (conditionConcept == "Final"){
 
-conditions.hide.push("MPA, Previous history of physiotherapy","MPA, Chief complaint of patient","MPA, Problem List","MPA, Referral suggested, comments", "MPA, Describe difficulty of movement for facial muscles", "MPA, Describe difficulty of movement for eyes", "MPA, Describe difficulty of movement for mouth", "MPA, Describe difficulty of movement for tongue", "MPA, Side of pain", "MPA, Site of pain", "MPA, Site, Other", "MPA, Type of pain", "MPA, When does the pain occur")
+conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Details of previous physiotherapy", "MPA, Chief complaint of patient","MPA, Problem List","MPA, Referral suggested, comments", "MPA, Describe difficulty of movement for facial muscles", "MPA, Describe difficulty of movement for eyes", "MPA, Describe difficulty of movement for mouth", "MPA, Describe difficulty of movement for tongue", "MPA, Side of pain", "MPA, Site of pain", "MPA, Site, Other", "MPA, Type of pain", "MPA, When does the pain occur")
 
                        conditions.show.push("MPA, Followup Plan", "MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments")
 
