@@ -1,4 +1,3 @@
-<title>{{::'APPOINTMENT_LIST' | translate}}</title>
 <style>
     h4, p {
         text-align: center;
@@ -17,23 +16,27 @@
     table td:first-child {
         border-left: 1px solid #444;
     }
-    .table-mid-width {
-        width: 180px;
-        min-width: 180px;
-        max-width: 180px;
+    .appointment-date, .title {
+        text-align: center;
+        font-weight: bold;
+        padding-bottom: 10px;
+    }
+    .time-column-width {
+        min-width: 70px;
     }
 </style>
 
 <div>
     <div>
-        <span>{{::'APPOINTMENT_DATE' | translate}} {{::startDate | bahmniDate}}</span>
+        <div class="title">{{::'APPOINTMENT_LIST' | translate}}</div>
+        <div class="appointment-date">{{::'APPOINTMENT_DATE' | translate}} {{::startDate | bahmniDate}}</div>
         <table cellpadding="2" cellspacing="0">
             <thead>
             <tr>
                 <th>{{::'APPOINTMENT_PATIENT_ID' |translate}}</th>
                 <th class="table-mid-width">{{::'APPOINTMENT_PATIENT_NAME' |translate}}</th>
-                <th>{{::'APPOINTMENT_START_TIME_KEY' |translate}}</th>
-                <th>{{::'APPOINTMENT_END_TIME_KEY' |translate}}</th>
+                <th class="time-column-width">{{::'APPOINTMENT_START_TIME_KEY' |translate}}</th>
+                <th class="time-column-width">{{::'APPOINTMENT_END_TIME_KEY' |translate}}</th>
                 <th class="table-mid-width">{{::'APPOINTMENT_PROVIDER' |translate}}</th>
                 <th>{{::'APPOINTMENT_SERVICE' |translate}}</th>
                 <th class="table-mid-width" ng-if="enableServiceTypes">{{::'APPOINTMENT_SERVICE_TYPE_FULL' |translate}}</th>
