@@ -1062,9 +1062,8 @@
 	        "multiSelect":true
 	     },
  	     "MPA, Site of pain":{
-                "multiSelect":true,
-                "autocomplete":true
-            },
+                "multiSelect":true
+             },
 	     "MPA, AROM":{
                 "multiSelect":true  
             },
