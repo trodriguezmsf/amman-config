@@ -39,10 +39,6 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         ScoreDetails getScoreDetails(BahmniObservation bahmniObservation)
     }
 
-    interface Formula {
-        Double applyFormulaOnScore(ScoreDetails scoreDetails)
-    }
-
     class DefaultScoreCalculation implements ScoreCalculationType {
         @Override
         ScoreDetails getScoreDetails(BahmniObservation bahmniObservation) {
@@ -86,7 +82,8 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 totalQuestions += 1
                 BahmniObservation childObs = find(scoreConcept, bahmniObservation.getGroupMembers(), null)
                 if (childObs != null && !childObs.getVoided()) {
-                    score += childObs.getValue()
+                    Double value = Double.parseDouble(childObs.getValue() + "")
+                    score += value;
                     answeredQuestions += 1;
                 }
             }
@@ -94,24 +91,80 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         }
     }
 
+    interface Formula {
+        String applyFormulaOnScore(ScoreDetails scoreDetails)
+    }
+
     class ExtremityFunctionFormula implements Formula {
         @Override
-        Double applyFormulaOnScore(ScoreDetails scoreDetails) {
+        String applyFormulaOnScore(ScoreDetails scoreDetails) {
             if (scoreDetails.getAnsweredQuestions() == 0) {
                 return ZERO
             }
             double score = scoreDetails.areAllQuestionsAnswered() ? scoreDetails.getScore() * 1.25 : (scoreDetails.getScore() + scoreDetails.getScore() / scoreDetails.getAnsweredQuestions()) * 1.25;
-            return roundOffToTwoDecimalPlaces(score)
+            String value = "" + roundOffToTwoDecimalPlaces(score);
+            return value
         }
     }
 
     class DefaultFormula implements Formula {
         @Override
-        Double applyFormulaOnScore(ScoreDetails scoreDetails) {
+        String applyFormulaOnScore(ScoreDetails scoreDetails) {
             if (scoreDetails.getAnsweredQuestions() == 0) {
                 return ZERO
             }
-            return roundOffToTwoDecimalPlaces(scoreDetails.getScore())
+            String value = "" + roundOffToTwoDecimalPlaces(scoreDetails.getScore())
+            return value
+        }
+    }
+
+    class RiskFallsFormula implements Formula {
+        @Override
+        String applyFormulaOnScore(ScoreDetails scoreDetails) {
+            double score = scoreDetails.getScore();
+            String risk;
+            if (score <= 18) {
+                risk = "High"
+            } else if (score >= 19 && score <= 23) {
+                risk = "Moderate";
+            } else if (score >= 24) {
+                risk = "Low";
+            }
+            return risk;
+        }
+    }
+
+    class FunctionalIndexTableFormula implements Formula {
+        double[] table = [0.0, 8.5, 14.4, 18.6, 21.7, 24.3, 26.5, 28.4, 30.1, 31.7, 33.1, 34.4, 35.6, 36.7, 37.8, 38.9, 39.9, 40.8, 41.8, 42.7, 43.5, 44.4, 45.2, 46.0, 46.9, 47.6, 48.4, 49.2, 50.0, 50.7, 51.5, 52.3, 53.0, 53.8, 54.6, 55.3, 56.1, 56.9, 57.7, 58.5, 59.4, 60.2, 61.1, 62.0, 63.0, 64.0, 65.0, 66.1, 67.3, 68.5, 69.9, 71.3, 72.9, 74.8, 76.8, 79.3, 82.3, 86.2, 91.8, 100.0];
+        @Override
+        String applyFormulaOnScore(ScoreDetails scoreDetails) {
+            int i = scoreDetails.getScore();
+            double score = table[i];
+            return score
+        }
+    }
+
+    class PhysicalFunctionFormula implements Formula {
+        @Override
+        String applyFormulaOnScore(ScoreDetails scoreDetails) {
+            if (scoreDetails.getAnsweredQuestions() == 0) {
+                return ZERO;
+            }
+            double score = ((scoreDetails.getScore() - scoreDetails.getAnsweredQuestions()) / scoreDetails.getAnsweredQuestions()) * 25;
+            String value = "" + roundOffToTwoDecimalPlaces(score)
+            return value
+        }
+    }
+
+    class SocialFunctionFormula implements Formula {
+        @Override
+        String applyFormulaOnScore(ScoreDetails scoreDetails) {
+            if (scoreDetails.getAnsweredQuestions() == 0) {
+                return ZERO;
+            }
+            double score = ((scoreDetails.getScore() - scoreDetails.getAnsweredQuestions()) / scoreDetails.getAnsweredQuestions()) * 20;
+            String value = "" + roundOffToTwoDecimalPlaces(score);
+            return value
         }
     }
 
@@ -137,11 +190,10 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                     voidObs(sectionObservation)
                 } else {
                     scoreObservation = hasValue(scoreObservation) ? scoreObservation : createObs(scoreConceptName, sectionObservation, null, getDate(sectionObservation))
-                    double value = formula.applyFormulaOnScore(scoreDetails)
+                    String value = formula.applyFormulaOnScore(scoreDetails)
                     scoreObservation.setValue(value)
                 }
             }
-
         }
     }
 
@@ -185,6 +237,10 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         ScoreCalculationType defaultScoreCalculation = new DefaultScoreCalculation();
         Formula extremityFunctionFormula = new ExtremityFunctionFormula()
         Formula defaultScoreFormula = new DefaultFormula()
+        Formula riskFallsFormula = new RiskFallsFormula()
+        Formula physicalFunctionFormula = new PhysicalFunctionFormula()
+        Formula socialFunctionFormula = new SocialFunctionFormula()
+        Formula functionalIndexTableFormula = new FunctionalIndexTableFormula()
         Section lowerLimbExtremityFunction = new Section(
                 defaultScoreCalculation,
                 extremityFunctionFormula,
@@ -200,21 +256,64 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 defaultScoreFormula,
                 find("LLA, Gait Section", observations, null),
                 "LLA, Gait Score")
-        Section lowerLimbBalanceAssessmentSection = new Section(
-                new AggregateScoreCalculation(Arrays.asList("LLA, Gait Score", "LLA, Balance Score")),
-                defaultScoreFormula,
-                find("LLA, Tinetti Balance Assessment Tool", observations, null),
-                "LLA, Total Score")
         Section lowerLimbBalanceSection = new Section(
                 defaultScoreCalculation,
                 defaultScoreFormula,
                 find("LLA, Balance Section", observations, null),
                 "LLA, Balance Score")
-        Section[] forms = [lowerLimbExtremityFunction,
-                           lowerLimbPediatricExtremityFunction,
-                           lowerLimbGaitSection,
+        Section lowerLimbBalanceAssessmentSection = new Section(
+                new AggregateScoreCalculation(Arrays.asList("LLA, Gait Score", "LLA, Balance Score")),
+                defaultScoreFormula,
+                find("LLA, Tinetti Balance Assessment Tool", observations, null),
+                "LLA, Total Score")
+        Section lowerLimbRiskFallsSection = new Section(
+                new AggregateScoreCalculation(Arrays.asList("LLA, Gait Score", "LLA, Balance Score")),
+                riskFallsFormula,
+                find("LLA, Tinetti Balance Assessment Tool", observations, null),
+                "LLA, Risk Testing")
+        Section upperLimbPediatricExtremityFunction = new Section(
+                defaultScoreCalculation,
+                extremityFunctionFormula,
+                find("ULA, Pediatric Upper Extremity Function ( Fine Motor, ADL)", observations, null),
+                "ULA, Total score")
+        Section upperLimbExtremityFunction = new Section(
+                defaultScoreCalculation,
+                defaultScoreFormula,
+                find("ULA, (UEFI) Upper Extremity Functional Index", observations, null),
+                "ULA, Total raw score")
+        Section upperLimbExtremityFinalScoreFunction = new Section(
+                defaultScoreCalculation,
+                functionalIndexTableFormula,
+                find("ULA, (UEFI) Upper Extremity Functional Index", observations, null),
+                "ULA, Final score")
+        Section facialDisabiltyPhysicalFunction = new Section(
+                defaultScoreCalculation,
+                physicalFunctionFormula,
+                find("MPA, Physical Function", observations, null),
+                "MPA, Physical Function Score")
+        Section facialDisabilitySocialFunction = new Section(
+                defaultScoreCalculation,
+                socialFunctionFormula,
+                find("MPA, Social Function", observations, null),
+                "MPA, Social Wellbeing Score")
+        Section facialDisabilityIndexFunction = new Section(
+                new AggregateScoreCalculation(Arrays.asList("MPA, Physical Function Score", "MPA, Social Wellbeing Score")),
+                defaultScoreFormula,
+                find("MPA, Facial Disability Index", observations, null),
+                "MPA, Total score (FDI)")
+
+        Section[] forms = [lowerLimbGaitSection,
                            lowerLimbBalanceSection,
-                           lowerLimbBalanceAssessmentSection]
+                           lowerLimbBalanceAssessmentSection,
+                           lowerLimbExtremityFunction,
+                           lowerLimbPediatricExtremityFunction,
+                           upperLimbPediatricExtremityFunction,
+                           upperLimbExtremityFunction,
+                           upperLimbExtremityFinalScoreFunction,
+                           facialDisabiltyPhysicalFunction,
+                           facialDisabilitySocialFunction,
+                           facialDisabilityIndexFunction,
+                           lowerLimbRiskFallsSection]
         for (Section form : forms) {
             form.setScore();
         }
