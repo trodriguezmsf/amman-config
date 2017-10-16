@@ -270,7 +270,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 new AggregateScoreCalculation(Arrays.asList("LLA, Gait Score", "LLA, Balance Score")),
                 riskFallsFormula,
                 find("LLA, Tinetti Balance Assessment Tool", observations, null),
-                "LLA, Risk Testing")
+                "LLA, Risk of Falls")
         Section upperLimbPediatricExtremityFunction = new Section(
                 defaultScoreCalculation,
                 extremityFunctionFormula,
