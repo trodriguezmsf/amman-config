@@ -4933,6 +4933,34 @@
             INSERT INTO privilege(privilege, description, uuid) VALUES ("app:exports", "exports privilege for exports module", uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201710161200" author="Santhosh, Pramida" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM role WHERE role="Exports-App";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Exports-App role</comment>
+        <sql>
+            INSERT INTO role(role, description, uuid) VALUES ("Exports-App", "role for amman-batch exports", uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710161210" author="Santhosh, Pramida" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) FROM privilege WHERE privilege="app:exports"
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) FROM role WHERE role="Exports-App"
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM role_privilege WHERE role = "Exports-App" AND privilege = "app:exports";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding app:exports privilege to Exports-App role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES("Exports-App", "app:exports");
+        </sql>
+    </changeSet>
     <changeSet id="Amman-201710101234" author="Shiva kumar">
         <comment>Adding new add_concept procedure</comment>
         <sql>
