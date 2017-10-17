@@ -26,54 +26,54 @@
     </changeSet>
     <changeSet id="Amman-201703211715" author="Santhosh, Maharjun" runOnChange="true">
         <comment>Updating the program active patients listing queue</comment>
-        <sqlFile path="programsActivePatientsQueue.sql"/>
+        <sqlFile path="programs/programsActivePatientsQueue.sql"/>
     </changeSet>
     <changeSet id="Amman-183504102016" author="Shiva kumar" context="rel1" runOnChange="true">
         <comment>Adding patient listing queues for patients whose are in first stage date of file recieved filled and date of presentation is not filled</comment>
-        <sqlFile path="awaitingValidationPatientQueue.sql"/>
+        <sqlFile path="programs/awaitingValidationPatientQueue.sql"/>
     </changeSet>
     <changeSet id="Amman-183604102016" author="Shiva kumar" context="rel1" runOnChange="true">
         <comment>Adding patient listing queues for patients whos expected date of arrival is filled and arrival date not filled</comment>
-        <sqlFile path="expectedarrivalpatientqueue.sql"/>
+        <sqlFile path="programs/expectedarrivalpatientqueue.sql"/>
     </changeSet>
     <changeSet id="Amman-113006102016" author="Shiva kumar" context="rel1" runOnChange="true">
         <comment>Adding patient listing queues for patients whose program state is network-followup and date of presentation in followup is not filled</comment>
-        <sqlFile path="awaitingValidationfollowup.sql"/>
+        <sqlFile path="programs/awaitingValidationfollowup.sql"/>
     </changeSet>
     <changeSet id="Amman-165112102016" author="Shiva kumar" context="rel1" runOnChange="true">
         <comment>Adding patient listing queues for patients whose medical file is not complete</comment>
-        <sqlFile path="incompleteMedicalFile.sql"/>
+        <sqlFile path="programs/incompleteMedicalFile.sql"/>
     </changeSet>
     <changeSet id="Amman-103414102016" author="Shiva kumar" context="rel1" runOnChange="true">
         <comment>Adding patient listing queues for patients who are in under follow-Up validation</comment>
-        <sqlFile path="continueUnderFollowup.sql"/>
+        <sqlFile path="programs/continueUnderFollowup.sql"/>
     </changeSet>
     <changeSet id="Amman-150614102016" author="Shiva kumar" context="rel1" runOnChange="true">
         <comment>Adding patient listing queues for patients who are filled with date of presentation and with outcome as postponed or need more information</comment>
-        <sqlFile path="MoreInformationorPostponed.sql"/>
+        <sqlFile path="programs/MoreInformationorPostponed.sql"/>
     </changeSet>
     <changeSet id="Amman-113620102016" author="Shiva kumar, Santhosh" context="rel1">
         <comment>Adding a procedure to create a concept reference mapping</comment>
         <sql>
             DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING;
         </sql>
-        <sqlFile splitStatements="false" path="CreateReferenceMapping.sql"/>
+        <sqlFile splitStatements="false" path="utils/CreateReferenceMapping.sql"/>
     </changeSet>
     <changeSet id="Amman-113920102016" author="Shiva kumar, Santhosh" context="rel1">
         <comment>Adding reference terms for CEIL exports codes</comment>
-        <sqlFile path="export_ref_terms.sql"/>
+        <sqlFile path="utils/export_ref_terms.sql"/>
     </changeSet>
     <changeSet id="Amman-114020102016" author="Shiva Kumar, Santhosh" context="rel1">
         <comment>Mapping export codes with respective concepts</comment>
-        <sqlFile path="concept_ref_map.sql"/>
+        <sqlFile path="utils/concept_ref_map.sql"/>
     </changeSet>
     <changeSet id="Amman-201612051834" author="Santhosh, Kaustav" context="rel2.2" runOnChange="true">
         <comment>Adding patient listing queue for adt toAdmit</comment>
-        <sqlFile path="adtPatientsToAdmit.sql"/>
+        <sqlFile path="bedManagement/adtPatientsToAdmit.sql"/>
     </changeSet>
     <changeSet id="Amman-11406122016" author="Sourav" context="rel2.2" runOnChange="true">
         <comment>Updating the property emrapi.sqlSearch.patientsAdmitted</comment>
-        <sqlFile path="adtAdmittedQueue.sql"/>
+        <sqlFile path="bedManagement/adtAdmittedQueue.sql"/>
     </changeSet>
     <changeSet id="Amman-114707122016" author="Shiva kumar" context="rel2.1" runOnChange="true" >
         <preConditions onFail="MARK_RAN">
@@ -178,7 +178,7 @@
     </changeSet>
     <changeSet id="Amman-201701251215" author="Santhosh, Swarup" context="rel2.1">
         <comment>Migrating the consultation encounters that were part of clinical to programs</comment>
-        <sqlFile path="migrateClinicalEncountersToProgram.sql"/>
+        <sqlFile path="utils/migrateClinicalEncountersToProgram.sql"/>
     </changeSet>
     <changeSet id="Amman-201612281718" author="Shiva kumar" context="rel2.3" >
         <preConditions onFail="MARK_RAN">
@@ -328,7 +328,7 @@
         <sql>
             DROP PROCEDURE IF EXISTS add_concept;
         </sql>
-        <sqlFile splitStatements="false" path="E1_1__AddConceptProc.sql"/>
+        <sqlFile splitStatements="false" path="utils/E1_1__AddConceptProc.sql"/>
     </changeSet>
     <changeSet id="Amman-201702241601" author="Shireesha" context="rel2.3">
         <preConditions onFail="MARK_RAN">
@@ -643,12 +643,12 @@
             validation outcome is further stage admission OR first stage outcome is valid and anaesthesia criteria is
             fit with no follow up validation form filled
         </comment>
-        <sqlFile path="validatedPatientsQueue.sql"/>
+        <sqlFile path="programs/validatedPatientsQueue.sql"/>
     </changeSet>
     <changeSet id="Amman-201703281524" author="Shireesha, Pramida" context="rel2.2" runOnChange="true">
         <comment>Adding patient listing queues for patients in the either pre-operative/surgical/rehabilitation workflow state
         </comment>
-        <sqlFile path="hospitalRSPQueue.sql"/>
+        <sqlFile path="programs/hospitalRSPQueue.sql"/>
     </changeSet>
     <changeSet id="Amman-201703301007" author="shiva kumar" context="rel2.3" >
         <preConditions onFail="MARK_RAN">
@@ -4067,7 +4067,7 @@
     </changeSet>
     <changeSet id="Amman-201708161100" author="Santhosh" runOnChange="true">
         <comment>Adding procedure for migration of observations from the source form to destination form</comment>
-        <sqlFile path="migrateObservationsFromSourceFormToDestinationForm.sql" endDelimiter="#"/>
+        <sqlFile path="utils/migrateObservationsFromSourceFormToDestinationForm.sql" endDelimiter="#"/>
     </changeSet>
     <changeSet id="Amman-201708161656" author="Santhosh, Maharjun">
         <preConditions onFail="CONTINUE">
@@ -4887,7 +4887,7 @@
         <sql>
             DROP PROCEDURE IF EXISTS add_concept;
         </sql>
-        <sqlFile splitStatements="false" path="E1_1__AddConceptProc.sql"/>
+        <sqlFile splitStatements="false" path="utils/E1_1__AddConceptProc.sql"/>
     </changeSet>
     <changeSet id="Amman-201709211649" author="Shiva" context="rel3.3">
         <preConditions onFail="MARK_RAN">
@@ -4994,7 +4994,7 @@
         <sql>
             DROP PROCEDURE IF EXISTS add_concept;
         </sql>
-        <sqlFile splitStatements="false" path="E1_1__AddConceptProc.sql"/>
+        <sqlFile splitStatements="false" path="utils/E1_1__AddConceptProc.sql"/>
     </changeSet>
     <changeSet id="Amman-201710171228" author="Shiva" context="rel3.4">
         <preConditions onFail="MARK_RAN">
