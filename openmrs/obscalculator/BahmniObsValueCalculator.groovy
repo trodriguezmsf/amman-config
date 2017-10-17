@@ -118,6 +118,19 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         }
     }
 
+    class AverageFormula implements Formula{
+
+        @java.lang.Override
+        String applyFormulaOnScore(ScoreDetails scoreDetails) {
+            if (scoreDetails.getAnsweredQuestions() == 0) {
+                return ZERO
+            }
+            Double val = roundOffToTwoDecimalPlaces((scoreDetails.getScore())/2)
+            String value = "" + val
+            return value
+        }
+    }
+
     class RiskFallsFormula implements Formula {
         @Override
         String applyFormulaOnScore(ScoreDetails scoreDetails) {
@@ -241,6 +254,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         Formula physicalFunctionFormula = new PhysicalFunctionFormula()
         Formula socialFunctionFormula = new SocialFunctionFormula()
         Formula functionalIndexTableFormula = new FunctionalIndexTableFormula()
+        Formula averageFormula = new AverageFormula()
         Section lowerLimbExtremityFunction = new Section(
                 defaultScoreCalculation,
                 extremityFunctionFormula,
@@ -298,7 +312,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 "MPA, Social Wellbeing Score")
         Section facialDisabilityIndexFunction = new Section(
                 new AggregateScoreCalculation(Arrays.asList("MPA, Physical Function Score", "MPA, Social Wellbeing Score")),
-                defaultScoreFormula,
+                averageFormula,
                 find("MPA, Facial Disability Index", observations, null),
                 "MPA, Total score (FDI)")
 
