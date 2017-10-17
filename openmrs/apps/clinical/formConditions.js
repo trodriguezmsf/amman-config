@@ -2036,7 +2036,11 @@ conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Details of 
           }
           else if(conditionConcept =="Answer, Final Identification") {
               conditions.show.push("Bacteriology, Final Identification")
-              conditions.hide.push("Microbiology, Intermediate Identification","Microbiology, Comments for Intermediate Identification","PS, TC 75μg (Ticarcillin)","PS, ATM 30μg (Aztreonam)","PS, TOB 10μg (Tobramycine)","PS, AK 30μg (Amikacin)","PS, TTC 85μg (Ticar-clav ac)","PS, FEP 30μg (Cefepime)","PS, IMI 10μg (Imipenem)","PS, CAZ 10μg (Ceftazidime)","PS, CN 10μg (Gentamicine)","PS, CIP 5μg (Ciprofloxacin)","PS, MER 10μg (Meropenem)","PS, PRL 30μg (Piperacillin)","SA, P 1unit ( Penicillin)","SA, Penicillin sensitive zone:","SA, FOX 30μg (Cefoxitin)","SA, PBP2a (20 – 25):","SA, CIP 5μg (Ciprofloxacin)","SA, NOR 10μg (Norfloxacin)","SA, AK 30μg (Amikacin)","SA, CN 10μg (Gentamicin)","SA, If GN (R) report TOB (R), AK (R)","SA, TOB 10μg (Tobramycin)","SA, If TOB (R), report AK (R)","SA, E 15μg (Erythromycin)","SA, CD 2μg (Clindamycin)","SA, D-zone:","SA, C 30μg (Chloramphenicol)","SA, SXT 25μg (Trimeth-Sulfa)","SA, FA 10μg (Fusidic acid)","SA, RD 5μg (Rifampicin)","SA, Vanc MIC","SS, P 1unit (Penicillin)","SS, C 30μg (Chloramphenicol)","SS, E 15μg (Erythromycin)","SS, CD 2μg (Clindamycin)","SS, D-zone:","SS, NOR 10μg (Norfloxacin)","SS, TE 30μg (Tetracycline)","ES, AMP 2μg (Ampicillin)","ES, CN 30 μg (Gentamicin)","ES, VA 5μg (Vancomycin)")
+              conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+              conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+              conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+              conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+
           }
           else {
               conditions.hide.push("Bacteriology, Final Identification","Microbiology, Intermediate Identification","Microbiology, Comments for Intermediate Identification")
@@ -2050,28 +2054,39 @@ conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Details of 
           };
           var conditionConcept = formFieldValues['Microbiology, Final Identification'];
           if (conditionConcept == "Pseudomonas aeruginosa") {
-              conditions.show.push("PS, PRL 30μg (Piperacillin)","PS, TC 75μg (Ticarcillin)","PS, ATM 30μg (Aztreonam)","PS, TOB 10μg (Tobramycine)","PS, AK 30μg (Amikacin)","PS, TTC 85μg (Ticar-clav ac)","PS, FEP 30μg (Cefepime)","PS, IMI 10μg (Imipenem)","PS, CAZ 10μg (Ceftazidime)","PS, CN 10μg (Gentamicine)","PS, CIP 5μg (Ciprofloxacin)","PS, MER 10μg (Meropenem)")
-              conditions.hide.push("SA, P 1unit ( Penicillin)","SA, Penicillin sensitive zone:","SA, FOX 30μg (Cefoxitin)","SA, PBP2a (20 – 25):","SA, CIP 5μg (Ciprofloxacin)","SA, NOR 10μg (Norfloxacin)","SA, AK 30μg (Amikacin)","SA, CN 10μg (Gentamicin)","SA, If GN (R) report TOB (R), AK (R)","SA, TOB 10μg (Tobramycin)","SA, If TOB (R), report AK (R)","SA, E 15μg (Erythromycin)","SA, CD 2μg (Clindamycin)","SA, D-zone:","SA, C 30μg (Chloramphenicol)","SA, SXT 25μg (Trimeth-Sulfa)","SA, FA 10μg (Fusidic acid)","SA, RD 5μg (Rifampicin)","SA, Vanc MIC")
-              conditions.hide.push("SS, P 1unit (Penicillin)","SS, C 30μg (Chloramphenicol)","SS, E 15μg (Erythromycin)","SS, CD 2μg (Clindamycin)","SS, D-zone:","SS, NOR 10μg (Norfloxacin)","SS, TE 30μg (Tetracycline)")
-              conditions.hide.push("ES, AMP 2μg (Ampicillin)","ES, CN 30 μg (Gentamicin)","ES, VA 5μg (Vancomycin)")
+              conditions.show.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+              conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 – 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, If GN (R) report TOB (R), AK (R)","SA, Tobramycin","SA, If TOB (R), report AK (R)","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+              conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+              conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+              }
+          else if (conditionConcept == "Staphylococcus aureus ss. aureus"){
+              conditions.show.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 – 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, If GN (R) report TOB (R), AK (R)","SA, Tobramycin","SA, If TOB (R), report AK (R)","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+              conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+              conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+              conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
           }
-          else if (conditionConcept == "Staphylococcus aureus ss. aureus") {
-              conditions.show.push("SA, P 1unit ( Penicillin)","SA, Penicillin sensitive zone:","SA, FOX 30μg (Cefoxitin)","SA, PBP2a (20 – 25):","SA, CIP 5μg (Ciprofloxacin)","SA, NOR 10μg (Norfloxacin)","SA, AK 30μg (Amikacin)","SA, CN 10μg (Gentamicin)","SA, If GN (R) report TOB (R), AK (R)","SA, TOB 10μg (Tobramycin)","SA, If TOB (R), report AK (R)","SA, E 15μg (Erythromycin)","SA, CD 2μg (Clindamycin)","SA, D-zone:","SA, C 30μg (Chloramphenicol)","SA, SXT 25μg (Trimeth-Sulfa)","SA, FA 10μg (Fusidic acid)","SA, RD 5μg (Rifampicin)","SA, Vanc MIC")
-              conditions.hide.push("PS, PRL 30μg (Piperacillin)","PS, TC 75μg (Ticarcillin)","PS, ATM 30μg (Aztreonam)","PS, TOB 10μg (Tobramycine)","PS, AK 30μg (Amikacin)","PS, TTC 85μg (Ticar-clav ac)","PS, FEP 30μg (Cefepime)","PS, IMI 10μg (Imipenem)","PS, CAZ 10μg (Ceftazidime)","PS, CN 10μg (Gentamicine)","PS, CIP 5μg (Ciprofloxacin)","PS, MER 10μg (Meropenem)")
-              conditions.hide.push("SS, P 1unit (Penicillin)","SS, C 30μg (Chloramphenicol)","SS, E 15μg (Erythromycin)","SS, CD 2μg (Clindamycin)","SS, D-zone:","SS, NOR 10μg (Norfloxacin)","SS, TE 30μg (Tetracycline)")
-              conditions.hide.push("ES, AMP 2μg (Ampicillin)","ES, CN 30 μg (Gentamicin)","ES, VA 5μg (Vancomycin)")
-          }
-          else if (conditionConcept == "Streptococcus, beta-haem. Group A" || conditionConcept == "Streptococcus, beta-haem. Group B"){
-                conditions.show.push("SS, P 1unit (Penicillin)","SS, C 30μg (Chloramphenicol)","SS, E 15μg (Erythromycin)","SS, CD 2μg (Clindamycin)","SS, D-zone:","SS, NOR 10μg (Norfloxacin)","SS, TE 30μg (Tetracycline)")
-                conditions.hide.push("SA, P 1unit ( Penicillin)","SA, Penicillin sensitive zone:","SA, FOX 30μg (Cefoxitin)","SA, PBP2a (20 – 25):","SA, CIP 5μg (Ciprofloxacin)","SA, NOR 10μg (Norfloxacin)","SA, AK 30μg (Amikacin)","SA, CN 10μg (Gentamicin)","SA, If GN (R) report TOB (R), AK (R)","SA, TOB 10μg (Tobramycin)","SA, If TOB (R), report AK (R)","SA, E 15μg (Erythromycin)","SA, CD 2μg (Clindamycin)","SA, D-zone:","SA, C 30μg (Chloramphenicol)","SA, SXT 25μg (Trimeth-Sulfa)","SA, FA 10μg (Fusidic acid)","SA, RD 5μg (Rifampicin)","SA, Vanc MIC")
-                conditions.hide.push("PS, PRL 30μg (Piperacillin)","PS, TC 75μg (Ticarcillin)","PS, ATM 30μg (Aztreonam)","PS, TOB 10μg (Tobramycine)","PS, AK 30μg (Amikacin)","PS, TTC 85μg (Ticar-clav ac)","PS, FEP 30μg (Cefepime)","PS, IMI 10μg (Imipenem)","PS, CAZ 10μg (Ceftazidime)","PS, CN 10μg (Gentamicine)","PS, CIP 5μg (Ciprofloxacin)","PS, MER 10μg (Meropenem)")
-                conditions.hide.push("ES, AMP 2μg (Ampicillin)","ES, CN 30 μg (Gentamicin)","ES, VA 5μg (Vancomycin)")
-          }
-          else if (conditionConcept =="Enterococcus faecium" || conditionConcept =="Enterococcus faecalis" || conditionConcept =="Enterococcus avium" || conditionConcept == "Enterococcus sp.") {
-                conditions.show.push("ES, AMP 2μg (Ampicillin)","ES, CN 30 μg (Gentamicin)","ES, VA 5μg (Vancomycin)")
-          }
+           else if (conditionConcept == "Streptococcus, beta-haem. Group A" || conditionConcept =="Streptococcus, beta-haem. Group B"){
+                conditions.show.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 – 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, If GN (R) report TOB (R), AK (R)","SA, Tobramycin","SA, If TOB (R), report AK (R)","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+
+           }
+           else if (conditionConcept =="Enterococcus avium" || conditionConcept == "Enterococcus faecalis" || conditionConcept == "Enterococcus faecium" || conditionConcept == "Enterococcus sp."){
+              conditions.show.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+              conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+              conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 – 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, If GN (R) report TOB (R), AK (R)","SA, Tobramycin","SA, If TOB (R), report AK (R)","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+              conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+
+           }
+           else if (conditionConcept == ""){
+           }
           else {
-              conditions.hide.push("PS, PRL 30μg (Piperacillin)","PS, TC 75μg (Ticarcillin)","PS, ATM 30μg (Aztreonam)","PS, TOB 10μg (Tobramycine)","PS, AK 30μg (Amikacin)","PS, TTC 85μg (Ticar-clav ac)","PS, FEP 30μg (Cefepime)","PS, IMI 10μg (Imipenem)","PS, CAZ 10μg (Ceftazidime)","PS, CN 10μg (Gentamicine)","PS, CIP 5μg (Ciprofloxacin)","PS, MER 10μg (Meropenem)","SA, P 1unit ( Penicillin)","SA, Penicillin sensitive zone:","SA, FOX 30μg (Cefoxitin)","SA, PBP2a (20 – 25):","SA, CIP 5μg (Ciprofloxacin)","SA, NOR 10μg (Norfloxacin)","SA, AK 30μg (Amikacin)","SA, CN 10μg (Gentamicin)","SA, If GN (R) report TOB (R), AK (R)","SA, TOB 10μg (Tobramycin)","SA, If TOB (R), report AK (R)","SA, E 15μg (Erythromycin)","SA, CD 2μg (Clindamycin)","SA, D-zone:","SA, C 30μg (Chloramphenicol)","SA, SXT 25μg (Trimeth-Sulfa)","SA, FA 10μg (Fusidic acid)","SA, RD 5μg (Rifampicin)","SA, Vanc MIC","SS, P 1unit (Penicillin)","SS, C 30μg (Chloramphenicol)","SS, E 15μg (Erythromycin)","SS, CD 2μg (Clindamycin)","SS, D-zone:","SS, NOR 10μg (Norfloxacin)","SS, TE 30μg (Tetracycline)","ES, AMP 2μg (Ampicillin)","ES, CN 30 μg (Gentamicin)","ES, VA 5μg (Vancomycin)")
+              conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+              conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 – 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, If GN (R) report TOB (R), AK (R)","SA, Tobramycin","SA, If TOB (R), report AK (R)","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+              conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+              conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+
          }
           return conditions;
       }
