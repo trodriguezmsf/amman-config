@@ -2060,7 +2060,6 @@ conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Details of 
               conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
               conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
               conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
-
           }
           else if (conditionConcept == "Staphylococcus aureus ss. aureus"){
                conditions.show.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 – 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, If GN (R) report TOB (R), AK (R)","SA, Tobramycin","SA, If TOB (R), report AK (R)","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
@@ -2072,6 +2071,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Details of 
                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+               conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
 
           }
            else if (conditionConcept == "Streptococcus, beta-haem. Group A" || conditionConcept =="Streptococcus, beta-haem. Group B"){
