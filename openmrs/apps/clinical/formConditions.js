@@ -1464,28 +1464,30 @@ Bahmni.ConceptSet.FormConditions.rules = {
          }
           return conditions;
       },
-      'MPA, Type of assessment': function (formName, formFieldValues) {
+
+
+'MPA, Type of assessment': function (formName, formFieldValues) {
           var conditions = {
               show: [],
               hide: []
           };
           var conditionConcept = formFieldValues['MPA, Type of assessment'];
           if (conditionConcept == "Initial"){
-              conditions.hide.push("MPA, Followup Plan", "MPA, Describe difficulty of movement for facial muscles", "MPA, Describe difficulty of movement for eyes", "MPA, Describe difficulty of movement for mouth", "MPA, Describe difficulty of movement for tongue", "MPA, Side of pain", "MPA, Site of pain", "MPA, Site, Other", "MPA, Type of pain", "MPA, When does the pain occur")
+              conditions.hide.push("MPA, Followup Plan")
 
               conditions.show.push("MPA, Previous history of physiotherapy","MPA, Chief complaint of patient","MPA, Problem List", "MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments")
 
           }
           else if (conditionConcept == "Post-operative"){
 
-conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Details of previous physiotherapy", "MPA, Chief complaint of patient","MPA, Problem List","MPA, Followup Plan", "MPA, Describe difficulty of movement for facial muscles", "MPA, Describe difficulty of movement for eyes", "MPA, Describe difficulty of movement for mouth", "MPA, Describe difficulty of movement for tongue", "MPA, Side of pain", "MPA, Site of pain", "MPA, Site, Other", "MPA, Type of pain", "MPA, When does the pain occur")
+conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Chief complaint of patient","MPA, Problem List","MPA, Followup Plan")
 
               conditions.show.push("MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments")
 
          }
          else if (conditionConcept == "Final"){
 
-conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Details of previous physiotherapy", "MPA, Chief complaint of patient","MPA, Problem List","MPA, Referral suggested, comments", "MPA, Describe difficulty of movement for facial muscles", "MPA, Describe difficulty of movement for eyes", "MPA, Describe difficulty of movement for mouth", "MPA, Describe difficulty of movement for tongue", "MPA, Side of pain", "MPA, Site of pain", "MPA, Site, Other", "MPA, Type of pain", "MPA, When does the pain occur")
+conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief complaint of patient","MPA, Problem List")
 
                        conditions.show.push("MPA, Followup Plan", "MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments")
 
@@ -1493,12 +1495,14 @@ conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Details of 
          else {
 
  conditions.show.push("MPA, Date recorded", "MPA, Type of assessment")
-             conditions.hide.push("MPA, Details of previous physiotherapy", "MPA, Summary neurological examination (sensation), comments", "MPA, Previous history of physiotherapy", "MPA, Chief complaint of patient", "MPA, Problem List", "MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments", "MPA, Followup Plan")
+             conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Chief complaint of patient", "MPA, Problem List", "MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments", "MPA, Followup Plan")
 
 
-          } 
+          }
           return conditions;
       },
+
+
       'MPA, Movement difficulty of facial muscles': function (formName, formFieldValues) {
           var conditions = {
               show: [],
@@ -1828,7 +1832,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Details of 
             conditions.show.push("MPA, Side of pain","MPA, Site of pain","MPA, Type of pain","MPA, When does the pain occur")
         }
         else {
-            conditions.hide.push("MPA, Side of pain","MPA, Site of pain", "MPA, Site, Other", "MPA, Type of pain","MPA, When does the pain occur")
+            conditions.hide.push("MPA, Side of pain","MPA, Site of pain", "MPA, Type of pain","MPA, When does the pain occur")
         }
         return conditions;
     },
