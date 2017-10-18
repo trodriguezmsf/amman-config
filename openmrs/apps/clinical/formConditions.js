@@ -1396,34 +1396,19 @@ Bahmni.ConceptSet.FormConditions.rules = {
           };
           var conditionConcept = formFieldValues['LLA, Type of assessment'];
           if (conditionConcept == "Initial"){
-
-              conditions.hide.push("LLA, Follow-up Plan", "LLA, Side of pain", "LLA, Site of pain", "LLA, Site, Other","LLA, Type of pain", "LLA, When does the pain occur", "LLA, Summary neurological examination (sensation), comments", "LLA, Motor")
-
+              conditions.hide.push("LLA, Follow-up Plan")
               conditions.show.push("LLA, Previous history of physiotherapy","LLA, Chief complaint of patient","LLA, Problem List",  "LLA, Affected side", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, How old is the patient", "LLA, Additional comments")
           }
-
-
-
           else if (conditionConcept == "Post-operative"){
-
-	      conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Details of previous physiotherapy","LLA, Chief complaint of patient","LLA, Problem List","LLA, Follow-up Plan", "LLA, Side of pain", "LLA, Site of pain", "LLA, Site, Other", "LLA, Type of pain", "LLA, When does the pain occur", "LLA, Summary neurological examination (sensation), comments", "LLA, Motor")
-
-              conditions.show.push("LLA, Affected side", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, How old is the patient", "LLA, Additional comments")
-
-
-
+	      conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Chief complaint of patient","LLA, Problem List","LLA, Follow-up Plan")
+          conditions.show.push("LLA, Affected side", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, How old is the patient", "LLA, Additional comments")
          }
          else if (conditionConcept == "Final"){
-
-	      conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Details of previous physiotherapy","LLA, Chief complaint of patient","LLA, Problem List","LLA, Prosthetic and orthotic center","LLA, Physiotherapy center", "LLA, Side of pain", "LLA, Site of pain", "LLA, Site, Other", "LLA, Type of pain", "LLA, When does the pain occur", "LLA, Summary neurological examination (sensation), comments", "LLA, Motor")
-
-              conditions.show.push("LLA, Follow-up Plan", "LLA, Affected side", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, How old is the patient", "LLA, Additional comments")
-
-}
+	      conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Chief complaint of patient","LLA, Problem List")
+          conditions.show.push("LLA, Follow-up Plan", "LLA, Affected side", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, How old is the patient", "LLA, Additional comments")
+         }
          else {
-             conditions.show.push("LLA, Date recorded", "LLA, Type of assessment")
-
-             conditions.hide.push("LLA, Details of previous physiotherapy", "LLA, Type of assistive device or orthosis", "LLA, Comments about assistive device or orthosis", "LLA, Level of amputation", "LLA, Other type of assistive device", "LLA, Pediatric Lower Extremity Function(Mobility)", "LLA, Lower Extremity Functional Index (LEFI)", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, Follow-up Plan", "LLA, Previous history of physiotherapy", "LLA, Chief complaint of patient", "LLA, Problem List", "LLA, Affected side", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, How old is the patient", "LLA, Additional comments")
+             conditions.hide.push("LLA, Pediatric Lower Extremity Function(Mobility)", "LLA, Lower Extremity Functional Index (LEFI)", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, Follow-up Plan", "LLA, Previous history of physiotherapy", "LLA, Chief complaint of patient", "LLA, Problem List", "LLA, Affected side", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, How old is the patient", "LLA, Additional comments")
          }
           return conditions;
       },
@@ -1607,8 +1592,6 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
          }
           return conditions;
       },
-
-
       'LLA, Does the patient use an assistive device or orthosis?': function (formName, formFieldValues) {
           var conditions = {
               show: [],
@@ -1619,7 +1602,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
               conditions.show.push("LLA, Type of assistive device or orthosis","LLA, Comments about assistive device or orthosis")
           }
           else {
-              conditions.hide.push("LLA, Type of assistive device or orthosis","LLA, Other type of assistive device","LLA, Comments about assistive device or orthosis")
+              conditions.hide.push("LLA, Type of assistive device or orthosis","LLA, Comments about assistive device or orthosis")
          }
           return conditions;
       },
@@ -1679,7 +1662,6 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
           var conditionConcept = formFieldValues['LLA, Amputee patient?'];
           if (conditionConcept =="Yes"){
               conditions.show.push("LLA, Level of amputation")
-              conditions.hide.push("LLA, Other type of amputation","LLA, Comments about prostheses usage")
           }
           else {
               conditions.hide.push("LLA, Level of amputation")
@@ -1695,7 +1677,6 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
           var conditionConcept = formFieldValues['ULA, Amputee patient?'];
           if (conditionConcept =="Yes"){
               conditions.show.push("ULA, Level of amputation")
-              conditions.hide.push("ULA, Other type of amputation","ULA, Comments about prostheses usage")
           }
           else {
               conditions.hide.push("ULA, Level of amputation")
@@ -2025,6 +2006,24 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
           }
           else {
               conditions.hide.push("LLA, Prosthetic and orthotic center","LLA, Physiotherapy center")
+         }
+          return conditions;
+      },
+    'Microbiology, Growth': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['Microbiology, Growth'];
+          if (conditionConcept =="Growth"){
+              conditions.show.push("Microbiology, Comments","Microbiology, Type of identification")
+          }
+          else if (conditionConcept =="No Growth"){
+             conditions.show.push("Microbiology, Comments")
+             conditions.hide.push("Microbiology, Type of identification")
+          }
+          else {
+              conditions.hide.push("Microbiology, Comments","Microbiology, Type of identification")
          }
           return conditions;
       },
