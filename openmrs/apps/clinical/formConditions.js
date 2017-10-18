@@ -2037,21 +2037,10 @@ conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Details of 
           else if(conditionConcept =="Answer, Final Identification") {
                conditions.show.push("Bacteriology, Final Identification")
                conditions.hide.push("Microbiology, Intermediate Identification","Microbiology, Comments for Intermediate Identification")
-               conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
-               conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 – 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, If GN (R) report TOB (R), AK (R)","SA, Tobramycin","SA, If TOB (R), report AK (R)","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
-               conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
-               conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
-               conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
-               conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
-               conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
-               conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
-               conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
-               conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
-
           }
           else {
               conditions.hide.push("Bacteriology, Final Identification","Microbiology, Intermediate Identification","Microbiology, Comments for Intermediate Identification")
-         }
+          }
           return conditions;
       },
 	'Microbiology, Final Identification': function (formName, formFieldValues) {
