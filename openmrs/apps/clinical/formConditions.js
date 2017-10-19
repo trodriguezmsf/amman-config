@@ -2063,6 +2063,10 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
               conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
               conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
               conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+              conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, If GN (R) report TOB (R), AK","CNS, Tobramycin","CNS, If TOB (R), report AK","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vanc MIC")
+              conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+              conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+
           }
           else if (conditionConcept == "Staphylococcus aureus ss. aureus"){
                conditions.show.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, If GN (R) report TOB (R), AK (R)","SA, Tobramycin","SA, If TOB (R), report AK (R)","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
@@ -2075,6 +2079,9 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+               conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, If GN (R) report TOB (R), AK","CNS, Tobramycin","CNS, If TOB (R), report AK","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vanc MIC")
+               conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+               conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
 
           }
            else if (conditionConcept == "Streptococcus, beta-haem. Group A" || conditionConcept =="Streptococcus, beta-haem. Group B"){
@@ -2088,19 +2095,25 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
                 conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
                 conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, If GN (R) report TOB (R), AK","CNS, Tobramycin","CNS, If TOB (R), report AK","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vanc MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
 
            }
            else if (conditionConcept =="Enterococcus avium" || conditionConcept == "Enterococcus faecalis" || conditionConcept == "Enterococcus faecium" || conditionConcept == "Enterococcus sp."){
-              conditions.show.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
-              conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
-              conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, If GN (R) report TOB (R), AK (R)","SA, Tobramycin","SA, If TOB (R), report AK (R)","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
-              conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
-              conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
-              conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
-              conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
-              conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
-              conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
-              conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.show.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, If GN (R) report TOB (R), AK (R)","SA, Tobramycin","SA, If TOB (R), report AK (R)","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, If GN (R) report TOB (R), AK","CNS, Tobramycin","CNS, If TOB (R), report AK","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vanc MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
 
            }
            else if (conditionConcept == "Streptococcus pneumoniae"){
@@ -2114,6 +2127,9 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
                 conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
                 conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, If GN (R) report TOB (R), AK","CNS, Tobramycin","CNS, If TOB (R), report AK","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vanc MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
 
            }
            else if (conditionConcept == "Streptococcus viridans, alpha-hem"){
@@ -2127,6 +2143,9 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
                 conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
                 conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, If GN (R) report TOB (R), AK","CNS, Tobramycin","CNS, If TOB (R), report AK","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vanc MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
 
            }
            else if (conditionConcept == "Citrobacter freundii" || conditionConcept =="Enterobacter aerogenes" || conditionConcept =="Enterobacter cloacae" || conditionConcept =="Escherichia coli" || conditionConcept == "Escherichia coli O157:H7" || conditionConcept == "Klebsiella pneumoniae ss. pneumoniae" || conditionConcept =="Morganella morganii ss. morganii" || conditionConcept =="Proteus mirabilis" || conditionConcept =="Salmonella enteritidis" || conditionConcept =="Salmonella sp." || conditionConcept =="Salmonella typhi" || conditionConcept =="Salmonella typhimurium" || conditionConcept == "Serratia marcescens" || conditionConcept =="Shigella boydii" || conditionConcept =="Shigella boydii serotype 1"){
@@ -2140,6 +2159,9 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
                 conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
                 conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, If GN (R) report TOB (R), AK","CNS, Tobramycin","CNS, If TOB (R), report AK","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vanc MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
 
            }
            else if (conditionConcept =="Neisseria meningitidis") {
@@ -2153,9 +2175,12 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
                 conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
                 conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, If GN (R) report TOB (R), AK","CNS, Tobramycin","CNS, If TOB (R), report AK","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vanc MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
 
            }
-           else if (conditionConcept =="Haemophilus influenzae" || conditionConcept =="Haemophilus influenzae" || conditionConcept =="Haemophilus influenzae"){
+           else if (conditionConcept =="Haemophilus influenzae" || conditionConcept =="Haemophilus influenzae (non type b)" || conditionConcept =="Haemophilus influenzae (type b)"){
                 conditions.show.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
                 conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
                 conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, If GN (R) report TOB (R), AK (R)","SA, Tobramycin","SA, If TOB (R), report AK (R)","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
@@ -2166,7 +2191,9 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
                 conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
                 conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
-
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, If GN (R) report TOB (R), AK","CNS, Tobramycin","CNS, If TOB (R), report AK","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vanc MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
            }
            else if (conditionConcept =="Listeria monocytogenes"){
                 conditions.show.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
@@ -2179,8 +2206,55 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
                 conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
                 conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, If GN (R) report TOB (R), AK","CNS, Tobramycin","CNS, If TOB (R), report AK","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vanc MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
            }
-
+           else if (conditionConcept =="Staphylococcus epidermidis" || conditionConcept =="Staphylococcus saprophyticus ss. saprophyticus" || conditionConcept == "Staphylococcus, coagulase negative"){
+                conditions.show.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, If GN (R) report TOB (R), AK","CNS, Tobramycin","CNS, If TOB (R), report AK","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vanc MIC")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, If GN (R) report TOB (R), AK (R)","SA, Tobramycin","SA, If TOB (R), report AK (R)","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+           }
+           else if (conditionConcept =="Acinetobacter baumannii"){
+                conditions.show.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, If GN (R) report TOB (R), AK","CNS, Tobramycin","CNS, If TOB (R), report AK","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vanc MIC")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, If GN (R) report TOB (R), AK (R)","SA, Tobramycin","SA, If TOB (R), report AK (R)","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+           }
+           else if (conditionConcept =="Corynebacterium sp. (diphtheroids)"){
+                conditions.show.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, If GN (R) report TOB (R), AK","CNS, Tobramycin","CNS, If TOB (R), report AK","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vanc MIC")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, If GN (R) report TOB (R), AK (R)","SA, Tobramycin","SA, If TOB (R), report AK (R)","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+           }
           else {
                 conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
                 conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, If GN (R) report TOB (R), AK (R)","SA, Tobramycin","SA, If TOB (R), report AK (R)","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
@@ -2192,7 +2266,9 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
                 conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
                 conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
-
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, If GN (R) report TOB (R), AK","CNS, Tobramycin","CNS, If TOB (R), report AK","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vanc MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
           }
           return conditions;
       }
