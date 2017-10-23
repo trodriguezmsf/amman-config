@@ -1542,6 +1542,10 @@
             },
             "Image":{
                 "allowAddMore":true
+            },
+            "Microbiology, Alerts":{
+                "autocomplete":true,
+                "allowAddMore" : true
             }
             },
         "visitPage": {
