@@ -175,6 +175,8 @@ uuid,name,description,class,shortname,datatype,units,High Normal,Low Normal,loca
 ,"NM, Ampicillin",,misc,Ampicillin,coded,,,,,,,Susceptible,Resistant,Intermediate,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,"NM, Ceftriaxone",,misc,Ceftriaxone,coded,,,,,,,Susceptible,Resistant,Intermediate,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,"NM, Ciprofloxacin",,misc,Ciprofloxacin,coded,,,,,,,Susceptible,Resistant,Intermediate,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"NM, Beta-Lactamase test performed",,misc,Beta-Lactamase test performed,coded,,,,,,,Yes,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"NM, Beta-Lactamase test Result",,misc,Beta-Lactamase test Result,coded,,,,,,,Positive,Negative,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,"HI, Penicillin",,misc,Penicillin,coded,,,,,,,Susceptible,Resistant,Intermediate,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,"HI, Augmentin",,misc,Augmentin,coded,,,,,,,Susceptible,Resistant,Intermediate,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,"HI, Ampicillin",,misc,Ampicillin,coded,,,,,,,Susceptible,Resistant,Intermediate,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

@@ -2060,7 +2060,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
               conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
               conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
               conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
-              conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+              conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
               conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
               conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
               conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
@@ -2077,7 +2077,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
-               conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+               conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
@@ -2094,7 +2094,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
                 conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
                 conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
-                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
                 conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
                 conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
                 conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
@@ -2111,7 +2111,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
                 conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
                 conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
-                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
                 conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
                 conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
                 conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
@@ -2128,7 +2128,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
                 conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
                 conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
-                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
                 conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
                 conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
                 conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
@@ -2145,7 +2145,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
                 conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
                 conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
-                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
                 conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
                 conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
                 conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
@@ -2162,7 +2162,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
                 conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
                 conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
-                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
                 conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
                 conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
                 conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
@@ -2172,7 +2172,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
 
            }
            else if (conditionConcept =="Neisseria meningitidis") {
-                conditions.show.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+                conditions.show.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
                 conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
                 conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
                 conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
@@ -2185,7 +2185,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
                 conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
-                conditions.hide.push("Microbiology, Are there any alerts?")
+                conditions.show.push("Microbiology, Are there any alerts?")
 
            }
            else if (conditionConcept =="Haemophilus influenzae" || conditionConcept =="Haemophilus influenzae (non type b)" || conditionConcept =="Haemophilus influenzae (type b)"){
@@ -2197,7 +2197,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
                 conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
                 conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
-                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
                 conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
                 conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
                 conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
@@ -2215,7 +2215,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
                 conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
                 conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
-                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
                 conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
                 conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
@@ -2233,7 +2233,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
                 conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
                 conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
-                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
                 conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
                 conditions.show.push("Microbiology, Are there any alerts?")
@@ -2251,7 +2251,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
                 conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
                 conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
-                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
                 conditions.show.push("Microbiology, Are there any alerts?")
 
@@ -2269,7 +2269,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
                 conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
                 conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
-                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
                 conditions.show.push("Microbiology, Are there any alerts?")
 
            }
@@ -2281,7 +2281,7 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
                 conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
                 conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
                 conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
-                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
                 conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
                 conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
                 conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
@@ -2302,6 +2302,20 @@ conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief comp
            }
            else {
                conditions.hide.push("Microbiology, Alerts")
+          }
+           return conditions;
+       },
+      'NM, Beta-Lactamase test performed': function (formName, formFieldValues) {
+           var conditions = {
+               show: [],
+               hide: []
+           };
+           var conditionConcept = formFieldValues['NM, Beta-Lactamase test performed'];
+           if (conditionConcept =="Yes"){
+               conditions.show.push("NM, Beta-Lactamase test Result")
+           }
+           else {
+               conditions.hide.push("NM, Beta-Lactamase test Result")
           }
            return conditions;
        }
