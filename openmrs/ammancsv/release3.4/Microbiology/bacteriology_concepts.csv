@@ -211,7 +211,7 @@ uuid,name,description,class,shortname,datatype,units,High Normal,Low Normal,loca
 ,"CNS, Trimeth-Sulfa",,misc,Trimeth-Sulfa,coded,,,,,,,Susceptible,Resistant,Intermediate,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,"CNS, Fusidic acid",,misc,Fusidic acid,coded,,,,,,,Susceptible,Resistant,Intermediate,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,"CNS, Rifampicin",,misc,Rifampicin,coded,,,,,,,Susceptible,Resistant,Intermediate,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,"CNS, Vanc MIC",,misc,Vanc MIC,coded,,,,,,,Susceptible,Resistant,Intermediate,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"CNS, Vancomycin MIC",,misc,Vancomycin MIC,coded,,,,,,,Susceptible,Resistant,Intermediate,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,Susceptible isolates are uncommon. Check for a possible laboratory error.,,misc,,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,Non-susceptible isolates are rare. Check for a possible laboratory error.,,misc,,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,Non-susceptible isolates are rare.,,misc,,N/A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
