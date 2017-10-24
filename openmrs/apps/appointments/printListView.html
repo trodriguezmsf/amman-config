@@ -29,12 +29,13 @@
 <div>
     <div>
         <div class="title">{{::'APPOINTMENT_LIST' | translate}}</div>
-        <div class="appointment-date">{{::'APPOINTMENT_DATE' | translate}} {{::startDate | bahmniDate}}</div>
+        <div ng-if="!searchedPatient" class="appointment-date">{{::'APPOINTMENT_DATE' | translate}} {{::startDate | bahmniDate}}</div>
         <table cellpadding="2" cellspacing="0">
             <thead>
             <tr>
                 <th>{{::'APPOINTMENT_PATIENT_ID' |translate}}</th>
                 <th class="table-mid-width">{{::'APPOINTMENT_PATIENT_NAME' |translate}}</th>
+                <th ng-if="searchedPatient" class="time-column-width">{{::'APPOINTMENT_DATE' |translate}}</th>
                 <th class="time-column-width">{{::'APPOINTMENT_START_TIME_KEY' |translate}}</th>
                 <th class="time-column-width">{{::'APPOINTMENT_END_TIME_KEY' |translate}}</th>
                 <th class="table-mid-width">{{::'APPOINTMENT_PROVIDER' |translate}}</th>
@@ -48,6 +49,7 @@
             <tr ng-repeat="appointment in filteredAppointments">
                 <td>{{::appointment.patient.identifier}}</td>
                 <td class="table-mid-width">{{::appointment.patient.name | titleCase}}</td>
+                <td ng-if="searchedPatient" >{{::appointment.startDateTime | bahmniDate}}</td>
                 <td>{{::appointment.startDateTime | bahmniTime}}</td>
                 <td>{{::appointment.endDateTime | bahmniTime}}</td>
                 <td class="table-mid-width">{{::appointment.provider.name}}</td>
