@@ -2099,7 +2099,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
                 conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
-                conditions.hide.push("Microbiology, Are there any alerts?")
+                conditions.show.push("Microbiology, Are there any alerts?")
 
            }
            else if (conditionConcept == "Citrobacter freundii" || conditionConcept =="Enterobacter aerogenes" || conditionConcept =="Enterobacter cloacae" || conditionConcept =="Escherichia coli" || conditionConcept == "Escherichia coli O157:H7" || conditionConcept == "Klebsiella pneumoniae ss. pneumoniae" || conditionConcept =="Morganella morganii ss. morganii" || conditionConcept =="Proteus mirabilis" || conditionConcept =="Salmonella enteritidis" || conditionConcept =="Salmonella sp." || conditionConcept =="Salmonella typhi" || conditionConcept =="Salmonella typhimurium" || conditionConcept == "Serratia marcescens" || conditionConcept =="Shigella boydii" || conditionConcept =="Shigella boydii serotype 1"){
