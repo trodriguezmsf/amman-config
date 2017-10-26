@@ -652,6 +652,15 @@
 	    "MPA, Summary neurological examination (sensation)":{
              "multiSelect" : true
             },
+	    "PNF, Site of pain":{
+              "multiSelect":true
+            },
+	    "PNF, Pain usually occurs with:":{
+              "multiSelect":true
+            },
+	    "PNF, Dressing":{
+              "allowAddMore":true
+            },
 	    "ULA, Level of amputation":{
                 "allowAddMore":true
             },

@@ -1957,6 +1957,95 @@ Bahmni.ConceptSet.FormConditions.rules = {
          }
           return conditions;
       },
+      'PNF, Type of pain experienced by the patient': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['PNF, Type of pain experienced by the patient'];
+          if (conditionConcept == "Nociceptive"){
+              conditions.hide.push("PNF, Questionnaire DN4")
+
+              conditions.show.push("PNF, Nociceptive pain")
+
+          }
+          else if (conditionConcept == "Neuropathic"){
+
+	      conditions.hide.push("PNF, Nociceptive pain")
+
+              conditions.show.push("PNF, Questionnaire DN4")
+
+         }
+        
+         else {
+
+              conditions.show.push("PNF, Type of pain experienced by the patient", "PNF, Side of pain", "PNF, Site of pain", "PNF, Chief complaint of patient", "PNF, Is the pain:", "PNF, Onset of the pain:", "PNF, Current medication", "PNF, Pain usually occurs with:", "PNF, Increasing or decreasing factors:", "PNF, Referral needed:", "PNF, Other comments")
+
+              conditions.hide.push("PNF, Nociceptive pain", "PNF, Questionnaire DN4")
+
+
+          }
+          return conditions;
+      },
+      'PNF, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNF, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("PNF, Site of pain, other")
+        }
+        else {
+            conditions.hide.push("PNF, Site of pain, other")
+        }
+        return conditions;
+    },
+    'PNF, Pain usually occurs with:': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNF, Pain usually occurs with:'];
+	if (conditionConcept) {
+	        if (conditionConcept.indexOf("Physiotherapy")>=0){
+        	conditions.show.push("PNF, Comments about physiotherapy")
+        	}
+		else {
+		conditions.hide.push("PNF, Comments about physiotherapy")
+		}
+        	if (conditionConcept.indexOf("Other")>=0){
+            	conditions.show.push("PNF, Other times pain is occurring")
+        	}
+		else {
+            	conditions.hide.push("PNF, Other times pain is occurring")
+		}
+        	if (conditionConcept.indexOf("Dressing change")>=0){
+            	conditions.show.push("PNF, Dressing")
+        	}
+		else {
+		conditions.hide.push("PNF, Dressing")
+		}
+	}
+	else {
+            conditions.hide.push("PNF, Comments about physiotherapy", "PNF, Dressing", "PNF, Other times pain is occurring")
+        }
+        return conditions;
+    },
+    'PNF, Description of wound': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNF, Description of wound'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("PNF, Description of wound, other")
+        }
+        else {
+            conditions.hide.push("PNF, Description of wound, other")
+        }
+        return conditions;
+    },
     'Microbiology, Growth': function (formName, formFieldValues) {
           var conditions = {
               show: [],
