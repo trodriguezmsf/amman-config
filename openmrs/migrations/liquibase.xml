@@ -5050,6 +5050,60 @@
             INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_ID,@concept_set,1010,8,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201710251603" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+	SELECT count(*) from concept_set where concept_id = (select concept_id from concept_name where name ="PPN, Subjective (any new complaint)" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'Physician Progress Note-Ward' AND concept_name_type="FULLY_SPECIFIED");            
+	    </sqlCheck>
+        </preConditions>
+        <comment>Adding concept into concept_set </comment>
+        <sql>
+	    SELECT concept_id INTO @concept_set from concept_name where name= 'Physician Progress Note-Ward' AND concept_name_type="FULLY_SPECIFIED";
+	    SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'PPN, Subjective (any new complaint)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id1,@concept_set,1005,8,now(),uuid());
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'PPN, Assessment of vital signs' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id2,@concept_set,1022,8,now(),uuid());
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = 'PPN, Description of abnormal vital signs' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id3,@concept_set,1025,8,now(),uuid());
+            SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name = 'PPN, DVT prophylaxis' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id4,@concept_set,1033,8,now(),uuid());
+            SELECT concept_id INTO @concept_id5 FROM concept_name WHERE name = 'PPN, Duration' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id5,@concept_set,1035,8,now(),uuid());
+            SELECT concept_id INTO @concept_id6 FROM concept_name WHERE name = 'PPN, Dose' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id6,@concept_set,1037,8,now(),uuid());
+            SELECT concept_id INTO @concept_id7 FROM concept_name WHERE name = 'PPN, Frequency of dressing' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id7,@concept_set,1062,8,now(),uuid());
+            SELECT concept_id INTO @concept_id8 FROM concept_name WHERE name = 'PPN, Frequency of dressing, other' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id8,@concept_set,1064,8,now(),uuid());
+            SELECT concept_id INTO @concept_id9 FROM concept_name WHERE name = 'PPN, Abnormal lab values' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id9,@concept_set,1065,8,now(),uuid());
+            SELECT concept_id INTO @concept_id10 FROM concept_name WHERE name = 'PPN, Active issues of patient' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id10,@concept_set,1066,8,now(),uuid());
+            SELECT concept_id INTO @concept_id11 FROM concept_name WHERE name = 'PPN, Active issues of patient, other' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id11,@concept_set,1068,8,now(),uuid());
+            SELECT concept_id INTO @concept_id12 FROM concept_name WHERE name = 'PPN, Summary of consultation' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id12,@concept_set,1122,8,now(),uuid());
+            SELECT concept_id INTO @concept_id16 FROM concept_name WHERE name = 'PPN, Drainage amount' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id16,@concept_set,1052,8,now(),uuid());        
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710251607" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+		SELECT count(*) from concept_set where concept_id = (select concept_id from concept_name where name ="PPN, Wound status, 1" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'PPN, Assessment of Wound' AND concept_name_type="FULLY_SPECIFIED");            
+	    </sqlCheck>
+        </preConditions>
+        <comment>Adding concept into concept_set </comment>
+        <sql>
+	    SELECT concept_id INTO @concept_set1 from concept_name where name= 'PPN, Assessment of Wound' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id13 FROM concept_name WHERE name = 'PPN, Wound status, 1' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id13,@concept_set1,1012,8,now(),uuid());
+            SELECT concept_id INTO @concept_id14 FROM concept_name WHERE name = 'PPN, Wound status, 2' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id14,@concept_set1,1014,8,now(),uuid());
+            SELECT concept_id INTO @concept_id15 FROM concept_name WHERE name = 'PPN, Removal of clips' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id15,@concept_set1,1016,8,now(),uuid());        
+    	</sql>
+    </changeSet>
 </databaseChangeLog>
 
 

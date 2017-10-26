@@ -489,6 +489,18 @@
           "PPN, Removal of Drain" : {
             "allowAddMore" : true
           },
+	  "PPN, Active issues of patient":{
+            "multiSelect" : true
+          },
+	  "PPN, Wound status, 2":{
+            "multiSelect" : true
+          },
+	  "PPN, Abnormal lab values":{
+            "allowAddMore" : true
+          },
+	  "Physician Progress Note-Ward":{
+            "allowAddMore":true
+           },
           "CC, Anaesthetic complication in OT, description":{
             "multiSelect": true
           },
@@ -496,7 +508,8 @@
             "multiSelect":true
           },
           "PPN, Site of wound":{
-            "autocomplete":true
+            "autocomplete":true,
+	    "multiSelect":true
           },
           "PPN, Specify site of drain removal":{
             "autocomplete":true

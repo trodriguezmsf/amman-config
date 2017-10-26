@@ -1035,6 +1035,62 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
+    'PPN, Assessment of vital signs': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PPN, Assessment of vital signs'];
+        if (conditionConcept == "Abnormal"){
+            conditions.show.push("PPN, Description of abnormal vital signs")
+        }
+        else {
+            conditions.hide.push("PPN, Description of abnormal vital signs")
+        }
+        return conditions;
+    },
+    'PPN, DVT prophylaxis': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PPN, DVT prophylaxis'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("PPN, Duration", "PPN, Dose")
+        }
+        else {
+            conditions.hide.push("PPN, Duration", "PPN, Dose")
+        }
+        return conditions;
+    },
+    'PPN, Frequency of dressing': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PPN, Frequency of dressing'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("PPN, Frequency of dressing, other")
+        }
+        else {
+            conditions.hide.push("PPN, Frequency of dressing, other")
+        }
+        return conditions;
+    },
+    'PPN, Active issues of patient': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PPN, Active issues of patient'];
+        if (conditionConcept.indexOf("Other")>=0){
+            conditions.show.push("PPN, Active issues of patient, other")
+        }
+        else {
+            conditions.hide.push("PPN, Active issues of patient, other")
+        }
+        return conditions;
+    },
     'CC, Patient complication': function (formName, formFieldValues) {
         var conditions = {
             show: [],
