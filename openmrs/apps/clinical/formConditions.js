@@ -2366,6 +2366,23 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.show.push("Microbiology, Are there any alerts?")
 
            }
+           else if (conditionConcept == "Bacteroides fragilis" || conditionConcept == "Burkholderia cepacia" || conditionConcept == "Campylobacter coli" || conditionConcept == "Campylobacter jejuni ss. jejuni" || conditionConcept == "Candida albicans" || conditionConcept == "Cytomegalovirus" || conditionConcept == "Epstein-Barr virus" || conditionConcept == "Hepatitis A virus" || conditionConcept == "Hepatitis B virus" || conditionConcept == "Hepatitis C virus" || conditionConcept == "Herpes simplex virus" || conditionConcept == "Herpes simplex virus 1" || conditionConcept == "Herpes simplex virus 2" || conditionConcept == "Human herpesvirus" || conditionConcept == "Human papillomavirus" || conditionConcept == "Influenza A virus" || conditionConcept == "Influenza B virus" || conditionConcept == "Mixed bacterial species present" || conditionConcept == "Moraxella (Branh.) catarrhalis" || conditionConcept == "Mycobacterium avium-intracellulare complex" || conditionConcept == "Mycobacterium tuberculosis" || conditionConcept == "Neisseria gonorrhoeae" || conditionConcept == "Normal flora" || conditionConcept == "Oral flora" || conditionConcept == "Respiratory syncytial virus" || conditionConcept == "Stenotrophomonas maltophilia" || conditionConcept == "Vibrio cholerae" ) {
+                conditions.show.push("Microbiology, Comments")
+                conditions.show.push("Microbiology, Are there any alerts?")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+           }
           else {
                 conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
                 conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
@@ -2381,6 +2398,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
                 conditions.hide.push("Microbiology, Are there any alerts?")
+                conditions.hide.push("Microbiology, Comments")
           }
           return conditions;
       },
