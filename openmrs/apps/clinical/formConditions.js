@@ -2102,6 +2102,120 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
+    'MDOF, Reason for visit': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MDOF, Reason for visit'];
+
+  if (conditionConcept) {
+          
+	  if (conditionConcept.indexOf("Medication renewal")>=0){
+              conditions.show.push("MDOF, Medication renewal, comments")
+          }
+          else {
+              conditions.hide.push("MDOF, Medication renewal, comments")
+          }
+	  if (conditionConcept.indexOf("New complaint")>=0){
+              conditions.show.push("MDOF, New complaint of patient")
+	  }
+          else {
+              conditions.hide.push("MDOF, New complaint of patient")
+          }
+          if (conditionConcept.indexOf("Antibiotic Clinic")>=0){
+             conditions.show.push("MDOF, Complaint of patient (ABx clinic)", "MDOF, Status of wound", "MDOF, Kidney function", "MDOF, Liver function", "MDOF, Plan", "MDOF, Consultation notes, ABx clinic")
+	  }
+	  else {
+             conditions.hide.push("MDOF, Complaint of patient (ABx clinic)", "MDOF, Status of wound", "MDOF, Kidney function", "MDOF, Liver function", "MDOF, Plan", "MDOF, Consultation notes, ABx clinic")
+          }
+          if (conditionConcept.indexOf("TRM visit")>=0){
+             conditions.show.push("MDOF, Medical course of patient in RSP", "MDOF, Condition of patient at discharge (TRM)", "MDOF, Discharge medication", "MDOF, Medical follow-up needs")
+	  }
+	  else {
+             conditions.hide.push("MDOF, Medical course of patient in RSP", "MDOF, Condition of patient at discharge (TRM)", "MDOF, Discharge medication", "MDOF, Medical follow-up needs")
+          }
+	  if (conditionConcept.indexOf("Other")>=0){
+             conditions.show.push("MDOF, Reason for visit, other")
+	  }
+          else {
+             conditions.hide.push("MDOF, Reason for visit, other")
+          }
+  }
+  else {            
+             conditions.hide.push("MDOF, Medication renewal, comments", "MDOF, New complaint of patient", "MDOF, Complaint of patient (ABx clinic)", "MDOF, Status of wound", "MDOF, Kidney function", "MDOF, Liver function", "MDOF, Plan", "MDOF, Consultation notes, ABx clinic", "MDOF, Medical course of patient in RSP", "MDOF, Condition of patient at discharge (TRM)", "MDOF, Discharge medication", "MDOF, Medical follow-up needs", "MDOF, Reason for visit, other")
+          }
+          return conditions;
+      },
+      'MDOF, New complaint of patient': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MDOF, New complaint of patient'];
+
+  if (conditionConcept) {
+          
+	  if (conditionConcept.indexOf("Pain")>=0){
+              conditions.show.push("MDOF, Comments about pain")
+          }
+          else {
+              conditions.hide.push("MDOF, Comments about pain")
+          }
+	  if (conditionConcept.indexOf("Medical Complaint")>=0){
+              conditions.show.push("MDOF, Comments about patient's medical complaints")
+	  }
+          else {
+              conditions.hide.push("MDOF, Comments about patient's medical complaints")
+          }
+  }
+  else {
+       conditions.hide.push("MDOF, Comments about pain", "MDOF, Comments about patient's medical complaints")
+}
+          return conditions;
+      },
+      'MDOF, Plan': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MDOF, Plan'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("MDOF, Plan, other")
+        }
+        else {
+            conditions.hide.push("MDOF, Plan, other")
+        }
+        return conditions;
+    },
+    'MDOF, Condition of patient at discharge (TRM)': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MDOF, Condition of patient at discharge (TRM)'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("MDOF, Condition at discharge, other")
+        }
+        else {
+            conditions.hide.push("MDOF, Condition at discharge, other")
+        }
+        return conditions;
+    },
+    'MDOF, Discharge medication': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MDOF, Discharge medication'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("MDOF, Type of medication", "MDOF, Dose and frequency", "MDOF, Duration")
+        }
+        else {
+            conditions.hide.push("MDOF, Type of medication", "MDOF, Dose and frequency", "MDOF, Duration")
+        }
+        return conditions;
+    },
     'Microbiology, Growth': function (formName, formFieldValues) {
           var conditions = {
               show: [],

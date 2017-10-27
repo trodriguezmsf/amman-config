@@ -674,6 +674,12 @@
 	    "PNF, Dressing":{
               "allowAddMore":true
             },
+	    "MDOF, Reason for visit":{
+              "multiSelect":true
+            },
+	    "MDOF, New complaint of patient":{
+              "multiSelect":true
+            },
 	    "ULA, Level of amputation":{
                 "allowAddMore":true
             },
