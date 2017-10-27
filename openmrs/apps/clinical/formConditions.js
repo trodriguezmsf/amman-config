@@ -2409,10 +2409,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
            };
            var conditionConcept = formFieldValues['Microbiology, Are there any alerts?'];
            if (conditionConcept =="Yes"){
-               conditions.show.push("Microbiology, Alerts")
+               conditions.show.push("Microbiology, Alerts Set")
            }
            else {
-               conditions.hide.push("Microbiology, Alerts")
+               conditions.hide.push("Microbiology, Alerts Set")
           }
            return conditions;
        },

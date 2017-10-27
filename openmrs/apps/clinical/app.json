@@ -1565,9 +1565,11 @@
             "Image":{
                 "allowAddMore":true
             },
-            "Microbiology, Alerts":{
+            "Microbiology, Alerts Set": {
                 "autocomplete":true,
-                "allowAddMore" : true
+                "codedConceptName":"Alerts, coded",
+                "nonCodedConceptName":"Alerts, Non coded",
+                "allowAddMore": true
             }
             },
         "visitPage": {
