@@ -668,11 +668,18 @@
 	    "PNF, Site of pain":{
               "multiSelect":true
             },
+	    "PNF, Site of dressing":{
+		"autocomplete":true,
+                "multiSelect":true
+            },
 	    "PNF, Pain usually occurs with:":{
               "multiSelect":true
             },
 	    "PNF, Dressing":{
               "allowAddMore":true
+            },
+	    "PNF, Type of pain experienced by the patient":{
+              "multiSelect":true
             },
 	    "MDOF, Reason for visit":{
               "multiSelect":true
@@ -1107,6 +1114,18 @@
             },
 	    "MPA, Problem List":{
                 "allowAddMore":true
+            },
+	    "ULA, From":{
+              "conciseText": true
+            },
+            "ULA, Comments about stump":{
+              "conciseText": true
+            },
+            "LLA, From":{
+              "conciseText": true
+            },
+            "LLA, Comments about stump":{
+              "conciseText": true
             },
             "LLA, Stump circumference":{
                 "isTabular": true,
