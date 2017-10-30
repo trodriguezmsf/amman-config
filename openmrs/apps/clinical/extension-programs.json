@@ -55,19 +55,34 @@
     "order": 4,
     "requiredPrivilege": "app:clinical"
   },
-  "bahmniClinicalPatientsSearchAllmoreinformationorpostponed": {
-    "id": "bahmni.clinical.patients.search.moreinformationorpostponed",
+  "bahmniClinicalPatientsSearchAllmoreinformation": {
+    "id": "bahmni.clinical.patients.search.moreinformation",
     "extensionPointId": "org.bahmni.patient.search",
     "type": "config",
     "extensionParams": {
-      "searchHandler": "emrapi.sqlSearch.moreInformationorPostponed",
+      "searchHandler": "emrapi.sqlSearch.moreInformation",
       "translationKey": "MODULE_LABEL_MORE_INFORMATION_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
       "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Date of Presentation", "Name of MLO", "Nationality", "Specialty", "Outcomes for 1st stage surgical validation",
-        "Outcomes for 1st stage Anaesthesia validation", "Postpone reason", "Medical file to be submitted again by"]
+        "Outcomes for 1st stage Anaesthesia validation", "Type of Medical Information Needed for Next Submission"]
     },
     "order": 5,
+    "requiredPrivilege": "app:clinical"
+  },
+  "bahmniClinicalPatientsSearchAllpostponed": {
+    "id": "bahmni.clinical.patients.search.postponed",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "searchHandler": "emrapi.sqlSearch.postponed",
+      "translationKey": "MODULE_LABEL_POSTPONED_KEY",
+      "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
+      "view": "tabular",
+      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Date of Presentation", "Name of MLO", "Nationality", "Specialty", "Outcomes for 1st stage surgical validation",
+        "Postpone reason", "Comments About Postpone Reason","Medical file to be submitted again by"]
+    },
+    "order": 6,
     "requiredPrivilege": "app:clinical"
   },
   "bahmniClinicalPatientsSearchAllPatientsUnderFollowup": {
@@ -81,7 +96,7 @@
       "view": "tabular",
       "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Date Of Presentation", "Name of MLO", "Specialty", "Time for next medical follow-up", "Date of next medical follow-up", "Type of medical investigations requested"]
     },
-    "order": 6,
+    "order": 7,
     "requiredPrivilege": "app:clinical"
   },
   "bahmniClinicalPatientsSearchAllvalidatedPatients": {
@@ -95,7 +110,7 @@
       "view": "tabular",
       "searchColumns": ["identifier","Date of presentation", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Name of MLO", "Stage", "Specialty","Name of Surgeon","Priority", "Does the patient need surgical final validation", "Expected Month/Year of Arrival","Is Caretaker Required?", "Status of Official ID Documents"]
     },
-    "order": 7,
+    "order": 8,
     "requiredPrivilege": "app:clinical"
   },
   "bahmniClinicalPatientsSearchAllexpectedArrival": {
@@ -126,7 +141,7 @@
       "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Nationality", "Specialty","Stage", "Priority","Name of Surgeon","Name of Surgeon 1", "Name of Surgeon 2", "Expected Date of Arrival",
         "Patient General Condition",  "Does the patient need accomodation", "Type of Admission Recommended", "Is Caretaker Required?", "Caretaker Gender", "Caretaker Name"]
     },
-    "order": 8,
+    "order": 9,
     "requiredPrivilege": "app:clinical"
   },
   "bahmniClinicalPatientsSearchAllhospitalRSP": {
@@ -140,7 +155,7 @@
       "view": "tabular",
       "searchColumns": ["identifier","PATIENT_LISTING_QUEUES_HEADER_NAME", "Date of Arrival", "Age", "Country", "Is Caretaker Required?", "Specialty","Stage","Name of Surgeon","Date of consultation (Anaesth.)", "Date of consultation (Surgeon)", "Bed allocation","Phase of treatment"]
     },
-    "order": 9,
+    "order": 10,
     "requiredPrivilege": "app:clinical"
   },
   "bahmniClinicalPatientsSearchAllPatients": {
@@ -152,7 +167,7 @@
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext"
     },
     "label": "All",
-    "order": 10,
+    "order": 11,
     "requiredPrivilege": "app:clinical"
   },
   "observations": {
@@ -164,7 +179,7 @@
     "url": "concept-set-group/observations",
     "default": true,
     "icon": "fa-user-md",
-    "order": 9,
+    "order": 12,
     "requiredPrivilege": "app:clinical:observationTab"
   },
   "disposition": {
@@ -175,7 +190,7 @@
     "translationKey": "DISPOSITION_BOARD_LABEL_KEY",
     "url": "disposition",
     "icon": "fa-user-md",
-    "order": 10,
+    "order": 13,
     "requiredPrivilege": "app:clinical:dispositionTab"
   },
   "bahmniClinicalBillingTreatment": {
@@ -189,7 +204,7 @@
     },
     "url": "treatment",
     "icon": "fa-user-md",
-    "order": 12,
+    "order": 14,
     "requiredPrivilege": "app:clinical:treatmentTab"
   },
   "bahmniClinicalConsultationBacteriology": {
@@ -200,6 +215,6 @@
     "translationKey":"BACTERIOLOGY_BOARD_LABEL_KEY",
     "url": "bacteriology",
     "icon": "icon-user-md",
-    "order": 10
+    "order": 15
   }
 }

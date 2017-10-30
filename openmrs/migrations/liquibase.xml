@@ -48,10 +48,6 @@
         <comment>Adding patient listing queues for patients who are in under follow-Up validation</comment>
         <sqlFile path="programs/continueUnderFollowup.sql"/>
     </changeSet>
-    <changeSet id="Amman-150614102016" author="Shiva kumar" context="rel1" runOnChange="true">
-        <comment>Adding patient listing queues for patients who are filled with date of presentation and with outcome as postponed or need more information</comment>
-        <sqlFile path="programs/MoreInformationorPostponed.sql"/>
-    </changeSet>
     <changeSet id="Amman-113620102016" author="Shiva kumar, Santhosh" context="rel1">
         <comment>Adding a procedure to create a concept reference mapping</comment>
         <sql>
@@ -5103,6 +5099,14 @@
             SELECT concept_id INTO @concept_id15 FROM concept_name WHERE name = 'PPN, Removal of clips' AND concept_name_type="FULLY_SPECIFIED";
             INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id15,@concept_set1,1016,8,now(),uuid());        
     	</sql>
+    </changeSet>
+    <changeSet id="Amman-30102017150800" author="Shireesha, Maharjun" context="rel3.4" runOnChange="true">
+        <comment>Adding patient listing queues for patients with date of presentation and  outcome as need more information or complementary investigation</comment>
+        <sqlFile path="programs/moreInformationQueue.sql"/>
+    </changeSet>
+    <changeSet id="Amman-30102017153000" author="Shireesha, Maharjun" context="rel3.4" runOnChange="true">
+        <comment>Adding patient listing queues for patients with date of presentation and with outcome as postponed</comment>
+        <sqlFile path="programs/postponedQueue.sql"/>
     </changeSet>
 </databaseChangeLog>
 
