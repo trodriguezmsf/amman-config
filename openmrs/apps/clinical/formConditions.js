@@ -231,10 +231,9 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['PHIA, Does the patient use an assistive device or orthosis?'];
         if (conditionConcept == "Yes"){
             conditions.show.push("PHIA, Type of assistive device or orthosis","PHIA, Comments about assistive device or orthosis")
-            conditions.hide.push("PHIA, Other type of assistive device")
         }
         else {
-            conditions.hide.push("PHIA, Type of assistive device or orthosis","PHIA, Other type of assistive device","PHIA, Comments about assistive device or orthosis")
+            conditions.hide.push("PHIA, Type of assistive device or orthosis","PHIA, Comments about assistive device or orthosis")
         }
         return conditions;
     },
@@ -261,8 +260,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['PHIA, Amputee patient?'];
         if (conditionConcept == "Yes"){
             conditions.show.push("PHIA, Level of Amputation")
-            conditions.hide.push("PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification","PHIA, Comment about new prosthesis or modification")
-
         }
         else {
             conditions.hide.push("PHIA, Level of Amputation")
@@ -790,7 +787,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
               var conditionConcept = formFieldValues['ONN, Does the patient have a dressing?'];
               if (conditionConcept == "Yes"){
                  conditions.show.push("ONN, Dressing")
-                 conditions.hide.push("ONN, Description of wound, other")
               }
               else {
               conditions.hide.push("ONN, Dressing")
@@ -875,8 +871,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
               var conditionConcept = formFieldValues['WWN, Does the patient have a dressing?'];
               if (conditionConcept == "Yes"){
                  conditions.show.push("WWN, Dressing")
-                 conditions.hide.push("WWN, Description of wound, other")
-
               }
               else {
               conditions.hide.push("WWN, Dressing")
@@ -1424,10 +1418,9 @@ Bahmni.ConceptSet.FormConditions.rules = {
           var conditionConcept = formFieldValues['AIA, Personal history of blood transfusion'];
           if (conditionConcept == "Yes"){
               conditions.show.push("AIA, Did an incident occur during previous blood transfusion")
-              conditions.hide.push("AIA, Describe")
           }
           else {
-              conditions.hide.push("AIA, Did an incident occur during previous blood transfusion","AIA, Describe")
+              conditions.hide.push("AIA, Did an incident occur during previous blood transfusion")
           }
           return conditions;
       },
