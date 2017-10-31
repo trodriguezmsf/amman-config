@@ -201,6 +201,7 @@
     "translationKey":"BACTERIOLOGY_BOARD_LABEL_KEY",
     "url": "bacteriology",
     "icon": "icon-user-md",
-    "order": 15
+    "order": 15,
+    "requiredPrivilege": "app:clinical:bacteriologyTab"
   }
 }
