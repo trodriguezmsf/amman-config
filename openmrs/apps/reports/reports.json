@@ -34,5 +34,40 @@
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientInformationReport.sql"
     }
+  },
+  "customReport6": {
+    "name": "Awaiting Validation -1st Stage",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/awaitingValidationFirstStage.sql"
+    }
+  },
+  "customReport7": {
+    "name": "Awaiting Validation - Follow Up State",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/awaitingValidationFollowup.sql"
+    }
+  },
+  "customReport8": {
+    "name": "To Continue Under Follow Up",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/continueUnderFollowup.sql"
+    }
+  },
+  "customReport9": {
+    "name": "Validated Patients",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/validatedPatients.sql"
+    }
+  },
+  "customReport10": {
+    "name": "Expected Arrival",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/expectedArrivalPatientQueue.sql"
+    }
   }
 }
