@@ -5118,6 +5118,45 @@
         <sql>
             DELETE FROM global_property WHERE property ="emrapi.sqlSearch.incompleteMedicalFile";
         </sql>
+        </changeSet>
+    <changeSet id="Amman-201710301404" author="Mahesh" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='All Observation Templates' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='Nursing Needs - Ward' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting Nursing Needs - Ward form from All Observation Templates </comment>
+        <sql>
+            SELECT concept_id INTO @conceptID FROM concept_name WHERE name ="Nursing Needs - Ward" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="All Observation Templates" AND concept_name_type="FULLY_SPECIFIED";
+            DELETE from concept_set where concept_set=@conceptsetID and concept_id =@conceptID;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710301620" author="Mahesh" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'CC, Patient complication' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="Surgical Site Infection");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new answer concept to list of complications </comment>
+        <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="CC, Patient complication" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Surgical Site Infection" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID1,1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710301638" author="Mahesh" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'DIA, Surgical Diagnosis coded' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="United bone fracture");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new answer concept to list of Surgical Diagnosis </comment>
+        <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="DIA, Surgical Diagnosis coded" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="United bone fracture" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID1,1,now(),uuid());
+        </sql>
     </changeSet>
 </databaseChangeLog>
 

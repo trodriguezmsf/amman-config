@@ -1595,6 +1595,9 @@
                 "codedConceptName":"Alerts, coded",
                 "nonCodedConceptName":"Alerts, Non coded",
                 "allowAddMore": true
+            },
+            "Complications Set":{
+            "allowAddMore":true
             }
             },
         "visitPage": {

@@ -203,5 +203,18 @@
     "icon": "icon-user-md",
     "order": 15,
     "requiredPrivilege": "app:clinical:bacteriologyTab"
+  },
+  "consultationSummary": {
+    "id": "bahmni.clinical.consultation.summary",
+    "extensionPointId": "org.bahmni.clinical.consultation.board",
+    "type": "link",
+    "label": "Consultation",
+    "translationKey":"CONSULTATION_BOARD_LABEL_KEY",
+    "url": "consultation",
+    "icon": "fa-user-md",
+    "order": 16,
+    "requiredPrivilege": "app:clinical:consultationTab"
   }
+
+
 }
