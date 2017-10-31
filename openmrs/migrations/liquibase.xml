@@ -5108,6 +5108,17 @@
         <comment>Adding patient listing queues for patients with date of presentation and with outcome as postponed</comment>
         <sqlFile path="programs/postponedQueue.sql"/>
     </changeSet>
+    <changeSet id="Amman-201710311541" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from global_property where property ="emrapi.sqlSearch.incompleteMedicalFile";
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting emrapi.sqlSearch.incompleteMedicalFile from global property </comment>
+        <sql>
+            DELETE FROM global_property WHERE property ="emrapi.sqlSearch.incompleteMedicalFile";
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
