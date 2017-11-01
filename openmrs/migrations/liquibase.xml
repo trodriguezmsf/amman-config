@@ -5049,7 +5049,7 @@
     <changeSet id="Amman-201710251603" author="Mohit Dhamdhere" context="rel3.4" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-	SELECT count(*) from concept_set where concept_id = (select concept_id from concept_name where name ="PPN, Subjective (any new complaint)" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'Physician Progress Note-Ward' AND concept_name_type="FULLY_SPECIFIED");            
+	SELECT count(*) from concept_set where concept_id = (select concept_id from concept_name where name ="PPN, Subjective (any new complaint)" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'Physician Progress Note-Ward' AND concept_name_type="FULLY_SPECIFIED");
 	    </sqlCheck>
         </preConditions>
         <comment>Adding concept into concept_set </comment>
@@ -5080,13 +5080,13 @@
             SELECT concept_id INTO @concept_id12 FROM concept_name WHERE name = 'PPN, Summary of consultation' AND concept_name_type="FULLY_SPECIFIED";
             INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id12,@concept_set,1122,8,now(),uuid());
             SELECT concept_id INTO @concept_id16 FROM concept_name WHERE name = 'PPN, Drainage amount' AND concept_name_type="FULLY_SPECIFIED";
-            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id16,@concept_set,1052,8,now(),uuid());        
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id16,@concept_set,1052,8,now(),uuid());
         </sql>
     </changeSet>
     <changeSet id="Amman-201710251607" author="Mohit Dhamdhere" context="rel3.4" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-		SELECT count(*) from concept_set where concept_id = (select concept_id from concept_name where name ="PPN, Wound status, 1" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'PPN, Assessment of Wound' AND concept_name_type="FULLY_SPECIFIED");            
+		SELECT count(*) from concept_set where concept_id = (select concept_id from concept_name where name ="PPN, Wound status, 1" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'PPN, Assessment of Wound' AND concept_name_type="FULLY_SPECIFIED");
 	    </sqlCheck>
         </preConditions>
         <comment>Adding concept into concept_set </comment>
@@ -5097,7 +5097,7 @@
             SELECT concept_id INTO @concept_id14 FROM concept_name WHERE name = 'PPN, Wound status, 2' AND concept_name_type="FULLY_SPECIFIED";
             INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id14,@concept_set1,1014,8,now(),uuid());
             SELECT concept_id INTO @concept_id15 FROM concept_name WHERE name = 'PPN, Removal of clips' AND concept_name_type="FULLY_SPECIFIED";
-            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id15,@concept_set1,1016,8,now(),uuid());        
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id15,@concept_set1,1016,8,now(),uuid());
     	</sql>
     </changeSet>
     <changeSet id="Amman-201710301645" author="Mohit Dhamdhere" context="rel3.4" >
@@ -5390,6 +5390,27 @@
 	   SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'WWN, Change Position' AND concept_name_type="FULLY_SPECIFIED";
 	   DELETE from concept_set where concept_id=@concept_id and concept_set=@concept_set;
 	</sql>
+    </changeSet>
+    <changeSet id="Amman-201711011422" author="shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from location_tag_map where location_id = (select location_id  from location where name ="OPD") AND location_tag_id =(select location_tag_id from location_tag where name ="Appointment Location");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding locations to appointment module </comment>
+        <sql>
+            select location_tag_id into @location_TAG from location_tag where name ="Appointment Location";
+            select location_id into @location_ID1 from location where name ="OPD";
+            Insert into location_tag_map(location_id,location_tag_id) values (@location_ID1,@location_TAG);
+            select location_id into @location_ID2 from location where name ="Physiotherapy";
+            Insert into location_tag_map(location_id,location_tag_id) values (@location_ID2,@location_TAG);
+            select location_id into @location_ID3 from location where name ="Psycho-Social, Mental Health";
+            Insert into location_tag_map(location_id,location_tag_id) values (@location_ID3,@location_TAG);
+            select location_id into @location_ID4 from location where name ="Operating Theatre";
+            Insert into location_tag_map(location_id,location_tag_id) values (@location_ID4,@location_TAG);
+            select location_id into @location_ID5 from location where name ="Surgical Ward";
+            Insert into location_tag_map(location_id,location_tag_id) values (@location_ID5,@location_TAG);
+        </sql>
     </changeSet>
 </databaseChangeLog>
 
