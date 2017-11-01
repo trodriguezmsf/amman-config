@@ -18,7 +18,7 @@ SELECT
   `Postpone Reason`,
   `Comments about postpone reason`,
   `Medical file to be submitted again by`,
-  CONCAT_WS(',',Type_of_medical_information_needed_for_next_submission_for_surgical_validation, Type_of_medical_information_needed_for_next_submission_for_anaesthesia_validation) AS `Type of medical information needed for next submission`,
+  `Type of medical information needed for next submission`,
   `Refused Reason`,
   `Comments about refusal`
 FROM (SELECT
@@ -44,8 +44,7 @@ FROM (SELECT
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Postpone reason' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Postpone Reason',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Comments about postpone reason' AND latest_encounter.person_id IS NOT NULL, o.value_text, NULL)) ORDER BY o.obs_id DESC) AS 'Comments about postpone reason',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Medical file to be submitted again by' AND latest_encounter.person_id IS NOT NULL, DATE_FORMAT(o.value_datetime, "%d/%m/%Y"), NULL)) ORDER BY o.obs_id DESC) AS 'Medical file to be submitted again by',
-        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Type of medical information needed for next submission' AND latest_encounter.person_id IS NOT NULL, o.value_text, NULL)) ORDER BY o.obs_id DESC) AS 'Type_of_medical_information_needed_for_next_submission_for_surgical_validation',
-        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FST, Type of medical information needed for next submission' AND latest_encounter.person_id IS NOT NULL, o.value_text, NULL)) ORDER BY o.obs_id DESC) AS 'Type_of_medical_information_needed_for_next_submission_for_anaesthesia_validation',
+        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Type of medical information needed for next submission' AND latest_encounter.person_id IS NOT NULL, o.value_text, NULL)) ORDER BY o.obs_id DESC) AS 'Type of medical information needed for next submission',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Refused Reason' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Refused Reason',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Comments about refusal' AND latest_encounter.person_id IS NOT NULL, o.value_text, NULL)) ORDER BY o.obs_id DESC) AS 'Comments about refusal',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Does the Patient need Surgical Final Validation' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Does the Patient need Surgical Final Validation?'
@@ -76,7 +75,6 @@ FROM (SELECT
                'FSTG, Comments about postpone reason',
                'FSTG, Medical file to be submitted again by',
                'FSTG, Type of medical information needed for next submission',
-               'FST, Type of medical information needed for next submission',
                'FSTG, Refused Reason',
                'FSTG, Comments about refusal',
                'FV, Expected Date of Arrival',
