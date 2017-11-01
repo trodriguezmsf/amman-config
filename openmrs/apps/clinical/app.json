@@ -818,12 +818,6 @@
 	    "ULA, Right : Flex. Dig. Sup":{
                 "conciseText": true
             },
-	    "ULA, Left : Flex. Dig. Sup":{
-                "conciseText": true
-            },
-	    "ULA, Right : Flex. Dig. Sup":{
-                "conciseText": true
-            },
 	    "ULA, Left : Flex. Dig Prof":{
                 "conciseText": true
             },
@@ -1626,8 +1620,20 @@
                 "nonCodedConceptName":"Alerts, Non coded",
                 "allowAddMore": true
             },
-            "Complications Set":{
-            "allowAddMore":true
+            "Complications Set": {
+                "allowAddMore": true
+            },
+            "OS, Pain Assessment":{
+                "allowAddMore":true
+            },
+            "OS, Drainage Set":{
+                "allowAddMore":true
+            },
+            "OS, Site of pain":{
+                "multiSelect":true
+            },
+            "OS, Site of drain":{
+                "autoComplete":true
             }
             },
         "visitPage": {

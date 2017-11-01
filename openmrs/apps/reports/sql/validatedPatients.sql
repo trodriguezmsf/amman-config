@@ -1,7 +1,7 @@
 SELECT
 	DATE_FORMAT(dateOfPresentation.value_datetime, '%d/%m/%Y') AS 'Date of presentation',
     pi.identifier AS 'identifier',
-    CONCAT(pn.given_name, ' ', pn.family_name) AS 'PATIENT_LISTING_QUEUES_HEADER_NAME',
+    CONCAT(pn.given_name, ' ', pn.family_name) AS 'Name',
     FLOOR(DATEDIFF(CURDATE(), p.birthdate) / 365) AS 'Age',
     pa.address3 AS 'Country',
     nameOfMLO.name AS 'Name of MLO',
@@ -13,8 +13,7 @@ SELECT
     surgical_final_validation.name AS 'Does the patient need surgical final validation',
     finalValidationExpectedDateOfArrival.monthYear AS 'Expected Month/Year of Arrival',
     careTakerRequired.value AS 'Is Caretaker Required?',
-    statusOfOfficialDocuments.name AS 'Status of Official ID Documents',
-    p.uuid AS uuid
+    statusOfOfficialDocuments.name AS 'Status of Official ID Documents'
 FROM
     person p
 INNER JOIN patient_identifier pi ON pi.patient_id = p.person_id

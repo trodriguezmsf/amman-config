@@ -1,8 +1,7 @@
 SELECT
     `Date Of Presentation`,
     pi.identifier,
-    concat(pn.given_name, ' ', pn.family_name)                  AS PATIENT_LISTING_QUEUES_HEADER_NAME,
-    p.uuid,
+    concat(pn.given_name, ' ', pn.family_name)                  AS Name,
     `Specialty`,
     `Name of MLO`,
     `Time for next medical follow-up`,

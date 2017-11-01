@@ -1,7 +1,6 @@
 SELECT
   pi.identifier  AS `identifier`,
-  p.uuid  AS uuid,
-  concat(pn.given_name, ' ', pn.family_name)  AS  PATIENT_LISTING_QUEUES_HEADER_NAME,
+  concat(pn.given_name, ' ', pn.family_name)  AS  Name,
   `Name of MLO`,
   COALESCE(scn.name, fscn.name) AS `Nationality`,
   `Specialty`,

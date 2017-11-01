@@ -1,7 +1,7 @@
 SELECT
     dateOfArrival.dateOfArrival AS 'Date of Arrival',
     personData.patient_identifier AS 'identifier',
-    personData.name AS 'PATIENT_LISTING_QUEUES_HEADER_NAME',
+    personData.name AS 'Name',
     personData.age AS 'Age',
     paddress.address3 AS 'Country',
     careTakerRequired.isCareTakerRequired AS 'Is Caretaker Required?',
@@ -11,8 +11,7 @@ SELECT
     latest_obs.`Date of consultation (Anaesth.)`,
     latest_obs.`Date of consultation (Surgeon)`,
  	`Bed allocation`,
-    cn.name AS `Phase of treatment`,
-    personData.uuid
+    cn.name AS `Phase of treatment`
   FROM
     (SELECT
        concat(pn.given_name, ' ', pn.family_name)                                                                 AS name,

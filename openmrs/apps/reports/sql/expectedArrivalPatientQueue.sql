@@ -1,6 +1,6 @@
 SELECT
                             personData.identifier,
-                            personData.name AS PATIENT_LISTING_QUEUES_HEADER_NAME,
+                            personData.name AS Name,
                             personData.age  AS 'Age',
                             paddress.address3  AS  'Country',
                             latest_obs.Specialty,
@@ -14,12 +14,7 @@ SELECT
                             latest_obs.`Type of Admission Recommended`,
                             careTakerRequired.isCareTakerRequired AS 'Is Caretaker Required?',
                             careTakerGender.`Caretaker Gender`,
-                            careTakerName.`Caretaker Name`,
-                            'Admit'                                             AS `bed management`,
-                            'Enter Disposition'                                 AS disposition,
-                            personData.uuid,
-                            personData.programUuid,
-                            personData.enrollment
+                            careTakerName.`Caretaker Name`
                           FROM  (SELECT
                                   p.uuid                                                                                                     AS uuid,
                                   prog.uuid                                                                                                  AS programUuid,

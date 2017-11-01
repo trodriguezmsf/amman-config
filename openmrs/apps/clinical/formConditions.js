@@ -2643,5 +2643,33 @@ Bahmni.ConceptSet.FormConditions.rules = {
                conditions.hide.push("NM, Beta-Lactamase test Result")
           }
            return conditions;
-       }
+       },
+    'OS, Pain Severity': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['OS, Pain Severity'];
+        if (conditionConcept >= 1){
+            conditions.show.push("OS, Side of pain","OS, Site of pain","OS, Type of pain","OS, When does the pain occur")
+        }
+        else {
+            conditions.hide.push("OS, Side of pain","OS, Site of pain","OS, Type of pain","OS, When does the pain occur")
+        }
+        return conditions;
+    },
+      'OS, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['OS, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("OS, Site of pain, other")
+        }
+        else {
+            conditions.hide.push("OS, Site of pain, other")
+        }
+        return conditions;
+    }
 }

@@ -1,5 +1,5 @@
 SELECT
-       `Type Of Medical Information`,`Date of File Received`, `identifier`, name AS PATIENT_LISTING_QUEUES_HEADER_NAME, uuid, `Name of MLO`, `Nationality`, `Specialty`
+       `Type Of Medical Information`,`Date of File Received`, `identifier`, name, `Name of MLO`, `Nationality`, `Specialty`
      FROM (
             SELECT
               pi.identifier                                              AS `identifier`,
