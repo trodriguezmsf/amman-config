@@ -1633,7 +1633,7 @@
                 "multiSelect":true
             },
             "OS, Site of drain":{
-                "autoComplete":true
+               "autocomplete":true
             }
             },
         "visitPage": {

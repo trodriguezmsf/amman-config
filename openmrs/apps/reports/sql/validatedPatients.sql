@@ -1,6 +1,6 @@
 SELECT
 	DATE_FORMAT(dateOfPresentation.value_datetime, '%d/%m/%Y') AS 'Date of presentation',
-    pi.identifier AS 'identifier',
+    pi.identifier AS 'Identifier',
     CONCAT(pn.given_name, ' ', pn.family_name) AS 'Name',
     FLOOR(DATEDIFF(CURDATE(), p.birthdate) / 365) AS 'Age',
     pa.address3 AS 'Country',

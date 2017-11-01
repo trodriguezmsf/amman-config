@@ -1,12 +1,12 @@
 SELECT
-       `Type Of Medical Information`,`Date of File Received`, `identifier`, name, `Name of MLO`, `Nationality`, `Specialty`
+       `Type Of Medical Information`,`Date of File Received`, `Identifier`, Name, `Name of MLO`, `Nationality`, `Specialty`
      FROM (
             SELECT
-              pi.identifier                                              AS `identifier`,
+              pi.identifier                                              AS `Identifier`,
               p.uuid                                                     AS uuid,
               latest_encounter_obs.typeOfMedicalInformation				AS 'Type Of Medical Information',
               latest_visit_date_received.dateOfFileReceived              AS 'Date of File Received',
-              concat(pn.given_name, ' ', pn.family_name)                 AS name,
+              concat(pn.given_name, ' ', pn.family_name)                 AS Name,
               latest_encounter_obs.nameOfMLO                             AS 'Name of MLO',
               latest_visit_dop.dateOfPresentation                        AS 'dateOfPresentation',
               latest_visit_fv_dop.fvDateOfPresentation                   AS 'FVdateOfPresentation',

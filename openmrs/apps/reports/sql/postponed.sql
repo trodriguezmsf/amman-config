@@ -1,7 +1,7 @@
-SELECT  `Date of Presentation` ,  `identifier`,name AS Name, `Nationality` ,`Name of MLO`,`Specialty`,`Outcomes for 1st stage surgical validation`,`Postpone reason`,`Comments About Postpone Reason`,`Medical file to be submitted again by`
+SELECT  `Date of Presentation` ,  `Identifier`,Name, `Nationality` ,`Name of MLO`,`Specialty`,`Outcomes for 1st stage surgical validation`,`Postpone reason`,`Comments About Postpone Reason`,`Medical file to be submitted again by`
 FROM (SELECT
-        concat(pn.given_name, ' ', pn.family_name) AS name,
-        pi.identifier                              AS `identifier`,
+        concat(pn.given_name, ' ', pn.family_name) AS Name,
+        pi.identifier                              AS `Identifier`,
         p.uuid                                     AS uuid,
         GROUP_CONCAT(DISTINCT(IF(pat.name = 'nationality1', coalesce(scn.name, fscn.name), NULL))) AS 'Nationality',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Date of presentation at 1st stage' AND latest_encounter.person_id IS NOT NULL , DATE_FORMAT(o.value_datetime, '%d/%m/%Y'), NULL)) ORDER BY o.obs_id DESC)       AS 'Date of Presentation',

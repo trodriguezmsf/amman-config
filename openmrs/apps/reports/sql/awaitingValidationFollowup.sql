@@ -1,5 +1,5 @@
 SELECT
-  pi.identifier  AS `identifier`,
+  pi.identifier  AS `Identifier`,
   concat(pn.given_name, ' ', pn.family_name)  AS  Name,
   `Name of MLO`,
   COALESCE(scn.name, fscn.name) AS `Nationality`,

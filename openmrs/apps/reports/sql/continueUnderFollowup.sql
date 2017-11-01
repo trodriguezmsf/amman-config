@@ -1,6 +1,6 @@
 SELECT
     `Date Of Presentation`,
-    pi.identifier,
+    pi.identifier AS Identifier,
     concat(pn.given_name, ' ', pn.family_name)                  AS Name,
     `Specialty`,
     `Name of MLO`,

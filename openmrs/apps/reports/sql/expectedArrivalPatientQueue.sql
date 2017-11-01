@@ -1,5 +1,5 @@
 SELECT
-                            personData.identifier,
+                            personData.identifier AS Identifier,
                             personData.name AS Name,
                             personData.age  AS 'Age',
                             paddress.address3  AS  'Country',

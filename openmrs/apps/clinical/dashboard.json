@@ -203,11 +203,11 @@
                     "maximumNoOfVisits": 1
                 },
                 "formGroup": [
-                    "MH, Medical History",
+                    "Patient history",
                     "First Stage Validation",
                     "Follow-up validation",
                     "FV, Final validation",
-                    "Baseline Vital Signs",
+                    "Vital Signs",
                     "OPD Nursing Initial Assessment",
                     "Health Education",
                     "Initial Anesthesia Assessment",
@@ -226,9 +226,8 @@
                     "Complications Set",
                     "Post-Op Ward Monitoring",
                     "Surgeon Follow-up",
-                    "OPD MD Follow-Up Note",
                     "Operative Report",
-                    "Vital Signs form",
+                    "Observation Sheet",
                     "Post-operative Anaesthesia Note",
                     "Radiology Documents",
                     "Lower Limb Physiotherapy Assessment",
@@ -299,12 +298,12 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Baseline Vital Signs"
+            "Vital Signs"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "Baseline Vital Signs"
+            "Vital Signs"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -678,28 +677,6 @@
           "pivotTable": {}
         }
       },
-      "OPD MD Follow-Up Note":{
-        "translationKey": "DASHBOARD_OPD_MD_FOLLOWUP_FORM",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 17,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "OPD MD Follow-Up Note"
-          ]
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "OPD MD Follow-Up Note"
-          ],
-          "isEditable": true,
-          "numberOfVisits": 10,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
       "Operative Report":{
         "translationKey": "DASHBOARD_OPERATIVE_REPORT",
         "type": "vitals",
@@ -722,7 +699,7 @@
           "pivotTable": {}
         }
       },
-      "Vital Signs form":{
+      "Observation Sheet":{
         "translationKey": "DASHBOARD_VITAL_SIGNS_FORM",
         "type": "vitals",
         "isObservation": true,
@@ -731,12 +708,12 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Vital Signs form"
+            "Observation Sheet"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "Vital Signs form"
+            "Observation Sheet"
           ],
           "isEditable": true,
           "numberOfVisits": 10,

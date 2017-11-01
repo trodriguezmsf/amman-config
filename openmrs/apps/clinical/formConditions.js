@@ -2671,5 +2671,19 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("OS, Site of pain, other")
         }
         return conditions;
-    }
+    },
+ 	'OS, Does the patient have a drain?': function (formName, formFieldValues) {
+           var conditions = {
+               show: [],
+               hide: []
+           };
+           var conditionConcept = formFieldValues['OS, Does the patient have a drain?'];
+           if (conditionConcept =="Yes"){
+               conditions.show.push("OS, Drainage Set")
+           }
+           else {
+               conditions.hide.push("OS, Drainage Set")
+          }
+           return conditions;
+       }
 }

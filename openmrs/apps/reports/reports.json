@@ -85,7 +85,7 @@
     }
   },
   "customReport13": {
-    "name": "HospitalRSP",
+    "name": "Hospital RSP",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/hosptialRSP.sql"

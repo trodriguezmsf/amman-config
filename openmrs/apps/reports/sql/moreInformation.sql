@@ -1,8 +1,8 @@
 SELECT  `Date of Presentation` ,  `Identifier`,Name, `Nationality` ,`Name of MLO`,`Specialty`,`Outcomes for 1st stage surgical validation`,`Outcomes for 1st stage Anaesthesia validation`,
 CONCAT_WS(', ',surgical_assessment_medical_info, anaesthesia_assessment_medical_info) AS `Type of Medical Information Needed for Next Submission`
 FROM (SELECT
-        concat(pn.given_name, ' ', ifnull(pn.family_name,'')) AS name,
-        pi.identifier                              AS `identifier`,
+        concat(pn.given_name, ' ', ifnull(pn.family_name,'')) AS Name,
+        pi.identifier                              AS `Identifier`,
         p.uuid                                     AS uuid,
         GROUP_CONCAT(DISTINCT(IF(pat.name = 'nationality1', coalesce(scn.name, fscn.name), NULL))) AS 'Nationality',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Date of presentation at 1st stage' AND latest_encounter.person_id IS NOT NULL , DATE_FORMAT(o.value_datetime, '%d/%m/%Y'), NULL)) ORDER BY o.obs_id DESC)       AS 'Date of Presentation',

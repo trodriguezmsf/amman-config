@@ -1,6 +1,6 @@
 SELECT
     dateOfArrival.dateOfArrival AS 'Date of Arrival',
-    personData.patient_identifier AS 'identifier',
+    personData.patient_identifier AS 'Identifier',
     personData.name AS 'Name',
     personData.age AS 'Age',
     paddress.address3 AS 'Country',
