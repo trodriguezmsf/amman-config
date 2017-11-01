@@ -215,6 +215,4 @@
     "order": 16,
     "requiredPrivilege": "app:clinical:consultationTab"
   }
-
-
 }

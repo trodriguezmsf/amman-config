@@ -40,9 +40,6 @@
             <th class="largeWidth">
                 Patient Name
             </th>
-            <!--<th>-->
-                <!--Start Time-->
-            <!--</th>-->
             <th>
                 Est Time
             </th>
@@ -71,9 +68,6 @@
             <td  class="largeWidth">
                 {{appointment.derivedAttributes.patientName}}
             </td>
-            <!--<td>-->
-                <!--{{appointment.derivedAttributes.expectedStartTime | bahmniTime}}-->
-            <!--</td>-->
             <td>
                 {{appointment.surgicalAppointmentAttributes.estTimeHours.value}} {{'OT_SURGICAL_APPOINTMENT_HOURS' |
                 translate}} : {{appointment.surgicalAppointmentAttributes.estTimeMinutes.value}}
