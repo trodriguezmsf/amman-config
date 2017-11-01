@@ -5165,7 +5165,7 @@
         <sql>
             SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="CC, Patient complication" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Surgical Site Infection" AND concept_name_type="FULLY_SPECIFIED";
-            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID1,1,now(),uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@conceptcoded,@conceptID1,1,now(),38,uuid());
         </sql>
     </changeSet>
     <changeSet id="Amman-201710301638" author="Mahesh" context="rel3.4">

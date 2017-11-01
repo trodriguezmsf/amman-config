@@ -184,6 +184,8 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                                                                                   'FULLY_SPECIFIED'
                                                                               AND outcome_cn.name = 'Stage'
                                                                               AND outcome_cn.voided IS FALSE
+                                        GROUP BY e.patient_id
+                                        ORDER BY e.encounter_datetime
                                     ) encounters_with_stage ON encounters_with_stage.patient_id = sa.patient_id AND
                                                                encounters_with_stage.encounter_datetime <= sb.end_datetime
                   GROUP BY surgical_appointment_id
