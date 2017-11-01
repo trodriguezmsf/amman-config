@@ -233,7 +233,9 @@
                     "Radiology Documents",
                     "Lower Limb Physiotherapy Assessment",
                     "Upper Limb Physiotherapy Assessment",
-                    "Maxillofacial Physio Assessment"
+                    "Maxillofacial Physio Assessment",
+		    "Medical Doctor OPD Follow-up",
+		    "Pain Nurse Follow-up"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
             },

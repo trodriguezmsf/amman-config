@@ -195,7 +195,7 @@
                 "multiSelect" :true
             },
             "SMH, Site of pain":{
-                "dropdown":false
+                "multiSelect" :true
             },
             "SMH, Medication":{
                 "allowAddMore" : true
@@ -405,13 +405,13 @@
             "allowAddMore": true
           },
           "ANA, Site of pain":{
-            "autocomplete":true
+            "multiSelect":true
           },
           "ONN, Pain Assessment":{
             "allowAddMore":true
           },
           "ONN, Site of pain":{
-            "autocomplete":true
+            "multiSelect":true
           },
           "ONN, Dressing":{
             "allowAddMore":true
@@ -429,7 +429,7 @@
             "allowAddMore":true
           },
           "POW, Site of pain":{
-            "autocomplete":true
+            "multiSelect":true
           },
           "POW, Dressing":{
             "allowAddMore":true
@@ -444,7 +444,7 @@
             "autocomplete":true
           },
           "WWN, Site of pain":{
-            "autocomplete":true
+            "multiSelect":true
           },
           "WWN, Site of drain":{
             "autocomplete":true

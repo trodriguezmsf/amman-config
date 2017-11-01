@@ -5158,9 +5158,217 @@
             INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,uuid) VALUES (@conceptcoded,@conceptID1,1,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201710311118" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SMH, Site of pain" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Iliac' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SMH, Site of pain' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, Iliac' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,8,now(),29,uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Femur' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer2,8,now(),30,uuid());
+	    SELECT concept_id INTO @concept_answer3 FROM concept_name WHERE name = 'Site, Stump' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer3,8,now(),31,uuid());
+	    SELECT concept_id INTO @concept_answer4 FROM concept_name WHERE name = 'Site, Other' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer4,8,now(),32,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710311208" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="ANA, Site of pain" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Iliac' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'ANA, Site of pain' AND concept_name_type="FULLY_SPECIFIED";
+	    SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, Iliac' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,8,now(),36,uuid());
+ 	    SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Femur' AND concept_name_type="FULLY_SPECIFIED";
+    	    INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer2,8,now(),37,uuid());
+	    SELECT concept_id INTO @concept_answer3 FROM concept_name WHERE name = 'Site, Stump' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer3,8,now(),38,uuid());
+	    SELECT concept_id INTO @concept_answer4 FROM concept_name WHERE name = 'Site, Other' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer4,8,now(),39,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710311212" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="ONN, Site of pain" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Iliac' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'ONN, Site of pain' AND concept_name_type="FULLY_SPECIFIED";
+	    SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, Iliac' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,8,now(),36,uuid());
+	    SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Femur' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer2,8,now(),37,uuid());
+	    SELECT concept_id INTO @concept_answer3 FROM concept_name WHERE name = 'Site, Stump' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer3,8,now(),38,uuid());
+	    SELECT concept_id INTO @concept_answer4 FROM concept_name WHERE name = 'Site, Other' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer4,8,now(),39,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710311214" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="WWN, Site of pain" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Iliac' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'WWN, Site of pain' AND concept_name_type="FULLY_SPECIFIED";
+	    SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, Iliac' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,8,now(),36,uuid());
+	    SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Femur' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer2,8,now(),37,uuid());
+	    SELECT concept_id INTO @concept_answer3 FROM concept_name WHERE name = 'Site, Stump' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer3,8,now(),38,uuid());
+	    SELECT concept_id INTO @concept_answer4 FROM concept_name WHERE name = 'Site, Other' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer4,8,now(),39,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710311220" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="POW, Site of pain" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Iliac' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'POW, Site of pain' AND concept_name_type="FULLY_SPECIFIED";
+	    SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, Iliac' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,8,now(),36,uuid());
+	    SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Femur' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer2,8,now(),37,uuid());
+	    SELECT concept_id INTO @concept_answer3 FROM concept_name WHERE name = 'Site, Stump' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer3,8,now(),38,uuid());
+	    SELECT concept_id INTO @concept_answer4 FROM concept_name WHERE name = 'Site, Other' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer4,8,now(),39,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710311824" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SMH, Pain Assessment" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'SMH, Site, Other' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+	    SELECT concept_id INTO @concept_set from concept_name where name= 'SMH, Pain Assessment' AND concept_name_type="FULLY_SPECIFIED";
+	    SELECT concept_id INTO @concept_id23 FROM concept_name WHERE name = 'SMH, Site, Other' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id23,@concept_set,1030,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201710311826" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="ANA, Pain Assessment" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'ANA, Site, Other' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+	    SELECT concept_id INTO @concept_set from concept_name where name= 'ANA, Pain Assessment' AND concept_name_type="FULLY_SPECIFIED";
+	    SELECT concept_id INTO @concept_id24 FROM concept_name WHERE name = 'ANA, Site, Other' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id24,@concept_set,1025,8,now(),uuid());
+	</sql>
+    </changeSet>
+    <changeSet id="Amman-201710311828" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="ONN, Pain Assessment" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'ONN, Site, Other' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+	   SELECT concept_id INTO @concept_set from concept_name where name= 'ONN, Pain Assessment' AND concept_name_type="FULLY_SPECIFIED";
+	   SELECT concept_id INTO @concept_id25 FROM concept_name WHERE name = 'ONN, Site, Other' AND concept_name_type="FULLY_SPECIFIED";
+	   INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id25,@concept_set,1025,8,now(),uuid());
+	</sql>
+    </changeSet>
+    <changeSet id="Amman-201710311830" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="WWN, Pain Assessment" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'WWN, Site, Other' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+	   SELECT concept_id INTO @concept_set from concept_name where name= 'WWN, Pain Assessment' AND concept_name_type="FULLY_SPECIFIED";
+	   SELECT concept_id INTO @concept_id26 FROM concept_name WHERE name = 'WWN, Site, Other' AND concept_name_type="FULLY_SPECIFIED";
+	   INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id26,@concept_set,1025,8,now(),uuid());
+	</sql>
+    </changeSet>
+    <changeSet id="Amman-201710311832" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="POW, Pain Assessment" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'POW, Site, Other' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+	   SELECT concept_id INTO @concept_set from concept_name where name= 'POW, Pain Assessment' AND concept_name_type="FULLY_SPECIFIED";
+	   SELECT concept_id INTO @concept_id27 FROM concept_name WHERE name = 'POW, Site, Other' AND concept_name_type="FULLY_SPECIFIED";
+	   INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id27,@concept_set,1025,8,now(),uuid());
+	</sql>
+    </changeSet>
+    <changeSet id="Amman-201710311835" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="Ward Nursing Note" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'WWN, Does the patient have a drain?' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+	   SELECT concept_id INTO @concept_set from concept_name where name= 'Ward Nursing Note' AND concept_name_type="FULLY_SPECIFIED";
+	   SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'WWN, Does the patient have a drain?' AND concept_name_type="FULLY_SPECIFIED";
+	   DELETE from concept_set where concept_id=@concept_id and concept_set=@concept_set;
+	</sql>
+    </changeSet>
+    <changeSet id="Amman-201710311839" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="WWN, Drainage Set" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'WWN, Side of drain' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+	   SELECT concept_id INTO @concept_set from concept_name where name= 'WWN, Drainage Set' AND concept_name_type="FULLY_SPECIFIED";
+	   SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'WWN, Side of drain' AND concept_name_type="FULLY_SPECIFIED";
+	   DELETE from concept_set where concept_id=@concept_id and concept_set=@concept_set;
+	</sql>
+    </changeSet>
+    <changeSet id="Amman-201710311841" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="WWN, Drainage Set" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'WWN, Site of drain' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+	   SELECT concept_id INTO @concept_set from concept_name where name= 'WWN, Drainage Set' AND concept_name_type="FULLY_SPECIFIED";
+	   SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'WWN, Site of drain' AND concept_name_type="FULLY_SPECIFIED";
+	   DELETE from concept_set where concept_id=@concept_id and concept_set=@concept_set;
+	</sql>
+    </changeSet>
+    <changeSet id="Amman-201710311843" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="WWN, Drainage Set" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'WWN, Drainage' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+	   SELECT concept_id INTO @concept_set from concept_name where name= 'WWN, Drainage Set' AND concept_name_type="FULLY_SPECIFIED";
+	   SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'WWN, Drainage' AND concept_name_type="FULLY_SPECIFIED";
+	   DELETE from concept_set where concept_id=@concept_id and concept_set=@concept_set;
+	</sql>
+    </changeSet>
+    <changeSet id="Amman-201710311845" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="Ward Nursing Note" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'WWN, Change Position' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+	   SELECT concept_id INTO @concept_set from concept_name where name= 'Ward Nursing Note' AND concept_name_type="FULLY_SPECIFIED";
+	   SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'WWN, Change Position' AND concept_name_type="FULLY_SPECIFIED";
+	   DELETE from concept_set where concept_id=@concept_id and concept_set=@concept_set;
+	</sql>
+    </changeSet>
 </databaseChangeLog>
-
-
 
 
 

@@ -123,6 +123,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
+    'SMH, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['SMH, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("SMH, Site, Other")
+        }
+        else {
+            conditions.hide.push("SMH, Site, Other")
+        }
+        return conditions;
+    },
     'HE, External devices, present': function (formName, formFieldValues) {
         var conditions = {
             show: [],
@@ -709,6 +723,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
              }
              return conditions;
          },
+         'ANA, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['ANA, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("ANA, Site, Other")
+        }
+        else {
+            conditions.hide.push("ANA, Site, Other")
+        }
+        return conditions;
+    },
     'ANA, Patient mood': function (formName, formFieldValues) {
             var conditions = {
                 show: [],
@@ -751,6 +779,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
                }
               return conditions;
           },
+	  'ONN, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['ONN, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("ONN, Site, Other")
+        }
+        else {
+            conditions.hide.push("ONN, Site, Other")
+        }
+        return conditions;
+    },
     'ONN, Description of wound': function (formName, formFieldValues) {
               var conditions = {
                   show: [],
@@ -807,6 +849,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
              }
              return conditions;
          },
+         'POW, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['POW, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("POW, Site, Other")
+        }
+        else {
+            conditions.hide.push("POW, Site, Other")
+        }
+        return conditions;
+    },
     'POW, Description of wound': function (formName, formFieldValues) {
               var conditions = {
                   show: [],
@@ -849,6 +905,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
              }
              return conditions;
          },
+         'WWN, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['WWN, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("WWN, Site, Other")
+        }
+        else {
+            conditions.hide.push("WWN, Site, Other")
+        }
+        return conditions;
+    },
     'WWN, Does the patient have a drain?': function (formName, formFieldValues) {
               var conditions = {
                   show: [],
