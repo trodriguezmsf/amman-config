@@ -13,19 +13,15 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
             latest_obs.Specialty                                                               											 AS 'Speciality',
             surgeon_name.name                                             					  											         AS 'Name of Surgeon',
             CAST(DATE_FORMAT(COALESCE(nearestFutureAppointment.blockStartTime,latestPastAppointment.blockStartTime), '%Y-%m-%d') AS CHAR) AS 'Date of Surgery',
-            procedureBlock.name                                                                                                                           AS `Surgery`,
-            medications.name as 'Medications',
-            medical_issues.value_text   AS 'Medical Issues',
-            latest_obs.Dressing_Frequency AS 'Dressing Frequency',
-            recent_lab_result.value_text AS 'Recent Lab Results',
-
-
-
+            procedureBlock.name                                                                                      AS `Surgery`,
+            medications.name                                                                                         AS 'Medications',
+            medical_issues.value_text                                                                                AS 'Medical Issues',
+            latest_obs.Dressing_Frequency                                                                            AS 'Dressing Frequency',
+            recent_lab_result.value_text                                                                             AS 'Recent Lab Results',
             IF(isCaretakerRequired.required = 'true', 'Yes', '')                               											 AS 'Is Caretaker Required?',
             caretakerGender.gender                                                             											 AS 'Caretaker Gender',
-
             IF(latest_future_appointment.startdate IS NULL , DATE_FORMAT(latest_past_appointment.startdate, '%d/%m/%Y'),
-               DATE_FORMAT(latest_future_appointment.startdate, '%d/%m/%Y'))                                                              AS 'Date of Appointment',
+               DATE_FORMAT(latest_future_appointment.startdate, '%d/%m/%Y'))                                         AS 'Date of Appointment',
             IF(latest_future_appointment.startdate IS NULL,
                CONCAT(DATE_FORMAT(latest_past_appointment.startdate, '%l:%i %p'), ' - ', DATE_FORMAT(latest_past_appointment.enddate, '%l:%i %p')),
                CONCAT(DATE_FORMAT(latest_future_appointment.startdate, '%l:%i %p'), ' - ', DATE_FORMAT(latest_future_appointment.enddate, '%l:%i %p'))) AS 'Slot',
@@ -135,24 +131,24 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                             ) surgeon_name ON surgeon_name.person_id = p.person_id
 
               LEFT OUTER JOIN (
-              SELECT
-                surgical_appointment_with_stage.patient_id,
-                surgical_appointment_with_stage.stage      AS Stage,
-                DATE_FORMAT(sb.start_datetime, '%d/%m/%Y') AS 'Date of Surgery',
-                CONCAT(pn.given_name, ' ', pn.family_name) AS Surgeon,
-                surgical_appointment_procedure.value       AS 'name',
-                sa.status                                  AS `Status`,
-                l.name                                     AS OT
-              FROM surgical_block sb
-                INNER JOIN location l ON sb.location_id = l.location_id
+                              SELECT
+                                surgical_appointment_with_stage.patient_id,
+                                surgical_appointment_with_stage.stage      AS Stage,
+                                DATE_FORMAT(sb.start_datetime, '%d/%m/%Y') AS 'Date of Surgery',
+                                CONCAT(pn.given_name, ' ', pn.family_name) AS Surgeon,
+                                surgical_appointment_procedure.value       AS 'name',
+                                sa.status                                  AS `Status`,
+                                l.name                                     AS OT
+                              FROM surgical_block sb
+                              INNER JOIN location l ON sb.location_id = l.location_id
                                          AND l.retired IS FALSE
-                INNER JOIN surgical_appointment sa ON sa.surgical_block_id = sb.surgical_block_id
+                              INNER JOIN surgical_appointment sa ON sa.surgical_block_id = sb.surgical_block_id
                                                       AND sa.voided IS FALSE
-                INNER JOIN provider p ON p.provider_id = sb.primary_provider_id
+                              INNER JOIN provider p ON p.provider_id = sb.primary_provider_id
                                          AND p.retired IS FALSE
-                INNER JOIN person_name pn ON pn.person_id = p.person_id
+                              INNER JOIN person_name pn ON pn.person_id = p.person_id
                                              AND pn.voided IS FALSE
-                LEFT OUTER JOIN (
+                              LEFT OUTER JOIN (
                                   SELECT
                                     surgical_appointment_id     AS surgical_appointment_id,
                                     value                       AS value
@@ -162,16 +158,15 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                                          saa.surgical_appointment_attribute_type_id AND saat.name = 'procedure'
                                          AND saat.retired IS FALSE AND saa.voided IS FALSE
                                 ) surgical_appointment_procedure ON surgical_appointment_procedure.surgical_appointment_id = sa.surgical_appointment_id
-                LEFT OUTER JOIN
-                (
-                  SELECT
-                    sa.surgical_appointment_id          AS surgical_appointment_id,
-                    max(encounters_with_stage.stage)    AS stage,
-                    encounters_with_stage.patient_id
-
-                  FROM
-                    surgical_block sb
-                    INNER JOIN surgical_appointment sa ON sa.surgical_block_id = sb.surgical_block_id
+                    LEFT OUTER JOIN
+                                    (
+                                      SELECT
+                                        sa.surgical_appointment_id          AS surgical_appointment_id,
+                                        max(encounters_with_stage.stage)    AS stage,
+                                        encounters_with_stage.patient_id
+                                      FROM
+                                        surgical_block sb
+                                        INNER JOIN surgical_appointment sa ON sa.surgical_block_id = sb.surgical_block_id
                                                           AND sa.voided IS FALSE
                     LEFT OUTER JOIN (
                                       SELECT
@@ -316,23 +311,21 @@ VALUES ('emrapi.sqlGet.allWardsListDetails',
                                       JOIN patient_program pp ON pp.patient_id = p.patient_id AND pp.voided IS FALSE
                                       JOIN encounter e ON e.patient_id = p.patient_id AND e.voided IS FALSE
                                       JOIN orders ON orders.patient_id = pp.patient_id AND orders.encounter_id = e.encounter_id AND
-                                                     orders.voided IS FALSE AND orders.order_action != "DISCONTINUE"
-                                      LEFT JOIN obs ON obs.order_id = orders.order_id AND obs.voided IS FALSE AND obs.concept_id = (SELECT concept_id FROM concept_name WHERE name = "Dispensed" )
+                                                     orders.voided IS FALSE AND orders.order_action != 'DISCONTINUE'
+                                      LEFT JOIN obs ON obs.order_id = orders.order_id AND obs.voided IS FALSE AND obs.concept_id = (SELECT concept_id FROM concept_name WHERE name = 'Dispensed' )
                                       LEFT JOIN orders stopped_order ON stopped_order.patient_id = pp.patient_id AND stopped_order.voided = 0 AND
-                                                                        stopped_order.order_action = "DISCONTINUE" AND
+                                                                        stopped_order.order_action = 'DISCONTINUE' AND
                                                                         stopped_order.previous_order_id = orders.order_id
                                       JOIN concept c on c.concept_id = orders.concept_id AND c.retired IS FALSE
                                       LEFT JOIN drug_order drug_order ON drug_order.order_id = orders.order_id
-                                      LEFT JOIN concept_name durationUnitscn ON durationUnitscn.concept_id = drug_order.duration_units AND durationUnitscn.concept_name_type = "FULLY_SPECIFIED" AND durationUnitscn.voided = 0
+                                      LEFT JOIN concept_name durationUnitscn ON durationUnitscn.concept_id = drug_order.duration_units AND durationUnitscn.concept_name_type = 'FULLY_SPECIFIED' AND durationUnitscn.voided = 0
                                       LEFT JOIN drug ON drug.concept_id = orders.concept_id
                                       LEFT JOIN concept_reference_term_map_view drug_code ON drug_code.concept_id = drug.concept_id and drug_code.concept_reference_source_name='MSF-INTERNAL' and drug_code.concept_map_type_name= 'SAME-AS'
                                   ) o
                                 GROUP BY o.patient_id
 
-              ) medications ON medications.patient_id = p.person_id
-
-
-                LEFT OUTER JOIN (
+                  ) medications ON medications.patient_id = p.person_id
+            LEFT OUTER JOIN (
                                     SELECT
                                         patappoint.patient_id,
                                         patappoint.start_date_time                 AS startdate,
