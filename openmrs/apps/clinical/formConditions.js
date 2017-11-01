@@ -1363,7 +1363,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
               }
               return conditions;
          },
-     'SFP, Is patient for surgery': function (formName, formFieldValues) {
+         'SFP, Is patient for surgery': function (formName, formFieldValues) {
          var conditions = {
              show: [],
              hide: []
@@ -1371,18 +1371,41 @@ Bahmni.ConceptSet.FormConditions.rules = {
          var conditionConcept = formFieldValues['SFP, Is patient for surgery'];
          if (conditionConcept == "Yes"){
              conditions.show.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary")
-             conditions.hide.push("SFP, Follow-up consultation notes");
+             conditions.hide.push("SFP, Follow-up consultation notes", "SFP, Is patient ready to be discharged (TRM)?");
          }
-         else if(conditionConcept=="No" || conditionConcept=="No Surgery Planned"){
+         else if(conditionConcept=="No"){
              conditions.show.push("SFP, Follow-up consultation notes");
-             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary")
+             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary", "SFP, Is patient ready to be discharged (TRM)?")
+        }
+        else if(conditionConcept=="No Surgery Planned"){
+             conditions.show.push("SFP, Is patient ready to be discharged (TRM)?");
+             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary", "SFP, Follow-up consultation notes")
         }
          else {
-             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary","SFP, Follow-up consultation notes")
+             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary","SFP, Follow-up consultation notes", "SFP, Is patient ready to be discharged (TRM)?")
          }
          return conditions;
      },
-    'SAP, Associated neural injury': function (formName, formFieldValues) {
+     'SFP, Is patient ready to be discharged (TRM)?': function (formName, formFieldValues) {
+         var conditions = {
+             show: [],
+             hide: []
+         };
+         var conditionConcept = formFieldValues['SFP, Is patient ready to be discharged (TRM)?'];
+         if (conditionConcept == "Yes"){
+             conditions.show.push("SFP, Has patient been informed about TRM", "SFP, Follow-up plan", "FP, Follow-up needs")
+             conditions.hide.push("SFP, Consultation notes");
+         }
+         else if(conditionConcept=="No"){
+             conditions.show.push("SFP, Consultation notes");
+             conditions.hide.push("SFP, Has patient been informed about TRM", "SFP, Follow-up plan", "FP, Follow-up needs")
+	 }
+	 else {
+	     conditions.hide.push("SFP, Has patient been informed about TRM", "SFP, Follow-up plan", "FP, Follow-up needs", "SFP, Consultation notes")
+	 }
+	 return conditions;
+     },
+     'SAP, Associated neural injury': function (formName, formFieldValues) {
               var conditions = {
                   show: [],
                   hide: []

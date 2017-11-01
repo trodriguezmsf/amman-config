@@ -5100,6 +5100,29 @@
             INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id15,@concept_set1,1016,8,now(),uuid());        
     	</sql>
     </changeSet>
+    <changeSet id="Amman-201710301645" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id = (select concept_id from concept_name where name ="SFP, Date recorded" and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'Surgeon Follow-up' AND concept_name_type="FULLY_SPECIFIED");;
+        </sqlCheck>
+        </preConditions>
+        <comment>Adding concept into concept_set </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set from concept_name where name= 'Surgeon Follow-up' AND concept_name_type="FULLY_SPECIFIED";
+	    SELECT concept_id INTO @concept_id17 FROM concept_name WHERE name = 'SFP, Date recorded' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id17,@concept_set,995,8,now(),uuid());
+	    SELECT concept_id INTO @concept_id18 FROM concept_name WHERE name = 'SFP, Is patient ready to be discharged (TRM)?' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id18,@concept_set,1060,8,now(),uuid());
+	    SELECT concept_id INTO @concept_id19 FROM concept_name WHERE name = 'SFP, Has patient been informed about TRM' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id19,@concept_set,1065,8,now(),uuid());
+	    SELECT concept_id INTO @concept_id20 FROM concept_name WHERE name = 'SFP, Follow-up plan' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id20,@concept_set,1070,8,now(),uuid());
+	    SELECT concept_id INTO @concept_id21 FROM concept_name WHERE name = 'FP, Follow-up needs' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id21,@concept_set,1075,8,now(),uuid());
+	    SELECT concept_id INTO @concept_id22 FROM concept_name WHERE name = 'SFP, Consultation notes' AND concept_name_type="FULLY_SPECIFIED";
+	    INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id22,@concept_set,1085,8,now(),uuid());
+    </sql>
+    </changeSet> 
     <changeSet id="Amman-30102017150800" author="Shireesha, Maharjun" context="rel3.4" runOnChange="true">
         <comment>Adding patient listing queues for patients with date of presentation and  outcome as need more information or complementary investigation</comment>
         <sqlFile path="programs/moreInformationQueue.sql"/>

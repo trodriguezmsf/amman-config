@@ -541,6 +541,36 @@
             "autocomplete":true,
             "multiSelect":true
           },
+	  "SFP, Follow-up needs":{
+            "isTabular": true
+          },
+	  "SFP, X-ray of:":{
+	    "conciseText": true
+          },
+	  "SFP, Video of:":{
+	    "conciseText": true
+          },
+	  "SFP, Photo of:":{
+	    "conciseText": true
+          },
+	  "SFP,  X-ray at:":{
+            "disableAddNotes": true,
+	    "autocomplete": true
+          },
+          "SFP,  Video after:":{
+            "disableAddNotes": true,
+	    "autocomplete": true  
+          },
+          "SFP,  Photo after:":{
+            "disableAddNotes": true,
+	    "autocomplete": true	      
+          },
+	  "SFP, Notes, other":{
+            "conciseText": true
+          },
+	  "SFP,  MLO visit at:":{
+	    "autocomplete": true              
+          },
           "OMF, Chief complaint":{
             "multiSelect":true
           },
