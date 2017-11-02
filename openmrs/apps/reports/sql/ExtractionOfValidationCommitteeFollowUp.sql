@@ -11,7 +11,7 @@ SELECT
   `Status of Official ID Documents`,
   DATE_FORMAT(`Date of presentation`, "%d/%m/%Y") AS 'Date of presentation',
   `Outcomes for follow-up surgical validation`,
-  `Time for next medical follow-up to be done`,
+  DATE_FORMAT(`Date of next medical follow-up`, "%d/%m/%Y") AS 'Date of next medical follow-up',
   `Comments about next follow-up`,
   `Comments about MBA`,
   `Dismissal reason`,
@@ -19,8 +19,7 @@ SELECT
   `Reason for further stage admission`,
   `Priority`,
   `Does the Patient need Surgical Final Validation?`,
-  `Comments about further stage admission`,
-  `Expected Date of Arrival`
+  `Comments about further stage admission`
 FROM (SELECT
         pi.identifier AS "Patient Identifier",
         concat(pn.given_name, " ", pn.family_name) AS "Patient Name",
@@ -32,10 +31,9 @@ FROM (SELECT
         `Specialty`,
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'Stage' AND latest_encounter.person_id IS NOT NULL, o.value_numeric, NULL)) ORDER BY o.obs_id DESC) AS 'Stage',
         GROUP_CONCAT(DISTINCT(IF(pat.name = 'statusofOfficialIDdocuments', coalesce(scn.name, fscn.name), NULL))) AS 'Status of Official ID Documents',
-        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FV, Expected Date of Arrival' AND latest_encounter.person_id IS NOT NULL, DATE_FORMAT(o.value_datetime, "%m/%Y"), NULL)) ORDER BY o.obs_id DESC) AS 'Expected Date of Arrival',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Date of presentation at Followup' AND latest_encounter.person_id IS NOT NULL, o.value_datetime, NULL)) ORDER BY o.obs_id DESC) AS 'Date of presentation',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Outcomes for follow-up surgical validation' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Outcomes for follow-up surgical validation',
-        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Time for next medical follow-up to be done' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC)                    AS 'Time for next medical follow-up to be done',
+        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Date of next medical follow-up' AND latest_encounter.person_id IS NOT NULL, o.value_datetime, NULL)) ORDER BY o.obs_id DESC)                    AS 'Date of next medical follow-up',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Comments about next follow-up' AND latest_encounter.person_id IS NOT NULL, o.value_text, NULL)) ORDER BY o.obs_id DESC) AS 'Comments about next follow-up',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Comments about MBA' AND latest_encounter.person_id IS NOT NULL, o.value_text, NULL)) ORDER BY o.obs_id DESC) AS 'Comments about MBA',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Dismissal reason' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Dismissal reason',
@@ -61,7 +59,7 @@ FROM (SELECT
              obs_fscn.name IN ('Stage',
                'FUP, Date of presentation at Followup',
                'FUP, Outcomes for follow-up surgical validation',
-               'FUP, Time for next medical follow-up to be done',
+               'FUP, Date of next medical follow-up',
                'FUP, Comments about next follow-up',
                'FUP, Comments about MBA',
                'FUP, Dismissal reason',
@@ -69,7 +67,6 @@ FROM (SELECT
                'FUP, Reason for re-admission',
                'FUP, Priority',
                'FUP, Comments about further stage admission',
-                               'FV, Expected Date of Arrival',
                                'FUP, Does the Patient need Surgical Final Validation')
              AND obs_fscn.voided IS FALSE
         JOIN concept_name obs_scn ON o.concept_id = obs_scn.concept_id AND obs_scn.concept_name_type = "SHORT" AND obs_scn.voided IS FALSE
