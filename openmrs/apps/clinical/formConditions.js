@@ -1303,7 +1303,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['SFP, Early Follow-up'];
-        if (conditionConcept == "Paritial achievement of objectives without complications"){
+        if (conditionConcept == "Partial achievement of objectives without complications"){
             conditions.show.push("SFP, Partial achievement of objective")
             conditions.hide.push("SFP, Type of complication","SFP, Impact of complication")
         }
