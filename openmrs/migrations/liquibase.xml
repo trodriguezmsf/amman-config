@@ -5412,6 +5412,18 @@
             Insert into location_tag_map(location_id,location_tag_id) values (@location_ID5,@location_TAG);
         </sql>
     </changeSet>
+    <changeSet id="Amman-201711021635" author="Mohit Dhamdhere" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="Ward Nursing Note" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'WWN, Drainage Set' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+	   SELECT concept_id INTO @concept_set from concept_name where name= 'Ward Nursing Note' AND concept_name_type="FULLY_SPECIFIED";
+	   SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'WWN, Drainage Set' AND concept_name_type="FULLY_SPECIFIED";
+	   DELETE from concept_set where concept_id=@concept_id and concept_set=@concept_set;
+	</sql>
+    </changeSet>
 </databaseChangeLog>
 
 
