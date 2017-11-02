@@ -101,7 +101,8 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
             if (scoreDetails.getAnsweredQuestions() == 0) {
                 return ZERO
             }
-            double score = scoreDetails.areAllQuestionsAnswered() ? scoreDetails.getScore() * 1.25 : (scoreDetails.getScore() + scoreDetails.getScore() / scoreDetails.getAnsweredQuestions()) * 1.25;
+//            double score = scoreDetails.areAllQuestionsAnswered() ? scoreDetails.getScore() * 1.25 : (scoreDetails.getScore() + scoreDetails.getScore() / scoreDetails.getAnsweredQuestions()) * 1.25;
+              double score = scoreDetails.areAllQuestionsAnswered() ? scoreDetails.getScore() * 1.25 : (scoreDetails.getScore()  / (4 * scoreDetails.getAnsweredQuestions())) * 100;
             String value = "" + roundOffToTwoDecimalPlaces(score);
             return value
         }
@@ -257,7 +258,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         Formula averageFormula = new AverageFormula()
         Section lowerLimbExtremityFunction = new Section(
                 defaultScoreCalculation,
-                extremityFunctionFormula,
+                defaultScoreFormula,
                 find("LLA, Lower Extremity Functional Index (LEFI)", observations, null),
                 "LLA LEFI, Total Score")
         Section lowerLimbPediatricExtremityFunction = new Section(
