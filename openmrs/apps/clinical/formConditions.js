@@ -288,10 +288,9 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['PHIA, Is the patient coming with a prostheses?'];
         if (conditionConcept == "Yes"){
             conditions.show.push("PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification")
-            conditions.hide.push("PHIA, Comment about new prosthesis or modification")
         }
         else {
-            conditions.hide.push("PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification","PHIA, Comment about new prosthesis or modification")
+            conditions.hide.push("PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification")
         }
         return conditions;
     },
