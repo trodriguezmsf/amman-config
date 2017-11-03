@@ -5439,7 +5439,7 @@
     <changeSet id="Amman-201711031225" author="Shiva Kumar" context="rel3.4" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
-                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='All Observation Templates' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='Nursing Needs - Ward' and concept_name_type = "FULLY_SPECIFIED");
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='All Observation Templates' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='OPD MD Follow-Up Note' and concept_name_type = "FULLY_SPECIFIED");
             </sqlCheck>
         </preConditions>
         <comment>Deleting Nurising need form from all observation template </comment>
