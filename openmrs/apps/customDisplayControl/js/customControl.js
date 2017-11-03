@@ -175,7 +175,7 @@ angular.module('bahmni.common.displaycontrol.custom')
             var encounters = response.data;
             $scope.encounterLocationInfo = sortEncounterByEncounterDateTime(encounters);
             var firstThreeEncounters = _.take($scope.encounterLocationInfo, 3);
-            _.each(firstThreeEncounters, function(encounter) {
+            _.each(firstThreeEncounters, function (encounter) {
                 encounter.isOpen = true
             });
             if ($scope.encounterLocationInfo.length <= 0) {
@@ -265,7 +265,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         controller: controller,
         template: '<ng-include src="contentUrl"/>'
     }
-}]).directive('patientAppointmentsDashboard', ['$http', '$q', '$window','appService', function ($http, $q, $window, appService) {
+}]).directive('patientAppointmentsDashboard', ['$http', '$q', '$window', 'appService', function ($http, $q, $window, appService) {
     var link = function ($scope) {
         $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/patientAppointmentsDashboard.html";
         var getUpcomingAppointments = function () {
@@ -301,6 +301,94 @@ angular.module('bahmni.common.displaycontrol.custom')
 
         $scope.goToListView = function () {
             $window.open('/bahmni/appointments/#/home/manage/appointments/list');
+        };
+    };
+    return {
+        restrict: 'E',
+        link: link,
+        scope: {
+            patient: "=",
+            section: "="
+        },
+        template: '<ng-include src="contentUrl"/>'
+    };
+}]).directive('microbiologyLabResults', ['$http', '$q', '$window', 'appService', 'bacteriologyTabInitialization', 'bacteriologyResultsService', function ($http, $q, $window, appService, bacteriologyTabInitialization, bacteriologyResultsService) {
+    var link = function ($scope) {
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/bacteriologyResultsControl.html";
+        var params = {
+            patientUuid: $scope.patient.uuid,
+            patientProgramUuid: $scope.enrollment
+        };
+
+        bacteriologyTabInitialization().then(function (data) {
+            $scope.bacteriologyTabData = data;
+            bacteriologyResultsService.getBacteriologyResults(params).then(function (response) {
+                handleResponse(response);
+            });
+        });
+
+        $scope.getDisplayName = function (specimen) {
+            var type = specimen.type;
+            var displayName = type.shortName ? type.shortName : type.name;
+            if (displayName === Bahmni.Clinical.Constants.bacteriologyConstants.otherSampleType) {
+                displayName = specimen.typeFreeText;
+            }
+            return displayName;
+        };
+
+        $scope.getFinalIdentificationSections = function (specimen) {
+            return _.filter(specimen.sampleResult.groupMembers, function (groupMember) {
+                return groupMember.concept.name === 'Bacteriology, Final Identification';
+            });
+        };
+
+        $scope.isAntibiogram = function (observation) {
+            var antiBiograms = { "Resistant": "R","Intermediate": "I", "Susceptible": "S", "Positive": "+ve" , "Negative": "-ve" } ;
+            return _.indexOf(Object.keys(antiBiograms), observation.value.name) >= 0 && antiBiograms[observation.value.name];
+        };
+
+        $scope.getColor = function (observation) {
+            var colors = {"Resistant": "#FF0000", "Intermediate": "#000000", "Susceptible": "#008000", "Positive": "#008000" , "Negative": "#FF0000"};
+            return colors[observation.value.name];
+        };
+
+        $scope.isAlert = function (observation) {
+            var alerts = ['Microbiology, Are there any alerts?', 'Microbiology, Alerts Set'];
+            return alerts.indexOf(observation.concept.name) >= 0;
+        };
+
+        var handleResponse = function (response) {
+            $scope.observations = response.data.results;
+            if ($scope.observations && $scope.observations.length > 0) {
+                $scope.specimens = [];
+                var sampleSource = _.find($scope.bacteriologyTabData.setMembers, function (member) {
+                    return member.name.name === Bahmni.Clinical.Constants.bacteriologyConstants.specimenSampleSourceConceptName;
+                });
+                $scope.allSamples = sampleSource !== undefined && _.map(sampleSource.answers, function (answer) {
+                    return new Bahmni.Common.Domain.ConceptMapper().map(answer);
+                });
+                var specimenMapper = new Bahmni.Clinical.SpecimenMapper();
+                var conceptsConfig = appService.getAppDescriptor().getConfigValue("conceptSetUI") || {};
+                var dontSortByObsDateTime = true;
+                _.forEach($scope.observations, function (observation) {
+                    $scope.specimens.push(specimenMapper.mapObservationToSpecimen(observation, $scope.allSamples, conceptsConfig, dontSortByObsDateTime));
+                });
+
+                $scope.specimens = _.filter($scope.specimens, function (specimen) {
+                    return _.isEmpty(specimen.sampleResult) || !_.find(specimen.sampleResult.groupMembers, function (member) {
+                        return member.value && member.value.name === 'Answer, Intermediate Identification';
+                    });
+                });
+            } else {
+                $scope.specimens = [];
+            }
+
+            $scope.isDataPresent = function () {
+                if (!$scope.specimens || !$scope.specimens.length) {
+                    return $scope.$emit("no-data-present-event") && false;
+                }
+                return true;
+            };
         };
     };
     return {

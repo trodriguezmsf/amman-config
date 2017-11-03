@@ -185,7 +185,7 @@
                 }
             },
           "bacteriologyResults": {
-            "translationKey": "DASHBOARD_TITLE_MIRCOBIOLOGY_LAB_RESULTS_KEY",
+            "translationKey": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
             "type": "bacteriologyResultsControl",
             "scope": "All",
             "orderType": "",
@@ -749,6 +749,15 @@
         "config": {
           "title": "DASHBOARD_TITLE_APPOINTMENTS_KEY",
           "template": "<patient-appointments-dashboard section='config' patient='patient'></patient-appointments-dashboard>"
+        }
+      },
+      "bacteriology": {
+        "type": "custom",
+        "displayOrder": 22,
+        "displayType": "Full-Page",
+        "config": {
+          "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
+          "template": "<microbiology-lab-results section='config' patient='patient' enrollment='enrollment'></microbiology-lab-results>"
         }
       }
     }
