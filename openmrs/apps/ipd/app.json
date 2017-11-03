@@ -129,36 +129,11 @@
                     "numberOfVisits": 6,
                     "displayOrder": 4
                 },
-                "diagnoses": {
-                    "translationKey": "DASHBOARD_DIAGNOSES_KEY",
-                    "type": "vitals",
-                    "isObservation": true,
-                    "displayOrder": 5,
-                    "dashboardConfig": {
-                        "showDetailsButton": true,
-                        "isEditable": true,
-                        "conceptNames": [
-                            "OBS, Surgical Diagnoses",
-                            "OBS, Medical Diagnoses"
-                        ],
-                        "showGroupDateTime": true
-                    },
-                    "expandedViewConfig": {
-                        "conceptNames": [
-                            "OBS, Surgical Diagnoses",
-                            "OBS, Medical Diagnoses"
-                        ],
-                        "isEditable": true,
-                        "numberOfVisits": 3,
-                        "showDetailsButton": true,
-                        "pivotTable": {}
-                    }
-                },
                 "nursingnote": {
                     "translationKey": "DASHBOARD_TITLE_WARD_NURSING_NOTE_KEY",
                     "type": "vitals",
                     "isObservation": true,
-                    "displayOrder": 9,
+                    "displayOrder": 8,
                     "dashboardConfig": {
                         "showDetailsButton": true,
                         "isEditable": true,
@@ -181,7 +156,7 @@
                     "translationKey": "DASHBOARD_POST_OPERATIVE_MONITORING_KEY",
                     "type": "vitals",
                     "isObservation": true,
-                    "displayOrder": 10,
+                    "displayOrder": 9,
                     "dashboardConfig": {
                         "showDetailsButton": true,
                         "isEditable": true,
@@ -204,7 +179,7 @@
                     "translationKey": "DASHBOARD_SURGICAL_WARD_ADMISSION_NURSING_ASSESSMENT_KEY",
                     "type": "vitals",
                     "isObservation": true,
-                    "displayOrder": 11,
+                    "displayOrder": 10,
                     "dashboardConfig": {
                         "showDetailsButton": true,
                         "isEditable": true,
@@ -227,7 +202,7 @@
                     "translationKey": "DASHBOARD_PHYSICIAN_PROGRESS_NOTE_KEY",
                     "type": "vitals",
                     "isObservation": true,
-                    "displayOrder": 12,
+                    "displayOrder": 11,
                     "dashboardConfig": {
                         "showDetailsButton": true,
                         "isEditable": true,
@@ -249,7 +224,7 @@
                     "translationKey": "DASHBOARD_COMPLICATIONS_KEY",
                     "type": "vitals",
                     "isObservation": true,
-                    "displayOrder": 13,
+                    "displayOrder": 12,
                     "dashboardConfig": {
                         "showDetailsButton": true,
                         "isEditable": true,
@@ -294,7 +269,7 @@
                     "translationKey": "DASHBOARD_CONSULTATION_NOTE_KEY",
                     "type": "vitals",
                     "isObservation": true,
-                    "displayOrder": 15,
+                    "displayOrder": 13,
                     "dashboardConfig": {
                         "showDetailsButton": true,
                         "isEditable": true,
