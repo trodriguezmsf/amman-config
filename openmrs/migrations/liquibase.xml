@@ -5158,7 +5158,7 @@
     <changeSet id="Amman-201710301620" author="Mahesh" context="rel3.4">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'CC, Patient complication' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="Surgical Site Infection");
+                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name = 'CC, Patient complication' AND concept_name_type="FULLY_SPECIFIED") AND answer_concept=(SELECT concept_id FROM concept_name WHERE name ="Surgical Site Infection");
             </sqlCheck>
         </preConditions>
         <comment>Adding new answer concept to list of complications </comment>
@@ -5171,7 +5171,7 @@
     <changeSet id="Amman-201710301638" author="Mahesh" context="rel3.4">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name = 'DIA, Surgical Diagnosis coded' AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="United bone fracture");
+                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name = 'DIA, Surgical Diagnosis coded' AND concept_name_type="FULLY_SPECIFIED") AND answer_concept=(SELECT concept_id FROM concept_name WHERE name ="United bone fracture");
             </sqlCheck>
         </preConditions>
         <comment>Adding new answer concept to list of Surgical Diagnosis </comment>
