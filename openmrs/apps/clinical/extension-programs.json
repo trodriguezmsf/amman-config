@@ -144,6 +144,20 @@
     "order": 10,
     "requiredPrivilege": "app:clinical"
   },
+  "bahmniClinicalPatientsSearchTrmPatientQueue": {
+    "id": "bahmni.clinical.patients.search.trmPatientsQueue",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "searchHandler": "emrapi.sqlSearch.trmPatients",
+      "translationKey": "MODULE_LABEL_TRM_PATIENT_KEY",
+      "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
+      "view": "tabular",
+      "searchColumns": ["Date of Arrival", "Identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Is Caretaker Required?", "Name of Surgeon", "Bed allocation", "Surgeon TRM", "Physio TRM", "OPD Doctor TRM" ]
+    },
+    "order": 11,
+    "requiredPrivilege": "app:clinical"
+  },
   "bahmniClinicalPatientsSearchAllPatients": {
     "id": "bahmni.clinical.patients.search.allPatients",
     "extensionPointId": "org.bahmni.patient.search",
@@ -153,7 +167,7 @@
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext"
     },
     "label": "All",
-    "order": 11,
+    "order": 12,
     "requiredPrivilege": "app:clinical"
   },
   "observations": {

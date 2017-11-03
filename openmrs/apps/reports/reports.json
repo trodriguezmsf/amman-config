@@ -90,5 +90,12 @@
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/hosptialRSP.sql"
     }
+  },
+  "customReport14": {
+    "name": "TRM Patients",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/trmPatients.sql"
+    }
   }
 }
