@@ -752,5 +752,105 @@
         }
       }
     }
+  },
+  "Physio Dashboard": {
+    "translationKey": "DASHBOARD_TAB_PHYSIO_DASHBOARD_KEY",
+    "displayByDefault": true,
+    "maxRecentlyViewedPatients": 10,
+    "sections": {
+      "Patient Information":{
+        "translationKey": "DASHBOARD_PATIENT_INFORMATION",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 0,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "FV, Name (s) of Surgeon 1",
+            "Stage",
+            "FSTG, Specialty determined by MLO"
+          ],
+          "scope": "latest",
+          "showGroupDateTime": false
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "FV, Name (s) of Surgeon 1",
+            "Stage",
+            "FSTG, Specialty determined by MLO"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Medical History":{
+        "translationKey": "DASHBOARD_TITLE_PATIENT_MEDICAL_HISTORY",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 2,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "MH, Date of injury",
+            "MH, Cause of injury",
+            "MD, Reason for admission to program",
+            "OBS, Surgical Diagnoses"
+          ],
+          "scope": "latest",
+          "showGroupDateTime": false
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "MH, Date of injury",
+            "MH, Cause of injury",
+            "MD, Reason for admission to program",
+            "OBS, Surgical Diagnoses"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        },
+        "hideEmptyDisplayControl": true
+      },
+      "Operative Course in Amman": {
+        "type": "custom",
+        "displayOrder": 1,
+        "config": {
+          "title": "DASHBOARD_TITLE_OPERATIVE_COURSE_IN_AMMAN_KEY",
+          "template": "<surgical-history section='section' patient='patient'></surgical-history>"
+        }
+      },
+      "Physio Forms":{
+        "translationKey": "DASHBOARD_TITLE_PHYSIO_FORMS",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 10,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "Lower Limb Physiotherapy Assessment",
+            "Upper Limb Physiotherapy Assessment",
+            "Maxillofacial Physio Assessment"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Lower Limb Physiotherapy Assessment",
+            "Upper Limb Physiotherapy Assessment",
+            "Maxillofacial Physio Assessment"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      }
+    }
   }
 }
