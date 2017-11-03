@@ -2457,12 +2457,12 @@
             VALUES('circulatingNurse', 'Circulating Nurse', 'java.lang.String' ,'9', 8, NOW(), UUID());
         </sql>
     </changeSet>
-        <changeSet id="Amman-201705221512" author="Shiva kumar" context="rel3.1">
-            <comment>Adding DIA, Surgical Diagnosis coded into DIA, Surgical Diagnosis coded concept_answers </comment>
-            <sql>
-                update concept_name set name ="PHIA, Physical Functional Score (FDI)" where name ="PHIA, Functional evaluation of mouth" and concept_name_type ="FULLY_SPECIFIED";
-                update concept_name set name ="Physical Functional Score (FDI)" where name = "Functional evaluation of mouth" and concept_name_type="SHORT";
-            </sql>
+    <changeSet id="Amman-201705221512" author="Shiva kumar" context="rel3.1">
+        <comment>Adding DIA, Surgical Diagnosis coded into DIA, Surgical Diagnosis coded concept_answers </comment>
+        <sql>
+            update concept_name set name ="PHIA, Physical Functional Score (FDI)" where name ="PHIA, Functional evaluation of mouth" and concept_name_type ="FULLY_SPECIFIED";
+            update concept_name set name ="Physical Functional Score (FDI)" where name = "Functional evaluation of mouth" and concept_name_type="SHORT";
+        </sql>
     </changeSet>
     <changeSet id="Amman-201705221523" author="Shiva kumar" context="rel3.1" runOnChange="true" >
         <preConditions onFail="MARK_RAN">
