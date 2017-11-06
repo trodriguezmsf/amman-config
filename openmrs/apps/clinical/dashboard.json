@@ -774,6 +774,7 @@
         "displayOrder": 0,
         "dashboardConfig": {
           "showDetailsButton": true,
+	  "persistOrderOfConcepts": true,
           "isEditable": true,
           "conceptNames": [
             "FV, Name (s) of Surgeon 1",
@@ -802,6 +803,7 @@
         "displayOrder": 2,
         "dashboardConfig": {
           "showDetailsButton": true,
+	  "persistOrderOfConcepts": true,
           "isEditable": true,
           "conceptNames": [
             "MH, Date of injury",
