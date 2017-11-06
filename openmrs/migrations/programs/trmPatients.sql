@@ -2,14 +2,13 @@
  select uuid() into @uuid;
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.trmPatients',
-"
-SELECT
-  dateOfArrival.dateOfArrival                                AS 'Date of Arrival',
-  pi.identifier                                              AS 'Identifier',
+"SELECT
+  dateOfArrival.dateOfArrival                                AS `Date of Arrival`,
+  pi.identifier                                              AS `Identifier`,
   concat(pn.given_name, ' ', pn.family_name)                 AS PATIENT_LISTING_QUEUES_HEADER_NAME,
-  floor(DATEDIFF(CURDATE(), p.birthdate) / 365)              AS 'Age',
+  floor(DATEDIFF(CURDATE(), p.birthdate) / 365)              AS `Age`,
   paddr.address3                                             AS `Country`,
-  careTakerRequired.isCareTakerRequired                      AS 'Is Caretaker Required?',
+  careTakerRequired.isCareTakerRequired                      AS `Is Caretaker Required?`,
   sn.surgeonName                                             AS `Name of Surgeon`,
   `Bed allocation`,
   DATE_FORMAT(surgeonTRM.value_datetime, '%d/%m/%Y')         AS `Surgeon TRM`,
@@ -165,7 +164,7 @@ FROM person p
                       JOIN concept_name drConcept
                         ON drConcept.name IN ('LLA, DATE recorded', 'ULA, DATE recorded', 'MPA, DATE recorded') AND
                            drConcept.concept_id = daterecorded.concept_id
-                      GROUP BY o.person_id
+                    GROUP BY o.person_id
                   ) physioTRM ON physioTRM.person_id = p.person_id
   LEFT OUTER JOIN (
                     SELECT
@@ -193,5 +192,4 @@ FROM person p
                       JOIN concept_name drConcept
                         ON drConcept.name = 'MDOF, DATE recorded' AND drConcept.concept_id = daterecorded.concept_id
                     GROUP BY o.person_id
-                  ) reasonForVisitDate ON reasonForVisitDate.person_id = p.person_id;
-",'Patients under trm patients queue',@uuid);
+                  ) reasonForVisitDate ON reasonForVisitDate.person_id = p.person_id;",'Patients under trm patients queue',@uuid);
