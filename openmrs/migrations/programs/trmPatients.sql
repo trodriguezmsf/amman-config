@@ -4,7 +4,7 @@
  VALUES ('emrapi.sqlSearch.trmPatients',
 "SELECT
   dateOfArrival.dateOfArrival                                AS `Date of Arrival`,
-  pi.identifier                                              AS `Identifier`,
+  pi.identifier                                              AS `identifier`,
   concat(pn.given_name, ' ', pn.family_name)                 AS PATIENT_LISTING_QUEUES_HEADER_NAME,
   floor(DATEDIFF(CURDATE(), p.birthdate) / 365)              AS `Age`,
   paddr.address3                                             AS `Country`,
