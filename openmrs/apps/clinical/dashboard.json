@@ -779,15 +779,6 @@
           "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
           "template": "<microbiology-lab-results section='config' patient='patient' enrollment='enrollment'></microbiology-lab-results>"
         }
-      },
-      "bacteriology": {
-        "type": "custom",
-        "displayOrder": 22,
-        "displayType": "Full-Page",
-        "config": {
-          "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
-          "template": "<microbiology-lab-results section='config' patient='patient' enrollment='enrollment'></microbiology-lab-results>"
-        }
       }
     }
   },
