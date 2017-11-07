@@ -147,7 +147,7 @@
                             "Ward Nursing Note"
                         ],
                         "isEditable": true,
-                        "numberOfVisits": 10,
+                        "numberOfVisits": 3,
                         "showDetailsButton": true,
                         "pivotTable": {}
                     }
@@ -170,7 +170,7 @@
                             "Post-Op Ward Monitoring"
                         ],
                         "isEditable": true,
-                        "numberOfVisits": 10,
+                        "numberOfVisits": 3,
                         "showDetailsButton": true,
                         "pivotTable": {}
                     }
@@ -193,7 +193,7 @@
                             "Surgical Ward Admission Nursing Assessment"
                         ],
                         "isEditable": true,
-                        "numberOfVisits": 10,
+                        "numberOfVisits": 3,
                         "showDetailsButton": true,
                         "pivotTable": {}
                     }
@@ -260,7 +260,7 @@
                             "Observation Sheet"
                         ],
                         "isEditable": true,
-                        "numberOfVisits": 10,
+                        "numberOfVisits": 3,
                         "showDetailsButton": true,
                         "pivotTable": {}
                     }
@@ -283,7 +283,6 @@
                             "Consultation Note"
                         ],
                         "isEditable": true,
-                        "numberOfVisits": 10,
                         "showDetailsButton": true,
                         "pivotTable": {}
                     }
