@@ -289,21 +289,27 @@
     "displayByDefault": true,
     "maxRecentlyViewedPatients": 10,
     "sections": {
-      "Vital Signs":{
-        "translationKey": "DASHBOARD_TITLE_VITAL_SIGNS",
+      "Patient Information":{
+        "translationKey": "DASHBOARD_PATIENT_INFORMATION",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 1,
+        "displayOrder": 0,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Vital Signs"
-          ]
+            "FV, Name (s) of Surgeon 1",
+            "Stage",
+            "FSTG, Specialty determined by MLO"
+          ],
+          "scope": "latest",
+          "showGroupDateTime": false
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "Vital Signs"
+            "FV, Name (s) of Surgeon 1",
+            "Stage",
+            "FSTG, Specialty determined by MLO"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -311,32 +317,155 @@
           "pivotTable": {}
         }
       },
-      "treatments":{
-        "translationKey":"DASHBOARD_TITLE_MEDICATION_KEY",
-        "type":"treatment",
-        "displayOrder":2,
-        "dashboardConfig":{
-          "showFlowSheet":true,
-          "showListView":true,
-          "showRoute":true,
-          "showDrugForm":true,
-          "numberOfVisits":5,
-          "showOtherActive":true,
-          "showDetailsButton":true
+      "Medical History":{
+        "translationKey": "DASHBOARD_TITLE_PATIENT_MEDICAL_HISTORY",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 1,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "persistOrderOfConcepts": true,
+          "isEditable": true,
+          "conceptNames": [
+            "MH, Date of injury",
+            "MH, Cause of injury",
+            "MD, Reason for admission to program",
+            "MD, History of Allergy",
+            "MD, Comments about allergy",
+            "AIA, Is the patient allergic to any drugs / medications ?",
+            "AIA, Type of medication allergy",
+            "MD, History of present illness",
+            "MD, Medical History",
+            "MD, Other medical problems",
+            "AIA, Past medical history",
+            "AIA, Past medical history, other",
+            "AIA, Adverse reaction to anaesthesia",
+            "AIA, Comments about adverse reaction",
+            "AIA, Did an incident occur during previous blood transfusion",
+            "AIA, Describe",
+            "MD, History of previous surgery",
+            "MD, Surgical Procedures Outside AMH",
+            "MD, Type of previous fixation",
+            "MD, Type of internal fixation",
+            "MD, Duration of External fixation",
+            "MD, Other type of fixation",
+            "MD, HIstory of infection",
+            "MD, Comments about previous infection",
+            "MD, Discharging sinus",
+            "MD, Duration of discharging sinus",
+            "MD, Bone Loss",
+            "MD, Cm of bone loss",
+            "MD, United fracture",
+            "MD, Shortening",
+            "MD, Cm of shortening",
+            "MD, Medication"
+          ],
+          "obsIgnoreList":[
+            "MH, Date of injury",
+            "MH, Cause of injury",
+            "MD, Reason for admission to program",
+            "MD, History of Allergy",
+            "MD, Comments about allergy",
+            "AIA, Is the patient allergic to any drugs / medications ?",
+            "AIA, Type of medication allergy",
+            "MD, History of present illness",
+            "MD, Medical History",
+            "MD, Other medical problems",
+            "AIA, Past medical history",
+            "AIA, Past medical history, other",
+            "AIA, Adverse reaction to anaesthesia",
+            "AIA, Comments about adverse reaction",
+            "AIA, Did an incident occur during previous blood transfusion",
+            "AIA, Describe",
+            "MD, History of previous surgery",
+            "MD, Surgical Procedures Outside AMH",
+            "MD, Type of previous fixation",
+            "MD, Type of internal fixation",
+            "MD, Duration of External fixation",
+            "MD, Other type of fixation",
+            "MD, HIstory of infection",
+            "MD, Comments about previous infection",
+            "MD, Discharging sinus",
+            "MD, Duration of discharging sinus",
+            "MD, Bone Loss",
+            "MD, Cm of bone loss",
+            "MD, United fracture",
+            "MD, Shortening",
+            "MD, Cm of shortening",
+            "MD, Medication"
+          ],
+          "scope": "latest",
+          "showGroupDateTime": true
         },
-        "expandedViewConfig":{
-          "translationKey":"DASHBOARD_TITLE_MEDICATION_KEY",
-          "showFlowSheet":true,
-          "showListView":true,
-          "showRoute":true,
-          "showDrugForm":true,
-          "numberOfVisits":10,
-          "showOtherActive":true,
-          "showDetailsButton":true
+        "expandedViewConfig": {
+          "conceptNames": [
+            "MH, Date of injury",
+            "MH, Cause of injury",
+            "MD, Reason for admission to program",
+            "MD, History of Allergy",
+            "MD, Comments about allergy",
+            "AIA, Is the patient allergic to any drugs / medications ?",
+            "AIA, Type of medication allergy",
+            "MD, History of present illness",
+            "MD, Medical History",
+            "MD, Other medical problems",
+            "AIA, Past medical history",
+            "AIA, Past medical history, other",
+            "AIA, Adverse reaction to anaesthesia",
+            "AIA, Comments about adverse reaction",
+            "AIA, Did an incident occur during previous blood transfusion",
+            "AIA, Describe",
+            "MD, History of previous surgery",
+            "MD, Surgical Procedures Outside AMH",
+            "MD, Type of previous fixation",
+            "MD, Type of internal fixation",
+            "MD, Duration of External fixation",
+            "MD, Other type of fixation",
+            "MD, HIstory of infection",
+            "MD, Comments about previous infection",
+            "MD, Discharging sinus",
+            "MD, Duration of discharging sinus",
+            "MD, Bone Loss",
+            "MD, Cm of bone loss",
+            "MD, United fracture",
+            "MD, Shortening",
+            "MD, Cm of shortening",
+            "MD, Medication"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
         }
       },
-      "Orders":{
-        "translationKey": "DASHBOARD_TITLE_ORDERS",
+      "Social History":{
+        "translationKey": "DASHBOARD_TITLE_SOCIAL_HISTORY",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 2,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "HE, Highest education level",
+            "HE, Current smoker",
+            "HE, Drug and Alcohol use"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "HE, Highest education level",
+            "HE, Current smoker",
+            "HE, Drug and Alcohol use"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Review of Systems":{
+        "translationKey": "DASHBOARD_TITLE_REVIEW_OF_SYSTEMS",
         "type": "vitals",
         "isObservation": true,
         "displayOrder": 3,
@@ -344,12 +473,12 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "SAP, Investigations needed"
+           "MD, History - Review of Systems"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "SAP, Investigations needed"
+            "MD, History - Review of Systems"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -393,8 +522,8 @@
           "pivotTable": {}
         }
       },
-      "MD Initial Assessment":{
-        "translationKey": "DASHBOARD_MD_ASSESSMENT",
+      "Final Diagnoses":{
+        "translationKey": "DASHBOARD_TITLE_FINAL_DIAGNOSES",
         "type": "vitals",
         "isObservation": true,
         "displayOrder": 5,
@@ -402,21 +531,23 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "MD Initial Assessment"
+            "OBS, Surgical Diagnoses",
+            "OBS, Medical Diagnoses"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "MD Initial Assessment"
+            "OBS, Surgical Diagnoses",
+            "OBS, Medical Diagnoses"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
           "showDetailsButton": true,
           "pivotTable": {}
         }
-      },
-      "Nursing Assessment":{
-        "translationKey": "DASHBOARD_TITLE_NURSING_ASSESSMENT",
+        },
+      "Operative Course in Amman":{
+        "translationKey": "DASHBOARD_TITLE_OPERATIVE_COURSE_IN_AMMAN",
         "type": "vitals",
         "isObservation": true,
         "displayOrder": 6,
@@ -424,12 +555,12 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "OPD Nursing Initial Assessment"
+            "Pain Nurse Follow-up"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "OPD Nursing Initial Assessment"
+            "Pain Nurse Follow-up"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -437,8 +568,8 @@
           "pivotTable": {}
         }
       },
-      "Surgeon Pre-Op Assessment and Treatment Plan":{
-        "translationKey": "DASHBOARD_SURGEON_AND_TREATMENT_PLAN_ASSESSMENT",
+      "Pain Management":{
+        "translationKey": "DASHBOARD_TITLE_PAIN_MANAGEMENT",
         "type": "vitals",
         "isObservation": true,
         "displayOrder": 7,
@@ -446,16 +577,12 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "SAP, Planned Surgical procedures for next OT",
-            "SAP, Estimated length of stay",
-            "SAP, Does the patient need further admissions"
+            "Pain Nurse Follow-up"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "SAP, Planned Surgical Procedures for next OT",
-            "SAP, Estimated length of stay",
-            "SAP, Does the patient need further admissions"
+            "Pain Nurse Follow-up"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -463,191 +590,180 @@
           "pivotTable": {}
         }
       },
-      "Diagnoses":{
-        "translationKey": "DASHBOARD_TITLE_DIAGNOSES",
+      "bacteriologyResults": {
+        "translationKey": "DASHBOARD_TITLE_MIRCOBIOLOGY_LAB_RESULTS_KEY",
+        "type": "bacteriologyResultsControl",
+        "scope": "All",
+        "orderType": "",
+        "dashboardConfig": {
+          "conceptNames": [
+            "BACTERIOLOGY CONCEPT SET"
+          ]
+        }
+      },
+      "Medications administered in Amman RSP":{
+        "translationKey":"DASHBOARD_TITLE_MEDICATION_KEY",
+        "type":"treatment",
+        "displayOrder":9,
+        "dashboardConfig":{
+          "showFlowSheet":true,
+          "showListView":true,
+          "showRoute":true,
+          "showDrugForm":true,
+          "numberOfVisits":5,
+          "showOtherActive":true,
+          "showDetailsButton":true
+        },
+        "expandedViewConfig":{
+          "translationKey":"DASHBOARD_TITLE_MEDICATION_KEY",
+          "showFlowSheet":true,
+          "showListView":true,
+          "showRoute":true,
+          "showDrugForm":true,
+          "numberOfVisits":10,
+          "showOtherActive":true,
+          "showDetailsButton":true
+        }
+      },
+      "Medical Course":{
+        "translationKey": "DASHBOARD_TITLE_PSYCHO_MEDICAL_COURSE",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 8,
+        "displayOrder": 10,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "OBS, Surgical Diagnoses",
-            "OBS, Medical Diagnoses"
+            "MDOF, Medical course of patient in RSP"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "OBS, Surgical Diagnoses",
-            "OBS, Medical Diagnoses"
+           "MDOF, Medical course of patient in RSP"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
           "showDetailsButton": true,
           "pivotTable": {}
         }
+      },
+      "Psycho-Social Course":{
+        "translationKey": "DASHBOARD_TITLE_PSYCHO_SOCIAL_COURSE",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 11,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "PIA, SQR20 (score)",
+            "PIA, PTSD (score)",
+            "PIA, PSYca 3-6 (child)",
+            "PIA, Comments from counsellor"
+          ]
         },
-        "OPD Nursing Note":{
-          "translationKey": "DASHBOARD_TITLE_OPD_NURSING_NOTE_ASSESSMENT",
-          "type": "vitals",
-          "isObservation": true,
-          "displayOrder": 9,
-          "dashboardConfig": {
-            "showDetailsButton": true,
-            "isEditable": true,
-            "conceptNames": [
-              "OPD Nursing Note"
-            ]
-          },
-          "expandedViewConfig": {
-            "conceptNames": [
-              "OPD Nursing Note"
-            ],
-            "isEditable": true,
-            "numberOfVisits": 3,
-            "showDetailsButton": true,
-            "pivotTable": {}
-          }
+        "expandedViewConfig": {
+          "conceptNames": [
+            "PIA, SQR20 (score)",
+            "PIA, PTSD (score)",
+            "PIA, PSYca 3-6 (child)",
+            "PIA, Comments from counsellor"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Surgical Follow-up Plan":{
+        "translationKey": "DASHBOARD_TITLE_SURGICAL_FOLLOW-UP_PLAN",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 12,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "SFP, Follow-up plan",
+            "SFP, Follow-up needs",
+            "SFP, Notes, other"
+          ]
         },
-        "Surgical Ward Assessment":{
-          "translationKey": "DASHBOARD_TITLE_SURGICAL_WARD_ADMISSION_NURSING_ASSESSMENT",
-          "type": "vitals",
-          "isObservation": true,
-          "displayOrder": 10,
-          "dashboardConfig": {
-            "showDetailsButton": true,
-            "isEditable": true,
-            "conceptNames": [
-              "Surgical Ward Admission Nursing Assessment"
-            ]
-          },
-          "expandedViewConfig": {
-            "conceptNames": [
-              "Surgical Ward Admission Nursing Assessment"
-            ],
-            "isEditable": true,
-            "numberOfVisits": 3,
-            "showDetailsButton": true,
-            "pivotTable": {}
-          }
+        "expandedViewConfig": {
+          "conceptNames": [
+            "SFP, Follow-up plan",
+            "SFP, Follow-up needs",
+            "SFP, Notes, other"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Physiotherapy Follow-up Plan":{
+        "translationKey": "DASHBOARD_TITLE_PHYSIOTHERAPY_FOLLOW-UP_PLAN",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 13,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "LLA, Follow-up Plan",
+            "ULA, Followup Plan",
+            "MPA, Followup Plan"
+          ]
         },
-        "Ward Nursing Note":{
-          "translationKey": "DASHBOARD_TITLE_WARD_NURSING_NOTE",
-          "type": "vitals",
-          "isObservation": true,
-          "displayOrder": 11,
-          "dashboardConfig": {
-            "showDetailsButton": true,
-            "isEditable": true,
-            "conceptNames": [
-              "Ward Nursing Note"
-            ]
-          },
-          "expandedViewConfig": {
-            "conceptNames": [
-              "Ward Nursing Note"
-            ],
-            "isEditable": true,
-            "numberOfVisits": 3,
-            "showDetailsButton": true,
-            "pivotTable": {}
-          }
+        "expandedViewConfig": {
+          "conceptNames": [
+            "LLA, Follow-up Plan",
+            "ULA, Followup Plan",
+            "MPA, Followup Plan"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Medical Follow-up Plan":{
+        "translationKey": "DASHBOARD_TITLE_MEDICAL_FOLLOW-UP_PLAN",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 14,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "MDOF, Medical follow-up needs"
+          ]
         },
-        "Physician Progress Note":{
-          "translationKey": "DASHBOARD_TITLE_PHYSICIAN_PROGRESS_NOTE_ASSESSMENT",
-          "type": "vitals",
-          "isObservation": true,
-          "displayOrder": 12,
-          "dashboardConfig": {
-            "showDetailsButton": true,
-            "isEditable": true,
-            "conceptNames": [
-              "Physician Progress Note-Ward"
-            ]
-          },
-          "expandedViewConfig": {
-            "conceptNames": [
-              "Physician Progress Note-Ward"
-            ],
-            "isEditable": true,
-            "numberOfVisits": 3,
-            "showDetailsButton": true,
-            "pivotTable": {}
-          }
-        },
-        "Complications":{
-          "translationKey": "DASHBOARD_COMPLICATIONS",
-          "type": "vitals",
-          "isObservation": true,
-          "displayOrder": 13,
-          "dashboardConfig": {
-            "showDetailsButton": true,
-            "isEditable": true,
-            "conceptNames": [
-              "Complications Set"
-            ]
-          },
-          "expandedViewConfig": {
-            "conceptNames": [
-              "Complications Set"
-            ],
-            "isEditable": true,
-            "numberOfVisits": 3,
-            "showDetailsButton": true,
-            "pivotTable": {}
-          }
-        },
-        "Post-Op Ward Monitoring":{
-          "translationKey": "DASHBOARD_POST_OP_WARD_MONITORING",
-          "type": "vitals",
-          "isObservation": true,
-          "displayOrder": 14,
-          "dashboardConfig": {
-            "showDetailsButton": true,
-            "isEditable": true,
-            "conceptNames": [
-              "Post-Op Ward Monitoring"
-            ]
-          },
-          "expandedViewConfig": {
-            "conceptNames": [
-              "Post-Op Ward Monitoring"
-            ],
-            "isEditable": true,
-            "numberOfVisits": 3,
-            "showDetailsButton": true,
-            "pivotTable": {}
-          }
-        },
-      "surgicalHistory": {
-        "type": "custom",
+        "expandedViewConfig": {
+          "conceptNames": [
+            "MDOF, Medical follow-up needs"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Discharge Medication":{
+        "translationKey": "DASHBOARD_TITLE_DISCHARGE_MEDICATION",
+        "type": "vitals",
+        "isObservation": true,
         "displayOrder": 15,
-        "config": {
-          "title": "DASHBOARD_TITLE_SURGICAL_APPOINTMENTS_KEY",
-          "template": "<surgical-history section='section' patient='patient'></surgical-history>"
-        }
-      },
-      "Patient Information":{
-        "translationKey": "DASHBOARD_PATIENT_INFORMATION",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 0,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "FV, Name (s) of Surgeon 1",
-            "Stage",
-            "FSTG, Specialty determined by MLO"
-          ],
-          "scope": "latest",
-          "showGroupDateTime": false
+            "MDOF, Discharge medication"
+          ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "FV, Name (s) of Surgeon 1",
-            "Stage",
-            "FSTG, Specialty determined by MLO"
+            "MDOF, Discharge medication"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -655,100 +771,13 @@
           "pivotTable": {}
         }
       },
-      "Surgeon Follow-up":{
-        "translationKey": "DASHBOARD_SURGEON_FOLLOWUP",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 16,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "Surgeon Follow-up"
-          ]
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-           "Surgeon Follow-up"
-          ],
-          "isEditable": true,
-          "numberOfVisits": 10,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
-      "Operative Report":{
-        "translationKey": "DASHBOARD_OPERATIVE_REPORT",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 18,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "Operative Report"
-          ]
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "Operative Report"
-          ],
-          "isEditable": true,
-          "numberOfVisits": 10,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
-      "Observation Sheet":{
-        "translationKey": "DASHBOARD_VITAL_SIGNS_FORM",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 19,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "Observation Sheet"
-          ]
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "Observation Sheet"
-          ],
-          "isEditable": true,
-          "numberOfVisits": 10,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
-      "Post-operative Anaesthesia Note":{
-        "translationKey": "DASHBOARD_POST_OPERATIVE_ANAESTHESIA_FORM",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 20,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "Post-operative Anaesthesia Note"
-          ]
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "Post-operative Anaesthesia Note"
-          ],
-          "isEditable": true,
-          "numberOfVisits": 10,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
-      "patientAppointments": {
+      "bacteriology": {
         "type": "custom",
-        "displayOrder": 21,
+        "displayOrder": 16,
+        "displayType": "Full-Page",
         "config": {
-          "title": "DASHBOARD_TITLE_APPOINTMENTS_KEY",
-          "template": "<patient-appointments-dashboard section='config' patient='patient'></patient-appointments-dashboard>"
+          "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
+          "template": "<microbiology-lab-results section='config' patient='patient' enrollment='enrollment'></microbiology-lab-results>"
         }
       },
       "bacteriology": {
