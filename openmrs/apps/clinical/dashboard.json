@@ -334,33 +334,13 @@
             "MD, Comments about allergy",
             "AIA, Is the patient allergic to any drugs / medications ?",
             "AIA, Type of medication allergy",
-            "MD, History of present illness",
-            "MD, Medical History",
-            "MD, Other medical problems",
-            "AIA, Past medical history",
-            "AIA, Past medical history, other",
-            "AIA, Adverse reaction to anaesthesia",
-            "AIA, Comments about adverse reaction",
-            "AIA, Did an incident occur during previous blood transfusion",
-            "AIA, Describe",
-            "MD, History of previous surgery",
-            "MD, Surgical Procedures Outside AMH",
-            "MD, Type of previous fixation",
-            "MD, Type of internal fixation",
-            "MD, Duration of External fixation",
-            "MD, Other type of fixation",
-            "MD, HIstory of infection",
-            "MD, Comments about previous infection",
-            "MD, Discharging sinus",
-            "MD, Duration of discharging sinus",
-            "MD, Bone Loss",
-            "MD, Cm of bone loss",
-            "MD, United fracture",
-            "MD, Shortening",
-            "MD, Cm of shortening",
-            "MD, Medication"
+            "MD, History of present illness"
           ],
-          "obsIgnoreList":[
+          "scope": "latest",
+          "showGroupDateTime": true
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
             "MH, Date of injury",
             "MH, Cause of injury",
             "MD, Reason for admission to program",
@@ -368,7 +348,24 @@
             "MD, Comments about allergy",
             "AIA, Is the patient allergic to any drugs / medications ?",
             "AIA, Type of medication allergy",
-            "MD, History of present illness",
+            "MD, History of present illness"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Past Medical history":{
+        "translationKey":"DASHBOARD_TITLE_PAST_MEDICAL_HISTORY",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 2,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "persistOrderOfConcepts": true,
+          "isEditable": true,
+          "conceptNames": [
             "MD, Medical History",
             "MD, Other medical problems",
             "AIA, Past medical history",
@@ -399,14 +396,6 @@
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "MH, Date of injury",
-            "MH, Cause of injury",
-            "MD, Reason for admission to program",
-            "MD, History of Allergy",
-            "MD, Comments about allergy",
-            "AIA, Is the patient allergic to any drugs / medications ?",
-            "AIA, Type of medication allergy",
-            "MD, History of present illness",
             "MD, Medical History",
             "MD, Other medical problems",
             "AIA, Past medical history",
@@ -442,9 +431,10 @@
         "translationKey": "DASHBOARD_TITLE_SOCIAL_HISTORY",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 2,
+        "displayOrder": 3,
         "dashboardConfig": {
           "showDetailsButton": true,
+          "persistOrderOfConcepts": true,
           "isEditable": true,
           "conceptNames": [
             "HE, Highest education level",
@@ -468,7 +458,7 @@
         "translationKey": "DASHBOARD_TITLE_REVIEW_OF_SYSTEMS",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 3,
+        "displayOrder": 4,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -490,7 +480,7 @@
         "translationKey": "DASHBOARD_TITLE_PHYSICAL_EXAMINATION",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 4,
+        "displayOrder": 5,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -526,7 +516,7 @@
         "translationKey": "DASHBOARD_TITLE_FINAL_DIAGNOSES",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 5,
+        "displayOrder": 6,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -546,21 +536,41 @@
           "pivotTable": {}
         }
         },
-      "Operative Course in Amman":{
-        "translationKey": "DASHBOARD_TITLE_OPERATIVE_COURSE_IN_AMMAN",
+      "Operative Course in Amman": {
+        "type": "custom",
+        "displayOrder": 7,
+        "config": {
+          "title": "DASHBOARD_TITLE_OPERATIVE_COURSE_IN_AMMAN_KEY",
+          "template": "<surgical-history section='section' patient='patient'></surgical-history>"
+        }
+      },
+      "Post Operative Anaesthesia Course ":{
+        "translationKey": "DASHBOARD_TITLE_POST_OPERATIVE_ANAESTESIA_COURSE",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 6,
+        "displayOrder": 8,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Pain Nurse Follow-up"
+            "APN, Type of anaesthesia administered",
+            "APN, Date recorded",
+            "APN, Complication of anaesthesia",
+            "CC, Description of complication",
+            "APN, Blood transfusion",
+            "SFP, Type of complication",
+            "SFP, Impact of complication"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "Pain Nurse Follow-up"
+            "APN, Type of anaesthesia administered",
+            "APN, Date recorded",
+            "APN, Complication of anaesthesia",
+            "CC, Description of complication",
+            "APN, Blood transfusion",
+            "SFP, Type of complication",
+            "SFP, Impact of complication"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -572,7 +582,7 @@
         "translationKey": "DASHBOARD_TITLE_PAIN_MANAGEMENT",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 7,
+        "displayOrder": 9,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -590,21 +600,10 @@
           "pivotTable": {}
         }
       },
-      "bacteriologyResults": {
-        "translationKey": "DASHBOARD_TITLE_MIRCOBIOLOGY_LAB_RESULTS_KEY",
-        "type": "bacteriologyResultsControl",
-        "scope": "All",
-        "orderType": "",
-        "dashboardConfig": {
-          "conceptNames": [
-            "BACTERIOLOGY CONCEPT SET"
-          ]
-        }
-      },
       "Medications administered in Amman RSP":{
         "translationKey":"DASHBOARD_TITLE_MEDICATION_KEY",
         "type":"treatment",
-        "displayOrder":9,
+        "displayOrder":10,
         "dashboardConfig":{
           "showFlowSheet":true,
           "showListView":true,
@@ -629,7 +628,7 @@
         "translationKey": "DASHBOARD_TITLE_PSYCHO_MEDICAL_COURSE",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 10,
+        "displayOrder": 11,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -651,9 +650,10 @@
         "translationKey": "DASHBOARD_TITLE_PSYCHO_SOCIAL_COURSE",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 11,
+        "displayOrder": 12,
         "dashboardConfig": {
           "showDetailsButton": true,
+          "persistOrderOfConcepts": true,
           "isEditable": true,
           "conceptNames": [
             "PIA, SQR20 (score)",
@@ -679,7 +679,7 @@
         "translationKey": "DASHBOARD_TITLE_SURGICAL_FOLLOW-UP_PLAN",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 12,
+        "displayOrder": 13,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -705,9 +705,10 @@
         "translationKey": "DASHBOARD_TITLE_PHYSIOTHERAPY_FOLLOW-UP_PLAN",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 13,
+        "displayOrder": 14,
         "dashboardConfig": {
           "showDetailsButton": true,
+          "persistOrderOfConcepts": true,
           "isEditable": true,
           "conceptNames": [
             "LLA, Follow-up Plan",
@@ -731,38 +732,18 @@
         "translationKey": "DASHBOARD_TITLE_MEDICAL_FOLLOW-UP_PLAN",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 14,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "MDOF, Medical follow-up needs"
-          ]
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "MDOF, Medical follow-up needs"
-          ],
-          "isEditable": true,
-          "numberOfVisits": 3,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
-      "Discharge Medication":{
-        "translationKey": "DASHBOARD_TITLE_DISCHARGE_MEDICATION",
-        "type": "vitals",
-        "isObservation": true,
         "displayOrder": 15,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
+            "MDOF, Medical follow-up needs",
             "MDOF, Discharge medication"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
+            "MDOF, Medical follow-up needs",
             "MDOF, Discharge medication"
           ],
           "isEditable": true,
