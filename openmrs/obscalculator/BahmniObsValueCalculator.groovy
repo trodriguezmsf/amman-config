@@ -213,7 +213,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
 
     void run(BahmniEncounterTransaction bahmniEncounterTransaction) {
         Collection<BahmniObservation> observations = bahmniEncounterTransaction.getObservations()
-        BahmniObservation baselineVitalsForm = find("Baseline Vital Signs", observations, null)
+        BahmniObservation baselineVitalsForm = find("Vital Signs", observations, null)
         if (baselineVitalsForm != null) {
             calculateBMIAndSave(baselineVitalsForm)
         }
