@@ -5481,7 +5481,7 @@
     </changeSet>
     <changeSet id="Amman-201711061211" author="Shiva kumar" context="rel3.4" >
         <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
+            <sqlCheck expectedResult="1">
                 select count(*) from concept_numeric where concept_id =(select concept_id  from concept_name where name ="OS, Drainage" and concept_name_type ="FULLY_SPECIFIED");
             </sqlCheck>
         </preConditions>
