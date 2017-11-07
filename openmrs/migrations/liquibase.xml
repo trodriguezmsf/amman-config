@@ -5699,6 +5699,186 @@
             INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="osama_n"),"Appointments:FullAccess");
         </sql>
     </changeSet>
+    <changeSet id="Amman-201711071630" author="Santhosh, Mahitha" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from concept_name where name = "Cut wounds \"arme blanche\"";
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing Double quotes and replaced with single quotes</comment>
+        <sql>
+            SELECT concept_name_id into @conceptNameId from concept_name where name = "Cut wounds \"arme blanche\"";
+            UPDATE concept_name
+            SET name = "Cut wounds 'arme blanche'"
+            WHERE concept_name_id = @conceptNameId;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201711071632" author="Santhosh, Mahitha" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from concept_name where name = "Penetrating - Cut wounds \"arme blanche\"" and concept_name_type = "FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing Double quotes and replaced with single quotes</comment>
+        <sql>
+            SELECT concept_name_id into @conceptNameId from concept_name where name = "Penetrating - Cut wounds \"arme blanche\"" and concept_name_type = "FULLY_SPECIFIED";
+            UPDATE concept_name
+            SET name = "Penetrating - Cut wounds 'arme blanche'"
+            WHERE concept_name_id = @conceptNameId;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201711071634" author="Santhosh, Mahitha" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from concept_name where name = "Penetrating - Cut wounds \"arme blanche\"" and concept_name_type = "SHORT";
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing Double quotes and replaced with single quotes</comment>
+        <sql>
+            SELECT concept_name_id into @conceptNameId from concept_name where name = "Penetrating - Cut wounds \"arme blanche\"" and concept_name_type = "SHORT";
+            UPDATE concept_name
+            SET name = "Penetrating - Cut wounds 'arme blanche'"
+            WHERE concept_name_id = @conceptNameId;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201711071636" author="Santhosh, Mahitha" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from concept_name where name = "Chuck or \"three-fingered pinch\"" and concept_name_type = "SHORT";
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing Double quotes and replaced with single quotes</comment>
+        <sql>
+            SELECT concept_name_id into @conceptNameId from concept_name where name = "Chuck or \"three-fingered pinch\"" and concept_name_type = "SHORT";
+            UPDATE concept_name
+            SET name = "Chuck or 'three-fingered pinch'"
+            WHERE concept_name_id = @conceptNameId;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201711071638" author="Santhosh, Mahitha" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from concept_name where name = "Staphylococcal isolates which appear \"non-susceptible\" by disk diffusion should be confirmed by MIC testing." and concept_name_type = "FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing Double quotes and replaced with single quotes</comment>
+        <sql>
+            SELECT concept_name_id into @conceptNameId from concept_name where name = "Staphylococcal isolates which appear \"non-susceptible\" by disk diffusion should be confirmed by MIC testing." and concept_name_type = "FULLY_SPECIFIED";
+            UPDATE concept_name
+            SET name = "Staphylococcal isolates which appear 'non-susceptible' by disk diffusion should be confirmed by MIC testing."
+            WHERE concept_name_id = @conceptNameId;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201711071640" author="Santhosh, Mahitha" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from concept_description where description = "Immediately after told to \"go\"";
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing Double quotes and replaced with single quotes</comment>
+        <sql>
+            SELECT concept_description_id into @conceptDescId from concept_description where description = "Immediately after told to \"go\"";
+            UPDATE concept_description
+            SET description = "Immediately after told to 'go'"
+            WHERE concept_description_id = @conceptDescId;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201711071642" author="Santhosh, Mahitha" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from concept_description where description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment \"Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy\""
+                and concept_id in (SELECT concept_id from concept_name WHERE name = "SS, Erythromycin");
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing Double quotes and replaced with single quotes</comment>
+        <sql>
+            SELECT concept_id into @conceptId from concept_name WHERE name = "SS, Erythromycin";
+            SELECT concept_description_id into @conceptDescId from concept_description WHERE concept_id = @conceptId and description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment \"Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy\"";
+            UPDATE concept_description
+            SET description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment 'Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy'"
+            WHERE concept_description_id = @conceptDescId;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201711071644" author="Santhosh, Mahitha" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from concept_description where description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment \"Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy\""
+                and concept_id in (SELECT concept_id from concept_name WHERE name = "SS, Clindamycin");
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing Double quotes and replaced with single quotes</comment>
+        <sql>
+            SELECT concept_id into @conceptId from concept_name WHERE name = "SS, Clindamycin";
+            SELECT concept_description_id into @conceptDescId from concept_description WHERE concept_id = @conceptId and description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment \"Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy\"";
+            UPDATE concept_description
+            SET description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment 'Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy'"
+            WHERE concept_description_id = @conceptDescId;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201711071646" author="Santhosh, Mahitha" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from concept_description where description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment \"Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy\""
+                and concept_id in (SELECT concept_id from concept_name WHERE name = "SV, Erythromycin");
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing Double quotes and replaced with single quotes</comment>
+        <sql>
+            SELECT concept_id into @conceptId from concept_name WHERE name = "SV, Erythromycin";
+            SELECT concept_description_id into @conceptDescId from concept_description WHERE concept_id = @conceptId and description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment \"Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy\"";
+            UPDATE concept_description
+            SET description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment 'Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy'"
+            WHERE concept_description_id = @conceptDescId;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201711071648" author="Santhosh, Mahitha" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from concept_description where description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment \"Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy\""
+                and concept_id in (SELECT concept_id from concept_name WHERE name = "SV, Clindamycin");
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing Double quotes and replaced with single quotes</comment>
+        <sql>
+            SELECT concept_id into @conceptId from concept_name WHERE name = "SV, Clindamycin";
+            SELECT concept_description_id into @conceptDescId from concept_description WHERE concept_id = @conceptId and description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment \"Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy\"";
+            UPDATE concept_description
+            SET description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment 'Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy'"
+            WHERE concept_description_id = @conceptDescId;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201711071650" author="Santhosh, Mahitha" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from concept_description where description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment \"Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy\""
+                and concept_id in (SELECT concept_id from concept_name WHERE name = "CNS, Erythromycin");
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing Double quotes and replaced with single quotes</comment>
+        <sql>
+            SELECT concept_id into @conceptId from concept_name WHERE name = "CNS, Erythromycin";
+            SELECT concept_description_id into @conceptDescId from concept_description WHERE concept_id = @conceptId and description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment \"Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy\"";
+            UPDATE concept_description
+            SET description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment 'Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy'"
+            WHERE concept_description_id = @conceptDescId;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201711071652" author="Santhosh, Mahitha" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from concept_description where description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment \"Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy\""
+                and concept_id in (SELECT concept_id from concept_name WHERE name = "CNS, Clindamycin");
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing Double quotes and replaced with single quotes</comment>
+        <sql>
+            SELECT concept_id into @conceptId from concept_name WHERE name = "CNS, Clindamycin";
+            SELECT concept_description_id into @conceptDescId from concept_description WHERE concept_id = @conceptId and description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment \"Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy\"";
+            UPDATE concept_description
+            SET description = "Erythromycin can be used to determine susceptibility of azithromycin, clarithromycin and roxithromycin. Inducible clindamycin resistance can be detected by antagonism of clindamycin activity by a macrolide agent. If not detected, then report as susceptible. If detected, then report as resistant and add comment 'Clindamycin may still be used for short-term therapy of less serious skin and soft tissue infections as constitutive resistance is unlikely to develop during such therapy'"
+            WHERE concept_description_id = @conceptDescId;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
