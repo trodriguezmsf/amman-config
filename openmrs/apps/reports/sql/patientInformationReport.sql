@@ -1,5 +1,5 @@
 SELECT
-  p.patient_id                                                     AS `patient db ID`,
+  p.patient_id                                                     AS `patient_id`,
   pi.identifier                                                    AS `identifier`,
   person.gender                                                    AS sex,
   TIMESTAMPDIFF(YEAR, person.birthdate, CURDATE())                 AS age,
