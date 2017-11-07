@@ -343,7 +343,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         };
 
         $scope.isAntibiogram = function (observation) {
-            var antiBiograms = { "Resistant": "R","Intermediate": "I", "Susceptible": "S", "Positive": "+ve" , "Negative": "-ve" } ;
+            var antiBiograms = { "Resistant": "R","Intermediate": "I", "Susceptible": "S", "Positive": "+ve" , "Negative": "-ve", "Sharp": "Sharp", "Fuzzy": "Fuzzy" } ;
             return _.indexOf(Object.keys(antiBiograms), observation.value.name) >= 0 && antiBiograms[observation.value.name];
         };
 
