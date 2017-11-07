@@ -47,8 +47,8 @@
         "patientContext": {
 
             "personAttributes": [
-                "nationality1"
-
+                "phoneNumber1",
+                "dateofArrival"
             ]
 
         },
@@ -1634,6 +1634,9 @@
             },
             "OS, Site of drain":{
                "autocomplete":true
+            },
+            "Observation Sheet":{
+                "allowAddMore": true
             }
             },
         "visitPage": {

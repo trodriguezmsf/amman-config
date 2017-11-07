@@ -5479,6 +5479,18 @@
         <comment>Adding patient listing queues for trm patients</comment>
         <sqlFile path="programs/trmPatients.sql"/>
     </changeSet>
+    <changeSet id="Amman-201711061211" author="Shiva kumar" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_numeric where concept_id =(select concept_id  from concept_name where name ="OS, Drainage" and concept_name_type ="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding numeric high and low values for os,drainage </comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name ="OS, Drainage" and concept_name_type ="FULLY_SPECIFIED";
+            update concept_numeric set hi_absolute ='1000',low_absolute ='-1000' where concept_id =@concept_id;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
