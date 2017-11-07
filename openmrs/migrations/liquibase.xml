@@ -5512,6 +5512,193 @@
             INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID5,@conceptsetID,37,8,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201711071630" author="Mahesh" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username ="saleem_aa";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "Appointments:ReadOnly" AND user_id IN (SELECT user_id FROM users WHERE username = "saleem_aa");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Appointments:ReadOnly role to all users</comment>
+        <sql>
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="saleem_aa"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="waleed_a"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yousef_aa"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="fadi_aa"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="aziz_az"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_ab"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abdallah_ad"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ahmad_ad"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="khaled_ah"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abeer_a"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="kamelah_a"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ali_aa"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hadeel_aa"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="khaldoon_ad"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yara_ae"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="eman_af"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abdulrahman_af"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="baraa_ah"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="amro_ahm"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="noor_ak"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sami_ak"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abdullah_al"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hussein_am"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_am"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="qutaiba_am"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ayman_ao"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="haya_aq"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sufyan_aq"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="saleh_ar"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rasheed_as"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="doaa_as"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="shadi_a"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_af"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rawan_ag"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mahmoud_ah"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="israa_aj"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="suleiman_ak"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ajeeb_am"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="razan_a"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="weaam_a"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="lina_am"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hilana_a"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="Shadi_k"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="safa_a"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ahmad_ar"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="samah_a"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="samar_a"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="amani_az"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rawan_b"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ghadeer_b"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="waleed_bo"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="adham_by"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohd_b"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_b"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="osama_b"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="deyaa_eb"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ashraf_b"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="anneliese_c"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="tareq_f"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yasmeen_f"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="eman_f"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="julien_f"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="diya_g"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rami_h"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="waqqad_h"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="laura_hg"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ruba_h"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="manar_h"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mahmoud_h"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yazan_h"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="safa_h"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="zuheir_h"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="Ghassan_h"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ala_h"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="Nagham_H"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ahmad_l"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="maamoun_j"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hanna_j"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="nabil_j"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="naseer_j"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="nasser_ej"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yazan_k"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yahya_k"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="harith_k"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="radah_l"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="muhannad_m"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="muntaha_m"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hamzah_me"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="muhima_m"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="loay_m"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="pierre_m"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sajdi_m"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hamzah_m"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abeer_m"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ashraf_n"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="noor_n"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ahmad_n"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="osama_n"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="shahinaz_n"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="dyala_o"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="qusay_o"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mamon_q"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="firas_q"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="suha_q"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="emad_r"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="naser_r"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammed_r"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="zaid_se"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_s"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="salam_s"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="moukhallad_s"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="marc_s"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="duaa_s"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hamza_s"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="alaa_s"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="khouloud_s"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ammar_s"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="majdi_s"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="nisreen_s"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yazeed_t"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="omar_t"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="alaa_t"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="iyad_y"),"Appointments:ReadOnly");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="asma_z"),"Appointments:ReadOnly");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201711071633" author="Mahesh" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username ="saleem_aa";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "Appointments:ManageAppointments" AND user_id IN (SELECT user_id FROM users WHERE username = "saleem_aa");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Appointments:ManageAppointments role to specified users</comment>
+        <sql>
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="saleem_aa"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ahmad_ad"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abeer_a"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="noor_ak"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="qutaiba_am"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rawan_ag"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="razan_a"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="lina_am"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ahmad_ar"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="samar_a"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="manar_h"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="zuheir_h"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="naseer_j"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="nasser_ej"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yazan_k"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="muntaha_m"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sajdi_m"),"Appointments:ManageAppointments");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="zaid_se"),"Appointments:ManageAppointments");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201711071637" author="Mahesh" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username ="hussein_am";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "Appointments:FullAccess" AND user_id IN (SELECT user_id FROM users WHERE username = "hussein_am");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Appointments:FullAccess role to specified users</comment>
+        <sql>
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hussein_am"),"Appointments:FullAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="amani_az"),"Appointments:FullAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ruba_h"),"Appointments:FullAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="radah_l"),"Appointments:FullAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="muhima_m"),"Appointments:FullAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="osama_n"),"Appointments:FullAccess");
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
