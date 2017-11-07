@@ -5491,6 +5491,27 @@
             update concept_numeric set hi_absolute ='1000',low_absolute ='-1000' where concept_id =@concept_id;
         </sql>
     </changeSet>
+    <changeSet id="Amman-201711071224" author="Mahesh" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='All Observation Templates' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='Lower Limb Physiotherapy Assessment' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Inserting Physio forms, Pain Nurse Follow-up and Medical Doctor OPD Follow-up forms into All Observation Templates </comment>
+        <sql>
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="All Observation Templates" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Lower Limb Physiotherapy Assessment" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="Upper Limb Physiotherapy Assessment" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID3 FROM concept_name WHERE name ="Maxillofacial Physio Assessment" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID4 FROM concept_name WHERE name ="Pain Nurse Follow-up" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID5 FROM concept_name WHERE name ="Medical Doctor OPD Follow-up" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,33,8,now(),uuid());
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID2,@conceptsetID,34,8,now(),uuid());
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID3,@conceptsetID,35,8,now(),uuid());
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID4,@conceptsetID,36,8,now(),uuid());
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID5,@conceptsetID,37,8,now(),uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
