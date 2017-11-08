@@ -203,7 +203,7 @@
                     "maximumNoOfVisits": 1
                 },
                 "formGroup": [
-                    "Patient history",
+                    "Patient History",
                     "First Stage Validation",
                     "Follow-up validation",
                     "FV, Final validation",
@@ -233,8 +233,8 @@
                     "Lower Limb Physiotherapy Assessment",
                     "Upper Limb Physiotherapy Assessment",
                     "Maxillofacial Physio Assessment",
-		    "Medical Doctor OPD Follow-up",
-		    "Pain Nurse Follow-up"
+		            "Medical Doctor OPD Follow-up",
+                    "Pain Nurse Follow-up"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
             },
@@ -337,7 +337,7 @@
             "MD, History of present illness"
           ],
           "scope": "latest",
-          "showGroupDateTime": true
+          "showGroupDateTime": false
         },
         "expandedViewConfig": {
           "conceptNames": [
@@ -392,7 +392,7 @@
             "MD, Medication"
           ],
           "scope": "latest",
-          "showGroupDateTime": true
+          "showGroupDateTime": false
         },
         "expandedViewConfig": {
           "conceptNames": [
@@ -434,19 +434,38 @@
         "displayOrder": 3,
         "dashboardConfig": {
           "showDetailsButton": true,
-          "persistOrderOfConcepts": true,
           "isEditable": true,
           "conceptNames": [
-            "HE, Highest education level",
-            "HE, Current smoker",
-            "HE, Drug and Alcohol use"
-          ]
+            "Health Education"
+          ],
+          "obsIgnoreList":[
+            "HE, Date of consultation",
+            "HE, Marital status",
+            "HE, Pregnancy status",
+            "HE, External devices, present",
+            "HE, Other type of external device",
+            "HE, Nutritional Assessment",
+            "HE, Personal hygiene",
+            "HE, Education learning needs",
+            "HE, Referral care Plan"
+          ],
+          "scope": "latest",
+          "showGroupDateTime": true
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "HE, Highest education level",
-            "HE, Current smoker",
-            "HE, Drug and Alcohol use"
+            "Health Education"
+          ],
+          "obsIgnoreList":[
+            "HE, Date of consultation",
+            "HE, Marital status",
+            "HE, Pregnancy status",
+            "HE, External devices, present",
+            "HE, Other type of external device",
+            "HE, Nutritional Assessment",
+            "HE, Personal hygiene",
+            "HE, Education learning needs",
+            "HE, Referral care Plan"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -551,26 +570,35 @@
         "displayOrder": 8,
         "dashboardConfig": {
           "showDetailsButton": true,
+          "persistOrderOfConcepts": true,
           "isEditable": true,
           "conceptNames": [
             "APN, Type of anaesthesia administered",
-            "APN, Date recorded",
+            "APN, Transfusion",
             "APN, Complication of anaesthesia",
             "CC, Description of complication",
-            "APN, Blood transfusion",
             "SFP, Type of complication",
-            "SFP, Impact of complication"
+            "SFP, Impact of complication",
+            "CC, Patient complication",
+            "CC, Start date of complication",
+            "CC, Description of complication",
+            "CC, Outcome of complication",
+            "CC, End date of complication"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
             "APN, Type of anaesthesia administered",
-            "APN, Date recorded",
+            "APN, Transfusion",
             "APN, Complication of anaesthesia",
             "CC, Description of complication",
-            "APN, Blood transfusion",
             "SFP, Type of complication",
-            "SFP, Impact of complication"
+            "SFP, Impact of complication",
+            "CC, Patient complication",
+            "CC, Start date of complication",
+            "CC, Description of complication",
+            "CC, Outcome of complication",
+            "CC, End date of complication"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -660,7 +688,9 @@
             "PIA, PTSD (score)",
             "PIA, PSYca 3-6 (child)",
             "PIA, Comments from counsellor"
-          ]
+          ],
+          "scope": "latest",
+          "showGroupDateTime": false
         },
         "expandedViewConfig": {
           "conceptNames": [
@@ -708,7 +738,6 @@
         "displayOrder": 14,
         "dashboardConfig": {
           "showDetailsButton": true,
-          "persistOrderOfConcepts": true,
           "isEditable": true,
           "conceptNames": [
             "LLA, Follow-up Plan",
@@ -738,13 +767,19 @@
           "isEditable": true,
           "conceptNames": [
             "MDOF, Medical follow-up needs",
-            "MDOF, Discharge medication"
+            "MDOF, Discharge medication",
+            "MDOF, Type of medication",
+            "MDOF, Dose and frequency",
+            "MDOF, Duration"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
             "MDOF, Medical follow-up needs",
-            "MDOF, Discharge medication"
+            "MDOF, Discharge medication",
+            "MDOF, Type of medication",
+            "MDOF, Dose and frequency",
+            "MDOF, Duration"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
