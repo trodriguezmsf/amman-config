@@ -5879,6 +5879,20 @@
             WHERE concept_description_id = @conceptDescId;
         </sql>
     </changeSet>
+    <changeSet id="Amman-20171108128" author="Mahesh" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username ="dina_aah";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "Appointments:ReadOnly" AND user_id IN (SELECT user_id FROM users WHERE username = "dina_aah");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Appointments:ReadOnly role to dina_aah users</comment>
+        <sql>
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="dina_aah"),"Appointments:ReadOnly");
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
