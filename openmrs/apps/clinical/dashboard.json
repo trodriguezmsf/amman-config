@@ -788,9 +788,17 @@
           "pivotTable": {}
         }
       },
-      "bacteriology": {
+      "patientAppointments": {
         "type": "custom",
         "displayOrder": 16,
+        "config": {
+          "title": "DASHBOARD_TITLE_APPOINTMENTS_KEY",
+          "template": "<patient-appointments-dashboard section=‘config’ patient=‘patient’></patient-appointments-dashboard>"
+        }
+      },
+      "bacteriology": {
+        "type": "custom",
+        "displayOrder": 17,
         "displayType": "Full-Page",
         "config": {
           "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
