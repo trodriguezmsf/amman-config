@@ -793,7 +793,7 @@
         "displayOrder": 16,
         "config": {
           "title": "DASHBOARD_TITLE_APPOINTMENTS_KEY",
-          "template": "<patient-appointments-dashboard section=‘config’ patient=‘patient’></patient-appointments-dashboard>"
+          "template": "<patient-appointments-dashboard section='config' patient='patient'></patient-appointments-dashboard>"
         }
       },
       "bacteriology": {
