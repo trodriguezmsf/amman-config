@@ -123,6 +123,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
+    'SMH, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['SMH, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("SMH, Site, Other")
+        }
+        else {
+            conditions.hide.push("SMH, Site, Other")
+        }
+        return conditions;
+    },
     'HE, External devices, present': function (formName, formFieldValues) {
         var conditions = {
             show: [],
@@ -231,10 +245,9 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['PHIA, Does the patient use an assistive device or orthosis?'];
         if (conditionConcept == "Yes"){
             conditions.show.push("PHIA, Type of assistive device or orthosis","PHIA, Comments about assistive device or orthosis")
-            conditions.hide.push("PHIA, Other type of assistive device")
         }
         else {
-            conditions.hide.push("PHIA, Type of assistive device or orthosis","PHIA, Other type of assistive device","PHIA, Comments about assistive device or orthosis")
+            conditions.hide.push("PHIA, Type of assistive device or orthosis","PHIA, Comments about assistive device or orthosis")
         }
         return conditions;
     },
@@ -261,8 +274,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['PHIA, Amputee patient?'];
         if (conditionConcept == "Yes"){
             conditions.show.push("PHIA, Level of Amputation")
-            conditions.hide.push("PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification","PHIA, Comment about new prosthesis or modification")
-
         }
         else {
             conditions.hide.push("PHIA, Level of Amputation")
@@ -277,10 +288,9 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['PHIA, Is the patient coming with a prostheses?'];
         if (conditionConcept == "Yes"){
             conditions.show.push("PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification")
-            conditions.hide.push("PHIA, Comment about new prosthesis or modification")
         }
         else {
-            conditions.hide.push("PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification","PHIA, Comment about new prosthesis or modification")
+            conditions.hide.push("PHIA, Comment about prostheses usage","PHIA, Is there a need of new prosthesis or modification")
         }
         return conditions;
     },
@@ -712,6 +722,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
              }
              return conditions;
          },
+         'ANA, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['ANA, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("ANA, Site, Other")
+        }
+        else {
+            conditions.hide.push("ANA, Site, Other")
+        }
+        return conditions;
+    },
     'ANA, Patient mood': function (formName, formFieldValues) {
             var conditions = {
                 show: [],
@@ -754,6 +778,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
                }
               return conditions;
           },
+	  'ONN, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['ONN, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("ONN, Site, Other")
+        }
+        else {
+            conditions.hide.push("ONN, Site, Other")
+        }
+        return conditions;
+    },
     'ONN, Description of wound': function (formName, formFieldValues) {
               var conditions = {
                   show: [],
@@ -790,7 +828,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
               var conditionConcept = formFieldValues['ONN, Does the patient have a dressing?'];
               if (conditionConcept == "Yes"){
                  conditions.show.push("ONN, Dressing")
-                 conditions.hide.push("ONN, Description of wound, other")
               }
               else {
               conditions.hide.push("ONN, Dressing")
@@ -811,6 +848,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
              }
              return conditions;
          },
+         'POW, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['POW, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("POW, Site, Other")
+        }
+        else {
+            conditions.hide.push("POW, Site, Other")
+        }
+        return conditions;
+    },
     'POW, Description of wound': function (formName, formFieldValues) {
               var conditions = {
                   show: [],
@@ -853,6 +904,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
              }
              return conditions;
          },
+         'WWN, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['WWN, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("WWN, Site, Other")
+        }
+        else {
+            conditions.hide.push("WWN, Site, Other")
+        }
+        return conditions;
+    },
     'WWN, Does the patient have a drain?': function (formName, formFieldValues) {
               var conditions = {
                   show: [],
@@ -875,8 +940,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
               var conditionConcept = formFieldValues['WWN, Does the patient have a dressing?'];
               if (conditionConcept == "Yes"){
                  conditions.show.push("WWN, Dressing")
-                 conditions.hide.push("WWN, Description of wound, other")
-
               }
               else {
               conditions.hide.push("WWN, Dressing")
@@ -1035,6 +1098,62 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
+    'PPN, Assessment of vital signs': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PPN, Assessment of vital signs'];
+        if (conditionConcept == "Abnormal"){
+            conditions.show.push("PPN, Description of abnormal vital signs")
+        }
+        else {
+            conditions.hide.push("PPN, Description of abnormal vital signs")
+        }
+        return conditions;
+    },
+    'PPN, DVT prophylaxis': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PPN, DVT prophylaxis'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("PPN, Duration", "PPN, Dose")
+        }
+        else {
+            conditions.hide.push("PPN, Duration", "PPN, Dose")
+        }
+        return conditions;
+    },
+    'PPN, Frequency of dressing': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PPN, Frequency of dressing'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("PPN, Frequency of dressing, other")
+        }
+        else {
+            conditions.hide.push("PPN, Frequency of dressing, other")
+        }
+        return conditions;
+    },
+    'PPN, Active issues of patient': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PPN, Active issues of patient'];
+        if (conditionConcept.indexOf("Other")>=0){
+            conditions.show.push("PPN, Active issues of patient, other")
+        }
+        else {
+            conditions.hide.push("PPN, Active issues of patient, other")
+        }
+        return conditions;
+    },
     'CC, Patient complication': function (formName, formFieldValues) {
         var conditions = {
             show: [],
@@ -1183,7 +1302,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['SFP, Early Follow-up'];
-        if (conditionConcept == "Paritial achievement of objectives without complications"){
+        if (conditionConcept == "Partial achievement of objectives without complications"){
             conditions.show.push("SFP, Partial achievement of objective")
             conditions.hide.push("SFP, Type of complication","SFP, Impact of complication")
         }
@@ -1243,7 +1362,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
               }
               return conditions;
          },
-     'SFP, Is patient for surgery': function (formName, formFieldValues) {
+         'SFP, Is patient for surgery': function (formName, formFieldValues) {
          var conditions = {
              show: [],
              hide: []
@@ -1251,18 +1370,41 @@ Bahmni.ConceptSet.FormConditions.rules = {
          var conditionConcept = formFieldValues['SFP, Is patient for surgery'];
          if (conditionConcept == "Yes"){
              conditions.show.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary")
-             conditions.hide.push("SFP, Follow-up consultation notes");
+             conditions.hide.push("SFP, Follow-up consultation notes", "SFP, Is patient ready to be discharged (TRM)?");
          }
-         else if(conditionConcept=="No" || conditionConcept=="No Surgery Planned"){
+         else if(conditionConcept=="No"){
              conditions.show.push("SFP, Follow-up consultation notes");
-             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary")
+             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary", "SFP, Is patient ready to be discharged (TRM)?")
+        }
+        else if(conditionConcept=="No Surgery Planned"){
+             conditions.show.push("SFP, Is patient ready to be discharged (TRM)?");
+             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary", "SFP, Follow-up consultation notes")
         }
          else {
-             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary","SFP, Follow-up consultation notes")
+             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary","SFP, Follow-up consultation notes", "SFP, Is patient ready to be discharged (TRM)?")
          }
          return conditions;
      },
-    'SAP, Associated neural injury': function (formName, formFieldValues) {
+     'SFP, Is patient ready to be discharged (TRM)?': function (formName, formFieldValues) {
+         var conditions = {
+             show: [],
+             hide: []
+         };
+         var conditionConcept = formFieldValues['SFP, Is patient ready to be discharged (TRM)?'];
+         if (conditionConcept == "Yes"){
+             conditions.show.push("SFP, Has patient been informed about TRM", "SFP, Follow-up plan", "FP, Follow-up needs")
+             conditions.hide.push("SFP, Consultation notes");
+         }
+         else if(conditionConcept=="No"){
+             conditions.show.push("SFP, Consultation notes");
+             conditions.hide.push("SFP, Has patient been informed about TRM", "SFP, Follow-up plan", "FP, Follow-up needs")
+	 }
+	 else {
+	     conditions.hide.push("SFP, Has patient been informed about TRM", "SFP, Follow-up plan", "FP, Follow-up needs", "SFP, Consultation notes")
+	 }
+	 return conditions;
+     },
+     'SAP, Associated neural injury': function (formName, formFieldValues) {
               var conditions = {
                   show: [],
                   hide: []
@@ -1368,10 +1510,9 @@ Bahmni.ConceptSet.FormConditions.rules = {
           var conditionConcept = formFieldValues['AIA, Personal history of blood transfusion'];
           if (conditionConcept == "Yes"){
               conditions.show.push("AIA, Did an incident occur during previous blood transfusion")
-              conditions.hide.push("AIA, Describe")
           }
           else {
-              conditions.hide.push("AIA, Did an incident occur during previous blood transfusion","AIA, Describe")
+              conditions.hide.push("AIA, Did an incident occur during previous blood transfusion")
           }
           return conditions;
       },
@@ -1388,5 +1529,1160 @@ Bahmni.ConceptSet.FormConditions.rules = {
               conditions.hide.push("AIA, Describe")
          }
           return conditions;
+      },
+      'LLA, Type of assessment': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Type of assessment'];
+          if (conditionConcept == "Initial"){
+              conditions.hide.push("LLA, Follow-up Plan")
+              conditions.show.push("LLA, Previous history of physiotherapy","LLA, Chief complaint of patient","LLA, Problem List",  "LLA, Affected side", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, How old is the patient", "LLA, Additional comments")
+          }
+          else if (conditionConcept == "Post-operative"){
+	         conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Chief complaint of patient","LLA, Problem List","LLA, Follow-up Plan")
+             conditions.show.push("LLA, Affected side", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, How old is the patient", "LLA, Additional comments")
+         }
+         else if (conditionConcept == "Final"){
+	         conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Chief complaint of patient","LLA, Problem List")
+             conditions.show.push("LLA, Follow-up Plan", "LLA, Affected side", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, How old is the patient", "LLA, Additional comments")
+         }
+         else {
+             conditions.hide.push("LLA, Pediatric Lower Extremity Function(Mobility)", "LLA, Lower Extremity Functional Index (LEFI)", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, Follow-up Plan", "LLA, Previous history of physiotherapy", "LLA, Chief complaint of patient", "LLA, Problem List", "LLA, Affected side", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, How old is the patient", "LLA, Additional comments")
+         }
+          return conditions;
+      },
+      'ULA, Type of assessment': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Type of assessment'];
+          if (conditionConcept == "Initial"){
+              conditions.hide.push("ULA, Followup Plan")
+              conditions.show.push("ULA, Previous history of physiotherapy","ULA, Chief complaint of patient","ULA, Problem List","ULA, Dominant side", "ULA, Affected side", "ULA, Independence of Patient", "ULA, Does the patient use an assistive device or orthosis?", "ULA, Amputee patient?", "ULA, Pain Assessment", "ULA, Objective examination", "ULA, R.O.M Test for Upper Limbs", "ULA, Neurological exam of upper limb", "ULA, Muscle Test for Upper Limbs", "ULA, Hand and Finger", "ULA, hand and finger R.O.M", "ULA, Basic Grip Test", "ULA, How old is the patient", "ULA, Additional comments")
+          }
+          else if (conditionConcept == "Post-operative"){
+              conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Chief complaint of patient","ULA, Problem List","ULA, Followup Plan")
+              conditions.show.push("ULA, Dominant side", "ULA, Affected side", "ULA, Independence of Patient", "ULA, Does the patient use an assistive device or orthosis?", "ULA, Amputee patient?", "ULA, Pain Assessment", "ULA, Objective examination", "ULA, R.O.M Test for Upper Limbs", "ULA, Neurological exam of upper limb", "ULA, Muscle Test for Upper Limbs", "ULA, Hand and Finger", "ULA, hand and finger R.O.M", "ULA, Basic Grip Test", "ULA, How old is the patient", "ULA, Additional comments")
+         }
+         else if (conditionConcept == "Final"){
+	          conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Chief complaint of patient","ULA, Problem List")
+              conditions.show.push("ULA, Followup Plan", "ULA, Dominant side", "ULA, Affected side", "ULA, Independence of Patient", "ULA, Does the patient use an assistive device or orthosis?", "ULA, Amputee patient?", "ULA, Pain Assessment", "ULA, Objective examination", "ULA, R.O.M Test for Upper Limbs", "ULA, Neurological exam of upper limb", "ULA, Muscle Test for Upper Limbs", "ULA, Hand and Finger", "ULA, hand and finger R.O.M", "ULA, Basic Grip Test", "ULA, How old is the patient", "ULA, Additional comments")
+         }
+         else {
+             conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Level of amputation", "ULA, Pediatric Upper Extremity Function ( Fine Motor, ADL)", "ULA, (UEFI) Upper Extremity Functional Index", "ULA, Chief complaint of patient", "ULA, Problem List", "ULA, Dominant side", "ULA, Affected side", "ULA, Independence of Patient", "ULA, Does the patient use an assistive device or orthosis?", "ULA, Amputee patient?", "ULA, Pain Assessment", "ULA, Objective examination", "ULA, R.O.M Test for Upper Limbs", "ULA, Neurological exam of upper limb", "ULA, Muscle Test for Upper Limbs","ULA, Hand and Finger", "ULA, hand and finger R.O.M", "ULA, Basic Grip Test", "ULA, How old is the patient", "ULA, Additional comments", "ULA, Followup Plan")
+         }
+          return conditions;
+      },
+      'MPA, Type of assessment': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MPA, Type of assessment'];
+          if (conditionConcept == "Initial"){
+              conditions.hide.push("MPA, Followup Plan")
+              conditions.show.push("MPA, Previous history of physiotherapy","MPA, Chief complaint of patient","MPA, Problem List", "MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments")
+          }
+          else if (conditionConcept == "Post-operative"){
+              conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Chief complaint of patient","MPA, Problem List","MPA, Followup Plan")
+              conditions.show.push("MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments")
+         }
+         else if (conditionConcept == "Final"){
+             conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief complaint of patient","MPA, Problem List")
+             conditions.show.push("MPA, Followup Plan", "MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments")
+         }
+         else {
+             conditions.show.push("MPA, Date recorded", "MPA, Type of assessment")
+             conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Chief complaint of patient", "MPA, Problem List", "MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments", "MPA, Followup Plan")
+          }
+          return conditions;
+      },
+    'MPA, Movement difficulty of facial muscles': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MPA, Movement difficulty of facial muscles'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("MPA, Describe difficulty of movement for facial muscles")
+          }
+          else {
+              conditions.hide.push("MPA, Describe difficulty of movement for facial muscles")
+         }
+          return conditions;
+      },
+
+	'MPA, Movement difficulty of eyes': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MPA, Movement difficulty of eyes'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("MPA, Describe difficulty of movement for eyes")
+          }
+          else {
+              conditions.hide.push("MPA, Describe difficulty of movement for eyes")
+         }
+          return conditions;
+      },
+
+	'MPA, Movement difficulty of mouth': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MPA, Movement difficulty of mouth'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("MPA, Describe difficulty of movement for mouth")
+          }
+          else {
+              conditions.hide.push("MPA, Describe difficulty of movement for mouth")
+         }
+          return conditions;
+      },
+
+	'MPA, Movement difficulty of tongue': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MPA, Movement difficulty of tongue'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("MPA, Describe difficulty of movement for tongue")
+          }
+          else {
+              conditions.hide.push("MPA, Describe difficulty of movement for tongue")
+         }
+          return conditions;
+      },
+
+
+      'LLA, Previous history of physiotherapy': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Previous history of physiotherapy'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("LLA, Details of previous physiotherapy")
+          }
+          else {
+              conditions.hide.push("LLA, Details of previous physiotherapy")
+         }
+          return conditions;
+      },
+
+	'ULA, Previous history of physiotherapy': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Previous history of physiotherapy'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("ULA, Details of previous physiotherapy")
+          }
+          else {
+              conditions.hide.push("ULA, Details of previous physiotherapy")
+         }
+          return conditions;
+      },
+	'MPA, Previous history of physiotherapy': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MPA, Previous history of physiotherapy'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("MPA, Details of previous physiotherapy")
+          }
+          else {
+              conditions.hide.push("MPA, Details of previous physiotherapy")
+         }
+          return conditions;
+      },
+    'LLA, Does the patient use an assistive device or orthosis?': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Does the patient use an assistive device or orthosis?'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("LLA, Type of assistive device or orthosis","LLA, Comments about assistive device or orthosis")
+          }
+          else {
+              conditions.hide.push("LLA, Type of assistive device or orthosis","LLA, Comments about assistive device or orthosis")
+         }
+          return conditions;
+      },
+	'ULA, Does the patient use an assistive device or orthosis?': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Does the patient use an assistive device or orthosis?'];
+          if (conditionConcept == "Yes"){
+              conditions.show.push("ULA, Type of assistive device or orthosis","ULA, Comments about assistive device or orthosis")
+          }
+          else {
+              conditions.hide.push("ULA, Type of assistive device or orthosis","ULA, Comments about assistive device or orthosis")
+         }
+          return conditions;
+      },
+	'LLA, Type of assistive device or orthosis': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Type of assistive device or orthosis'];
+	  if (conditionConcept.indexOf("Other")>=0){              
+	      conditions.show.push("LLA, Other type of assistive device")
+          }
+          else {
+              conditions.hide.push("LLA, Other type of assistive device")
+         }
+          return conditions;
+      },
+	'ULA, Type of assistive device or orthosis': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Type of assistive device or orthosis'];
+	  if (conditionConcept.indexOf("Other")>=0){              
+	      conditions.show.push("ULA, Other type of assistive device")
+          }
+          else {
+           conditions.hide.push("ULA, Other type of assistive device")
+         }
+          return conditions;
+      },
+      'LLA, Amputee patient?': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Amputee patient?'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("LLA, Level of amputation")
+          }
+          else {
+              conditions.hide.push("LLA, Level of amputation")
+         }
+          return conditions;
+      },
+	'ULA, Amputee patient?': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Amputee patient?'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("ULA, Level of amputation")
+          }
+          else {
+              conditions.hide.push("ULA, Level of amputation")
+         }
+          return conditions;
+      },
+    'LLA, Type of amputation': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Type of amputation'];
+          if (conditionConcept =="Other"){
+              conditions.show.push("LLA, Other type of amputation")
+          }
+          else {
+              conditions.hide.push("LLA, Other type of amputation")
+         }
+          return conditions;
+      },
+	'ULA, Type of amputation': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Type of amputation'];
+          if (conditionConcept =="Other"){
+              conditions.show.push("ULA, Other type of amputation")
+          }
+          else {
+              conditions.hide.push("ULA, Other type of amputation")
+         }
+          return conditions;
+      },
+    'LLA, Is the patient using a prostheses?': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Is the patient using a prostheses?'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("LLA, Comments about prostheses usage")
+          }
+          else {
+              conditions.hide.push("LLA, Comments about prostheses usage")
+         }
+          return conditions;
+      },
+	'ULA, Is the patient using a prostheses?': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Is the patient using a prostheses?'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("ULA, Comments about prostheses usage")
+          }
+          else {
+              conditions.hide.push("ULA, Comments about prostheses usage")
+         }
+          return conditions;
+      },
+
+    'LLA, Pain Severity': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['LLA, Pain Severity'];
+        if (conditionConcept >= 1){
+            conditions.show.push("LLA, Side of pain","LLA, Site of pain","LLA, Type of pain","LLA, When does the pain occur")
+        }
+        else {
+            conditions.hide.push("LLA, Side of pain","LLA, Site of pain","LLA, Site, Other","LLA, Type of pain","LLA, When does the pain occur")
+        }
+        return conditions;
+    },
+    'LLA, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['LLA, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("LLA, Site, Other")
+        }
+        else {
+            conditions.hide.push("LLA, Site, Other")
+        }
+        return conditions;
+    },
+
+	'ULA, Pain Severity': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['ULA, Pain Severity'];
+        if (conditionConcept >= 1){
+            conditions.show.push("ULA, Side of pain","ULA, Site of pain","ULA, Type of pain","ULA, When does the pain occur")
+        }
+        else {
+            conditions.hide.push("ULA, Side of pain","ULA, Site of pain","ULA, Type of pain","ULA, When does the pain occur")
+        }
+        return conditions;
+    },
+	'ULA, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['ULA, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("ULA, Site, Other")
+        }
+        else {
+            conditions.hide.push("ULA, Site, Other")
+        }
+        return conditions;
+    },
+	'MPA, Pain Severity': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MPA, Pain Severity'];
+        if (conditionConcept >= 1){
+            conditions.show.push("MPA, Side of pain","MPA, Site of pain","MPA, Type of pain","MPA, When does the pain occur")
+        }
+        else {
+            conditions.hide.push("MPA, Side of pain","MPA, Site of pain", "MPA, Type of pain","MPA, When does the pain occur")
+        }
+        return conditions;
+    },
+	'MPA, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MPA, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("MPA, Site, Other")
+        }
+        else {
+            conditions.hide.push("MPA, Site, Other")
+        }
+        return conditions;
+    },
+	'LLA, Summary neurological examination (sensation)': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['LLA, Summary neurological examination (sensation)'];
+        if (conditionConcept.indexOf("Hypo-sensation")>=0){
+            conditions.show.push("LLA, Summary neurological examination (sensation), comments")
+        }
+
+        else if (conditionConcept.indexOf("Hyper-sensation")>=0){
+             conditions.show.push("LLA, Summary neurological examination (sensation), comments")
+        }
+
+        else {
+            conditions.hide.push("LLA, Summary neurological examination (sensation), comments")
+        }
+        return conditions;
+        },
+	'ULA, Summary neurological examination (sensation)': function (formName, formFieldValues) {                
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['ULA, Summary neurological examination (sensation)'];
+        if (conditionConcept.indexOf("Hypo-sensation")>=0){
+            conditions.show.push("ULA, Summary neurological examination (sensation), comments")
+        }
+
+        else if (conditionConcept.indexOf("Hyper-sensation")>=0){
+             conditions.show.push("ULA, Summary neurological examination (sensation), comments")
+        }
+
+        else {
+            conditions.hide.push("ULA, Summary neurological examination (sensation), comments")
+        }
+        return conditions;
+        },
+    'MPA, Summary neurological examination (sensation)': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MPA, Summary neurological examination (sensation)'];
+        if (conditionConcept.indexOf("Hypo-sensation")>=0){
+            conditions.show.push("MPA, Summary neurological examination (sensation), comments")
+        }
+
+        else if (conditionConcept.indexOf("Hyper-sensation")>=0){
+             conditions.show.push("MPA, Summary neurological examination (sensation), comments")
+        }
+
+        else {
+            conditions.hide.push("MPA, Summary neurological examination (sensation), comments")
+        }
+        return conditions;
+     },
+    'LLA, Does the patient have a nerve injury?': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Does the patient have a nerve injury?'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("LLA, Motor")
+          }
+          else {
+              conditions.hide.push("LLA, Motor")
+         }
+          return conditions;
+      },
+	'ULA, Does the patient have a nerve injury?': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Does the patient have a nerve injury?'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("ULA, Motor")
+          }
+          else {
+              conditions.hide.push("ULA, Motor")
+         }
+          return conditions;
+      },
+    'LLA, How old is the patient': function (formName, formFieldValues) {
+           var conditions = {
+               show: [],
+               hide: []
+           };
+           var conditionConcept = formFieldValues['LLA, How old is the patient'];
+           if (conditionConcept =="< 18 years"){
+               conditions.show.push("LLA, Pediatric Lower Extremity Function(Mobility)")
+               conditions.hide.push("LLA, Lower Extremity Functional Index (LEFI)")
+
+           }
+           else if (conditionConcept =="18+ years") {
+               conditions.show.push("LLA, Lower Extremity Functional Index (LEFI)")
+               conditions.hide.push("LLA, Pediatric Lower Extremity Function(Mobility)")
+          }
+          else {
+               conditions.hide.push("LLA, Pediatric Lower Extremity Function(Mobility)","LLA, Lower Extremity Functional Index (LEFI)")
+          }
+           return conditions;
+       },
+
+	'ULA, How old is the patient': function (formName, formFieldValues) {
+           var conditions = {
+               show: [],
+               hide: []
+           };
+           var conditionConcept = formFieldValues['ULA, How old is the patient'];
+           if (conditionConcept =="< 18 years"){
+               conditions.show.push("ULA, Pediatric Upper Extremity Function ( Fine Motor, ADL)")
+               conditions.hide.push("ULA, (UEFI) Upper Extremity Functional Index")
+
+           }
+           else if (conditionConcept =="18+ years") {
+               conditions.show.push("ULA, (UEFI) Upper Extremity Functional Index")
+               conditions.hide.push("ULA, Pediatric Upper Extremity Function ( Fine Motor, ADL)")
+          }
+          else {
+               conditions.hide.push("ULA, Pediatric Upper Extremity Function ( Fine Motor, ADL)","ULA, (UEFI) Upper Extremity Functional Index")
+          }
+           return conditions;
+       },
+	'ULA, Referral suggested': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Referral suggested'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("ULA, Prosthetic and orthotic center","ULA, Physiotherapy center")
+          }
+          else {
+              conditions.hide.push("ULA, Prosthetic and orthotic center","ULA, Physiotherapy center")
+         }
+          return conditions;
+      },
+	'MPA, Referral suggested': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MPA, Referral suggested'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("MPA, Referral suggested, comments")
+          }
+          else {
+              conditions.hide.push("MPA, Referral suggested, comments")
+         }
+          return conditions;
+      },
+	'LLA, Referral suggested': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['LLA, Referral suggested'];
+          if (conditionConcept =="Yes"){
+              conditions.show.push("LLA, Prosthetic and orthotic center","LLA, Physiotherapy center")
+          }
+          else {
+              conditions.hide.push("LLA, Prosthetic and orthotic center","LLA, Physiotherapy center")
+         }
+          return conditions;
+      },
+      'PNF, Type of pain experienced by the patient': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['PNF, Type of pain experienced by the patient'];
+     if (conditionConcept) {
+
+          if (conditionConcept.indexOf("Nociceptive")>=0){
+              conditions.show.push("PNF, Nociceptive pain")
+	  }
+          else {
+	      conditions.hide.push("PNF, Nociceptive pain")
+	  }
+          if (conditionConcept.indexOf("Neuropathic")>=0){
+	      conditions.show.push("PNF, Questionnaire DN4")
+	  }
+	  else {
+	      conditions.hide.push("PNF, Questionnaire DN4")
+	  }
       }
+          else {
+               conditions.hide.push("PNF, Nociceptive pain", "PNF, Questionnaire DN4")
+          }
+          return conditions;
+      },
+      'PNF, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNF, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("PNF, Site of pain, other")
+        }
+        else {
+            conditions.hide.push("PNF, Site of pain, other")
+        }
+        return conditions;
+    },
+    'PNF, Pain usually occurs with:': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNF, Pain usually occurs with:'];
+	if (conditionConcept) {
+	        if (conditionConcept.indexOf("Physiotherapy")>=0){
+        	conditions.show.push("PNF, Comments about physiotherapy")
+        	}
+		else {
+		conditions.hide.push("PNF, Comments about physiotherapy")
+		}
+        	if (conditionConcept.indexOf("Other")>=0){
+            	conditions.show.push("PNF, Other times pain is occurring")
+        	}
+		else {
+            	conditions.hide.push("PNF, Other times pain is occurring")
+		}
+        	if (conditionConcept.indexOf("Dressing change")>=0){
+            	conditions.show.push("PNF, Dressing")
+        	}
+		else {
+		conditions.hide.push("PNF, Dressing")
+		}
+	}
+	else {
+            conditions.hide.push("PNF, Comments about physiotherapy", "PNF, Dressing", "PNF, Other times pain is occurring")
+        }
+        return conditions;
+    },
+    'MDOF, Reason for visit': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MDOF, Reason for visit'];
+
+  if (conditionConcept) {
+          
+	  if (conditionConcept.indexOf("Medication renewal")>=0){
+              conditions.show.push("MDOF, Medication renewal, comments")
+          }
+          else {
+              conditions.hide.push("MDOF, Medication renewal, comments")
+          }
+	  if (conditionConcept.indexOf("New complaint")>=0){
+              conditions.show.push("MDOF, New complaint of patient")
+	  }
+          else {
+              conditions.hide.push("MDOF, New complaint of patient")
+          }
+          if (conditionConcept.indexOf("Antibiotic Clinic")>=0){
+             conditions.show.push("MDOF, Complaint of patient (ABx clinic)", "MDOF, Status of wound", "MDOF, Kidney function", "MDOF, Liver function", "MDOF, Plan", "MDOF, Consultation notes, ABx clinic")
+	  }
+	  else {
+             conditions.hide.push("MDOF, Complaint of patient (ABx clinic)", "MDOF, Status of wound", "MDOF, Kidney function", "MDOF, Liver function", "MDOF, Plan", "MDOF, Consultation notes, ABx clinic")
+          }
+          if (conditionConcept.indexOf("TRM visit")>=0){
+             conditions.show.push("MDOF, Medical course of patient in RSP", "MDOF, Condition of patient at discharge (TRM)", "MDOF, Discharge medication", "MDOF, Medical follow-up needs")
+	  }
+	  else {
+             conditions.hide.push("MDOF, Medical course of patient in RSP", "MDOF, Condition of patient at discharge (TRM)", "MDOF, Discharge medication", "MDOF, Medical follow-up needs")
+          }
+	  if (conditionConcept.indexOf("Other")>=0){
+             conditions.show.push("MDOF, Reason for visit, other")
+	  }
+          else {
+             conditions.hide.push("MDOF, Reason for visit, other")
+          }
+  }
+  else {            
+             conditions.hide.push("MDOF, Medication renewal, comments", "MDOF, New complaint of patient", "MDOF, Complaint of patient (ABx clinic)", "MDOF, Status of wound", "MDOF, Kidney function", "MDOF, Liver function", "MDOF, Plan", "MDOF, Consultation notes, ABx clinic", "MDOF, Medical course of patient in RSP", "MDOF, Condition of patient at discharge (TRM)", "MDOF, Discharge medication", "MDOF, Medical follow-up needs", "MDOF, Reason for visit, other")
+          }
+          return conditions;
+      },
+      'MDOF, New complaint of patient': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['MDOF, New complaint of patient'];
+
+  if (conditionConcept) {
+          
+	  if (conditionConcept.indexOf("Pain")>=0){
+              conditions.show.push("MDOF, Comments about pain")
+          }
+          else {
+              conditions.hide.push("MDOF, Comments about pain")
+          }
+	  if (conditionConcept.indexOf("Medical Complaint")>=0){
+              conditions.show.push("MDOF, Comments about patient's medical complaints")
+	  }
+          else {
+              conditions.hide.push("MDOF, Comments about patient's medical complaints")
+          }
+  }
+  else {
+       conditions.hide.push("MDOF, Comments about pain", "MDOF, Comments about patient's medical complaints")
+}
+          return conditions;
+      },
+      'MDOF, Plan': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MDOF, Plan'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("MDOF, Plan, other")
+        }
+        else {
+            conditions.hide.push("MDOF, Plan, other")
+        }
+        return conditions;
+    },
+    'MDOF, Condition of patient at discharge (TRM)': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MDOF, Condition of patient at discharge (TRM)'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("MDOF, Condition at discharge, other")
+        }
+        else {
+            conditions.hide.push("MDOF, Condition at discharge, other")
+        }
+        return conditions;
+    },
+    'MDOF, Discharge medication': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MDOF, Discharge medication'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("MDOF, Type of medication", "MDOF, Dose and frequency", "MDOF, Duration")
+        }
+        else {
+            conditions.hide.push("MDOF, Type of medication", "MDOF, Dose and frequency", "MDOF, Duration")
+        }
+        return conditions;
+    },
+    'Microbiology, Growth': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['Microbiology, Growth'];
+          if (conditionConcept =="Growth"){
+              conditions.show.push("Microbiology, Comments","Microbiology, Type of identification")
+          }
+          else if (conditionConcept =="No Growth"){
+             conditions.show.push("Microbiology, Comments")
+             conditions.hide.push("Microbiology, Type of identification")
+          }
+          else {
+              conditions.hide.push("Microbiology, Comments","Microbiology, Type of identification")
+         }
+          return conditions;
+      },
+	'Microbiology, Type of identification': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['Microbiology, Type of identification'];
+          if (conditionConcept =="Answer, Intermediate Identification"){
+              conditions.show.push("Microbiology, Intermediate Identification","Microbiology, Comments for Intermediate Identification")
+              conditions.hide.push("Bacteriology, Final Identification")
+          }
+          else if(conditionConcept =="Answer, Final Identification") {
+               conditions.show.push("Bacteriology, Final Identification")
+               conditions.hide.push("Microbiology, Intermediate Identification","Microbiology, Comments for Intermediate Identification")
+          }
+          else {
+              conditions.hide.push("Bacteriology, Final Identification","Microbiology, Intermediate Identification","Microbiology, Comments for Intermediate Identification")
+          }
+          return conditions;
+      },
+	'Microbiology, Final Identification': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['Microbiology, Final Identification'];
+          if (conditionConcept == "Pseudomonas aeruginosa") {
+              conditions.show.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+              conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+              conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+              conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+              conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+              conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+              conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+              conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+              conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+              conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+              conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+              conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+              conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+              conditions.show.push("Microbiology, Are there any alerts?")
+              conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+
+          }
+          else if (conditionConcept == "Staphylococcus aureus ss. aureus"){
+               conditions.show.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+               conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+               conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+               conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+               conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+               conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+               conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+               conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+               conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+               conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+               conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+               conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+               conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+               conditions.show.push("Microbiology, Are there any alerts?")
+               conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+
+          }
+           else if (conditionConcept == "Streptococcus, beta-haem. Group A" || conditionConcept =="Streptococcus, beta-haem. Group B"){
+                conditions.show.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+                conditions.show.push("Microbiology, Are there any alerts?")
+                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+
+           }
+           else if (conditionConcept =="Enterococcus avium" || conditionConcept == "Enterococcus faecalis" || conditionConcept == "Enterococcus faecium" || conditionConcept == "Enterococcus sp."){
+                conditions.show.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+                conditions.show.push("Microbiology, Are there any alerts?")
+                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+
+           }
+           else if (conditionConcept == "Streptococcus pneumoniae"){
+                conditions.show.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+                conditions.show.push("Microbiology, Are there any alerts?")
+                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+
+           }
+           else if (conditionConcept == "Streptococcus viridans, alpha-hem"){
+                conditions.show.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+                conditions.show.push("Microbiology, Are there any alerts?")
+                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+
+           }
+           else if (conditionConcept == "Citrobacter freundii" || conditionConcept =="Enterobacter aerogenes" || conditionConcept =="Enterobacter cloacae" || conditionConcept =="Escherichia coli" || conditionConcept == "Escherichia coli O157:H7" || conditionConcept == "Klebsiella pneumoniae ss. pneumoniae" || conditionConcept =="Morganella morganii ss. morganii" || conditionConcept =="Proteus mirabilis" || conditionConcept =="Salmonella enteritidis" || conditionConcept =="Salmonella sp." || conditionConcept =="Salmonella typhi" || conditionConcept =="Salmonella typhimurium" || conditionConcept == "Serratia marcescens" || conditionConcept =="Shigella boydii" || conditionConcept =="Shigella boydii serotype 1"){
+                conditions.show.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+                conditions.show.push("Microbiology, Are there any alerts?")
+                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+
+           }
+           else if (conditionConcept =="Neisseria meningitidis") {
+                conditions.show.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+                conditions.show.push("Microbiology, Are there any alerts?")
+                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+
+           }
+           else if (conditionConcept =="Haemophilus influenzae" || conditionConcept =="Haemophilus influenzae (non type b)" || conditionConcept =="Haemophilus influenzae (type b)"){
+                conditions.show.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+                conditions.show.push("Microbiology, Are there any alerts?")
+                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+
+           }
+           else if (conditionConcept =="Listeria monocytogenes"){
+                conditions.show.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+                conditions.show.push("Microbiology, Are there any alerts?")
+                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+
+           }
+           else if (conditionConcept =="Staphylococcus epidermidis" || conditionConcept =="Staphylococcus saprophyticus ss. saprophyticus"  ){
+                conditions.show.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+                conditions.show.push("Microbiology, Are there any alerts?")
+                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+
+           }
+           else if (conditionConcept == "Staphylococcus, coagulase negative"){
+                conditions.show.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+                conditions.show.push("Microbiology, Are there any alerts?","Microbiology, Latex Agglutination")
+                conditions.hide.push("Microbiology, Comments")
+
+           }
+           else if (conditionConcept =="Acinetobacter baumannii"){
+                conditions.show.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+                conditions.show.push("Microbiology, Are there any alerts?")
+                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+
+           }
+           else if (conditionConcept =="Corynebacterium sp. (diphtheroids)"){
+                conditions.show.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+                conditions.show.push("Microbiology, Are there any alerts?")
+                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+
+           }
+           else if (conditionConcept == "Bacteroides fragilis" || conditionConcept == "Burkholderia cepacia" || conditionConcept == "Campylobacter coli" || conditionConcept == "Campylobacter jejuni ss. jejuni" || conditionConcept == "Candida albicans" || conditionConcept == "Cytomegalovirus" || conditionConcept == "Epstein-Barr virus" || conditionConcept == "Hepatitis A virus" || conditionConcept == "Hepatitis B virus" || conditionConcept == "Hepatitis C virus" || conditionConcept == "Herpes simplex virus" || conditionConcept == "Herpes simplex virus 1" || conditionConcept == "Herpes simplex virus 2" || conditionConcept == "Human herpesvirus" || conditionConcept == "Human papillomavirus" || conditionConcept == "Influenza A virus" || conditionConcept == "Influenza B virus" || conditionConcept == "Mixed bacterial species present" || conditionConcept == "Moraxella (Branh.) catarrhalis" || conditionConcept == "Mycobacterium avium-intracellulare complex" || conditionConcept == "Mycobacterium tuberculosis" || conditionConcept == "Neisseria gonorrhoeae" || conditionConcept == "Normal flora" || conditionConcept == "Oral flora" || conditionConcept == "Respiratory syncytial virus" || conditionConcept == "Stenotrophomonas maltophilia" || conditionConcept == "Vibrio cholerae" ) {
+                conditions.show.push("Microbiology, Comments")
+                conditions.show.push("Microbiology, Are there any alerts?")
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+                conditions.hide.push("Microbiology, Latex Agglutination")
+           }
+          else {
+                conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem")
+                conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, PBP2a (20 to 25):","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC")
+                conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
+                conditions.hide.push("ES, Ampicillin","ES, Gentamicin","ES, Vancomycin")
+                conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
+                conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
+                conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem")
+                conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
+                conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
+                conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
+                conditions.hide.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC")
+                conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin")
+                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
+                conditions.hide.push("Microbiology, Are there any alerts?")
+                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+          }
+          return conditions;
+      },
+      'Microbiology, Are there any alerts?': function (formName, formFieldValues) {
+           var conditions = {
+               show: [],
+               hide: []
+           };
+           var conditionConcept = formFieldValues['Microbiology, Are there any alerts?'];
+           if (conditionConcept =="Yes"){
+               conditions.show.push("Microbiology, Alerts Set")
+           }
+           else {
+               conditions.hide.push("Microbiology, Alerts Set")
+          }
+           return conditions;
+       },
+      'NM, Beta-Lactamase test performed': function (formName, formFieldValues) {
+           var conditions = {
+               show: [],
+               hide: []
+           };
+           var conditionConcept = formFieldValues['NM, Beta-Lactamase test performed'];
+           if (conditionConcept =="Yes"){
+               conditions.show.push("NM, Beta-Lactamase test Result")
+           }
+           else {
+               conditions.hide.push("NM, Beta-Lactamase test Result")
+          }
+           return conditions;
+       },
+    'OS, Pain Severity': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['OS, Pain Severity'];
+        if (conditionConcept >= 1){
+            conditions.show.push("OS, Side of pain","OS, Site of pain","OS, Type of pain","OS, When does the pain occur")
+        }
+        else {
+            conditions.hide.push("OS, Side of pain","OS, Site of pain","OS, Type of pain","OS, When does the pain occur")
+        }
+        return conditions;
+    },
+      'OS, Site of pain': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['OS, Site of pain'];
+        if (conditionConcept.indexOf("Site, Other")>=0){
+            conditions.show.push("OS, Site of pain, other")
+        }
+        else {
+            conditions.hide.push("OS, Site of pain, other")
+        }
+        return conditions;
+    },
+ 	'OS, Does the patient have a drain?': function (formName, formFieldValues) {
+           var conditions = {
+               show: [],
+               hide: []
+           };
+           var conditionConcept = formFieldValues['OS, Does the patient have a drain?'];
+           if (conditionConcept =="Yes"){
+               conditions.show.push("OS, Drainage Set")
+           }
+           else {
+               conditions.hide.push("OS, Drainage Set")
+          }
+           return conditions;
+       }
 }

@@ -129,27 +129,160 @@
                     "numberOfVisits": 6,
                     "displayOrder": 4
                 },
-                "diagnoses": {
-                    "translationKey": "DASHBOARD_DIAGNOSES_KEY",
+                "nursingnote": {
+                    "translationKey": "DASHBOARD_TITLE_WARD_NURSING_NOTE_KEY",
                     "type": "vitals",
                     "isObservation": true,
-                    "displayOrder": 5,
+                    "displayOrder": 8,
                     "dashboardConfig": {
                         "showDetailsButton": true,
                         "isEditable": true,
                         "conceptNames": [
-                            "OBS, Surgical Diagnoses",
-                            "OBS, Medical Diagnoses"
+                            "Ward Nursing Note"
                         ],
                         "showGroupDateTime": true
                     },
                     "expandedViewConfig": {
                         "conceptNames": [
-                            "OBS, Surgical Diagnoses",
-                            "OBS, Medical Diagnoses"
+                            "Ward Nursing Note"
                         ],
                         "isEditable": true,
                         "numberOfVisits": 3,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
+                "postopmonitoring": {
+                    "translationKey": "DASHBOARD_POST_OPERATIVE_MONITORING_KEY",
+                    "type": "vitals",
+                    "isObservation": true,
+                    "displayOrder": 9,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "Post-Op Ward Monitoring"
+                        ],
+                        "showGroupDateTime": true
+                    },
+                    "expandedViewConfig": {
+                        "conceptNames": [
+                            "Post-Op Ward Monitoring"
+                        ],
+                        "isEditable": true,
+                        "numberOfVisits": 3,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
+                "surgicalwardnursingassessment": {
+                    "translationKey": "DASHBOARD_SURGICAL_WARD_ADMISSION_NURSING_ASSESSMENT_KEY",
+                    "type": "vitals",
+                    "isObservation": true,
+                    "displayOrder": 10,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "Surgical Ward Admission Nursing Assessment"
+                        ],
+                        "showGroupDateTime": true
+                    },
+                    "expandedViewConfig": {
+                        "conceptNames": [
+                            "Surgical Ward Admission Nursing Assessment"
+                        ],
+                        "isEditable": true,
+                        "numberOfVisits": 3,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
+                "physicianprogress": {
+                    "translationKey": "DASHBOARD_PHYSICIAN_PROGRESS_NOTE_KEY",
+                    "type": "vitals",
+                    "isObservation": true,
+                    "displayOrder": 11,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "Physician Progress Note-Ward"
+                        ],
+                        "showGroupDateTime": true
+                    },
+                    "expandedViewConfig": {
+                        "conceptNames": [
+                            "Physician Progress Note-Ward"
+                        ],
+                        "isEditable": true,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
+                "complications": {
+                    "translationKey": "DASHBOARD_COMPLICATIONS_KEY",
+                    "type": "vitals",
+                    "isObservation": true,
+                    "displayOrder": 12,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "CC, Complications"
+                        ],
+                        "showGroupDateTime": true
+                    },
+                    "expandedViewConfig": {
+                        "conceptNames": [
+                            "CC, Complications"
+                        ],
+                        "isEditable": true,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
+                "observationssheet": {
+                    "translationKey": "DASHBOARD_OBSERVATIONS_SHEET_KEY",
+                    "type": "vitals",
+                    "isObservation": true,
+                    "displayOrder": 14,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "Observation Sheet"
+                        ],
+                        "showGroupDateTime": true
+                    },
+                    "expandedViewConfig": {
+                        "conceptNames": [
+                            "Observation Sheet"
+                        ],
+                        "isEditable": true,
+                        "numberOfVisits": 3,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
+                "consultationnote": {
+                    "translationKey": "DASHBOARD_CONSULTATION_NOTE_KEY",
+                    "type": "vitals",
+                    "isObservation": true,
+                    "displayOrder": 13,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "Consultation Note"
+                        ],
+                        "showGroupDateTime": true
+                    },
+                    "expandedViewConfig": {
+                        "conceptNames": [
+                            "Consultation Note"
+                        ],
+                        "isEditable": true,
                         "showDetailsButton": true,
                         "pivotTable": {}
                     }
@@ -188,7 +321,7 @@
                 "patientMovementHistory": {
                     "type": "custom",
                     "displayType": "Full-Page",
-                    "displayOrder": 8,
+                    "displayOrder": 20,
                     "config": {
                         "title": "DASHBOARD_TITLE_PATIENT_MOVEMENT_HISTORY_KEY",
                         "template": "<patient-movement-history section='section' patient='patient' visitUuid='visitUuid'></patient-movement-history>"

@@ -27,5 +27,75 @@
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/ExtractionForIndicators.sql"
     }
+  },
+  "customReport5": {
+    "name": "Patient Information Report",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientInformationReport.sql"
+    }
+  },
+  "customReport6": {
+    "name": "Awaiting Validation -1st Stage",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/awaitingValidationFirstStage.sql"
+    }
+  },
+  "customReport7": {
+    "name": "Awaiting Validation - Follow Up Stage",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/awaitingValidationFollowup.sql"
+    }
+  },
+  "customReport8": {
+    "name": "To Continue Under Follow Up",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/continueUnderFollowup.sql"
+    }
+  },
+  "customReport9": {
+    "name": "Validated Patients",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/validatedPatients.sql"
+    }
+  },
+  "customReport10": {
+    "name": "Expected Arrival",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/expectedArrivalPatientQueue.sql"
+    }
+  },
+  "customReport11": {
+    "name": "More Information",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/moreInformation.sql"
+    }
+  },
+  "customReport12": {
+    "name": "Postponed",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/postponed.sql"
+    }
+  },
+  "customReport13": {
+    "name": "Hospital RSP",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/hosptialRSP.sql"
+    }
+  },
+  "customReport14": {
+    "name": "TRM Patients",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/trmPatients.sql"
+    }
   }
 }

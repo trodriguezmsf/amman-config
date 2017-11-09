@@ -1,6 +1,7 @@
 - hosts: bahmni-emr
   sudo: yes
   roles:
-    - { role: bahmni-amman-batch }
+    - { role: bahmni-apps-customization }
+    - { role: bahmni-amman-exports }
   tags:
     - bahmni-amman-customization

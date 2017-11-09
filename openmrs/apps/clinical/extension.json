@@ -24,19 +24,6 @@
     "order": 1,
     "requiredPrivilege": "app:clinical"
   },
-  "bahmniClinicalPatientsSearchAllMedicalfileincomplete": {
-    "id": "bahmni.clinical.patients.search.emrapi.sqlSearch.incompleteMedicalFile",
-    "extensionPointId": "org.bahmni.patient.search",
-    "type": "config",
-    "extensionParams": {
-      "searchHandler": "emrapi.sqlSearch.incompleteMedicalFile",
-      "translationKey": "MODULE_LABEL_INCOMPLETE_KEY",
-      "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
-      "view": "tabular"
-    },
-    "order": 2,
-    "requiredPrivilege": "app:clinical"
-  },
   "bahmniClinicalPatientsSearchAllAwaitingValidationPatients": {
     "id": "bahmni.clinical.patients.search.allAwaitingPatients",
     "extensionPointId": "org.bahmni.patient.search",

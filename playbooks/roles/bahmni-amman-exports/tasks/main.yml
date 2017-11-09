@@ -1,0 +1,10 @@
+- name: Uninstall bahmni-batch for amman exports
+  yum:
+    name: bahmni-amman-batch
+    state: absent
+  when: bahmni_amman_batch_url is defined
+
+- name: Install bahmni-batch for amman exports
+  yum:
+    name: "{{ bahmni_amman_batch_url }}"
+  when: bahmni_amman_batch_url is defined

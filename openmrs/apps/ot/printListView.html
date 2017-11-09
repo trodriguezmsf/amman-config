@@ -41,13 +41,13 @@
                 Patient Name
             </th>
             <th>
-                Start Time
-            </th>
-            <th>
                 Est Time
             </th>
             <th class="largeWidth">
                 Procedure(s)
+            </th>
+            <th class="largeWidth">
+                Notes
             </th>
             <th class="largeWidth">
                 Surgeon
@@ -69,9 +69,6 @@
                 {{appointment.derivedAttributes.patientName}}
             </td>
             <td>
-                {{appointment.derivedAttributes.expectedStartTime | bahmniTime}}
-            </td>
-            <td>
                 {{appointment.surgicalAppointmentAttributes.estTimeHours.value}} {{'OT_SURGICAL_APPOINTMENT_HOURS' |
                 translate}} : {{appointment.surgicalAppointmentAttributes.estTimeMinutes.value}}
                 {{'OT_SURGICAL_APPOINTMENT_MINUTES' | translate}}
@@ -80,6 +77,9 @@
             </td>
             <td class="largeWidth">
                 {{appointment.surgicalAppointmentAttributes.procedure.value}}
+            </td>
+            <td class="largeWidth">
+                {{appointment.surgicalAppointmentAttributes.notes.value}}
             </td>
             <td class="largeWidth">
                 {{appointment.surgicalBlock.provider.person.display}}

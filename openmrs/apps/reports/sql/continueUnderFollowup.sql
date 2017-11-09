@@ -1,12 +1,7 @@
- DELETE FROM global_property where property = 'emrapi.sqlSearch.continueUnderFollowup';
- select uuid() into @uuid;
- INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
- VALUES ('emrapi.sqlSearch.continueUnderFollowup',
-"SELECT
+SELECT
     `Date Of Presentation`,
-    pi.identifier,
-    concat(pn.given_name, ' ', pn.family_name)                  AS PATIENT_LISTING_QUEUES_HEADER_NAME,
-    p.uuid,
+    pi.identifier AS Identifier,
+    concat(pn.given_name, ' ', pn.family_name)                  AS Name,
     `Specialty`,
     `Name of MLO`,
     `Time for next medical follow-up`,
@@ -88,9 +83,9 @@ FROM person p
     LEFT JOIN (SELECT
                    pp.patient_id,
                    SUBSTRING_INDEX(
-                       GROUP_CONCAT(DISTINCT (IF(ps.end_date IS NOT NULL, cn.name, NULL)) ORDER BY ps.end_date, ps.start_date DESC),
+                       GROUP_CONCAT(IF(ps.end_date IS NOT NULL, cn.name, NULL) ORDER BY ps.end_date DESC, ps.start_date DESC),
                        ',', 1)                                                     AS 'previousProgramState',
-                   GROUP_CONCAT(DISTINCT (IF(ps.end_date IS NULL, cn.name, NULL))) AS 'currentProgramState'
+                   GROUP_CONCAT(IF(ps.end_date IS NULL, cn.name, NULL))            AS 'currentProgramState'
                FROM patient_program pp
                    INNER JOIN patient_state ps
                        ON pp.patient_program_id = ps.patient_program_id AND pp.voided IS FALSE AND ps.voided IS FALSE
@@ -155,24 +150,30 @@ FROM person p
     LEFT JOIN (SELECT
                    v.visit_id     AS visit_id,
                    v.patient_id   AS patient_id,
-                   v.date_stopped AS date_stopped
+                   v.date_stopped AS date_stopped,
+                   vt.name        AS visit_type
                FROM visit v
+                   INNER JOIN visit_type vt ON v.visit_type_id = vt.visit_type_id AND vt.retired IS FALSE
                    INNER JOIN (SELECT
                                    patient_id        AS patient_id,
                                    max(date_started) AS max_date_started
                                FROM visit
                                WHERE voided IS FALSE
                                GROUP BY patient_id) visit_info ON visit_info.patient_id = v.patient_id
-                                                                  AND visit_info.max_date_started = v.date_started AND
-                                                                  v.voided IS FALSE) latest_visit
+                                                                  AND visit_info.max_date_started = v.date_started
+                                                                  AND v.voided IS FALSE
+              ) latest_visit
         ON latest_visit.patient_id = p.person_id
 WHERE (
     followupInfo.outcomeFollowupSurgicalValidation = 'Continue under follow-up'
     OR
-    currentProgramState = 'Network Follow-up' AND previousProgramState IN ('Pre-Operative', 'Surgical / Hospitalisation', 'Rehabilitation')
-    AND (
+        (
+        currentProgramState = 'Network Follow-up'
+        AND
+        previousProgramState IN ('Pre-Operative', 'Surgical / Hospitalisation', 'Rehabilitation')
+        AND
         latest_visit.date_stopped IS NOT NULL
-        OR
-        latest_visit.date_stopped IS NULL AND (followupInfo.outcomeFollowupSurgicalValidation = 'Continue under follow-up' OR followupInfo.outcomeFollowupSurgicalValidation IS NULL)
+        AND
+        latest_visit.visit_type = 'Hospital'
         )
-     )", 'Patients under follow up',@uuid);
+     )

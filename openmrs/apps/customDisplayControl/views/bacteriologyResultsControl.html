@@ -1,0 +1,96 @@
+<style>
+    .final-identification {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: white;
+    }
+    .additional-attribute {
+        background-color: white !important;
+    }
+    .bacteriology-dashboard {
+        background: white;
+    }
+</style>
+<section class="bacteriology-dashboard">
+    <h2 class="section-title">{{section.title | titleTranslate}}</h2>
+    <div>
+        <div ng-include src="'../common/ui-helper/messages.html'"></div>
+        <section class="block hierarchy">
+            <ul class="form-field">
+                <li ng-repeat="specimen in specimens" class="bacteriology-dashboard">
+                    <div class="tree-list-item">
+                        <div class="specimen-info">
+                            <span class="specimenSource toggle-container" toggle="specimen.isOpen">
+                                <i class="fa fa-caret-right"></i>
+                                <i class="fa fa-caret-down"></i>
+                                {{getDisplayName(specimen)}} :
+                                <span class="specimenId">{{specimen.specimenId}}</span>
+                            </span>
+                            <span class="specimenCollectionDate fr">
+                                {{specimen.specimenCollectionDate | bahmniDate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div ng-show="specimen.isOpen">
+                        <ul ng-repeat="additionalAttribute in specimen.sample.additionalAttributes[0].groupMembers"
+                            class="additional-attribute clear-fix tree-list-item">
+                             <span class="testUnderPanel">
+                                {{additionalAttribute.concept.shortName}}</span>
+                            <span ng-if="additionalAttribute.concept.dataType == 'Date'">{{additionalAttribute.value | bahmniDate}}</span>
+                            <span ng-if="additionalAttribute.concept.dataType != 'Date'">{{additionalAttribute.value}}</span>
+                        </ul>
+                        <ul class="tree-list-item">
+                        Results
+                        </ul>
+                        <ul ng-repeat="groupMember in specimen.sampleResult.groupMembers"
+                              class="additional-attribute clear-fix tree-list-item">
+                                <show-observation patient="patient"
+                                                  ng-if="groupMember.concept.name !== 'Bacteriology, Final Identification' && groupMember.concept.name !== 'Microbiology Images'"
+                                                  observation="groupMember">
+                                </show-observation>
+                        </ul>
+                        <ul ng-repeat="finalIdentification in getFinalIdentificationSections(specimen)"
+                              class="final-identification clear-fix tree-list-item">
+
+                               <ul ng-repeat="groupMember in finalIdentification.groupMembers">
+                                   <show-observation patient="patient" observation="groupMember"
+                                                     ng-if="!isAntibiogram(groupMember) && !isAlert(groupMember)"></show-observation>
+                               </ul>
+
+                              <table>
+                                    <th ng-repeat="groupMember in finalIdentification.groupMembers"
+                                        ng-if="isAntibiogram(groupMember)"
+                                        ng-style="{'text-align': 'center'}">
+                                         {{groupMember.concept.shortName}}
+                                    </th>
+                                    <tr>
+                                    <td class="antiboigram"
+                                        ng-repeat="groupMember in finalIdentification.groupMembers"
+                                        ng-if="isAntibiogram(groupMember)"
+                                        ng-style="{'color': getColor(groupMember), 'text-align': 'center'}">
+                                        <b>{{isAntibiogram(groupMember)}}</b>
+                                    </td>
+                                    </tr>
+                              </table>
+                              <ul ng-repeat="groupMember in finalIdentification.groupMembers">
+                                   <show-observation patient="patient" observation="groupMember"
+                                                     ng-if="isAlert(groupMember)"></show-observation>
+                               </ul>
+                        </ul>
+                        <ul ng-repeat="groupMember in specimen.sampleResult.groupMembers"
+                            class="additional-attribute clear-fix tree-list-item">
+                            <show-observation patient="patient"
+                                              ng-if="groupMember.concept.name === 'Microbiology Images'"
+                                              observation="groupMember">
+                            </show-observation>
+                        </ul>
+                    </div>
+                </li>
+                <li ng-show="!isDataPresent()">
+                    <div class="placeholder-text"><p translate="NO_SPECIMEN_FOUND_MESSAGE"></p></div>
+                </li>
+            </ul>
+        </section>
+    </div>
+</section>

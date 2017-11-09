@@ -9,5 +9,7 @@
     "MODULE_LABEL_APOOINTMENTS_KEY": "Appointments",
     "MODULE_LABEL_ORDERS_KEY": "Orders",
     "MODULE_LABEL_PROGRAMS_KEY": "Programs",
-    "MODULE_LABEL_BED_MANAGEMENT_KEY": "Bed Management"
+    "MODULE_LABEL_BED_MANAGEMENT_KEY": "Bed Management",
+    "MODULE_LABEL_APPOINTMENT_SCHEDULING_KEY": "Appointment Scheduling",
+    "MODULE_LABEL_EXPORTS_KEY": "Exports"
 }

@@ -47,8 +47,8 @@
         "patientContext": {
 
             "personAttributes": [
-                "nationality1"
-
+                "phoneNumber1",
+                "dateofArrival"
             ]
 
         },
@@ -195,7 +195,7 @@
                 "multiSelect" :true
             },
             "SMH, Site of pain":{
-                "dropdown":false
+                "multiSelect" :true
             },
             "SMH, Medication":{
                 "allowAddMore" : true
@@ -405,13 +405,13 @@
             "allowAddMore": true
           },
           "ANA, Site of pain":{
-            "autocomplete":true
+            "multiSelect":true
           },
           "ONN, Pain Assessment":{
             "allowAddMore":true
           },
           "ONN, Site of pain":{
-            "autocomplete":true
+            "multiSelect":true
           },
           "ONN, Dressing":{
             "allowAddMore":true
@@ -429,7 +429,7 @@
             "allowAddMore":true
           },
           "POW, Site of pain":{
-            "autocomplete":true
+            "multiSelect":true
           },
           "POW, Dressing":{
             "allowAddMore":true
@@ -444,7 +444,7 @@
             "autocomplete":true
           },
           "WWN, Site of pain":{
-            "autocomplete":true
+            "multiSelect":true
           },
           "WWN, Site of drain":{
             "autocomplete":true
@@ -489,6 +489,18 @@
           "PPN, Removal of Drain" : {
             "allowAddMore" : true
           },
+	  "PPN, Active issues of patient":{
+            "multiSelect" : true
+          },
+	  "PPN, Wound status, 2":{
+            "multiSelect" : true
+          },
+	  "PPN, Abnormal lab values":{
+            "allowAddMore" : true
+          },
+	  "Physician Progress Note-Ward":{
+            "allowAddMore":true
+           },
           "CC, Anaesthetic complication in OT, description":{
             "multiSelect": true
           },
@@ -496,7 +508,8 @@
             "multiSelect":true
           },
           "PPN, Site of wound":{
-            "autocomplete":true
+            "autocomplete":true,
+	    "multiSelect":true
           },
           "PPN, Specify site of drain removal":{
             "autocomplete":true
@@ -527,6 +540,36 @@
           "SFP, Site of surgical procedure":{
             "autocomplete":true,
             "multiSelect":true
+          },
+	  "SFP, Follow-up needs":{
+            "isTabular": true
+          },
+	  "SFP, X-ray of:":{
+	    "conciseText": true
+          },
+	  "SFP, Video of:":{
+	    "conciseText": true
+          },
+	  "SFP, Photo of:":{
+	    "conciseText": true
+          },
+	  "SFP,  X-ray at:":{
+            "disableAddNotes": true,
+	    "autocomplete": true
+          },
+          "SFP,  Video after:":{
+            "disableAddNotes": true,
+	    "autocomplete": true  
+          },
+          "SFP,  Photo after:":{
+            "disableAddNotes": true,
+	    "autocomplete": true	      
+          },
+	  "SFP, Notes, other":{
+            "conciseText": true
+          },
+	  "SFP,  MLO visit at:":{
+	    "autocomplete": true              
           },
           "OMF, Chief complaint":{
             "multiSelect":true
@@ -615,9 +658,987 @@
             },
             "MD, Medication":{
                 "allowAddMore":true
+            },
+	    "LLA, Type of assessment":{
+              "required" : true
+            },
+	    "LLA, Type of assistive device or orthosis":{
+              "multiSelect":true
+            },
+	    "LLA, Pain Assessment":{
+             "allowAddMore" : true
+            },
+	    "LLA, Summary neurological examination (sensation)":{
+             "multiSelect" : true
+            },
+            "ULA, Type of assessment":{
+              "required" : true
+            },
+	    "ULA, Type of assistive device or orthosis":{
+             "multiSelect":true
+            },
+	    "ULA, Pain Assessment":{
+             "allowAddMore" : true
+            },
+	    "ULA, Summary neurological examination (sensation)":{
+             "multiSelect" : true
+            },
+	    "ULA, Hand and Finger":{
+             "allowAddMore":true
+            },
+            "MPA, Type of assessment":{
+              "required" : true
+            },
+	    "MPA, Pain Assessment":{
+             "allowAddMore" : true
+            },
+	    "MPA, Summary neurological examination (sensation)":{
+             "multiSelect" : true
+            },
+	    "PNF, Site of pain":{
+              "multiSelect":true
+            },
+	    "PNF, Site of dressing":{
+		"autocomplete":true,
+                "multiSelect":true
+            },
+	    "PNF, Pain usually occurs with:":{
+              "multiSelect":true
+            },
+	    "PNF, Dressing":{
+              "allowAddMore":true
+            },
+	    "PNF, Type of pain experienced by the patient":{
+              "multiSelect":true
+            },
+	    "MDOF, Reason for visit":{
+              "multiSelect":true
+            },
+	    "MDOF, New complaint of patient":{
+              "multiSelect":true
+            },
+	    "ULA, Level of amputation":{
+                "allowAddMore":true
+            },
+
+	    "ULA, Stump circumference":{
+                "isTabular": true,
+		"allowAddMore":true
+            },
+            "ULA, R.O.M Test for Upper Limbs":{
+                "isTabular": true
+            },
+	    "ULA, hand and finger R.O.M":{
+                "isTabular": true
+            },
+            "ULA, Musculocutaneous nerve":{
+                "isTabular": true
+            },
+	    "ULA, Left : Biceps brachii":{
+                "conciseText": true
+	    },
+	    "ULA, Right : Biceps brachii":{
+                "conciseText": true
+            },
+	    "ULA, Left : Deltoid":{
+                "conciseText": true
+            },
+	    "ULA, Right : Deltoid":{
+                "conciseText": true
+            },
+	    "ULA, Left : Tricep":{
+                "conciseText": true
+            },
+	    "ULA, Right : Tricep":{
+                "conciseText": true
+            },
+	    "ULA, Left : Supinator":{
+                "conciseText": true
+            },
+	    "ULA, Right : Supinator":{
+                "conciseText": true
+            },
+	    "ULA, Left : Ext. C. Rad. L&B":{
+                "conciseText": true
+            },
+	    "ULA, Right : Ext. C. Rad. L&B":{
+                "conciseText": true
+            },
+	    "ULA, Left : Ext. C. Ulnaris":{
+                "conciseText": true
+            },
+	    "ULA, Right : Ext. C. Ulnaris":{
+                "conciseText": true
+            },
+	    "ULA, Left : Ext. Digiti":{
+                "conciseText": true
+            },
+	    "ULA, Right : Ext. Digiti":{
+                "conciseText": true
+            },
+	    "ULA, Left : Abd. Poll. Longus":{
+                "conciseText": true
+            },
+	    "ULA, Right : Abd. Poll. Longus":{
+                "conciseText": true
+            },
+	    "ULA, Left : Ext. Poll. Longus":{
+                "conciseText": true
+            },
+	    "ULA, Right : Ext. Poll. Longus":{
+                "conciseText": true
+            },
+	    "ULA, Left : Ext. Indicis":{
+                "conciseText": true
+            },
+	    "ULA, Right : Ext. Indicis":{
+                "conciseText": true
+            },
+	    "ULA, Left : Ext. Dig. Min.":{
+                "conciseText": true
+            },
+	    "ULA, Right : Ext. Dig. Min.":{
+                "conciseText": true
+            },
+	    "ULA, Left : Pronator":{
+                "conciseText": true
+            },
+	    "ULA, Right : Pronator":{
+                "conciseText": true
+            },
+	    "ULA, Left : Flex. Carpi Radialis":{
+                "conciseText": true
+            },
+	    "ULA, Right : Flex. Carpi Radialis":{
+                "conciseText": true
+            },
+	    "ULA, Left : Flex. Dig. Sup":{
+                "conciseText": true
+            },
+	    "ULA, Right : Flex. Dig. Sup":{
+                "conciseText": true
+            },
+	    "ULA, Left : Flex. Dig Prof":{
+                "conciseText": true
+            },
+	    "ULA, Right : Flex. Dig Prof":{
+                "conciseText": true
+            },
+	    "ULA, Left : Opp. Pollicis":{
+                "conciseText": true
+            },
+	    "ULA, Right : Opp. Pollicis":{
+                "conciseText": true
+            },
+	    "ULA, Left : Flex. Poll. L&B":{
+                "conciseText": true
+            },
+	    "ULA, Right : Flex. Poll. L&B":{
+                "conciseText": true
+            },
+	    "ULA, Left : Abd. Poll. Brevis":{
+                "conciseText": true
+            },
+	    "ULA, Right : Abd. Poll. Brevis":{
+                "conciseText": true
+            },
+	    "ULA, Left : Lumbricalis":{
+                "conciseText": true
+            },
+	    "ULA, Right : Lumbricalis":{
+                "conciseText": true
+            },
+	    "ULA, Left : Flex. Carpi Uln":{
+                "conciseText": true
+            },
+	    "ULA, Right : Flex. Carpi Uln":{
+                "conciseText": true
+            },
+	    "ULA, Left : Interossei":{
+                "conciseText": true
+            },
+	    "ULA, Right : Interossei":{
+                "conciseText": true
+            },
+	    "ULA, Left : Add. Poll.":{
+                "conciseText": true
+            },
+	    "ULA, Right : Add. Poll.":{
+                "conciseText": true
+            },
+	    "ULA, Left : Opp/Abd/flex minimi":{
+                "conciseText": true
+            },
+	    "ULA, Right : Opp/Abd/flex minimi":{
+                "conciseText": true
+            },
+	    "ULA, Axillary nerve":{
+                "isTabular": true
+            },
+            "ULA, Radial nerve":{
+                "isTabular": true
+            },
+	    "ULA, Median nerve":{
+                "isTabular": true
+            },
+            "ULA, Ulnar nerve":{
+                "isTabular": true
+            },
+            "ULA, Muscle Test for Upper Limbs":{
+                "isTabular": true
+            },
+            "ULA, Right : Adduction":{
+                "conciseText": true
+            },
+            "ULA, ROM Left : Shoulder flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "ULA, ROM Left : Shoulder Ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "ULA, ROM Left : Int. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "ULA, ROM Left : Ext. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "ULA, ROM Left : Abduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "ULA, ROM Left : Adduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+	    "ULA, ROM Left : Elbow Flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Left : Elbow Ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Left : Forearm Sup.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Left : Forearm Pron.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Left : Wrist Flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Left : Wrist Ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Left : Ulnar Dev.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Left : Radial Dev.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Right : Elbow Flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Right : Elbow Ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Right : Forearm Sup.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Right : Forearm Pron.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Right : Wrist Flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Right : Wrist Ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Right : Ulnar Dev.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Right : Radial Dev.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Right : Shoulder flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Right : Shoulder Ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Right : Int. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Right : Ext. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Right : Abduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, ROM Right : Adduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, Muscle Left : Shoulder flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "ULA, Muscle Left : Shoulder Ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "ULA, Muscle Left : Int. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "ULA, Muscle Left : Ext. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "ULA, Muscle Left : Abduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "ULA, Muscle Left : Adduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+	    "ULA, Muscle Left : Elbow Flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, Muscle Left : Elbow Ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, Muscle Left : Forearm Sup.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, Muscle Left : Forearm Pron.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, Muscle Left : Wrist Flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, Muscle Left : Wrist Ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, Muscle Left : Ulnar Dev.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, Muscle Left : Radial Dev.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+            "ULA, Muscle Right : Shoulder flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "ULA, Muscle Right : Shoulder Ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "ULA, Muscle Right : Int. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "ULA, Muscle Right : Ext. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "ULA, Muscle Right : Abduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "ULA, Muscle Right : Adduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+	    "ULA, Muscle Right : Elbow Flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, Muscle Right : Elbow Ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, Muscle Right : Forearm Sup.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, Muscle Right : Forearm Pron.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, Muscle Right : Wrist Flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, Muscle Right : Wrist Ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, Muscle Right : Ulnar Dev.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, Muscle Right : Radial Dev.":{
+                "conciseText": true,
+                "disableAddNotes": true
+	     },
+	     "ULA, Site of pain":{
+                "multiSelect":true
+             },
+	     "ULA, Nail":{
+	        "multiSelect":true
+	     },
+ 	     "MPA, Site of pain":{
+                "multiSelect":true
+             },
+	     "MPA, AROM":{
+                "multiSelect":true  
+            },
+            "ULA, cm":{
+                "disableAddNotes": true
+            },
+            "ULA, True (reference point)":{
+                "disableAddNotes": true
+            },
+            
+            "ULA, Problem List":{
+                "allowAddMore":true
+            },
+	    "MPA, Problem List":{
+                "allowAddMore":true
+            },
+	    "ULA, From":{
+              "conciseText": true
+            },
+            "ULA, Comments about stump":{
+              "conciseText": true
+            },
+            "LLA, From":{
+              "conciseText": true
+            },
+            "LLA, Comments about stump":{
+              "conciseText": true
+            },
+            "LLA, Stump circumference":{
+                "isTabular": true,
+		"allowAddMore":true    
+            },
+	    "LLA, Level of amputation":{
+	    	"allowAddMore":true
+	    },
+            "LLA, R.O.M Test for Lower Limbs":{
+                "isTabular": true
+            },
+            "LLA, Femoral":{
+                "isTabular": true
+            },
+            "LLA, Peronial":{
+                "isTabular": true
+            },
+            "LLA, Tibial nerve":{
+                "isTabular": true
+            },
+            "LLA, Muscle Test for Lower Limbs":{
+                "isTabular": true
+            },
+            "LLA, Superior gluteal":{
+                "isTabular": true
+            },
+            "LLA, Inferior gluteal":{
+                "isTabular": true
+            },
+            "LLA, Left : Gluteus maxi.":{
+                "conciseText": true
+            },
+            "LLA, Right : Gluteus maxi.":{
+                "conciseText": true
+            },
+            "LLA, Left : Gluteus medius":{
+                "conciseText": true
+            },
+            "LLA, Right : Gluteus medius":{
+                "conciseText": true
+            },
+            "LLA, Left : Quadriceps":{
+                "conciseText": true
+            },
+            "LLA, Right : Quadriceps":{
+                "conciseText": true
+            },
+            "LLA, Left : Illiopsoas":{
+                "conciseText": true
+            },
+            "LLA, Right : Illiopsoas":{
+                "conciseText": true
+            },
+            "LLA, Obturator":{
+                "isTabular": true
+            },
+            "LLA, Left : Adductors":{
+                "conciseText": true
+            },
+            "LLA, Right : Adductors":{
+                "conciseText": true
+            },
+            "LLA ROM, Left : Hip flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Hip ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Int. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Ext. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Abduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Adduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Knee flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Knee ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Ankle dorsiflex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Ankle planterflex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Ankle inversion":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Left : Ankle eversion":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Hip flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Hip ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Int. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Ext. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Abduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Adduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Knee flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Knee ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Ankle dorsiflex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Ankle planterflex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Ankle inversion":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA ROM, Right : Ankle eversion":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Hip flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Hip ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Int. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Ext. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Abduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Adduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Knee flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Knee ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Ankle dorsiflex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Ankle planterflex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Ankle inversion":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Left : Ankle eversion":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Hip flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Hip ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Int. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Ext. Rotation":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Abduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Adduction":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Knee flex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Knee ext.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Ankle dorsiflex.":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Ankle planterflex":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Ankle inversion":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA Muscle, Right : Ankle eversion":{
+                "conciseText": true,
+                "disableAddNotes": true
+            },
+            "LLA, Left : Tibialis anterior":{
+                "conciseText": true
+            },
+            "LLA, Left : Peron. long. brev":{
+                "conciseText": true
+            },
+            "LLA, Left : Ext. digitorum":{
+                "conciseText": true
+            },
+            "LLA, Left : Ext. hallucis":{
+                "conciseText": true
+            },
+            "LLA, Right : Tibialis anterior":{
+                "conciseText": true
+            },
+            "LLA, Right : Peron. long. Brev":{
+                "conciseText": true
+            },
+            "LLA, Right : Ext. digitorum":{
+                "conciseText": true
+            },
+            "LLA, Right : Ext. hallucis":{
+                "conciseText": true
+            },
+            "LLA, Left : Gastrocnemius":{
+                "conciseText": true
+            },
+            "LLA, Left : Tibialis post.":{
+                "conciseText": true
+            },
+            "LLA, Left : Flex. digi. long":{
+                "conciseText": true
+            },
+            "LLA, Left : Flex. hall. long":{
+                "conciseText": true
+            },
+            "LLA, Right : Gastrocnemius":{
+                "conciseText": true
+            },
+            "LLA, Right : Tibialis post.":{
+                "conciseText": true
+            },
+            "LLA, Right : Flex. digi. long":{
+                "conciseText": true
+            },
+            "LLA, Right : Flex. hall. long":{
+                "conciseText": true
+            },
+            "LLA, Leg Length Discrepancy (LLD)":{
+                "isTabular": true
+            },
+            "LLA, Site of pain":{
+                "multiSelect":true
+            },
+            "LLA, cm":{
+                "disableAddNotes": true
+            },
+            "LLA, True (reference point)":{
+                "disableAddNotes": true
+            },
+            "LLA, Functional":{
+                "disableAddNotes": true
+            },
+            "LLA, Problem List":{
+                "allowAddMore":true
+            },
+            "LLA, Step length and height":{
+                "multiSelect":true
+            },
+            "LLA, Foot clearance":{
+                "multiSelect":true
+            },
+            "ULA, R.O.M hand and finger Flex : Wrist":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Flex : Thumb MC":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Flex : Thumb DIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Flex : 2nd Finger MC":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Flex : 3rd Finger MC":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Flex : 4th Finger MC":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Flex : 5th Finger MC":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Flex : 2nd Finger PIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Flex : 3rd Finger PIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Flex : 4th Finger PIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Flex : 5th Finger PIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Flex : 2nd Finger DIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Flex : 3rd Finger DIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Flex : 4th Finger DIP": {
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Distance tip (2nd -5th)":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Distance tip (Thumb - 2nd)":{
+                "disableAddNotes": true
+            },
+            "ULA, R.O.M hand and finger Ext. : Wrist":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Ext. : Thumb MC":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Ext. : Thumb DIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Ext. : 2nd Finger MC":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Ext. : 3rd Finger MC":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Ext. : 4th Finger MC":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Ext. : 5th Finger MC":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Ext : 2nd Finger PIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Ext : 3rd Finger PIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Ext : 4th Finger PIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Ext : 5th Finger PIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Ext. : 2nd Finger DIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Ext. : 3rd Finger DIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Ext. : 4th Finger DIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Ext. : 5th Finger DIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+            "ULA, R.O.M hand and finger Flex : 5th Finger DIP":{
+                "disableAddNotes": true,
+		"conciseText": true
+            },
+	    "Microbiology, Final Identification":{
+                "autocomplete":true
+            },
+            "Bacteriology, Final Identification":{
+                "allowAddMore":true
+            },
+            "Microbiology, Intermediate Identification":{
+                "multiSelect":true
+            },
+            "Image":{
+                "allowAddMore":true
+            },
+            "Microbiology, Alerts Set": {
+                "autocomplete":true,
+                "codedConceptName":"Alerts, coded",
+                "nonCodedConceptName":"Alerts, Non coded",
+                "allowAddMore": true
+            },
+            "Complications Set": {
+                "allowAddMore": true
+            },
+            "OS, Pain Assessment":{
+                "allowAddMore":true
+            },
+            "OS, Drainage Set":{
+                "allowAddMore":true
+            },
+            "OS, Site of pain":{
+                "multiSelect":true
+            },
+            "OS, Site of drain":{
+               "autocomplete":true
+            },
+            "Observation Sheet":{
+                "allowAddMore": true
             }
-           
-    },
+            },
         "visitPage": {
             "observationDisplay": {
                 "conceptNames": []
