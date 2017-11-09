@@ -158,12 +158,13 @@
                 "FSTG, Priority",
                 "FSTG, Does the Patient need Surgical Final Validation",
                 "FSTG, Comments",
-                "FSTG, Outcomes for 1st stage Anaesthesia validation",
-                "FSTG, Postpone reason",
                 "FSTG, Type of medical information needed for next submission",
+                "FSTG, Outcomes for 1st stage Anaesthesia validation",
+                "FST, Type of medical information needed for next submission",
+                "FSTG, Postpone reason",
                 "FSTG, Comments about postpone reason",
                 "FSTG, Refused Reason"
-                                    ]
+              ]
             },
             "expandedViewConfig": {
               "conceptNames": [
