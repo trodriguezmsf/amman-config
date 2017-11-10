@@ -47,8 +47,7 @@
         "patientContext": {
 
             "personAttributes": [
-                "phoneNumber1",
-                "dateofArrival"
+                "phoneNumber1"
             ]
 
         },
