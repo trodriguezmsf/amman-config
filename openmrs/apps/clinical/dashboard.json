@@ -250,7 +250,7 @@
         }
     },
   "documents": {
-    "displayByDefault": true,
+    "displayByDefault": false,
     "maxRecentlyViewedPatients": 1,
     "printing": {
       "title": "Patient Documents",
@@ -809,7 +809,7 @@
   },
   "Physio Dashboard": {
     "translationKey": "DASHBOARD_TAB_PHYSIO_DASHBOARD_KEY",
-    "displayByDefault": true,
+    "displayByDefault": false,
     "maxRecentlyViewedPatients": 10,
     "sections": {
       "Patient Information":{
