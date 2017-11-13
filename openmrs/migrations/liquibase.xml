@@ -5904,6 +5904,17 @@
             DELETE FROM role_privilege WHERE role = "Clinical-App-Read-Only" AND privilege = "app:clinical:bacteriologyTab";
         </sql>
     </changeSet>
+    <changeSet id="Amman-201711131550" author="Pramida" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) FROM global_property where property = 'bahmni.enableAuditLog' AND property_value="true";
+            </sqlCheck>
+        </preConditions>
+        <comment>Disable Audit Log feature for Amman</comment>
+        <sql>
+            UPDATE global_property SET property_value="false" WHERE property="bahmni.enableAuditLog";
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
