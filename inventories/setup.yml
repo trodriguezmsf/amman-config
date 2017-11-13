@@ -3,8 +3,8 @@ bahmni_repo_url: https://dl.bintray.com/bahmni/rpm/
 implementation_name: amman
 two_factor_auth: disabled
 implementer_interface: disabled
-omods: ["https://s3.ap-south-1.amazonaws.com/bahmni-msf/release-artifacts/release-3.3/bahmnimsf-2.0.omod", "https://s3.ap-south-1.amazonaws.com/bahmni-msf/release-artifacts/release-3.3/operationtheater-1.1.0.omod"]
-bahmniapps_url: https://s3.ap-south-1.amazonaws.com/bahmni-msf/release-artifacts/release-3.3/bahmniapps.zip
+omods: ["https://s3.ap-south-1.amazonaws.com/bahmni-msf/release-artifacts/release-3.4/bahmnimsf-2.0.omod", "https://s3.ap-south-1.amazonaws.com/bahmni-msf/release-artifacts/release-3.4/operationtheater-1.1.0.omod"]
+bahmniapps_url: https://s3.ap-south-1.amazonaws.com/bahmni-msf/release-artifacts/release-3.4/bahmniapps.zip
 nagios_contact_email: randomsome8@gmail.com
 ssmtp_auth_user: randomsome8@gmail.com
 ssmtp_auth_pass: pass123123
