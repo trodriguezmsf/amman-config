@@ -92,7 +92,7 @@ FROM person p
                                o.concept_id
                              FROM obs o
                                JOIN concept_name cn ON cn.concept_id = o.concept_id AND
-                                                       cn.name = 'FUP, NAME (s) of Surgeon 1'
+                                                       cn.name = 'FV, NAME (s) of Surgeon 1'
                                                        AND cn.concept_name_type = 'FULLY_SPECIFIED'
                                                        AND o.voided IS FALSE AND cn.voided IS FALSE
                              GROUP BY person_id) latest_obs ON latest_obs.obsDateTime = o.obs_datetime
