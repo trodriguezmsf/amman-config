@@ -11,6 +11,9 @@
     .bacteriology-dashboard {
         background: white;
     }
+    .scroll_antibiogram {
+    overflow-x:auto;
+    }
 </style>
 <section class="bacteriology-dashboard">
     <h2 class="section-title">{{section.title | titleTranslate}}</h2>
@@ -57,7 +60,7 @@
                                    <show-observation patient="patient" observation="groupMember"
                                                      ng-if="!isAntibiogram(groupMember) && !isAlert(groupMember)"></show-observation>
                                </ul>
-
+                        <div class ="scroll_antibiogram">
                               <table>
                                     <th ng-repeat="groupMember in finalIdentification.groupMembers"
                                         ng-if="isAntibiogram(groupMember)"
@@ -73,6 +76,7 @@
                                     </td>
                                     </tr>
                               </table>
+                        </div>
                               <ul ng-repeat="groupMember in finalIdentification.groupMembers">
                                    <show-observation patient="patient" observation="groupMember"
                                                      ng-if="isAlert(groupMember)"></show-observation>
