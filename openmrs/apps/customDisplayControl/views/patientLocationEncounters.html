@@ -1,40 +1,45 @@
-<div id="customControl">
+<style>
+    .highlight-row {
+        font-weight: bold;
+        font-size: 9pt;
+        background: #dddddd;
+        padding: 2px -15px;
+        margin: 2px 0;
+    }
+</style>
+
+<div id="customControl" class="block ">
     <h2 class="section-title">{{title | titleTranslate}} </h2>
     <section class="block hierarchy">
         <ul class="form-field" ng-if="isEncounterListShown">
-            <li ng-repeat="entry in ::encounterLocationInfo" class="is-text">
+            <li ng-repeat="entry in ::encounterLocationInfo">
 
-                <span class="tree-list-item row-click toggle-container" toggle="entry.isOpen">
+                <div class="tree-list-item row-click toggle-container highlight-row" toggle="entry.isOpen">
                     <i class="fa fa-caret-right"></i>
                     <i class="fa fa-caret-down"></i>
-                    <span class="obs-date">
+                    <span>
                         {{::entry.encounterDateTime | bahmniDateTime}}
                     </span>
-                    <span class="fr">
-                        <span>{{entry.providerName}}&nbsp;&nbsp;</span>
-                    </span>
-
-                </span>
-                    <ul  ng-show="entry.isOpen" >
-                        <li>
-                            <div class="tree-list-item">
-                                <span class="testUnderPanel fl">{{"VisitType" | titleTranslate }}</span>
-                                <span class="value-text-only">{{entry.visitTypeName}}</span>
-                            </div>
+                    <span class="fr">{{entry.providerName}}&nbsp;&nbsp;&nbsp;</span>
+                </div>
+                <div ng-show="entry.isOpen">
+                    <ul>
+                        <li class="tree-list-item">
+                            <span class="testUnderPanel fl">{{"VisitType" | titleTranslate }}</span>
+                            <span class="value-text-only">{{entry.visitTypeName}}</span>
                         </li>
-                        <li>
-                            <div class="tree-list-item">
-                                <span class="testUnderPanel fl"> {{"Location" | titleTranslate }}</span>
-                                <span class="value-text-only">{{entry.locationName }}</span>
-                            </div>
+                        <li class="tree-list-item">
+                            <span class="testUnderPanel fl"> {{"Location" | titleTranslate }}</span>
+                            <span class="value-text-only">{{entry.locationName }}</span>
                         </li>
                     </ul>
+                </div>
             </li>
         </ul>
 
         <div ng-if="!isEncounterListShown">
-            <div class="placeholder-text" ><p translate="DISPLAY_CONTROL_ERROR_MESSAGE_KEY"
-                                              translate-values="::{displayControl : '{{'encounters' | translate}}'}"></p>
+            <div class="placeholder-text"><p translate="DISPLAY_CONTROL_ERROR_MESSAGE_KEY"
+                                             translate-values="::{displayControl : '{{'encounters' | translate}}'}"></p>
             </div>
         </div>
     </section>
