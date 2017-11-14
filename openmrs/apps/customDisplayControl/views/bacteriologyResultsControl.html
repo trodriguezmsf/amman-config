@@ -97,7 +97,7 @@
                                                   ng-if="isAlert(groupMember)"></show-observation>
                             </ul>
                         </ul>
-                        <ul ng-repeat="groupMember in specimen.sampleResult.groupMembers"
+                        <ul ng-repeat="groupMember in specimen.sampleResult.groupMembers" ng-hide="$root.isBeingPrinted"
                             class="additional-attribute clear-fix tree-list-item">
                             <show-observation patient="patient"
                                               ng-if="groupMember.concept.name === 'Microbiology Images'"
