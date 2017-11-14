@@ -211,9 +211,6 @@
             "SMH, Date of consultation":{
                 "default":true
             },
-            "PHIA, Type of assistive device or orthosis":{
-                "multiSelect":true
-            },
             "VS, Blood glucose":{
                 "isTabular": true
             },
@@ -297,9 +294,6 @@
                 "autocomplete":true,
                 "codedConceptName":"MD, Procedures performed outside AMH",
                 "nonCodedConceptName":"MD, Non-Coded Procedures performed outside AMH",
-                "allowAddMore": true
-            },
-            "PHIA, Level of Amputation":{
                 "allowAddMore": true
             },
             "DIA, Diagnosis":{
