@@ -154,6 +154,10 @@ angular.module('bahmni.common.displaycontrol.custom')
         $scope.title = $scope.config.title;
         $scope.isEncounterListShown = true;
 
+        var isDashboardBeingPrinted = function () {
+            return $scope.$root.isBeingPrinted;
+        };
+
         var emitNoDataPresentEvent = function () {
             return $scope.$emit("no-data-present-event");
         };
@@ -174,7 +178,8 @@ angular.module('bahmni.common.displaycontrol.custom')
         spinner.forPromise(fetchLocationsInfoForEncounters($scope.enrollment).then(function (response) {
             var encounters = response.data;
             $scope.encounterLocationInfo = sortEncounterByEncounterDateTime(encounters);
-            var firstThreeEncounters = _.take($scope.encounterLocationInfo, 3);
+            var number = isDashboardBeingPrinted() ? $scope.encounterLocationInfo.length: 3;
+            var firstThreeEncounters = _.take($scope.encounterLocationInfo, number);
             _.each(firstThreeEncounters, function (encounter) {
                 encounter.isOpen = true
             });
@@ -320,10 +325,23 @@ angular.module('bahmni.common.displaycontrol.custom')
             patientProgramUuid: $scope.enrollment
         };
 
+        var expandAllSpecimens = function () {
+            _.each($scope.specimens, function (specimen) {
+                specimen.isOpen = true;
+            });
+        };
+
+        var expandAllSpecimensIfDashboardPrinting = function () {
+            if ($scope.$root.isBeingPrinted) {
+                expandAllSpecimens();
+            }
+        };
+
         bacteriologyTabInitialization().then(function (data) {
             $scope.bacteriologyTabData = data;
             bacteriologyResultsService.getBacteriologyResults(params).then(function (response) {
                 handleResponse(response);
+                expandAllSpecimensIfDashboardPrinting();
             });
         });
 
