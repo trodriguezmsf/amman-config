@@ -5915,6 +5915,45 @@
             UPDATE global_property SET property_value="false" WHERE property="bahmni.enableAuditLog";
         </sql>
     </changeSet>
+    <changeSet id="Amman-201711141447" author="Mahesh" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM concept_set WHERE concept_id = (SELECT concept_id FROM concept_name WHERE name ="OS, Total quantity evacuated from the drain" AND concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  FROM concept_name WHERE name= 'OS, Drainage Set' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding concept into concept_set </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set FROM concept_name WHERE name= 'OS, Drainage Set' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'OS, Total quantity evacuated from the drain' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id1,@concept_set,1030,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201711141519" author="Mahesh" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) FROM concept_set WHERE concept_set = (SELECT concept_id FROM concept_name where name ='Ward Nursing Note' AND concept_name_type = "FULLY_SPECIFIED") AND concept_id =(select concept_id  FROM concept_name where name ='WWN, Drainage Set' AND concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting concept_set ward nursing note form</comment>
+        <sql>
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="Ward Nursing Note" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID FROM concept_name WHERE name ="WWN, Drainage Set" AND concept_name_type="FULLY_SPECIFIED";
+            DELETE from concept_set where concept_set=@conceptsetID and concept_id =@conceptID;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201711141527" author="Mahesh" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM concept_set WHERE concept_set = (SELECT concept_id  FROM concept_name WHERE name ='All Observation Templates' AND concept_name_type = "FULLY_SPECIFIED") AND concept_id =(SELECT concept_id  FROM concept_name WHERE name ='Physiotherapy initial assessment' AND concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting Physiotherapy initial assessment from All Observation Templates</comment>
+        <sql>
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="All Observation Templates" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID FROM concept_name WHERE name ="Physiotherapy initial assessment" AND concept_name_type="FULLY_SPECIFIED";
+            DELETE from concept_set where concept_set=@conceptsetID and concept_id =@conceptID;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
