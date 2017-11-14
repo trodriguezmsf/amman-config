@@ -821,7 +821,7 @@
           "translationKey": "DASHBOARD_TITLE_PATIENT_MEDICAL_HISTORY",
           "type": "vitals",
           "isObservation": true,
-          "displayOrder": 1,
+          "displayOrder": 2,
           "dashboardConfig": {
             "showDetailsButton": true,
             "persistOrderOfConcepts": true,
@@ -851,7 +851,7 @@
         },
         "Operative Course in Amman": {
           "type": "custom",
-          "displayOrder": 1,
+          "displayOrder": 4,
           "config": {
             "title": "DASHBOARD_TITLE_OPERATIVE_COURSE_IN_AMMAN_KEY",
             "template": "<surgical-history section='section' patient='patient'></surgical-history>"
@@ -861,7 +861,7 @@
           "translationKey": "DASHBOARD_TITLE_PHYSIO_FORMS",
           "type": "vitals",
           "isObservation": true,
-          "displayOrder": 3,
+          "displayOrder": 1,
           "dashboardConfig": {
             "showDetailsButton": true,
             "isEditable": true,
@@ -885,7 +885,7 @@
         },
         "patientAppointments": {
           "type": "custom",
-          "displayOrder": 4,
+          "displayOrder": 3,
           "config": {
             "title": "DASHBOARD_TITLE_APPOINTMENTS_KEY",
             "template": "<patient-appointments-dashboard section='config' patient='patient'></patient-appointments-dashboard>"
