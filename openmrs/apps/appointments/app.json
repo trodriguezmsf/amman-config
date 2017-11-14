@@ -14,7 +14,7 @@
     "calendarSlotDuration": "00:10:00",
     "calendarSlotLabelInterval": "00:30:00",
     "startOfDay":"09:00",
-    "endOfDay":"19:00",
+    "endOfDay":"17:00",
     "printListViewTemplateUrl": "/bahmni_config/openmrs/apps/appointments/printListView.html",
     "enableServiceTypes": true,
     "enableCalendarView": true,
