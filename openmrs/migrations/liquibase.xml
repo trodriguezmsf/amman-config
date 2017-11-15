@@ -5954,6 +5954,19 @@
             DELETE from concept_set where concept_set=@conceptsetID and concept_id =@conceptID;
         </sql>
     </changeSet>
+    <changeSet id="Amman-201711151520" author="Santhosh" context="rel3.4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM global_property WHERE property = "schedulerMarksComplete";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating the global property for schedulerMarksComplete</comment>
+        <sql>
+            UPDATE global_property
+            SET property_value = "true"
+            WHERE property = "schedulerMarksComplete";
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
