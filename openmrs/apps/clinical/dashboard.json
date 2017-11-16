@@ -321,7 +321,7 @@
       "Medications administered in Amman RSP": {
         "translationKey": "DASHBOARD_TITLE_MEDICATION_KEY",
         "type": "treatment",
-        "displayOrder": 1,
+        "displayOrder": 3,
         "dashboardConfig": {
           "showFlowSheet": true,
           "showListView": true,
@@ -385,7 +385,7 @@
         "translationKey": "DASHBOARD_TITLE_PSYCHO_MEDICAL_COURSE",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 3,
+        "displayOrder": 5,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -443,7 +443,7 @@
         "translationKey": "DASHBOARD_TITLE_PSYCHO_SOCIAL_COURSE",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 5,
+        "displayOrder": 7,
         "dashboardConfig": {
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
@@ -520,7 +520,7 @@
         "translationKey": "DASHBOARD_TITLE_SURGICAL_FOLLOW-UP_PLAN",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 7,
+        "displayOrder": 9,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -572,7 +572,7 @@
         "translationKey": "DASHBOARD_TITLE_PHYSIOTHERAPY_FOLLOW-UP_PLAN",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 9,
+        "displayOrder": 11,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -636,27 +636,38 @@
         "translationKey": "DASHBOARD_TITLE_MEDICAL_FOLLOW-UP_PLAN",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 11,
+        "displayOrder": 13,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "MDOF, Medical follow-up needs",
-            "MDOF, Discharge medication",
-            "MDOF, Type of medication",
-            "MDOF, Dose and frequency",
-            "MDOF, Duration"
+            "Medical Doctor OPD Follow-up"
+          ],
+          "obsIgnoreList": [
+            "MDOF, Date recorded",
+            "MDOF, Reason for visit",
+            "MDOF, Medication renewal, comments",
+            "MDOF, New complaint of patient",
+            "MDOF, Comments about pain",
+            "MDOF, Comments about patient's medical complaints",
+            "MDOF, Complaint of patient (ABx clinic)",
+            "MDOF, Status of wound",
+            "MDOF, Kidney function",
+            "MDOF, Liver function",
+            "MDOF, Plan",
+            "MDOF, Plan, other",
+            "MDOF, Consultation notes, ABx clinic",
+            "MDOF, Medical course of patient in RSP",
+            "MDOF, Condition of patient at discharge (TRM)",
+            "MDOF, Condition at discharge, other",
+            "MDOF, Reason for visit, other"
           ],
           "scope": "latest",
           "showGroupDateTime": false
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "MDOF, Medical follow-up needs",
-            "MDOF, Discharge medication",
-            "MDOF, Type of medication",
-            "MDOF, Dose and frequency",
-            "MDOF, Duration"
+            "Medical Doctor OPD Follow-up"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -692,7 +703,7 @@
       },
       "patientAppointments": {
         "type": "custom",
-        "displayOrder": 13,
+        "displayOrder": 15,
         "config": {
           "title": "DASHBOARD_TITLE_APPOINTMENTS_KEY",
           "template": "<patient-appointments-dashboard section='config' patient='patient'></patient-appointments-dashboard>"
@@ -710,7 +721,7 @@
         "translationKey": "DASHBOARD_TITLE_PAIN_MANAGEMENT",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 15,
+        "displayOrder": 1,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -742,10 +753,7 @@
             "CC, Complications"
           ],
           "obsIgnoreList": [
-            "APN, Anaesthesia start time",
-            "APN, Anaesthesia end time",
             "APN, Special drugs used during surgery",
-            "APN, Description of complication",
             "APN, Intra-operative Labs",
             "APN, Devices present",
             "APN, Anaesthetic post-operative notes",
