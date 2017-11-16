@@ -15,11 +15,11 @@
     minute: 59
     hour: 23
     user: "root"
-    job="rsync -rh --progress -i --itemize-changes --update --rsync-path='sudo rsync' -pog {{amman_exports_dir}} -e 'ssh -o StrictHostKeyChecking=no' {{bahmni_support_user}}@{{item}}:{{amman_exports_dir}}/../"
+    job: "rsync -rh --progress -i --itemize-changes --update --rsync-path='sudo rsync' -pog {{amman_exports_dir}} -e 'ssh -o StrictHostKeyChecking=no' {{bahmni_support_user}}@{{item}}:{{amman_exports_dir}}/../"
   when: "{{ (passive is not defined or passive != 'yes') }}"
   with_items: "{{groups['bahmni-emr']}}"
 
 - name: Removing the bahmni-batch cron on secondary
-    shell: crontab -l -ubahmni | grep -v bahmni-batch  | crontab -ubahmni -;
+  shell: crontab -l -ubahmni | grep -v bahmni-batch  | crontab -ubahmni -;
   when: "{{ (passive is defined and passive == 'yes') }}"
   with_items: "{{groups['bahmni-emr']}}"
