@@ -5967,6 +5967,17 @@
             WHERE property = "schedulerMarksComplete";
         </sql>
     </changeSet>
+    <changeSet id="Amman-2017111611110" author="Mahesh" context="rel3.4" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM role_privilege WHERE role = "Clinical:FullAccess" AND privilege = "app:clinical:consultationTab";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding app:clinical:consultationTab privilege to Clinical:FullAccess role</comment>
+        <sql>
+            INSERT INTO role_privilege (role, privilege) VALUES  ('Clinical:FullAccess',  'app:clinical:consultationTab');
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
