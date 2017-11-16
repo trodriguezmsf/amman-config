@@ -1,5 +1,5 @@
 timezone: Asia/Amman
-bahmni_repo_url: http://repo.mybahmni.org.s3.amazonaws.com/rpm/bahmni/
+bahmni_repo_url: https://dl.bintray.com/bahmni/rpm/
 implementation_name: amman
 two_factor_auth: disabled
 selinux_state: disabled
