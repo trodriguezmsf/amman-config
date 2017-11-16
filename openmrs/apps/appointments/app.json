@@ -41,10 +41,10 @@
       "#FF1493",
       "#00BFFF"
     ],
-    "allowedActions": ["CheckedIn", "Completed", "Missed", "Cancelled"],
+    "allowedActions": ["CheckedIn", "Missed", "Cancelled"],
     "allowedActionsByStatus": {
       "Scheduled": ["CheckedIn", "Missed", "Cancelled"],
-      "CheckedIn": ["Completed", "Missed", "Cancelled"]
+      "CheckedIn": ["Missed", "Cancelled"]
     }
   }
 }

@@ -35,29 +35,48 @@ FROM person p
   INNER JOIN visit v ON v.patient_id = p.person_id AND v.date_stopped IS NULL AND v.voided IS FALSE
   INNER JOIN visit_type vt ON vt.visit_type_id = v.visit_type_id AND vt.retired IS FALSE AND vt.name = 'Hospital'
   INNER JOIN encounter e ON e.visit_id = v.visit_id AND e.voided IS FALSE
-  INNER JOIN (SELECT o.encounter_id
-              FROM
-                obs o
-                JOIN
-                (
-                  SELECT
-                    o.value_coded,
-                    o.obs_id,
-                    MAX(o.obs_datetime) AS obsDateTime,
-                    o.person_id,
-                    o.concept_id
-                  FROM obs o
-                    JOIN concept_name cn ON cn.concept_id = o.concept_id AND
-                                            cn.name = 'SFP, IS patient ready TO be discharged (TRM)?'
-                                            AND cn.concept_name_type = 'FULLY_SPECIFIED'
-                                            AND o.voided IS FALSE AND cn.voided IS FALSE
-                  GROUP BY person_id) max_Obs
-                  ON max_Obs.obsDateTime = o.obs_datetime AND max_Obs.person_id = o.person_id
-                     AND max_Obs.concept_id = o.concept_id AND o.voided IS FALSE
-                JOIN concept_name ans_cn
-                  ON ans_cn.concept_id = o.value_coded AND ans_cn.name = 'Yes' AND ans_cn.voided IS FALSE
-                JOIN encounter e ON o.encounter_id = e.encounter_id AND e.voided IS FALSE) discharge_obs
-    ON discharge_obs.encounter_id = e.encounter_id
+  LEFT OUTER JOIN (
+        SELECT
+        obs.person_id,
+        obs.encounter_id,
+        GROUP_CONCAT(if(cn.name = 'SFP, Is patient for surgery', cn_ans.name, NULL)) AS isPatientForSurgeory,
+        GROUP_CONCAT(if(cn.name = 'SFP, IS patient ready TO be discharged (TRM)?', cn_ans.name,
+                        NULL))                                                       AS isPatientReadyForDischarged
+      FROM obs obs
+        INNER JOIN concept_name cn ON obs.concept_id = cn.concept_id
+                                      AND cn.concept_name_type = 'FULLY_SPECIFIED'
+                                      AND cn.name IN
+                                          ('SFP, Is patient for surgery', 'SFP, IS patient ready TO be discharged (TRM)?')
+                                      AND obs.voided IS FALSE AND cn.voided IS FALSE
+        INNER JOIN concept_name cn_ans ON obs.value_coded = cn_ans.concept_id
+                                          AND cn_ans.concept_name_type = 'FULLY_SPECIFIED'
+                                          AND cn_ans.voided IS FALSE
+        INNER JOIN (
+                     SELECT
+                       o.person_id,
+                       o.encounter_id
+                     FROM
+                       obs o
+                       INNER JOIN (
+                                    SELECT
+                                      o.person_id,
+                                      o.concept_id,
+                                      MAX(o.obs_datetime) AS obsDateTime
+                                    FROM obs o
+                                      JOIN concept_name cn ON cn.concept_id = o.concept_id AND
+                                                              cn.name IN
+                                                              ('SFP, Is patient for surgery')
+                                                              AND cn.concept_name_type = 'FULLY_SPECIFIED'
+                                                              AND o.voided IS FALSE
+                                                              AND cn.voided IS FALSE
+                                    GROUP BY person_id) latestObs ON latestObs.obsDateTime = o.obs_datetime
+                                                                     AND latestObs.person_id = o.person_id
+                                                                     AND latestObs.concept_id = o.concept_id
+                                                                     AND
+                                                                     o.voided IS FALSE) latestEncounterWithIsPatientForSurgery
+          ON latestEncounterWithIsPatientForSurgery.encounter_id = obs.encounter_id
+      GROUP BY obs.person_id
+  ) surgeonFollowUp ON surgeonFollowUp.person_id = p.person_id AND surgeonFollowUp.encounter_id = e.encounter_id
   LEFT OUTER JOIN person_address paddr ON paddr.person_id = p.person_id AND paddr.voided IS FALSE
   LEFT OUTER JOIN (SELECT
                      DATE_FORMAT(pa.value, '%d/%m/%Y') AS dateOfArrival,
@@ -131,7 +150,7 @@ FROM person p
                                               AND cn.concept_name_type = 'FULLY_SPECIFIED'
                                               AND o.voided IS FALSE AND cn.voided IS FALSE
                   ) surgeonTRM
-    ON surgeonTRM.encounter_id = discharge_obs.encounter_id AND surgeonTRM.person_id = p.person_id
+    ON surgeonTRM.encounter_id = surgeonFollowUp.encounter_id AND surgeonTRM.person_id = p.person_id
   LEFT OUTER JOIN (
                     SELECT
                       answer.name,
@@ -168,28 +187,38 @@ FROM person p
                   ) physioTRM ON physioTRM.person_id = p.person_id
   LEFT OUTER JOIN (
                     SELECT
-                      o.person_id,
-                      daterecorded.value_datetime
+                        o.person_id,
+                        daterecordedObs.value_datetime
                     FROM
-                      obs o
-                      JOIN (
-                             SELECT
-                               o.obs_id,
-                               MAX(o.obs_datetime) AS obsDateTime,
-                               o.concept_id,
-                               o.person_id
-                             FROM obs o
-                               JOIN concept_name cn ON cn.concept_id = o.concept_id AND
-                                                       cn.name = 'MDOF, Reason FOR visit'
-                                                       AND cn.concept_name_type = 'FULLY_SPECIFIED'
-                                                       AND o.voided IS FALSE AND cn.voided IS FALSE
-                             GROUP BY person_id) latest_obs ON latest_obs.obsDateTime = o.obs_datetime
-                                                               AND latest_obs.person_id = o.person_id
-                                                               AND latest_obs.concept_id = o.concept_id
-                                                               AND o.voided IS FALSE
-                      JOIN obs daterecorded
-                        ON daterecorded.obs_group_id = o.obs_group_id AND daterecorded.voided IS FALSE
-                      JOIN concept_name drConcept
-                        ON drConcept.name = 'MDOF, DATE recorded' AND drConcept.concept_id = daterecorded.concept_id
-                    GROUP BY o.person_id
-                  ) reasonForVisitDate ON reasonForVisitDate.person_id = p.person_id;",'Patients under trm patients queue',@uuid);
+    obs o
+    JOIN (
+             SELECT
+                 o.obs_id,
+                 MAX(e.encounter_datetime) AS latestEncounterDateTime,
+                 o.concept_id,
+                 o.person_id
+             FROM obs o
+                 JOIN concept_name cn ON cn.concept_id = o.concept_id AND
+                                         cn.name = 'MDOF, Reason FOR visit'
+                                         AND cn.concept_name_type = 'FULLY_SPECIFIED'
+                                         AND o.voided IS FALSE AND cn.voided IS FALSE
+                 JOIN encounter e ON e.encounter_id = o.encounter_id AND e.voided IS FALSE
+             GROUP BY person_id) latest_obs ON latest_obs.person_id = o.person_id
+                                               AND latest_obs.concept_id = o.concept_id
+                                               AND o.voided IS FALSE
+    JOIN encounter e ON e.encounter_datetime = latest_obs.latestEncounterDateTime AND e.encounter_id = o.encounter_id
+                        AND e.patient_id = latest_obs.person_id AND e.voided IS FALSE
+    JOIN concept_name answer ON answer.concept_id = o.value_coded
+                                AND answer.concept_name_type = 'FULLY_SPECIFIED'
+                                AND answer.voided IS FALSE
+                                AND answer.name = 'TRM visit'
+    JOIN obs daterecordedObs
+        ON daterecordedObs.obs_group_id = o.obs_group_id AND daterecordedObs.voided IS FALSE
+    JOIN concept_name drConcept
+        ON drConcept.name = 'MDOF, DATE recorded' AND drConcept.concept_id = daterecordedObs.concept_id AND
+           drConcept.voided IS FALSE AND drConcept.concept_name_type = 'FULLY_SPECIFIED'
+GROUP BY o.person_id
+                  ) reasonForVisitDate ON reasonForVisitDate.person_id = p.person_id
+  WHERE
+        surgeonFollowUp.isPatientForSurgeory = 'No Surgery Planned'
+    AND surgeonFollowUp.isPatientReadyForDischarged = 'Yes';",'Patients under trm patients queue',@uuid);
