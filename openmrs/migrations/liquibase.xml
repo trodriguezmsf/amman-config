@@ -5978,6 +5978,18 @@
             INSERT INTO role_privilege (role, privilege) VALUES  ('Clinical:FullAccess',  'app:clinical:consultationTab');
         </sql>
     </changeSet>
+    <changeSet id="Amman-201711271300" author="Mahesh" context="rel3.5">
+        <comment>Adding reference terms for MSF-INTERNAL codes</comment>
+        <sqlFile path="utils/export_ref_terms_msf_internal.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201711271310" author="Mahesh" context="rel3.5">
+        <comment>Adding a procedure to create a concept reference mapping</comment>
+        <sqlFile splitStatements="false" path="utils/CreateReferenceMappingMsfInternal.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201711271320" author="Mahesh" context="rel3.5">
+        <comment>Call procedure for creating reference mapping</comment>
+        <sqlFile path="utils/concept_ref_map_msf_internal.sql"/>
+    </changeSet>
 </databaseChangeLog>
 
 
