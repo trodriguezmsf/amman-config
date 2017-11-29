@@ -619,7 +619,7 @@ call create_reference_mapping_msf_internal('Diabetes', '6');
 call create_reference_mapping_msf_internal('Thyroid hormone diseases', '22');
 call create_reference_mapping_msf_internal('History of corticosteroid drugs', '23');
 call create_reference_mapping_msf_internal('Congenital disorders of the nervous system', '24');
-call create_reference_mapping_msf_internal('Epilepsy or seizure', '11');
+call create_reference_mapping_msf_internal('Epilepsy  or seizure', '11');
 call create_reference_mapping_msf_internal('History of CVA - TIA', '25');
 call create_reference_mapping_msf_internal('Spinal cord disease', '26');
 call create_reference_mapping_msf_internal('History of upper GI bleeding', '27');
