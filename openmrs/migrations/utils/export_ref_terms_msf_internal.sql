@@ -558,3 +558,513 @@ INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_cre
   (4,'NEEDED_MH',@source_id,uuid(),now());
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
   (4,'COMMENTS_COUNSELLOR',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SITE_INJURY',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SIDE_INJURY',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'CONDITION_SOFTTISSUE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'NEURAL_INJURY',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_NEURAL',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'VASCULAR_INJURY',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_VASCULAR',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FORSURGERY',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'CONSENT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SURG_PROC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SURG_PROC_NONCODED',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SIDE_PROC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SITE_PROC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ES_HRS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ES_MINS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SUMMARY_SURG',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_SAP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'INITIAL_PLAN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PHYSIO_OBJ',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SURG_OBJ',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_UNCERT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_SURG_OBJ',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FREQ_OP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ES_SURGERIES',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SITES_DONOR_EX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SPACING_SURG',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ES_LOS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PLANNING_FURTHER_ADMIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'NEED_CONSULTATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'REASON_CONSULTATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OTHER_CONSULTATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SURG_DX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SURG_DX_NONCODED',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SITE_DX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SIDE_DX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'MED_DX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'MED_DX_NONCODED',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'104',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'105',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'106',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'107',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'108',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'109',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'110',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'111',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'112',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'113',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'114',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'115',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'116',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'117',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'118',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'119',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'120',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'121',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'122',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'123',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'124',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'125',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'126',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'127',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'128',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'129',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'130',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'131',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'132',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'133',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'134',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'135',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'136',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'137',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'138',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'139',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'140',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'141',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'142',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'143',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'144',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'145',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'146',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'147',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'148',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'149',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'150',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'151',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'152',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'153',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'154',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'155',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'156',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'157',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'158',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'159',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'160',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'161',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'162',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'163',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'164',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'165',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'166',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'167',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'168',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'169',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'170',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'171',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'172',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'173',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'174',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'175',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'176',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'177',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'178',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'179',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'180',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'181',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'182',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'183',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'184',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'185',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'186',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'187',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'188',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'189',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'190',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'191',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'192',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'193',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'194',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'195',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'196',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'197',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'198',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'199',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'200',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'201',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'202',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'203',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'204',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'205',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'206',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'207',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'208',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'209',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'210',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'211',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'212',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'213',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'214',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'215',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'216',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'217',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'218',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'219',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'220',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'221',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'222',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'223',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'224',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'225',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'226',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'227',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'228',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'229',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'230',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'231',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'232',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'233',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'234',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'235',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'236',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'237',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'238',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'239',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'240',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'241',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'242',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'243',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'244',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'245',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'246',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'247',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'248',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'249',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'250',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'251',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'252',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'253',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'254',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'255',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'256',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'257',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'258',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'259',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'260',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'261',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'262',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'263',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'264',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'265',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'266',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'267',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'268',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'269',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'270',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'271',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'272',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'273',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'274',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'275',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'276',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'277',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'278',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'279',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'280',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'281',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'282',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'283',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'284',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'285',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'286',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'287',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'288',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'289',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'290',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'291',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'292',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'293',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'294',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'295',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'296',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'297',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'298',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'299',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'300',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'301',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'P_TYPE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'P_WHEN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DRSG',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SIDEDRSG',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SITEDRSG',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OTHER_DESC_WOUND',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DRSG_COMMENTS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SITE_TE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TE_AMT_INJ',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TE_AMT_OUT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TE_TOTAL',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TE_CONDITION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OTHER_REASON',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PMOOD',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OTHER_PMOOD',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SUIC_THOUGHTS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'NUT_ASSES',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OTHER_NUT_ASSES',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ORIENTATION',@source_id,uuid(),now());
