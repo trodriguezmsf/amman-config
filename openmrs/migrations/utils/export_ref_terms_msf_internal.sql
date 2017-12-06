@@ -1068,3 +1068,191 @@ INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_cre
   (4,'OTHER_NUT_ASSES',@source_id,uuid(),now());
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
   (4,'ORIENTATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PERIPHERAL_LINE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SITE_PERIPHERAL',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'D_INSERT_PERIPHERAL',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'D_REMOV_PERIPHERAL',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_PERIPHERAL',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PICC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'D_INSERT_PICC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'D_DRSG_PICC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_PICC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'D_REMOV_PICC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FOLEY',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'BLOODSUGAR',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RBS_BEFORE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RBS_AFTER',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FBS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'INSULIN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'AMT_INSULIN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PCOMPLICATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'D_START_COMPLICATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DESC_ANEMIA',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DESC_ANAESTH_COMPLICATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DESC_AE_ABX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DESC_ARRHYTHMIA',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DESC_NECROSIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DESC_PRESSURE_ULCER',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DESC_COMPLICATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OUT_COMPLICATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'D_END_COMPLICATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PCOMPLAINT_SUBJ',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PCOMPLAINT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OTHER_PCOMPLAINT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ASSESS_VS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DESC_VS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PAPPETITE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DVT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DUR_DVT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DOSE_DVT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'WOUND_SIDE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'STATUS_WOUND_1',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'STATUS_WOUND_2',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'REMOVAL_CLIPS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ASSESS_WOUND',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DRAINAGE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'AMT_DRAINAGE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OTHER_DRAINAGE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DRSG_FREQ',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OTHER_DRSG_FREQ',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LAB_ABNORMAL',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'P_ACTIVE_ISSUE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OTHER_P_ACTIVE_ISSUE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PT_ASSESS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OTHER_PT_ASSESS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SURG_INFORM',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PT_PLAN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SIDE_REMOV_DRAIN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SITE_REMOV_DRAIN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OTHER_PT_PLAN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SUM_CONSULT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'CONSCIOUSNESS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SPO2',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'NAUSEA',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'VOMITING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'URINE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DRAIN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SIDE_DRAIN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SITE_DRAIN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PT_POSITION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EARLY_FUP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PARTIAL_ACH',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PCOMPLICATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'IMPACT_COMPLICATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'AMPUTATION_REQ',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FORSURGERY',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'CONSENT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SURG_PROC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SURG_PROC_NONCODED',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SIDE_PROC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SITE_PROC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ES_HRS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ES_MINS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SUMMARY_SURG',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FUP_NOTES',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TRM',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PT_INFORMED',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FUP_PLAN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'MLO_VISIT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'X-RAY_TIME',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'X-RAY_SITE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'VIDEO_TIME',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'VIDEO_SITE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PHOTO_TIME',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PHOTO_SITE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SURG_NOTES',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FUP_NOTES',@source_id,uuid(),now());
