@@ -5984,6 +5984,9 @@
     </changeSet>
     <changeSet id="Amman-201711271310" author="Mahesh" context="rel3.5">
         <comment>Adding a procedure to create a concept reference mapping</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_MSF_INTERNAL;
+        </sql>
         <sqlFile splitStatements="false" path="utils/CreateReferenceMappingMsfInternal.sql"/>
     </changeSet>
     <changeSet id="Amman-201711271320" author="Mahesh" context="rel3.5">

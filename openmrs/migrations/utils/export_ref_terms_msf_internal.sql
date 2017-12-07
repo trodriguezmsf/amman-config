@@ -1207,29 +1207,9 @@ INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_cre
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
   (4,'PARTIAL_ACH',@source_id,uuid(),now());
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-  (4,'PCOMPLICATION',@source_id,uuid(),now());
-INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
   (4,'IMPACT_COMPLICATION',@source_id,uuid(),now());
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
   (4,'AMPUTATION_REQ',@source_id,uuid(),now());
-INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-  (4,'FORSURGERY',@source_id,uuid(),now());
-INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-  (4,'CONSENT',@source_id,uuid(),now());
-INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-  (4,'SURG_PROC',@source_id,uuid(),now());
-INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-  (4,'SURG_PROC_NONCODED',@source_id,uuid(),now());
-INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-  (4,'SIDE_PROC',@source_id,uuid(),now());
-INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-  (4,'SITE_PROC',@source_id,uuid(),now());
-INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-  (4,'ES_HRS',@source_id,uuid(),now());
-INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-  (4,'ES_MINS',@source_id,uuid(),now());
-INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-  (4,'SUMMARY_SURG',@source_id,uuid(),now());
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
   (4,'FUP_NOTES',@source_id,uuid(),now());
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
@@ -1255,4 +1235,36 @@ INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_cre
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
   (4,'SURG_NOTES',@source_id,uuid(),now());
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-  (4,'FUP_NOTES',@source_id,uuid(),now());
+  (4,'START_TIME',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'END_TIME',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SURGEON_ASSIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ANAESTHETIST_TECH',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ANAESTHESIA',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'NURSE_SCRUB',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OPERATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TE_SIZE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OPERATION_SIDE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OPERATION_SITE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FINDINGS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OP_DETAILS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TYPE_DRAIN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SPECIMEN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ES_BLOODLOSS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TRANSFUSION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'NUM_BLUNITS',@source_id,uuid(),now());
