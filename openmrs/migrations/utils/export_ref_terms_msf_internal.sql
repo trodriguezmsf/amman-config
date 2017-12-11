@@ -1302,3 +1302,85 @@ INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_cre
   (4,'D_XRAY_DOC',@source_id,uuid(),now());
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
   (4,'DESC_XRAY',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TYPE_PAIN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SEVERITY_PAIN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DN4_BURNING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DN4_PAINFULCOLD',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DN4_ELECTRIC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DN4_TINGLING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DN4_PINS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DN4_NUMBNESS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DN4_ITCHING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DN4_TOUCH_HYPOESTHESIA',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DN4_PRICKING_HYPOESTHESIA',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DN4_LIGHT_BRUSING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DN4_SCORE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PT_CC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ISPAIN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ONSET_PAIN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PAIN_WITH',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_PHYSIO',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OTHER_PAIN_WITH',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'INC_DEC_FACTORS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'REFERRAL',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PAIN_FUP_COMMENTS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'REASON_VISIT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RENEWAL_MEDS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'NEW_PTCOMPLAINT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_PAIN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_PTCOMPLAINTS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_ABX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'STATUS_WOUND',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'KFT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LIVER',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'NOTES_ABX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'MEDCOURSE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COND_TRM',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OTHER_COND_TRM',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DCMEDS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TYPE_DCMEDS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DCMEDS_DOSEFX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DCMEDS_DUR',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FUPNEEDS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OTHER_REASON_VISIT',@source_id,uuid(),now());
