@@ -1249,6 +1249,8 @@ INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_cre
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
   (4,'OPERATION',@source_id,uuid(),now());
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OPERATION_NONCODED',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
   (4,'TE_SIZE',@source_id,uuid(),now());
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
   (4,'OPERATION_SIDE',@source_id,uuid(),now());
@@ -1384,3 +1386,701 @@ INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_cre
   (4,'FUPNEEDS',@source_id,uuid(),now());
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
   (4,'OTHER_REASON_VISIT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ASSESSMENT_TYPE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'HXPHYSIO',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DETAILHXPHYSIO',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PROBLEM',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'AFFECTEDSIDE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'GROOMING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FEEDING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DRESSING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TOILETUSE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TRANSFERS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'STAIRS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'MOBILITY',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ASSISDEVICE_ORTHOSIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TYPE_DEVICE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OTHER_DEVICE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_DEVICE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'AMPUTEE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'AMPUTATIONLEVEL',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'OTHER_AMPUTATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SIDE_AMPUTATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'STUMP_FROM',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'STUMP_CM',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_STUMP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PROSTHESES',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_PROSTHESES',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LLD_TRUE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LLD_FUNCTIONAL',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_HIPFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_HIPEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_INTROTATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_EXTROTATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_ABD',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_ADD',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_KNEEFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_KNEEEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_ANKDORSIFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_ANKPLANTERFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_ANKINV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_ANKEV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_HIPFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_HIPEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_INTROTATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_EXTROTATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_ABD',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_ADD',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_KNEEFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_KNEEEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_ANKDORSIFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_ANKPLANTERFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_ANKINV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_ANKEV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_HIPFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_HIPEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_INTROTATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_EXTROTATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_ABD',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_ADD',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_KNEEFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_KNEEEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_ANKDORSIFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_ANKPLANTERFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_ANKINV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_ANKEV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_HIPFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_HIPEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_INTROTATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_EXTROTATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_ABD',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_ADD',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_KNEEFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_KNEEEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_ANKDORSIFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_ANKPLANTERFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_ANKINV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_ANKEV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_SENSATION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'NERV_INJURY',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTGLUTMEDIUS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTGLUTMEDIUS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTGLUTMAXI',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTGLUTMAXI',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTQUADRICEPS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTQUADRICEPS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTILLIOPSOAS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTILLIOPSOAS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTADDUCTORS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTADDUCTORS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTTIBIALISANT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTTIBIALISANT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTPERONLONGBREV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTPERONLONGBREV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTEXTDIGITORUM',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTEXTDIGITORUM',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTEXTHALLUCIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTEXTHALLUCIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTGASTROCNEMIUS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTGASTROCNEMIUS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTTIBIALISPOST',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTTIBIALISPOST',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTFLEXDIGILONG',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTFLEXDIGILONG',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTFLEXHALLLONG',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTFLEXHALLLONG',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'BALANCE_SITTING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'CHAIR_RISE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RISE_ATTEMPT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'IMMEDIATE_STAND_BALANCE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'BALANCE_STANDING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'NUDGED',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EYES_CLOSED',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TURNING_360_1',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TURNING_360_2',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SITTING_DOWN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'BALANCE_SCORE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'INDICATION_GAIT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'STEP_LENGTH_HEIGHT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FOOT_CLEARANCE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'STEP_SYMMETRY',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'STEP_CONTINUITY',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PATH',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TRUNK',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'WALKING_TIME',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'GAIT_SCORE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TINETTI_SCORE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RISK_FALLS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PTAGE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_USUAL_WORK',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_USUAL_HOBBIES',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_BATH',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_WALK_BTROOMS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_SOCKS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_SQUATTING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_LIFTING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_LIGHT_ACTIVITIES',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_HEAVY_ACTIVITIES',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_CAR',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_TWO_BLOCKS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_ONEMILE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_STAIRS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_STANDING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_SITTING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_EVEN_RUNNING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_UNEVEN_RUNNING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_SHARP_TURNS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_HOPPING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_BED',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFI_SCORE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_KNEES',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_PLAYING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_WALK',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_WALK_BTROOMS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_TOILET',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_CHAIR',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_FLOOR',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_BENCH',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_TIPTOES_REACHING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_TIPTOES_PLACING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_WALK_SLIGHT_UNEVEN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_WALK_ROUGH',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_UPDOWN_HILLS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_UPDOWN_CURBS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_BUS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_CAR',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_ACROSS_ROOM',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_BACKPACK',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_BEND',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_EXERCISE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDLL_SCORE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PO_CENTER',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PHYSIO_CENTER',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RECOM_PHYSIO',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'HOME_EXERCISE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'DOMINANTSIDE',@source_id,uuid(),now());
+  INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'WOUND',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_WOUND',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'NAIL_COLOR',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_NAIL',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SWEATING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_SWEATING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ADHESION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_ADHESION',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'BLOODSUPPLY',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_BLOODSUPPLY',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ARCHES',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'COMMENTS_ARCHES',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_SHOULDFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_SHOULDEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_ELBOWFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_ELBOWEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_FOREARMSUP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_FOREARMPRON',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_WRISTFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_WRISTEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_ULNARDEV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTROM_RADIALDEV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_SHOULDFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_SHOULDEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_ELBOWFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_ELBOWEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_FOREARMSUP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_FOREARMPRON',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_WRISTFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_WRISTEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_ULNARDEV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTROM_RADIALDEV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FLEXROM_WRIST',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FLEXROM_THUMBMC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FLEXROM_THUMBDIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FLEXROM_SECFINGMC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FLEXROM_THRFINGMC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FLEXROM_FRTHFINGMC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FLEXROM_FTHFINGMC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FLEXROM_SECFINGPIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FLEXROM_THRFINGPIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FLEXROM_FRTHFINGPIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FLEXROM_FTHFINGPIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FLEXROM_SECFINGDIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FLEXROM_THRFINGDIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FLEXROM_FRTHFINGDIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'FLEXROM_FTHFINGDIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EXTROM_WRIST',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EXTROM_THUMBMC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EXTROM_THUMBDIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EXTROM_SECFINGMC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EXTROM_THRFINGMC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EXTROM_FRTHFINGMC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EXTROM_FTHFINGMC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EXTROM_SECFINGPIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EXTROM_THRFINGPIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EXTROM_FRTHFINGPIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EXTROM_FTHFINGPIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EXTROM_SECFINGDIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EXTROM_THRFINGDIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EXTROM_FRTHFINGDIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'EXTROM_FTHFINGDIP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ROM_DIST_SECTOFTH',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'ROM_DIST_THUMTOSEC',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_SHOULDFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_SHOULDEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_ELBOWFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_ELBOWEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_FOREARMSUP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_FOREARMPRON',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_WRISTFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_WRISTEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_ULNARDEV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTMUSC_RADIALDEV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_SHOULDFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_SHOULDEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_ELBOWFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_ELBOWEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_FOREARMSUP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_FOREARMPRON',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_WRISTFLEX',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_WRISTEXT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_ULNARDEV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTMUSC_RADIALDEV',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTBICEPBRACHII',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTBICEPBRACHII',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTDELTOID',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTDELTOID',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTTRICEP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTTRICEP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTSUP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTSUP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTEXTCRADLB',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTEXTCRADLB',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTEXTCULNARIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTEXTCULNARIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTEXTDIGITI',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTEXTDIGITI',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTABDPOLLONGUS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTABDPOLLONGUS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTEXTPOLLONGUS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTEXTPOLLONGUS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTEXTINDICIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTEXTINDICIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTEXTDIGMIN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTEXTDIGMIN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTPRONATOR',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTPRONATOR',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTFLEXCARPIRADIALIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTFLEXCARPIRADIALIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTFLEXDIGSUP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTFLEXDIGSUP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTFLEXDIGPROF',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTFLEXDIGPROF',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTOPPPOLLICIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTOPPPOLLICIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTFLEXPOLLLB',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTFLEXPOLLLB',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTABDPOLLBREVIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTABDPOLLBREVIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTLUMBRICALIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTLUMBRICALIS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTFLEXCARPIULN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTFLEXCARPIULN',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTINTEROSSEI',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTINTEROSSEI',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTADDPOLL',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTADDPOLL',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LEFTOPPABDFLEXMINIMI',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'RIGHTOPPABDFLEXMINIMI',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'CHUCK_PINCH',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'CYLIND_GRASP',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SPHERICAL',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'HOOK',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'TIP_PINCH',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'LATERAL_KEYPINCH',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'BASICGRIP_SCORE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_USUAL_WORK',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_LIFTING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_PLACING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_WASHING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_PUSHING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_PREPFOOD',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_DRIVING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_VACUUMING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_BUTTONS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_TOOLS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_OPENDOORS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_CLEANING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_LAUNDERING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_OPENJAR',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_CARRYING',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_RAWSCORE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'UEFI_FINALSCORE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_POINT',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_SOCKS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_PANTS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_BUTTONS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_SPOON',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_WIPETOILET',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_PANTSTOILET',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_HOLDFULLPLATE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_SCISSORS',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_SHOWER',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_BATH',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_PHONE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_BED',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_SHOES',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_OPENJAR',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_TOOTHPAST',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_BRUSHTEETH',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_TOWEL',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_PUTONCLOTHES',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_ZIPPER',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'PEDUL_SCORE',@source_id,uuid(),now());
+INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+  (4,'SPECIAL_CONCERNS',@source_id,uuid(),now());
