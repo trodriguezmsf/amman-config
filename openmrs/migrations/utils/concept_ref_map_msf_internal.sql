@@ -2143,7 +2143,6 @@ call create_reference_mapping_msf_internal('Microbiology, Specimen Description',
 call create_reference_mapping_msf_internal('Microbiology, CRP', 'CRP');
 call create_reference_mapping_msf_internal('Microbiology, Date of last CRP', 'D_CRP');
 call create_reference_mapping_msf_internal('Microbiology, Growth', 'GROWTH');
-call create_reference_mapping_msf_internal('Microbiology, Comments', 'COMMENTS_GROWTH');
 call create_reference_mapping_msf_internal('Microbiology, Type of identification', 'TYPE_IDENTIFICATION');
 call create_reference_mapping_msf_internal('Microbiology, Intermediate Identification', 'INT_IDENTIFICATION');
 call create_reference_mapping_msf_internal('Microbiology, Comments for Intermediate Identification', 'COMMENTS_INTERMED');
@@ -2391,3 +2390,9 @@ call create_reference_mapping_msf_internal('Use of interpretive criteria for non
 call create_reference_mapping_msf_internal('Use of cefotaxime or ceftriaxone in meningitis requires therapy with maximum doses.', '38');
 call create_reference_mapping_msf_internal('Penicillin or ampicillin intermediate isolates may require combined therapy with an aminoglycoside for bactericidal action.', '39');
 call create_reference_mapping_msf_internal('Recommendations for intrapartum prophylaxis for Group B streptococci are penicillin or ampicillin. When a Group B streptococcus is isolated from a pregnant woman with severe penicillin allergy, clindamycin and erythromycin should be tested and report', '40');
+call create_reference_mapping_msf_internal('1 = all of the time', '1');
+call create_reference_mapping_msf_internal('2 = most of the time', '2');
+call create_reference_mapping_msf_internal('3 = a good bit of the time', '3');
+call create_reference_mapping_msf_internal('4 = some of the time', '4');
+call create_reference_mapping_msf_internal('5 = a little bit of the time', '5');
+call create_reference_mapping_msf_internal('6 = none of the time', '6');
