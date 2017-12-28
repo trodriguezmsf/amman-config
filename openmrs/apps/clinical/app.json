@@ -190,7 +190,7 @@
             "MD, Medical History":{
                 "multiSelect" :true
             },
-            "SMH, Site":{
+            "ONN, Site":{
                 "multiSelect" :true
             },
             "SMH, Site of pain":{
@@ -315,7 +315,8 @@
                 "PE, Neurologic examination": "Cranial nerves intact, normal muscular deep tendon reflexes, muscle power intact, sensation intact throughout, gait intact, mental status intact "
             },
             "MD, Site of procedure":{
-                "autocomplete":true
+                "autocomplete":true,
+                "multiSelect":true
             },
 
             "SAP, Site of surgical objective":{
@@ -335,7 +336,8 @@
               "autocomplete":true
             },
             "DIA, Site":{
-              "autocomplete":true
+              "autocomplete":true,
+              "multiSelect":true
             },
             "DIA, Surgical Diagnois Section":{
               "allowAddMore":true
@@ -1630,6 +1632,9 @@
             },
             "Observation Sheet":{
                 "allowAddMore": true
+            },
+            "APN, Anaesthesia end time":{
+              "allowFutureDates": true
             }
             },
         "visitPage": {

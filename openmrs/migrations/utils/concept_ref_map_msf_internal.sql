@@ -2409,3 +2409,5 @@ call create_reference_mapping_msf_internal('1 = Usually did not tearing because:
 call create_reference_mapping_msf_internal('0 = Usually did not tearing because: of other reasons', '0');
 call create_reference_mapping_msf_internal('1 = Usually did not eat solid food because: of health', '1');
 call create_reference_mapping_msf_internal('0 = Usually did not eat solid food because: of other reasons', '0');
+call create_reference_mapping_msf_internal('Other PICC-line related complications', '43');
+call create_reference_mapping_msf_internal('ONN, Was the dressing changed', 'CHANGE_DRSG');

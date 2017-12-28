@@ -170,7 +170,7 @@ WHERE concept_id IN (SELECT DISTINCT concept_id
                             'Comments about further stage admission',
                             'VS, Comments about baseline vital signs',
                             'SMH, Other medical problems',
-                            'SMH, Description',
+                            'ONN, Description',
                             'SMH, Nursing notes',
                             'HE, Education learning needs',
                             'HE, Referral care Plan',
