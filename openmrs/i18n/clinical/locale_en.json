@@ -132,5 +132,7 @@
   "DASHBOARD_TITLE_OPERATIVE_COURSE_IN_AMMAN":"Operative Course In Amman",
   "DASHBOARD_TITLE_REVIEW_OF_SYSTEMS":"Review of Systems",
   "DASHBOARD_TITLE_PAST_MEDICAL_HISTORY":"Past Medical History (Before Arrival)",
-  "DASHBOARD_TITLE_POST_OPERATIVE_ANAESTESIA_COURSE":"Post Operative Anaesthesia Course"
+  "DASHBOARD_TITLE_POST_OPERATIVE_ANAESTESIA_COURSE":"Post Operative Anaesthesia Course",
+  "MODULE_LABEL_NEWMODIFIED_KEY": "New/Modified Prescriptions",
+  "MODULE_LABEL_OPENPRESCRIPTION_KEY": "Open Prescriptions"
 }
