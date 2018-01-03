@@ -6466,7 +6466,7 @@
             SELECT concept_id INTO @concept_answer4 FROM concept_name WHERE name = 'Site, Forehead including eyebrow' AND concept_name_type="FULLY_SPECIFIED";
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer4,8,now(),32,uuid());
             SELECT concept_id INTO @concept_answer5 FROM concept_name WHERE name = 'Site, Chest' AND concept_name_type="FULLY_SPECIFIED";
-            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer5,8,now(),33,uuid
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer5,8,now(),33,uuid());
             SELECT concept_id INTO @concept_answer6 FROM concept_name WHERE name = 'Site, Upper jaw' AND concept_name_type="FULLY_SPECIFIED";
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer6,8,now(),34,uuid());
             SELECT concept_id INTO @concept_answer7 FROM concept_name WHERE name = 'Site, Lower jaw' AND concept_name_type="FULLY_SPECIFIED";
