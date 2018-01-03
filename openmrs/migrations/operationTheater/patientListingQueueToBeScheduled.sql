@@ -17,6 +17,10 @@ FROM patient p
                                       AND pi.voided IS FALSE
                                       AND p.voided IS FALSE
   INNER JOIN person_name pn ON pn.person_id = p.patient_id AND pn.voided IS FALSE
+  INNER JOIN patient_program pp ON pp.patient_id = p.patient_id AND pp.voided IS FALSE
+  INNER JOIN patient_state ps ON ps.patient_program_id = pp.patient_program_id AND ps.end_date IS NULL AND ps.voided IS FALSE
+  INNER JOIN program_workflow_state pws ON pws.program_workflow_state_id = ps.state AND pws.retired IS FALSE
+  INNER JOIN concept_name state_cn ON state_cn.concept_id = pws.concept_id AND state_cn.concept_name_type = 'FULLY_SPECIFIED' AND state_cn.voided IS FALSE
   INNER JOIN (
   SELECT
   p.person_id,
@@ -290,10 +294,14 @@ FROM
         ON appoinment.patient_id = p.patient_id AND p.voided IS FALSE
   ) appointment_block ON appointment_block.patient_id = p.patient_id
 WHERE
-  procedureBlock.obs_datetime > appointment_block.date_created
+  state_cn.name NOT IN ('Network Follow-up')
+  AND
+  pp.date_completed IS NULL
+  AND
+  (procedureBlock.obs_datetime > appointment_block.date_created
   OR
   appointment_block.status = 'POSTPONED' AND procedureBlock.obs_datetime < appointment_block.date_created
   OR
-  appointment_block.date_created IS NULL AND procedureBlock.obs_datetime IS NOT NULL
+  appointment_block.date_created IS NULL AND procedureBlock.obs_datetime IS NOT NULL)
 ORDER BY procedureBlock.obs_datetime DESC;"
    ,'SQL for to be scheduled patient listing queues for OT module',@uuid);
