@@ -41,6 +41,9 @@
                 Patient Name
             </th>
             <th>
+                Patient Age
+            </th>
+            <th>
                 Est Time
             </th>
             <th class="largeWidth">
@@ -67,6 +70,9 @@
             </td>
             <td  class="largeWidth">
                 {{appointment.derivedAttributes.patientName}}
+            </td>
+            <td>
+                {{appointment.derivedAttributes.patientAge}}
             </td>
             <td>
                 {{appointment.surgicalAppointmentAttributes.estTimeHours.value}} {{'OT_SURGICAL_APPOINTMENT_HOURS' |
