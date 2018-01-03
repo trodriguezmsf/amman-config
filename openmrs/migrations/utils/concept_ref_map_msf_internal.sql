@@ -2411,3 +2411,10 @@ call create_reference_mapping_msf_internal('1 = Usually did not eat solid food b
 call create_reference_mapping_msf_internal('0 = Usually did not eat solid food because: of other reasons', '0');
 call create_reference_mapping_msf_internal('Other PICC-line related complications', '43');
 call create_reference_mapping_msf_internal('ONN, Was the dressing changed', 'CHANGE_DRSG');
+call create_reference_mapping_msf_internal('Transfer', '8');
+call create_reference_mapping_msf_internal('Defaulter', '10');
+call create_reference_mapping_msf_internal('PIA, SDQ P7-10', 'SDQ7_10');
+call create_reference_mapping_msf_internal('PIA, SDQ P11-17', 'SDQ11_17');
+call create_reference_mapping_msf_internal('PIA, Psychosocial overview and comments', 'OVERVIEW');
+call create_reference_mapping_msf_internal('PIA, Social needs or other referrals', 'SOCIAL_NEEDS');
+call create_reference_mapping_msf_internal('PIA, Specific comments regarding the caretaker', 'COMMENTS_PSY');

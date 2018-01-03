@@ -6349,6 +6349,7 @@
             UPDATE concept_name SET name = 'ONN, Description' WHERE name='SMH, Description' AND concept_id=1235 AND concept_name_type="FULLY_SPECIFIED";
         </sql>
     </changeSet>
+
     <changeSet id="Amman-201712270932" author="Mahesh" context="rel3.5" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -6445,6 +6446,41 @@
         <comment>Adding app:pharmacy privilege to Privilege Level: Full role</comment>
         <sql>
             INSERT INTO role_privilege(role, privilege) VALUES ("Privilege Level: Full", "app:pharmacy");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201801030517" author="Mahesh" context="rel3.5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name = 'ONN, Site' AND concept_name_type="FULLY_SPECIFIED") AND answer_concept=(SELECT concept_id FROM concept_name WHERE name ="Jaw" AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New answer concepts to ONN, Site</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'ONN, Site' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, Jaw' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,8,now(),29,uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Site, Abdomen' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer2,8,now(),30,uuid());
+            SELECT concept_id INTO @concept_answer3 FROM concept_name WHERE name = 'Site, Other' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer3,8,now(),31,uuid());
+            SELECT concept_id INTO @concept_answer4 FROM concept_name WHERE name = 'Site, Forehead including eyebrow' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer4,8,now(),32,uuid());
+            SELECT concept_id INTO @concept_answer5 FROM concept_name WHERE name = 'Site, Chest' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer5,8,now(),33,uuid
+            SELECT concept_id INTO @concept_answer6 FROM concept_name WHERE name = 'Site, Upper jaw' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer6,8,now(),34,uuid());
+            SELECT concept_id INTO @concept_answer7 FROM concept_name WHERE name = 'Site, Lower jaw' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer7,8,now(),35,uuid());
+            SELECT concept_id INTO @concept_answer8 FROM concept_name WHERE name = 'Site, Upper back' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer8,8,now(),36,uuid());
+            SELECT concept_id INTO @concept_answer9 FROM concept_name WHERE name = 'Site, Lower back' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer9,8,now(),37,uuid());
+            SELECT concept_id INTO @concept_answer10 FROM concept_name WHERE name = 'Site, Iliac' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer10,8,now(),38,uuid());
+            SELECT concept_id INTO @concept_answer11 FROM concept_name WHERE name = 'Site, Femur' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer11,8,now(),39,uuid());
+            SELECT concept_id INTO @concept_answer12 FROM concept_name WHERE name = 'Site, Stump' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer12,8,now(),40,uuid());
         </sql>
     </changeSet>
 </databaseChangeLog>
