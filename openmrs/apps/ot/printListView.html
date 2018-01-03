@@ -32,6 +32,9 @@
         <thead>
         <tr>
             <th width="80px">
+                Day
+            </th>
+            <th width="80px">
                 Date
             </th>
             <th width="80px">
@@ -62,6 +65,9 @@
         </thead>
         <tbody>
         <tr ng-repeat="appointment in surgicalAppointmentList" ng-class="{'current-date': isCurrentDate(appointment.derivedAttributes.expectedStartDate)}">
+            <td width="80px">
+                {{appointment.derivedAttributes.expectedStartDate | date : 'EEEE'}}
+            </td>
             <td width="80px">
                 {{appointment.derivedAttributes.expectedStartDate | bahmniDate}}
             </td>
