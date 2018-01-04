@@ -97,5 +97,12 @@
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/trmPatients.sql"
     }
+  },"customReport15": {
+    "name": "Cases Feedback",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/casesFeedback.sql"
+    }
   }
+
 }
