@@ -6349,7 +6349,6 @@
             UPDATE concept_name SET name = 'ONN, Description' WHERE name='SMH, Description' AND concept_id=1235 AND concept_name_type="FULLY_SPECIFIED";
         </sql>
     </changeSet>
-
     <changeSet id="Amman-201712270932" author="Mahesh" context="rel3.5" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -6481,6 +6480,19 @@
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer11,8,now(),39,uuid());
             SELECT concept_id INTO @concept_answer12 FROM concept_name WHERE name = 'Site, Stump' AND concept_name_type="FULLY_SPECIFIED";
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer12,8,now(),40,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-2018" author="Mahesh" context="rel3.5" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='ONN, Dressing' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='ONN, Was the dressing changed' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Chaning the position of ONN, Was the dressing changed in ONN, Dressing section</comment>
+        <sql>
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="ONN, Dressing" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="ONN, Was the dressing changed" AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET sort_weight = 990 where concept_set = @conceptsetID AND concept_id = @conceptID1;
         </sql>
     </changeSet>
 </databaseChangeLog>

@@ -76,7 +76,7 @@ FROM
                       JOIN patient_program pp ON pp.patient_id = p.patient_id AND pp.voided IS FALSE
                       JOIN encounter e ON e.patient_id = p.patient_id AND e.voided IS FALSE
                       JOIN orders ON orders.patient_id = pp.patient_id AND orders.encounter_id = e.encounter_id AND
-                                     orders.voided IS FALSE AND orders.order_action != 'DISCONTINUE' AND orders.date_created > date_sub(now(), INTERVAL 8 HOUR)
+                                     orders.voided IS FALSE AND orders.order_action != 'DISCONTINUE' AND orders.order_action !='REVISE' AND orders.date_created > date_sub(now(), INTERVAL 8 HOUR)
                       JOIN users on users.user_id = orders.creator
                       JOIN person on person.person_id = users.person_id
                       JOIN person_name pn on pn.person_id = person.person_id

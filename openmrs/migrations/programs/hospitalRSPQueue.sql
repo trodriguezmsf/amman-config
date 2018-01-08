@@ -16,6 +16,8 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.hospitalRSP';
   latest_obs.`Name of Surgeon`,
   latest_obs.`Date of consultation (Anaesth.)` AS 'OPD A',
   latest_obs.`Date of consultation (Surgeon)` AS 'OPD S',
+  frequency_value.name AS 'No. Planned Operations',
+  length_value.name AS 'Estimated LOS',
   DATE_FORMAT(first_surgery.`First Surgery`,'%d/%m/%Y') AS 'First Surgery',
   first_surgery.`Procedure` AS 'Procedure (First)',
   DATE_FORMAT(last_surgery.`Last Surgery`,'%d/%m/%Y') AS 'Last Surgery',
@@ -25,8 +27,6 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.hospitalRSP';
   IF(latest_future_appointment.startdate IS NULL , latest_past_appointment.providername, latest_future_appointment.providername) AS 'Provider name',
   `Bed allocation`,
   cn.name AS `Phase of treatment`,
-  frequency_value.name AS 'No. Planned Operations',
-  length_value.name AS 'Estimated LOS',
   personData.uuid
 FROM
   (SELECT
@@ -148,7 +148,7 @@ FROM
               FROM
                 surgical_block sb
                 INNER JOIN surgical_appointment sa
-                  ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE
+                  ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND sa.status != 'CANCELLED'
                 INNER JOIN (SELECT
                               sa.patient_id,
                               MIN(sb.start_datetime) AS blockStartTime
@@ -171,7 +171,7 @@ FROM
               FROM
                 surgical_block sb
                 INNER JOIN surgical_appointment sa
-                  ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE
+                  ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND sa.status != 'CANCELLED'
                 INNER JOIN (SELECT
                               sa.patient_id,
                               MAX(sb.start_datetime) AS blockStartTime
