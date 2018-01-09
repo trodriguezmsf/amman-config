@@ -155,7 +155,7 @@ FROM
                             FROM
                               surgical_appointment sa
                               INNER JOIN surgical_block sb
-                                ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE
+                                ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND sa.status != 'CANCELLED'
                             GROUP BY sa.patient_id) latest_appointment
                   ON latest_appointment.patient_id = sa.patient_id AND latest_appointment.blockStartTime = sb.start_datetime
                 LEFT OUTER JOIN surgical_appointment_attribute saa ON saa.surgical_appointment_id = sa.surgical_appointment_id
@@ -178,7 +178,7 @@ FROM
                             FROM
                               surgical_appointment sa
                               INNER JOIN surgical_block sb
-                                ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE
+                                ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND sa.status != 'CANCELLED'
                             GROUP BY sa.patient_id) latest_appointment
                   ON latest_appointment.patient_id = sa.patient_id AND latest_appointment.blockStartTime = sb.start_datetime
                 LEFT OUTER JOIN surgical_appointment_attribute saa ON saa.surgical_appointment_id = sa.surgical_appointment_id

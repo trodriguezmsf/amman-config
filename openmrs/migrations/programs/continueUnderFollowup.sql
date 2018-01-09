@@ -3,16 +3,16 @@
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.continueUnderFollowup',
 "SELECT
-  `Date Of Presentation`,
+  COALESCE(`Date Of Presentation at Followup`, `Date Of Presentation at Surgeon Followup`) AS `Date Of Presentation`,
   pi.identifier,
   concat(pn.given_name, ' ', pn.family_name)                  AS PATIENT_LISTING_QUEUES_HEADER_NAME,
   p.uuid,
   `Specialty`,
   `Name of MLO`,
-  `Time for next medical follow-up`,
+  COALESCE(`Time for next medical follow-up`, `Time for next medical follow-up at Surgeon Followup`) AS `Time for next medical follow-up`,
   `Date of next medical follow-up`,
-  `Type of medical investigations requested`,
-  `Comments`
+  COALESCE(`Type of medical investigations requested`, `Type of medical investigations requested at Surgeon Followup`) AS `Type of medical investigations requested`,
+  COALESCE(`Comments`, `Comments at Surgeon Followup`) AS `Comments`
 FROM person p
   JOIN patient_identifier pi ON p.person_id = pi.patient_id AND p.voided IS FALSE AND pi.voided IS FALSE
   JOIN person_name pn ON p.person_id = pn.person_id AND pn.voided IS FALSE
@@ -20,29 +20,43 @@ FROM person p
   LEFT JOIN (SELECT
                o.person_id                          AS person_id,
                GROUP_CONCAT(DISTINCT (IF(
-                   obs_fscn.name IN ('FUP, Date of presentation at Followup', 'SFP, Date recorded') AND
+                   obs_fscn.name IN ('FUP, Date of presentation at Followup') AND
                    latest_encounter.person_id IS NOT NULL,
                    DATE_FORMAT(o.value_datetime, '%d/%m/%Y'), NULL))
-                            ORDER BY o.obs_id DESC) AS 'Date Of Presentation',
+                            ORDER BY o.obs_id DESC) AS 'Date Of Presentation at Followup',
+               GROUP_CONCAT(DISTINCT (IF(
+                   obs_fscn.name IN ('SFP, Date recorded') AND
+                   latest_encounter.person_id IS NOT NULL,
+                   DATE_FORMAT(o.value_datetime, '%d/%m/%Y'), NULL))
+                            ORDER BY o.obs_id DESC) AS 'Date Of Presentation at Surgeon Followup',
                GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Outcomes for follow-up surgical validation' AND
                                          latest_encounter.person_id IS NOT NULL,
                                          COALESCE(coded_fscn.name, coded_scn.name),
                                          NULL)) ORDER BY o.obs_id
                             DESC)                   AS 'outcomeFollowupSurgicalValidation',
                GROUP_CONCAT(DISTINCT (IF(
-                   obs_fscn.name IN ('FUP, Time for next medical follow-up', 'SFP,  MLO visit at:') AND
+                   obs_fscn.name IN ('FUP, Time for next medical follow-up') AND
                    latest_encounter.person_id IS NOT NULL,
                    COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id
                             DESC)                   AS 'Time for next medical follow-up',
+               GROUP_CONCAT(DISTINCT (IF(
+                   obs_fscn.name IN ('SFP,  MLO visit at:') AND
+                   latest_encounter.person_id IS NOT NULL,
+                   COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id
+                            DESC)                   AS 'Time for next medical follow-up at Surgeon Followup',
                GROUP_CONCAT(DISTINCT (IF(
                    obs_fscn.name = 'FUP, Date of next medical follow-up' AND latest_encounter.person_id IS NOT NULL,
                    DATE_FORMAT(o.value_datetime, '%d/%m/%Y'), NULL))
                             ORDER BY o.obs_id
                             DESC)                   AS 'Date of next medical follow-up',
                GROUP_CONCAT(DISTINCT (IF(
-                   obs_fscn.name IN ('FUP, Comments about next follow-up', 'SFP, Notes, other') AND latest_encounter.person_id IS NOT NULL,
+                   obs_fscn.name IN ('FUP, Comments about next follow-up') AND latest_encounter.person_id IS NOT NULL,
                    o.value_text, NULL))
-                            ORDER BY o.obs_id DESC) AS 'Comments'
+                            ORDER BY o.obs_id DESC) AS 'Comments',
+               GROUP_CONCAT(DISTINCT (IF(
+                   obs_fscn.name IN ('SFP, Notes, other') AND latest_encounter.person_id IS NOT NULL,
+                   o.value_text, NULL))
+                            ORDER BY o.obs_id DESC) AS 'Comments at Surgeon Followup'
              FROM encounter e
                INNER JOIN obs o ON o.encounter_id = e.encounter_id AND o.voided IS FALSE AND e.voided IS FALSE
                INNER JOIN concept_name obs_fscn ON o.concept_id = obs_fscn.concept_id AND
@@ -113,9 +127,12 @@ FROM person p
                                           NULL))) AS 'Specialty',
                 GROUP_CONCAT(DISTINCT (IF(c_name = 'MH, Name of MLO', COALESCE(coded_fscn.name, coded_scn.name),
                                           NULL))) AS 'Name of MLO',
-                GROUP_CONCAT(DISTINCT (IF(c_name IN ('FUP, Type of medical investigations requested', 'SFP, X-ray of:', 'SFP, Video of:', 'SFP, Photo of:'),
+                GROUP_CONCAT(DISTINCT (IF(c_name IN ('FUP, Type of medical investigations requested'),
                                           COALESCE(COALESCE(coded_fscn.name, coded_scn.name),o.value_text),
-                                          NULL))) AS 'Type of medical investigations requested'
+                                          NULL))) AS 'Type of medical investigations requested',
+                GROUP_CONCAT(DISTINCT (IF(c_name IN ('SFP, X-ray of:', 'SFP, Video of:', 'SFP, Photo of:'),
+                                          COALESCE(COALESCE(coded_fscn.name, coded_scn.name),o.value_text),
+                                          NULL))) AS 'Type of medical investigations requested at Surgeon Followup'
               FROM (SELECT
                       cn.name                 AS c_name,
                       obs.person_id,

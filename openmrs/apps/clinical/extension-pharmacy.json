@@ -6,7 +6,12 @@
     "extensionParams": {
       "searchHandler": "emrapi.sqlSearch.newModifiedPrescription",
       "translationKey": "MODULE_LABEL_NEWMODIFIED_KEY",
-      "forwardUrl": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard/treatment?programUuid={{programUuid}}&enrollment={{enrollment}}&tabConfigName=allMedicationTabConfig",
+      "links": [
+        {
+          "url": "#/programs/patient/{{patientUuid}}/dashboard/treatment?programUuid={{programUuid}}&enrollment={{enrollment}}&tabConfigName=allMedicationTabConfig",
+          "linkColumn": "identifier",
+          "newTab": true
+        }],
       "view": "tabular",
       "searchColumns": ["identifier","Patient Name","Age","Speciality","Name of Surgeon","Bed Allocation","Prescriber","Medications","Start Date","Prescribed/Updated Time","Duration & Units"]
     },
@@ -20,7 +25,12 @@
     "extensionParams": {
       "searchHandler": "emrapi.sqlSearch.openPrescription",
       "translationKey": "MODULE_LABEL_OPENPRESCRIPTION_KEY",
-      "forwardUrl": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard/treatment?programUuid={{programUuid}}&enrollment={{enrollment}}&tabConfigName=allMedicationTabConfig",
+      "links": [
+        {
+          "url": "#/programs/patient/{{patientUuid}}/dashboard/treatment?programUuid={{programUuid}}&enrollment={{enrollment}}&tabConfigName=allMedicationTabConfig",
+          "linkColumn": "identifier",
+          "newTab": true
+        }],
       "view": "tabular",
       "searchColumns": ["identifier","Patient Name","Age","Speciality","Name of Surgeon","Bed Allocation","Prescriber","Medications","Start Date","Prescribed/Updated Time","Duration & Units"]
     },
