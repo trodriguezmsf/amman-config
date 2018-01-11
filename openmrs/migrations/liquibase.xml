@@ -6495,6 +6495,13 @@
             UPDATE concept_set SET sort_weight = 990 where concept_set = @conceptsetID AND concept_id = @conceptID1;
         </sql>
     </changeSet>
+    <changeSet id="Amman-201801111504" author="Mahesh">
+        <comment>Adding new add_concept procedure</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_concept;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/E1_1__AddConceptProc.sql"/>
+    </changeSet>
     <changeSet id="Amman-201801101243" author="Mahesh" context="rel3.5">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
