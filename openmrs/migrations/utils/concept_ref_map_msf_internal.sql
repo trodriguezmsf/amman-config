@@ -671,7 +671,7 @@ call create_reference_mapping_msf_internal('PIA, Past history of psychiatric car
 call create_reference_mapping_msf_internal('PIA, By who (NGO / private) pcf', 'BYWHO_FAM');
 call create_reference_mapping_msf_internal('PIA, History of psychotropic drugs', 'HXPSYDRUGS');
 call create_reference_mapping_msf_internal('PIA, Drug', 'DRUG_PSY');
-call create_reference_mapping_msf_internal('PIA, SQR20 (score)', 'SQR20');
+call create_reference_mapping_msf_internal('PIA, SQR20 (score)', 'SRQ20');
 call create_reference_mapping_msf_internal('PIA, PTSD (score)', 'PTSD');
 call create_reference_mapping_msf_internal('PIA, PSYca 3-6 (child)', 'PSYCA');
 call create_reference_mapping_msf_internal('PIA, Needed Mental Health Support', 'NEEDED_MH');

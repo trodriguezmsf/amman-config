@@ -549,7 +549,7 @@ INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_cre
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
   (4,'DRUG_PSY',@source_id,uuid(),now());
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-  (4,'SQR20',@source_id,uuid(),now());
+  (4,'SRQ20',@source_id,uuid(),now());
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
   (4,'PTSD',@source_id,uuid(),now());
 INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES

@@ -130,9 +130,15 @@ FROM person p
                 GROUP_CONCAT(DISTINCT (IF(c_name IN ('FUP, Type of medical investigations requested'),
                                           COALESCE(COALESCE(coded_fscn.name, coded_scn.name),o.value_text),
                                           NULL))) AS 'Type of medical investigations requested',
-                GROUP_CONCAT(DISTINCT (IF(c_name IN ('SFP, X-ray of:', 'SFP, Video of:', 'SFP, Photo of:'),
-                                          COALESCE(COALESCE(coded_fscn.name, coded_scn.name),o.value_text),
-                                          NULL))) AS 'Type of medical investigations requested at Surgeon Followup'
+                CONCAT_WS(', ', GROUP_CONCAT(DISTINCT (IF(c_name = 'SFP, X-ray of:',
+                                  CONCAT('X-ray of: ', COALESCE(COALESCE(coded_fscn.name, coded_scn.name), o.value_text)),
+                                  NULL))),
+                                GROUP_CONCAT(DISTINCT (IF(c_name = 'SFP, Video of:',
+                                  CONCAT('Video of: ', COALESCE(COALESCE(coded_fscn.name, coded_scn.name), o.value_text)),
+                                  NULL))),
+                                GROUP_CONCAT(DISTINCT (IF(c_name = 'SFP, Photo of:',
+                                  CONCAT('Photo of: ', COALESCE(COALESCE(coded_fscn.name, coded_scn.name), o.value_text)),
+                                  NULL)))) AS 'Type of medical investigations requested at Surgeon Followup'
               FROM (SELECT
                       cn.name                 AS c_name,
                       obs.person_id,

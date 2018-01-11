@@ -6495,4 +6495,110 @@
             UPDATE concept_set SET sort_weight = 990 where concept_set = @conceptsetID AND concept_id = @conceptID1;
         </sql>
     </changeSet>
+    <changeSet id="Amman-201801101243" author="Mahesh" context="rel3.5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set cs where cs.concept_set in (SELECT concept_id from concept_name where name = 'PIA, Discharge Assessment' and concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concept_set</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PIA, Discharge Assessment', 'Discharge Assessment', 'N/A', 'misc', true);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201801101236" author="Mahesh" context="rel3.5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='PIA, Discharge Assessment' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='PIA, SQR20 (score)' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New answer concepts to PIA, Discharge Assessment</comment>
+        <sql>
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="PIA, Discharge Assessment" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="PIA, SQR20 (score)" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="PIA, PTSD (score)" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID3 FROM concept_name WHERE name ="PIA, PSYca 3-6 (child)" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID4 FROM concept_name WHERE name ="PIA, SDQ P7-10" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID5 FROM concept_name WHERE name ="PIA, SDQ P11-17" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID6 FROM concept_name WHERE name ="PIA, Psychosocial overview and comments" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID7 FROM concept_name WHERE name ="PIA, Social needs or other referrals" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID8 FROM concept_name WHERE name ="PIA, Specific comments regarding the caretaker" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,1000,8,now(),uuid());
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID2,@conceptsetID,1010,8,now(),uuid());
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID3,@conceptsetID,1020,8,now(),uuid());
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID4,@conceptsetID,1030,8,now(),uuid());
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID5,@conceptsetID,1040,8,now(),uuid());
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID6,@conceptsetID,1050,8,now(),uuid());
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID7,@conceptsetID,1060,8,now(),uuid());
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID8,@conceptsetID,1070,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201801101256" author="Mahesh" context="rel3.5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='PIA, Indicators' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='PIA, SDQ P7-10' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New answer concepts to PIA, Indicators</comment>
+        <sql>
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="PIA, Indicators" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="PIA, SDQ P7-10" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,1030,8,now(),uuid());
+            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="PIA, SDQ P11-17" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID2,@conceptsetID,1040,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201801101225" author="Mahesh" context="rel3.5" >
+    <preConditions onFail="MARK_RAN">
+        <sqlCheck expectedResult="0">
+            select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='Psychology initial assessment' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='PIA, Discharge Assessment' and concept_name_type = "FULLY_SPECIFIED");
+        </sqlCheck>
+    </preConditions>
+    <comment>Adding PIA, Discharge Assessment to Psychology initial assessment</comment>
+    <sql>
+        SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="Psychology initial assessment" AND concept_name_type="FULLY_SPECIFIED";
+        SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="PIA, Discharge Assessment" AND concept_name_type="FULLY_SPECIFIED";
+        INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,1060,8,now(),uuid());
+    </sql>
+    </changeSet>
+        <changeSet id="Amman-201801031339" author="Mohit Dhamdhere" context="rel3.5" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name = "Psychology initial assessment" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating Psychology Initial assessment short name</comment>
+        <sql>
+            select concept_id INTO @conceptid from concept_name where name ="Psychology initial assessment" and concept_name_type ="FULLY_SPECIFIED";
+            Update concept_name set name = "Psycho-Social Assessment" where concept_id = @conceptid and concept_name_type ="SHORT";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201801031341" author="Mohit Dhamdhere" context="rel3.5">
+    <preConditions onFail="MARK_RAN">
+        <sqlCheck expectedResult="1">
+            SELECT count(*) from concept_name where name = "PIA, SQR20 (score)" and concept_name_type ="FULLY_SPECIFIED";
+        </sqlCheck>
+    </preConditions>
+    <comment>Updating PIA, SQR20 (score) short name</comment>
+    <sql>
+        select concept_id INTO @conceptid from concept_name where name ="PIA, SQR20 (score)" and concept_name_type ="FULLY_SPECIFIED";
+        Update concept_name set name = "SRQ20" where concept_id = @conceptid and concept_name_type ="SHORT";
+    </sql>
+</changeSet>
+    <changeSet id="Amman-201801031343" author="Mohit Dhamdhere" context="rel3.5">
+    <preConditions onFail="MARK_RAN">
+        <sqlCheck expectedResult="1">
+            SELECT count(*) from concept_name where name = "PIA, Indicators" and concept_name_type ="FULLY_SPECIFIED";
+        </sqlCheck>
+    </preConditions>
+    <comment>Updating PIA, Indicators short name</comment>
+    <sql>
+        select concept_id INTO @conceptid from concept_name where name ="PIA, Indicators" and concept_name_type ="FULLY_SPECIFIED";
+        Update concept_name set name = "Indicators – Initial" where concept_id = @conceptid and concept_name_type ="SHORT";
+    </sql>
+</changeSet>
 </databaseChangeLog>
