@@ -288,6 +288,9 @@
     "translationKey": "DASHBOARD_TAB_PATIENT_SUMMARY_KEY",
     "displayByDefault": true,
     "maxRecentlyViewedPatients": 10,
+    "printing": {
+      "logo": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/images/msf.jpg"
+    },
     "sections": {
       "Patient Information": {
         "translationKey": "DASHBOARD_PATIENT_INFORMATION",
@@ -881,6 +884,22 @@
               "Lower Limb Physiotherapy Assessment",
               "Upper Limb Physiotherapy Assessment",
               "Maxillofacial Physio Assessment"
+            ],
+            "obsIgnoreList": [
+              "ULA, Motor",
+              "LLA, Motor",
+              "LLA, Total Score",
+              "LLA, Risk of Falls",
+              "LLA Pediatric, Total Score",
+              "LLA LEFI, Total Score",
+              "ULA, Basic grip test, total score",
+              "ULA, Total score",
+              "ULA, Final score",
+              "LLA, R.O.M Test for Lower Limbs",
+              "LLA, Stump circumference",
+              "LLA, Muscle Test for Lower Limbs",
+              "ULA, Hand and Finger",
+              "ULA, R.O.M Test for Upper Limbs"
             ]
           },
           "expandedViewConfig": {
@@ -888,6 +907,22 @@
               "Lower Limb Physiotherapy Assessment",
               "Upper Limb Physiotherapy Assessment",
               "Maxillofacial Physio Assessment"
+            ],
+            "obsIgnoreList": [
+              "ULA, Motor",
+              "LLA, Motor",
+              "LLA, Total Score",
+              "LLA, Risk of Falls",
+              "LLA Pediatric, Total Score",
+              "LLA LEFI, Total Score",
+              "ULA, Basic grip test, total score",
+              "ULA, Total score",
+              "ULA, Final score",
+              "LLA, R.O.M Test for Lower Limbs",
+              "LLA, Stump circumference",
+              "LLA, Muscle Test for Lower Limbs",
+              "ULA, Hand and Finger",
+              "ULA, R.O.M Test for Upper Limbs"
             ],
             "isEditable": true,
             "numberOfVisits": 3,

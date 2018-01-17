@@ -6608,4 +6608,29 @@
         Update concept_name set name = "Indicators – Initial" where concept_id = @conceptid and concept_name_type ="SHORT";
     </sql>
 </changeSet>
+    <changeSet id="Amman-201801171215" author="Mahesh" context="rel3.5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='ULA, Hand and Finger' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='ULA, Side of assessment' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New concept to ULA, Hand and Finger</comment>
+        <sql>
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="ULA, Hand and Finger" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="ULA, Side of assessment" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,1015,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201801121555" author="Mahesh" context="rel3.5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) from concept_numeric WHERE concept_id = (SELECT concept_id from concept_name where name = 'ULA, Final score' AND concept_name_type = 'FULLY_SPECIFIED');
+            </sqlCheck>
+        </preConditions>
+        <comment>Modifying percentage to % in ULA, Final Score</comment>
+        <sql>
+            SELECT concept_id INTO @ConceptID FROM concept_name where name = 'ULA, Final score' AND concept_name_type = 'FULLY_SPECIFIED';
+            UPDATE concept_numeric SET units = "%" WHERE concept_id = @ConceptID;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
