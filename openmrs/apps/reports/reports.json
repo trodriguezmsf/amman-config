@@ -109,7 +109,11 @@
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientwarddetails.sql"
+  },"customReport17": {
+    "name": "Indicator Dashboard Report 2",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/indicatorDashboardReport2.sql"
     }
   }
-
 }
