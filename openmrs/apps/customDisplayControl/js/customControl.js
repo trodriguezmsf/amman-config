@@ -178,7 +178,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         spinner.forPromise(fetchLocationsInfoForEncounters($scope.enrollment).then(function (response) {
             var encounters = response.data;
             $scope.encounterLocationInfo = sortEncounterByEncounterDateTime(encounters);
-            var number = isDashboardBeingPrinted() ? $scope.encounterLocationInfo.length: 3;
+            var number = isDashboardBeingPrinted() ? $scope.encounterLocationInfo.length : 3;
             var firstThreeEncounters = _.take($scope.encounterLocationInfo, number);
             _.each(firstThreeEncounters, function (encounter) {
                 encounter.isOpen = true
@@ -361,12 +361,26 @@ angular.module('bahmni.common.displaycontrol.custom')
         };
 
         $scope.isAntibiogram = function (observation) {
-            var antiBiograms = { "Resistant": "R","Intermediate": "I", "Susceptible": "S", "Positive": "+ve" , "Negative": "-ve", "Sharp": "Sharp", "Fuzzy": "Fuzzy" } ;
+            var antiBiograms = {
+                "Resistant": "R",
+                "Intermediate": "I",
+                "Susceptible": "S",
+                "Positive": "+ve",
+                "Negative": "-ve",
+                "Sharp": "Sharp",
+                "Fuzzy": "Fuzzy"
+            };
             return _.indexOf(Object.keys(antiBiograms), observation.value.name) >= 0 && antiBiograms[observation.value.name];
         };
 
         $scope.getColor = function (observation) {
-            var colors = {"Resistant": "#FF0000", "Intermediate": "#000000", "Susceptible": "#008000", "Positive": "#008000" , "Negative": "#FF0000"};
+            var colors = {
+                "Resistant": "#FF0000",
+                "Intermediate": "#000000",
+                "Susceptible": "#008000",
+                "Positive": "#008000",
+                "Negative": "#FF0000"
+            };
             return colors[observation.value.name];
         };
 
@@ -418,5 +432,251 @@ angular.module('bahmni.common.displaycontrol.custom')
         },
         template: '<ng-include src="contentUrl"/>'
     };
-}]);
+}]).service("physioSummaryService", ["$http", function ($http) {
+    const getContainer = function (baseHolder, conceptName) {
+        var holder = baseHolder[conceptName] || {};
+        holder.left = holder.left || [];
+        holder.right = holder.right || [];
+        holder.display = conceptName;
+        baseHolder[conceptName] = holder;
+        return baseHolder;
+    };
 
+    const splitByColon = function (conceptNameToDisplay) {
+        return _.trim(_.last(conceptNameToDisplay.split(":")));
+    };
+
+    const isEqualName = function (conceptNameToDisplay, conceptName) {
+        return getNameInLowerCase(splitByColon(conceptNameToDisplay)) === getNameInLowerCase(conceptName);
+    };
+
+    const getNameInLowerCase = function (name) {
+        return _.trim(name.toLowerCase());
+    };
+
+    const findMember = function (member, conceptName) {
+        return _.find(member.groupMembers, function (member) {
+            return isEqualName(member.conceptNameToDisplay, conceptName);
+        });
+    };
+
+    const getValue = function (members, conceptName) {
+        var member = findMember(members, conceptName);
+        return (member && member.value) || "";
+    };
+
+    const getValues = function (groupMembers, conceptNames, holders) {
+        holders = holders || {};
+
+        _.forEach(conceptNames, function (concept) {
+            var conceptName = concept.name;
+            holders = getContainer(holders, conceptName);
+            holders[conceptName].sort = concept.sort;
+            holders[conceptName].display = concept.name;
+            holders[conceptName][getNameInLowerCase(groupMembers[0].conceptNameToDisplay)].push(getValue(groupMembers[0], conceptName));
+            holders[conceptName][getNameInLowerCase(groupMembers[1].conceptNameToDisplay)].push(getValue(groupMembers[1], conceptName));
+        });
+        return holders;
+    };
+
+    const helper = function (conceptName, value, mappedData, sortWeight) {
+        mappedData = getContainer(mappedData, conceptName);
+        mappedData[conceptName]['sort'] = sortWeight;
+        mappedData[conceptName]['display'] = conceptName;
+        mappedData[conceptName]['left'].push(value);
+        mappedData[conceptName]['right'].push(value);
+        return mappedData;
+    };
+
+    const getFilterRecords = function (records, requiredConceptNames) {
+        return _.map(records, function (record) {
+            return _.filter(record.groupMembers, function (groupMember) {
+                return _.includes(requiredConceptNames, groupMember.conceptNameToDisplay);
+            });
+        });
+    };
+
+    const findObservation = function (record, mappedData) {
+        var dateRecordedMember = _.find(record, ['conceptNameToDisplay', 'Date recorded']) || {};
+        var assessmentMember = _.find(record, ['conceptNameToDisplay', 'Type of assessment']) || {};
+        mappedData = helper("Date Recorded", dateRecordedMember.valueAsString, mappedData, 0);
+        mappedData = helper("Type of Assessment", assessmentMember.valueAsString, mappedData, 1);
+        return mappedData;
+    };
+
+    this.mapObservations = function (records, requiredGroupConceptNames) {
+        var mappedData = {};
+        _.forEach(records, function (record) {
+            var filteredRecords = _.filter(record, function (each) {
+                return !_.includes(["Date Recorded", "Type of Assessment"], each.conceptNameToDisplay)
+            });
+
+            _.forEach(filteredRecords, function (eachRecord) {
+                if (!_.isEmpty(eachRecord.groupMembers)) {
+                    mappedData = getValues(eachRecord.groupMembers, requiredGroupConceptNames, mappedData);
+                    mappedData = findObservation(record, mappedData)
+                }
+            });
+        });
+        return _.values(mappedData);
+    };
+
+    this.mapMultilevelObservations = function (records) {
+
+        var concepts = {
+            "Superior gluteal": {name: "Superior gluteal", leafConcepts: [{name: "Gluteus medius"}]},
+            "Inferior gluteal": {name: "Inferior gluteal", leafConcepts: [{name: "Gluteus maxi."}]},
+            "Femoral": {name: "Femoral", leafConcepts: [{name: "Quadriceps"}, {name: "Illiopsoas"}]},
+            "Obturator": {name: "Obturator", leafConcepts: [{name: "Adductors"}]},
+            "Peronial": {
+                name: "Peronial",
+                leafConcepts: [{name: "Tibialis anterior"}, {name: "Peron. long. brev"}, {name: "Ext. digitorum"}, {name: "Ext. hallucis"}]
+            },
+            "Tibial nerve": {
+                name: "Tibial nerve",
+                leafConcepts: [{name: "Gastrocnemius"}, {name: "Tibialis post."}, {name: "Flex. digi. long"}, {name: "Flex. hall. long"}]
+            }
+        };
+
+        var mappedData = {};
+        var allConcept = [];
+        _.forEach(records, function (record) {
+            var filteredRecords = _.find(record, ["conceptNameToDisplay", "Neurological exam of lower limb"]);
+            if (!_.isEmpty(filteredRecords)) {
+                var motor = _.find(filteredRecords.groupMembers, ["conceptNameToDisplay", "Motor"]);
+                mappedData = findObservation(record, mappedData);
+
+
+                if (!_.isEmpty(motor)) {
+                    _.forEach(concepts, function (conceptMember, name) {
+                        var leafConcepts = conceptMember.leafConcepts;
+                        var conceptNameToDisplay = getNameInLowerCase(name);
+                        var temp = mappedData[conceptNameToDisplay] || {};
+                        var groupMembers = _.find(motor.groupMembers, ["conceptNameToDisplay", conceptMember.name]);
+
+                        if (!_.isEmpty(groupMembers)) {
+                            getValues(groupMembers.groupMembers, leafConcepts, temp);
+                        } else {
+                            _.forEach(leafConcepts, function (concept) {
+                                getContainer(temp, concept.name)
+                            })
+                        }
+                        mappedData[conceptNameToDisplay] = temp;
+                    });
+                }
+            }
+        });
+
+        _.forEach(mappedData, function (eachLeafConcept, key) {
+            if (!_.isEqual(eachLeafConcept.display)) {
+                allConcept.push(eachLeafConcept)
+            }
+            else {
+                allConcept.push({left: "left", right: "right", display: key, isSubHeader: true});
+                _.forEach(eachLeafConcept, function (leafConcept) {
+                    allConcept.push(leafConcept);
+                })
+            }
+        });
+
+        return allConcept;
+    };
+
+    const putMemberAt = function (holder, position, data) {
+        holder.splice(position, 0, data);
+        return holder;
+    };
+
+    const getMember = function (records) {
+        return _.first(_.values(records));
+    };
+
+    this.map = function (tableTitles, responseData, requiredGroupConceptNames, extraMembers) {
+        return tableTitles.map(function (title) {
+            var conceptName = title.name;
+            var filterRecords = getFilterRecords(responseData, ['Date recorded', 'Type of assessment', conceptName]);
+            var data = title.mapper(filterRecords, requiredGroupConceptNames);
+            var mappedData = {
+                title: conceptName, data: data
+            };
+            if (!_.isEmpty(data)) {
+                var member = getMember(data);
+                if (conceptName !== 'Neurological exam of lower limb') {
+                    extraMembers.forEach(function (each) {
+                        putMemberAt(data, each.position, each.member)
+                    });
+                }
+                return _.assign(mappedData, {
+                    data: data,
+                    leftHeaders: new Array(member.left.length),
+                    rightHeaders: new Array(member.right.length)
+                });
+            }
+            return mappedData;
+        });
+    };
+
+    this.fetchObservationsData = function (conceptNames, enrollment, numberOfVisits) {
+        var params = {
+            concept: conceptNames,
+            patientProgramUuid: enrollment,
+            numberOfVisits: numberOfVisits
+        };
+        return $http.get('/openmrs/ws/rest/v1/bahmnicore/observations', {
+            params: params,
+            withCredentials: true
+        });
+    };
+}]).directive('lowerLimbPhysioSummary', ['appService', 'physioSummaryService', 'spinner', '$q', function (appService, physioSummaryService, spinner, $q) {
+    const requiredGroupConceptNames = [
+        {name: "Hip Flex.", sort: 4},
+        {name: "Hip Ext.", sort: 5},
+        {name: "Int. Rotation", sort: 6},
+        {name: "Ext. Rotation", sort: 7},
+        {name: "Abduction", sort: 8},
+        {name: "Adduction", sort: 9},
+        {name: "Knee Flex.", sort: 10},
+        {name: "Knee Ext.", sort: 11},
+        {name: "Ankle Dorsiflex.", sort: 12},
+        {name: "Ankle Planterflex", sort: 13},
+        {name: "Ankle Inversion", sort: 14},
+        {name: "Ankle Eversion", sort: 15}
+    ];
+    const subConcept = [{
+        position: 2, member: {
+            sort: 3,
+            left: "Left",
+            right: "Right",
+            display: "Movement",
+            isSubHeader: true
+        }
+    }];
+    const conceptNames = [
+        "Lower Limb Physiotherapy Assessment"
+    ];
+
+    var link = function ($scope, element) {
+        var defer = $q.defer();
+        spinner.forPromise(defer.promise, element);
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/lowerLimbPhysioSummary.html";
+
+        physioSummaryService.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
+            var tableTitles = [{name: 'R.O.M Test for Lower Limbs', mapper: physioSummaryService.mapObservations},
+                {name: 'Muscle Test for Lower Limbs', mapper: physioSummaryService.mapObservations},
+                {name: 'Neurological exam of lower limb', mapper: physioSummaryService.mapMultilevelObservations}
+            ];
+            $scope.groupRecords = physioSummaryService.map(tableTitles, response.data, requiredGroupConceptNames, subConcept);
+            defer.resolve();
+        });
+    };
+
+    return {
+        link: link,
+        scope: {
+            patient: "=",
+            section: "=",
+            enrollment: "="
+        },
+        template: '<ng-include src="contentUrl"/>'
+    }
+}]);

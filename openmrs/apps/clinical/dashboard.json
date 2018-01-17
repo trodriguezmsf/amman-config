@@ -795,6 +795,15 @@
           "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
           "template": "<microbiology-lab-results section='config' patient='patient' enrollment='enrollment'></microbiology-lab-results>"
         }
+      },
+      "physioSummary": {
+        "type": "custom",
+        "displayOrder": 18,
+        "displayType": "Full-Page",
+        "config": {
+          "title": "DASHBOARD_TITLE_LOWER_LIMB_PHYSIO_SUMMARY_LAB_RESULTS_KEY",
+          "template": "<lower-limb-physio-summary section='config' patient='patient' enrollment='enrollment'></lower-limb-physio-summary>"
+        }
       }
     }
     },
