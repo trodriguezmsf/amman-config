@@ -433,6 +433,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         template: '<ng-include src="contentUrl"/>'
     };
 }]).service("physioSummaryService", ["$http", function ($http) {
+
     const getContainer = function (baseHolder, conceptName) {
         var holder = baseHolder[conceptName] || {};
         holder.left = holder.left || [];
@@ -460,32 +461,43 @@ angular.module('bahmni.common.displaycontrol.custom')
         });
     };
 
+    const findByConceptNameToDisplay = function (members, conceptName) {
+        return _.find(members, ['conceptNameToDisplay', conceptName]) || {};
+    };
+
     const getValue = function (members, conceptName) {
         var member = findMember(members, conceptName);
         return (member && member.value) || "";
+    };
+
+    const insertValue = function (conceptName, baseHolder, values, sortWeight) {
+        baseHolder = getContainer(baseHolder || {}, conceptName);
+        baseHolder[conceptName].sort = sortWeight;
+
+        _.forEach(values, function (valueMember) {
+            baseHolder[conceptName][getNameInLowerCase(valueMember.key)].push(valueMember.value);
+        });
+
+        return baseHolder;
     };
 
     const getValues = function (groupMembers, conceptNames, holders) {
         holders = holders || {};
 
         _.forEach(conceptNames, function (concept) {
-            var conceptName = concept.name;
-            holders = getContainer(holders, conceptName);
-            holders[conceptName].sort = concept.sort;
-            holders[conceptName].display = concept.name;
-            holders[conceptName][getNameInLowerCase(groupMembers[0].conceptNameToDisplay)].push(getValue(groupMembers[0], conceptName));
-            holders[conceptName][getNameInLowerCase(groupMembers[1].conceptNameToDisplay)].push(getValue(groupMembers[1], conceptName));
+            var values = [
+                {
+                    key: groupMembers[0].conceptNameToDisplay,
+                    value: getValue(groupMembers[0], concept.name)
+                },
+                {
+                    key: groupMembers[1].conceptNameToDisplay,
+                    value: getValue(groupMembers[1], concept.name)
+                }
+            ];
+            insertValue(concept.name, holders, values, concept.sort);
         });
         return holders;
-    };
-
-    const helper = function (conceptName, value, mappedData, sortWeight) {
-        mappedData = getContainer(mappedData, conceptName);
-        mappedData[conceptName]['sort'] = sortWeight;
-        mappedData[conceptName]['display'] = conceptName;
-        mappedData[conceptName]['left'].push(value);
-        mappedData[conceptName]['right'].push(value);
-        return mappedData;
     };
 
     const getFilterRecords = function (records, requiredConceptNames) {
@@ -496,90 +508,40 @@ angular.module('bahmni.common.displaycontrol.custom')
         });
     };
 
-    const findObservation = function (record, mappedData) {
-        var dateRecordedMember = _.find(record, ['conceptNameToDisplay', 'Date recorded']) || {};
-        var assessmentMember = _.find(record, ['conceptNameToDisplay', 'Type of assessment']) || {};
-        mappedData = helper("Date Recorded", dateRecordedMember.valueAsString, mappedData, 0);
-        mappedData = helper("Type of Assessment", assessmentMember.valueAsString, mappedData, 1);
+    const mapCrucialInfoToObs = function (crucialConcepts, record, mappedData) {
+        _.forEach(crucialConcepts, function (conceptName, index) {
+            var value = findByConceptNameToDisplay(record, conceptName).valueAsString;
+            mappedData = insertValue(conceptName, mappedData, [{key: "left", value: value},
+                {key: "right", value: value}], index);
+        });
         return mappedData;
     };
 
-    this.mapObservations = function (records, requiredGroupConceptNames) {
-        var mappedData = {};
-        _.forEach(records, function (record) {
-            var filteredRecords = _.filter(record, function (each) {
-                return !_.includes(["Date Recorded", "Type of Assessment"], each.conceptNameToDisplay)
-            });
-
-            _.forEach(filteredRecords, function (eachRecord) {
-                if (!_.isEmpty(eachRecord.groupMembers)) {
-                    mappedData = getValues(eachRecord.groupMembers, requiredGroupConceptNames, mappedData);
-                    mappedData = findObservation(record, mappedData)
-                }
-            });
+    const flatMultiLevelObs = function (records, concepts) {
+        return _.flatMap(records, function (record, key) {
+            return _.includes(concepts, record.display) ? record :
+                _.concat([{left: "left", right: "right", display: key, isSubHeader: true}], _.values(record));
         });
-        return _.values(mappedData);
     };
 
-    this.mapMultilevelObservations = function (records) {
+    const mapLeafConcepts = function (leafConcepts, holder, groupMember) {
+        if (!_.isEmpty(groupMember)) {
+            getValues(groupMember.groupMembers, leafConcepts, holder);
+        } else {
+            _.forEach(leafConcepts, function (concept) {
+                getContainer(holder, concept.name)
+            })
+        }
+        return holder;
+    };
 
-        var concepts = {
-            "Superior gluteal": {name: "Superior gluteal", leafConcepts: [{name: "Gluteus medius"}]},
-            "Inferior gluteal": {name: "Inferior gluteal", leafConcepts: [{name: "Gluteus maxi."}]},
-            "Femoral": {name: "Femoral", leafConcepts: [{name: "Quadriceps"}, {name: "Illiopsoas"}]},
-            "Obturator": {name: "Obturator", leafConcepts: [{name: "Adductors"}]},
-            "Peronial": {
-                name: "Peronial",
-                leafConcepts: [{name: "Tibialis anterior"}, {name: "Peron. long. brev"}, {name: "Ext. digitorum"}, {name: "Ext. hallucis"}]
-            },
-            "Tibial nerve": {
-                name: "Tibial nerve",
-                leafConcepts: [{name: "Gastrocnemius"}, {name: "Tibialis post."}, {name: "Flex. digi. long"}, {name: "Flex. hall. long"}]
-            }
-        };
-
-        var mappedData = {};
-        var allConcept = [];
-        _.forEach(records, function (record) {
-            var filteredRecords = _.find(record, ["conceptNameToDisplay", "Neurological exam of lower limb"]);
-            if (!_.isEmpty(filteredRecords)) {
-                var motor = _.find(filteredRecords.groupMembers, ["conceptNameToDisplay", "Motor"]);
-                mappedData = findObservation(record, mappedData);
-
-
-                if (!_.isEmpty(motor)) {
-                    _.forEach(concepts, function (conceptMember, name) {
-                        var leafConcepts = conceptMember.leafConcepts;
-                        var conceptNameToDisplay = getNameInLowerCase(name);
-                        var temp = mappedData[conceptNameToDisplay] || {};
-                        var groupMembers = _.find(motor.groupMembers, ["conceptNameToDisplay", conceptMember.name]);
-
-                        if (!_.isEmpty(groupMembers)) {
-                            getValues(groupMembers.groupMembers, leafConcepts, temp);
-                        } else {
-                            _.forEach(leafConcepts, function (concept) {
-                                getContainer(temp, concept.name)
-                            })
-                        }
-                        mappedData[conceptNameToDisplay] = temp;
-                    });
-                }
-            }
+    const mapSubGroupMembers = function (concepts, baseHolder, members) {
+        _.forEach(concepts, function (conceptMember) {
+            var conceptNameToDisplay = getNameInLowerCase(conceptMember.name);
+            baseHolder[conceptNameToDisplay] = mapLeafConcepts(conceptMember.leafConcepts, baseHolder[conceptNameToDisplay] || {},
+                findByConceptNameToDisplay(members, conceptMember.name));
         });
-
-        _.forEach(mappedData, function (eachLeafConcept, key) {
-            if (!_.isEqual(eachLeafConcept.display)) {
-                allConcept.push(eachLeafConcept)
-            }
-            else {
-                allConcept.push({left: "left", right: "right", display: key, isSubHeader: true});
-                _.forEach(eachLeafConcept, function (leafConcept) {
-                    allConcept.push(leafConcept);
-                })
-            }
-        });
-
-        return allConcept;
+        return baseHolder;
     };
 
     const putMemberAt = function (holder, position, data) {
@@ -587,32 +549,56 @@ angular.module('bahmni.common.displaycontrol.custom')
         return holder;
     };
 
-    const getMember = function (records) {
+    const getFirstMember = function (records) {
         return _.first(_.values(records));
     };
 
-    this.map = function (tableTitles, responseData, requiredGroupConceptNames, extraMembers) {
-        return tableTitles.map(function (title) {
-            var conceptName = title.name;
-            var filterRecords = getFilterRecords(responseData, ['Date recorded', 'Type of assessment', conceptName]);
-            var data = title.mapper(filterRecords, requiredGroupConceptNames);
-            var mappedData = {
-                title: conceptName, data: data
-            };
-            if (!_.isEmpty(data)) {
-                var member = getMember(data);
-                if (conceptName !== 'Neurological exam of lower limb') {
-                    extraMembers.forEach(function (each) {
-                        putMemberAt(data, each.position, each.member)
-                    });
-                }
-                return _.assign(mappedData, {
-                    data: data,
-                    leftHeaders: new Array(member.left.length),
-                    rightHeaders: new Array(member.right.length)
-                });
+    const insertAdditionalInfo = function (additionalConcepts, data, mappedData) {
+        _.forEach(additionalConcepts, function (concept) {
+            putMemberAt(data, concept.position, concept.member);
+        });
+
+        var member = getFirstMember(data);
+        return _.assign(mappedData, {
+            data: data,
+            leftHeaders: new Array(member.left.length),
+            rightHeaders: new Array(member.right.length)
+        });
+    };
+
+    this.mapObservations = function (records, concepts, crucialConcepts) {
+        var mappedData = {};
+        _.forEach(records, function (record) {
+            var filteredRecords = _.filter(record, function (each) {
+                return !(_.isEmpty(each.groupMembers) || _.includes(crucialConcepts, each.conceptNameToDisplay))
+            });
+
+            _.forEach(filteredRecords, function (eachRecord) {
+                getValues(eachRecord.groupMembers, concepts, mappedData);
+                mapCrucialInfoToObs(crucialConcepts, record, mappedData)
+            });
+        });
+        return _.values(mappedData);
+    };
+
+    this.mapMultilevelObservations = function (records, concepts, crucialConcepts) {
+        var mappedData = {};
+        _.forEach(records, function (record) {
+            var motor = findByConceptNameToDisplay(findByConceptNameToDisplay(record, "Neurological exam of lower limb").groupMembers, "Motor");
+            if (!_.isEmpty(motor)) {
+                mappedData = mapSubGroupMembers(concepts, mapCrucialInfoToObs(crucialConcepts, record, mappedData), motor.groupMembers);
             }
-            return mappedData;
+        });
+
+        return flatMultiLevelObs(mappedData, crucialConcepts);
+    };
+
+    this.map = function (tableTitles, responseData) {
+        return _.map(tableTitles, function (title) {
+            var filterRecords = getFilterRecords(responseData, title.crucialConcepts.concat(title.name));
+            var data = title.mapper(filterRecords, title.requiredGroupConceptNames, title.crucialConcepts);
+            var mappedData = {title: title.name, data: data};
+            return _.isEmpty(data) ? mappedData : insertAdditionalInfo(title.additionalConcepts, data, mappedData);
         });
     };
 
@@ -642,6 +628,22 @@ angular.module('bahmni.common.displaycontrol.custom')
         {name: "Ankle Inversion", sort: 14},
         {name: "Ankle Eversion", sort: 15}
     ];
+
+    const multiLevelGroupConcepts = [
+        {name: "Superior gluteal", leafConcepts: [{name: "Gluteus medius"}]},
+        {name: "Inferior gluteal", leafConcepts: [{name: "Gluteus maxi."}]},
+        {name: "Femoral", leafConcepts: [{name: "Quadriceps"}, {name: "Illiopsoas"}]},
+        {name: "Obturator", leafConcepts: [{name: "Adductors"}]},
+        {
+            name: "Peronial",
+            leafConcepts: [{name: "Tibialis anterior"}, {name: "Peron. long. brev"}, {name: "Ext. digitorum"}, {name: "Ext. hallucis"}]
+        },
+        {
+            name: "Tibial nerve",
+            leafConcepts: [{name: "Gastrocnemius"}, {name: "Tibialis post."}, {name: "Flex. digi. long"}, {name: "Flex. hall. long"}]
+        }
+    ];
+
     const subConcept = [{
         position: 2, member: {
             sort: 3,
@@ -655,17 +657,37 @@ angular.module('bahmni.common.displaycontrol.custom')
         "Lower Limb Physiotherapy Assessment"
     ];
 
+    const tableTitles = [
+        {
+            name: 'R.O.M Test for Lower Limbs',
+            mapper: physioSummaryService.mapObservations,
+            requiredGroupConceptNames: requiredGroupConceptNames,
+            additionalConcepts: subConcept,
+            crucialConcepts: ['Date recorded', 'Type of assessment']
+        },
+        {
+            name: 'Muscle Test for Lower Limbs',
+            mapper: physioSummaryService.mapObservations,
+            requiredGroupConceptNames: requiredGroupConceptNames,
+            additionalConcepts: subConcept,
+            crucialConcepts: ['Date recorded', 'Type of assessment']
+        },
+        {
+            name: 'Neurological exam of lower limb',
+            mapper: physioSummaryService.mapMultilevelObservations,
+            requiredGroupConceptNames: multiLevelGroupConcepts,
+            additionalConcepts: [],
+            crucialConcepts: ['Date recorded', 'Type of assessment']
+        }
+    ];
+
     var link = function ($scope, element) {
         var defer = $q.defer();
         spinner.forPromise(defer.promise, element);
         $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/lowerLimbPhysioSummary.html";
 
         physioSummaryService.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
-            var tableTitles = [{name: 'R.O.M Test for Lower Limbs', mapper: physioSummaryService.mapObservations},
-                {name: 'Muscle Test for Lower Limbs', mapper: physioSummaryService.mapObservations},
-                {name: 'Neurological exam of lower limb', mapper: physioSummaryService.mapMultilevelObservations}
-            ];
-            $scope.groupRecords = physioSummaryService.map(tableTitles, response.data, requiredGroupConceptNames, subConcept);
+            $scope.groupRecords = physioSummaryService.map(tableTitles, response.data);
             defer.resolve();
         });
     };
