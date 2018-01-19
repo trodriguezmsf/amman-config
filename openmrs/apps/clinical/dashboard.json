@@ -899,7 +899,8 @@
               "LLA, Stump circumference",
               "LLA, Muscle Test for Lower Limbs",
               "ULA, Hand and Finger",
-              "ULA, R.O.M Test for Upper Limbs"
+              "ULA, R.O.M Test for Upper Limbs",
+              "ULA, Muscle Test for Upper Limbs"
             ]
           },
           "expandedViewConfig": {
@@ -922,7 +923,8 @@
               "LLA, Stump circumference",
               "LLA, Muscle Test for Lower Limbs",
               "ULA, Hand and Finger",
-              "ULA, R.O.M Test for Upper Limbs"
+              "ULA, R.O.M Test for Upper Limbs",
+              "ULA, Muscle Test for Upper Limbs"
             ],
             "isEditable": true,
             "numberOfVisits": 3,

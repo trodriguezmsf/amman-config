@@ -6530,7 +6530,7 @@
             SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="PIA, PTSD (score)" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @conceptID3 FROM concept_name WHERE name ="PIA, PSYca 3-6 (child)" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @conceptID4 FROM concept_name WHERE name ="PIA, SDQ P7-10" AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @conceptID5 FROM concept_name WHERE name ="PIA, SDQ P11-17" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID5 FROM concept_name WHERE name ="PIA, SDQ S11-17" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @conceptID6 FROM concept_name WHERE name ="PIA, Psychosocial overview and comments" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @conceptID7 FROM concept_name WHERE name ="PIA, Social needs or other referrals" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @conceptID8 FROM concept_name WHERE name ="PIA, Specific comments regarding the caretaker" AND concept_name_type="FULLY_SPECIFIED";
@@ -6555,7 +6555,7 @@
             SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="PIA, Indicators" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="PIA, SDQ P7-10" AND concept_name_type="FULLY_SPECIFIED";
             INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,1030,8,now(),uuid());
-            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="PIA, SDQ P11-17" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="PIA, SDQ S11-17" AND concept_name_type="FULLY_SPECIFIED";
             INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID2,@conceptsetID,1040,8,now(),uuid());
         </sql>
     </changeSet>

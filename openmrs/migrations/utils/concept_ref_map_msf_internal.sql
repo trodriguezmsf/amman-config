@@ -2414,7 +2414,7 @@ call create_reference_mapping_msf_internal('ONN, Was the dressing changed', 'CHA
 call create_reference_mapping_msf_internal('Transfer', '8');
 call create_reference_mapping_msf_internal('Defaulter', '10');
 call create_reference_mapping_msf_internal('PIA, SDQ P7-10', 'SDQ7_10');
-call create_reference_mapping_msf_internal('PIA, SDQ P11-17', 'SDQ11_17');
+call create_reference_mapping_msf_internal('PIA, SDQ S11-17', 'SDQ11_17');
 call create_reference_mapping_msf_internal('PIA, Psychosocial overview and comments', 'OVERVIEW');
 call create_reference_mapping_msf_internal('PIA, Social needs or other referrals', 'SOCIAL_NEEDS');
 call create_reference_mapping_msf_internal('PIA, Specific comments regarding the caretaker', 'COMMENTS_PSY');
