@@ -581,10 +581,10 @@ angular.module('bahmni.common.displaycontrol.custom')
         return _.values(mappedData);
     };
 
-    this.mapMultilevelObservations = function (records, concepts, crucialConcepts) {
+    this.mapMultilevelObservations = function (records, concepts, crucialConcepts, parentConcept) {
         var mappedData = {};
         _.forEach(records, function (record) {
-            var motor = findByConceptNameToDisplay(findByConceptNameToDisplay(record, "Neurological exam of lower limb").groupMembers, "Motor");
+            var motor = findByConceptNameToDisplay(findByConceptNameToDisplay(record, parentConcept).groupMembers, "Motor");
             if (!_.isEmpty(motor)) {
                 mappedData = mapSubGroupMembers(concepts, mapCrucialInfoToObs(crucialConcepts, record, mappedData), motor.groupMembers);
             }
@@ -596,7 +596,7 @@ angular.module('bahmni.common.displaycontrol.custom')
     this.map = function (tableTitles, responseData) {
         return _.map(tableTitles, function (title) {
             var filterRecords = getFilterRecords(responseData, title.crucialConcepts.concat(title.name));
-            var data = title.mapper(filterRecords, title.requiredGroupConceptNames, title.crucialConcepts);
+            var data = title.mapper(filterRecords, title.requiredGroupConceptNames, title.crucialConcepts, title.name);
             var mappedData = {title: title.name, data: data};
             return _.isEmpty(data) ? mappedData : insertAdditionalInfo(title.additionalConcepts, data, mappedData);
         });
@@ -687,6 +687,101 @@ angular.module('bahmni.common.displaycontrol.custom')
         $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/lowerLimbPhysioSummary.html";
 
         physioSummaryService.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
+            $scope.groupRecords = physioSummaryService.map(tableTitles, response.data);
+            defer.resolve();
+        });
+    };
+
+    return {
+        link: link,
+        scope: {
+            patient: "=",
+            section: "=",
+            enrollment: "="
+        },
+        template: '<ng-include src="contentUrl"/>'
+    }
+}]).directive('upperLimbPhysioSummary', ['appService', 'physioSummaryService', 'spinner', '$q', function (appService, physioSummaryService, spinner, $q) {
+    const requiredGroupConceptNames = [
+        {name: "Shoulder Flex.", sort: 4},
+        {name: "Shoulder Ext.", sort: 5},
+        {name: "Int. Rotation", sort: 6},
+        {name: "Ext. Rotation", sort: 7},
+        {name: "Abduction", sort: 8},
+        {name: "Adduction", sort: 9},
+        {name: "Elbow Flex.", sort: 10},
+        {name: "Elbow Ext.", sort: 11},
+        {name: "Forearm Sup.", sort: 12},
+        {name: "Forearm Pron.", sort: 13},
+        {name: "Wrist Flex.", sort: 14},
+        {name: "Wrist Ext.", sort: 15},
+        {name: "Ulnar Dev.", sort: 16},
+        {name: "Radial Dev.", sort: 17}
+    ];
+
+    const multiLevelGroupConcepts = [
+        {name: "Musculocutaneous nerve", leafConcepts: [{name: "Biceps brachii"}]},
+        {name: "Axillary nerve", leafConcepts: [{name: "Deltoid"}]},
+        {
+            name: "Radial nerve", leafConcepts: [{name: "Tricep"}, {name: "Supinator"}, {name: "Ext. C. Rad. L&B"},
+            {name: "Ext. C. Ulnaris"}, {name: "Ext. Digiti"}, {name: "Abd. Poll. Longus"}, {name: "Ext. Poll. Longus"},
+            {name: "Ext. Indicis"}, {name: "Ext. Dig. Min."}]
+        },
+        {
+            name: "Median nerve", leafConcepts: [{name: "Pronator"}, {name: "Flex. Carpi Radialis"},
+            {name: "Flex. Dig. Sup"}, {name: "Flex. Dig Prof"}, {name: "Opp. Pollicis"}, {name: "Flex. Poll. L&B"},
+            {name: "Abd. Poll. Brevis"}, {name: "Lumbricalis"}]
+        },
+        {
+            name: "Ulnar nerve",
+            leafConcepts: [{name: "Flex. Carpi Uln"}, {name: "Interossei"}, {name: "Add. Poll."}, {name: "Opp /Abd/flex minimi"}]
+        }
+    ];
+
+    const subConcept = [{
+        position: 2, member: {
+            sort: 3,
+            left: "Left",
+            right: "Right",
+            display: "Movement",
+            isSubHeader: true
+        }
+    }];
+
+    const tableTitles = [
+        {
+            name: 'R.O.M Test for Upper Limbs',
+            mapper: physioSummaryService.mapObservations,
+            requiredGroupConceptNames: requiredGroupConceptNames,
+            additionalConcepts: subConcept,
+            crucialConcepts: ['Date recorded', 'Type of assessment']
+        },
+        {
+            name: 'Muscle Test for Upper Limbs',
+            mapper: physioSummaryService.mapObservations,
+            requiredGroupConceptNames: requiredGroupConceptNames,
+            additionalConcepts: subConcept,
+            crucialConcepts: ['Date recorded', 'Type of assessment']
+        },
+        {
+            name: 'Neurological exam of upper  limb',
+            mapper: physioSummaryService.mapMultilevelObservations,
+            requiredGroupConceptNames: multiLevelGroupConcepts,
+            additionalConcepts: [],
+            crucialConcepts: ['Date recorded', 'Type of assessment']
+        }
+    ];
+
+    const conceptNames = ["Upper Limb Physiotherapy Assessment"];
+
+    var link = function ($scope, element) {
+        var defer = $q.defer();
+        spinner.forPromise(defer.promise, element);
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/lowerLimbPhysioSummary.html";
+
+        physioSummaryService.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
+            console.log(JSON.stringify(response.data));
+
             $scope.groupRecords = physioSummaryService.map(tableTitles, response.data);
             defer.resolve();
         });

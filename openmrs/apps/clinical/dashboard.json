@@ -796,13 +796,22 @@
           "template": "<microbiology-lab-results section='config' patient='patient' enrollment='enrollment'></microbiology-lab-results>"
         }
       },
-      "physioSummary": {
+      "lowerLimbPhysioSummary": {
         "type": "custom",
         "displayOrder": 18,
         "displayType": "Full-Page",
         "config": {
           "title": "DASHBOARD_TITLE_LOWER_LIMB_PHYSIO_SUMMARY_LAB_RESULTS_KEY",
           "template": "<lower-limb-physio-summary section='config' patient='patient' enrollment='enrollment'></lower-limb-physio-summary>"
+        }
+      },
+      "upperLimbPhysioSummary": {
+        "type": "custom",
+        "displayOrder": 19,
+        "displayType": "Full-Page",
+        "config": {
+          "title": "DASHBOARD_TITLE_UPPER_LIMB_PHYSIO_SUMMARY_LAB_RESULTS_KEY",
+          "template": "<upper-limb-physio-summary section='config' patient='patient' enrollment='enrollment'></upper-limb-physio-summary>"
         }
       }
     }
