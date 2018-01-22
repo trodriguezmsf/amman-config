@@ -957,6 +957,14 @@
             "title": "DASHBOARD_TITLE_APPOINTMENTS_KEY",
             "template": "<patient-appointments-dashboard section='config' patient='patient'></patient-appointments-dashboard>"
           }
+        },
+        "physioSummaryScores": {
+          "type": "custom",
+          "displayOrder": 6,
+          "config": {
+            "title": "DASHBOARD_TITLE_PHYSIO_SUMMARY_SCORES_KEY",
+            "template": "<physio-summary-scores section='config' patient='patient' enrollment='enrollment'></physio-summary-scores>"
+          }
         }
       }
     }

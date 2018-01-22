@@ -464,6 +464,7 @@ angular.module('bahmni.common.displaycontrol.custom')
     const findByConceptNameToDisplay = function (members, conceptName) {
         return _.find(members, ['conceptNameToDisplay', conceptName]) || {};
     };
+    this.findByConceptNameToDisplay = findByConceptNameToDisplay;
 
     const getValue = function (members, conceptName) {
         var member = findMember(members, conceptName);
@@ -690,6 +691,124 @@ angular.module('bahmni.common.displaycontrol.custom')
             $scope.groupRecords = physioSummaryService.map(tableTitles, response.data);
             defer.resolve();
         });
+    };
+
+    return {
+        link: link,
+        scope: {
+            patient: "=",
+            section: "=",
+            enrollment: "="
+        },
+        template: '<ng-include src="contentUrl"/>'
+    }
+}]).service("physioSummaryScoresService", ["physioSummaryService", function (physioSummaryService) {
+    const getContainer = function (baseHolder, conceptName) {
+        var holder = baseHolder[conceptName] || {};
+        holder.display = conceptName;
+        holder.rows = holder.rows || [];
+        return holder;
+    };
+
+    const findByConceptNameToDisplay = physioSummaryService.findByConceptNameToDisplay;
+
+    var mapMaxillofacialPhysioAssessment = function (record, holder) {
+        var dateRecorded = findByConceptNameToDisplay(record.groupMembers, "Date recorded");
+        var facialDisabilityIndex = findByConceptNameToDisplay(record.groupMembers, "Facial Disability Index");
+        var totalScore = findByConceptNameToDisplay(facialDisabilityIndex.groupMembers, "Total score (FDI)");
+
+        var physicalFunction = findByConceptNameToDisplay(facialDisabilityIndex.groupMembers, "Physical Function");
+        var physicalFunctionScore = findByConceptNameToDisplay(physicalFunction.groupMembers, "Physical Function Score");
+        var socialFunction = findByConceptNameToDisplay(facialDisabilityIndex.groupMembers, "Social Function");
+
+        var socialWellbeingScore = findByConceptNameToDisplay(socialFunction.groupMembers, "Social Wellbeing Score");
+        holder.headers = ["Date recorded", "Physical Function", "Social Wellbeing", "Total score (FDI)"];
+        holder.rows.push({values: [dateRecorded.value, physicalFunctionScore.value, socialWellbeingScore.value, totalScore.value]});
+        return holder;
+    };
+
+    var getExtremityFunctionalIndex = function (groupMembers, primaryConceptName, secondaryConceptName) {
+        var extremityFunctionalIndex = findByConceptNameToDisplay(groupMembers, primaryConceptName);
+        if (_.isEmpty(extremityFunctionalIndex)) {
+            extremityFunctionalIndex = findByConceptNameToDisplay(groupMembers, secondaryConceptName);
+        }
+        return extremityFunctionalIndex;
+    };
+
+    const mapUpperLimbAssessment = function (record, holder) {
+        var dateRecorded = findByConceptNameToDisplay(record.groupMembers, "Date recorded");
+        var basicGripTestMember = findByConceptNameToDisplay(record.groupMembers, "Basic Grip Test");
+        var basicGripTotal = findByConceptNameToDisplay(basicGripTestMember.groupMembers, "Total Score");
+        var upperExtremityFunctionalIndex = getExtremityFunctionalIndex(record.groupMembers, "Upper Extremity Functional Index (UEFI) - 15", "Pediatric Upper Extremity Function ( Fine Motor, ADL)");
+        var upperExtremityFunctionalIndexTotal = findByConceptNameToDisplay(upperExtremityFunctionalIndex.groupMembers, "Final score");
+        holder.headers = ["Date Recorded", "Basic Grip Test", "UEFI Total Score"];
+        holder.rows.push({values: [dateRecorded.value, basicGripTotal.value, upperExtremityFunctionalIndexTotal.value]});
+
+        return holder;
+    };
+
+    const mapLowerLimbAssessment = function (record, holder) {
+        var dateRecorded = findByConceptNameToDisplay(record.groupMembers, "Date recorded");
+        var member = findByConceptNameToDisplay(record.groupMembers, "Tinetti Balance Assessment Tool");
+
+        var totalScore = findByConceptNameToDisplay(member.groupMembers, "Total Score");
+        var riskOfFall = findByConceptNameToDisplay(member.groupMembers, "Risk of Falls");
+
+        var lowerExtremityFunctionalIndex = getExtremityFunctionalIndex(record.groupMembers, "Lower Extremity Functional Index (LEFI)", "Pediatric Lower Extremity Function (Mobility)");
+        var lowerIndexTotal = findByConceptNameToDisplay(lowerExtremityFunctionalIndex.groupMembers, "Total Score");
+
+        holder.headers = ["Date recorded", "Tinetti Total Score", "Risk of Falls", "LEFI Total Score"];
+        holder.rows.push({values: [dateRecorded.value, totalScore.value, riskOfFall.value, lowerIndexTotal.value]});
+
+        return holder;
+    };
+
+    const assessmentMappers = {
+        "Lower Limb Physiotherapy Assessment": mapLowerLimbAssessment,
+        "Upper Limb Physiotherapy Assessment": mapUpperLimbAssessment,
+        "Maxillofacial Physio Assessment": mapMaxillofacialPhysioAssessment
+    };
+
+    this.map = function (data, holder) {
+        holder = holder || {};
+        _.forEach(data, function (record) {
+            var conceptNameToDisplay = record.conceptNameToDisplay;
+            holder[conceptNameToDisplay] = assessmentMappers[conceptNameToDisplay](record, getContainer(holder, conceptNameToDisplay));
+        });
+        return holder;
+    };
+
+    this.fetchObservationsData = physioSummaryService.fetchObservationsData;
+
+    this.isEmptySummary = function (records) {
+        return _.every(records, function (record) {
+            return _.isEmpty(record.rows)
+        })
+    };
+
+    this.isEmptyRecord = function (record) {
+        return _.isEmpty(record.rows);
+    };
+
+}]).directive("physioSummaryScores", ["appService", 'physioSummaryScoresService', 'spinner', '$q', function (appService, physioSummaryScoresService, spinner, $q) {
+    var link = function ($scope, element) {
+        var defer = $q.defer();
+        spinner.forPromise(defer.promise, element);
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/physioSummaryScores.html";
+
+        const conceptNames = [
+            "Lower Limb Physiotherapy Assessment",
+            "Upper Limb Physiotherapy Assessment",
+            "Maxillofacial Physio Assessment"
+        ];
+
+        physioSummaryScoresService.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
+            $scope.data = physioSummaryScoresService.map(response.data, {});
+            $scope.isEmptySummary = physioSummaryScoresService.isEmptySummary($scope.data);
+            defer.resolve();
+        });
+
+        $scope.isEmptyRecord = physioSummaryScoresService.isEmptyRecord;
     };
 
     return {

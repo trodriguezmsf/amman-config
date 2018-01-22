@@ -136,5 +136,7 @@
   "DASHBOARD_TITLE_PAST_MEDICAL_HISTORY":"Past Medical History (Before Arrival)",
   "DASHBOARD_TITLE_POST_OPERATIVE_ANAESTESIA_COURSE":"Post Operative Anaesthesia Course",
   "MODULE_LABEL_NEWMODIFIED_KEY": "New/Modified Prescriptions",
-  "MODULE_LABEL_OPENPRESCRIPTION_KEY": "Open Prescriptions"
+  "MODULE_LABEL_OPENPRESCRIPTION_KEY": "Open Prescriptions",
+  "DASHBOARD_TITLE_PHYSIO_SUMMARY_SCORES_KEY": "Scores",
+  "NO_SCORES_FOUND_MESSAGE": "No scores present for this patient"
 }
