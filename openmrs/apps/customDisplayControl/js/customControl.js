@@ -484,16 +484,19 @@ angular.module('bahmni.common.displaycontrol.custom')
 
     const getValues = function (groupMembers, conceptNames, holders) {
         holders = holders || {};
+        var leftMember = findByConceptNameToDisplay(groupMembers, "Left");
+        var rightMember = findByConceptNameToDisplay(groupMembers, "Right");
+
 
         _.forEach(conceptNames, function (concept) {
             var values = [
                 {
-                    key: groupMembers[0].conceptNameToDisplay,
-                    value: getValue(groupMembers[0], concept.name)
+                    key: "left",
+                    value: getValue(leftMember, concept.name)
                 },
                 {
-                    key: groupMembers[1].conceptNameToDisplay,
-                    value: getValue(groupMembers[1], concept.name)
+                    key: "right",
+                    value: getValue(rightMember, concept.name)
                 }
             ];
             insertValue(concept.name, holders, values, concept.sort);
