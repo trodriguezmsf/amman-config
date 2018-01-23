@@ -130,6 +130,27 @@
                   "config": {
                     "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/uniqueBedDetailsWard.sql"
                   }
+                },
+                {
+                  "name": "Unique Info In Kahramana",
+                  "type": "MRSGeneric",
+                  "config": {
+                    "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/uniqueBedDetailsKahramana.sql"
+                  }
+                },
+                {
+                  "name": "Unique Info In RC",
+                  "type": "MRSGeneric",
+                  "config": {
+                    "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/uniqueBedDetailsRC.sql"
+                  }
+                },
+                {
+                  "name": "Bed Tags Info",
+                  "type": "MRSGeneric",
+                  "config": {
+                    "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/bedTagsInfo.sql"
+                  }
                 }
               ]
       }
