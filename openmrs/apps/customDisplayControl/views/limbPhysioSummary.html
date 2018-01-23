@@ -1,11 +1,37 @@
-<section class="bacteriology-dashboard">
+<style>
+    .limb-physio-summary-dashboard {
+        background: white;
+    }
+
+    .limb-physio-summary-table {
+        text-align: center;
+        width: 98%;
+        margin-left: 1% !important;
+        margin-right: 1% !important;
+        margin-bottom: .5% !important;
+    }
+
+    .limb-physio-summary-table th, td {
+        width: 1% !important;
+    }
+
+    .limb-physio-summary-block-title {
+        font-weight: bold;
+        font-size: 14px;
+        text-decoration: underline;
+        margin-bottom: .5% !important;
+    }
+
+</style>
+
+<section class="limb-physio-summary-dashboard">
     <h2 class="section-title">{{section.title | titleTranslate}}</h2>
     <div>
         <div ng-include src="'../common/ui-helper/messages.html'"></div>
 
         <section class="block hierarchy" ng-repeat="(key, records) in groupRecords track by key">
-            <h2>{{records.title|titleTranslate}}</h2>
-            <table>
+            <p class="limb-physio-summary-block-title placeholder-text">{{records.title}}</p>
+            <table class="limb-physio-summary-table">
                 <tr>
                     <th ng-repeat="$index in records.leftHeaders track by $index">{{$index+1}}</th>
                     <th></th>
@@ -28,12 +54,14 @@
         </section>
 
         <section class="block hierarchy">
-            <h2>{{stumpCircumferences.title|titleTranslate}}</h2>
-            <table>
+            <p class="limb-physio-summary-block-title placeholder-text">{{stumpCircumferences.title}}</p>
+            <table class="limb-physio-summary-table">
                 <thead>
+                <tr>
                     <th>Type Of Amputation</th>
-                <th>From</th>
-                <th>To</th>
+                    <th>From</th>
+                    <th>To</th>
+                </tr>
                 </thead>
                 <tbody ng-repeat="stumpCircumference in stumpCircumferences.data">
                 <tr ng-repeat="value in stumpCircumference.values track by $index">
