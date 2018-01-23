@@ -657,12 +657,27 @@ angular.module('bahmni.common.displaycontrol.custom')
     var self = this;
 
     this.getDateString = function (date) {
-        return date? moment(date).format("DD MMM YY") : date;
+        return date ? moment(date).format("DD MMM YY") : date;
+    };
+
+    const isEmptyStumpCircumference = function (records) {
+        return _.every(_.get(records, "data"), function (record) {
+            return _.isEmpty(record.values)
+        })
+    };
+
+    const isEmptySummary = function (records, key) {
+        return _.every(records, function (record) {
+            return _.isEmpty(_.get(record, key));
+        });
     };
 
     this.mapDataForDisplay = function ($scope, configBaseUrl, conceptNames, tableTitles, circumferenceConceptNames) {
         var defer = $q.defer();
         $scope.contentUrl = configBaseUrl + "/customDisplayControl/views/limbPhysioSummary.html";
+        $scope.isEmptyRecord = function (records, key) {
+            return _.isEmpty(_.get(records, key));
+        };
 
         var promise1 = self.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
             $scope.groupRecords = self.map(tableTitles, response.data);
@@ -674,13 +689,16 @@ angular.module('bahmni.common.displaycontrol.custom')
         });
 
         $q.all([promise1, promise2]).then(function () {
+            $scope.isEmptyStumpCircumference = isEmptyStumpCircumference($scope.stumpCircumferences);
+            $scope.isEmptySummary = isEmptySummary($scope.groupRecords, "data") && $scope.isEmptyStumpCircumference;
             defer.resolve();
         });
+
 
         return defer.promise;
     }
 
-}]).directive('lowerLimbPhysioSummary', ['appService', 'physioSummaryService', 'spinner', '$q', function (appService, physioSummaryService, spinner, $q) {
+}]).directive('lowerLimbPhysioSummary', ['appService', 'physioSummaryService', 'spinner', function (appService, physioSummaryService, spinner) {
     const requiredGroupConceptNames = [
         {name: "Hip Flex.", sort: 4},
         {name: "Hip Ext.", sort: 5},

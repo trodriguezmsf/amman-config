@@ -26,10 +26,13 @@
 
 <section class="limb-physio-summary-dashboard">
     <h2 class="section-title">{{section.title | titleTranslate}}</h2>
-    <div>
-        <div ng-include src="'../common/ui-helper/messages.html'"></div>
+    <div ng-show="isEmptySummary" class="placeholder-text">
+        <p>{{"NO_SUMMARY_FOUND_MESSAGE"|translate}}</p>
+    </div>
+    <div ng-show="!isEmptySummary">
+        <section class="block hierarchy" ng-repeat="(key, records) in groupRecords track by key"
+                 ng-show="!isEmptyRecord(records, 'data')">
 
-        <section class="block hierarchy" ng-repeat="(key, records) in groupRecords track by key">
             <p class="limb-physio-summary-block-title placeholder-text">{{records.title}}</p>
             <table class="limb-physio-summary-table">
                 <tr>
@@ -43,7 +46,7 @@
                         {{record.left[$index]}}
                     </td>
                     <th ng-if="!!record.isSubHeader" colspan={{records.leftHeaders.length}}>{{record.left}}</th>
-                    <td>{{record.display}}</td>
+                    <td style="font-weight: bold">{{record.display}}</td>
                     <td ng-if="!!!record.isSubHeader" ng-repeat="$index in records.rightHeaders track by $index">
                         {{record.right[$index]}}
                     </td>
@@ -53,16 +56,15 @@
             </table>
         </section>
 
-        <section class="block hierarchy">
+
+        <section class="block hierarchy" ng-show="!isEmptyStumpCircumference">
             <p class="limb-physio-summary-block-title placeholder-text">{{stumpCircumferences.title}}</p>
             <table class="limb-physio-summary-table">
-                <thead>
                 <tr>
                     <th>Type Of Amputation</th>
                     <th>From</th>
                     <th>To</th>
                 </tr>
-                </thead>
                 <tbody ng-repeat="stumpCircumference in stumpCircumferences.data">
                 <tr ng-repeat="value in stumpCircumference.values track by $index">
                     <td rowspan="{{stumpCircumference.values.length}}" ng-hide="$index>0">
