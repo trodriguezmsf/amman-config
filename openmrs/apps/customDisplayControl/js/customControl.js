@@ -607,25 +607,6 @@ angular.module('bahmni.common.displaycontrol.custom')
         return holder;
     };
 
-    this.circumference = function (records, concepts, crucialConcepts, parentConcept) {
-
-        var memberValues = [];
-
-        _.forEach(records, function (record) {
-            var levelOfAmputation = findByConceptNameToDisplay(record, parentConcept);
-            var latestStumpCircumference = _.last(levelOfAmputation.groupMembers);
-            if (!_.isEmpty(latestStumpCircumference)) {
-                var groupMember = _.first(latestStumpCircumference.groupMembers);
-                var groupMember2 = _.last(latestStumpCircumference.groupMembers);
-                var holder = assign(groupMember2, assign(groupMember, {}));
-
-                !_.isEmpty(holder) && memberValues.push(holder);
-            }
-        });
-
-        return {title: "Stump circumference", data: memberValues};
-    };
-
     this.map = function (tableTitles, responseData) {
         return _.map(tableTitles, function (title) {
             var filterRecords = getFilterRecords(responseData, title.crucialConcepts.concat(title.name));
@@ -635,10 +616,11 @@ angular.module('bahmni.common.displaycontrol.custom')
         });
     };
 
-    this.fetchObservationsData = function (conceptNames, enrollment, numberOfVisits) {
+    this.fetchObservationsData = function (conceptNames, enrollment, numberOfVisits, scope) {
         var params = {
             concept: conceptNames,
             patientProgramUuid: enrollment,
+            scope: scope,
             numberOfVisits: numberOfVisits
         };
         return $http.get('/openmrs/ws/rest/v1/bahmnicore/observations', {
@@ -649,6 +631,32 @@ angular.module('bahmni.common.displaycontrol.custom')
 
     this.isStumpCircumference = function (record) {
         return _.isEqual(record.title, "Stump circumference");
+    };
+
+    this.mapStumpCircumference = function (records) {
+        // TODO: Need Refactoring
+        var data = {};
+        _.forEach(records, function (record) {
+            var typeOfAmputation = findByConceptNameToDisplay(record.groupMembers, "Type of amputation");
+            if (!_.isEmpty(typeOfAmputation)) {
+                var container = data[typeOfAmputation.valueAsString] || {};
+                container.type = typeOfAmputation.valueAsString;
+                container.values = container.values || [];
+                _.forEach(record.groupMembers, function (groupMember) {
+                    if (isEqualName(groupMember.conceptNameToDisplay, "Stump circumference")) {
+                        var member = _.first(groupMember.groupMembers);
+                        var member2 = _.last(groupMember.groupMembers);
+                        var holder = assign(member2, assign(member, {}));
+
+                        !_.isEmpty(holder) && container.values.push(holder);
+                    }
+                });
+                if (!_.isEmpty(container.values)) {
+                    data[typeOfAmputation.valueAsString] = container;
+                }
+            }
+        });
+        return data;
     }
 
 }]).directive('lowerLimbPhysioSummary', ['appService', 'physioSummaryService', 'spinner', '$q', function (appService, physioSummaryService, spinner, $q) {
@@ -716,13 +724,6 @@ angular.module('bahmni.common.displaycontrol.custom')
             requiredGroupConceptNames: multiLevelGroupConcepts,
             additionalConcepts: [],
             crucialConcepts: ['Date recorded', 'Type of assessment']
-        },
-        {
-            name: 'Level of amputation',
-            mapper: physioSummaryService.circumference,
-            requiredGroupConceptNames: multiLevelGroupConcepts,
-            additionalConcepts: [],
-            crucialConcepts: []
         }
     ];
 
@@ -731,11 +732,17 @@ angular.module('bahmni.common.displaycontrol.custom')
         spinner.forPromise(defer.promise, element);
         $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/lowerLimbPhysioSummary.html";
 
-        physioSummaryService.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
+        var p1 = physioSummaryService.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
             $scope.groupRecords = physioSummaryService.map(tableTitles, response.data);
-            defer.resolve();
         });
 
+        var p2 = physioSummaryService.fetchObservationsData(["LLA, Level of amputation"], $scope.enrollment, undefined, "latest").then(function (response) {
+            var data = physioSummaryService.mapStumpCircumference(response.data);
+            $scope.stumpCircumferences = {title: "Stump Circumference", data: data};
+        });
+        $q.all([p1, p2]).then(function () {
+            defer.resolve();
+        });
         $scope.isStumpCircumference = physioSummaryService.isStumpCircumference;
     };
 
@@ -952,25 +959,25 @@ angular.module('bahmni.common.displaycontrol.custom')
             requiredGroupConceptNames: multiLevelGroupConcepts,
             additionalConcepts: [],
             crucialConcepts: ['Date recorded', 'Type of assessment']
-        },
-        {
-            name: 'Level of amputation',
-            mapper: physioSummaryService.circumference,
-            requiredGroupConceptNames: multiLevelGroupConcepts,
-            additionalConcepts: [],
-            crucialConcepts: []
         }
     ];
 
-    const conceptName = ["Upper Limb Physiotherapy Assessment"];
+    const conceptNames = ["Upper Limb Physiotherapy Assessment"];
 
     var link = function ($scope, element) {
         var defer = $q.defer();
         spinner.forPromise(defer.promise, element);
         $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/lowerLimbPhysioSummary.html";
 
-        physioSummaryService.fetchObservationsData(conceptName, $scope.enrollment, 5).then(function (response) {
+        var p1 = physioSummaryService.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
             $scope.groupRecords = physioSummaryService.map(tableTitles, response.data);
+        });
+
+        var p2 = physioSummaryService.fetchObservationsData(["ULA, Level of amputation"], $scope.enrollment, undefined, "latest").then(function (response) {
+            var data = physioSummaryService.mapStumpCircumference(response.data);
+            $scope.stumpCircumferences = {title: "Stump Circumference", data: data};
+        });
+        $q.all([p1, p2]).then(function () {
             defer.resolve();
         });
         $scope.isStumpCircumference = physioSummaryService.isStumpCircumference;
