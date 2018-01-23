@@ -112,10 +112,27 @@
     }
   },
     "customReport17": {
-    "name": "Indicator Dashboard Report 2",
-    "type": "MRSGeneric",
+    "name": "Bed Management Indicators",
+      "type": "concatenated",
     "config": {
-      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/indicatorDashboardReport2.sql"
+      "reports":
+              [
+                {
+                "name": "Bed Management Info",
+                "type": "MRSGeneric",
+                  "config": {
+                    "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/bedInfo.sql"
+                  }
+              },
+                {
+                  "name": "Unique Info In Ward",
+                  "type": "MRSGeneric",
+                  "config": {
+                    "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/uniqueBedDetailsWard.sql"
+                  }
+                }
+              ]
+      }
     }
   }
-}
+

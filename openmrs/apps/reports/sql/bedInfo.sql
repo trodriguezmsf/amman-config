@@ -2,7 +2,6 @@ SELECT
   DATE_FORMAT(dateOfArraival.value, '%d-%m-%Y') AS date_of_arrival,
   DATE_FORMAT(bpam.date_created, '%d-%m-%Y')    AS `admissionDate`,
   bpam.patient_id,
-  CONCAT(bpam.patient_id, b.bed_id ,DATE_FORMAT(bpam.date_created, '%d%m%Y') ) AS `patient_bed_admission_date`,
   b.bed_id,
   b.bed_number,
   l.name               AS `location`,
