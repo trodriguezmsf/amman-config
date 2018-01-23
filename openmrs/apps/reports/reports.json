@@ -111,49 +111,124 @@
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientwarddetails.sql"
     }
   },
-    "customReport17": {
+  "customReport17": {
     "name": "Bed Management Indicators",
-      "type": "concatenated",
+    "type": "concatenated",
     "config": {
       "reports":
-              [
-                {
-                "name": "Bed Management Info",
-                "type": "MRSGeneric",
-                  "config": {
-                    "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/bedInfo.sql"
-                  }
-              },
-                {
-                  "name": "Unique Info In Ward",
-                  "type": "MRSGeneric",
-                  "config": {
-                    "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/uniqueBedDetailsWard.sql"
-                  }
-                },
-                {
-                  "name": "Unique Info In Kahramana",
-                  "type": "MRSGeneric",
-                  "config": {
-                    "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/uniqueBedDetailsKahramana.sql"
-                  }
-                },
-                {
-                  "name": "Unique Info In RC",
-                  "type": "MRSGeneric",
-                  "config": {
-                    "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/uniqueBedDetailsRC.sql"
-                  }
-                },
-                {
-                  "name": "Bed Tags Info",
-                  "type": "MRSGeneric",
-                  "config": {
-                    "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/bedTagsInfo.sql"
-                  }
-                }
-              ]
-      }
+      [
+        {
+          "name": "Bed Management Info",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/bedInfo.sql"
+          }
+        },
+        {
+          "name": "Unique Info In Ward",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/uniqueBedDetailsWard.sql"
+          }
+        },
+        {
+          "name": "Unique Info In Kahramana",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/uniqueBedDetailsKahramana.sql"
+          }
+        },
+        {
+          "name": "Unique Info In RC",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/uniqueBedDetailsRC.sql"
+          }
+        },
+        {
+          "name": "Bed Tags Info",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/bedTagsInfo.sql"
+          }
+        }
+      ]
+    }
+  },
+    "customReport18": {
+    "name": "Indicator Dashboard Report 2",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/indicatorDashboardReport2.sql"
+    }
+  },"customReport19": {
+  "name": "Bed Tags Info In Ward",
+  "type": "MRSGeneric",
+  "config": {
+    "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/bedTagsInfoInWard.sql"
+  }
+},
+  "customReport21": {
+    "name": "Indicators",
+    "type": "concatenated",
+    "config": {
+      "reports": [
+        {
+          "name": "FSTG Details",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/fstgDetails.sql"
+          }
+        },{
+          "name": "Patient State",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientState.sql"
+          }
+        },
+        {
+          "name": "Patient Attributes",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientAttributes.sql"
+          }
+        },
+        {
+          "name": "Appointment Details",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/appointmentDetails.sql"
+          }
+        },
+        {
+          "name": "Patient in Identification State",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientsInIdentificationState.sql"
+          }
+        },
+        {
+          "name": "Patient Anaesthesia Filled",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientsWithAnaesthesiaFilled.sql"
+          }
+        },
+        {
+          "name": "OT Surgeries",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/OTSurgeries.sql"
+          }
+        },
+        {
+          "name": "OT Completed Surgeries",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/OTCompletedSurgeries.sql"
+          }
+        }
+      ]
     }
   }
-
+}
