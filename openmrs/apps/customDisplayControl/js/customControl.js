@@ -554,17 +554,22 @@ angular.module('bahmni.common.displaycontrol.custom')
         return _.first(_.values(records));
     };
 
-    const insertAdditionalInfo = function (additionalConcepts, data, mappedData) {
-        _.forEach(additionalConcepts, function (concept) {
-            putMemberAt(data, concept.position, concept.member);
-        });
+    const insertAdditionalInfo = function (title, data, mappedData) {
+        if (!_.isEmpty(title.crucialConcepts)) {
+            _.forEach(title.additionalConcepts, function (concept) {
+                putMemberAt(data, concept.position, concept.member);
+            });
 
-        var member = getFirstMember(data);
-        return _.assign(mappedData, {
-            data: data,
-            leftHeaders: new Array(member.left.length),
-            rightHeaders: new Array(member.right.length)
-        });
+            var member = getFirstMember(data);
+            return _.assign(mappedData, {
+                data: data,
+                leftHeaders: new Array(member.left.length),
+                rightHeaders: new Array(member.right.length)
+            });
+        }
+        else {
+            return data;
+        }
     };
 
     this.mapObservations = function (records, concepts, crucialConcepts) {
@@ -594,12 +599,39 @@ angular.module('bahmni.common.displaycontrol.custom')
         return flatMultiLevelObs(mappedData, crucialConcepts);
     };
 
+    const assign = function (record, holder) {
+        holder = holder || {};
+        if (record) {
+            holder[_.trim(_.first(_.split(record.conceptNameToDisplay, ":")))] = record.valueAsString;
+        }
+        return holder;
+    };
+
+    this.circumference = function (records, concepts, crucialConcepts, parentConcept) {
+
+        var memberValues = [];
+
+        _.forEach(records, function (record) {
+            var levelOfAmputation = findByConceptNameToDisplay(record, parentConcept);
+            var latestStumpCircumference = _.last(levelOfAmputation.groupMembers);
+            if (!_.isEmpty(latestStumpCircumference)) {
+                var groupMember = _.first(latestStumpCircumference.groupMembers);
+                var groupMember2 = _.last(latestStumpCircumference.groupMembers);
+                var holder = assign(groupMember2, assign(groupMember, {}));
+
+                !_.isEmpty(holder) && memberValues.push(holder);
+            }
+        });
+
+        return {title: "Stump circumference", data: memberValues};
+    };
+
     this.map = function (tableTitles, responseData) {
         return _.map(tableTitles, function (title) {
             var filterRecords = getFilterRecords(responseData, title.crucialConcepts.concat(title.name));
             var data = title.mapper(filterRecords, title.requiredGroupConceptNames, title.crucialConcepts, title.name);
             var mappedData = {title: title.name, data: data};
-            return _.isEmpty(data) ? mappedData : insertAdditionalInfo(title.additionalConcepts, data, mappedData);
+            return _.isEmpty(data) ? mappedData : insertAdditionalInfo(title, data, mappedData);
         });
     };
 
@@ -614,6 +646,11 @@ angular.module('bahmni.common.displaycontrol.custom')
             withCredentials: true
         });
     };
+
+    this.isStumpCircumference = function (record) {
+        return _.isEqual(record.title, "Stump circumference");
+    }
+
 }]).directive('lowerLimbPhysioSummary', ['appService', 'physioSummaryService', 'spinner', '$q', function (appService, physioSummaryService, spinner, $q) {
     const requiredGroupConceptNames = [
         {name: "Hip Flex.", sort: 4},
@@ -679,6 +716,13 @@ angular.module('bahmni.common.displaycontrol.custom')
             requiredGroupConceptNames: multiLevelGroupConcepts,
             additionalConcepts: [],
             crucialConcepts: ['Date recorded', 'Type of assessment']
+        },
+        {
+            name: 'Level of amputation',
+            mapper: physioSummaryService.circumference,
+            requiredGroupConceptNames: multiLevelGroupConcepts,
+            additionalConcepts: [],
+            crucialConcepts: []
         }
     ];
 
@@ -691,6 +735,8 @@ angular.module('bahmni.common.displaycontrol.custom')
             $scope.groupRecords = physioSummaryService.map(tableTitles, response.data);
             defer.resolve();
         });
+
+        $scope.isStumpCircumference = physioSummaryService.isStumpCircumference;
     };
 
     return {
@@ -838,6 +884,24 @@ angular.module('bahmni.common.displaycontrol.custom')
         {name: "Radial Dev.", sort: 17}
     ];
 
+    const groupConceptsForROMHandAndFinger = [
+        {name: "Wrist", sort: 4},
+        {name: "Thumb MC", sort: 5},
+        {name: "Thumb DIP", sort: 6},
+        {name: "2nd Finger MC", sort: 7},
+        {name: "3rd Finger MC", sort: 8},
+        {name: "4rd Finger MC", sort: 9},
+        {name: "5rd Finger MC", sort: 10},
+        {name: "2nd Finger PIP", sort: 11},
+        {name: "3nd Finger PIP", sort: 12},
+        {name: "4nd Finger PIP", sort: 13},
+        {name: "5nd Finger PIP", sort: 14},
+        {name: "2nd Finger DIP", sort: 15},
+        {name: "2nd Finger DIP", sort: 16},
+        {name: "2nd Finger DIP", sort: 17},
+        {name: "2nd Finger DIP", sort: 18}
+    ];
+
     const multiLevelGroupConcepts = [
         {name: "Musculocutaneous nerve", leafConcepts: [{name: "Biceps brachii"}]},
         {name: "Axillary nerve", leafConcepts: [{name: "Deltoid"}]},
@@ -876,9 +940,9 @@ angular.module('bahmni.common.displaycontrol.custom')
             crucialConcepts: ['Date recorded', 'Type of assessment']
         },
         {
-            name: 'Muscle Test for Upper Limbs',
-            mapper: physioSummaryService.mapObservations,
-            requiredGroupConceptNames: requiredGroupConceptNames,
+            name: 'Hand and Finger',
+            mapper: physioSummaryService.mapMultilevelObservations,
+            requiredGroupConceptNames: groupConceptsForROMHandAndFinger,
             additionalConcepts: subConcept,
             crucialConcepts: ['Date recorded', 'Type of assessment']
         },
@@ -888,22 +952,28 @@ angular.module('bahmni.common.displaycontrol.custom')
             requiredGroupConceptNames: multiLevelGroupConcepts,
             additionalConcepts: [],
             crucialConcepts: ['Date recorded', 'Type of assessment']
+        },
+        {
+            name: 'Level of amputation',
+            mapper: physioSummaryService.circumference,
+            requiredGroupConceptNames: multiLevelGroupConcepts,
+            additionalConcepts: [],
+            crucialConcepts: []
         }
     ];
 
-    const conceptNames = ["Upper Limb Physiotherapy Assessment"];
+    const conceptName = ["Upper Limb Physiotherapy Assessment"];
 
     var link = function ($scope, element) {
         var defer = $q.defer();
         spinner.forPromise(defer.promise, element);
         $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/lowerLimbPhysioSummary.html";
 
-        physioSummaryService.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
-            console.log(JSON.stringify(response.data));
-
+        physioSummaryService.fetchObservationsData(conceptName, $scope.enrollment, 5).then(function (response) {
             $scope.groupRecords = physioSummaryService.map(tableTitles, response.data);
             defer.resolve();
         });
+        $scope.isStumpCircumference = physioSummaryService.isStumpCircumference;
     };
 
     return {

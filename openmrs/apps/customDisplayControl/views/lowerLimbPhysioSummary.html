@@ -4,27 +4,37 @@
         <div ng-include src="'../common/ui-helper/messages.html'"></div>
         <section class="block hierarchy" ng-repeat="(key, records) in groupRecords track by key">
             <h2>{{records.title|titleTranslate}}</h2>
-            <!--<ul class="form-field">-->
-            <!--<li ng-show="!isDataPresent()">-->
-            <!--<div class="placeholder-text"><p translate="NO_SPECIMEN_FOUND_MESSAGE"></p></div>-->
-            <!--</li>-->
-            <!--</ul>-->
+            <div ng-if="isStumpCircumference(records)">
+                <table>
+                    <tr ng-repeat="record in records.data">
+                        <td rowspan="records.data.length">{{records.title}}</td>
+                        <td>From {{record["From"]}}</td>
+                        <td>cm {{record["cm"]}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div ng-if="!isStumpCircumference(records)">
+                <table>
+                    <tr>
+                        <th ng-repeat="$index in records.leftHeaders track by $index">{{$index+1}}</th>
+                        <th></th>
+                        <th ng-repeat="$index in records.rightHeaders track by $index">{{$index+1}}</th>
+                    </tr>
 
-            <table>
-                <tr>
-                    <th ng-repeat="$index in records.leftHeaders track by $index">{{$index+1}}</th>
-                    <th></th>
-                    <th ng-repeat="$index in records.rightHeaders track by $index">{{$index+1}}</th>
-                </tr>
+                    <tr ng-repeat="(key, record) in records.data |orderBy: 'sort' track by key">
+                        <td ng-if="!!!record.isSubHeader" ng-repeat="$index in records.leftHeaders track by $index">
+                            {{record.left[$index]}}
+                        </td>
+                        <th ng-if="!!record.isSubHeader" colspan={{records.leftHeaders.length}}>{{record.left}}</th>
+                        <td>{{record.display}}</td>
+                        <td ng-if="!!!record.isSubHeader" ng-repeat="$index in records.rightHeaders track by $index">
+                            {{record.right[$index]}}
+                        </td>
+                        <th ng-if="!!record.isSubHeader" colspan="{{records.rightHeaders.length}}">{{record.right}}</th>
+                    </tr>
 
-                <tr ng-repeat="(key, record) in records.data |orderBy: 'sort' track by key">
-                    <td ng-if="!!!record.isSubHeader" ng-repeat="$index in records.leftHeaders track by $index">{{record.left[$index]}}</td>
-                    <th ng-if="!!record.isSubHeader" colspan={{records.leftHeaders.length}}>{{record.left}}</th>
-                    <td>{{record.display}}</td>
-                    <td ng-if="!!!record.isSubHeader" ng-repeat="$index in records.rightHeaders track by $index">{{record.right[$index]}}</td>
-                    <th ng-if="!!record.isSubHeader" colspan="{{records.rightHeaders.length}}">{{record.right}}</th>
-                </tr>
-            </table>
+                </table>
+            </div>
         </section>
     </div>
 </section>

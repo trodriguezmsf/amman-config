@@ -795,24 +795,6 @@
           "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
           "template": "<microbiology-lab-results section='config' patient='patient' enrollment='enrollment'></microbiology-lab-results>"
         }
-      },
-      "lowerLimbPhysioSummary": {
-        "type": "custom",
-        "displayOrder": 18,
-        "displayType": "Full-Page",
-        "config": {
-          "title": "DASHBOARD_TITLE_LOWER_LIMB_PHYSIO_SUMMARY_LAB_RESULTS_KEY",
-          "template": "<lower-limb-physio-summary section='config' patient='patient' enrollment='enrollment'></lower-limb-physio-summary>"
-        }
-      },
-      "upperLimbPhysioSummary": {
-        "type": "custom",
-        "displayOrder": 19,
-        "displayType": "Full-Page",
-        "config": {
-          "title": "DASHBOARD_TITLE_UPPER_LIMB_PHYSIO_SUMMARY_LAB_RESULTS_KEY",
-          "template": "<upper-limb-physio-summary section='config' patient='patient' enrollment='enrollment'></upper-limb-physio-summary>"
-        }
       }
     }
     },
@@ -956,6 +938,24 @@
           "config": {
             "title": "DASHBOARD_TITLE_APPOINTMENTS_KEY",
             "template": "<patient-appointments-dashboard section='config' patient='patient'></patient-appointments-dashboard>"
+          }
+        },
+        "lowerLimbPhysioSummary": {
+          "type": "custom",
+          "displayOrder": 4,
+          "displayType": "Full-Page",
+          "config": {
+            "title": "DASHBOARD_TITLE_LOWER_LIMB_PHYSIO_SUMMARY_LAB_RESULTS_KEY",
+            "template": "<lower-limb-physio-summary section='config' patient='patient' enrollment='enrollment'></lower-limb-physio-summary>"
+          }
+        },
+        "upperLimbPhysioSummary": {
+          "type": "custom",
+          "displayOrder": 5,
+          "displayType": "Full-Page",
+          "config": {
+            "title": "DASHBOARD_TITLE_UPPER_LIMB_PHYSIO_SUMMARY_LAB_RESULTS_KEY",
+            "template": "<upper-limb-physio-summary section='config' patient='patient' enrollment='enrollment'></upper-limb-physio-summary>"
           }
         },
         "physioSummaryScores": {
