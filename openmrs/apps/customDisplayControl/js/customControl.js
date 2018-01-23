@@ -656,6 +656,10 @@ angular.module('bahmni.common.displaycontrol.custom')
     };
     var self = this;
 
+    this.getDateString = function (date) {
+        return date? moment(date).format("DD MMM YY") : date;
+    };
+
     this.mapDataForDisplay = function ($scope, configBaseUrl, conceptNames, tableTitles, circumferenceConceptNames) {
         var defer = $q.defer();
         $scope.contentUrl = configBaseUrl + "/customDisplayControl/views/limbPhysioSummary.html";
@@ -745,7 +749,7 @@ angular.module('bahmni.common.displaycontrol.custom')
     ];
 
     var link = function ($scope, element) {
-        var promise = physioSummaryService.mapDataForDisplay($scope, appService.configBaseUrl(),conceptNames, tableTitles, ["LLA, Level of amputation"]);
+        var promise = physioSummaryService.mapDataForDisplay($scope, appService.configBaseUrl(), conceptNames, tableTitles, ["LLA, Level of amputation"]);
         spinner.forPromise(promise, element);
     };
 
@@ -768,6 +772,14 @@ angular.module('bahmni.common.displaycontrol.custom')
 
     const findByConceptNameToDisplay = physioSummaryService.findByConceptNameToDisplay;
 
+    const assignToHolder = function (holder, headers, values) {
+        if (!_.isEmpty(_.compact(values))) {
+            holder.headers = headers;
+            holder.rows.push({values: values});
+        }
+        return holder;
+    };
+
     var mapMaxillofacialPhysioAssessment = function (record, holder) {
         var dateRecorded = findByConceptNameToDisplay(record.groupMembers, "Date recorded");
         var facialDisabilityIndex = findByConceptNameToDisplay(record.groupMembers, "Facial Disability Index");
@@ -776,11 +788,10 @@ angular.module('bahmni.common.displaycontrol.custom')
         var physicalFunction = findByConceptNameToDisplay(facialDisabilityIndex.groupMembers, "Physical Function");
         var physicalFunctionScore = findByConceptNameToDisplay(physicalFunction.groupMembers, "Physical Function Score");
         var socialFunction = findByConceptNameToDisplay(facialDisabilityIndex.groupMembers, "Social Function");
-
         var socialWellbeingScore = findByConceptNameToDisplay(socialFunction.groupMembers, "Social Wellbeing Score");
-        holder.headers = ["Date recorded", "Physical Function", "Social Wellbeing", "Total score (FDI)"];
-        holder.rows.push({values: [dateRecorded.value, physicalFunctionScore.value, socialWellbeingScore.value, totalScore.value]});
-        return holder;
+        var date = physioSummaryService.getDateString(dateRecorded.value);
+
+        return assignToHolder(holder, ["Date Recorded", "Physical Function", "Social Wellbeing", "Total Score (FDI)"], [date, physicalFunctionScore.value, socialWellbeingScore.value, totalScore.value]);
     };
 
     var getExtremityFunctionalIndex = function (groupMembers, primaryConceptName, secondaryConceptName) {
@@ -797,10 +808,9 @@ angular.module('bahmni.common.displaycontrol.custom')
         var basicGripTotal = findByConceptNameToDisplay(basicGripTestMember.groupMembers, "Total Score");
         var upperExtremityFunctionalIndex = getExtremityFunctionalIndex(record.groupMembers, "Upper Extremity Functional Index (UEFI) - 15", "Pediatric Upper Extremity Function ( Fine Motor, ADL)");
         var upperExtremityFunctionalIndexTotal = findByConceptNameToDisplay(upperExtremityFunctionalIndex.groupMembers, "Final score");
-        holder.headers = ["Date Recorded", "Basic Grip Test", "UEFI Total Score"];
-        holder.rows.push({values: [dateRecorded.value, basicGripTotal.value, upperExtremityFunctionalIndexTotal.value]});
 
-        return holder;
+        var date = physioSummaryService.getDateString(dateRecorded.value);
+        return assignToHolder(holder, ["Date Recorded", "Basic Grip Test", "UEFI Total Score"], [date, basicGripTotal.value, upperExtremityFunctionalIndexTotal.value]);
     };
 
     const mapLowerLimbAssessment = function (record, holder) {
@@ -812,11 +822,9 @@ angular.module('bahmni.common.displaycontrol.custom')
 
         var lowerExtremityFunctionalIndex = getExtremityFunctionalIndex(record.groupMembers, "Lower Extremity Functional Index (LEFI)", "Pediatric Lower Extremity Function (Mobility)");
         var lowerIndexTotal = findByConceptNameToDisplay(lowerExtremityFunctionalIndex.groupMembers, "Total Score");
+        var date = physioSummaryService.getDateString(dateRecorded.value);
 
-        holder.headers = ["Date recorded", "Tinetti Total Score", "Risk of Falls", "LEFI Total Score"];
-        holder.rows.push({values: [dateRecorded.value, totalScore.value, riskOfFall.value, lowerIndexTotal.value]});
-
-        return holder;
+        return assignToHolder(holder, ["Date Recorded", "Tinetti Total Score", "Risk of Falls", "LEFI Total Score"], [date, totalScore.value, riskOfFall.value, lowerIndexTotal.value]);
     };
 
     const assessmentMappers = {
@@ -917,13 +925,13 @@ angular.module('bahmni.common.displaycontrol.custom')
         {name: "Axillary nerve", leafConcepts: [{name: "Deltoid"}]},
         {
             name: "Radial nerve", leafConcepts: [{name: "Tricep"}, {name: "Supinator"}, {name: "Ext. C. Rad. L&B"},
-            {name: "Ext. C. Ulnaris"}, {name: "Ext. Digiti"}, {name: "Abd. Poll. Longus"}, {name: "Ext. Poll. Longus"},
-            {name: "Ext. Indicis"}, {name: "Ext. Dig. Min."}]
+                {name: "Ext. C. Ulnaris"}, {name: "Ext. Digiti"}, {name: "Abd. Poll. Longus"}, {name: "Ext. Poll. Longus"},
+                {name: "Ext. Indicis"}, {name: "Ext. Dig. Min."}]
         },
         {
             name: "Median nerve", leafConcepts: [{name: "Pronator"}, {name: "Flex. Carpi Radialis"},
-            {name: "Flex. Dig. Sup"}, {name: "Flex. Dig Prof"}, {name: "Opp. Pollicis"}, {name: "Flex. Poll. L&B"},
-            {name: "Abd. Poll. Brevis"}, {name: "Lumbricalis"}]
+                {name: "Flex. Dig. Sup"}, {name: "Flex. Dig Prof"}, {name: "Opp. Pollicis"}, {name: "Flex. Poll. L&B"},
+                {name: "Abd. Poll. Brevis"}, {name: "Lumbricalis"}]
         },
         {
             name: "Ulnar nerve",
@@ -968,7 +976,7 @@ angular.module('bahmni.common.displaycontrol.custom')
     const conceptNames = ["Upper Limb Physiotherapy Assessment"];
 
     var link = function ($scope, element) {
-        var promise = physioSummaryService.mapDataForDisplay($scope, appService.configBaseUrl(),conceptNames, tableTitles, ["ULA, Level of amputation"]);
+        var promise = physioSummaryService.mapDataForDisplay($scope, appService.configBaseUrl(), conceptNames, tableTitles, ["ULA, Level of amputation"]);
         spinner.forPromise(promise, element);
     };
 
