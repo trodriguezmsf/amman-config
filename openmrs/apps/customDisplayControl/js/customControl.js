@@ -432,7 +432,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         },
         template: '<ng-include src="contentUrl"/>'
     };
-}]).service("physioSummaryService", ["$http", function ($http) {
+}]).service("physioSummaryService", ["$http", "$q", function ($http, $q) {
 
     const getContainer = function (baseHolder, conceptName) {
         var holder = baseHolder[conceptName] || {};
@@ -629,10 +629,6 @@ angular.module('bahmni.common.displaycontrol.custom')
         });
     };
 
-    this.isStumpCircumference = function (record) {
-        return _.isEqual(record.title, "Stump circumference");
-    };
-
     this.mapStumpCircumference = function (records) {
         // TODO: Need Refactoring
         var data = {};
@@ -657,6 +653,27 @@ angular.module('bahmni.common.displaycontrol.custom')
             }
         });
         return data;
+    };
+    var self = this;
+
+    this.mapDataForDisplay = function ($scope, configBaseUrl, conceptNames, tableTitles, circumferenceConceptNames) {
+        var defer = $q.defer();
+        $scope.contentUrl = configBaseUrl + "/customDisplayControl/views/limbPhysioSummary.html";
+
+        var promise1 = self.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
+            $scope.groupRecords = self.map(tableTitles, response.data);
+        });
+
+        var promise2 = self.fetchObservationsData(circumferenceConceptNames, $scope.enrollment, undefined, "latest").then(function (response) {
+            var data = self.mapStumpCircumference(response.data);
+            $scope.stumpCircumferences = {title: "Stump Circumference", data: data};
+        });
+
+        $q.all([promise1, promise2]).then(function () {
+            defer.resolve();
+        });
+
+        return defer.promise;
     }
 
 }]).directive('lowerLimbPhysioSummary', ['appService', 'physioSummaryService', 'spinner', '$q', function (appService, physioSummaryService, spinner, $q) {
@@ -728,22 +745,8 @@ angular.module('bahmni.common.displaycontrol.custom')
     ];
 
     var link = function ($scope, element) {
-        var defer = $q.defer();
-        spinner.forPromise(defer.promise, element);
-        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/lowerLimbPhysioSummary.html";
-
-        var p1 = physioSummaryService.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
-            $scope.groupRecords = physioSummaryService.map(tableTitles, response.data);
-        });
-
-        var p2 = physioSummaryService.fetchObservationsData(["LLA, Level of amputation"], $scope.enrollment, undefined, "latest").then(function (response) {
-            var data = physioSummaryService.mapStumpCircumference(response.data);
-            $scope.stumpCircumferences = {title: "Stump Circumference", data: data};
-        });
-        $q.all([p1, p2]).then(function () {
-            defer.resolve();
-        });
-        $scope.isStumpCircumference = physioSummaryService.isStumpCircumference;
+        var promise = physioSummaryService.mapDataForDisplay($scope, appService.configBaseUrl(),conceptNames, tableTitles, ["LLA, Level of amputation"]);
+        spinner.forPromise(promise, element);
     };
 
     return {
@@ -965,22 +968,8 @@ angular.module('bahmni.common.displaycontrol.custom')
     const conceptNames = ["Upper Limb Physiotherapy Assessment"];
 
     var link = function ($scope, element) {
-        var defer = $q.defer();
-        spinner.forPromise(defer.promise, element);
-        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/lowerLimbPhysioSummary.html";
-
-        var p1 = physioSummaryService.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
-            $scope.groupRecords = physioSummaryService.map(tableTitles, response.data);
-        });
-
-        var p2 = physioSummaryService.fetchObservationsData(["ULA, Level of amputation"], $scope.enrollment, undefined, "latest").then(function (response) {
-            var data = physioSummaryService.mapStumpCircumference(response.data);
-            $scope.stumpCircumferences = {title: "Stump Circumference", data: data};
-        });
-        $q.all([p1, p2]).then(function () {
-            defer.resolve();
-        });
-        $scope.isStumpCircumference = physioSummaryService.isStumpCircumference;
+        var promise = physioSummaryService.mapDataForDisplay($scope, appService.configBaseUrl(),conceptNames, tableTitles, ["ULA, Level of amputation"]);
+        spinner.forPromise(promise, element);
     };
 
     return {
