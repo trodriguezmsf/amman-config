@@ -285,6 +285,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/fstgDateOfPresentation.sql"
           }
+        },
+        {
+          "name": "N/w Follow Up And Preoperative Dates",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/nwFollowUpAndPreoperativeDates.sql"
+          }
         }
       ]
     }

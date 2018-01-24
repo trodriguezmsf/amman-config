@@ -549,7 +549,7 @@ angular.module('bahmni.common.displaycontrol.custom')
 
     const mapSubGroupMembers = function (concepts, baseHolder, members) {
         _.forEach(concepts, function (conceptMember) {
-            var conceptNameToDisplay = getNameInLowerCase(conceptMember.name);
+            var conceptNameToDisplay = conceptMember.name;
             baseHolder[conceptNameToDisplay] = mapLeafConcepts(conceptMember.leafConcepts, baseHolder[conceptNameToDisplay] || {},
                 findByConceptNameToDisplay(members, conceptMember.name));
         });
