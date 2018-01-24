@@ -105,7 +105,7 @@
     }
   },
   "customReport16" : {
-    "name": "Patient Ward Details",
+    "name": "Patient Bed Details",
     "type": "MRSGeneric",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientwarddetails.sql"
