@@ -1,8 +1,8 @@
 SELECT
   o.person_id,
   GROUP_CONCAT(if(qcvn.concept_full_name = 'APN, Type of anaesthesia administered', acvn.concept_full_name, null))                                 AS `typeOfAnaesthesia`,
-  GROUP_CONCAT(if(qcvn.concept_full_name = 'APN, Anaesthesia start time', DATE_FORMAT(o.value_datetime,'%c/%e/%y'), null))                         AS `anaesthesiaDateStarted`,
-  dateOfArrival.`value`                                                                                                                            AS `dateOfArrival`
+  GROUP_CONCAT(if(qcvn.concept_full_name = 'APN, Anaesthesia start time', CAST(o.value_datetime AS DATE ), null))                         AS `anaesthesiaDateStarted`,
+  CAST(dateOfArrival.`value` AS DATE)                                                                                                                             AS `dateOfArrival`
 FROM obs o
   INNER JOIN concept_view qcvn ON qcvn.concept_id = o.concept_id AND
                                  qcvn.concept_full_name IN (

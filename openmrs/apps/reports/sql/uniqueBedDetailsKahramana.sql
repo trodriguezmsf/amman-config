@@ -1,13 +1,13 @@
 SELECT
-    DATE_FORMAT(bpam.date_created, '%m/%d/%Y')    AS `admissionDate`,
+    CAST(bpam.date_created AS DATE )    AS `admissionDate`,
     bpam.patient_id,
     b.bed_id,
     b.bed_number,
     l.name               AS `location`,
     bedTagsInfo.name          AS `bedTag`,
-    DATE_FORMAT(bedTagsInfo.`Date Started`, '%m/%d/%Y')         AS `Bed Tag Start time`,
-    DATE_FORMAT(bedTagsInfo.`Date Stopped`, '%m/%d/%Y')         AS `Bed Tag End time`,
-    DATE_FORMAT(dischargeDetails.bed_discharge_date, '%m/%d/%Y') AS `Discharge Time`
+    CAST(bedTagsInfo.`Date Started` AS DATE )         AS `Bed Tag Start time`,
+    CAST(bedTagsInfo.`Date Stopped` AS DATE )         AS `Bed Tag End time`,
+    CAST(dischargeDetails.bed_discharge_date AS DATE ) AS `Discharge Time`
 FROM bed b
     INNER JOIN bed_location_map blm ON blm.bed_id = b.bed_id AND b.voided IS FALSE
     INNER JOIN bed_patient_assignment_map bpam ON b.bed_id = bpam.bed_id AND bpam.voided IS FALSE

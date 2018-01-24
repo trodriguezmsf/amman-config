@@ -155,20 +155,57 @@
       ]
     }
   },
-    "customReport18": {
-    "name": "Indicator Dashboard Report 2",
-    "type": "MRSGeneric",
+  "customReport18": {
+    "name": "Bed Management Indicators",
+    "type": "concatenated",
     "config": {
-      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/indicatorDashboardReport2.sql"
+      "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/bedManagementIndicators.xls",
+      "reports": [
+        {
+          "name": "Bed Info",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/bedInfo.sql"
+          }
+        },{
+          "name": "Unique Info in Ward",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/uniqueBedDetailsWard.sql"
+          }
+        },
+        {
+          "name": "Unique Info in Kahramana",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/uniqueBedDetailsKahramana.sql"
+          }
+        },
+        {
+          "name": "Unique Info in RC",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/uniqueBedDetailsRC.sql"
+          }
+        },
+        {
+          "name": "Bed Tags Info",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/bedTagsInfo.sql"
+          }
+        },
+        {
+          "name": "Patient State Info",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientState.sql"
+          }
+        }
+      ]
     }
-  },"customReport19": {
-  "name": "Bed Tags Info In Ward",
-  "type": "MRSGeneric",
-  "config": {
-    "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/bedTagsInfoInWard.sql"
-  }
-},
-  "customReport21": {
+  },
+  "customReport19": {
     "name": "Indicators",
     "type": "concatenated",
     "config": {

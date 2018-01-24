@@ -1,5 +1,5 @@
 SELECT patient_id,
-  actual_start_datetime,
+  CAST(actual_start_datetime AS DATE ),
   status
 FROM surgical_appointment
 WHERE status = 'COMPLETED'

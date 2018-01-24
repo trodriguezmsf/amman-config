@@ -4,7 +4,7 @@ SELECT
   person.gender                                                                                 AS `Sex`,
   GROUP_CONCAT(IF(pat.name = 'nationality1', cv.concept_full_name, NULL))                       AS nationality,
   GROUP_CONCAT(IF(pat.name = 'isCareTakerRequired', IF(pa.value = 'true', 'Yes', 'No'), NULL))  AS `need for caretaker`,
-  GROUP_CONCAT(IF(pat.name = 'dateofArrival', FROM_UNIXTIME(UNIX_TIMESTAMP(pa.value),'%c/%e/%y'), NULL))         AS `date of arrival`
+  GROUP_CONCAT(IF(pat.name = 'dateofArrival', CAST(pa.value AS DATE ), NULL))         AS `date of arrival`
 FROM patient p
   JOIN person ON p.patient_id = person.person_id AND person.voided IS FALSE AND p.voided IS FALSE
   JOIN person_attribute_type pat ON pat.name IN ('dateofArrival', 'nationality1', 'isCareTakerRequired')

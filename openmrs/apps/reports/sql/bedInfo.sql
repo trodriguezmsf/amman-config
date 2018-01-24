@@ -1,18 +1,18 @@
 SELECT
-  DATE_FORMAT(dateOfArraival.value, '%d-%m-%Y') AS date_of_arrival,
-  DATE_FORMAT(bpam.date_created, '%d-%m-%Y')    AS `admissionDate`,
+  CAST(dateOfArraival.value AS DATE ) AS date_of_arrival,
+  CAST(bpam.date_created AS DATE )    AS `admissionDate`,
   bpam.patient_id,
   b.bed_id,
   b.bed_number,
   l.name               AS `location`,
   bedTagsInfo.name          AS `bedTag`,
-  bedTagsInfo.`Date Started`         AS `Bed Tag Start time`,
-  bedTagsInfo.`Date Stopped`         AS `Bed Tag End time`,
-  dischargeDetails.bed_discharge_date AS `Discharge Time`,
+  CAST(bedTagsInfo.`Date Started` AS DATE )       AS `Bed Tag Start time`,
+  CAST(bedTagsInfo.`Date Stopped` AS DATE  )     AS `Bed Tag End time`,
+  CAST(dischargeDetails.bed_discharge_date AS DATE ) AS `Discharge Time`,
   programStateDetails.currentState,
   programStateDetails.previousState,
-  DATE_FORMAT(programStateDetails.dateMovedToNWfollowup, '%d-%m-%Y')          AS `Date moved to network followup state`,
-  DATE_FORMAT(programStateDetails.dateMovedToPreOperative, '%d-%m-%Y')               AS `Date moved to preOperative state`,
+  CAST(programStateDetails.dateMovedToNWfollowup AS DATE )          AS `Date moved to network followup state`,
+  CAST(programStateDetails.dateMovedToPreOperative AS DATE )        AS `Date moved to preOperative state`,
   TIMESTAMPDIFF(DAY, programStateDetails.preOperativeDate,programStateDetails.dateMovedToNWfollowup) as `Difference`
 FROM bed b
   INNER JOIN bed_location_map blm ON blm.bed_id = b.bed_id AND b.voided IS FALSE

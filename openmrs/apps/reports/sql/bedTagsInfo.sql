@@ -1,8 +1,8 @@
 SELECT
   blm.bed_id,
   bt.name AS bed_tag_name,
-  DATE_FORMAT(btm.date_created,'%c/%e/%y') AS tag_start_time,
-  DATE_FORMAT(btm.date_voided,'%c/%e/%y') AS tag_end_time,
+  CAST(btm.date_created AS DATE ) AS tag_start_time,
+  CAST(btm.date_voided AS DATE ) AS tag_end_time,
   l.name AS location_name
 from bed_location_map blm
 INNER JOIN bed_tag_map btm ON btm.bed_id = blm.bed_id
