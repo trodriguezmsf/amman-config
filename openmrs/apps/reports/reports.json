@@ -278,6 +278,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/fstgDateReceived.sql"
           }
+        },
+        {
+          "name": "Date of Presentation",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/fstgDateOfPresentation.sql"
+          }
         }
       ]
     }
