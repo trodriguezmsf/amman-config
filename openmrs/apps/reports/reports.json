@@ -227,6 +227,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/OTCompletedSurgeries.sql"
           }
+        },
+        {
+          "name": "Date of file received",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/fstgDateReceived.sql"
+          }
         }
       ]
     }
