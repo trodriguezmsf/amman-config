@@ -667,7 +667,6 @@ angular.module('bahmni.common.displaycontrol.custom')
             mappedData = mapCrucialInfoToObs(crucialConcepts,record, mappedData);
 
         });
-        console.log(JSON.stringify(mappedData));
         return _.values(mappedData);
 
     };
@@ -911,6 +910,10 @@ angular.module('bahmni.common.displaycontrol.custom')
         var basicGripTotal = findByConceptNameToDisplay(basicGripTestMember.groupMembers, "Total Score");
         var upperExtremityFunctionalIndex = getExtremityFunctionalIndex(record.groupMembers, "Upper Extremity Functional Index (UEFI) - 15", "Pediatric Upper Extremity Function ( Fine Motor, ADL)");
         var upperExtremityFunctionalIndexTotal = findByConceptNameToDisplay(upperExtremityFunctionalIndex.groupMembers, "Final score");
+        if(_.isEmpty(upperExtremityFunctionalIndexTotal)){
+            upperExtremityFunctionalIndexTotal = findByConceptNameToDisplay(upperExtremityFunctionalIndex.groupMembers, "Total score");
+        }
+
 
         var date = physioSummaryService.getDateString(dateRecorded.value);
         return assignToHolder(holder, ["Date Recorded", "Basic Grip Test", "UEFI Total Score"], [date, basicGripTotal.value, upperExtremityFunctionalIndexTotal.value]);
