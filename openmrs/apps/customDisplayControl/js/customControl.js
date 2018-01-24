@@ -519,6 +519,10 @@ angular.module('bahmni.common.displaycontrol.custom')
     const mapCrucialInfoToObs = function (crucialConcepts, record, mappedData) {
         _.forEach(crucialConcepts, function (conceptName, index) {
             var value = findByConceptNameToDisplay(record, conceptName).valueAsString;
+            if (getNameInLowerCase(conceptName)  === getNameInLowerCase("Date recorded")){
+                value = self.getDateString(value);
+            }
+
             mappedData = insertValue(conceptName, mappedData, [{key: "left", value: value},
                 {key: "right", value: value}], index);
         });
@@ -614,7 +618,7 @@ angular.module('bahmni.common.displaycontrol.custom')
 
             var sideOfAssesments = [];
             _.forEach(concepts, function (concept, index) {
-                var nameKey = getNameKey(concept.name);
+                var nameKey = concept.name;
                 var holder = xxConat(mappedData, nameKey);
 
                 var flexValues = [];
@@ -649,21 +653,21 @@ angular.module('bahmni.common.displaycontrol.custom')
 
             });
 
-            var container = xxConat(mappedData, "side of assessment");
+            var container = xxConat(mappedData, "Side of assessment");
             container["left"].push(_.join(sideOfAssesments, ","));
             container["right"].push(_.join(sideOfAssesments, ","));
             container.sort = 3;
-            mappedData["side of assessment"] = container;
-            var container2 = xxConat(mappedData, "distance tip (2nd -5th)");
+            mappedData["Side of assessment"] = container;
+            var container2 = xxConat(mappedData, "Distance tip (2nd -5th)");
             container2["left"].push(_.join(distanceTips, ","));
             container2["right"].push(_.join(distanceTips, ","));
             container2.sort = 4;
-            mappedData["distance tip (2nd -5th)"] = container2;
-            var container3 = xxConat(mappedData, "distance tip (Thumb - 2nd)");
+            mappedData["Distance tip (2nd -5th)"] = container2;
+            var container3 = xxConat(mappedData, "Distance tip (Thumb - 2nd)");
             container3["left"].push(_.join(distanceTipThumbs, ","));
             container3["right"].push(_.join(distanceTipThumbs, ","));
             container3.sort = 5;
-            mappedData["distance tip (Thumb - 2nd)"] = container3;
+            mappedData["Distance tip (Thumb - 2nd)"] = container3;
             mappedData = mapCrucialInfoToObs(crucialConcepts, record, mappedData);
 
         });
