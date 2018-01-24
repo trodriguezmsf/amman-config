@@ -528,7 +528,7 @@ angular.module('bahmni.common.displaycontrol.custom')
     const flatMultiLevelObs = function (records, concepts) {
         return _.flatMap(records, function (record, key) {
             return _.includes(concepts, record.display) ? record :
-                _.concat([{left: "left", right: "right", display: key, isSubHeader: true}], _.values(record));
+                _.concat([{left: "Left", right: "Right", display: key, isSubHeader: true}], _.values(record));
         });
     };
 
@@ -643,8 +643,8 @@ angular.module('bahmni.common.displaycontrol.custom')
                     extValues.push(extValue.valueAsString);
                 });
 
-                holder["left"].push((!_.isEmpty(_.compact(extValues)) && _.join(extValues, ",")) || "");
-                holder["right"].push((!_.isEmpty(_.compact(flexValues)) && _.join(flexValues, ",")) || "");
+                holder["right"].push((!_.isEmpty(_.compact(extValues)) && _.join(extValues, ",")) || "");
+                holder["left"].push((!_.isEmpty(_.compact(flexValues)) && _.join(flexValues, ",")) || "");
                 mappedData[nameKey] = holder;
 
             });
@@ -664,7 +664,7 @@ angular.module('bahmni.common.displaycontrol.custom')
             container3["right"].push(_.join(distanceTipThumbs, ","));
             container3.sort = 5;
             mappedData["distance tip (Thumb - 2nd)"] = container3;
-            mappedData = mapCrucialInfoToObs(crucialConcepts,record, mappedData);
+            mappedData = mapCrucialInfoToObs(crucialConcepts, record, mappedData);
 
         });
         return _.values(mappedData);
@@ -695,7 +695,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         return _.map(tableTitles, function (title) {
             var filterRecords = getFilterRecords(responseData, title.crucialConcepts.concat(title.name));
             var data = title.mapper(filterRecords, title.requiredGroupConceptNames, title.crucialConcepts, title.name);
-            var mappedData = {title: title.name, data: data};
+            var mappedData = {title: title.display || title.name, data: data};
             return _.isEmpty(data) ? mappedData : insertAdditionalInfo(title, data, mappedData);
         });
     };
@@ -843,6 +843,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         },
         {
             name: 'Neurological exam of lower limb',
+            display: "Motor (Neurological Examination)",
             mapper: physioSummaryService.mapMultilevelObservations,
             requiredGroupConceptNames: multiLevelGroupConcepts,
             additionalConcepts: [],
@@ -910,7 +911,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         var basicGripTotal = findByConceptNameToDisplay(basicGripTestMember.groupMembers, "Total Score");
         var upperExtremityFunctionalIndex = getExtremityFunctionalIndex(record.groupMembers, "Upper Extremity Functional Index (UEFI) - 15", "Pediatric Upper Extremity Function ( Fine Motor, ADL)");
         var upperExtremityFunctionalIndexTotal = findByConceptNameToDisplay(upperExtremityFunctionalIndex.groupMembers, "Final score");
-        if(_.isEmpty(upperExtremityFunctionalIndexTotal)){
+        if (_.isEmpty(upperExtremityFunctionalIndexTotal)) {
             upperExtremityFunctionalIndexTotal = findByConceptNameToDisplay(upperExtremityFunctionalIndex.groupMembers, "Total score");
         }
 
@@ -1079,7 +1080,15 @@ angular.module('bahmni.common.displaycontrol.custom')
             crucialConcepts: ['Date recorded', 'Type of assessment']
         },
         {
+            name: 'Muscle Test for Upper Limbs',
+            mapper: physioSummaryService.mapObservations,
+            requiredGroupConceptNames: requiredGroupConceptNames,
+            additionalConcepts: subConcept,
+            crucialConcepts: ['Date recorded', 'Type of assessment']
+        },
+        {
             name: 'Neurological exam of upper  limb',
+            display: "Motor (Neurological Examination)",
             mapper: physioSummaryService.mapMultilevelObservations,
             requiredGroupConceptNames: multiLevelGroupConcepts,
             additionalConcepts: [],
