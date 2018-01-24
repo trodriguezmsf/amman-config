@@ -208,6 +208,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/networkStateInfo.sql"
           }
+        },
+        {
+          "name": "Nw_Follow_Up_And_Preoperative_Dates",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/nwFollowUpAndPreoperativeDates.sql"
+          }
         }
       ]
     }
