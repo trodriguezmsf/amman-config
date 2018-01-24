@@ -201,6 +201,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientState.sql"
           }
+        },
+        {
+          "name": "Network State Info",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/networkStateInfo.sql"
+          }
         }
       ]
     }
