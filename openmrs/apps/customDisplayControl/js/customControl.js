@@ -447,8 +447,12 @@ angular.module('bahmni.common.displaycontrol.custom')
         return _.trim(_.last(conceptNameToDisplay.split(":")));
     };
 
+    const getNameKey = function (conceptNameToDisplay) {
+        return getNameInLowerCase(splitByColon(conceptNameToDisplay));
+    };
+
     const isEqualName = function (conceptNameToDisplay, conceptName) {
-        return getNameInLowerCase(splitByColon(conceptNameToDisplay)) === getNameInLowerCase(conceptName);
+        return getNameKey(conceptNameToDisplay) === getNameInLowerCase(conceptName);
     };
 
     const getNameInLowerCase = function (name) {
@@ -458,7 +462,7 @@ angular.module('bahmni.common.displaycontrol.custom')
     const findMember = function (member, conceptName) {
         return _.find(member.groupMembers, function (member) {
             return isEqualName(member.conceptNameToDisplay, conceptName);
-        });
+        }) || {};
     };
 
     const findByConceptNameToDisplay = function (members, conceptName) {
@@ -588,6 +592,84 @@ angular.module('bahmni.common.displaycontrol.custom')
             });
         });
         return _.values(mappedData);
+    };
+
+    this.mapHandAndFinger = function (records, concepts, crucialConcepts, parentConcept) {
+        //TODO: Need serious refactoring :)
+        var xxConat = function (baseHolder, conceptName) {
+            var holder = _.get(baseHolder, conceptName) || {};
+            holder.right = holder.right || [];
+            holder["left"] = holder["left"] || [];
+            holder.display = conceptName;
+            return holder;
+        };
+
+        var mappedData = {};
+        _.forEach(records, function (record) {
+            var filteredRecords = _.filter(record, function (each) {
+                return _.isEqual(each.conceptNameToDisplay, parentConcept);
+            });
+            var distanceTips = [];
+            var distanceTipThumbs = [];
+
+            var sideOfAssesments = [];
+            _.forEach(concepts, function (concept, index) {
+                var nameKey = getNameKey(concept.name);
+                var holder = xxConat(mappedData, nameKey);
+
+                var flexValues = [];
+                var extValues = [];
+                _.forEach(filteredRecords, function (record) {
+                    if (index === 0) {
+                        var distanceTip = findByConceptNameToDisplay(record.groupMembers, "Distance tip (2nd -5th)");
+                        var distanceTipThumb = findByConceptNameToDisplay(record.groupMembers, "Distance tip (Thumb - 2nd)");
+                        var sideOfAssessment = findByConceptNameToDisplay(record.groupMembers, "Side of assessment");
+
+
+                        distanceTips.push(distanceTip.valueAsString);
+                        distanceTipThumbs.push(distanceTipThumb.valueAsString);
+                        sideOfAssesments.push(sideOfAssessment.valueAsString);
+                    }
+
+
+                    var romHandAndFinger = findByConceptNameToDisplay(record.groupMembers, "R.O.M hand and finger");
+
+                    var flexMember = findByConceptNameToDisplay(romHandAndFinger.groupMembers, "Flex");
+                    var flexValue = findMember(flexMember, concept.name);
+                    flexValues.push(flexValue.valueAsString);
+
+                    var extMember = findByConceptNameToDisplay(romHandAndFinger.groupMembers, "Ext.");
+                    var extValue = findMember(extMember, concept.name);
+                    extValues.push(extValue.valueAsString);
+                });
+
+                holder["left"].push((!_.isEmpty(_.compact(extValues)) && _.join(extValues, ",")) || "");
+                holder["right"].push((!_.isEmpty(_.compact(flexValues)) && _.join(flexValues, ",")) || "");
+                mappedData[nameKey] = holder;
+
+            });
+
+            var container = xxConat(mappedData, "side of assessment");
+            container["left"].push(_.join(sideOfAssesments, ","));
+            container["right"].push(_.join(sideOfAssesments, ","));
+            container.sort = 3;
+            mappedData["side of assessment"] = container;
+            var container2 = xxConat(mappedData, "distance tip (2nd -5th)");
+            container2["left"].push(_.join(distanceTips, ","));
+            container2["right"].push(_.join(distanceTips, ","));
+            container2.sort = 4;
+            mappedData["distance tip (2nd -5th)"] = container2;
+            var container3 = xxConat(mappedData, "distance tip (Thumb - 2nd)");
+            container3["left"].push(_.join(distanceTipThumbs, ","));
+            container3["right"].push(_.join(distanceTipThumbs, ","));
+            container3.sort = 5;
+            mappedData["distance tip (Thumb - 2nd)"] = container3;
+            mappedData = mapCrucialInfoToObs(crucialConcepts,record, mappedData);
+
+        });
+        console.log(JSON.stringify(mappedData));
+        return _.values(mappedData);
+
     };
 
     this.mapMultilevelObservations = function (records, concepts, crucialConcepts, parentConcept) {
@@ -929,16 +1011,16 @@ angular.module('bahmni.common.displaycontrol.custom')
         {name: "Thumb DIP", sort: 6},
         {name: "2nd Finger MC", sort: 7},
         {name: "3rd Finger MC", sort: 8},
-        {name: "4rd Finger MC", sort: 9},
-        {name: "5rd Finger MC", sort: 10},
+        {name: "4th Finger MC", sort: 9},
+        {name: "5th Finger MC", sort: 10},
         {name: "2nd Finger PIP", sort: 11},
-        {name: "3nd Finger PIP", sort: 12},
-        {name: "4nd Finger PIP", sort: 13},
-        {name: "5nd Finger PIP", sort: 14},
+        {name: "3rd Finger PIP", sort: 12},
+        {name: "4th Finger PIP", sort: 13},
+        {name: "5th Finger PIP", sort: 14},
         {name: "2nd Finger DIP", sort: 15},
-        {name: "2nd Finger DIP", sort: 16},
-        {name: "2nd Finger DIP", sort: 17},
-        {name: "2nd Finger DIP", sort: 18}
+        {name: "3rd Finger DIP", sort: 16},
+        {name: "4th Finger DIP", sort: 17},
+        {name: "5th Finger DIP", sort: 18}
     ];
 
     const multiLevelGroupConcepts = [
@@ -980,9 +1062,17 @@ angular.module('bahmni.common.displaycontrol.custom')
         },
         {
             name: 'Hand and Finger',
-            mapper: physioSummaryService.mapMultilevelObservations,
+            mapper: physioSummaryService.mapHandAndFinger,
             requiredGroupConceptNames: groupConceptsForROMHandAndFinger,
-            additionalConcepts: subConcept,
+            additionalConcepts: [{
+                position: 2, member: {
+                    sort: 6,
+                    left: "Flex",
+                    right: "Ext",
+                    display: "Movement",
+                    isSubHeader: true
+                }
+            }],
             crucialConcepts: ['Date recorded', 'Type of assessment']
         },
         {
