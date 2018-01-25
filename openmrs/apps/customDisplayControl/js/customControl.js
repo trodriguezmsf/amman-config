@@ -434,6 +434,8 @@ angular.module('bahmni.common.displaycontrol.custom')
     };
 }]).service("physioSummaryService", ["$http", "$q", function ($http, $q) {
 
+    var self = this;
+
     const getContainer = function (baseHolder, conceptName) {
         var holder = baseHolder[conceptName] || {};
         holder.left = holder.left || [];
@@ -443,16 +445,12 @@ angular.module('bahmni.common.displaycontrol.custom')
         return baseHolder;
     };
 
-    const splitByColon = function (conceptNameToDisplay) {
-        return _.trim(_.last(conceptNameToDisplay.split(":")));
-    };
-
-    const getNameKey = function (conceptNameToDisplay) {
-        return getNameInLowerCase(splitByColon(conceptNameToDisplay));
+    const splitByColon = function (conceptNameToDisplay, reducer) {
+        return _.trim(reducer(_.split(conceptNameToDisplay, ":")));
     };
 
     const isEqualName = function (conceptNameToDisplay, conceptName) {
-        return getNameKey(conceptNameToDisplay) === getNameInLowerCase(conceptName);
+        return getNameInLowerCase(splitByColon(conceptNameToDisplay, _.last)) === getNameInLowerCase(conceptName);
     };
 
     const getNameInLowerCase = function (name) {
@@ -465,10 +463,9 @@ angular.module('bahmni.common.displaycontrol.custom')
         }) || {};
     };
 
-    const findByConceptNameToDisplay = function (members, conceptName) {
+    this.findByConceptNameToDisplay = function (members, conceptName) {
         return _.find(members, ['conceptNameToDisplay', conceptName]) || {};
     };
-    this.findByConceptNameToDisplay = findByConceptNameToDisplay;
 
     const getValue = function (members, conceptName) {
         var member = findMember(members, conceptName);
@@ -515,7 +512,7 @@ angular.module('bahmni.common.displaycontrol.custom')
 
     const mapCrucialInfoToObs = function (crucialConcepts, record, mappedData) {
         _.forEach(crucialConcepts, function (conceptName, index) {
-            var value = findByConceptNameToDisplay(record, conceptName).valueAsString;
+            var value = self.findByConceptNameToDisplay(record, conceptName).valueAsString;
             if (getNameInLowerCase(conceptName) === getNameInLowerCase("Date recorded")) {
                 value = self.getDateString(value);
             }
@@ -526,8 +523,12 @@ angular.module('bahmni.common.displaycontrol.custom')
         return mappedData;
     };
 
+    const isEmpty = function (record, key) {
+       return _.isEmpty(_.compact(_.get(record, key)));
+    };
+
     const isEmptyRow = function (row) {
-        return _.isEmpty(_.compact(_.get(row, "left"))) && _.isEmpty(_.compact(_.get(row, "right")));
+        return isEmpty(row, "left") && isEmpty(row, "right");
     };
 
 
@@ -554,9 +555,8 @@ angular.module('bahmni.common.displaycontrol.custom')
 
     const mapSubGroupMembers = function (concepts, baseHolder, members) {
         _.forEach(concepts, function (conceptMember) {
-            var conceptNameToDisplay = conceptMember.name;
-            baseHolder[conceptNameToDisplay] = mapLeafConcepts(conceptMember.leafConcepts, baseHolder[conceptNameToDisplay] || {},
-                findByConceptNameToDisplay(members, conceptMember.name));
+            baseHolder[conceptMember.name] = mapLeafConcepts(conceptMember.leafConcepts, baseHolder[conceptMember.name] || {},
+                self.findByConceptNameToDisplay(members, conceptMember.name));
         });
         return baseHolder;
     };
@@ -570,9 +570,9 @@ angular.module('bahmni.common.displaycontrol.custom')
         return _.first(_.values(records));
     };
 
-    const insertAdditionalInfo = function (title, data, mappedData) {
-        if (!_.isEmpty(title.crucialConcepts)) {
-            _.forEach(title.additionalConcepts, function (concept) {
+    const insertAdditionalInfo = function (tableInfo, data, mappedData) {
+        if (!_.isEmpty(tableInfo.crucialConcepts)) {
+            _.forEach(tableInfo.additionalConcepts, function (concept) {
                 putMemberAt(data, concept.position, concept.member);
             });
 
@@ -583,12 +583,11 @@ angular.module('bahmni.common.displaycontrol.custom')
                 rightHeaders: new Array(member.right.length)
             });
         }
-        else {
-            return data;
-        }
+        return data;
     };
 
     this.mapObservations = function (records, concepts, crucialConcepts) {
+        //TODO: Need Refactoring
         var mappedData = {};
         _.forEach(records, function (record) {
             var filteredRecords = _.filter(record, function (each) {
@@ -603,87 +602,35 @@ angular.module('bahmni.common.displaycontrol.custom')
         return _.values(mappedData);
     };
 
-    this.mapHandAndFinger = function (records, concepts, crucialConcepts, parentConcept) {
-        //TODO: Need serious refactoring :)
-        var xxConat = function (baseHolder, conceptName) {
-            var holder = _.get(baseHolder, conceptName) || {};
-            holder.right = holder.right || [];
-            holder["left"] = holder["left"] || [];
-            holder.display = conceptName;
-            return holder;
-        };
-
+    this.mapHandAndFinger = function (records, concepts, crucialConcepts) {
+        //TODO: Need Refactoring. Try to merge/use "mapObservations" method
         var mappedData = {};
         _.forEach(records, function (record) {
             var filteredRecords = _.filter(record, function (each) {
-                return _.isEqual(each.conceptNameToDisplay, parentConcept);
-            });
-            var distanceTips = [];
-            var distanceTipThumbs = [];
-
-            var sideOfAssesments = [];
-            _.forEach(concepts, function (concept, index) {
-                var nameKey = concept.name;
-                var holder = xxConat(mappedData, nameKey);
-
-                var flexValues = [];
-                var extValues = [];
-                _.forEach(filteredRecords, function (record) {
-                    if (index === 0) {
-                        var distanceTip = findByConceptNameToDisplay(record.groupMembers, "Distance tip (2nd -5th)");
-                        var distanceTipThumb = findByConceptNameToDisplay(record.groupMembers, "Distance tip (Thumb - 2nd)");
-                        var sideOfAssessment = findByConceptNameToDisplay(record.groupMembers, "Side of assessment");
-
-
-                        distanceTips.push(distanceTip.valueAsString);
-                        distanceTipThumbs.push(distanceTipThumb.valueAsString);
-                        sideOfAssesments.push(sideOfAssessment.valueAsString);
-                    }
-
-
-                    var romHandAndFinger = findByConceptNameToDisplay(record.groupMembers, "R.O.M hand and finger");
-
-                    var flexMember = findByConceptNameToDisplay(romHandAndFinger.groupMembers, "Flex");
-                    var flexValue = findMember(flexMember, concept.name);
-                    flexValues.push(flexValue.valueAsString);
-
-                    var extMember = findByConceptNameToDisplay(romHandAndFinger.groupMembers, "Ext.");
-                    var extValue = findMember(extMember, concept.name);
-                    extValues.push(extValue.valueAsString);
-                });
-
-                holder["right"].push((!_.isEmpty(_.compact(extValues)) && _.join(extValues, ",")) || "");
-                holder["left"].push((!_.isEmpty(_.compact(flexValues)) && _.join(flexValues, ",")) || "");
-                mappedData[nameKey] = holder;
-
+                return !(_.isEmpty(each.groupMembers) || _.includes(crucialConcepts, each.conceptNameToDisplay))
             });
 
-            var container = xxConat(mappedData, "Side of assessment");
-            container["left"].push(_.join(sideOfAssesments, ","));
-            container["right"].push(_.join(sideOfAssesments, ","));
-            container.sort = 3;
-            mappedData["Side of assessment"] = container;
-            var container2 = xxConat(mappedData, "Distance tip (2nd -5th)");
-            container2["left"].push(_.join(distanceTips, ","));
-            container2["right"].push(_.join(distanceTips, ","));
-            container2.sort = 4;
-            mappedData["Distance tip (2nd -5th)"] = container2;
-            var container3 = xxConat(mappedData, "Distance tip (Thumb - 2nd)");
-            container3["left"].push(_.join(distanceTipThumbs, ","));
-            container3["right"].push(_.join(distanceTipThumbs, ","));
-            container3.sort = 5;
-            mappedData["Distance tip (Thumb - 2nd)"] = container3;
-            mappedData = mapCrucialInfoToObs(crucialConcepts, record, mappedData);
+            _.forEach(filteredRecords, function (eachRecord) {
+                var side = findMember(eachRecord, "Side of assessment").valueAsString;
+                mappedData[side] = mappedData[side] || {};
 
+                var romHandAndFinger = findMember(eachRecord, "R.O.M hand and finger");
+                mappedData[side] = getValues(findMember(romHandAndFinger, "Flex"), findMember(romHandAndFinger, "Ext."), concepts, mappedData[side], getValue);
+                var additionalConcepts = [
+                    {name: "Distance tip (2nd -5th)", sort: 2},
+                    {name: "Distance tip (Thumb - 2nd)", sort: 3}
+                ];
+                mappedData[side] = getValues(eachRecord, eachRecord, additionalConcepts, mappedData[side], getValue);
+                mapCrucialInfoToObs(crucialConcepts, record, mappedData[side])
+            });
         });
-        return _.values(mappedData);
-
+        return mappedData;
     };
 
     this.mapMultilevelObservations = function (records, concepts, crucialConcepts, parentConcept) {
         var mappedData = {};
         _.forEach(records, function (record) {
-            var motor = findByConceptNameToDisplay(findByConceptNameToDisplay(record, parentConcept).groupMembers, "Motor");
+            var motor = findMember(self.findByConceptNameToDisplay(record, parentConcept), "Motor");
             if (!_.isEmpty(motor)) {
                 mappedData = mapSubGroupMembers(concepts, mapCrucialInfoToObs(crucialConcepts, record, mappedData), motor.groupMembers);
             }
@@ -695,18 +642,32 @@ angular.module('bahmni.common.displaycontrol.custom')
     const assign = function (record, holder) {
         holder = holder || {};
         if (record) {
-            holder[_.trim(_.first(_.split(record.conceptNameToDisplay, ":")))] = record.valueAsString;
+            holder[splitByColon(record.conceptNameToDisplay, _.first)] = record.valueAsString;
         }
         return holder;
     };
 
     this.map = function (tableTitles, responseData) {
-        return _.map(tableTitles, function (title) {
+        //TODO: Need Refactoring
+        var records = [];
+        var getTableTitle = function (title) {
+            return title.display || title.name;
+        };
+        _.forEach(tableTitles, function (title) {
             var filterRecords = getFilterRecords(responseData, title.crucialConcepts.concat(title.name));
             var data = title.mapper(filterRecords, title.requiredGroupConceptNames, title.crucialConcepts, title.name);
-            var mappedData = {title: title.display || title.name, data: data};
-            return _.isEmpty(data) ? mappedData : insertAdditionalInfo(title, data, mappedData);
+            if (_.isArray(data)) {
+                var mappedData = {title: getTableTitle(title), data: data};
+                records.push(_.isEmpty(data) ? mappedData : insertAdditionalInfo(title, data, mappedData));
+            } else {
+                _.forEach(data, function (record, key) {
+                    var mappedData = {title: getTableTitle(title) + " (" + key + ")", data: _.values(record)};
+                    records.push(_.isEmpty(data) ? mappedData : insertAdditionalInfo(title, mappedData.data, mappedData));
+                })
+            }
+
         });
+        return records;
     };
 
     this.fetchObservationsData = function (conceptNames, enrollment, numberOfVisits, scope) {
@@ -726,7 +687,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         // TODO: Need Refactoring
         var data = {};
         _.forEach(records, function (record) {
-            var typeOfAmputation = findByConceptNameToDisplay(record.groupMembers, "Type of amputation");
+            var typeOfAmputation = findMember(record, "Type of amputation");
             if (!_.isEmpty(typeOfAmputation)) {
                 var container = data[typeOfAmputation.valueAsString] || {};
                 container.type = typeOfAmputation.valueAsString;
@@ -747,22 +708,23 @@ angular.module('bahmni.common.displaycontrol.custom')
         });
         return data;
     };
-    var self = this;
 
     this.getDateString = function (date) {
         return date ? moment(date).format("DD MMM YY") : date;
     };
 
-    const isEmptyStumpCircumference = function (records) {
-        return _.every(_.get(records, "data"), function (record) {
-            return _.isEmpty(record.values)
-        })
+    this.isEmptySummary = function (records, key) {
+        return _.every(records, function (record) {
+            return isEmpty(record, key);
+        });
     };
 
-    const isEmptySummary = function (records, key) {
-        return _.every(records, function (record) {
-            return _.isEmpty(_.get(record, key));
-        });
+    const isEmptyStumpCircumference = function (records) {
+        return self.isEmptySummary(_.get(records, "data"), "values");
+    };
+
+    this.isEmptyRecord = function (records, key) {
+        return isEmpty(records, key);
     };
 
     this.mapDataForDisplay = function ($scope, configBaseUrl, conceptNames, tableTitles, circumferenceConceptNames) {
@@ -770,10 +732,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         $scope.contentUrl = configBaseUrl + "/customDisplayControl/views/limbPhysioSummary.html";
 
         $scope.isEmptyRow = isEmptyRow;
-
-        $scope.isEmptyRecord = function (records, key) {
-            return _.isEmpty(_.get(records, key));
-        };
+        $scope.isEmptyRecord = self.isEmptyRecord;
 
         var promise1 = self.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
             $scope.groupRecords = self.map(tableTitles, response.data);
@@ -786,10 +745,9 @@ angular.module('bahmni.common.displaycontrol.custom')
 
         $q.all([promise1, promise2]).then(function () {
             $scope.isEmptyStumpCircumference = isEmptyStumpCircumference($scope.stumpCircumferences);
-            $scope.isEmptySummary = isEmptySummary($scope.groupRecords, "data") && $scope.isEmptyStumpCircumference;
+            $scope.isEmptySummary = self.isEmptySummary($scope.groupRecords, "data") && $scope.isEmptyStumpCircumference;
             defer.resolve();
         });
-
 
         return defer.promise;
     }
@@ -927,7 +885,6 @@ angular.module('bahmni.common.displaycontrol.custom')
             upperExtremityFunctionalIndexTotal = findByConceptNameToDisplay(upperExtremityFunctionalIndex.groupMembers, "Total score");
         }
 
-
         var date = physioSummaryService.getDateString(dateRecorded.value);
         return assignToHolder(holder, ["Date Recorded", "Basic Grip Test", "UEFI Total Score"], [date, basicGripTotal.value, upperExtremityFunctionalIndexTotal.value]);
     };
@@ -964,13 +921,11 @@ angular.module('bahmni.common.displaycontrol.custom')
     this.fetchObservationsData = physioSummaryService.fetchObservationsData;
 
     this.isEmptySummary = function (records) {
-        return _.every(records, function (record) {
-            return _.isEmpty(record.rows)
-        })
+        return physioSummaryService.isEmptySummary(records, "rows");
     };
 
     this.isEmptyRecord = function (record) {
-        return _.isEmpty(record.rows);
+        return physioSummaryService.isEmptyRecord(record, "rows");
     };
 
 }]).directive("physioSummaryScores", ["appService", 'physioSummaryScoresService', 'spinner', '$q', function (appService, physioSummaryScoresService, spinner, $q) {
@@ -1022,21 +977,21 @@ angular.module('bahmni.common.displaycontrol.custom')
     ];
 
     const groupConceptsForROMHandAndFinger = [
-        {name: "Wrist", sort: 4},
-        {name: "Thumb MC", sort: 5},
-        {name: "Thumb DIP", sort: 6},
-        {name: "2nd Finger MC", sort: 7},
-        {name: "3rd Finger MC", sort: 8},
-        {name: "4th Finger MC", sort: 9},
-        {name: "5th Finger MC", sort: 10},
-        {name: "2nd Finger PIP", sort: 11},
-        {name: "3rd Finger PIP", sort: 12},
-        {name: "4th Finger PIP", sort: 13},
-        {name: "5th Finger PIP", sort: 14},
-        {name: "2nd Finger DIP", sort: 15},
-        {name: "3rd Finger DIP", sort: 16},
-        {name: "4th Finger DIP", sort: 17},
-        {name: "5th Finger DIP", sort: 18}
+        {name: "Wrist", sort: 5},
+        {name: "Thumb MC", sort: 6},
+        {name: "Thumb DIP", sort: 7},
+        {name: "2nd Finger MC", sort: 8},
+        {name: "3rd Finger MC", sort: 9},
+        {name: "4th Finger MC", sort: 10},
+        {name: "5th Finger MC", sort: 11},
+        {name: "2nd Finger PIP", sort: 12},
+        {name: "3rd Finger PIP", sort: 13},
+        {name: "4th Finger PIP", sort: 14},
+        {name: "5th Finger PIP", sort: 15},
+        {name: "2nd Finger DIP", sort: 16},
+        {name: "3rd Finger DIP", sort: 17},
+        {name: "4th Finger DIP", sort: 18},
+        {name: "5th Finger DIP", sort: 19}
     ];
 
     const multiLevelGroupConcepts = [
@@ -1082,7 +1037,7 @@ angular.module('bahmni.common.displaycontrol.custom')
             requiredGroupConceptNames: groupConceptsForROMHandAndFinger,
             additionalConcepts: [{
                 position: 2, member: {
-                    sort: 6,
+                    sort: 4,
                     left: "Flex",
                     right: "Ext",
                     display: "Movement",
