@@ -45,7 +45,7 @@
                     <th ng-repeat="$index in records.rightHeaders track by $index">{{$index+1}}</th>
                 </tr>
 
-                <tr ng-repeat="(key, record) in records.data |orderBy: 'sort' track by key">
+                <tr ng-repeat="(key, record) in records.data |orderBy: 'sort' track by key" ng-hide="isEmptyRow(record)">
                     <td ng-if="!!!record.isSubHeader" ng-repeat="$index in records.leftHeaders track by $index">
                         {{record.left[$index]}}
                     </td>

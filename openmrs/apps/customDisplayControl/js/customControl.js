@@ -526,10 +526,18 @@ angular.module('bahmni.common.displaycontrol.custom')
         return mappedData;
     };
 
+    const isEmptyRow = function (row) {
+        return _.isEmpty(_.compact(_.get(row, "left"))) && _.isEmpty(_.compact(_.get(row, "right")));
+    };
+
+
     const flatMultiLevelObs = function (records, concepts) {
         return _.flatMap(records, function (record, key) {
-            return _.includes(concepts, record.display) ? record :
-                _.concat([{left: "Left", right: "Right", display: key, isSubHeader: true}], _.values(record));
+            if (_.includes(concepts, record.display))
+                return record;
+            var values = _.values(record);
+            return _.every(values, isEmptyRow) ? record :
+                _.concat([{left: "Left", right: "Right", display: key, isSubHeader: true}], values);
         });
     };
 
@@ -760,6 +768,9 @@ angular.module('bahmni.common.displaycontrol.custom')
     this.mapDataForDisplay = function ($scope, configBaseUrl, conceptNames, tableTitles, circumferenceConceptNames) {
         var defer = $q.defer();
         $scope.contentUrl = configBaseUrl + "/customDisplayControl/views/limbPhysioSummary.html";
+
+        $scope.isEmptyRow = isEmptyRow;
+
         $scope.isEmptyRecord = function (records, key) {
             return _.isEmpty(_.get(records, key));
         };
