@@ -294,10 +294,10 @@
           }
         },
         {
-          "name": "N/w Follow Up And Preoperative Dates",
+          "name": "Surgery Details",
           "type": "MRSGeneric",
           "config": {
-            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/nwFollowUpAndPreoperativeDates.sql"
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/surgeryDetails.sql"
           }
         }
       ]
