@@ -486,21 +486,18 @@ angular.module('bahmni.common.displaycontrol.custom')
         return baseHolder;
     };
 
-    const getValues = function (groupMembers, conceptNames, holders) {
+    const getValues = function (leftMember, rightMember, conceptNames, holders, mapper) {
         holders = holders || {};
-        var leftMember = findByConceptNameToDisplay(groupMembers, "Left");
-        var rightMember = findByConceptNameToDisplay(groupMembers, "Right");
-
 
         _.forEach(conceptNames, function (concept) {
             var values = [
                 {
                     key: "left",
-                    value: getValue(leftMember, concept.name)
+                    value: mapper(leftMember, concept.name)
                 },
                 {
                     key: "right",
-                    value: getValue(rightMember, concept.name)
+                    value: mapper(rightMember, concept.name)
                 }
             ];
             insertValue(concept.name, holders, values, concept.sort);
@@ -519,7 +516,7 @@ angular.module('bahmni.common.displaycontrol.custom')
     const mapCrucialInfoToObs = function (crucialConcepts, record, mappedData) {
         _.forEach(crucialConcepts, function (conceptName, index) {
             var value = findByConceptNameToDisplay(record, conceptName).valueAsString;
-            if (getNameInLowerCase(conceptName)  === getNameInLowerCase("Date recorded")){
+            if (getNameInLowerCase(conceptName) === getNameInLowerCase("Date recorded")) {
                 value = self.getDateString(value);
             }
 
@@ -538,7 +535,7 @@ angular.module('bahmni.common.displaycontrol.custom')
 
     const mapLeafConcepts = function (leafConcepts, holder, groupMember) {
         if (!_.isEmpty(groupMember)) {
-            getValues(groupMember.groupMembers, leafConcepts, holder);
+            getValues(findMember(groupMember, "Left"), findMember(groupMember, "Right"), leafConcepts, holder, getValue);
         } else {
             _.forEach(leafConcepts, function (concept) {
                 getContainer(holder, concept.name)
@@ -591,7 +588,7 @@ angular.module('bahmni.common.displaycontrol.custom')
             });
 
             _.forEach(filteredRecords, function (eachRecord) {
-                getValues(eachRecord.groupMembers, concepts, mappedData);
+                getValues(findMember(eachRecord, "Left"), findMember(eachRecord, "Right"), concepts, mappedData, getValue);
                 mapCrucialInfoToObs(crucialConcepts, record, mappedData)
             });
         });
