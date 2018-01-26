@@ -30,3 +30,4 @@ FROM
                WHERE cn.name = 'Identification') identificationStateDetails
     ON identificationStateDetails.patient_id = dateOfPresentation.person_id AND
        dateOfPresentation BETWEEN startDate AND endDate
+       WHERE (YEAR(dateOfPresentation.dateOfPresentation) = YEAR('#startDate#'));

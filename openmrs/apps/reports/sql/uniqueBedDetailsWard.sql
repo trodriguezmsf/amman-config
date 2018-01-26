@@ -4,9 +4,6 @@ SELECT
     b.bed_id,
     b.bed_number,
     l.name               AS `location`,
-    bedTagsInfo.name          AS `bedTag`,
-    CAST(bedTagsInfo.`Date Started` AS DATE )         AS `Bed Tag Start time`,
-    CAST(bedTagsInfo.`Date Stopped` AS DATE )         AS `Bed Tag End time`,
     CAST(dischargeDetails.bed_discharge_date AS DATE ) AS `Discharge Time`
 FROM bed b
     INNER JOIN bed_location_map blm ON blm.bed_id = b.bed_id AND b.voided IS FALSE
@@ -25,33 +22,5 @@ FROM bed b
         GROUP BY bpam.patient_id,dischargeTimes.date_created
     ) dischargeDetails ON bpam.patient_id = dischargeDetails.patient_id AND bpam.date_stopped = dischargeDetails.bed_discharge_date
     INNER JOIN location l ON blm.location_id = l.location_id AND l.retired IS FALSE
-    LEFT OUTER JOIN (SELECT
-                         btm.bed_id,
-                         bpam.bed_patient_assignment_map_id,
-                         bt.name,
-                         GREATEST(btm.date_created, bpam.date_started) AS `Date Started`,
-                         IF(btm.date_voided IS NULL AND
-                            bpam.date_stopped IS NULL,
-                            NULL,
-                            LEAST(IFNULL(btm.date_voided, now()),
-                                  IFNULL(bpam.date_stopped,
-                                         now())))                      AS `Date Stopped`
-                     FROM bed_tag_map btm
-                         INNER JOIN bed_tag bt
-                             ON btm.bed_tag_id = bt.bed_tag_id AND bt.voided IS FALSE
-                         INNER JOIN bed_patient_assignment_map bpam
-                             ON bpam.bed_id = btm.bed_id AND bpam.voided IS FALSE
-                         INNER JOIN person p
-                             ON p.person_id = bpam.patient_id AND p.voided IS FALSE
-                                AND NOT
-                                (
-                                    btm.date_voided IS NOT NULL &&
-                                    btm.date_voided < bpam.date_started
-                                    OR
-                                    bpam.date_stopped IS NOT NULL &&
-                                    btm.date_created > bpam.date_stopped
-                                )
-                    ) bedTagsInfo
-        ON bedTagsInfo.bed_patient_assignment_map_id = bpam.bed_patient_assignment_map_id AND bedTagsInfo.bed_id = bpam.bed_id
-    WHERE l.name IN ('Ward (3rd floor)', 'Ward (2nd floor)')
+    WHERE ((l.name IN ('Ward (3rd floor)', 'Ward (2nd floor)')) AND (YEAR(bpam.date_Created) = YEAR('#startDate#')))
 ORDER BY bpam.patient_id;

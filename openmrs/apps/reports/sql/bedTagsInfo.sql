@@ -7,4 +7,5 @@ SELECT
 from bed_location_map blm
 INNER JOIN bed_tag_map btm ON btm.bed_id = blm.bed_id
 INNER JOIN location l ON l.location_id = blm.location_id AND name LIKE "Ward%"
-INNER JOIN bed_tag bt ON bt.bed_tag_id = btm.bed_tag_id;
+INNER JOIN bed_tag bt ON bt.bed_tag_id = btm.bed_tag_id
+WHERE YEAR(btm.date_created) = YEAR('#startDate#');
