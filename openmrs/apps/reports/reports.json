@@ -249,6 +249,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/surgeryDetails.sql"
           }
+        },
+        {
+          "name": "fstgWithNewObs",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/fstgWithNewObs.sql"
+          }
         }
       ]
     }
