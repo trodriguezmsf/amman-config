@@ -270,6 +270,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/aiaDateOfConsultation.sql"
           }
+        },
+        {
+          "name": "SAP consultation",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/sapDateOfConsultation.sql"
+          }
         }
       ]
     }
