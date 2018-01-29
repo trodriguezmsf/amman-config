@@ -1,7 +1,7 @@
 SELECT
   person_id,
-  aiaDateOfConsultation,
-  MAX(preOpStartDate.start_date) AS `recentPreOperativeDate`
+  CAST(aiaDateOfConsultation AS DATE)          AS aiaDateOfConsultation,
+  CAST(MAX(preOpStartDate.start_date) AS DATE) AS `recentPreOperativeDate`
 FROM
   (SELECT
      o.person_id,
