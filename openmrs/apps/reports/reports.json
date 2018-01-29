@@ -263,6 +263,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/surgeonFollowupObsTime.sql"
           }
+        },
+        {
+          "name": "AIA consultation",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/aiaDateOfConsultation.sql"
+          }
         }
       ]
     }
