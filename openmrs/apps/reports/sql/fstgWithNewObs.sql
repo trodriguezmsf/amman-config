@@ -23,19 +23,19 @@ SELECT
                   NULL))                                                                                             AS `aiaDateOfConsultation`,
   GROUP_CONCAT(if(qcvn.concept_full_name = 'SAP, Date of consultation', CAST(o.value_datetime AS DATE),
                   NULL))                                                                                             AS `sapDateOfConsultation`,
-  GROUP_CONCAT(if(qcvn.concept_full_name = 'OR, Time started', CAST(o.value_datetime AS DATE), NULL))                AS `operativeReportDate`,
-  GROUP_CONCAT(if(qcvn.concept_full_name = 'CC, Patient complication',acvn.concept_full_name, NULL))                 AS `patientComplication`,
-  GROUP_CONCAT(if(qcvn.concept_full_name = 'CC, Start date of complication',CAST(o.value_datetime AS DATE), NULL))   AS `patientComplicationDate`,
-  GROUP_CONCAT(if(qcvn.concept_full_name = 'SFP, Date recorded' AND
-                  formDetails.concept_full_name = 'Increased LOS and / or required further surgeries'
-                                  ,CAST(o.value_datetime AS DATE), NULL))                                            AS `sfpDateRecordedForIncreased`,
-  GROUP_CONCAT(if(qcvn.concept_full_name = 'SFP, Date recorded' AND
-                  formDetails.concept_full_name = 'Did not effect the results of flow'
-                                  ,CAST(o.value_datetime AS DATE), NULL))                                            AS `sfpDateRecordedForDidNot`,
-  if(qcvn.concept_full_name = 'WWN, Date of removal, PICC line',o.value_datetime, NULL),
-  GROUP_CONCAT(if(qcvn.concept_full_name = 'WWN, Date recorded'
-                    AND (if(qcvn.concept_full_name = 'WWN, Date of removal, PICC line',o.value_datetime, NULL)) IS NULL,
-                  CAST(o.value_datetime AS DATE), NULL))                                                             AS `wwnDateRecorded`
+  if(qcvn.concept_full_name = 'OR, Time started', CAST(o.value_datetime AS DATE), NULL)                              AS `operativeReportDate`,
+  if(qcvn.concept_full_name = 'CC, Patient complication',acvn.concept_full_name, NULL)                               AS `patientComplication`,
+  if(qcvn.concept_full_name = 'CC, Start date of complication',CAST(o.value_datetime AS DATE), NULL)                 AS `patientComplicationDate`,
+  if(qcvn.concept_full_name = 'SFP, Date recorded' AND
+     formDetails.concept_full_name = 'Increased LOS and / or required further surgeries'
+  ,CAST(o.value_datetime AS DATE), NULL)                                                                             AS `sfpDateRecordedForIncreased`,
+  if(qcvn.concept_full_name = 'SFP, Date recorded' AND
+     formDetails.concept_full_name = 'Did not effect the results of flow'
+  ,CAST(o.value_datetime AS DATE), NULL)                                                                              AS `sfpDateRecordedForDidNot`,
+  if(qcvn.concept_full_name = 'WWN, Date of removal, PICC line',CAST(o.value_datetime AS Date), NULL)                 AS `wwnDateOfRemoval`,
+  if(qcvn.concept_full_name = 'WWN, Date recorded' AND (if(qcvn.concept_full_name = 'WWN, Date of removal, PICC line',
+                                                           CAST(o.value_datetime AS Date), NULL)) IS NULL,
+     CAST(o.value_datetime AS DATE), NULL)                                                              AS `wwnDateRecorded`
 FROM obs o
   INNER JOIN concept_view qcvn ON qcvn.concept_id = o.concept_id AND
                                   qcvn.concept_full_name IN ('FSTG, Outcomes for 1st stage surgical validation',
