@@ -524,7 +524,7 @@ angular.module('bahmni.common.displaycontrol.custom')
     };
 
     const isEmpty = function (record, key) {
-       return _.isEmpty(_.compact(_.get(record, key)));
+        return _.isEmpty(_.compact(_.get(record, key)));
     };
 
     const isEmptyRow = function (row) {
@@ -586,16 +586,23 @@ angular.module('bahmni.common.displaycontrol.custom')
         return data;
     };
 
+    const filterConceptsExceptCrucialConcept = function (record, crucialConcepts) {
+        return _.filter(record, function (each) {
+            return !(_.isEmpty(each.groupMembers) || _.includes(crucialConcepts, each.conceptNameToDisplay))
+        });
+    };
+
+    const mapValues = function (parentConcept, childConcept1, childConcept2, concepts, mappedData) {
+        return getValues(findMember(parentConcept, childConcept1), findMember(parentConcept, childConcept2), concepts, mappedData, getValue);
+    };
+
     this.mapObservations = function (records, concepts, crucialConcepts) {
         //TODO: Need Refactoring
         var mappedData = {};
         _.forEach(records, function (record) {
-            var filteredRecords = _.filter(record, function (each) {
-                return !(_.isEmpty(each.groupMembers) || _.includes(crucialConcepts, each.conceptNameToDisplay))
-            });
-
+            var filteredRecords = filterConceptsExceptCrucialConcept(record, crucialConcepts);
             _.forEach(filteredRecords, function (eachRecord) {
-                getValues(findMember(eachRecord, "Left"), findMember(eachRecord, "Right"), concepts, mappedData, getValue);
+                mapValues(eachRecord, "Left", "Right", concepts, mappedData);
                 mapCrucialInfoToObs(crucialConcepts, record, mappedData)
             });
         });
@@ -606,9 +613,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         //TODO: Need Refactoring. Try to merge/use "mapObservations" method
         var mappedData = {};
         _.forEach(records, function (record) {
-            var filteredRecords = _.filter(record, function (each) {
-                return !(_.isEmpty(each.groupMembers) || _.includes(crucialConcepts, each.conceptNameToDisplay))
-            });
+            var filteredRecords = filterConceptsExceptCrucialConcept(record, crucialConcepts);
 
             _.forEach(filteredRecords, function (eachRecord) {
                 var side = findMember(eachRecord, "Side of assessment").valueAsString;
@@ -647,8 +652,11 @@ angular.module('bahmni.common.displaycontrol.custom')
         return holder;
     };
 
+    const getData = function (title, mappedData) {
+        return _.isEmpty(mappedData.data) ? mappedData : insertAdditionalInfo(title, mappedData.data, mappedData);
+    };
+
     this.map = function (tableTitles, responseData) {
-        //TODO: Need Refactoring
         var records = [];
         var getTableTitle = function (title) {
             return title.display || title.name;
@@ -657,15 +665,12 @@ angular.module('bahmni.common.displaycontrol.custom')
             var filterRecords = getFilterRecords(responseData, title.crucialConcepts.concat(title.name));
             var data = title.mapper(filterRecords, title.requiredGroupConceptNames, title.crucialConcepts, title.name);
             if (_.isArray(data)) {
-                var mappedData = {title: getTableTitle(title), data: data};
-                records.push(_.isEmpty(data) ? mappedData : insertAdditionalInfo(title, data, mappedData));
+                records.push(getData(title, {title: getTableTitle(title), data: data}));
             } else {
                 _.forEach(data, function (record, key) {
-                    var mappedData = {title: getTableTitle(title) + " (" + key + ")", data: _.values(record)};
-                    records.push(_.isEmpty(data) ? mappedData : insertAdditionalInfo(title, mappedData.data, mappedData));
+                    records.push(getData(title, {title: getTableTitle(title) + " (" + key + ")", data: _.values(record)}));
                 })
             }
-
         });
         return records;
     };
@@ -684,7 +689,6 @@ angular.module('bahmni.common.displaycontrol.custom')
     };
 
     this.mapStumpCircumference = function (records) {
-        // TODO: Need Refactoring
         var data = {};
         _.forEach(records, function (record) {
             var typeOfAmputation = findMember(record, "Type of amputation");
@@ -694,9 +698,7 @@ angular.module('bahmni.common.displaycontrol.custom')
                 container.values = container.values || [];
                 _.forEach(record.groupMembers, function (groupMember) {
                     if (isEqualName(groupMember.conceptNameToDisplay, "Stump circumference")) {
-                        var member = _.first(groupMember.groupMembers);
-                        var member2 = _.last(groupMember.groupMembers);
-                        var holder = assign(member2, assign(member, {}));
+                        var holder = assign(_.last(groupMember.groupMembers), assign(_.first(groupMember.groupMembers), {}));
 
                         !_.isEmpty(holder) && container.values.push(holder);
                     }
