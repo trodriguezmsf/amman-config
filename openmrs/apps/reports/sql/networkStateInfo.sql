@@ -1,13 +1,13 @@
 SELECT
                 programStDates.patient_id,
-                programStDates.preOperativeDate,
-                programStDates.maxDate,
+                CAST(programStDates.preOperativeDate AS DATE) AS preOperativeDate,
+                CAST(programStDates.maxDate AS DATE ) AS maxDate,
                 allProgramStateNames.name                    AS `currentState`,
-                programStDates.secondMaxDate,
+                CAST(programStDates.secondMaxDate AS DATE ) AS secondMaxDate,
                 allProgramStateNamesForPreviousState.name    AS `previousState`,
 
-                IF(allProgramStateNames.name = 'Network Follow-up', maxDate, IF(allProgramStateNamesForPreviousState.name = 'Network Follow-up', secondMaxDate,NULL )) AS `dateMovedToNWfollowup`,
-                IF(allProgramStateNames.name = 'Pre-Operative', maxDate, IF(allProgramStateNamesForPreviousState.name = 'Pre-Operative', secondMaxDate,NULL )) AS `dateMovedToPreOperative`
+                IF(allProgramStateNames.name = 'Network Follow-up', CAST(maxDate AS DATE ), IF(allProgramStateNamesForPreviousState.name = 'Network Follow-up', CAST(secondMaxDate AS DATE ),NULL )) AS `dateMovedToNWfollowup`,
+                IF(allProgramStateNames.name = 'Pre-Operative', CAST(maxDate AS DATE ), IF(allProgramStateNamesForPreviousState.name = 'Pre-Operative', CAST(secondMaxDate AS DATE ),NULL )) AS `dateMovedToPreOperative`
               FROM
                 (SELECT
                    pp2.patient_id,
