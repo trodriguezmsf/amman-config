@@ -70,4 +70,4 @@ SELECT
                                 ON cn.concept_id = pws.concept_id AND cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.voided IS FALSE
                           ) allProgramStateNamesForPreviousState ON allProgramStateNamesForPreviousState.patient_id = programStDates.patient_id AND
                                                                     allProgramStateNamesForPreviousState.start_date = programStDates.secondMaxDate
-WHERE allProgramStateNames.name IN ('Rehabilitation','Surgical / Hospitalisation','Pre-Operative') AND allProgramStateNamesForPreviousState.name = 'Pre-Operative';
+WHERE allProgramStateNames.name IN ('Rehabilitation','Surgical / Hospitalisation','Pre-Operative') AND allProgramStateNamesForPreviousState.name != 'Identification' AND programStDates.preOperativeDate IS NOT NULL ;
