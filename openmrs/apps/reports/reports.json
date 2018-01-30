@@ -305,6 +305,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/nwFollowUpAndPreoperativeDates.sql"
           }
+        },
+        {
+          "name": "drugOrders",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/drugOrderDetails.sql"
+          }
         }
       ]
     }
