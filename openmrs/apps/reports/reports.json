@@ -216,10 +216,10 @@
           }
         },
         {
-          "name": "OT",
+          "name": "OT First Comp",
           "type": "MRSGeneric",
           "config": {
-            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/OTSurgeries.sql"
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/firstCompletedSurgeries.sql"
           }
         },
         {
