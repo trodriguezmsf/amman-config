@@ -277,6 +277,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/sapDateOfConsultation.sql"
           }
+        },
+        {
+          "name": "OT_comp_perMonth",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/oneCompletedSurgeriesPerMonth.sql"
+          }
         }
       ]
     }
