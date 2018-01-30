@@ -284,6 +284,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/oneCompletedSurgeriesPerMonth.sql"
           }
+        },
+        {
+          "name": "sameDayCancel",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/sameDayCancellations.sql"
+          }
         }
       ]
     }
