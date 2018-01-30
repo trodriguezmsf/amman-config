@@ -291,6 +291,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/sameDayCancellations.sql"
           }
+        },
+        {
+          "name": "pnfReferralDate",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/PNFReferralDate.sql"
+          }
         }
       ]
     }
