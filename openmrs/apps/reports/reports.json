@@ -298,6 +298,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/PNFReferralDate.sql"
           }
+        },
+        {
+          "name": "Nw_Follow_Up",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/nwFollowUpAndPreoperativeDates.sql"
+          }
         }
       ]
     }
