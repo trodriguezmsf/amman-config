@@ -140,5 +140,6 @@
   "MODULE_LABEL_OPENPRESCRIPTION_KEY": "Open Prescriptions",
   "DASHBOARD_TITLE_PHYSIO_SUMMARY_SCORES_KEY": "Scores",
   "NO_SCORES_FOUND_MESSAGE": "No score present for this patient",
+  "NO_PATIENT_INFORMATION_FOUND": "No Information Found For This Patient",
   "NO_SUMMARY_FOUND_MESSAGE": "No record present for this patient"
 }

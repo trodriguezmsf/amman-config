@@ -1143,8 +1143,9 @@ angular.module('bahmni.common.displaycontrol.custom')
                     });
                 };
                 conceptNameForSurgeon($scope.surgeonName).then(function (response) {
-                    if (!_.isEmpty(response.data.results[0].synonyms)) {
-                        $scope.surgeonSynonym = _.last(response.data.results[0].synonyms).display;
+                    var synonyms = response.data.results[0].synonyms;
+                    if (!_.isEmpty(synonyms)) {
+                        $scope.surgeonSynonym = _.last(synonyms).display;
                     }
                     patientInformation = _.concat({name: "Name of Surgeon", answer: $scope.surgeonSynonym || $scope.surgeonName}, patientInformation);
                     $scope.concepts = _.filter(patientInformation, function (eachConcept) {
@@ -1156,6 +1157,9 @@ angular.module('bahmni.common.displaycontrol.custom')
                 return !_.isEmpty(eachConcept.answer) || eachConcept.answer > 0;
             });
 
+            $scope.isDataPresent= function () {
+                return _.isEmpty($scope.concepts);
+            }
         });
     };
 
