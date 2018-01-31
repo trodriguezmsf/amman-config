@@ -1,0 +1,21 @@
+<section class="tree-list-item clearfix">
+    <h2 class="section-title">{{section.title | titleTranslate}}</h2>
+
+      <ul>
+          <li ng-show="isDataPresent()">
+            <div class="placeholder-text"><p translate="NO_PHYSICAL_EXAMINATION_FOUND"></p></div>
+          </li>
+      </ul>
+      <section class="block hierarchy" ng-repeat="(key, records) in allEncounter track by key">
+      
+          <p class="limb-physio-summary-block-title placeholder-text">{{records.date | bahmniDate}}</p>
+
+          <table class="limb-physio-summary-table">
+            <tr ng-repeat="(key, record) in records.value">
+                <td>{{record.name}}</td>
+                <td>{{record.answer}}</td>
+            </tr>
+           </table>
+      </section>
+
+</section>

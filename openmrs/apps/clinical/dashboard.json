@@ -774,6 +774,15 @@
           "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
           "template": "<microbiology-lab-results section='config' patient='patient' enrollment='enrollment'></microbiology-lab-results>"
         }
+      },
+      "physicalExaminationDashboard": {
+        "type": "custom",
+        "displayOrder": 18,
+        "displayType": "Full-Page",
+        "config": {
+          "title": "DASHBOARD_TITLE_PHYSICAL_EXAMINATION_KEY",
+          "template": "<physical-examination-dashboard section='config' patient='patient' enrollment='enrollment'></physical-examination-dashboard>"
+        }
       }
     }
     },

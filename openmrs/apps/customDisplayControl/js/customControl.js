@@ -1172,4 +1172,69 @@ angular.module('bahmni.common.displaycontrol.custom')
         },
         template: '<ng-include src="contentUrl"/>'
     }
+}]).directive('physicalExaminationDashboard', ['appService', 'conceptSetService', '$http', function (appService, conceptSetService, $http) {
+    var link = function ($scope) {
+
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/physicalExamination.html";
+        var conceptNames = ["Physical Examination"];
+
+        var fetchObservationsData = function (conceptNames, enrollment, numberOfVisits, scope) {
+            var params = {
+                concept: conceptNames,
+                patientProgramUuid: enrollment,
+                scope: scope
+            };
+            return $http.get('/openmrs/ws/rest/v1/bahmnicore/observations', {
+                params: params,
+                withCredentials: true
+            });
+        };
+
+        var getPhysicalExaminationData = function (encounterData) {
+            var concepts = [];
+            _.each(encounterData.groupMembers, function (groupMember) {
+                var conceptName = {name: groupMember.conceptNameToDisplay, answer: groupMember.valueAsString}
+                concepts.push(conceptName)
+            });
+            return concepts;
+
+        };
+
+        var getDisplayableEncounter = function (records, methods) {
+            var allValues = [];
+            _.forEach(methods, function (method) {
+                var encounterValue = method(records);
+                if (!_.isEmpty(encounterValue)) {
+                    var value = getPhysicalExaminationData(encounterValue);
+                    allValues.push({date: encounterValue.encounterDateTime, value: value})
+                }
+            });
+            return allValues;
+        };
+
+        fetchObservationsData(conceptNames, $scope.enrollment, "all").then(function (response) {
+            if (response.data.length > 1) {
+                $scope.allEncounter = getDisplayableEncounter(response.data, [_.first, _.last]);
+            } else {
+                $scope.allEncounter = getDisplayableEncounter(response.data, [_.first])
+            }
+
+            $scope.isDataPresent = function () {
+                return _.isEmpty($scope.allEncounter);
+            }
+
+        });
+
+
+    };
+
+    return {
+        link: link,
+        scope: {
+            patient: "=",
+            section: "=",
+            enrollment: "="
+        },
+        template: '<ng-include src="contentUrl"/>'
+    }
 }]);

@@ -123,6 +123,7 @@
   "DASHBOARD_NO_UPCOMING_APPOINTMENTS_KEY": "No upcoming appointments",
   "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY":"Microbiology Results",
   "DASHBOARD_TITLE_PATIENT_SUMMARY_KEY": "Patient Information",
+  "DASHBOARD_TITLE_PHYSICAL_EXAMINATION_KEY": "Physical Examination",
   "DASHBOARD_TITLE_LOWER_LIMB_PHYSIO_SUMMARY_LAB_RESULTS_KEY":"Lower Limb Physiotherapy Assessment",
   "DASHBOARD_TITLE_UPPER_LIMB_PHYSIO_SUMMARY_LAB_RESULTS_KEY":"Upper Limb Physiotherapy Assessment",
   "DASHBOARD_TITLE_DISCHARGE_MEDICATION":"Discharge Medication",
@@ -141,5 +142,6 @@
   "DASHBOARD_TITLE_PHYSIO_SUMMARY_SCORES_KEY": "Scores",
   "NO_SCORES_FOUND_MESSAGE": "No score present for this patient",
   "NO_PATIENT_INFORMATION_FOUND": "No Information Found For This Patient",
+  "NO_PHYSICAL_EXAMINATION_FOUND": "No Physical Examination found for this patient",
   "NO_SUMMARY_FOUND_MESSAGE": "No record present for this patient"
 }
