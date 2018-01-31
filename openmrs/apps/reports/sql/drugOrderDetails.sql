@@ -1,17 +1,18 @@
 SELECT
-  e.patient_id,
-  CAST(drug_orders.autoExpireDate AS DATE)          AS `autoExpireDate`,
+  drug_orders.patient_id,
+  CAST(drug_orders.autoExpireDate AS DATE)        AS `autoExpireDate`,
   CAST(microBiology.sampleCollectionDate AS DATE) AS `sampleCollectionDate`
 FROM
   (SELECT
      o.order_id,
-     drug.name,
      CAST(o.date_activated AS DATE)   AS dateActivated,
      CAST(o.auto_expire_date AS DATE) AS autoExpireDate,
      o.concept_id,
-     o.encounter_id
+     e2.visit_id,
+     e2.patient_id
    FROM drug
      INNER JOIN orders o ON o.concept_id = drug.concept_id AND o.voided IS FALSE AND drug.retired IS FALSE
+     INNER JOIN encounter e2 ON e2.encounter_id = o.encounter_id AND e2.voided IS FALSE
    WHERE name IN (
      'AMIKACIN 500 mg/ 2ml 2 ml, amp.',
      'AMOXICILLIN 1 g',
@@ -55,23 +56,25 @@ FROM
      'MEROPENEM 1 g Powder, vial',
      'LEVOFLOXACIN 500 mg'
    )
-   ORDER BY encounter_id DESC, patient_id DESC) drug_orders
+  ) drug_orders
   INNER JOIN
   (SELECT
-     spec.encounter_id,
-     CAST(spec.value AS DATE) AS sampleCollectionDate,
-     finalValidation.identificationType
+      specimenCollection.person_id,
+     specimenCollection.visit_id,
+     specimenCollection.value AS sampleCollectionDate
    FROM
      (SELECT
-        encounter_id,
+        obs.person_id,
+        e.visit_id,
         value_datetime AS value,
-        obs_group_id AS specGroupId
+        obs_group_id   AS specimenGroupId
 
       FROM obs
         INNER JOIN concept_name cn
           ON cn.concept_id = obs.concept_id AND cn.name = 'Specimen Collection Date' AND cn.voided IS FALSE AND
              obs.voided IS FALSE
-     ) spec
+        INNER JOIN encounter e ON obs.encounter_id = e.encounter_id AND e.voided IS FALSE
+     ) specimenCollection
      INNER JOIN
      (SELECT *
       FROM
@@ -80,19 +83,27 @@ FROM
            obs_group_id AS resultsGroupId
          FROM obs
            INNER JOIN concept_name cn
-             ON cn.concept_id = obs.concept_id AND cn.name = 'Bacteriology Results' AND cn.voided IS FALSE AND
+             ON cn.concept_id = obs.concept_id AND cn.name = 'Bacteriology Results' AND
+                cn.concept_name_type = 'FULLY_SPECIFIED'
+                AND cn.voided IS FALSE AND
                 obs.voided IS FALSE
-        ) results
+        ) resultsSection
         INNER JOIN
         (SELECT
-           value_coded  AS identificationType,
-           obs_group_id AS groupId
+          obs_group_id AS groupId
          FROM obs
            INNER JOIN concept_name cn ON cn.concept_id = obs.concept_id AND
-                                         cn.name = 'Microbiology, Type of identification' AND cn.voided IS FALSE AND
+                                         cn.name = 'Microbiology, Type of identification' AND
+                                         cn.concept_name_type = 'FULLY_SPECIFIED' AND
+                                         cn.voided IS FALSE AND
                                          obs.voided IS FALSE
-        ) identificationType ON identificationType.groupId = results.resultsObsId) finalValidation
-       ON finalValidation.resultsGroupId = spec.specGroupId) microBiology
-    ON drug_orders.encounter_id = microBiology.encounter_id
-  INNER JOIN encounter e ON e.encounter_id = drug_orders.encounter_id AND e.voided IS FALSE
+           INNER JOIN concept_name answer ON answer.concept_id = obs.value_coded AND
+                                             answer.concept_name_type = 'FULLY_SPECIFIED' AND
+                                             answer.voided IS FALSE
+         WHERE answer.name = 'Answer, Final Identification'
+        ) finalIdentificationAnswerObs ON finalIdentificationAnswerObs.groupId = resultsSection.resultsObsId
+     ) finalIdentification
+       ON finalIdentification.resultsGroupId = specimenCollection.specimenGroupId
+  ) microBiology
+    ON drug_orders.patient_id = microBiology.person_id AND drug_orders.visit_id = microBiology.visit_id
 WHERE microBiology.sampleCollectionDate BETWEEN dateActivated AND autoExpireDate
