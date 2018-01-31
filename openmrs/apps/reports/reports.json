@@ -312,6 +312,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/drugOrderDetails.sql"
           }
+        },
+        {
+          "name": "followUpPlan",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/followUpPlan.sql"
+          }
         }
       ]
     }
