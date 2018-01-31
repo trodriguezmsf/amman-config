@@ -668,7 +668,10 @@ angular.module('bahmni.common.displaycontrol.custom')
                 records.push(getData(title, {title: getTableTitle(title), data: data}));
             } else {
                 _.forEach(data, function (record, key) {
-                    records.push(getData(title, {title: getTableTitle(title) + " (" + key + ")", data: _.values(record)}));
+                    records.push(getData(title, {
+                        title: getTableTitle(title) + " (" + key + ")",
+                        data: _.values(record)
+                    }));
                 })
             }
         });
@@ -1001,13 +1004,13 @@ angular.module('bahmni.common.displaycontrol.custom')
         {name: "Axillary nerve", leafConcepts: [{name: "Deltoid"}]},
         {
             name: "Radial nerve", leafConcepts: [{name: "Tricep"}, {name: "Supinator"}, {name: "Ext. C. Rad. L&B"},
-                {name: "Ext. C. Ulnaris"}, {name: "Ext. Digiti"}, {name: "Abd. Poll. Longus"}, {name: "Ext. Poll. Longus"},
-                {name: "Ext. Indicis"}, {name: "Ext. Dig. Min."}]
+            {name: "Ext. C. Ulnaris"}, {name: "Ext. Digiti"}, {name: "Abd. Poll. Longus"}, {name: "Ext. Poll. Longus"},
+            {name: "Ext. Indicis"}, {name: "Ext. Dig. Min."}]
         },
         {
             name: "Median nerve", leafConcepts: [{name: "Pronator"}, {name: "Flex. Carpi Radialis"},
-                {name: "Flex. Dig. Sup"}, {name: "Flex. Dig Prof"}, {name: "Opp. Pollicis"}, {name: "Flex. Poll. L&B"},
-                {name: "Abd. Poll. Brevis"}, {name: "Lumbricalis"}]
+            {name: "Flex. Dig. Sup"}, {name: "Flex. Dig Prof"}, {name: "Opp. Pollicis"}, {name: "Flex. Poll. L&B"},
+            {name: "Abd. Poll. Brevis"}, {name: "Lumbricalis"}]
         },
         {
             name: "Ulnar nerve",
@@ -1070,6 +1073,90 @@ angular.module('bahmni.common.displaycontrol.custom')
     var link = function ($scope, element) {
         var promise = physioSummaryService.mapDataForDisplay($scope, appService.configBaseUrl(), conceptNames, tableTitles, ["ULA, Level of amputation"]);
         spinner.forPromise(promise, element);
+    };
+
+    return {
+        link: link,
+        scope: {
+            patient: "=",
+            section: "=",
+            enrollment: "="
+        },
+        template: '<ng-include src="contentUrl"/>'
+    }
+}]).directive('patientSummaryDashboard', ['appService', 'conceptSetService', '$http', function (appService, conceptSetService, $http) {
+    var link = function ($scope) {
+
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/patientSummary.html";
+        var conceptNames = ["Stage", "FSTG, Specialty determined by MLO", "FV, Name (s) of Surgeon 1"];
+
+        var fetchObservationsData = function (conceptNames, enrollment, numberOfVisits, scope) {
+            var params = {
+                concept: conceptNames,
+                patientProgramUuid: enrollment,
+                scope: scope,
+                numberOfVisits: numberOfVisits
+            };
+            return $http.get('/openmrs/ws/rest/v1/bahmnicore/observations', {
+                params: params,
+                withCredentials: true
+            });
+        };
+
+        fetchObservationsData(conceptNames, $scope.enrollment, 1, "latest").then(function (response) {
+
+            var filterValueByConcept = function (records, conceptName) {
+                return _.filter(records, function (eachObs) {
+                    return eachObs.concept.name === conceptName;
+                })
+            };
+
+            $scope.stageConcept = filterValueByConcept(response.data, "Stage");
+
+            $scope.specialities = filterValueByConcept(response.data, "FSTG, Specialty determined by MLO");
+
+            $scope.nameOfSurgeonAnswers = filterValueByConcept(response.data, "FV, Name (s) of Surgeon 1");
+
+            if (!_.isEmpty($scope.specialities)) {
+                var specialityAnswers = [];
+                _.each($scope.specialities, function (speciality) {
+                    specialityAnswers.push(speciality.value.name);
+                });
+                $scope.speciality = _.join(specialityAnswers, ", ");
+            }
+
+            if (!_.isEmpty($scope.stageConcept)) {
+                $scope.stage = $scope.stageConcept[0].value;
+            }
+
+            var patientInformation = [
+                {name: "Stage", answer: $scope.stage},
+                {name: "Speciality", answer: $scope.speciality}
+            ];
+
+            if ($scope.nameOfSurgeonAnswers.length == 1) {
+                $scope.surgeonName = $scope.nameOfSurgeonAnswers[0].value.name;
+                var conceptNameForSurgeon = function (conceptName) {
+                    return conceptSetService.getConcept({
+                        name: conceptName,
+                        v: "custom:(uuid,names,displayString,synonyms)"
+                    });
+                };
+                conceptNameForSurgeon($scope.surgeonName).then(function (response) {
+                    if (!_.isEmpty(response.data.results[0].synonyms)) {
+                        $scope.surgeonSynonym = _.last(response.data.results[0].synonyms).display;
+                    }
+                    patientInformation = _.concat({name: "Name of Surgeon", answer: $scope.surgeonSynonym || $scope.surgeonName}, patientInformation);
+                    $scope.concepts = _.filter(patientInformation, function (eachConcept) {
+                        return !_.isEmpty(eachConcept.answer) || eachConcept.answer > 0;
+                    });
+                });
+            }
+            $scope.concepts = _.filter(patientInformation, function (eachConcept) {
+                return !_.isEmpty(eachConcept.answer) || eachConcept.answer > 0;
+            });
+
+        });
     };
 
     return {

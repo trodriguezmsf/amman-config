@@ -292,33 +292,12 @@
       "logo": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/images/msf.jpg"
     },
     "sections": {
-      "Patient Information": {
-        "translationKey": "DASHBOARD_PATIENT_INFORMATION",
-        "type": "vitals",
-        "isObservation": true,
+      "patientSummaryDashboard": {
+        "type": "custom",
         "displayOrder": 0,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "persistOrderOfConcepts": true,
-          "conceptNames": [
-            "FV, Name (s) of Surgeon 1",
-            "Stage",
-            "FSTG, Specialty determined by MLO"
-          ],
-          "scope": "latest",
-          "showGroupDateTime": false
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "FV, Name (s) of Surgeon 1",
-            "Stage",
-            "FSTG, Specialty determined by MLO"
-          ],
-          "isEditable": true,
-          "numberOfVisits": 3,
-          "showDetailsButton": true,
-          "pivotTable": {}
+        "config": {
+          "title": "DASHBOARD_TITLE_PATIENT_SUMMARY_KEY",
+          "template": "<patient-summary-dashboard section='config' patient='patient' enrollment='enrollment'></patient-summary-dashboard>"
         }
       },
       "Medications administered in Amman RSP": {
