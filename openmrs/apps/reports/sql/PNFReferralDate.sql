@@ -26,7 +26,7 @@ FROM obs o
                                       AND o.voided IS FALSE AND cn.voided IS FALSE
         INNER JOIN encounter e ON e.encounter_id = o.encounter_id AND e.voided IS FALSE
         INNER JOIN visit v ON v.visit_id = e.visit_id AND v.voided IS FALSE) PNFDateTime
-     INNER JOIN
+     LEFT JOIN
      (SELECT
         e.patient_id,
         obs_datetime AS painSeverityDate,
