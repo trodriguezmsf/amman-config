@@ -312,6 +312,27 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/drugOrderDetails.sql"
           }
+        },
+        {
+          "name": "followUpPlan",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/followUpPlan.sql"
+          }
+        },
+        {
+          "name": "estimatedLos",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/estimatedLOS.sql"
+          }
+        },
+        {
+          "name": "psyDrug",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/psyDrugDetails.sql"
+          }
         }
       ]
     }
