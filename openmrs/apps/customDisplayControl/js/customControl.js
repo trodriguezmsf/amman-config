@@ -1084,7 +1084,27 @@ angular.module('bahmni.common.displaycontrol.custom')
         },
         template: '<ng-include src="contentUrl"/>'
     }
-}]).directive('patientSummaryDashboard', ['appService', 'conceptSetService', '$http', function (appService, conceptSetService, $http) {
+}]).directive('patientInformation', ['appService', 'conceptSetService', '$http', function (appService, conceptSetService, $http) {
+    var getSpecialities = function (data) {
+        var specialities = _.map(data, function (speciality) {
+            return speciality.value.name;
+        });
+        return _.join(specialities, ', ');
+    };
+
+    var filterValueByConcept = function (records, conceptName) {
+        return _.filter(records, function (eachObs) {
+            return eachObs.concept.name === conceptName;
+        })
+    };
+
+    var conceptNameForSurgeon = function (conceptName) {
+        return conceptSetService.getConcept({
+            name: conceptName,
+            v: "custom:(uuid,names,displayString,synonyms)"
+        });
+    };
+
     var link = function ($scope) {
 
         $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/patientSummary.html";
@@ -1105,60 +1125,47 @@ angular.module('bahmni.common.displaycontrol.custom')
 
         fetchObservationsData(conceptNames, $scope.enrollment, 1, "latest").then(function (response) {
 
-            var filterValueByConcept = function (records, conceptName) {
-                return _.filter(records, function (eachObs) {
-                    return eachObs.concept.name === conceptName;
-                })
-            };
+            var stageConcept = filterValueByConcept(response.data, "Stage");
 
-            $scope.stageConcept = filterValueByConcept(response.data, "Stage");
+            var specialities = filterValueByConcept(response.data, "FSTG, Specialty determined by MLO");
 
-            $scope.specialities = filterValueByConcept(response.data, "FSTG, Specialty determined by MLO");
+            var nameOfSurgeonAnswers = filterValueByConcept(response.data, "FV, Name (s) of Surgeon 1");
 
-            $scope.nameOfSurgeonAnswers = filterValueByConcept(response.data, "FV, Name (s) of Surgeon 1");
-
-            if (!_.isEmpty($scope.specialities)) {
-                var specialityAnswers = [];
-                _.each($scope.specialities, function (speciality) {
-                    specialityAnswers.push(speciality.value.name);
-                });
-                $scope.speciality = _.join(specialityAnswers, ", ");
+            if (!_.isEmpty(specialities)) {
+                var specialityAnswers = getSpecialities(specialities);
             }
 
-            if (!_.isEmpty($scope.stageConcept)) {
-                $scope.stage = $scope.stageConcept[0].value;
+            if (!_.isEmpty(stageConcept)) {
+                var stage = stageConcept[0].value;
             }
 
             var patientInformation = [
-                {name: "Stage", answer: $scope.stage},
-                {name: "Speciality", answer: $scope.speciality}
+                {name: "Stage", answer: stage},
+                {name: "Speciality", answer: specialityAnswers}
             ];
 
-            if ($scope.nameOfSurgeonAnswers.length == 1) {
-                $scope.surgeonName = $scope.nameOfSurgeonAnswers[0].value.name;
-                var conceptNameForSurgeon = function (conceptName) {
-                    return conceptSetService.getConcept({
-                        name: conceptName,
-                        v: "custom:(uuid,names,displayString,synonyms)"
-                    });
-                };
-                conceptNameForSurgeon($scope.surgeonName).then(function (response) {
+            if (nameOfSurgeonAnswers.length == 1) {
+                var surgeonName = nameOfSurgeonAnswers[0].value.name;
+
+                conceptNameForSurgeon(surgeonName).then(function (response) {
                     var synonyms = response.data.results[0].synonyms;
                     if (!_.isEmpty(synonyms)) {
-                        $scope.surgeonSynonym = _.last(synonyms).display;
+                        var surgeonSynonym = _.last(_.split(_.last(synonyms).display, ','));
                     }
-                    patientInformation = _.concat({name: "Name of Surgeon", answer: $scope.surgeonSynonym || $scope.surgeonName}, patientInformation);
+                    patientInformation = _.concat({
+                        name: "Name of Surgeon",
+                        answer: surgeonSynonym || surgeonName
+                    }, patientInformation);
+
                     $scope.concepts = _.filter(patientInformation, function (eachConcept) {
                         return !_.isEmpty(eachConcept.answer) || eachConcept.answer > 0;
                     });
                 });
             }
-            $scope.concepts = _.filter(patientInformation, function (eachConcept) {
-                return !_.isEmpty(eachConcept.answer) || eachConcept.answer > 0;
-            });
-
-            $scope.isDataPresent= function () {
-                return _.isEmpty($scope.concepts);
+            else {
+                $scope.isDataPresent = function () {
+                    return _.isEmpty($scope.concepts);
+                };
             }
         });
     };
@@ -1172,7 +1179,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         },
         template: '<ng-include src="contentUrl"/>'
     }
-}]).directive('physicalExaminationDashboard', ['appService', 'conceptSetService', '$http', function (appService, conceptSetService, $http) {
+}]).directive('physicalExamination', ['appService', 'conceptSetService', '$http', function (appService, conceptSetService, $http) {
     var link = function ($scope) {
 
         $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/physicalExamination.html";
@@ -1222,10 +1229,7 @@ angular.module('bahmni.common.displaycontrol.custom')
             $scope.isDataPresent = function () {
                 return _.isEmpty($scope.allEncounter);
             }
-
         });
-
-
     };
 
     return {

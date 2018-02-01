@@ -292,12 +292,12 @@
       "logo": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/images/msf.jpg"
     },
     "sections": {
-      "patientSummaryDashboard": {
+      "patient Information": {
         "type": "custom",
         "displayOrder": 0,
         "config": {
           "title": "DASHBOARD_TITLE_PATIENT_SUMMARY_KEY",
-          "template": "<patient-summary-dashboard section='config' patient='patient' enrollment='enrollment'></patient-summary-dashboard>"
+          "template": "<patient-information section='config' patient='patient' enrollment='enrollment'></patient-information>"
         }
       },
       "Medications administered in Amman RSP": {
@@ -582,40 +582,12 @@
           "pivotTable": {}
         }
       },
-      "Physical Examination": {
-        "translationKey": "DASHBOARD_TITLE_PHYSICAL_EXAMINATION",
-        "type": "vitals",
-        "isObservation": true,
+      "physical Examination": {
+        "type": "custom",
         "displayOrder": 10,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "PE, General examination",
-            "PE, HEENT examination",
-            "PE, Chest examination",
-            "PE, Heart examination",
-            "PE, Abdomen examination",
-            "PE, Rectal and genitalia examination",
-            "PE, Extremities examination",
-            "PE, Neurologic examination"
-          ]
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "PE, General examination",
-            "PE, HEENT examination",
-            "PE, Chest examination",
-            "PE, Heart examination",
-            "PE, Abdomen examination",
-            "PE, Rectal and genitalia examination",
-            "PE, Extremities examination",
-            "PE, Neurologic examination"
-          ],
-          "isEditable": true,
-          "numberOfVisits": 3,
-          "showDetailsButton": true,
-          "pivotTable": {}
+        "config": {
+          "title": "DASHBOARD_TITLE_PHYSICAL_EXAMINATION_KEY",
+          "template": "<physical-examination section='config' patient='patient' enrollment='enrollment'></physical-examination>"
         }
       },
       "Medical Follow-up Plan": {
@@ -773,15 +745,6 @@
         "config": {
           "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
           "template": "<microbiology-lab-results section='config' patient='patient' enrollment='enrollment'></microbiology-lab-results>"
-        }
-      },
-      "physicalExaminationDashboard": {
-        "type": "custom",
-        "displayOrder": 18,
-        "displayType": "Full-Page",
-        "config": {
-          "title": "DASHBOARD_TITLE_PHYSICAL_EXAMINATION_KEY",
-          "template": "<physical-examination-dashboard section='config' patient='patient' enrollment='enrollment'></physical-examination-dashboard>"
         }
       }
     }
