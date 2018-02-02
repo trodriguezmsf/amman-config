@@ -38,7 +38,7 @@
     <div ng-show="isEmptySummary" class="placeholder-text">
         <p>{{"NO_SUMMARY_FOUND_MESSAGE"|translate}}</p>
     </div>
-    <div ng-show="!isEmptySummary">
+    <div ng-show="!isEmptySummary" style="overflow: scroll">
         <section class="block hierarchy" ng-repeat="(key, records) in groupRecords track by key"
                  ng-show="!isEmptyRecord(records, 'data')">
 
