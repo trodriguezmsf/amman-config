@@ -17,4 +17,4 @@ FROM
         INNER JOIN bed_location_map blm ON blm.bed_id = btm.bed_id
         INNER JOIN location l ON l.location_id = blm.location_id AND l.retired IS FALSE
         )bedAvailability
-   WHERE year(date_started) = 2017 AND year(date_stopped) = 2017 AND year(date_started)=YEAR('#startDate#') AND year(date_stopped)=YEAR('#startDate#')
+   WHERE location IN ('Ward (2nd floor)','Ward (3rd floor)') AND year(date_started)=YEAR('#startDate#') AND year(date_stopped)=YEAR('#startDate#')
