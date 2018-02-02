@@ -1085,23 +1085,43 @@ angular.module('bahmni.common.displaycontrol.custom')
         template: '<ng-include src="contentUrl"/>'
     }
 }]).directive('patientInformation', ['appService', 'conceptSetService', '$http', function (appService, conceptSetService, $http) {
-    var getSpecialities = function (data) {
+    const getSpecialities = function (data) {
         var specialities = _.map(data, function (speciality) {
             return speciality.value.name;
         });
         return _.join(specialities, ', ');
     };
 
-    var filterValueByConcept = function (records, conceptName) {
+    const filterValueByConcept = function (records, conceptName) {
         return _.filter(records, function (eachObs) {
             return eachObs.concept.name === conceptName;
         })
     };
 
-    var conceptNameForSurgeon = function (conceptName) {
+    const conceptNameForSurgeon = function (conceptName) {
         return conceptSetService.getConcept({
             name: conceptName,
             v: "custom:(uuid,names,displayString,synonyms)"
+        });
+    };
+
+
+    const fetchObservationsData = function (conceptNames, enrollment, numberOfVisits, scope) {
+        var params = {
+            concept: conceptNames,
+            patientProgramUuid: enrollment,
+            scope: scope,
+            numberOfVisits: numberOfVisits
+        };
+        return $http.get('/openmrs/ws/rest/v1/bahmnicore/observations', {
+            params: params,
+            withCredentials: true
+        });
+    };
+
+    const getValidInformation = function (patientInformation) {
+        return _.filter(patientInformation, function (eachConcept) {
+            return !_.isEmpty(eachConcept.answer) || eachConcept.answer > 0;
         });
     };
 
@@ -1110,26 +1130,13 @@ angular.module('bahmni.common.displaycontrol.custom')
         $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/patientSummary.html";
         var conceptNames = ["Stage", "FSTG, Specialty determined by MLO", "FV, Name (s) of Surgeon 1"];
 
-        var fetchObservationsData = function (conceptNames, enrollment, numberOfVisits, scope) {
-            var params = {
-                concept: conceptNames,
-                patientProgramUuid: enrollment,
-                scope: scope,
-                numberOfVisits: numberOfVisits
-            };
-            return $http.get('/openmrs/ws/rest/v1/bahmnicore/observations', {
-                params: params,
-                withCredentials: true
-            });
-        };
-
         fetchObservationsData(conceptNames, $scope.enrollment, 1, "latest").then(function (response) {
 
-            var stageConcept = filterValueByConcept(response.data, "Stage");
+            const stageConcept = filterValueByConcept(response.data, "Stage");
 
-            var specialities = filterValueByConcept(response.data, "FSTG, Specialty determined by MLO");
+            const specialities = filterValueByConcept(response.data, "FSTG, Specialty determined by MLO");
 
-            var nameOfSurgeonAnswers = filterValueByConcept(response.data, "FV, Name (s) of Surgeon 1");
+            const nameOfSurgeonAnswers = filterValueByConcept(response.data, "FV, Name (s) of Surgeon 1");
 
             if (!_.isEmpty(specialities)) {
                 var specialityAnswers = getSpecialities(specialities);
@@ -1144,7 +1151,10 @@ angular.module('bahmni.common.displaycontrol.custom')
                 {name: "Speciality", answer: specialityAnswers}
             ];
 
+            var validInformation = getValidInformation(patientInformation);
+
             if (nameOfSurgeonAnswers.length == 1) {
+
                 var surgeonName = nameOfSurgeonAnswers[0].value.name;
 
                 conceptNameForSurgeon(surgeonName).then(function (response) {
@@ -1152,20 +1162,19 @@ angular.module('bahmni.common.displaycontrol.custom')
                     if (!_.isEmpty(synonyms)) {
                         var surgeonSynonym = _.last(_.split(_.last(synonyms).display, ','));
                     }
-                    patientInformation = _.concat({
+                    $scope.concepts = _.concat({
                         name: "Name of Surgeon",
                         answer: surgeonSynonym || surgeonName
-                    }, patientInformation);
-
-                    $scope.concepts = _.filter(patientInformation, function (eachConcept) {
-                        return !_.isEmpty(eachConcept.answer) || eachConcept.answer > 0;
-                    });
+                    }, validInformation);
                 });
-            }
-            else {
+            } else {
                 $scope.isDataPresent = function () {
                     return _.isEmpty($scope.concepts);
                 };
+            }
+
+            if (nameOfSurgeonAnswers.length == 0) {
+                $scope.concepts = validInformation;
             }
         });
     };
@@ -1185,7 +1194,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/physicalExamination.html";
         var conceptNames = ["Physical Examination"];
 
-        var fetchObservationsData = function (conceptNames, enrollment, numberOfVisits, scope) {
+        const fetchObservationsData = function (conceptNames, enrollment, numberOfVisits, scope) {
             var params = {
                 concept: conceptNames,
                 patientProgramUuid: enrollment,
@@ -1197,7 +1206,7 @@ angular.module('bahmni.common.displaycontrol.custom')
             });
         };
 
-        var getPhysicalExaminationData = function (encounterData) {
+        const getPhysicalExaminationData = function (encounterData) {
             var concepts = [];
             _.each(encounterData.groupMembers, function (groupMember) {
                 var conceptName = {name: groupMember.conceptNameToDisplay, answer: groupMember.valueAsString}
@@ -1207,7 +1216,7 @@ angular.module('bahmni.common.displaycontrol.custom')
 
         };
 
-        var getDisplayableEncounter = function (records, methods) {
+        const getDisplayableEncounter = function (records, methods) {
             var allValues = [];
             _.forEach(methods, function (method) {
                 var encounterValue = method(records);
