@@ -26,6 +26,11 @@
         vertical-align: middle !important;
     }
 
+    .sub-header {
+        background-color: #eeeeee;
+        font-weight: bolder;
+    }
+
 </style>
 
 <section class="limb-physio-summary-dashboard">
@@ -42,7 +47,7 @@
                 <tr>
                     <th ng-repeat="$index in records.leftHeaders track by $index">{{$index+1}}</th>
                     <th></th>
-                    <th ng-repeat="$index in records.rightHeaders track by $index">{{$index+1}}</th>
+                    <th ng-repeat="header in records.rightHeaders track by $index">{{header+1}}</th>
                 </tr>
 
                 <tr ng-repeat="(key, record) in records.data |orderBy: 'sort' track by key" ng-hide="isEmptyRow(record)">
@@ -50,9 +55,10 @@
                         {{record.left[$index]}}
                     </td>
                     <th ng-if="!!record.isSubHeader" colspan={{records.leftHeaders.length}}>{{record.left}}</th>
-                    <td style="font-weight: bold">{{record.display}}</td>
-                    <td ng-if="!!!record.isSubHeader" ng-repeat="$index in records.rightHeaders track by $index">
-                        {{record.right[$index]}}
+                    <td ng-if="!!record.isSubHeader" class="sub-header">{{record.display}}</td>
+                    <td ng-if="!record.isSubHeader" style="font-weight: bold;">{{record.display}}</td>
+                    <td ng-if="!!!record.isSubHeader" ng-repeat="header in records.rightHeaders track by $index">
+                        {{record.right[header]}}
                     </td>
                     <th ng-if="!!record.isSubHeader" colspan="{{records.rightHeaders.length}}">{{record.right}}</th>
                 </tr>
