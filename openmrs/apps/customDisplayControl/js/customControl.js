@@ -571,9 +571,13 @@ angular.module('bahmni.common.displaycontrol.custom')
     };
 
     const insertAdditionalInfo = function (tableInfo, data, mappedData) {
+        data = _.sortBy(data, 'sort');
         if (!_.isEmpty(tableInfo.crucialConcepts)) {
             _.forEach(tableInfo.additionalConcepts, function (concept) {
-                putMemberAt(data, concept.position, concept.member);
+                var shouldAddAdditionalInfo = _.some(data.slice(concept.position), function (record) {
+                    return !isEmptyRow(record);
+                });
+                shouldAddAdditionalInfo && putMemberAt(data, concept.position, concept.member);
             });
 
             var member = getFirstMember(data);
@@ -1041,7 +1045,7 @@ angular.module('bahmni.common.displaycontrol.custom')
             mapper: physioSummaryService.mapHandAndFinger,
             requiredGroupConceptNames: groupConceptsForROMHandAndFinger,
             additionalConcepts: [{
-                position: 2, member: {
+                position: 4, member: {
                     sort: 4,
                     left: "Flex",
                     right: "Ext",
