@@ -340,6 +340,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/fupOutCome.sql"
           }
+        },
+        {
+          "name": "OrTimeFilled",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/orTimeFilled.sql"
+          }
         }
       ]
     }
