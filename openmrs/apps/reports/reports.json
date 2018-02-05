@@ -347,6 +347,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/orTimeFilled.sql"
           }
+        },
+        {
+          "name": "surgSiteInfec",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/surgicalSiteInfection.sql"
+          }
         }
       ]
     }
