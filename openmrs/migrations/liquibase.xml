@@ -6734,4 +6734,23 @@
             INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,38,8,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201802051933" author="Prasanna, Saikumar" context="rel3.5 reports" runOnChange="true">
+        <comment>Adding a procedure for bed management report in ward</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS DISCHARGE_DATE;
+        </sql>
+        <sqlFile splitStatements="false" path="reports/dischargeDate.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201802051954" author="Prasanna, Saikumar" context="rel3.5 reports" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM liquibasechangelog WHERE ID = 'Amman-201802051933';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding a function for bed management report in ward</comment>
+        <sql>
+            DROP FUNCTION IF EXISTS GET_DISCHARGE_DATE;
+        </sql>
+        <sqlFile splitStatements="false" path="reports/getDischargeDate.sql"/>
+    </changeSet>
 </databaseChangeLog>
