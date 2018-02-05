@@ -6633,4 +6633,105 @@
             INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,1015,8,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201801251435" author="Mahesh" context="rel3.5" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='WWN, Dressing' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='WWN, Was the dressing changed' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding WWN, Was the dressing changed to WWN, Dressing section</comment>
+        <sql>
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="WWN, Dressing" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="WWN, Was the dressing changed" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,990,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802041021" author="Mahesh" context="rel3.5" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='LLA, Follow-up Plan' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='LLA, Physiotherapy treatment provided to patient' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding LLA, Physiotherapy treatment provided to patient and LLA, Network physio suggested to LLA, Follow-up Plan section</comment>
+        <sql>
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="LLA, Follow-up Plan" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="LLA, Physiotherapy treatment provided to patient" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,990,8,now(),uuid());
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="LLA, Network physio suggested" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,1035,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802041025" author="Mahesh" context="rel3.5" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='ULA, Followup Plan' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='ULA, Physiotherapy treatment provided to patient' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding ULA, Physiotherapy treatment provided to patient and ULA, Network physio suggested to ULA, Followup Plan section</comment>
+        <sql>
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="ULA, Followup Plan" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="ULA, Physiotherapy treatment provided to patient" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,990,8,now(),uuid());
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="ULA, Network physio suggested" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,1035,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802041035" author="Mahesh" context="rel3.5" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='MPA, Followup Plan' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='MPA, Physiotherapy treatment provided to patient' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding MPA, Physiotherapy treatment provided to patient and MPA, Network physio suggested to MPA, Followup Plan section</comment>
+        <sql>
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="MPA, Followup Plan" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="MPA, Physiotherapy treatment provided to patient" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,990,8,now(),uuid());
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="MPA, Network physio suggested" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,1025,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802041045" author="Mahesh" context="rel3.5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set cs where cs.concept_set in (SELECT concept_id from concept_name where name = 'Administrative Note' and concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concept_set</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Administrative Note', 'Administrative Note', 'N/A', 'misc', true);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802041050" author="Mahesh" context="rel3.5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='Administrative Note' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='AN, Date recorded' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New answer concepts to Administrative Note</comment>
+        <sql>
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="Administrative Note" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="AN, Date recorded" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="AN, Other specific comments" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,1000,8,now(),uuid());
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID2,@conceptsetID,1010,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802041059" author="Mahesh" context="rel3.5" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='All Observation Templates' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='Administrative Note' and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Administrative Note to All Observation Templates</comment>
+        <sql>
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="All Observation Templates" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Administrative Note" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,38,8,now(),uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>

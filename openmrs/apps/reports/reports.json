@@ -340,6 +340,34 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/fupOutCome.sql"
           }
+        },
+        {
+          "name": "OrTimeFilled",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/orTimeFilled.sql"
+          }
+        },
+        {
+          "name": "surgSiteInfec",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/surgicalSiteInfection.sql"
+          }
+        },
+        {
+          "name": "furtherSurgery",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientsFurtherSurgery.sql"
+          }
+        },
+        {
+          "name": "complicationImpact",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/complicationImpact.sql"
+          }
         }
       ]
     }
