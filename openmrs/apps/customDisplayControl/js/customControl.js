@@ -623,7 +623,7 @@ angular.module('bahmni.common.displaycontrol.custom')
                 mappedData[side] = getValues(findMember(romHandAndFinger, "Flex"), findMember(romHandAndFinger, "Ext."), concepts, mappedData[side], getValue);
                 var additionalConcepts = [
                     {name: "Distance tip (2nd -5th)", sort: 2},
-                    {name: "Distance tip (Thumb - 2nd)", sort: 3}
+                    {name: "Distance tip (Thumb 2nd)", sort: 3}
                 ];
                 mappedData[side] = getValues(eachRecord, eachRecord, additionalConcepts, mappedData[side], getValue);
                 mapCrucialInfoToObs(crucialConcepts, record, mappedData[side])
@@ -884,7 +884,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         var dateRecorded = findByConceptNameToDisplay(record.groupMembers, "Date recorded");
         var basicGripTestMember = findByConceptNameToDisplay(record.groupMembers, "Basic Grip Test");
         var basicGripTotal = findByConceptNameToDisplay(basicGripTestMember.groupMembers, "Total Score");
-        var upperExtremityFunctionalIndex = getExtremityFunctionalIndex(record.groupMembers, "Upper Extremity Functional Index (UEFI) - 15", "Pediatric Upper Extremity Function ( Fine Motor, ADL)");
+        var upperExtremityFunctionalIndex = getExtremityFunctionalIndex(record.groupMembers, "Upper Extremity Functional Index (UEFI) 15", "Pediatric Upper Extremity Function ( Fine Motor, ADL)");
         var upperExtremityFunctionalIndexTotal = findByConceptNameToDisplay(upperExtremityFunctionalIndex.groupMembers, "Final score");
         if (_.isEmpty(upperExtremityFunctionalIndexTotal)) {
             upperExtremityFunctionalIndexTotal = findByConceptNameToDisplay(upperExtremityFunctionalIndex.groupMembers, "Total score");
@@ -1105,7 +1105,6 @@ angular.module('bahmni.common.displaycontrol.custom')
         });
     };
 
-
     const fetchObservationsData = function (conceptNames, enrollment, numberOfVisits, scope) {
         var params = {
             concept: conceptNames,
@@ -1250,4 +1249,142 @@ angular.module('bahmni.common.displaycontrol.custom')
         },
         template: '<ng-include src="contentUrl"/>'
     }
-}]);
+}]).directive('surgicalFollowUp', ['appService', 'conceptSetService', '$http', function (appService, conceptSetService, $http) {
+
+    const fetchObservationsData = function (conceptNames, enrollment, numberOfVisits, scope) {
+        var params = {
+            concept: conceptNames,
+            patientProgramUuid: enrollment,
+            scope: scope,
+            numberOfVisits: numberOfVisits
+        };
+        return $http.get('/openmrs/ws/rest/v1/bahmnicore/observations', {
+            params: params,
+            withCredentials: true
+        });
+    };
+
+    const findConcept = function (members, conceptName) {
+        return _.find(members.groupMembers, ['conceptNameToDisplay', conceptName]) || {};
+    };
+
+    const filterValueByConcept = function (records, conceptName) {
+        var conceptDetails = [];
+        _.forEach(records, function (eachObs) {
+            conceptDetails = findConcept(eachObs, conceptName);
+        });
+        return conceptDetails;
+    };
+
+    const isValid = function (vaule) {
+        return !_.isEmpty(vaule)
+    };
+
+    const creator = function (documentRequestedMembers, siteMembers, conceptValues, freeText) {
+        var result = [];
+        _.forEach(documentRequestedMembers, function (each, index) {
+            var requestedValue = "_";
+            var siteValue = "{}";
+            var reportAt = findConcept(conceptValues, each);
+            var reportOf = findConcept(freeText, siteMembers[index]);
+
+            if (reportAt.valueAsString || reportOf.valueAsString) {
+
+                each = _.first(_.split(each, " "));
+                if (reportAt.valueAsString) {
+                    requestedValue = reportAt.valueAsString;
+                }
+
+                if (reportOf.valueAsString) {
+                    siteValue = reportOf.valueAsString;
+                }
+
+                result.push(each + " after " + requestedValue + " of: " + siteValue)
+            }
+        });
+        return result;
+    };
+
+    const mapMultiLevelObs = function (records, parentConcept) {
+        var values = [];
+        var documentRequestedMembers = ["X-ray at:", "Video after:", "Photo after:"];
+        var siteMembers = ["X-ray of:", "Video of:", "Photo of::"];
+        _.forEach(records, function (record) {
+            var followUpNeeds = findConcept(findConcept(record, parentConcept), "Follow-up needs");
+            if (!_.isEmpty(followUpNeeds)) {
+                var conceptValues = findConcept(followUpNeeds, "Document requested");
+                var freeText = findConcept(followUpNeeds, "Site");
+                values = creator(documentRequestedMembers, siteMembers, conceptValues, freeText);
+            }
+
+        });
+        return {name: parentConcept, value: values}
+    };
+
+    const filterByConcept = function (records, childConcept) {
+        var conceptDetails = [];
+        _.forEach(records, function (eachRecord) {
+            conceptDetails = findConcept(findConcept(eachRecord, "Follow-up needs"), childConcept);
+        });
+
+        return conceptDetails;
+    };
+
+    var link = function ($scope) {
+
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/surgicalFollowUpPlan.html";
+        var conceptNames = ["Surgeon Follow-up"];
+
+        fetchObservationsData(conceptNames, $scope.enrollment, 1, "latest").then(function (response) {
+            var records = [];
+            const followupPlan = filterValueByConcept(response.data, "Follow-up plan");
+
+            const followupNeeds = filterByConcept(response.data, "MLO visit at:");
+
+            const notes = filterByConcept(response.data, "Notes, other");
+
+            var mapMultiLavelObsValues = mapMultiLevelObs(response.data, "Follow-up needs");
+
+            if (!_.isEmpty(followupPlan)) {
+                var followupPlanValue = followupPlan.valueAsString;
+                records.push({name: "Follow-up plan", value: "Follow-up plan: " + followupPlanValue})
+            }
+            if (!_.isEmpty(followupNeeds)) {
+                var followupNeedsValue = followupNeeds.valueAsString;
+                var value = _.concat(["MLO visit at " + followupNeedsValue], mapMultiLavelObsValues.value);
+                mapMultiLavelObsValues.value = value;
+                records.push(mapMultiLavelObsValues)
+            } else {
+                records.push(mapMultiLavelObsValues)
+
+            }
+
+            if (!_.isEmpty(notes)) {
+                records.push({name: "Notes", value: "Notes: " + notes.valueAsString})
+            }
+
+            $scope.records = _.filter(records, function (record) {
+                return !_.isEmpty(record.value)
+            });
+
+            $scope.isSubTableAble = function (data) {
+                return data.name === "Follow-up needs";
+            };
+
+            $scope.isDataPresent = function () {
+                return _.isEmpty($scope.records)
+            };
+
+        });
+    };
+    return {
+        link: link,
+        scope: {
+            patient: "=",
+            section: "=",
+            enrollment: "="
+        },
+        template: '<ng-include src="contentUrl"/>'
+    }
+}])
+;

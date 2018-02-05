@@ -746,6 +746,14 @@
           "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
           "template": "<microbiology-lab-results section='config' patient='patient' enrollment='enrollment'></microbiology-lab-results>"
         }
+      },
+      "Surgical Follow-up Plan": {
+        "type": "custom",
+        "displayOrder": 18,
+        "config": {
+          "title": "DASHBOARD_TITLE_SURGICAL_FOLLOW_UP_PLAN_KEY",
+          "template": "<surgical-follow_up section='config' patient='patient' enrollment='enrollment'></surgical-follow_up>"
+        }
       }
     }
     },
