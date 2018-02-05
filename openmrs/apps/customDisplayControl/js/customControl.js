@@ -1397,8 +1397,16 @@ angular.module('bahmni.common.displaycontrol.custom')
         });
     };
 
+    const findConcept = function (members, conceptName) {
+        return _.find(members.groupMembers, ['conceptNameToDisplay', conceptName]) || {};
+    };
+
     const getConceptDetails = function (records, conceptName) {
-        return _.find(records[0].groupMembers, ['conceptNameToDisplay', conceptName]) || {};
+        var conceptDetails = [];
+        _.forEach(records, function (eachObs) {
+            conceptDetails = findConcept(eachObs, conceptName);
+        });
+        return conceptDetails;
     };
 
     var link = function ($scope) {
@@ -1411,18 +1419,24 @@ angular.module('bahmni.common.displaycontrol.custom')
             var subConcept = ["Type of medication", "Dose and frequency", "Duration"];
             var medication = getConceptDetails(response.data, "Discharge medication");
 
-            if (medication.value.name == "Yes") {
-                _.forEach(subConcept, function (concept) {
-                    var eachConceptDetails = getConceptDetails(response.data, concept);
-                    if (eachConceptDetails.valueAsString) {
-                        values.push({
-                            title: eachConceptDetails.conceptNameToDisplay,
-                            value: eachConceptDetails.valueAsString
-                        })
-                    }
-                });
+            if (!_.isEmpty(medication)) {
+                if (medication.value.name === "Yes") {
+                    _.forEach(subConcept, function (concept) {
+                        var eachConceptDetails = getConceptDetails(response.data, concept);
+                        if (eachConceptDetails.valueAsString) {
+                            values.push({
+                                title: eachConceptDetails.conceptNameToDisplay,
+                                value: eachConceptDetails.valueAsString
+                            })
+                        }
+                    });
+                }
+                $scope.records = {title: "Discharge Medication: " + medication.value.name, data: values};
             }
-            $scope.records = {title: "Discharge Medication: " + medication.value.name, data: values};
+            $scope.isDataPresent = function () {
+                return _.isEmpty(medication);
+            }
+
         });
     };
     return {

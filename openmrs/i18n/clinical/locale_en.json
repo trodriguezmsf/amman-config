@@ -144,6 +144,7 @@
   "DASHBOARD_TITLE_PHYSIO_SUMMARY_SCORES_KEY": "Scores",
   "NO_SCORES_FOUND_MESSAGE": "No score present for this patient",
   "NO_PATIENT_INFORMATION_FOUND": "No Information Found For This Patient",
+  "NO_DISCHARGE_MEDICATION_FOUND": "No Discharge Medication For This Patient",
   "NO_PHYSICAL_EXAMINATION_FOUND": "No Physical Examination found for this patient",
   "NO_FOLLOW_UP_DATA_FOUND": "No Follow-up data found for this patient",
   "NO_SUMMARY_FOUND_MESSAGE": "No record present for this patient", 
