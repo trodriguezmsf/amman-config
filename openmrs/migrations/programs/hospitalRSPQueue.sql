@@ -24,7 +24,9 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.hospitalRSP';
   last_surgery.`Procedure` AS 'Procedure (Last)',
   IF(latest_future_appointment.startdate IS NULL , DATE_FORMAT(latest_past_appointment.startdate, '%d/%m/%Y'),
      DATE_FORMAT(latest_future_appointment.startdate, '%d/%m/%Y'))                                         AS 'Date of Appointment',
+  IF(latest_future_appointment.startdate IS NULL , latest_past_appointment.serviceappointmenttype, latest_future_appointment.serviceappointmenttype) AS 'Service Appointment Type',
   IF(latest_future_appointment.startdate IS NULL , latest_past_appointment.providername, latest_future_appointment.providername) AS 'Provider name',
+  latestnotevalue.value_text AS 'Nursing consultation notes',
   `Bed allocation`,
   cn.name AS `Phase of treatment`,
   personData.uuid
@@ -192,13 +194,15 @@ FROM
                       patappoint.start_date_time                 AS startdate,
                       patappoint.end_date_time                   AS enddate,
                       patappoint.provider_id                     AS appointmentprovider,
-                      CONCAT(pn.given_name, ' ', pn.family_name) AS providername
+                      CONCAT(pn.given_name, ' ', pn.family_name) AS providername,
+                      ast.name                                   AS serviceappointmenttype
                     FROM
                       patient_appointment patappoint
                       INNER JOIN (
                                    SELECT
                                      pa.patient_id           AS patient_id,
-                                     MIN(pa.start_date_time) AS appointment_date
+                                     MIN(pa.start_date_time) AS appointment_date,
+                                     pa.appointment_service_type_id
                                    FROM
                                      patient_appointment pa
                                    WHERE
@@ -209,6 +213,7 @@ FROM
                         ON patappoint.start_date_time = next_appointment.appointment_date AND patappoint.start_date_time = next_appointment.appointment_date
                       LEFT OUTER JOIN provider prov ON prov.provider_id = patappoint.provider_id AND prov.retired IS FALSE
                       LEFT OUTER JOIN person_name pn ON pn.person_id = prov.person_id AND pn.voided IS FALSE
+                      LEFT OUTER JOIN appointment_service_type ast ON ast.appointment_service_type_id = next_appointment.appointment_service_type_id AND ast.voided IS FALSE
                     GROUP BY patappoint.patient_id
                   ) latest_future_appointment ON latest_future_appointment.patient_id = personData.person_id
   LEFT OUTER JOIN (
@@ -217,13 +222,15 @@ FROM
                       patappoint.start_date_time                 AS startdate,
                       patappoint.end_date_time                   AS enddate,
                       patappoint.provider_id                     AS appointmentprovider,
-                      CONCAT(pn.given_name, ' ', pn.family_name) AS providername
+                      CONCAT(pn.given_name, ' ', pn.family_name) AS providername,
+                      ast.name                                   AS serviceappointmenttype
                     FROM
                       patient_appointment patappoint
                       INNER JOIN (
                                    SELECT
                                      pa.patient_id           AS patient_id,
-                                     MAX(pa.start_date_time) AS appointment_date
+                                     MAX(pa.start_date_time) AS appointment_date,
+                                     pa.appointment_service_type_id
                                    FROM
                                      patient_appointment pa
                                    WHERE
@@ -233,6 +240,7 @@ FROM
                                  ) next_appointment ON patappoint.patient_id = next_appointment.patient_id AND patappoint.start_date_time = next_appointment.appointment_date
                       LEFT OUTER JOIN provider prov ON prov.provider_id = patappoint.provider_id AND prov.retired IS FALSE
                       LEFT OUTER JOIN person_name pn ON pn.person_id = prov.person_id AND pn.voided IS FALSE
+                      LEFT OUTER JOIN appointment_service_type ast ON ast.appointment_service_type_id = next_appointment.appointment_service_type_id AND ast.voided IS FALSE
                     GROUP BY patappoint.patient_id
                   ) latest_past_appointment ON latest_past_appointment.patient_id = personData.person_id
       LEFT JOIN (
@@ -255,4 +263,21 @@ FROM
                                               and cn.name = 'SAP, Estimated length of stay' and cn.concept_name_type= 'FULLY_SPECIFIED') value_coded on value_coded.value_coded = cn.concept_id
                         GROUP BY value_coded.person_id
                     )length_value on length_value.person_id = personData.person_id
+      LEFT JOIN (
+                  SELECT
+                    o.person_id,
+                    o.value_text
+                  FROM obs o
+                    INNER JOIN(
+                                SELECT
+                                  o.person_id,
+                                  MAX(o.date_created) AS 'obs_datecreated',
+                                  o.concept_id
+                                FROM
+                                  obs o
+                                  INNER JOIN concept_name cn ON cn.concept_id = o.concept_id AND o.voided IS FALSE AND cn.voided IS FALSE AND
+                                                                cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.name = 'ONN, Nursing consultation notes'
+                                GROUP BY o.person_id)latest_obsdatetime ON latest_obsdatetime.obs_datecreated = o.date_created AND latest_obsdatetime.person_id = o.person_id
+                                                                           AND latest_obsdatetime.concept_id = o.concept_id GROUP BY latest_obsdatetime.person_id
+            )latestnotevalue ON latestnotevalue.person_id = personData.person_id
 ORDER BY dateOfArrival.date_of_arrival", 'Hospital RSP Queue', @uuid);

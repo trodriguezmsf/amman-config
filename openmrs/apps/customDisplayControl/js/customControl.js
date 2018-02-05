@@ -580,7 +580,7 @@ angular.module('bahmni.common.displaycontrol.custom')
             return _.assign(mappedData, {
                 data: data,
                 leftHeaders: new Array(member.left.length),
-                rightHeaders: new Array(member.right.length)
+                rightHeaders: _.rangeRight(member.right.length)
             });
         }
         return data;

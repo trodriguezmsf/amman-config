@@ -41,7 +41,7 @@
   "DASHBOARD_TITLE_DOCUMENT_UPLOAD_KEY":"Patient Documents",
   "DASHBOARD_TITLE_FINAL_VALIDATION":"Final Validation",
   "DASHBOARD_TITLE_EDIT":"Edit forms",
-  "DASHBOARD_TITLE_OPERATIVE_COURSE_IN_AMMAN_KEY": "Operative Course in Amman",
+  "DASHBOARD_TITLE_OPERATIVE_COURSE_IN_AMMAN_KEY": "Operative Course",
   "DASHBOARD_TITLE_PHYSIO_FORMS": "Physiotherapy Assessments",
   "DASHBOARD_TAB_VALIDATION_COMMITTEE_KEY": "Validation Committee",
   "DASHBOARD_TAB_TRENDS_KEY": "Trends",
@@ -145,5 +145,6 @@
   "NO_PATIENT_INFORMATION_FOUND": "No Information Found For This Patient",
   "NO_PHYSICAL_EXAMINATION_FOUND": "No Physical Examination found for this patient",
   "NO_FOLLOW_UP_DATA_FOUND": "No Follow-up data found for this patient",
-  "NO_SUMMARY_FOUND_MESSAGE": "No record present for this patient"
+  "NO_SUMMARY_FOUND_MESSAGE": "No record present for this patient", 
+  "ADMINISTRATIVE_NOTE_KEY": "Administrative Note"
 }

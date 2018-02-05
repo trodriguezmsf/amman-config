@@ -754,6 +754,30 @@
           "title": "DASHBOARD_TITLE_SURGICAL_FOLLOW_UP_PLAN_KEY",
           "template": "<surgical-follow_up section='config' patient='patient' enrollment='enrollment'></surgical-follow_up>"
         }
+      },
+      "Administrative Note": {
+        "translationKey": "ADMINISTRATIVE_NOTE_KEY",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 18,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+           "AN, Date recorded",
+            "AN, Other specific comments"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "AN, Date recorded",
+            "AN, Other specific comments"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
       }
     }
     },

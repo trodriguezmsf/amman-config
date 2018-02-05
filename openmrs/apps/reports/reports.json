@@ -333,6 +333,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/psyDrugDetails.sql"
           }
+        },
+        {
+          "name": "fupOutCome",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/fupOutCome.sql"
+          }
         }
       ]
     }
