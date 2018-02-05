@@ -1249,7 +1249,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         },
         template: '<ng-include src="contentUrl"/>'
     }
-}]).directive('surgicalFollowUp', ['appService', 'conceptSetService', '$http', function (appService, conceptSetService, $http) {
+}]).directive('surgicalFollowUp', ['appService', '$http', function (appService, $http) {
 
     const fetchObservationsData = function (conceptNames, enrollment, numberOfVisits, scope) {
         var params = {
@@ -1274,10 +1274,6 @@ angular.module('bahmni.common.displaycontrol.custom')
             conceptDetails = findConcept(eachObs, conceptName);
         });
         return conceptDetails;
-    };
-
-    const isValid = function (vaule) {
-        return !_.isEmpty(vaule)
     };
 
     const creator = function (documentRequestedMembers, siteMembers, conceptValues, freeText) {
@@ -1386,5 +1382,56 @@ angular.module('bahmni.common.displaycontrol.custom')
         },
         template: '<ng-include src="contentUrl"/>'
     }
-}])
-;
+}]).directive('dischargeMedication', ['appService', '$http', function (appService, $http) {
+
+    const fetchObservationsData = function (conceptNames, enrollment, numberOfVisits, scope) {
+        var params = {
+            concept: conceptNames,
+            patientProgramUuid: enrollment,
+            scope: scope,
+            numberOfVisits: numberOfVisits
+        };
+        return $http.get('/openmrs/ws/rest/v1/bahmnicore/observations', {
+            params: params,
+            withCredentials: true
+        });
+    };
+
+    const getConceptDetails = function (records, conceptName) {
+        return _.find(records[0].groupMembers, ['conceptNameToDisplay', conceptName]) || {};
+    };
+
+    var link = function ($scope) {
+
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/dischargeMedication.html";
+        var conceptNames = ["Medical Doctor OPD Follow-up"];
+
+        fetchObservationsData(conceptNames, $scope.enrollment, 1, "latest").then(function (response) {
+            var values = [];
+            var subConcept = ["Type of medication", "Dose and frequency", "Duration"];
+            var medication = getConceptDetails(response.data, "Discharge medication");
+
+            if (medication.value.name == "Yes") {
+                _.forEach(subConcept, function (concept) {
+                    var eachConceptDetails = getConceptDetails(response.data, concept);
+                    if (eachConceptDetails.valueAsString) {
+                        values.push({
+                            title: eachConceptDetails.conceptNameToDisplay,
+                            value: eachConceptDetails.valueAsString
+                        })
+                    }
+                });
+            }
+            $scope.records = {title: "Discharge Medication: " + medication.value.name, data: values};
+        });
+    };
+    return {
+        link: link,
+        scope: {
+            patient: "=",
+            section: "=",
+            enrollment: "="
+        },
+        template: '<ng-include src="contentUrl"/>'
+    }
+}]);

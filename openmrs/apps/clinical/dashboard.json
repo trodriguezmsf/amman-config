@@ -755,6 +755,14 @@
           "template": "<surgical-follow_up section='config' patient='patient' enrollment='enrollment'></surgical-follow_up>"
         }
       },
+      "Discharge Medication": {
+        "type": "custom",
+        "displayOrder": 19,
+        "config": {
+          "title": "DASHBOARD_TITLE_DISCHARGE_MEDICATION_KEY",
+          "template": "<discharge-medication section='config' patient='patient' enrollment='enrollment'></discharge-medication>"
+        }
+      },
       "Administrative Note": {
         "translationKey": "ADMINISTRATIVE_NOTE_KEY",
         "type": "vitals",
