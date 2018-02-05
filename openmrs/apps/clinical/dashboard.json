@@ -746,6 +746,30 @@
           "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
           "template": "<microbiology-lab-results section='config' patient='patient' enrollment='enrollment'></microbiology-lab-results>"
         }
+      },
+      "Administrative Note": {
+        "translationKey": "ADMINISTRATIVE_NOTE_KEY",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 18,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+           "AN, Date recorded",
+            "AN, Other specific comments"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "AN, Date recorded",
+            "AN, Other specific comments"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
       }
     }
     },

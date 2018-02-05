@@ -143,5 +143,6 @@
   "NO_SCORES_FOUND_MESSAGE": "No score present for this patient",
   "NO_PATIENT_INFORMATION_FOUND": "No Information Found For This Patient",
   "NO_PHYSICAL_EXAMINATION_FOUND": "No Physical Examination found for this patient",
-  "NO_SUMMARY_FOUND_MESSAGE": "No record present for this patient"
+  "NO_SUMMARY_FOUND_MESSAGE": "No record present for this patient",
+  "ADMINISTRATIVE_NOTE_KEY": "Administrative Note"
 }
