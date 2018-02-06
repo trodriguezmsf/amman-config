@@ -6753,4 +6753,20 @@
         </sql>
         <sqlFile splitStatements="false" path="reports/getDischargeDate.sql"/>
     </changeSet>
+    <changeSet id="Amman-201802061029" author="Mahesh" context="rel3.5">
+    <comment>Adding codes to specific concepts</comment>
+    <sql>
+        INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+        (4,'PHYSIO_TX',@source_id,uuid(),now());
+        INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+        (4,'NP_SUGGESTED',@source_id,uuid(),now());
+        call create_reference_mapping_msf_internal('WWN, Was the dressing changed', 'CHANGE_DRSG');
+        call create_reference_mapping_msf_internal('LLA, Physiotherapy treatment provided to patient', 'PHYSIO_TX');
+        call create_reference_mapping_msf_internal('ULA, Physiotherapy treatment provided to patient', 'PHYSIO_TX');
+        call create_reference_mapping_msf_internal('MPA, Physiotherapy treatment provided to patient', 'PHYSIO_TX');
+        call create_reference_mapping_msf_internal('LLA, Network physio suggested', 'NP_SUGGESTED');
+        call create_reference_mapping_msf_internal('ULA, Network physio suggested', 'NP_SUGGESTED');
+        call create_reference_mapping_msf_internal('MPA, Network physio suggested', 'NP_SUGGESTED');
+    </sql>
+    </changeSet>
 </databaseChangeLog>

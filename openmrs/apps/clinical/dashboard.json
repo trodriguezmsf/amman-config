@@ -234,7 +234,8 @@
                     "Upper Limb Physiotherapy Assessment",
                     "Maxillofacial Physio Assessment",
 		            "Medical Doctor OPD Follow-up",
-                    "Pain Nurse Follow-up"
+                    "Pain Nurse Follow-up",
+                    "Administrative Note"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
             },
@@ -756,14 +757,13 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-           "AN, Date recorded",
-            "AN, Other specific comments"
-          ]
+            "Administrative Note"
+          ],
+          "scope": "latest"
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "AN, Date recorded",
-            "AN, Other specific comments"
+            "Administrative Note"
           ],
           "isEditable": true,
           "numberOfVisits": 3,

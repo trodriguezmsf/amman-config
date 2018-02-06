@@ -1,8 +1,7 @@
 SELECT
           IF(`Date Created at DCSF` IS NULL, `Date Of Presentation at Followup`,IF((`Date Created at DOPF` > `Date Created at DCSF`),`Date Of Presentation at Followup` ,`Date Of Presentation at Surgeon Followup`)) AS `Date Of Presentation`,
-          pi.identifier,
-          concat(pn.given_name, ' ', pn.family_name)                  AS PATIENT_LISTING_QUEUES_HEADER_NAME,
-          p.uuid,
+          pi.identifier AS `Identifier`,
+          concat(pn.given_name, ' ', pn.family_name)                  AS Name,
           `Specialty`,
           `Name of MLO`,
           IF(`Date Created at MLOV` IS NULL, `Time for next medical follow-up`, IF((`Date Created at TFNMF` > `Date Created at MLOV`),`Time for next medical follow-up`, `Time for next medical follow-up at Surgeon Followup`)) AS `Time for next medical follow-up`,

@@ -1,7 +1,7 @@
 SELECT
   dateOfArrival.dateOfArrival AS `Date of Arrival`,
-  personData.patient_identifier AS 'identifier',
-  personData.name AS 'PATIENT_LISTING_QUEUES_HEADER_NAME',
+  personData.patient_identifier AS 'Identifier',
+  personData.name AS 'Name',
   personData.age AS `Age`,
   paddress.address3 AS `Country`,
   careTakerRequired.isCareTakerRequired AS 'Is Caretaker Required?',
@@ -22,8 +22,7 @@ SELECT
   IF(latest_future_appointment.startdate IS NULL , latest_past_appointment.providername, latest_future_appointment.providername) AS 'Provider name',
   latestnotevalue.value_text AS 'Nursing consultation notes',
   `Bed allocation`,
-  cn.name AS `Phase of treatment`,
-  personData.uuid
+  cn.name AS `Phase of treatment`
 FROM
   (SELECT
      concat(pn.given_name, ' ', pn.family_name)                                                                 AS name,
