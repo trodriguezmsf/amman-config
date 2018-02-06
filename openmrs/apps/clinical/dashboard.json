@@ -297,7 +297,7 @@
         "type": "custom",
         "displayOrder": 0,
         "config": {
-          "title": "DASHBOARD_TITLE_PATIENT_SUMMARY_KEY",
+          "title": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
           "template": "<patient-information section='config' patient='patient' enrollment='enrollment'></patient-information>"
         }
       },
@@ -750,33 +750,13 @@
       "displayByDefault": false,
       "maxRecentlyViewedPatients": 10,
       "sections": {
-        "Patient Information": {
-          "translationKey": "DASHBOARD_PATIENT_INFORMATION",
-          "type": "vitals",
-          "isObservation": true,
+
+        "patient Information": {
+          "type": "custom",
           "displayOrder": 0,
-          "dashboardConfig": {
-            "showDetailsButton": true,
-            "persistOrderOfConcepts": true,
-            "isEditable": true,
-            "conceptNames": [
-              "FV, Name (s) of Surgeon 1",
-              "Stage",
-              "FSTG, Specialty determined by MLO"
-            ],
-            "scope": "latest",
-            "showGroupDateTime": false
-          },
-          "expandedViewConfig": {
-            "conceptNames": [
-              "FV, Name (s) of Surgeon 1",
-              "Stage",
-              "FSTG, Specialty determined by MLO"
-            ],
-            "isEditable": true,
-            "numberOfVisits": 3,
-            "showDetailsButton": true,
-            "pivotTable": {}
+          "config": {
+            "title": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
+            "template": "<patient-information section='config' patient='patient' enrollment='enrollment'></patient-information>"
           }
         },
         "Medical History": {
