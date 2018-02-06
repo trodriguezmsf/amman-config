@@ -1268,109 +1268,108 @@ angular.module('bahmni.common.displaycontrol.custom')
         return _.find(members.groupMembers, ['conceptNameToDisplay', conceptName]) || {};
     };
 
-    const filterValueByConcept = function (records, conceptName) {
-        var conceptDetails = [];
-        _.forEach(records, function (eachObs) {
-            conceptDetails = findConcept(eachObs, conceptName);
-        });
-        return conceptDetails;
+    const getNotesDetails = function (member, conceptName) {
+        return findConcept(findConcept(member, "Follow-up needs"), conceptName);
     };
 
-    const creator = function (documentRequestedMembers, siteMembers, conceptValues, freeText) {
-        var result = [];
+    const margeValues = function (documentRequestedMembers, siteMembers, conceptValues, freeText, values) {
+        values = values || [];
         _.forEach(documentRequestedMembers, function (each, index) {
             var requestedValue = "_";
             var siteValue = "{}";
-            var reportAt = findConcept(conceptValues, each);
-            var reportOf = findConcept(freeText, siteMembers[index]);
+            const reportAt = findConcept(conceptValues, each);
+            const reportOf = findConcept(freeText, siteMembers[index]);
 
             if (reportAt.valueAsString || reportOf.valueAsString) {
-
                 each = _.first(_.split(each, " "));
                 if (reportAt.valueAsString) {
                     requestedValue = reportAt.valueAsString;
                 }
-
                 if (reportOf.valueAsString) {
                     siteValue = reportOf.valueAsString;
                 }
-
-                result.push(each + " after " + requestedValue + " of: " + siteValue)
+                values.push(each + " after " + requestedValue + " of: " + siteValue)
             }
         });
-        return result;
+        return values;
     };
 
-    const mapMultiLevelObs = function (records, parentConcept) {
+    const mapMultiLevelObs = function (data, documentRequestedMembers, siteMembers, parentConcept, values) {
+        values = values || [];
+        if (!_.isEmpty(data)) {
+            var conceptValues = findConcept(data, "Document requested");
+            var freeText = findConcept(data, "Site");
+            values = margeValues(documentRequestedMembers, siteMembers, conceptValues, freeText, values);
+        }
+        return {name: parentConcept, value: values, sort: 2}
+    };
+
+    const getFollowUpNeedsValues = function (result, responseData, requestDocuments, requestDocumentsOf) {
+        result = result || [];
         var values = [];
-        var documentRequestedMembers = ["X-ray at:", "Video after:", "Photo after:"];
-        var siteMembers = ["X-ray of:", "Video of:", "Photo of::"];
-        _.forEach(records, function (record) {
-            var followUpNeeds = findConcept(findConcept(record, parentConcept), "Follow-up needs");
-            if (!_.isEmpty(followUpNeeds)) {
-                var conceptValues = findConcept(followUpNeeds, "Document requested");
-                var freeText = findConcept(followUpNeeds, "Site");
-                values = creator(documentRequestedMembers, siteMembers, conceptValues, freeText);
-            }
+        const followupNeeds = getNotesDetails(responseData, "MLO visit at:");
+        if (!_.isEmpty(followupNeeds)) {
+            values.push("MLO visit at " + followupNeeds.valueAsString)
+        }
 
-        });
-        return {name: parentConcept, value: values}
+        const data = getNotesDetails(responseData, "Follow-up needs");
+        const followupNeedsData = mapMultiLevelObs(data, requestDocuments, requestDocumentsOf, "Follow-up needs", values);
+        result.push(followupNeedsData);
     };
 
-    const filterByConcept = function (records, childConcept) {
-        var conceptDetails = [];
-        _.forEach(records, function (eachRecord) {
-            conceptDetails = findConcept(findConcept(eachRecord, "Follow-up needs"), childConcept);
+    const getValidData = function (data) {
+        return _.filter(data, function (each) {
+            return !_.isEmpty(each.value)
         });
 
         return conceptDetails;
     };
 
-    var link = function ($scope) {
+    const map = function (records, responseData, concepts, requestDocuments, requestDocumentsOf) {
+        records = records || [];
+        _.forEach(concepts, function (eachConcept) {
+            if (eachConcept.title === "Follow-up needs") {
+                eachConcept.mappers(records, responseData, requestDocuments, requestDocumentsOf);
+            } else {
+                var data = eachConcept.mappers(responseData, eachConcept.name);
+                if (!_.isEmpty(data)) {
+                    records.push({
+                        name: eachConcept.title,
+                        value: eachConcept.title + ": " + data.valueAsString,
+                        sort: eachConcept.sort
+                    })
+                }
+            }
+        });
+        return records;
+    };
 
+    var link = function ($scope) {
         $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/surgicalFollowUpPlan.html";
         var conceptNames = ["Surgeon Follow-up"];
 
         fetchObservationsData(conceptNames, $scope.enrollment, 1, "latest").then(function (response) {
             var records = [];
-            const followupPlan = filterValueByConcept(response.data, "Follow-up plan");
+            var requestDocuments = ["X-ray at:", "Video after:", "Photo after:"];
+            var requestDocumentsOf = ["X-ray of:", "Video of:", "Photo of::"];
+            var concepts = [
+                {title: "Follow-up plan", name: "Follow-up plan", mappers: findConcept, sort: 1},
+                {title: "Follow-up needs", name: "MLO visit at:", mappers: getFollowUpNeedsValues, sort: 2},
+                {title: "Notes", name: "Notes, other", mappers: getNotesDetails, sort: 3}
+            ];
 
-            const followupNeeds = filterByConcept(response.data, "MLO visit at:");
-
-            const notes = filterByConcept(response.data, "Notes, other");
-
-            var mapMultiLavelObsValues = mapMultiLevelObs(response.data, "Follow-up needs");
-
-            if (!_.isEmpty(followupPlan)) {
-                var followupPlanValue = followupPlan.valueAsString;
-                records.push({name: "Follow-up plan", value: "Follow-up plan: " + followupPlanValue})
-            }
-            if (!_.isEmpty(followupNeeds)) {
-                var followupNeedsValue = followupNeeds.valueAsString;
-                var value = _.concat(["MLO visit at " + followupNeedsValue], mapMultiLavelObsValues.value);
-                mapMultiLavelObsValues.value = value;
-                records.push(mapMultiLavelObsValues)
-            } else {
-                records.push(mapMultiLavelObsValues)
-
+            if (!_.isEmpty(response.data[0])) {
+                var responseData = response.data[0];
+                records = map(records, responseData, concepts, requestDocuments, requestDocumentsOf);
             }
 
-            if (!_.isEmpty(notes)) {
-                records.push({name: "Notes", value: "Notes: " + notes.valueAsString})
-            }
-
-            $scope.records = _.filter(records, function (record) {
-                return !_.isEmpty(record.value)
-            });
-
+            $scope.records = _.sortBy(getValidData(records), ['sort']);
             $scope.isSubTableAble = function (data) {
                 return data.name === "Follow-up needs";
             };
-
             $scope.isDataPresent = function () {
                 return _.isEmpty($scope.records)
             };
-
         });
     };
     return {
