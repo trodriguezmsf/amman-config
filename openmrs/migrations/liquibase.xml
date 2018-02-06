@@ -6995,4 +6995,23 @@
             INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hamza_s"),"Programs-App:FullQueuesAccess");
         </sql>
     </changeSet>
+    <changeSet id="Amman-201802061533" author="Prasanna, Saikumar" context="rel3.5 reports" runOnChange="true">
+        <comment>Adding a procedure for bed tag info in ward</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS TAG_END_DATE;
+        </sql>
+        <sqlFile splitStatements="false" path="reports/tagEndDate.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201802051540" author="Prasanna, Saikumar" context="rel3.5 reports" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM liquibasechangelog WHERE ID = 'Amman-201802061533';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding a function for bed tag info in ward</comment>
+        <sql>
+            DROP FUNCTION IF EXISTS GET_TAG_END_DATE;
+        </sql>
+        <sqlFile splitStatements="false" path="reports/getTagEndDate.sql"/>
+    </changeSet>
 </databaseChangeLog>
