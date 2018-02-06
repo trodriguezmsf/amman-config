@@ -6734,4 +6734,265 @@
             INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,38,8,now(),uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-201802051933" author="Prasanna, Saikumar" context="rel3.5 reports" runOnChange="true">
+        <comment>Adding a procedure for bed management report in ward</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS DISCHARGE_DATE;
+        </sql>
+        <sqlFile splitStatements="false" path="reports/dischargeDate.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201802051954" author="Prasanna, Saikumar" context="rel3.5 reports" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM liquibasechangelog WHERE ID = 'Amman-201802051933';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding a function for bed management report in ward</comment>
+        <sql>
+            DROP FUNCTION IF EXISTS GET_DISCHARGE_DATE;
+        </sql>
+        <sqlFile splitStatements="false" path="reports/getDischargeDate.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201802061029" author="Mahesh" context="rel3.5">
+    <comment>Adding codes to specific concepts</comment>
+    <sql>
+        SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'MSF-INTERNAL';
+        INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+        (4,'PHYSIO_TX',@source_id,uuid(),now());
+        INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+        (4,'NP_SUGGESTED',@source_id,uuid(),now());
+        call create_reference_mapping_msf_internal('WWN, Was the dressing changed', 'CHANGE_DRSG');
+        call create_reference_mapping_msf_internal('LLA, Physiotherapy treatment provided to patient', 'PHYSIO_TX');
+        call create_reference_mapping_msf_internal('ULA, Physiotherapy treatment provided to patient', 'PHYSIO_TX');
+        call create_reference_mapping_msf_internal('MPA, Physiotherapy treatment provided to patient', 'PHYSIO_TX');
+        call create_reference_mapping_msf_internal('LLA, Network physio suggested', 'NP_SUGGESTED');
+        call create_reference_mapping_msf_internal('ULA, Network physio suggested', 'NP_SUGGESTED');
+        call create_reference_mapping_msf_internal('MPA, Network physio suggested', 'NP_SUGGESTED');
+    </sql>
+    </changeSet>
+    <changeSet id="Amman-201802051445" author="Mahesh" context="rel3.5" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from privilege where privilege = 'app:limitedprogramqueues';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new app:limitedprogramqueues, app:programqueueaccess privileges</comment>
+        <sql>
+            INSERT INTO privilege(privilege, description, uuid) VALUES ('app:limitedprogramqueues', 'View Expected Arrival, Hospital RSP, TRM patients Program Queues', uuid());
+            INSERT INTO privilege(privilege, description, uuid) VALUES ('app:programqueueaccess', 'View Awaiting, More Information, Postponed, Continue under followup, validated patient Program Queues', uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802051451" author="Mahesh" context="rel3.5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) from role where role = 'Programs-App:LimitedQueues';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Programs-App:LimitedQueues role</comment>
+        <sql>
+            INSERT INTO role(role, description, uuid) VALUES ("Programs-App:LimitedQueues", "Role for Accessing Expected Arrival, Hospital RSP, TRM patients Program Queues", uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802060959" author="Mahesh" context="rel3.5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) from role where role = 'Programs-App:FullQueuesAccess';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Programs-App:FullQueuesAccess role</comment>
+        <sql>
+            INSERT INTO role(role, description, uuid) VALUES ("Programs-App:FullQueuesAccess", "Role for Accessing All Program Queues", uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802051501" author="Mahesh" context="rel3.5" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "Programs-App:LimitedQueues" AND privilege = "app:limitedprogramqueues";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding app:limitedprogramqueues, app:programqueueaccess privilege to Programs-App:LimitedQueues and Programs-App:FullQueuesAccess role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("Programs-App:LimitedQueues","app:limitedprogramqueues");
+            INSERT INTO role_privilege(role, privilege) VALUES ("Programs-App:FullQueuesAccess","app:limitedprogramqueues");
+            INSERT INTO role_privilege(role, privilege) VALUES ("Programs-App:FullQueuesAccess","app:programqueueaccess");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802051759" author="Mahesh" context="rel3.5" >
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM privilege WHERE privilege = "app:limitedprogramqueues";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "Privilege Level: Full" AND privilege = "app:limitedprogramqueues";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding app:limitedprogramqueues, app:programqueueaccess privileges to Privilege Level: Full role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("Privilege Level: Full", "app:limitedprogramqueues");
+            INSERT INTO role_privilege(role, privilege) VALUES ("Privilege Level: Full", "app:programqueueaccess");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802051717" author="Mahesh" context="rel3.5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username ="dina_aah";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "Programs-App:LimitedQueues" AND user_id IN (SELECT user_id FROM users WHERE username = "dina_aah");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Programs-App:LimitedQueues role to specific users</comment>
+        <sql>
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="dina_aah"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="saleem_aa"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="waleed_a"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yousef_aa"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="fadi_aa"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_ab"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abdallah_ad"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ahmad_ad"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="khaled_ah"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abeer_a"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="kamelah_a"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ali_aa"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hadeel_aa"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mai_a"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ahmad_ab"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hadeel_d"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="khaldoon_ad"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yara_ae"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="eman_af"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abdulrahman_af"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="baraa_ah"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="amro_ahm"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="helana_ak"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="noor_ak"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sami_ak"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abdullah_al"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hussein_am"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_am"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="qutaiba_am"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ayman_ao"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="haya_aq"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sufyan_aq"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="saleh_ar"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="doaa_as"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="shadi_a"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_af"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rawan_ag"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mahmoud_ah"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="razan_a"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abdelraouf_ah"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="weaam_a"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="javed_a"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="lina_am"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hilana_a"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="Shadi_k"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="safa_a"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ahmad_ar"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="samar_a"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hadeel_a"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="amani_az"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rawan_b"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ghadeer_b"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="waleed_bo"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="adham_by"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ola_b"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohd_b"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_b"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="osama_b"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="deyaa_eb"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="conor_b"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ashraf_b"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="tareq_f"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abedelmohdi_f"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yasmeen_f"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="amer_f"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="diya_g"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rami_h"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_h"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="waqqad_h"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="manar_h"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yazan_h"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="safa_h"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="zuheir_h"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="Ghassan_h"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ala_h"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="Nagham_H"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ahmad_l"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="maamoun_j"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hanna_j"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="naseer_j"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="nasser_ej"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yazan_k"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="harith_k"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="radah_l"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="muhannad_m"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="muntaha_m"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hamzah_me"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="loay_m"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="pierre_m"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hamzah_m"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="abeer_m"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ashraf_n"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="noor_n"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ahmad_n"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="osama_n"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="shahinaz_n"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="qusay_o"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mamon_q"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="firas_q"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="naser_r"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammed_r"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ruba_r"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="zaid_se"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="kholoud_s"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="mohammad_s"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="salam_s"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="moukhallad_s"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="duaa_s"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="alaa_s"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="khouloud_s"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ammar_s"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="majdi_s"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="nisreen_s"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="elham_t"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yazeed_t"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="omar_t"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="alaa_t"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="iyad_y"),"Programs-App:LimitedQueues");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="asma_z"),"Programs-App:LimitedQueues");
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802061009" author="Mahesh" context="rel3.5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM users WHERE username ="aziz_az";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM user_role WHERE role = "Programs-App:FullQueuesAccess" AND user_id IN (SELECT user_id FROM users WHERE username = "aziz_az");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Programs-App:FullQueuesAccess role to specific users</comment>
+        <sql>
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="aziz_az"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="rasheed_as"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="israa_aj"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="suleiman_ak"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ajeeb_am"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="anneliese_c"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="suzanne_d"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="eman_f"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="julien_f"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="ruba_h"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hani_i"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="yahya_k"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="sajdi_m"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="dyala_o"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="suha_q"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="wahid_s"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="marc_s"),"Programs-App:FullQueuesAccess");
+            INSERT INTO user_role VALUES ((SELECT user_id FROM users WHERE username ="hamza_s"),"Programs-App:FullQueuesAccess");
+        </sql>
+    </changeSet>
 </databaseChangeLog>
