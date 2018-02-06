@@ -259,7 +259,7 @@
       "showNameAndImage": true
     },
     "sections": {
-      "Documents":{
+      "Documents": {
         "translationKey": "DASHBOARD_TITLE_PATIENT_DOCUMENTS",
         "type": "vitals",
         "isObservation": true,
@@ -591,47 +591,20 @@
           "template": "<physical-examination section='config' patient='patient' enrollment='enrollment'></physical-examination>"
         }
       },
-      "Medical Follow-up Plan": {
-        "translationKey": "DASHBOARD_TITLE_MEDICAL_FOLLOW-UP_PLAN",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 13,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "Medical Doctor OPD Follow-up"
-          ],
-          "obsIgnoreList": [
-            "MDOF, Date recorded",
-            "MDOF, Reason for visit",
-            "MDOF, Medication renewal, comments",
-            "MDOF, New complaint of patient",
-            "MDOF, Comments about pain",
-            "MDOF, Comments about patient's medical complaints",
-            "MDOF, Complaint of patient (ABx clinic)",
-            "MDOF, Status of wound",
-            "MDOF, Kidney function",
-            "MDOF, Liver function",
-            "MDOF, Plan",
-            "MDOF, Plan, other",
-            "MDOF, Consultation notes, ABx clinic",
-            "MDOF, Medical course of patient in RSP",
-            "MDOF, Condition of patient at discharge (TRM)",
-            "MDOF, Condition at discharge, other",
-            "MDOF, Reason for visit, other"
-          ],
-          "scope": "latest",
-          "showGroupDateTime": false
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "Medical Doctor OPD Follow-up"
-          ],
-          "isEditable": true,
-          "numberOfVisits": 3,
-          "showDetailsButton": true,
-          "pivotTable": {}
+      "Surgical Follow-up Plan": {
+        "type": "custom",
+        "displayOrder": 11,
+        "config": {
+          "title": "DASHBOARD_TITLE_SURGICAL_FOLLOW_UP_PLAN_KEY",
+          "template": "<surgical-follow_up section='config' patient='patient' enrollment='enrollment'></surgical-follow_up>"
+        }
+      },
+      "Discharge Medication": {
+        "type": "custom",
+        "displayOrder": 18,
+        "config": {
+          "title": "DASHBOARD_TITLE_DISCHARGE_MEDICATION_KEY",
+          "template": "<discharge-medication section='config' patient='patient' enrollment='enrollment'></discharge-medication>"
         }
       },
       "Final Diagnoses": {
@@ -748,22 +721,6 @@
           "template": "<microbiology-lab-results section='config' patient='patient' enrollment='enrollment'></microbiology-lab-results>"
         }
       },
-      "Surgical Follow-up Plan": {
-        "type": "custom",
-        "displayOrder": 18,
-        "config": {
-          "title": "DASHBOARD_TITLE_SURGICAL_FOLLOW_UP_PLAN_KEY",
-          "template": "<surgical-follow_up section='config' patient='patient' enrollment='enrollment'></surgical-follow_up>"
-        }
-      },
-      "Discharge Medication": {
-        "type": "custom",
-        "displayOrder": 19,
-        "config": {
-          "title": "DASHBOARD_TITLE_DISCHARGE_MEDICATION_KEY",
-          "template": "<discharge-medication section='config' patient='patient' enrollment='enrollment'></discharge-medication>"
-        }
-      },
       "Administrative Note": {
         "translationKey": "ADMINISTRATIVE_NOTE_KEY",
         "type": "vitals",
@@ -787,7 +744,7 @@
         }
       }
     }
-    },
+  },
   "Physio Dashboard": {
       "translationKey": "DASHBOARD_TAB_PHYSIO_DASHBOARD_KEY",
       "displayByDefault": false,
