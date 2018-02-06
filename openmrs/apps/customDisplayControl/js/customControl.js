@@ -1339,7 +1339,7 @@ angular.module('bahmni.common.displaycontrol.custom')
                 if (!_.isEmpty(data)) {
                     records.push({
                         name: eachConcept.title,
-                        value: eachConcept.title + ": " + data.valueAsString,
+                        value: data.valueAsString,
                         sort: eachConcept.sort
                     })
                 }

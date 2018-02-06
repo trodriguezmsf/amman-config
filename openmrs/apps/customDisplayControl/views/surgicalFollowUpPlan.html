@@ -20,7 +20,10 @@
         <ul >
             <li ng-repeat="concept in records">
                 <div class="tree-list-item clearfix background-color">
-                    <span ng-if="!isSubTableAble(concept)">{{concept.value}}</span>
+                    <div ng-if="!isSubTableAble(concept)">
+                        <span class="testUnderPanel">{{concept.name}}</span>
+                        <span class="value-text-only">{{concept.value}}</span>
+                    </div>
                     <div ng-if="isSubTableAble(concept)" >
                         <p class="follow-up-needs-title placeholder-text">{{concept.name}}</p>
                         <div class="sub-concept" ng-repeat="value in concept.value">{{value}}</div>
