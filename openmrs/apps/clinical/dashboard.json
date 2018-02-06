@@ -758,8 +758,7 @@
           "isEditable": true,
           "conceptNames": [
             "Administrative Note"
-          ],
-          "scope": "latest"
+          ]
         },
         "expandedViewConfig": {
           "conceptNames": [

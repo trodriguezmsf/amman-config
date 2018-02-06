@@ -25,7 +25,7 @@
       "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Date of File Received", "Name of MLO", "Nationality", "Specialty", "Type Of Medical Information"]
     },
     "order": 3,
-    "requiredPrivilege": "app:clinical"
+    "requiredPrivilege": "app:programqueueaccess"
   },
   "bahmniClinicalPatientsSearchAllAwaitingValidationfollowup": {
     "id": "bahmni.clinical.patients.search.allAwaitingfollowup",
@@ -39,7 +39,7 @@
       "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Name of MLO", "Nationality", "Specialty", "Name of Surgeon 1", "Name of Surgeon 2"]
     },
     "order": 4,
-    "requiredPrivilege": "app:clinical"
+    "requiredPrivilege": "app:programqueueaccess"
   },
   "bahmniClinicalPatientsSearchAllmoreinformation": {
     "id": "bahmni.clinical.patients.search.moreinformation",
@@ -54,7 +54,7 @@
         "Outcomes for 1st stage Anaesthesia validation", "Type of Medical Information Needed for Next Submission"]
     },
     "order": 5,
-    "requiredPrivilege": "app:clinical"
+    "requiredPrivilege": "app:programqueueaccess"
   },
   "bahmniClinicalPatientsSearchAllpostponed": {
     "id": "bahmni.clinical.patients.search.postponed",
@@ -69,7 +69,7 @@
         "Postpone reason", "Comments About Postpone Reason","Medical file to be submitted again by"]
     },
     "order": 6,
-    "requiredPrivilege": "app:clinical"
+    "requiredPrivilege": "app:programqueueaccess"
   },
   "bahmniClinicalPatientsSearchAllPatientsUnderFollowup": {
     "id": "bahmni.clinical.patients.search.emrapi.sqlSearch.continueUnderFollowup",
@@ -83,7 +83,7 @@
       "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Date Of Presentation", "Name of MLO", "Specialty", "Time for next medical follow-up", "Date of next medical follow-up", "Type of medical investigations requested"]
     },
     "order": 7,
-    "requiredPrivilege": "app:clinical"
+    "requiredPrivilege": "app:programqueueaccess"
   },
   "bahmniClinicalPatientsSearchAllvalidatedPatients": {
     "id": "bahmni.clinical.patients.search.validatedPatients",
@@ -97,7 +97,7 @@
       "searchColumns": ["identifier","Date of presentation", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Name of MLO", "Stage", "Specialty","Name of Surgeon","Priority", "Does the patient need surgical final validation", "Expected Month/Year of Arrival","Is Caretaker Required?", "Status of Official ID Documents"]
     },
     "order": 8,
-    "requiredPrivilege": "app:clinical"
+    "requiredPrivilege": "app:programqueueaccess"
   },
   "bahmniClinicalPatientsSearchAllexpectedArrival": {
     "id": "bahmni.clinical.patients.search.expectedArrival",
@@ -128,7 +128,7 @@
         "Patient General Condition",  "Does the patient need accomodation", "Type of Admission Recommended", "Is Caretaker Required?", "Caretaker Gender", "Caretaker Name"]
     },
     "order": 9,
-    "requiredPrivilege": "app:clinical"
+    "requiredPrivilege": "app:limitedprogramqueues"
   },
   "bahmniClinicalPatientsSearchAllhospitalRSP": {
     "id": "bahmni.clinical.patients.search.hospitalRSP",
@@ -142,7 +142,7 @@
       "searchColumns": ["identifier","PATIENT_LISTING_QUEUES_HEADER_NAME", "Date of Arrival", "Age", "Country", "Is Caretaker Required?", "Specialty", "Stage", "Name of Surgeon", "OPD A", "OPD S", "First Surgery", "Procedure (First)", "Last Surgery", "Procedure (Last)", "Date of Appointment", "Bed allocation", "Phase of treatment", "No. Planned Operations", "Estimated LOS"]
     },
     "order": 10,
-    "requiredPrivilege": "app:clinical"
+    "requiredPrivilege": "app:limitedprogramqueues"
   },
   "bahmniClinicalPatientsSearchTrmPatientQueue": {
     "id": "bahmni.clinical.patients.search.trmPatientsQueue",
@@ -156,7 +156,7 @@
       "searchColumns": ["Date of Arrival", "identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Is Caretaker Required?", "Name of Surgeon", "Bed allocation", "Surgeon TRM", "Physio TRM", "OPD Doctor TRM" ]
     },
     "order": 11,
-    "requiredPrivilege": "app:clinical"
+    "requiredPrivilege": "app:limitedprogramqueues"
   },
   "bahmniClinicalPatientsSearchAllPatients": {
     "id": "bahmni.clinical.patients.search.allPatients",
