@@ -1336,9 +1336,9 @@ angular.module('bahmni.common.displaycontrol.custom')
         records = records || [];
         _.forEach(concepts, function (eachConcept) {
             if (eachConcept.title === "Follow-up needs") {
-                eachConcept.mappers(records, responseData, requestDocuments, requestDocumentsOf);
+                eachConcept.mapper(records, responseData, requestDocuments, requestDocumentsOf);
             } else {
-                var data = eachConcept.mappers(responseData, eachConcept.name);
+                var data = eachConcept.mapper(responseData, eachConcept.name);
                 if (!_.isEmpty(data)) {
                     records.push({
                         name: eachConcept.title,
@@ -1360,9 +1360,9 @@ angular.module('bahmni.common.displaycontrol.custom')
             var requestDocuments = ["X-ray at:", "Video after:", "Photo after:"];
             var requestDocumentsOf = ["X-ray of:", "Video of:", "Photo of::"];
             var concepts = [
-                {title: "Follow-up plan", name: "Follow-up plan", mappers: findConcept, sort: 1},
-                {title: "Follow-up needs", name: "MLO visit at:", mappers: getFollowUpNeedsValues, sort: 2},
-                {title: "Notes", name: "Notes, other", mappers: getNotesDetails, sort: 3}
+                {title: "Follow-up plan", name: "Follow-up plan", mapper: findConcept, sort: 1},
+                {title: "Follow-up needs", name: "MLO visit at:", mapper: getFollowUpNeedsValues, sort: 2},
+                {title: "Notes", name: "Notes, other", mapper: getNotesDetails, sort: 3}
             ];
 
             if (!_.isEmpty(response.data[0])) {
