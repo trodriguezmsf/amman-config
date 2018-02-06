@@ -112,7 +112,7 @@
     }
   },
   "customReport18": {
-    "name": "Bed Management Indicators",
+    "name": "Bed Management Indicators(Custom Excel)",
     "type": "concatenated",
     "config": {
       "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/bedManagementIndicators.xls",
@@ -170,7 +170,7 @@
     }
   },
   "customReport19": {
-    "name": "Indicators",
+    "name": "Indicators(Custom Excel)",
     "type": "concatenated",
     "config": {
       "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/indicatorTemplate.xls",
