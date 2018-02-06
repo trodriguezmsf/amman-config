@@ -6756,6 +6756,7 @@
     <changeSet id="Amman-201802061029" author="Mahesh" context="rel3.5">
     <comment>Adding codes to specific concepts</comment>
     <sql>
+        SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'MSF-INTERNAL';
         INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
         (4,'PHYSIO_TX',@source_id,uuid(),now());
         INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
