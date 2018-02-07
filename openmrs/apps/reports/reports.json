@@ -376,6 +376,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/complicationImpact.sql"
           }
+        },
+        {
+          "name": "PICCLineInfo",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/piccLineInfo.sql"
+          }
         }
       ]
     }
