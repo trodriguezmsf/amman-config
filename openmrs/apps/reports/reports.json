@@ -165,6 +165,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/nwFollowUpAndPreoperativeDates.sql"
           }
+        },
+        {
+          "name": "IsolatedWardBeds",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/isolatedWardBeds.sql"
+          }
         }
       ]
     }
