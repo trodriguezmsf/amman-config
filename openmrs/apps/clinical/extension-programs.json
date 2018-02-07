@@ -139,7 +139,7 @@
       "translationKey": "MODULE_LABEL_HOSPITAL_RSP_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
-      "searchColumns": ["identifier","PATIENT_LISTING_QUEUES_HEADER_NAME", "Date of Arrival", "Age", "Country", "Is Caretaker Required?", "Specialty", "Stage", "Name of Surgeon", "OPD A", "OPD S", "First Surgery", "Procedure (First)", "Last Surgery", "Procedure (Last)", "Date of Appointment", "Bed allocation", "Phase of treatment", "No. Planned Operations", "Estimated LOS"]
+      "searchColumns": ["identifier","PATIENT_LISTING_QUEUES_HEADER_NAME", "Date of Arrival", "Age", "Country", "Is Caretaker Required?", "Specialty", "Stage", "Name of Surgeon", "OPD A", "OPD S", "First Surgery", "Procedure (First)", "Last Surgery", "Procedure (Last)", "Date of Appointment","Service Appointment Type","Provider name","Nursing consultation notes", "Bed allocation", "Phase of treatment", "No. Planned Operations", "Estimated LOS"]
     },
     "order": 10,
     "requiredPrivilege": "app:limitedprogramqueues"

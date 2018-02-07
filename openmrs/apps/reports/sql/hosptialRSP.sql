@@ -182,7 +182,7 @@ FROM
               GROUP BY latest_appointment.patient_id
             )last_surgery on last_surgery.patient_id = personData.person_id
   LEFT OUTER JOIN (
-                    SELECT
+                     SELECT
                       patappoint.patient_id,
                       patappoint.start_date_time                 AS startdate,
                       patappoint.end_date_time                   AS enddate,
@@ -194,8 +194,7 @@ FROM
                       INNER JOIN (
                                    SELECT
                                      pa.patient_id           AS patient_id,
-                                     MIN(pa.start_date_time) AS appointment_date,
-                                     pa.appointment_service_type_id
+                                     MIN(pa.start_date_time) AS appointment_date
                                    FROM
                                      patient_appointment pa
                                    WHERE
@@ -203,10 +202,10 @@ FROM
                                    GROUP BY
                                      pa.patient_id
                                  ) next_appointment
-                        ON patappoint.start_date_time = next_appointment.appointment_date AND patappoint.start_date_time = next_appointment.appointment_date
+                        ON patappoint.start_date_time = next_appointment.appointment_date AND patappoint.patient_id = next_appointment.patient_id
                       LEFT OUTER JOIN provider prov ON prov.provider_id = patappoint.provider_id AND prov.retired IS FALSE
                       LEFT OUTER JOIN person_name pn ON pn.person_id = prov.person_id AND pn.voided IS FALSE
-                      LEFT OUTER JOIN appointment_service_type ast ON ast.appointment_service_type_id = next_appointment.appointment_service_type_id AND ast.voided IS FALSE
+                      LEFT OUTER JOIN appointment_service_type ast ON ast.appointment_service_type_id = patappoint.appointment_service_type_id AND ast.voided IS FALSE
                     GROUP BY patappoint.patient_id
                   ) latest_future_appointment ON latest_future_appointment.patient_id = personData.person_id
   LEFT OUTER JOIN (
@@ -222,8 +221,7 @@ FROM
                       INNER JOIN (
                                    SELECT
                                      pa.patient_id           AS patient_id,
-                                     MAX(pa.start_date_time) AS appointment_date,
-                                     pa.appointment_service_type_id
+                                     MAX(pa.start_date_time) AS appointment_date
                                    FROM
                                      patient_appointment pa
                                    WHERE
@@ -233,7 +231,7 @@ FROM
                                  ) next_appointment ON patappoint.patient_id = next_appointment.patient_id AND patappoint.start_date_time = next_appointment.appointment_date
                       LEFT OUTER JOIN provider prov ON prov.provider_id = patappoint.provider_id AND prov.retired IS FALSE
                       LEFT OUTER JOIN person_name pn ON pn.person_id = prov.person_id AND pn.voided IS FALSE
-                      LEFT OUTER JOIN appointment_service_type ast ON ast.appointment_service_type_id = next_appointment.appointment_service_type_id AND ast.voided IS FALSE
+                      LEFT OUTER JOIN appointment_service_type ast ON ast.appointment_service_type_id = patappoint.appointment_service_type_id AND ast.voided IS FALSE
                     GROUP BY patappoint.patient_id
                   ) latest_past_appointment ON latest_past_appointment.patient_id = personData.person_id
       LEFT JOIN (
