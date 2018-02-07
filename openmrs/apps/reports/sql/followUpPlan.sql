@@ -28,3 +28,4 @@ FROM
                  INNER JOIN concept_view cna ON cna.concept_id = o.value_coded AND cna.retired IS FALSE
              ) followUpPlan
     ON followUpPlan.patient_id = nwFollowUpInfo.patient_id
+WHERE YEAR(followUpPlan.obs_datetime) = YEAR('#startDate#') AND YEAR(nwFollowUpInfo.start_date) = YEAR('#startDate#')
