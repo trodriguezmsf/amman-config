@@ -8,14 +8,11 @@ INSERT INTO global_property (property, property_value, description, uuid)
   DATE_FORMAT(sb.start_datetime, '%d/%m/%Y')             AS 'Date of Surgery',
   CONCAT(pn.given_name, ' ', pn.family_name)             AS Surgeon,
   surgical_appointment_procedure.value                   AS `Procedure`,
-  l.name                                                 AS OT,
   latest_encounter_with_sb.type_of_administered          AS `Type of anaesthesia administered`,
   latest_encounter_with_sb.`Complication of Anaesthesia` AS `Complication of anaesthesia`,
   latest_encounter_with_sb.blood_transfusion             AS `Blood Transfusion`,
   latest_encounter_with_sb.Transfusion                   AS `Transfusion and Adverse Reactions`
 FROM surgical_block sb
-  INNER JOIN location l ON sb.location_id = l.location_id
-                           AND l.retired IS FALSE
   INNER JOIN surgical_appointment sa ON sa.surgical_block_id = sb.surgical_block_id
                                         AND sa.voided IS FALSE
   INNER JOIN person person ON person.person_id = sa.patient_id
