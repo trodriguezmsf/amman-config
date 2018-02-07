@@ -4,21 +4,15 @@ SELECT uuid() INTO @uuid;
 INSERT INTO global_property (property, property_value, description, uuid)
  VALUES ('bahmni.sqlGet.otSurgicalHistory',
 "SELECT
-  surgical_appointment_with_stage.stage                       AS Stage,
-  DATE_FORMAT(sb.start_datetime, '%d/%m/%Y')                  AS 'Date of Surgery',
-  CONCAT(pn.given_name, ' ', pn.family_name)                  AS Surgeon,
-  surgical_appointment_procedure.value                        AS Procedures,
-  sa.status                                                   AS `Status`,
-  l.name                                                      AS OT,
-  latest_encounter_with_sb.codes                              AS `Type of Anaesthesia Administered`,
-  latest_encounter_with_sb.complication                       AS `Complication of Anaesthesia`,
-  latest_encounter_with_sb.description                        AS `Description of Complication`,
-  latest_encounter_with_sb.bloodTransfusion                   AS `Blood Transfusion`,
-  latest_encounter_with_sb.bloodProduct                       AS `Blood Product`,
-  latest_encounter_with_sb.numberOfUnits                      AS `No.of Units Given`,
-  latest_encounter_with_sb.reaction                           AS `Intra-operative Reaction`,
-  latest_encounter_with_sb.comments                           AS `Reaction Comments`,
-  DATE_FORMAT(latest_encounter_with_sb.anaesthesiaStartDate, '%d/%m/%Y') AS `Anaesthesia Start Date`
+  surgical_appointment_with_stage.stage                  AS Stage,
+  DATE_FORMAT(sb.start_datetime, '%d/%m/%Y')             AS 'Date of Surgery',
+  CONCAT(pn.given_name, ' ', pn.family_name)             AS Surgeon,
+  surgical_appointment_procedure.value                   AS `Procedure`,
+  l.name                                                 AS OT,
+  latest_encounter_with_sb.type_of_administered          AS `Type of anaesthesia administered`,
+  latest_encounter_with_sb.`Complication of Anaesthesia` AS `Complication of anaesthesia`,
+  latest_encounter_with_sb.blood_transfusion             AS `Blood Transfusion`,
+  latest_encounter_with_sb.Transfusion                   AS `Transfusion and Adverse Reactions`
 FROM surgical_block sb
   INNER JOIN location l ON sb.location_id = l.location_id
                            AND l.retired IS FALSE
@@ -83,132 +77,140 @@ FROM surgical_block sb
                                             AND sa.voided IS FALSE
       LEFT OUTER JOIN (
                         SELECT
-                          encounter_coded_answer.patient_id,
-                          encounter_coded_answer.encounter_id,
-                          encounter_coded_answer.codes,
-                          encounter_coded_answer.complication,
-                          encounter_coded_answer.bloodTransfusion,
-                          encounter_coded_answer.reaction,
-                          encounter_coded_answer.bloodProduct,
-                          encounters_non_coded_value.comments,
-                          encounters_non_coded_value.description,
-                          encounters_non_coded_value.anaesthesiaStartDate,
-                          encounters_non_coded_value.numberOfUnits,
-                          encounter_coded_answer.encounter_datetime AS encounter_datetime
-                        FROM (
-                               SELECT
-                                 encounters_coded_answer_code.patient_id,
-                                 encounters_coded_answer_code.encounter_id,
-                                 encounters_coded_answer_code.encounter_datetime,
-                                 group_concat(
-                                     if(encounters_coded_answer_code.name = 'APN, Type of anaesthesia administered',
-                                        concept_name.name,
-                                        NULL))          AS codes,
-                                 group_concat(if(encounters_coded_answer_code.name = 'APN, Complication of anaesthesia',
-                                                 concept_name.name,
-                                                 NULL)) AS complication,
-                                 group_concat(
-                                     if(encounters_coded_answer_code.name = 'APN, Blood transfusion', concept_name.name,
-                                        NULL))          AS bloodTransfusion,
-                                 group_concat(
-                                     if(encounters_coded_answer_code.name = 'APN, Blood product, intra-operatively',
-                                        concept_name.name,
-                                        NULL))          AS bloodProduct,
-                                 group_concat(
-                                     if(encounters_coded_answer_code.name =
-                                        'APN, Intra-operative transfusion related reaction',
-                                        concept_name.name,
-                                        NULL))          AS reaction
-                               FROM (SELECT
-                                       e.patient_id         AS patient_id,
-                                       e.encounter_id       AS encounter_id,
-                                       e.encounter_datetime AS encounter_datetime,
-                                       o.value_coded        AS value_coded,
-                                       o.value_datetime,
-                                       o.concept_id,
-                                       outcome_cn.name
-                                     FROM
-                                       encounter e
-                                       INNER JOIN
-                                       obs o ON o.encounter_id = e.encounter_id
-                                                AND e.voided IS FALSE
-                                                AND o.voided IS FALSE
-                                       INNER JOIN
-                                       concept_name outcome_cn ON outcome_cn.concept_id = o.concept_id
-                                                                  AND outcome_cn.concept_name_type =
-                                                                      'FULLY_SPECIFIED'
-                                                                  AND outcome_cn.name IN
-                                                                      ('APN, Type of anaesthesia administered',
-                                                                       'APN, Complication of anaesthesia',
-                                                                       'APN, Blood transfusion',
-                                                                       'APN, Blood product, intra-operatively',
-                                                                       'APN, Intra-operative transfusion related reaction'
-                                                                      )
-                                                                  AND outcome_cn.voided IS FALSE
-                                     WHERE e.patient_id = (SELECT person_id
-                                                           FROM person
-                                                           WHERE uuid = ${patientUuid})) AS encounters_coded_answer_code
-                                 INNER JOIN
-                                 concept_name
-                                   ON encounters_coded_answer_code.value_coded = concept_name.concept_id AND
-                                      concept_name_type = 'FULLY_SPECIFIED'
-                               GROUP BY encounter_id) encounter_coded_answer
-                          INNER JOIN
-                          (
-                            SELECT
-                              non_coded_values.patient_id,
-                              group_concat(anaesthesiaStartDate) AS anaesthesiaStartDate,
-                              group_concat(comments)             AS comments,
-                              group_concat(description)          AS description,
-                              group_concat(numberOfUnits)        AS numberOfUnits,
-                              non_coded_values.encounter_id
-                            FROM
-                              (SELECT
-                                 e.patient_id           AS patient_id,
-                                 e.encounter_id         AS encounter_id,
-                                 e.encounter_datetime   AS encounter_datetime,
-                                 outcome_cn.name,
-                                 if(outcome_cn.name = 'APN, Number of units given', o.value_numeric,
-                                    NULL)               AS numberOfUnits,
-                                 o.value_coded          AS value_coded,
-                                 o.value_datetime       AS anaesthesiaStartDate,
-                                 o.concept_id,
-                                 if(outcome_cn.name =
-                                    'APN, Intra-operative transfusion related reaction, comments',
-                                    o.value_text, NULL) AS comments,
-                                 if(outcome_cn.name = 'APN, Description of complication', o.value_text,
-                                    NULL)               AS description
-                               FROM
-                                 encounter e
+                          concatenated_concepts.Transfusion,
+                          concatenated_concepts.`Complication of Anaesthesia`,
+                          non_concatenated_concepts.blood_transfusion,
+                          non_concatenated_concepts.type_of_administered,
+                          concatenated_concepts.person_id,
+                          concatenated_concepts.encounter_id,
+                          encounter.encounter_datetime
+                        FROM
+                          (SELECT
+                             group_concat(if(result.obs_group_name = 'APN, Transfusion', result.concatenated_answer,
+                                             NULL))                             AS `Transfusion`,
+                             group_concat(if(result.obs_group_name = 'Post-operative Anaesthesia Note',
+                                             result.concatenated_answer, NULL)) AS `Complication of Anaesthesia`,
+                             result.encounter_id,
+                             result.person_id
+                           FROM
+                             (SELECT
+                                group_concat(transfusion.concatenated_answer) AS concatenated_answer,
+                                transfusion.concept_id,
+                                if(cv.concept_full_name = 'Intra-operative blood products', 'APN, Transfusion',
+                                   cv.concept_full_name)                      AS obs_group_name,
+                                transfusion.encounter_id,
+                                transfusion.person_id
+                              FROM (SELECT
+                                      obs.concept_id,
+                                      obs.person_id,
 
-                                 INNER JOIN
-                                 obs o ON o.encounter_id = e.encounter_id
-                                          AND e.voided IS FALSE
-                                          AND o.voided IS FALSE
-                                 INNER JOIN
-                                 concept_name outcome_cn
-                                   ON outcome_cn.concept_id = o.concept_id
-                                      AND outcome_cn.concept_name_type = 'FULLY_SPECIFIED'
-                                      AND
-                                      outcome_cn.name IN
-                                      ('APN, Anaesthesia start time',
-                                       'APN, Intra-operative transfusion related reaction, comments',
-                                       'APN, Number of units given',
-                                       'APN, Description of complication'
-                                      )
-                                      AND outcome_cn.voided IS FALSE
-                               WHERE e.patient_id =
-                                     (SELECT person_id
-                                      FROM person
-                                      WHERE uuid =
-                                            ${patientUuid})) non_coded_values
-                            GROUP BY
-                              encounter_id) encounters_non_coded_value
-                            ON encounters_non_coded_value.encounter_id = encounter_coded_answer.encounter_id
-                        ORDER BY encounter_coded_answer.encounter_id DESC
+                                      group_concat(grouped_answers.concatenated_answer SEPARATOR
+                                                   ', ') AS concatenated_answer,
+                                      grouped_answers.obs_group_id,
+                                      grouped_answers.encounter_id
+                                    FROM
+                                      (SELECT
+                                         concat(group_concat(concept_view.concept_full_name SEPARATOR ', '), ' (',
+                                                (if(non_coded_concepts.value_text IS NULL,
+                                                    non_coded_concepts.value_numeric,
+                                                    non_coded_concepts.value_text)), ')') AS concatenated_answer,
+                                         coded_concepts.obs_group_id,
+                                         coded_concepts.encounter_id,
+                                         coded_concepts.concept_id
+                                       FROM (SELECT *
+                                             FROM obs
+                                             WHERE obs.voided IS FALSE AND concept_id IN (
+                                               SELECT concept_id
+                                               FROM concept_view
+                                               WHERE concept_view.retired IS FALSE AND concept_full_name IN
+                                                                                       ('APN, Blood product, intra-operatively', 'APN, Intra-operative transfusion related reaction', 'APN, Complication of anaesthesia')
+                                             ) AND person_id = (SELECT person_id
+                                                                FROM person
+                                                                WHERE uuid = ${patientUuid})) coded_concepts INNER JOIN
+                                         concept_view
+                                           ON concept_view.concept_id = coded_concepts.value_coded
+                                         INNER JOIN (
+                                                      SELECT *
+                                                      FROM obs
+                                                      WHERE obs.voided IS FALSE AND concept_id IN (
+                                                        SELECT concept_id
+                                                        FROM concept_view
+                                                        WHERE concept_view.retired IS FALSE AND concept_full_name IN
+                                                                                                ('APN, Number of units given', 'APN, Intra-operative transfusion related reaction, comments', 'APN, Description of complication')
+                                                      ) AND person_id = (SELECT person_id
+                                                                         FROM person
+                                                                         WHERE
+                                                                           uuid = ${patientUuid})) non_coded_concepts
+                                           ON coded_concepts.obs_group_id = non_coded_concepts.obs_group_id
+                                       GROUP BY coded_concepts.obs_group_id) grouped_answers
+                                      INNER JOIN obs ON grouped_answers.obs_group_id = obs.obs_id AND
+                                                        grouped_answers.encounter_id = obs.encounter_id
+                                                        AND obs.voided IS FALSE
+                                    GROUP BY obs.concept_id, obs.encounter_id) transfusion
+                                INNER JOIN concept_view cv ON cv.concept_id = transfusion.concept_id
+                              GROUP BY transfusion.encounter_id, obs_group_name
+                             ) result
+                           GROUP BY encounter_id) concatenated_concepts
+                          INNER JOIN (
+                                       SELECT
+                                         coded.encounter_id,
+                                         group_concat(if(
+                                                          coded.concept_full_name
+                                                          =
+                                                          'APN, Type of anaesthesia administered',
+                                                          coded.answer_value,
+                                                          NULL) SEPARATOR
+                                                      ', ') AS type_of_administered,
+                                         group_concat(if(
+                                                          coded.concept_full_name
+                                                          =
+                                                          'APN, Blood transfusion',
+                                                          coded.answer_value,
+                                                          NULL) SEPARATOR
+                                                      ', ') AS blood_transfusion
+                                       FROM
+                                         (
+                                           SELECT
+                                             obs.concept_id,
+                                             group_concat(
+                                                 concept_view.concept_full_name
+                                                 SEPARATOR
+                                                 ', ') AS answer_value,
+                                             cv.concept_full_name,
+                                             obs.encounter_id
+                                           FROM obs
+                                             INNER JOIN concept_view cv
+                                               ON obs.concept_id =
+                                                  cv.concept_id AND
+                                                  cv.retired IS FALSE AND
+                                                  cv.concept_full_name IN
+                                                  ('APN, Type of anaesthesia administered',
+                                                   'APN, Blood transfusion')
+                                                  AND person_id = (SELECT person_id
+                                                                   FROM person
+                                                                   WHERE uuid = ${patientUuid})
+                                             INNER JOIN concept_view
+                                               ON concept_view.concept_id
+                                                  = obs.value_coded AND
+                                                  obs.voided IS FALSE
+                                           GROUP BY encounter_id,
+                                             cv.concept_full_name) coded
+                                       GROUP BY
+                                         encounter_id) non_concatenated_concepts
+                            ON concatenated_concepts.encounter_id = non_concatenated_concepts.encounter_id
+                          INNER JOIN encounter ON encounter.encounter_id = concatenated_concepts.encounter_id
+                        ORDER BY encounter_datetime DESC
                         LIMIT 1
-                      ) latest_encounter ON latest_encounter.patient_id = sa.patient_id AND
-                               latest_encounter.encounter_datetime <= sb.end_datetime
+                      ) latest_encounter ON latest_encounter.person_id = sa.patient_id AND
+                                            (SELECT cast(obs.value_datetime AS DATE) AS anaesthesiaStartDate
+                                             FROM obs obs
+                                             WHERE obs.concept_id = (SELECT concept_view.concept_id
+                                                                     FROM concept_view
+                                                                     WHERE concept_view.concept_full_name =
+                                                                           'APN, Anaesthesia start time') AND
+                                                   obs.voided IS FALSE AND
+                                                   obs.encounter_id = latest_encounter.encounter_id) =
+                                            cast(sb.start_datetime AS DATE)
     GROUP BY surgical_appointment_id
   ) latest_encounter_with_sb ON latest_encounter_with_sb.surgical_appointment_id = sa.surgical_appointment_id
 WHERE sa.status = 'COMPLETED' ORDER BY sb.start_datetime DESC;"
