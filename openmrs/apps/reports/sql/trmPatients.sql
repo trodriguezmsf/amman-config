@@ -9,6 +9,7 @@ SELECT
   `Bed allocation`,
   DATE_FORMAT(surgeonTRM.value_datetime, '%d/%m/%Y')         AS `Surgeon TRM`,
   DATE_FORMAT(physioTRM.value_datetime, '%d/%m/%Y')          AS `Physio TRM`,
+  DATE_FORMAT(psychoSocialTRM.value_datetime, '%d/%m/%Y')    AS `Psycho-social TRM`,
   DATE_FORMAT(reasonForVisitDate.value_datetime, '%d/%m/%Y') AS `OPD Doctor TRM`
 FROM person p
   INNER JOIN patient_identifier pi ON pi.patient_id = p.person_id AND p.voided IS FALSE AND pi.voided IS FALSE
@@ -180,6 +181,32 @@ FROM person p
                            drConcept.concept_id = daterecorded.concept_id
                       GROUP BY o.person_id
                   ) physioTRM ON physioTRM.person_id = p.person_id
+  LEFT OUTER JOIN (
+                  SELECT
+                      o.person_id,
+                      daterecorded.value_datetime
+                    FROM
+                      obs o
+                      JOIN (
+                             SELECT
+                               o.obs_id,
+                               MAX(o.obs_datetime) AS obsDateTime,
+                               o.person_id
+                             FROM obs o
+                               JOIN concept_name cn ON cn.concept_id = o.concept_id AND
+                                                       cn.name = 'PIA, Psychosocial overview and comments'
+                                                       AND cn.concept_name_type = 'FULLY_SPECIFIED'
+                                                       AND o.voided IS FALSE AND cn.voided IS FALSE
+                             GROUP BY person_id) latest_obs ON latest_obs.obsDateTime = o.obs_datetime
+                                                               AND latest_obs.person_id = o.person_id
+                                                               AND o.voided IS FALSE
+                      JOIN obs daterecorded
+                        ON daterecorded.obs_group_id = o.obs_group_id AND daterecorded.voided IS FALSE
+                      JOIN concept_name drConcept
+                        ON drConcept.name = 'PIA, Date of consultation' AND
+                           drConcept.concept_id = daterecorded.concept_id
+                  GROUP BY o.person_id
+                 ) psychoSocialTRM ON psychoSocialTRM.person_id = p.person_id
   LEFT OUTER JOIN (
                     SELECT
                         o.person_id,
