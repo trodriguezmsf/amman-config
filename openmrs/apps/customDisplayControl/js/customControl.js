@@ -218,11 +218,16 @@ angular.module('bahmni.common.displaycontrol.custom')
         };
 
         spinner.forPromise(getResponseFromQuery().then(function (response) {
-            $scope.surgicalHistory = response.data;
-            if ($scope.surgicalHistory.length <= 0) {
-                emitNoDataPresentEvent();
+            var entries = response.data;
+            if (_.isEmpty(entries)) {
+                return $scope.$emit("no-data-present-event");
             } else {
-                $scope.headings = _.keys($scope.surgicalHistory[0]);
+                $scope.surgicalHistory = entries;
+                $scope.headings = _.filter(_.keys(_.first(entries)), function (header) {
+                    return _.some(entries, function (entry) {
+                        return !_.isEmpty(entry[header]);
+                    });
+                });
             }
         }));
     };

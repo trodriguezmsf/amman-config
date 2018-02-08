@@ -5,7 +5,7 @@
             <table>
                 <thead>
                 <tr>
-                    <th ng-repeat="header in ::headings track by $index">
+                    <th ng-repeat="header in ::headings track by $index" style="text-align: center">
                         <span>{{header}}</span>
                     </th>
                 </tr>
@@ -13,7 +13,7 @@
                 <tbody>
                 <tr ng-repeat="entry in ::surgicalHistory track by $index">
                     <td autoclose="true" ng-repeat="header in ::headings track by $index"
-                        ng-class="::{'is-abnormal': (columnResult.abnormal == true)}">
+                        ng-class="::{'is-abnormal': (columnResult.abnormal == true)}" style="text-align: center !important;">
                         <span ng-class="::{'is-abnormal': (columnResult.abnormal == true)}">{{ entry[header]}}</span>
                     </td>
                 </tr>
