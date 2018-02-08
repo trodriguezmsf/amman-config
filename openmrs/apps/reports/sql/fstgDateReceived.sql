@@ -30,3 +30,4 @@ FROM
                WHERE cn.name = 'Identification') identificationStateDetails
     ON identificationStateDetails.patient_id = dateRecieved.person_id AND
        dateOfFileRecieved BETWEEN startDate AND endDate
+WHERE YEAR(dateOfFileRecieved) = YEAR('#startDate#')

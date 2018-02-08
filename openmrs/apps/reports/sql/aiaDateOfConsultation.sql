@@ -1,6 +1,6 @@
 SELECT
   person_id,
-  CAST(aiaDateOfConsultation AS DATE)          AS aiaDateOfConsultation,
+  CAST(aiaDateOfConsultation AS DATE)          AS `aiaDateOfConsultation`,
   CAST(MAX(preOpStartDate.start_date) AS DATE) AS `recentPreOperativeDate`
 FROM
   (SELECT
@@ -30,4 +30,5 @@ FROM
    WHERE cn.name = 'Pre-Operative') preOpStartDate ON preOpStartDate.patient_id = dateOfConsultation.person_id AND
                                                       preOpStartDate.start_date <=
                                                       dateOfConsultation.aiaDateOfConsultation
+  WHERE year(aiaDateOfConsultation)=YEAR('#startDate#')
 GROUP BY preOpStartDate.patient_id, dateOfConsultation.aiaDateOfConsultation

@@ -106,4 +106,4 @@ FROM
        ON finalIdentification.resultsGroupId = specimenCollection.specimenGroupId
   ) microBiology
     ON drug_orders.patient_id = microBiology.person_id AND drug_orders.visit_id = microBiology.visit_id
-WHERE microBiology.sampleCollectionDate BETWEEN dateActivated AND autoExpireDate
+WHERE microBiology.sampleCollectionDate BETWEEN dateActivated AND autoExpireDate AND YEAR(autoExpireDate) = YEAR('#startDate#');

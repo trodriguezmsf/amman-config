@@ -48,4 +48,5 @@ FROM obs o
    GROUP BY PNFDateTime.encounter_id
   ) recentPainSeverity
     ON o.obs_datetime = recentPainSeverity.recentPainSeverityDateTime AND recentPainSeverity.patient_id = o.person_id
+  WHERE YEAR(PNFRefferalDate) = YEAR('#startDate#')
 ORDER BY o.person_id

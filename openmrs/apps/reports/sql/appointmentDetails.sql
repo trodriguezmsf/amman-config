@@ -1,6 +1,6 @@
 select patient_id,
-  CAST(start_date_time AS DATE) AS startDate,
-  l.name AS location,
+  CAST(start_date_time AS DATE) AS `startDate`,
+  l.name AS `location`,
   status,
   appSer.name as `appointment_service`,
   ast.name    as `appointment_service_sub`,
@@ -18,3 +18,5 @@ from patient_appointment pa
       from provider p
         INNER JOIN person_name pn ON pn.person_id = p.person_id AND pn.voided IS FALSE AND p.retired IS FALSE
     ) provider ON pa.provider_id = provider.provider_id
+WHERE year(start_date_time)=YEAR('#startDate#')
+

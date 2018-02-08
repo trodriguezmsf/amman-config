@@ -1,8 +1,9 @@
 SELECT
   patientState.patient_id,
-  IF(patientState.name = 'Network Follow-up',patientState.name,''),
-  IF(patientState.name = 'Network Follow-up',CAST(patientState.startDate AS DATE),''),
+  IF(patientState.name = 'Network Follow-up',patientState.name,'') AS patientState,
+  IF(patientState.name = 'Network Follow-up',CAST(patientState.startDate AS DATE),'') AS nwStartDate,
   IF(surgeonFollowup.surgeonFollowUPPlanObsDateTime IS NOT NULL, CAST(surgeonFollowup.surgeonFollowUPPlanObsDateTime AS DATE), '')
+                                              AS surgeonFollowUpDate
 FROM (SELECT
         p.patient_id,
         cn.name,

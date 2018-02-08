@@ -1,3 +1,4 @@
+SELECT * FROM (
 SELECT
   wardOccupency.patient_id,
   CAST(min(wardOccupency.date_started) AS DATE )             AS startDate,
@@ -22,4 +23,5 @@ FROM
   ) wardOccupency
 GROUP BY patient_id, dischargeDate
 HAVING dischargeDate is not NULL
-ORDER BY patient_id,date_started
+ORDER BY patient_id,date_started) wardBedOccupency
+WHERE YEAR(startDate) = YEAR(dischargeDate) AND YEAR(startDate) = YEAR('#startDate#')
