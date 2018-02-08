@@ -197,12 +197,9 @@ angular.module('bahmni.common.displaycontrol.custom')
     }
 }]).directive('surgicalHistory', ['$http', 'appService', 'spinner', function ($http, appService, spinner) {
     var link = function ($scope) {
+        $scope.isEmpty = true;
         $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/surgicalHistory.html";
         $scope.title = $scope.config.title;
-
-        var emitNoDataPresentEvent = function () {
-            return $scope.$emit("no-data-present-event");
-        };
 
         var getResponseFromQuery = function () {
             var params = {
@@ -220,7 +217,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         spinner.forPromise(getResponseFromQuery().then(function (response) {
             var entries = response.data;
             if (_.isEmpty(entries)) {
-                return $scope.$emit("no-data-present-event");
+                $scope.$emit("no-data-present-event");
             } else {
                 $scope.surgicalHistory = entries;
                 $scope.headings = _.filter(_.keys(_.first(entries)), function (header) {
@@ -229,6 +226,7 @@ angular.module('bahmni.common.displaycontrol.custom')
                     });
                 });
             }
+            $scope.isEmpty = _.isEmpty($scope.headings);
         }));
     };
 

@@ -1,7 +1,7 @@
 <div id="customControl">
     <h2 class="section-title">{{title | titleTranslate}} </h2>
     <section class="block hierarchy">
-        <div ng-if="surgicalHistory.length > 0" style="overflow: scroll">
+        <div ng-if="!isEmpty" style="overflow: scroll">
             <table>
                 <thead>
                 <tr>
@@ -20,7 +20,7 @@
                 </tbody>
             </table>
         </div>
-        <div ng-if="surgicalHistory.length == 0">
+        <div ng-if="isEmpty">
             <div class="placeholder-text" ><p translate="DISPLAY_CONTROL_ERROR_MESSAGE_KEY"
                                               translate-values="::{displayControl : '{{'Surgical Appointments' | translate}}'}"></p>
             </div>
