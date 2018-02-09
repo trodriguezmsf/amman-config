@@ -405,6 +405,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/exitsFromPhysio.sql"
           }
+        },
+        {
+          "name": "PatientsWith1x",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientsWith1x.sql"
+          }
         }
       ]
     }
