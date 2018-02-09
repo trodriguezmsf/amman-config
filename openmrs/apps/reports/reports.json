@@ -389,9 +389,17 @@
   },
   "customReport20": {
     "name": "Physio Indicators",
-    "type": "MRSGeneric",
+    "type": "concatenated",
     "config": {
-      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/hosptialRSP.sql"
+      "reports":[
+        {
+          "name": "firstNonIAApts",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/firstNonIAAppointment.sql"
+          }
+        }
+      ]
     }
   }
 }
