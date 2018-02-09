@@ -1,7 +1,7 @@
 SELECT
   nwFollowUpInfo.patient_id               AS `patient_id`,
   followUpPlan.followUpPlan               AS `followUpPlan`,
-  CAST(followUpPlan.obs_datetime AS DATE) AS `followUpPlanDate`,
+  CAST(MIN(followUpPlan.obs_datetime) AS DATE) AS `followUpPlanDate`,
   CAST(nwFollowUpInfo.start_date AS DATE) AS `nwFollowUpStartDate`
 FROM
   (SELECT
@@ -27,5 +27,6 @@ FROM
                       AND cnq.retired IS FALSE
                  INNER JOIN concept_view cna ON cna.concept_id = o.value_coded AND cna.retired IS FALSE
              ) followUpPlan
-    ON followUpPlan.patient_id = nwFollowUpInfo.patient_id
+    ON followUpPlan.patient_id = nwFollowUpInfo.patient_id AND followUpPlan.obs_datetime <= nwFollowUpInfo.start_date
 WHERE YEAR(followUpPlan.obs_datetime) = YEAR('#startDate#') AND YEAR(nwFollowUpInfo.start_date) = YEAR('#startDate#')
+GROUP BY patient_id,nwFollowUpStartDate
