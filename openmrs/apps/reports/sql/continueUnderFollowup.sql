@@ -3,15 +3,43 @@ SELECT
           pi.identifier AS `Identifier`,
           concat(pn.given_name, ' ', pn.family_name)                  AS Name,
           `Specialty`,
+          paddress.address6 AS 'City',
+          paddress.address3 AS 'Country',
           `Name of MLO`,
           IF(`Date Created at MLOV` IS NULL, `Time for next medical follow-up`, IF((`Date Created at TFNMF` > `Date Created at MLOV`),`Time for next medical follow-up`, `Time for next medical follow-up at Surgeon Followup`)) AS `Time for next medical follow-up`,
           `Date of next medical follow-up`,
           IF(surgeontypevalue.SFP_DC IS NULL, `Type of medical investigations requested`, IF(followuptypevalue.FUP_DC > surgeontypevalue.SFP_DC, `Type of medical investigations requested`, `Type of medical investigations requested at Surgeon Followup`)) AS `Type of medical investigations requested`,
-          IF(`Date Created at NOSFP` IS NULL, `Comments`, IF((`Date Created at CANF` > `Date Created at NOSFP`), `Comments`, `Comments at Surgeon Followup`)) AS `Comments`
+          IF(`Date Created at NOSFP` IS NULL, `Comments`, IF((`Date Created at CANF` > `Date Created at NOSFP`), `Comments`, `Comments at Surgeon Followup`)) AS `Comments`,
+          CONCAT_WS(',', phoneNumbers1.phone1, phoneNumbers2.phone2, phoneNumbers3.phone3) AS 'Phone Numbers'
         FROM person p
           JOIN patient_identifier pi ON p.person_id = pi.patient_id AND p.voided IS FALSE AND pi.voided IS FALSE
           JOIN person_name pn ON p.person_id = pn.person_id AND pn.voided IS FALSE
           JOIN patient_program pp ON p.person_id = pp.patient_id AND pp.date_completed IS NULL AND pp.voided IS FALSE
+          LEFT JOIN person_address paddress ON p.person_id = paddress.person_id AND paddress.voided IS FALSE
+          LEFT JOIN (
+                      SELECT p.person_id,
+                        IF(pat.name = 'phoneNumber1', pa.value, NULL) AS 'phone1'
+                      FROM person p
+                      LEFT JOIN person_attribute pa ON pa.person_id = p.person_id AND pa.voided IS FALSE
+                        INNER JOIN person_attribute_type pat ON pat.person_attribute_type_id = pa.person_attribute_type_id AND pat.name = 'phoneNumber1' AND pat.retired IS FALSE
+                      GROUP BY p.person_id
+                    )phoneNumbers1 ON phoneNumbers1.person_id = p.person_id
+          LEFT JOIN (
+                      SELECT p.person_id,
+                        IF(pat.name = 'phoneNumber2', pa.value, NULL) AS 'phone2'
+                      FROM person p
+                        LEFT JOIN person_attribute pa ON pa.person_id = p.person_id AND pa.voided IS FALSE
+                        INNER JOIN person_attribute_type pat ON pat.person_attribute_type_id = pa.person_attribute_type_id AND pat.name = 'phoneNumber2' AND pat.retired IS FALSE
+                      GROUP BY p.person_id
+                    )phoneNumbers2 ON phoneNumbers2.person_id = p.person_id
+          LEFT JOIN (
+                      SELECT p.person_id,
+                        IF(pat.name = 'phoneNumber3', pa.value, NULL) AS 'phone3'
+                      FROM person p
+                        LEFT JOIN person_attribute pa ON pa.person_id = p.person_id AND pa.voided IS FALSE
+                        INNER JOIN person_attribute_type pat ON pat.person_attribute_type_id = pa.person_attribute_type_id AND pat.name = 'phoneNumber3' AND pat.retired IS FALSE
+                      GROUP BY p.person_id
+                    )phoneNumbers3 ON phoneNumbers3.person_id = p.person_id
           LEFT JOIN (SELECT
                        o.person_id                          AS person_id,
                        GROUP_CONCAT(DISTINCT (IF(

@@ -7014,4 +7014,63 @@
         </sql>
         <sqlFile splitStatements="false" path="reports/getTagEndDate.sql"/>
     </changeSet>
+    <changeSet id="Amman-201802081817" author="Mahesh" context="rel3.5" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="MH, Name of MLO" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Dr. Ahmad Saad' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'MH, Name of MLO' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Dr. Ahmad Saad' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,8,now(),16,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802081835" author="Mahesh" context="rel3.5" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="FSTG, Name (s) of Anaesthetist" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Dr. Fadi Abu Alrub' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'FSTG, Name (s) of Anaesthetist' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Dr. Fadi Abu Alrub' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,8,now(),4,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802091407" author="Mahesh" context="rel3.5" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_name where concept_id = (SELECT concept_id FROM concept_name where name = 'Dr. Ashraf Bustangi') and name = 'AM';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Synonyms to concepts </comment>
+        <sql>
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Dr. Ashraf Bustangi" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="Dr. Ali Al-Ani" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID3 FROM concept_name WHERE name ="Dr. Ashraf Nabhan" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID4 FROM concept_name WHERE name ="Dr. Hanna Janho" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID5 FROM concept_name WHERE name ="Dr. Muckhaled Naseef" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID6 FROM concept_name WHERE name ="Dr. Sofian Al-Qassab" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID7 FROM concept_name WHERE name ="Dr. Rasheed Al Samerai" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID8 FROM concept_name WHERE name ="Dr.Ghassan S. Abu-Sittah" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_name(concept_id,name,locale,creator,date_created,uuid) VALUES (@conceptID1,'AM','en',8,now(),uuid());
+            INSERT INTO concept_name(concept_id,name,locale,creator,date_created,uuid) VALUES (@conceptID2,'AMK','en',8,now(),uuid());
+            INSERT INTO concept_name(concept_id,name,locale,creator,date_created,uuid) VALUES (@conceptID3,'AN','en',8,now(),uuid());
+            INSERT INTO concept_name(concept_id,name,locale,creator,date_created,uuid) VALUES (@conceptID4,'HJ','en',8,now(),uuid());
+            INSERT INTO concept_name(concept_id,name,locale,creator,date_created,uuid) VALUES (@conceptID5,'MN','en',8,now(),uuid());
+            INSERT INTO concept_name(concept_id,name,locale,creator,date_created,uuid) VALUES (@conceptID6,'SI','en',8,now(),uuid());
+            INSERT INTO concept_name(concept_id,name,locale,creator,date_created,uuid) VALUES (@conceptID7,'RS','en',8,now(),uuid());
+            INSERT INTO concept_name(concept_id,name,locale,creator,date_created,uuid) VALUES (@conceptID8,'GS','en',8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802091601" author="Mahesh" context="rel3.5">
+        <comment>Adding codes to specific concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'MSF-INTERNAL';
+            call create_reference_mapping_msf_internal('Dr. Fadi Abu Alrub', '4');
+            call create_reference_mapping_msf_internal('Dr. Ahmad Saad', '18');
+            call create_reference_mapping_msf_internal('ONN, Was the dressing changed', '18');
+        </sql>
+    </changeSet>
 </databaseChangeLog>
