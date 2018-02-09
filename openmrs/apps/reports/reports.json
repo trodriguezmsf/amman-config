@@ -412,6 +412,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientsWith1x.sql"
           }
+        },
+        {
+          "name": "PhysioAppointments",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/physioAppointments.sql"
+          }
         }
       ]
     }
