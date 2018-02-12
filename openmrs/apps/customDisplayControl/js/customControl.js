@@ -587,7 +587,7 @@ angular.module('bahmni.common.displaycontrol.custom')
             return _.assign(mappedData, {
                 data: data,
                 leftHeaders: new Array(member.left.length),
-                rightHeaders: _.rangeRight(member.right.length)
+                rightHeaders: _.range(member.right.length)
             });
         }
         return data;
@@ -740,6 +740,12 @@ angular.module('bahmni.common.displaycontrol.custom')
     };
 
     this.mapDataForDisplay = function ($scope, configBaseUrl, conceptNames, tableTitles, circumferenceConceptNames) {
+        const priorities = {
+            "Initial": 0,
+            "Post-operative": 1,
+            "Final": 2
+        };
+
         var defer = $q.defer();
         $scope.contentUrl = configBaseUrl + "/customDisplayControl/views/limbPhysioSummary.html";
 
@@ -747,7 +753,11 @@ angular.module('bahmni.common.displaycontrol.custom')
         $scope.isEmptyRecord = self.isEmptyRecord;
 
         var promise1 = self.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
-            $scope.groupRecords = self.map(tableTitles, response.data);
+            var data = _.sortBy(response.data, function (record) {
+                var typeOfAssessment = self.findByConceptNameToDisplay(record.groupMembers, 'Type of assessment').valueAsString;
+                return priorities[typeOfAssessment];
+            });
+            $scope.groupRecords = self.map(tableTitles, data);
         });
 
         var promise2 = self.fetchObservationsData(circumferenceConceptNames, $scope.enrollment, undefined, "latest").then(function (response) {
