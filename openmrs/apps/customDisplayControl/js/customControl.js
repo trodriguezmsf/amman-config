@@ -868,7 +868,7 @@ angular.module('bahmni.common.displaycontrol.custom')
     const findByConceptNameToDisplay = physioSummaryService.findByConceptNameToDisplay;
 
     const assignToHolder = function (holder, headers, values) {
-        if (!_.isEmpty(_.compact(values))) {
+        if (!_.isEmpty(_.compact(_.slice(values, 1)))) {
             holder.headers = headers;
             holder.rows.push({values: values});
         }
