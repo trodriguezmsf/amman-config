@@ -760,9 +760,33 @@ angular.module('bahmni.common.displaycontrol.custom')
             $scope.groupRecords = self.map(tableTitles, data);
         });
 
+        var getStumpCircumferenceTitle = function (encounterUuid) {
+            var defer = $q.defer();
+            var title = "Stump Circumference";
+
+            if (encounterUuid) {
+                $http.get("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/" + encounterUuid, {
+                    params: {includeAll: true},
+                    withCredentials: true
+                }).then(function (res) {
+                    var physioAssessment = self.findByConceptNameToDisplay(_.get(res.data, "observations"), _.first(conceptNames));
+                    var dateRecorded = self.findByConceptNameToDisplay(physioAssessment.groupMembers, "Date recorded").value;
+                    if (dateRecorded) {
+                        title = title + " (" + self.getDateString(dateRecorded) + ")";
+                    }
+                    defer.resolve(title);
+                });
+            } else {
+                defer.resolve(title);
+            }
+            return defer.promise;
+        };
+
         var promise2 = self.fetchObservationsData(circumferenceConceptNames, $scope.enrollment, undefined, "latest").then(function (response) {
             var data = self.mapStumpCircumference(response.data);
-            $scope.stumpCircumferences = {title: "Stump Circumference", data: data};
+            return getStumpCircumferenceTitle(_.get(_.first(response.data), 'encounterUuid')).then(function (title) {
+                $scope.stumpCircumferences = {title: title, data: data};
+            });
         });
 
         $q.all([promise1, promise2]).then(function () {
