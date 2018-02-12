@@ -10,7 +10,7 @@
         margin-bottom: .5% !important;
     }
 
-    .limb-physio-summary-table th, td {
+    .limb-physio-summary-table th, .limb-physio-summary-table td {
         width: 1% !important;
         text-align: center !important;
     }
@@ -38,7 +38,7 @@
     <div ng-show="isEmptySummary" class="placeholder-text">
         <p>{{"NO_SUMMARY_FOUND_MESSAGE"|translate}}</p>
     </div>
-    <div ng-show="!isEmptySummary" style="overflow: scroll">
+    <div ng-show="!isEmptySummary">
         <section class="block hierarchy" ng-repeat="(key, records) in groupRecords track by key"
                  ng-show="!isEmptyRecord(records, 'data')">
 

@@ -644,6 +644,7 @@
       "Operative Course in Amman": {
         "type": "custom",
         "displayOrder": 14,
+        "displayType": "Full-Page",
         "config": {
           "title": "DASHBOARD_TITLE_OPERATIVE_COURSE_IN_AMMAN_KEY",
           "template": "<surgical-history section='section' patient='patient'></surgical-history>"
@@ -794,6 +795,7 @@
         "Operative Course in Amman": {
           "type": "custom",
           "displayOrder": 4,
+          "displayType": "Full-Page",
           "config": {
             "title": "DASHBOARD_TITLE_OPERATIVE_COURSE_IN_AMMAN_KEY",
             "template": "<surgical-history section='section' patient='patient'></surgical-history>"
