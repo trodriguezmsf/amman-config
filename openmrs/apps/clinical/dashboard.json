@@ -374,7 +374,8 @@
           "isEditable": true,
           "conceptNames": [
             "MDOF, Medical course of patient in RSP"
-          ]
+          ],
+          "scope": "latest"
         },
         "expandedViewConfig": {
           "conceptNames": [
@@ -395,30 +396,25 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "AIA, History",
-            "MD Initial Assessment"
-          ],
-          "obsIgnoreList": [
-            "MD, Date of consultation",
-            "MD, Reason for admission to program",
-            "MD, History of present illness",
-            "MD, History - Review of Systems",
-            "MD, History of Allergy",
-            "MD, Comments about allergy",
-            "MD, Function of injured part",
-            "MD, Sensation of injured part",
-            "AIA, Is the patient allergic to any drugs / medications ?",
-            "AIA, Type of medication allergy",
-            "AIA, Previous Anaesthesia history",
-            "AIA, Specify number of times receiving anaesthesia",
-            "AIA, Personal history of blood transfusion"
+            "AIA, Past medical history",
+            "MD, Medical History",
+            "AIA, Adverse reaction to anaesthesia",
+            "AIA, Comments about adverse reaction",
+            "AIA, Did an incident occur during previous blood transfusion",
+            "AIA, Describe",
+            "MD, History of Fixation"
           ],
           "showGroupDateTime": true
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "AIA, History",
-            "MD Initial Assessment"
+            "AIA, Past medical history",
+            "MD, Medical History",
+            "AIA, Adverse reaction to anaesthesia",
+            "AIA, Comments about adverse reaction",
+            "AIA, Did an incident occur during previous blood transfusion",
+            "AIA, Describe",
+            "MD, History of Fixation"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -428,31 +424,38 @@
       },
       "Psycho-Social Course": {
         "translationKey": "DASHBOARD_TITLE_PSYCHO_SOCIAL_COURSE",
-        "type": "vitals",
-        "isObservation": true,
+        "type": "obsToObsFlowSheet",
+        "headingConceptSource": "Abbreviation",
+        "dataConceptSource": "Abbreviation",
         "displayOrder": 7,
         "dashboardConfig": {
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
           "isEditable": true,
+          "groupByConcept": "PIA, Date of consultation",
+          "templateName": "Psychology initial assessment",
+          "pivotOn": "column",
           "conceptNames": [
             "PIA, SQR20 (score)",
             "PIA, PTSD (score)",
             "PIA, PSYca 3-6 (child)",
-            "PIA, Comments from counsellor"
+            "PIA, SDQ P7-10",
+            "PIA, SDQ S11-17"
           ],
-          "scope": "latest",
           "showGroupDateTime": false
         },
         "expandedViewConfig": {
+          "groupByConcept": "PIA, Date of consultation",
+          "templateName": "Psychology initial assessment",
           "conceptNames": [
             "PIA, SQR20 (score)",
             "PIA, PTSD (score)",
             "PIA, PSYca 3-6 (child)",
-            "PIA, Comments from counsellor"
+            "PIA, SDQ P7-10",
+            "PIA, SDQ S11-17"
           ],
-          "isEditable": true,
-          "numberOfVisits": 3,
+          "pivotOn": "column",
+          "numberOfVisits": 5,
           "showDetailsButton": true,
           "pivotTable": {}
         }
@@ -469,6 +472,7 @@
             "Health Education"
           ],
           "obsIgnoreList": [
+            "HE, Highest education level",
             "HE, Date of consultation",
             "HE, Marital status",
             "HE, Pregnancy status",
@@ -487,6 +491,7 @@
             "Health Education"
           ],
           "obsIgnoreList": [
+            "HE, Highest education level",
             "HE, Date of consultation",
             "HE, Marital status",
             "HE, Pregnancy status",
@@ -533,23 +538,71 @@
       },
       "Review of Systems": {
         "translationKey": "DASHBOARD_TITLE_REVIEW_OF_SYSTEMS",
-        "type": "vitals",
-        "isObservation": true,
+        "type": "obsToObsFlowSheet",
+        "headingConceptSource": "Abbreviation",
+        "dataConceptSource": "Abbreviation",
         "displayOrder": 8,
         "dashboardConfig": {
-          "showDetailsButton": true,
           "isEditable": true,
+          "hideEmptyRecords": true,
+          "templateName": "MD Initial Assessment",
+          "groupByConcept": "MD, Date of consultation",
+          "pivotOn": "column",
           "conceptNames": [
-            "MD, History - Review of Systems"
+            "MD, Review of systems, general",
+            "MD, Description and duration of symptom (general)",
+            "MD, Other ROS general symptoms",
+            "MD, Review of systems, cardiopulmonary",
+            "MD, Description and duration of symptom (cardiopulmonary)",
+            "MD, Other ROS cardiopulmonary symptoms",
+            "MD, Review of systems, gastrointestinal",
+            "MD, Description and duration of symptom (gastrointestinal)",
+            "MD, Other ROS gastrointestinal symptoms",
+            "MD, Review of systems, genitourinary",
+            "MD, Description and duration of symptom (genitourinary)",
+            "MD, Other ROS genitourinary symptoms",
+            "MD, Review of systems, central nervous system",
+            "MD, Description and duration of symptom (central nervous system)",
+            "MD, Other ROS central nervous system symptoms",
+            "MD, Review of systems, HEENT",
+            "MD, Description and duration of symptom (HEENT)",
+            "MD, Other ROS HEENT symptoms",
+            "MD, Review of systems, musculoskeletal",
+            "MD, Description and duration of symptom (musculoskeletal)",
+            "MD, Other ROS musculoskeletal symptoms"
           ],
           "scope": "latest",
           "showGroupDateTime": false
         },
         "expandedViewConfig": {
+          "templateName": "MD Initial Assessment",
+          "groupByConcept": "MD, Date of consultation",
           "conceptNames": [
-            "MD, History - Review of Systems"
+            "MD, Review of systems, general",
+            "MD, Description and duration of symptom (general)",
+            "MD, Other ROS general symptoms",
+            "MD, Review of systems, cardiopulmonary",
+            "MD, Description and duration of symptom (cardiopulmonary)",
+            "MD, Other ROS cardiopulmonary symptoms",
+            "MD, Review of systems, gastrointestinal",
+            "MD, Description and duration of symptom (gastrointestinal)",
+            "MD, Other ROS gastrointestinal symptoms",
+            "MD, Review of systems, genitourinary",
+            "MD, Description and duration of symptom (genitourinary)",
+            "MD, Other ROS genitourinary symptoms",
+            "MD, Review of systems, central nervous system",
+            "MD, Description and duration of symptom (central nervous system)",
+            "MD, Other ROS central nervous system symptoms",
+            "MD, Review of systems, HEENT",
+            "MD, Description and duration of symptom (HEENT)",
+            "MD, Other ROS HEENT symptoms",
+            "MD, Review of systems, musculoskeletal",
+            "MD, Description and duration of symptom (musculoskeletal)",
+            "MD, Other ROS musculoskeletal symptoms"
           ],
-          "isEditable": true,
+          "hideEmptyRecords": true,
+          "pivotOn": "column",
+          "scope": "latest",
           "numberOfVisits": 3,
           "showDetailsButton": true,
           "pivotTable": {}
@@ -659,12 +712,38 @@
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "Pain Nurse Follow-up"
+            "PNF, Date recorded",
+            "PNF, Type of pain experienced by the patient",
+            "PNF, Pain severity",
+            "PNF, Patient score",
+            "PNF, Side of pain",
+            "PNF, Site of pain",
+            "PNF, Chief complaint of patient",
+            "PNF, Is the pain:",
+            "PNF, Onset of the pain:",
+            "PNF, Current medication",
+            "PNF, Pain usually occurs with:",
+            "PNF, Increasing or decreasing factors:",
+            "PNF, Referral needed:",
+            "PNF, Other comments"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "Pain Nurse Follow-up"
+            "PNF, Date recorded",
+            "PNF, Type of pain experienced by the patient",
+            "PNF, Pain severity",
+            "PNF, Patient score",
+            "PNF, Side of pain",
+            "PNF, Site of pain",
+            "PNF, Chief complaint of patient",
+            "PNF, Is the pain:",
+            "PNF, Onset of the pain:",
+            "PNF, Current medication",
+            "PNF, Pain usually occurs with:",
+            "PNF, Increasing or decreasing factors:",
+            "PNF, Referral needed:",
+            "PNF, Other comments"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -738,6 +817,143 @@
           "conceptNames": [
             "Administrative Note"
           ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Medication History": {
+        "translationKey": "DASHBOARD_TITLE_MEDICATION_HISTORY",
+        "type": "obsToObsFlowSheet",
+        "headingConceptSource": "Abbreviation",
+        "dataConceptSource": "Abbreviation",
+        "displayOrder": 19,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "persistOrderOfConcepts": true,
+          "isEditable": true,
+          "groupByConcept": "MD, Date of last dose",
+          "templateName": "MD, Medication",
+          "conceptNames": [
+            "MD, Type of medication",
+            "MD, Dose and frequency"
+          ],
+          "showGroupDateTime": false
+        },
+        "expandedViewConfig": {
+          "groupByConcept": "MD, Date of last dose",
+          "templateName": "MD, Medication",
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Surgeries Performed outside AMH": {
+        "translationKey": "DASHBOARD_TITLE_SURGERIES_PERFORMED",
+        "type": "obsToObsFlowSheet",
+        "headingConceptSource": "Abbreviation",
+        "dataConceptSource": "Abbreviation",
+        "displayOrder": 20,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "persistOrderOfConcepts": true,
+          "isEditable": true,
+          "groupByConcept": "MD, Date of procedure",
+          "templateName": "MD, Surgical Procedures Outside AMH",
+          "conceptNames": [
+            "MD, Surgical Procedures Performed Outside AMH Data",
+            "MD, Side of procedure",
+            "MD, Site of procedure",
+            "MD, Comment of procedure"
+          ],
+          "showGroupDateTime": false
+        },
+        "expandedViewConfig": {
+          "groupByConcept": "MD, Date of procedure",
+          "templateName": "MD, Surgical Procedures Outside AMH",
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Early Complications": {
+        "translationKey": "DASHBOARD_TITLE_EARLY_COMPLICATIONS",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 21,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "SFP, Type of complication",
+            "SFP, Impact of complication",
+            "CC, Patient complication",
+            "CC, Start date of complication",
+            "CC, Description of complication",
+            "CC, Outcome of complication",
+            "CC, End date of complication"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "SFP, Type of complication",
+            "SFP, Impact of complication",
+            "CC, Patient complication",
+            "CC, Start date of complication",
+            "CC, Description of complication",
+            "CC, Outcome of complication",
+            "CC, End date of complication"
+          ],
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Psycho-Social Course Comments": {
+        "translationKey": "DASHBOARD_TITLE_PSYCHO_SOCIAL_COMMENTS",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 22,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "PIA, Psychosocial overview and comments",
+            "PIA, Social needs or other referrals",
+            "PIA, Specific comments regarding the caretaker"
+          ],
+          "scope": "latest"
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "PIA, Psychosocial overview and comments",
+            "PIA, Social needs or other referrals",
+            "PIA, Specific comments regarding the caretaker"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Medical Follow-up Plan": {
+        "translationKey": "DASHBOARD_TITLE_MEDICAL_FOLLOW-UP_PLAN",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 23,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "MDOF, Medical follow-up needs"
+          ],
+          "scope": "latest",
+          "showGroupDateTime": false
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "MDOF, Medical follow-up needs"
+          ],
+          "scope": "latest",
           "isEditable": true,
           "numberOfVisits": 3,
           "showDetailsButton": true,

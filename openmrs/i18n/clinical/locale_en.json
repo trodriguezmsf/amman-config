@@ -147,5 +147,9 @@
   "NO_PHYSICAL_EXAMINATION_FOUND": "No Physical Examination found for this patient",
   "NO_FOLLOW_UP_DATA_FOUND": "No Follow-up data found for this patient",
   "NO_SUMMARY_FOUND_MESSAGE": "No record present for this patient", 
-  "ADMINISTRATIVE_NOTE_KEY": "Administrative Note"
+  "ADMINISTRATIVE_NOTE_KEY": "Administrative Note",
+  "DASHBOARD_TITLE_SURGERIES_PERFORMED": "Surgeries Performed outside AMH",
+  "DASHBOARD_TITLE_MEDICATION_HISTORY": "Medication History",
+  "DASHBOARD_TITLE_EARLY_COMPLICATIONS": "Early Complications",
+  "DASHBOARD_TITLE_PSYCHO_SOCIAL_COMMENTS": "Psycho-Social Course Comments"
 }
