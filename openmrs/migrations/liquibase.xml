@@ -6520,17 +6520,17 @@
     <changeSet id="Amman-201801101236" author="Mahesh" context="rel3.5">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult = "0">
-                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='PIA, Discharge Assessment' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='PIA, SQR20 (score)' and concept_name_type = "FULLY_SPECIFIED");
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='PIA, Discharge Assessment' and concept_name_type = "FULLY_SPECIFIED") and concept_id =(select concept_id  from concept_name where name ='PIAD, SQR20 (score)' and concept_name_type = "FULLY_SPECIFIED");
             </sqlCheck>
         </preConditions>
         <comment>Adding New answer concepts to PIA, Discharge Assessment</comment>
         <sql>
             SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="PIA, Discharge Assessment" AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="PIA, SQR20 (score)" AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="PIA, PTSD (score)" AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @conceptID3 FROM concept_name WHERE name ="PIA, PSYca 3-6 (child)" AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @conceptID4 FROM concept_name WHERE name ="PIA, SDQ P7-10" AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @conceptID5 FROM concept_name WHERE name ="PIA, SDQ S11-17" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="PIAD, SQR20 (score)" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="PIAD, PTSD (score)" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID3 FROM concept_name WHERE name ="PIAD, PSYca 3-6 (child)" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID4 FROM concept_name WHERE name ="PIAD, SDQ P7-10" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID5 FROM concept_name WHERE name ="PIAD, SDQ S11-17" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @conceptID6 FROM concept_name WHERE name ="PIA, Psychosocial overview and comments" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @conceptID7 FROM concept_name WHERE name ="PIA, Social needs or other referrals" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @conceptID8 FROM concept_name WHERE name ="PIA, Specific comments regarding the caretaker" AND concept_name_type="FULLY_SPECIFIED";
@@ -7070,7 +7070,6 @@
             SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'MSF-INTERNAL';
             call create_reference_mapping_msf_internal('Dr. Fadi Abu Alrub', '4');
             call create_reference_mapping_msf_internal('Dr. Ahmad Saad', '18');
-            call create_reference_mapping_msf_internal('ONN, Was the dressing changed', '18');
         </sql>
     </changeSet>
 </databaseChangeLog>
