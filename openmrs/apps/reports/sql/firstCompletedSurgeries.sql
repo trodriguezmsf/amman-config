@@ -30,5 +30,6 @@ FROM
                                                                                    firstSurgeryDetails.patient_id AND
                                                                                    preOperativeDate.start_date <=
                                                                                    firstSurgeryDetails.surgeryStartDate
+  WHERE YEAR(firstSurgeryDetails.surgeryStartDate)=YEAR('#startDate#')
 GROUP BY preOperativeDate.patient_id, firstSurgeryDetails.surgeryStartDate
 
