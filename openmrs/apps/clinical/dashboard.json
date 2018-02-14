@@ -238,14 +238,6 @@
                     "Administrative Note"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
-            },
-            "patientEncounterLocations": {
-                "type": "custom",
-                "displayOrder": 10,
-                "config": {
-                    "title": "DASHBOARD_TITLE_PATIENT_ENCOUNTER_LOCATIONS_KEY",
-                    "template": "<patient-encounter-locations section='section' patient='patient'></patient-encounter-locations>"
-                }
             }
         }
     },
@@ -686,14 +678,6 @@
           "pivotTable": {}
         }
       },
-      "patientAppointments": {
-        "type": "custom",
-        "displayOrder": 15,
-        "config": {
-          "title": "DASHBOARD_TITLE_APPOINTMENTS_KEY",
-          "template": "<patient-appointments-dashboard section='config' patient='patient'></patient-appointments-dashboard>"
-        }
-      },
       "Operative Course in Amman": {
         "type": "custom",
         "displayOrder": 14,
@@ -1112,5 +1096,36 @@
           }
         }
       }
+    },
+  "AddintionalInfo": {
+    "displayByDefault": false,
+    "translationKey": "DASHBOARD_TITLE_ADDITIONAL_INFO",
+    "maxRecentlyViewedPatients": 1,
+    "printing": {
+      "title": "Additional Info",
+      "header": "Additional Info",
+      "logo": "../images/bahmniLogo.png",
+      "showNameAndImage": true
+    },
+    "sections": {
+      "patientEncounterLocations": {
+        "type": "custom",
+        "displayOrder": 0,
+        "displayType": "Full-Page",
+        "config": {
+          "title": "DASHBOARD_TITLE_PATIENT_ENCOUNTER_LOCATIONS_KEY",
+          "template": "<patient-encounter-locations section='section' patient='patient'></patient-encounter-locations>"
+        }
+      },
+      "patientAppointments": {
+        "type": "custom",
+        "displayOrder": 1,
+        "displayType": "Full-Page",
+        "config": {
+          "title": "DASHBOARD_TITLE_APPOINTMENTS_KEY",
+          "template": "<patient-appointments-dashboard section='config' patient='patient'></patient-appointments-dashboard>"
+        }
+      }
     }
+  }
   }

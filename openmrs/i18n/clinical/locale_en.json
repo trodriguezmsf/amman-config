@@ -151,5 +151,6 @@
   "DASHBOARD_TITLE_SURGERIES_PERFORMED": "Surgeries Performed outside AMH",
   "DASHBOARD_TITLE_MEDICATION_HISTORY": "Medication History",
   "DASHBOARD_TITLE_EARLY_COMPLICATIONS": "Early Complications",
-  "DASHBOARD_TITLE_PSYCHO_SOCIAL_COMMENTS": "Psycho-Social Course Comments"
+  "DASHBOARD_TITLE_PSYCHO_SOCIAL_COMMENTS": "Psycho-Social Course Comments",
+  "DASHBOARD_TITLE_ADDITIONAL_INFO": "Additional Info"
 }
