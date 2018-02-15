@@ -388,7 +388,7 @@
     }
   },
   "customReport20": {
-    "name": "Physio Indicators",
+    "name": "Physio Indicators(Custom Excel)",
     "type": "concatenated",
     "config": {
       "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/PhysioIndicatorTemplate.xls",
