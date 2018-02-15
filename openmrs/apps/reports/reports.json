@@ -383,6 +383,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/piccLineInfo.sql"
           }
+        },
+        {
+          "name": "sfpEarlyFollowUp",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/sfpEarlyFollowUp.sql"
+          }
         }
       ]
     }
