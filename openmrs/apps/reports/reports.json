@@ -118,6 +118,13 @@
       "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/bedManagementIndicators.xls",
       "reports": [
         {
+          "name": "Ward_stay",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/wardStay.sql"
+          }
+        },
+        {
           "name": "Ward",
           "type": "MRSGeneric",
           "config": {

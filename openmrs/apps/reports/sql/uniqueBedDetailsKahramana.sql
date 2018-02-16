@@ -1,10 +1,10 @@
 SELECT
-  wardOccupency.date_started,
-  wardOccupency.patient_id,
-  wardOccupency.bed_id,
+  kahramanaOccupency.date_started,
+  kahramanaOccupency.patient_id,
+  kahramanaOccupency.bed_id,
   '' as bedNumber,
   '' as location,
-  wardOccupency.date_stopped
+  kahramanaOccupency.date_stopped
   FROM
 (SELECT
   patient_id,
@@ -21,5 +21,5 @@ WHERE bed_id IN (SELECT bed_id
                      'Kahramana(2nd floor)',
                      'Kahramana(1st floor)'
                    )
-                 ) AND bpam.voided IS FALSE ) AND bpam.voided IS FALSE AND year(date_started)=YEAR('#startDate#') AND year(date_stopped)=YEAR('#startDate#')
-) wardOccupency
+                 ) AND bpam.voided IS FALSE ) AND bpam.voided IS FALSE AND year(date_started)=YEAR('#startDate#')
+) kahramanaOccupency
