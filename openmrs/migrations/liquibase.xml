@@ -7114,13 +7114,13 @@
             call create_reference_mapping_msf_internal('CC, Grade of complication', 'COMPLICATION_GRADE');
             call create_reference_mapping_msf_internal('CC, Additional comments, complications', 'COMMENTS_COMPLICATION');
             call create_reference_mapping_msf_internal('Central Line', '105');
-            call create_reference_mapping_msf_internal('Grade I - No treatment, '1');
-            call create_reference_mapping_msf_internal('Grade II - Requiring drug treatment, '2');
-            call create_reference_mapping_msf_internal('Grade IIIa - Interventions with local anaesthesia, '3');
-            call create_reference_mapping_msf_internal('Grade IIIb - Interventions under general anaesthesia, '4');
-            call create_reference_mapping_msf_internal('Grade IVa - Single-organ dysfunction, '5');
-            call create_reference_mapping_msf_internal('Grade IVb - Multi-organ dysfunction, '6');
-            call create_reference_mapping_msf_internal('Grade V - Death of patient, '7');
+            call create_reference_mapping_msf_internal('Grade I - No treatment', '1');
+            call create_reference_mapping_msf_internal('Grade II - Requiring drug treatment', '2');
+            call create_reference_mapping_msf_internal('Grade IIIa - Interventions with local anaesthesia', '3');
+            call create_reference_mapping_msf_internal('Grade IIIb - Interventions under general anaesthesia', '4');
+            call create_reference_mapping_msf_internal('Grade IVa - Single-organ dysfunction', '5');
+            call create_reference_mapping_msf_internal('Grade IVb - Multi-organ dysfunction', '6');
+            call create_reference_mapping_msf_internal('Grade V - Death of patient', '7');
         </sql>
     </changeSet>
 </databaseChangeLog>
