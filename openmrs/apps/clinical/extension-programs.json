@@ -80,7 +80,7 @@
       "translationKey": "MODULE_LABEL_CONTINUE_UNDER_FOLLOWUP_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
-      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "City", "Country", "Phone Numbers", "Date Of Presentation", "Name of MLO", "Specialty", "Time for next medical follow-up", "Date of next medical follow-up", "Type of medical investigations requested"]
+      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "City", "Country", "Phone Numbers", "Date Of Presentation", "Name of MLO", "Specialty", "Time for next medical follow-up", "Date of next medical follow-up", "Type of medical investigations requested", "Comments"]
     },
     "order": 7,
     "requiredPrivilege": "app:programqueueaccess"
@@ -94,7 +94,7 @@
       "translationKey": "MODULE_LABEL_VALIDATED_PATIENTS_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
-      "searchColumns": ["identifier","Date of presentation", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Name of MLO", "Stage", "Specialty","Name of Surgeon","Priority", "Does the patient need surgical final validation", "Expected Month/Year of Arrival","Is Caretaker Required?", "Status of Official ID Documents"]
+      "searchColumns": ["identifier","Date of presentation", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Name of MLO", "Stage", "Specialty","Name of Surgeon","Priority", "Does the patient need surgical final validation", "Expected Month/Year of Arrival","Is Caretaker Required?", "Status of Official ID Documents", "Comments about Validation"]
     },
     "order": 8,
     "requiredPrivilege": "app:programqueueaccess"
@@ -125,7 +125,7 @@
       ],
       "view": "tabular",
       "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Nationality", "Specialty","Stage", "Priority","Name of Surgeon","Name of Surgeon 1", "Name of Surgeon 2", "Expected Date of Arrival",
-        "Patient General Condition",  "Does the patient need accomodation", "Type of Admission Recommended", "Is Caretaker Required?", "Caretaker Gender", "Caretaker Name"]
+        "Patient General Condition",  "Does the patient need accomodation", "Type of Admission Recommended", "Is Caretaker Required?", "Caretaker Gender", "Caretaker Name", "Comments about Validation"]
     },
     "order": 9,
     "requiredPrivilege": "app:limitedprogramqueues"
