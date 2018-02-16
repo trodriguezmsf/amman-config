@@ -7072,4 +7072,52 @@
             call create_reference_mapping_msf_internal('Dr. Ahmad Saad', '18');
         </sql>
     </changeSet>
+    <changeSet id="Amman-201802161405" author="Mahesh" context="rel3.5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type='FULLY_SPECIFIED') AND answer_concept=(SELECT concept_id FROM concept_name WHERE name ='Central Line' AND concept_name_type='FULLY_SPECIFIED');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New answer concept to OR, Operation performed coded</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Central Line' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,8,now(),94,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802161425" author="Mahesh" context="rel3.5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='CC, Complications' and concept_name_type = 'FULLY_SPECIFIED') and concept_id =(select concept_id  from concept_name where name ='CC, Grade of complication' and concept_name_type = 'FULLY_SPECIFIED');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New concepts to CC, Complications</comment>
+        <sql>
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name = 'CC, Complications' AND concept_name_type= 'FULLY_SPECIFIED';
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name = 'CC, Grade of complication' AND concept_name_type= 'FULLY_SPECIFIED';
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,1085,8,now(),uuid());
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name = 'CC, Additional comments, complications' AND concept_name_type= 'FULLY_SPECIFIED';
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,1110,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802161434" author="Mahesh" context="rel3.5">
+        <comment>Adding codes to specific concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'MSF-INTERNAL';
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,'COMPLICATION_GRADE',@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,'COMMENTS_COMPLICATION',@source_id,uuid(),now());
+            call create_reference_mapping_msf_internal('CC, Grade of complication', 'COMPLICATION_GRADE');
+            call create_reference_mapping_msf_internal('CC, Additional comments, complications', 'COMMENTS_COMPLICATION');
+            call create_reference_mapping_msf_internal('Central Line', '105');
+            call create_reference_mapping_msf_internal('Grade I - No treatment, '1');
+            call create_reference_mapping_msf_internal('Grade II - Requiring drug treatment, '2');
+            call create_reference_mapping_msf_internal('Grade IIIa - Interventions with local anaesthesia, '3');
+            call create_reference_mapping_msf_internal('Grade IIIb - Interventions under general anaesthesia, '4');
+            call create_reference_mapping_msf_internal('Grade IVa - Single-organ dysfunction, '5');
+            call create_reference_mapping_msf_internal('Grade IVb - Multi-organ dysfunction, '6');
+            call create_reference_mapping_msf_internal('Grade V - Death of patient, '7');
+        </sql>
+    </changeSet>
 </databaseChangeLog>

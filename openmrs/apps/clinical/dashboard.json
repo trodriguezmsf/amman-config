@@ -434,7 +434,8 @@
             "PIA, SDQ P7-10",
             "PIA, SDQ S11-17"
           ],
-          "showGroupDateTime": false
+          "showGroupDateTime": false,
+          "latestCount": 5
         },
         "expandedViewConfig": {
           "groupByConcept": "PIA, Date of consultation",
@@ -540,6 +541,8 @@
           "templateName": "MD Initial Assessment",
           "groupByConcept": "MD, Date of consultation",
           "pivotOn": "column",
+          "numberOFVisits": 1,
+          "latestCount": 1,
           "conceptNames": [
             "MD, Review of systems, general",
             "MD, Description and duration of symptom (general)",
@@ -562,9 +565,7 @@
             "MD, Review of systems, musculoskeletal",
             "MD, Description and duration of symptom (musculoskeletal)",
             "MD, Other ROS musculoskeletal symptoms"
-          ],
-          "scope": "latest",
-          "showGroupDateTime": false
+          ]
         },
         "expandedViewConfig": {
           "templateName": "MD Initial Assessment",
@@ -594,7 +595,6 @@
           ],
           "hideEmptyRecords": true,
           "pivotOn": "column",
-          "scope": "latest",
           "numberOfVisits": 3,
           "showDetailsButton": true,
           "pivotTable": {}
@@ -691,9 +691,12 @@
         "translationKey": "DASHBOARD_TITLE_PAIN_MANAGEMENT",
         "type": "vitals",
         "isObservation": true,
+
         "displayOrder": 1,
         "dashboardConfig": {
           "showDetailsButton": true,
+          "persistOrderOfConcepts": true,
+          "showGroupDateTime": false,
           "isEditable": true,
           "conceptNames": [
             "PNF, Date recorded",
