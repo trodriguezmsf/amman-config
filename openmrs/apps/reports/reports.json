@@ -397,6 +397,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/sfpEarlyFollowUp.sql"
           }
+        },
+        {
+          "name": "patientUndrNwFlp",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientsUnderFollowUp.sql"
+          }
         }
       ]
     }
