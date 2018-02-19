@@ -18,5 +18,5 @@ WHERE bed_id IN (SELECT bed_id
                               'Ward (3rd floor)',
                               'Ward (2nd floor)'
                    )
-                 ) AND bpam.voided IS FALSE ) AND bpam.voided IS FALSE AND year(date_started)=YEAR('#startDate#')
+                 ) AND bpam.voided IS FALSE ) AND bpam.voided IS FALSE
 ) wardOccupency

@@ -21,5 +21,5 @@ WHERE bed_id IN (SELECT bed_id
                      'Rehabilitation Center (4th floor)',
                      'Rehabilitation Center (5th floor)'
                    )
-                 ) AND bpam.voided IS FALSE ) AND bpam.voided IS FALSE AND year(date_started)=YEAR('#startDate#')
+                 ) AND bpam.voided IS FALSE ) AND bpam.voided IS FALSE
 ) rcOccupency

@@ -21,5 +21,5 @@ WHERE bed_id IN (SELECT bed_id
                      'Kahramana(2nd floor)',
                      'Kahramana(1st floor)'
                    )
-                 ) AND bpam.voided IS FALSE ) AND bpam.voided IS FALSE AND year(date_started)=YEAR('#startDate#')
+                 ) AND bpam.voided IS FALSE ) AND bpam.voided IS FALSE
 ) kahramanaOccupency

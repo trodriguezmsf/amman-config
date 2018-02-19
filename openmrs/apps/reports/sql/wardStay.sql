@@ -24,4 +24,3 @@ FROM
 GROUP BY patient_id, dischargeDate
 HAVING dischargeDate is not NULL
 ORDER BY patient_id,date_started) wardBedOccupency
-WHERE YEAR(startDate) = YEAR(dischargeDate) AND YEAR(startDate) = YEAR('#startDate#')
