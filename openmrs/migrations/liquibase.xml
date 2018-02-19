@@ -7123,4 +7123,8 @@
             call create_reference_mapping_msf_internal('Grade V - Death of patient', '7');
         </sql>
     </changeSet>
+    <changeSet id="Amman-201802191144" author="Saikumar" context="rel3.5 reports" runOnChange="true">
+        <comment>Adding a view to get antiBioticDrugs information for drug orders indicator report</comment>
+        <sqlFile splitStatements="false" path="reports/antiBioticDrugs.sql"/>
+    </changeSet>
 </databaseChangeLog>
