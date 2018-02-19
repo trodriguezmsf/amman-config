@@ -7078,13 +7078,13 @@
     <changeSet id="Amman-201802161405" author="Mahesh" context="rel3.5">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult = "0">
-                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type='FULLY_SPECIFIED') AND answer_concept=(SELECT concept_id FROM concept_name WHERE name ='Central Line' AND concept_name_type='FULLY_SPECIFIED');
+                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type='FULLY_SPECIFIED') AND answer_concept=(SELECT concept_id FROM concept_name WHERE name ='Insertion of Central Line' AND concept_name_type='FULLY_SPECIFIED');
             </sqlCheck>
         </preConditions>
         <comment>Adding New answer concept to OR, Operation performed coded</comment>
         <sql>
             SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Central Line' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Insertion of Central Line' AND concept_name_type="FULLY_SPECIFIED";
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,8,now(),94,uuid());
         </sql>
     </changeSet>
@@ -7113,7 +7113,7 @@
             (4,'COMMENTS_COMPLICATION',@source_id,uuid(),now());
             call create_reference_mapping_msf_internal('CC, Grade of complication', 'COMPLICATION_GRADE');
             call create_reference_mapping_msf_internal('CC, Additional comments, complications', 'COMMENTS_COMPLICATION');
-            call create_reference_mapping_msf_internal('Central Line', '105');
+            call create_reference_mapping_msf_internal('Insertion of Central Line', '105');
             call create_reference_mapping_msf_internal('Grade I - No treatment', '1');
             call create_reference_mapping_msf_internal('Grade II - Requiring drug treatment', '2');
             call create_reference_mapping_msf_internal('Grade IIIa - Interventions with local anaesthesia', '3');

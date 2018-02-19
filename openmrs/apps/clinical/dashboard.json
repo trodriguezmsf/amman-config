@@ -293,10 +293,10 @@
           "template": "<patient-information section='config' patient='patient' enrollment='enrollment'></patient-information>"
         }
       },
-      "Medications administered in Amman RSP": {
+      "Medications administered": {
         "translationKey": "DASHBOARD_TITLE_MEDICATION_KEY",
         "type": "treatment",
-        "displayOrder": 3,
+        "displayOrder": 5,
         "dashboardConfig": {
           "showFlowSheet": true,
           "showListView": true,
@@ -360,7 +360,7 @@
         "translationKey": "DASHBOARD_TITLE_PSYCHO_MEDICAL_COURSE",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 5,
+        "displayOrder": 8,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -419,7 +419,7 @@
         "type": "obsToObsFlowSheet",
         "headingConceptSource": "Abbreviation",
         "dataConceptSource": "Abbreviation",
-        "displayOrder": 7,
+        "displayOrder": 10,
         "dashboardConfig": {
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
@@ -457,7 +457,7 @@
         "translationKey": "DASHBOARD_TITLE_SOCIAL_HISTORY",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 6,
+        "displayOrder": 11,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -494,34 +494,6 @@
             "HE, Personal hygiene",
             "HE, Education learning needs",
             "HE, Referral care Plan"
-          ],
-          "isEditable": true,
-          "numberOfVisits": 3,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
-      "Surgical Follow-up Plan": {
-        "translationKey": "DASHBOARD_TITLE_SURGICAL_FOLLOW-UP_PLAN",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 9,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "SFP, Follow-up plan",
-            "SFP, Follow-up needs",
-            "SFP, Notes, other"
-          ],
-          "scope": "latest",
-          "showGroupDateTime": false
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "SFP, Follow-up plan",
-            "SFP, Follow-up needs",
-            "SFP, Notes, other"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -534,7 +506,7 @@
         "type": "obsToObsFlowSheet",
         "headingConceptSource": "Abbreviation",
         "dataConceptSource": "Abbreviation",
-        "displayOrder": 8,
+        "displayOrder": 13,
         "dashboardConfig": {
           "isEditable": true,
           "hideEmptyRecords": true,
@@ -604,7 +576,7 @@
         "translationKey": "DASHBOARD_TITLE_PHYSIOTHERAPY_FOLLOW-UP_PLAN",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 11,
+        "displayOrder": 16,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -630,7 +602,7 @@
       },
       "physical Examination": {
         "type": "custom",
-        "displayOrder": 10,
+        "displayOrder": 15,
         "config": {
           "title": "DASHBOARD_TITLE_PHYSICAL_EXAMINATION_KEY",
           "template": "<physical-examination section='config' patient='patient' enrollment='enrollment'></physical-examination>"
@@ -638,7 +610,7 @@
       },
       "Surgical Follow-up Plan": {
         "type": "custom",
-        "displayOrder": 11,
+        "displayOrder": 14,
         "config": {
           "title": "DASHBOARD_TITLE_SURGICAL_FOLLOW_UP_PLAN_KEY",
           "template": "<surgical-follow_up section='config' patient='patient' enrollment='enrollment'></surgical-follow_up>"
@@ -646,7 +618,7 @@
       },
       "Discharge Medication": {
         "type": "custom",
-        "displayOrder": 18,
+        "displayOrder": 22,
         "config": {
           "title": "DASHBOARD_TITLE_DISCHARGE_MEDICATION_KEY",
           "template": "<discharge-medication section='config' patient='patient' enrollment='enrollment'></discharge-medication>"
@@ -656,7 +628,7 @@
         "translationKey": "DASHBOARD_TITLE_FINAL_DIAGNOSES",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 12,
+        "displayOrder": 17,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -680,7 +652,7 @@
       },
       "Operative Course in Amman": {
         "type": "custom",
-        "displayOrder": 14,
+        "displayOrder": 26,
         "displayType": "Full-Page",
         "config": {
           "title": "DASHBOARD_TITLE_OPERATIVE_COURSE_IN_AMMAN_KEY",
@@ -691,12 +663,10 @@
         "translationKey": "DASHBOARD_TITLE_PAIN_MANAGEMENT",
         "type": "vitals",
         "isObservation": true,
-
-        "displayOrder": 1,
+        "displayOrder": 3,
         "dashboardConfig": {
           "showDetailsButton": true,
-          "persistOrderOfConcepts": true,
-          "showGroupDateTime": false,
+          "showGroupDateTime": true,
           "isEditable": true,
           "conceptNames": [
             "PNF, Date recorded",
@@ -742,7 +712,7 @@
         "translationKey": "DASHBOARD_TITLE_POST_OPERATIVE_ANAESTESIA_COURSE",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 16,
+        "displayOrder": 20,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -781,7 +751,7 @@
       },
       "bacteriology": {
         "type": "custom",
-        "displayOrder": 17,
+        "displayOrder": 25,
         "displayType": "Full-Page",
         "config": {
           "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
@@ -792,7 +762,7 @@
         "translationKey": "ADMINISTRATIVE_NOTE_KEY",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 18,
+        "displayOrder": 28,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -815,7 +785,7 @@
         "type": "obsToObsFlowSheet",
         "headingConceptSource": "Abbreviation",
         "dataConceptSource": "Abbreviation",
-        "displayOrder": 19,
+        "displayOrder": 7,
         "dashboardConfig": {
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
@@ -840,7 +810,7 @@
         "type": "obsToObsFlowSheet",
         "headingConceptSource": "Abbreviation",
         "dataConceptSource": "Abbreviation",
-        "displayOrder": 20,
+        "displayOrder": 9,
         "dashboardConfig": {
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
@@ -866,7 +836,7 @@
         "translationKey": "DASHBOARD_TITLE_EARLY_COMPLICATIONS",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 21,
+        "displayOrder": 1,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -899,7 +869,7 @@
         "translationKey": "DASHBOARD_TITLE_PSYCHO_SOCIAL_COMMENTS",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 22,
+        "displayOrder": 12,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -926,7 +896,7 @@
         "translationKey": "DASHBOARD_TITLE_MEDICAL_FOLLOW-UP_PLAN",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 23,
+        "displayOrder": 19,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
