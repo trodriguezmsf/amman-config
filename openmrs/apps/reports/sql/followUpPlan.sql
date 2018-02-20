@@ -18,7 +18,7 @@ FROM
   INNER JOIN (
                SELECT
                  person_id             AS patient_id,
-                 o.obs_datetime,
+                 CAST(o.obs_datetime AS DATE) AS obs_datetime,
                  cna.concept_full_name AS followUpPlan,
                  o.value_coded
                FROM obs o
