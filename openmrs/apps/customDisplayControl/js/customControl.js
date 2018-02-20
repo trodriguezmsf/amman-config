@@ -1506,11 +1506,11 @@ angular.module('bahmni.common.displaycontrol.custom')
             });
         };
 
-        spinner.forPromise($q.all([getResponseFromQuery("bahmni.sqlGet.medicalDiagnosis1"), getResponseFromQuery("bahmni.sqlGet.surgicalDiagnosisData")]).then(function (response) {
+        spinner.forPromise($q.all([getResponseFromQuery("bahmni.sqlGet.surgicalDiagnosisData"), getResponseFromQuery("bahmni.sqlGet.medicalDiagnosisData")]).then(function (response) {
             $scope.headings = ["Surgical Diagnosis", "Side and Site"];
             $scope.medicalDiagnosisHeadings = ["Medical Diagnosis"];
-            $scope.surgicalDiagnosis = response[1].data;
-            $scope.medicalDiagnosis = response[0].data;
+            $scope.surgicalDiagnosis = response[0].data;
+            $scope.medicalDiagnosis = response[1].data;
         }));
     };
 
