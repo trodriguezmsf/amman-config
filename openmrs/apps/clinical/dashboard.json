@@ -426,7 +426,6 @@
           "isEditable": true,
           "groupByConcept": "PIA, Date of consultation",
           "templateName": "Psychology initial assessment",
-          "pivotOn": "column",
           "conceptNames": [
             "PIA, SQR20 (score)",
             "PIA, PTSD (score)",
@@ -447,7 +446,6 @@
             "PIA, SDQ P7-10",
             "PIA, SDQ S11-17"
           ],
-          "pivotOn": "column",
           "numberOfVisits": 5,
           "showDetailsButton": true,
           "pivotTable": {}
