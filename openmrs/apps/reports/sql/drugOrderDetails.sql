@@ -1,8 +1,8 @@
 SELECT
-  antiBioticsDetails.patient_id,
-  antiBioticsDetails.date_activated,
+  overlappedAntiBioticsDetails.patient_id,
+  overlappedAntiBioticsDetails.date_activated,
   microBiology.sampleCollectionDate,
-  antiBioticsDetails.auto_expire_date
+  overlappedAntiBioticsDetails.auto_expire_date
 FROM
   (SELECT
      s1.order_id,
@@ -21,7 +21,7 @@ FROM
                     FROM ANTI_BIOTIC_DRUGS s2
                     WHERE s1.patient_id = s2.patient_id AND s1.date_activated > s2.date_activated AND
                           s1.date_activated <= s2.auto_expire_date)
-   GROUP BY s1.patient_id, s1.date_activated) antiBioticsDetails
+   GROUP BY s1.patient_id, s1.date_activated) overlappedAntiBioticsDetails
   LEFT JOIN (
               SELECT
                 specimenCollection.person_id,
@@ -66,5 +66,5 @@ FROM
                    ) finalIdentificationAnswerObs ON finalIdentificationAnswerObs.groupId = resultsSection.resultsObsId
                 ) finalIdentification
                   ON finalIdentification.resultsGroupId = specimenCollection.specimenGroupId
-            ) microBiology ON microBiology.person_id = antiBioticsDetails.patient_id AND
-                              microBiology.sampleCollectionDate BETWEEN antiBioticsDetails.date_activated AND antiBioticsDetails.auto_expire_date;
+            ) microBiology ON microBiology.person_id = overlappedAntiBioticsDetails.patient_id AND
+                              microBiology.sampleCollectionDate BETWEEN overlappedAntiBioticsDetails.date_activated AND overlappedAntiBioticsDetails.auto_expire_date;
