@@ -296,7 +296,7 @@
       "Medications administered": {
         "translationKey": "DASHBOARD_TITLE_MEDICATION_KEY",
         "type": "treatment",
-        "displayOrder": 5,
+        "displayOrder": 3,
         "dashboardConfig": {
           "showFlowSheet": true,
           "showListView": true,
@@ -360,7 +360,7 @@
         "translationKey": "DASHBOARD_TITLE_PSYCHO_MEDICAL_COURSE",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 8,
+        "displayOrder": 5,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -419,7 +419,7 @@
         "type": "obsToObsFlowSheet",
         "headingConceptSource": "Abbreviation",
         "dataConceptSource": "Abbreviation",
-        "displayOrder": 10,
+        "displayOrder": 8,
         "dashboardConfig": {
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
@@ -576,7 +576,7 @@
         "translationKey": "DASHBOARD_TITLE_PHYSIOTHERAPY_FOLLOW-UP_PLAN",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 16,
+        "displayOrder": 14,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -610,7 +610,7 @@
       },
       "Surgical Follow-up Plan": {
         "type": "custom",
-        "displayOrder": 14,
+        "displayOrder": 12,
         "config": {
           "title": "DASHBOARD_TITLE_SURGICAL_FOLLOW_UP_PLAN_KEY",
           "template": "<surgical-follow_up section='config' patient='patient' enrollment='enrollment'></surgical-follow_up>"
@@ -618,7 +618,7 @@
       },
       "Discharge Medication": {
         "type": "custom",
-        "displayOrder": 22,
+        "displayOrder": 19,
         "config": {
           "title": "DASHBOARD_TITLE_DISCHARGE_MEDICATION_KEY",
           "template": "<discharge-medication section='config' patient='patient' enrollment='enrollment'></discharge-medication>"
@@ -663,7 +663,7 @@
         "translationKey": "DASHBOARD_TITLE_PAIN_MANAGEMENT",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 3,
+        "displayOrder": 1,
         "dashboardConfig": {
           "showDetailsButton": true,
           "showGroupDateTime": true,
@@ -701,47 +701,6 @@
             "PNF, Increasing or decreasing factors:",
             "PNF, Referral needed:",
             "PNF, Other comments"
-          ],
-          "isEditable": true,
-          "numberOfVisits": 3,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
-      "Post Operative Anaesthesia Course ": {
-        "translationKey": "DASHBOARD_TITLE_POST_OPERATIVE_ANAESTESIA_COURSE",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 20,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "Post-operative Anaesthesia Note",
-            "FP, Early Follow-up",
-            "CC, Complications"
-          ],
-          "obsIgnoreList": [
-            "APN, Special drugs used during surgery",
-            "APN, Intra-operative Labs",
-            "APN, Devices present",
-            "APN, Anaesthetic post-operative notes",
-            "SFP, Early Follow-up",
-            "SFP, Partial achievement of objective",
-            "SFP, Patient requires amputation",
-            "CC, Anemia due to acute blood loss, description",
-            "CC, Anaesthetic complication in OT, description",
-            "CC, Antibiotic adverse reaction, description",
-            "CC, Cardiac arrhythmia, description",
-            "CC, Flap necrosis, description",
-            "CC, Pressure ulcer, description"
-          ]
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "Post-operative Anaesthesia Note",
-            "FP, Early Follow-up",
-            "CC, Complications"
           ],
           "isEditable": true,
           "numberOfVisits": 3,
@@ -836,29 +795,45 @@
         "translationKey": "DASHBOARD_TITLE_EARLY_COMPLICATIONS",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 1,
+        "displayOrder": 22,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
-            "SFP, Type of complication",
-            "SFP, Impact of complication",
-            "CC, Patient complication",
-            "CC, Start date of complication",
-            "CC, Description of complication",
-            "CC, Outcome of complication",
-            "CC, End date of complication"
+            "FP, Early Follow-up",
+            "CC, Complications"
+          ],
+          "obsIgnoreList":[
+            "CC, Anemia due to acute blood loss, description",
+            "CC, Anaesthetic complication in OT, description",
+            "CC, Antibiotic adverse reaction, description",
+            "CC, Cardiac arrhythmia, description",
+            "CC, Flap necrosis, description",
+            "CC, Pressure ulcer, description",
+            "CC, Grade of complication",
+            "CC, Additional comments, complications",
+            "SFP, Early Follow-up",
+            "SFP, Partial achievement of objective",
+            "SFP, Patient requires amputation"
           ]
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "SFP, Type of complication",
-            "SFP, Impact of complication",
-            "CC, Patient complication",
-            "CC, Start date of complication",
-            "CC, Description of complication",
-            "CC, Outcome of complication",
-            "CC, End date of complication"
+            "FP, Early Follow-up",
+            "CC, Complications"
+          ],
+          "obsIgnoreList":[
+            "CC, Anemia due to acute blood loss, description",
+            "CC, Anaesthetic complication in OT, description",
+            "CC, Antibiotic adverse reaction, description",
+            "CC, Cardiac arrhythmia, description",
+            "CC, Flap necrosis, description",
+            "CC, Pressure ulcer, description",
+            "CC, Grade of complication",
+            "CC, Additional comments, complications",
+            "SFP, Early Follow-up",
+            "SFP, Partial achievement of objective",
+            "SFP, Patient requires amputation"
           ],
           "numberOfVisits": 3,
           "showDetailsButton": true,
@@ -869,7 +844,7 @@
         "translationKey": "DASHBOARD_TITLE_PSYCHO_SOCIAL_COMMENTS",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 12,
+        "displayOrder": 10,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -896,7 +871,7 @@
         "translationKey": "DASHBOARD_TITLE_MEDICAL_FOLLOW-UP_PLAN",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 19,
+        "displayOrder": 16,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
