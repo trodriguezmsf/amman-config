@@ -62,4 +62,3 @@ FROM
     ON complication.pc_person = piccLineDateInfo.person AND
        complication.complication_start_date BETWEEN piccLineDateInfo.date_of_insertion
        AND piccLineDateInfo.date_of_removal
-WHERE YEAR (date_of_insertion) = YEAR('#startDate#')

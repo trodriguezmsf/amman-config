@@ -24,5 +24,5 @@ HAVING patientComplication = 'Surgical Site Infection')InfectionInfo
 FROM surgical_appointment
 WHERE status = 'COMPLETED') surgeryInfo
 ON InfectionInfo.person_id = surgeryInfo.patient_id
-WHERE patientComplicationDate IS NOT NULL AND YEAR(cmpltdSurgeryStartDate) = YEAR('#startDate#')
+WHERE patientComplicationDate IS NOT NULL
 
