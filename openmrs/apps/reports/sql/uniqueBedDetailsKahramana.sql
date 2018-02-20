@@ -19,7 +19,8 @@ WHERE bed_id IN (SELECT bed_id
                      l.location_id
                    FROM location l WHERE l.name IN (
                      'Kahramana(2nd floor)',
-                     'Kahramana(1st floor)'
+                     'Kahramana(1st floor)',
+                     'Buffer Beds'
                    )
                  ) AND bpam.voided IS FALSE ) AND bpam.voided IS FALSE
 ) kahramanaOccupency
