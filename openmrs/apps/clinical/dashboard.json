@@ -624,20 +624,13 @@
           "template": "<discharge-medication section='config' patient='patient' enrollment='enrollment'></discharge-medication>"
         }
       },
-      "Final Diagnoses": {
-        "translationKey": "DASHBOARD_TITLE_FINAL_DIAGNOSES",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 17,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "OBS, Surgical Diagnoses",
-            "OBS, Medical Diagnoses"
-          ],
-          "scope": "latest",
-          "showGroupDateTime": false
+      "Surgical Diagnoses": {
+        "translationKey": "DASHBOARD_TITLE_SURGICAL_DIAGNOSES",
+        "type": "custom",
+        "displayOrder": 12,
+        "config": {
+          "title": "DASHBOARD_TITLE_SURGICAL_DIAGNOSES",
+          "template": "<surgical-diagnosis section='config' patient='patient' enrollment='enrollment'></surgical-diagnosis>"
         },
         "expandedViewConfig": {
           "conceptNames": [

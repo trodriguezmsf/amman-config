@@ -1488,4 +1488,35 @@ angular.module('bahmni.common.displaycontrol.custom')
         },
         template: '<ng-include src="contentUrl"/>'
     }
+}]).directive('surgicalDiagnosis', ['$http', '$stateParams', '$q', 'appService', 'spinner', function ($http, $stateParams, $q, appService, spinner) {
+    var controller = function ($scope) {
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/surgicalDiagnosis.html";
+        $scope.title = $scope.config.title;
+
+        var getResponseFromQuery = function (queryParameter) {
+            var params = {
+                patientUuid: $scope.patient.uuid,
+                q: queryParameter,
+                v: "full"
+            };
+            return $http.get('/openmrs/ws/rest/v1/bahmnicore/sql', {
+                method: "GET",
+                params: params,
+                withCredentials: true
+            });
+        };
+
+        spinner.forPromise($q.all([getResponseFromQuery("bahmni.sqlGet.medicalDiagnosis1"), getResponseFromQuery("bahmni.sqlGet.surgicalDiagnosisData")]).then(function (response) {
+            $scope.headings = ["Surgical Diagnosis", "Side and Site"];
+            $scope.medicalDiagnosisHeadings = ["Medical Diagnosis"];
+            $scope.surgicalDiagnosis = response[1].data;
+            $scope.medicalDiagnosis = response[0].data;
+        }));
+    };
+
+    return {
+        restrict: 'E',
+        controller: controller,
+        template: '<ng-include src="contentUrl"/>'
+    }
 }]);
