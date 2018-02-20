@@ -666,7 +666,8 @@
         "displayOrder": 1,
         "dashboardConfig": {
           "showDetailsButton": true,
-          "showGroupDateTime": true,
+          "showGroupDateTime": false,
+          "persistOrderOfConcepts": true,
           "isEditable": true,
           "conceptNames": [
             "PNF, Date recorded",
@@ -683,9 +684,11 @@
             "PNF, Increasing or decreasing factors:",
             "PNF, Referral needed:",
             "PNF, Other comments"
-          ]
+          ],
+          "scope": "latest"
         },
         "expandedViewConfig": {
+          "persistOrderOfConcepts": true,
           "conceptNames": [
             "PNF, Date recorded",
             "PNF, Type of pain experienced by the patient",
@@ -702,6 +705,8 @@
             "PNF, Referral needed:",
             "PNF, Other comments"
           ],
+          "scope": "latest",
+          "showGroupDateTime": false,
           "isEditable": true,
           "numberOfVisits": 3,
           "showDetailsButton": true,
