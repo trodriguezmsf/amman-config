@@ -10,11 +10,10 @@ FROM
    FROM patient_appointment pa
      INNER JOIN appointment_service asr ON asr.appointment_service_id = pa.appointment_service_id AND
                                            asr.name IN ('Physiotherapy OPD', 'Physiotherapy Ward') AND
-                                           asr.voided IS FALSE
-     INNER JOIN appointment_service_type ast ON ast.appointment_service_type_id = pa.appointment_service_type_id
-                                                AND ast.name NOT IN ('IA1', 'IA2')
+                                           asr.voided IS FALSE AND pa.voided IS FALSE
+     LEFT JOIN appointment_service_type ast ON ast.appointment_service_type_id = pa.appointment_service_type_id
                                                 AND ast.voided IS FALSE
-   WHERE status NOT IN ('Canceled', 'Missed') AND pa.voided IS FALSE
+   WHERE status NOT IN ('Canceled', 'Missed') AND (ast.name NOT IN ('IA1', 'IA2') OR ast.name IS NULL)
   ) appointmentInfo
   INNER JOIN
   (SELECT

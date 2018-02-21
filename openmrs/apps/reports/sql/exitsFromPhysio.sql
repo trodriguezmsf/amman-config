@@ -12,8 +12,8 @@ FROM
      INNER JOIN appointment_service asr ON asr.appointment_service_id = pa.appointment_service_id AND
                                            asr.name IN ('Physiotherapy OPD', 'Physiotherapy Ward') AND
                                            asr.voided IS FALSE
-     INNER JOIN appointment_service_type ast ON ast.appointment_service_type_id = pa.appointment_service_type_id
-                                                AND ast.name NOT IN ('TRM1', 'IA2', 'IA1')
+     LEFT JOIN appointment_service_type ast ON ast.appointment_service_type_id = pa.appointment_service_type_id
+                                                AND ast.name NOT IN ('TRM1', 'IA2', 'IA1') OR ast.name IS NULL
                                                 AND ast.voided IS FALSE) appointmentINfo
   INNER JOIN
   (SELECT

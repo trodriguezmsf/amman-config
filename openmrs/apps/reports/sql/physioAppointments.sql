@@ -19,14 +19,12 @@ FROM
      pa.appointment_service_id,
      pa.appointment_service_type_id
    FROM patient_appointment pa
-   WHERE pa.status NOT IN ('Cancelled')) pa
-  INNER JOIN
+   WHERE pa.status NOT IN ('Cancelled')) pa ON pa.appointment_service_id = aps.appointment_service_id
+  LEFT JOIN
   (SELECT
      ast.name,
      ast.duration_mins,
      appointment_service_type_id
-   FROM appointment_service_type ast
-   WHERE ast.name NOT IN ('IA1','IA2', 'TRM1')) ast
-WHERE aps.appointment_service_id = pa.appointment_service_id
-      AND pa.appointment_service_type_id = ast.appointment_service_type_id
+   FROM appointment_service_type ast) ast ON pa.appointment_service_type_id = ast.appointment_service_type_id
+  WHERE ast.name NOT IN ('IA1','IA2', 'TRM1') OR ast.name IS NULL
       AND YEAR(pa.start_date_time) = YEAR('#startDate#');
