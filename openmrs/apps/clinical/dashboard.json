@@ -296,7 +296,7 @@
       "Medications administered": {
         "translationKey": "DASHBOARD_TITLE_MEDICATION_KEY",
         "type": "treatment",
-        "displayOrder": 3,
+        "displayOrder": 12,
         "dashboardConfig": {
           "showFlowSheet": true,
           "showListView": true,
@@ -304,7 +304,7 @@
           "showDrugForm": true,
           "numberOfVisits": 5,
           "showOtherActive": true,
-          "showDetailsButton": true
+          "showDetailsButton": false
         },
         "expandedViewConfig": {
           "translationKey": "DASHBOARD_TITLE_MEDICATION_KEY",
@@ -314,14 +314,14 @@
           "showDrugForm": true,
           "numberOfVisits": 10,
           "showOtherActive": true,
-          "showDetailsButton": true
+          "showDetailsButton": false
         }
       },
       "Medical History": {
         "translationKey": "DASHBOARD_TITLE_PATIENT_MEDICAL_HISTORY",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 2,
+        "displayOrder": 4,
         "dashboardConfig": {
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
@@ -360,7 +360,7 @@
         "translationKey": "DASHBOARD_TITLE_PSYCHO_MEDICAL_COURSE",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 5,
+        "displayOrder": 13,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -383,12 +383,13 @@
         "translationKey": "DASHBOARD_TITLE_PAST_MEDICAL_HISTORY",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 4,
+        "displayOrder": 6,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
           "conceptNames": [
             "AIA, Past medical history",
+            "AIA, Past medical history, other",
             "MD, Medical History",
             "AIA, Adverse reaction to anaesthesia",
             "AIA, Comments about adverse reaction",
@@ -396,11 +397,13 @@
             "AIA, Describe",
             "MD, History of Fixation"
           ],
+          "scope": "latest",
           "showGroupDateTime": true
         },
         "expandedViewConfig": {
           "conceptNames": [
             "AIA, Past medical history",
+            "AIA, Past medical history, other",
             "MD, Medical History",
             "AIA, Adverse reaction to anaesthesia",
             "AIA, Comments about adverse reaction",
@@ -408,6 +411,7 @@
             "AIA, Describe",
             "MD, History of Fixation"
           ],
+          "scope": "latest",
           "isEditable": true,
           "numberOfVisits": 3,
           "showDetailsButton": true,
@@ -419,7 +423,7 @@
         "type": "obsToObsFlowSheet",
         "headingConceptSource": "Abbreviation",
         "dataConceptSource": "Abbreviation",
-        "displayOrder": 8,
+        "displayOrder": 16,
         "dashboardConfig": {
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
@@ -455,7 +459,7 @@
         "translationKey": "DASHBOARD_TITLE_SOCIAL_HISTORY",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 11,
+        "displayOrder": 2,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -504,7 +508,7 @@
         "type": "obsToObsFlowSheet",
         "headingConceptSource": "Abbreviation",
         "dataConceptSource": "Abbreviation",
-        "displayOrder": 13,
+        "displayOrder": 3,
         "dashboardConfig": {
           "isEditable": true,
           "hideEmptyRecords": true,
@@ -574,7 +578,7 @@
         "translationKey": "DASHBOARD_TITLE_PHYSIOTHERAPY_FOLLOW-UP_PLAN",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 14,
+        "displayOrder": 20,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -600,7 +604,7 @@
       },
       "physical Examination": {
         "type": "custom",
-        "displayOrder": 15,
+        "displayOrder": 5,
         "config": {
           "title": "DASHBOARD_TITLE_PHYSICAL_EXAMINATION_KEY",
           "template": "<physical-examination section='config' patient='patient' enrollment='enrollment'></physical-examination>"
@@ -608,7 +612,7 @@
       },
       "Surgical Follow-up Plan": {
         "type": "custom",
-        "displayOrder": 12,
+        "displayOrder": 19,
         "config": {
           "title": "DASHBOARD_TITLE_SURGICAL_FOLLOW_UP_PLAN_KEY",
           "template": "<surgical-follow_up section='config' patient='patient' enrollment='enrollment'></surgical-follow_up>"
@@ -616,16 +620,16 @@
       },
       "Discharge Medication": {
         "type": "custom",
-        "displayOrder": 19,
+        "displayOrder": 17,
         "config": {
           "title": "DASHBOARD_TITLE_DISCHARGE_MEDICATION_KEY",
           "template": "<discharge-medication section='config' patient='patient' enrollment='enrollment'></discharge-medication>"
         }
       },
-      "Surgical Diagnoses": {
+      "Diagnoses": {
         "translationKey": "DASHBOARD_TITLE_SURGICAL_DIAGNOSES",
         "type": "custom",
-        "displayOrder": 12,
+        "displayOrder": 7,
         "config": {
           "title": "DASHBOARD_TITLE_SURGICAL_DIAGNOSES",
           "template": "<surgical-diagnosis section='config' patient='patient' enrollment='enrollment'></surgical-diagnosis>"
@@ -643,7 +647,7 @@
       },
       "Operative Course in Amman": {
         "type": "custom",
-        "displayOrder": 26,
+        "displayOrder": 9,
         "displayType": "Full-Page",
         "config": {
           "title": "DASHBOARD_TITLE_OPERATIVE_COURSE_IN_AMMAN_KEY",
@@ -654,7 +658,7 @@
         "translationKey": "DASHBOARD_TITLE_PAIN_MANAGEMENT",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 1,
+        "displayOrder": 14,
         "dashboardConfig": {
           "showDetailsButton": true,
           "showGroupDateTime": false,
@@ -706,7 +710,7 @@
       },
       "bacteriology": {
         "type": "custom",
-        "displayOrder": 25,
+        "displayOrder": 11,
         "displayType": "Full-Page",
         "config": {
           "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
@@ -717,7 +721,7 @@
         "translationKey": "ADMINISTRATIVE_NOTE_KEY",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 28,
+        "displayOrder": 21,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -740,7 +744,7 @@
         "type": "obsToObsFlowSheet",
         "headingConceptSource": "Abbreviation",
         "dataConceptSource": "Abbreviation",
-        "displayOrder": 7,
+        "displayOrder": 8,
         "dashboardConfig": {
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
@@ -765,7 +769,7 @@
         "type": "obsToObsFlowSheet",
         "headingConceptSource": "Abbreviation",
         "dataConceptSource": "Abbreviation",
-        "displayOrder": 9,
+        "displayOrder": 1,
         "dashboardConfig": {
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
@@ -791,7 +795,7 @@
         "translationKey": "DASHBOARD_TITLE_EARLY_COMPLICATIONS",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 22,
+        "displayOrder": 10,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -836,11 +840,11 @@
           "pivotTable": {}
         }
       },
-      "Psycho-Social Course Comments": {
+      "Psycho-Social Overview": {
         "translationKey": "DASHBOARD_TITLE_PSYCHO_SOCIAL_COMMENTS",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 10,
+        "displayOrder": 18,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -867,7 +871,7 @@
         "translationKey": "DASHBOARD_TITLE_MEDICAL_FOLLOW-UP_PLAN",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 16,
+        "displayOrder": 15,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -1003,14 +1007,6 @@
             "numberOfVisits": 3,
             "showDetailsButton": true,
             "pivotTable": {}
-          }
-        },
-        "patientAppointments": {
-          "type": "custom",
-          "displayOrder": 3,
-          "config": {
-            "title": "DASHBOARD_TITLE_APPOINTMENTS_KEY",
-            "template": "<patient-appointments-dashboard section='config' patient='patient'></patient-appointments-dashboard>"
           }
         },
         "lowerLimbPhysioSummary": {

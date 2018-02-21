@@ -6,7 +6,6 @@ INSERT INTO global_property (property, property_value, description, uuid)
 "SELECT
   surgical_appointment_with_stage.stage                  AS Stage,
   DATE_FORMAT(sb.start_datetime, '%d/%m/%Y')             AS 'Date of Surgery',
-  CONCAT(pn.given_name, ' ', pn.family_name)             AS Surgeon,
   surgical_appointment_procedure.value                   AS `Procedure`,
   latest_encounter_with_sb.type_of_administered          AS `Type of anaesthesia administered`,
   latest_encounter_with_sb.`Complication of Anaesthesia` AS `Complication of anaesthesia`,
