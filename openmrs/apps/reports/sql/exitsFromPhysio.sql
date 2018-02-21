@@ -11,6 +11,7 @@ FROM
    FROM patient_appointment pa
      INNER JOIN appointment_service asr ON asr.appointment_service_id = pa.appointment_service_id AND
                                            asr.name IN ('Physiotherapy OPD', 'Physiotherapy Ward') AND
+                                           pa.status NOT IN ('Cancelled', 'Missed') AND pa.voided IS FALSE AND
                                            asr.voided IS FALSE
      LEFT JOIN appointment_service_type ast ON ast.appointment_service_type_id = pa.appointment_service_type_id
                                                 AND ast.name NOT IN ('TRM1', 'IA2', 'IA1') OR ast.name IS NULL
@@ -48,6 +49,7 @@ FROM
           nwFollowUpInfo.start_date >= preOperativeInfo.start_date
    GROUP BY nwFollowUpInfo.patient_id, nwFollowUpInfo.start_date) nwAndPreOpStateInfo
     ON nwAndPreOpStateInfo.patient_id = appointmentINfo.patient_id AND
+        YEAR(nwFollowUpStartDate) = YEAR('#startDate#') AND
        appointmentINfo.appointment_start_date BETWEEN nwAndPreOpStateInfo.preOperativeStartDate AND
        nwAndPreOpStateInfo.nwFollowUpStartDate
-WHERE appointmentINfo.status != 'Cancelled' AND YEAR(nwFollowUpStartDate) = YEAR('#startDate#');
+ GROUP BY nwAndPreOpStateInfo.patient_id,nwAndPreOpStateInfo.nwFollowUpStartDate;
