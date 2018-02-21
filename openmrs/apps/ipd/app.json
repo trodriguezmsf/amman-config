@@ -313,6 +313,7 @@
                 "surgicalHistory": {
                     "type": "custom",
                     "displayOrder": 7,
+                    "displayType": "Full-Page",
                     "config": {
                         "title": "DASHBOARD_TITLE_SURGICAL_APPOINTMENTS_KEY",
                         "template": "<surgical-history section='section' patient='patient'></surgical-history>"

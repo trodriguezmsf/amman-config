@@ -97,5 +97,352 @@
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/trmPatients.sql"
     }
+  },"customReport15": {
+    "name": "Cases Feedback",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/casesFeedback.sql"
+    }
+  },
+  "customReport16" : {
+    "name": "Patient Bed Details",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientwarddetails.sql"
+    }
+  },
+  "customReport18": {
+    "name": "Bed Management Indicators(Custom Excel)",
+    "type": "concatenated",
+    "config": {
+      "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/bedManagementIndicators.xls",
+      "reports": [
+        {
+          "name": "Ward_stay",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/wardStay.sql"
+          }
+        },
+        {
+          "name": "Ward",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/uniqueBedDetailsWard.sql"
+          }
+        },
+        {
+          "name": "Kahramana",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/uniqueBedDetailsKahramana.sql"
+          }
+        },
+        {
+          "name": "RC",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/uniqueBedDetailsRC.sql"
+          }
+        },
+        {
+          "name": "Bed_Tags",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/bedTagsInfo.sql"
+          }
+        },
+        {
+          "name": "Pat_State",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientState.sql"
+          }
+        },
+        {
+          "name": "Nw_State",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/networkStateInfo.sql"
+          }
+        },
+        {
+          "name": "Nw_Follow_Up",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/nwFollowUpAndPreoperativeDates.sql"
+          }
+        },
+        {
+          "name": "IsolatedWardBeds",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/isolatedWardBeds.sql"
+          }
+        }
+      ]
+    }
+  },
+  "customReport19": {
+    "name": "Indicators(Custom Excel)",
+    "type": "concatenated",
+    "config": {
+      "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/indicatorTemplate.xls",
+      "reports": [
+        {
+          "name": "FSTG",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/fstgDetails.sql"
+          }
+        },{
+          "name": "Pat_State",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientState.sql"
+          }
+        },
+        {
+          "name": "Pat_Attr",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientAttributes.sql"
+          }
+        },
+        {
+          "name": "Appointments",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/appointmentDetails.sql"
+          }
+        },
+        {
+          "name": "Identification",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientsInIdentificationState.sql"
+          }
+        },
+        {
+          "name": "Pat_Anasth",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientsWithAnaesthesiaFilled.sql"
+          }
+        },
+        {
+          "name": "OT_First_Comp",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/firstCompletedSurgeries.sql"
+          }
+        },
+        {
+          "name": "OT_Comp",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/OTCompletedSurgeries.sql"
+          }
+        },
+        {
+          "name": "File_Rcvd",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/fstgDateReceived.sql"
+          }
+        },
+        {
+          "name": "FSTGDOP",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/fstgDateOfPresentation.sql"
+          }
+        },
+        {
+          "name": "Surgeries",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/surgeryDetails.sql"
+          }
+        },
+        {
+          "name": "fstgWithNewObs",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/fstgWithNewObs.sql"
+          }
+        },
+        {
+          "name": "surgeonObsTime",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/surgeonFollowupObsTime.sql"
+          }
+        },
+        {
+          "name": "AIA_consultation",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/aiaDateOfConsultation.sql"
+          }
+        },
+        {
+          "name": "SAP_consultation",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/sapDateOfConsultation.sql"
+          }
+        },
+        {
+          "name": "OT_comp_perMonth",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/oneCompletedSurgeriesPerMonth.sql"
+          }
+        },
+        {
+          "name": "sameDayCancel",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/sameDayCancellations.sql"
+          }
+        },
+        {
+          "name": "pnfReferralDate",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/PNFReferralDate.sql"
+          }
+        },
+        {
+          "name": "Nw_Follow_Up",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/nwFollowUpAndPreoperativeDates.sql"
+          }
+        },
+        {
+          "name": "drugOrders",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/drugOrderDetails.sql"
+          }
+        },
+        {
+          "name": "followUpPlan",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/followUpPlan.sql"
+          }
+        },
+        {
+          "name": "estimatedLos",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/estimatedLOS.sql"
+          }
+        },
+        {
+          "name": "psyDrug",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/psyDrugDetails.sql"
+          }
+        },
+        {
+          "name": "fupOutCome",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/fupOutCome.sql"
+          }
+        },
+        {
+          "name": "OrTimeFilled",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/orTimeFilled.sql"
+          }
+        },
+        {
+          "name": "surgSiteInfec",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/surgicalSiteInfection.sql"
+          }
+        },
+        {
+          "name": "furtherSurgery",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientsFurtherSurgery.sql"
+          }
+        },
+        {
+          "name": "complicationImpact",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/complicationImpact.sql"
+          }
+        },
+        {
+          "name": "PICCLineInfo",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/piccLineInfo.sql"
+          }
+        },
+        {
+          "name": "sfpEarlyFollowUp",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/sfpEarlyFollowUp.sql"
+          }
+        },
+        {
+          "name": "patientUndrNwFlp",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientsUnderFollowUp.sql"
+          }
+        }
+      ]
+    }
+  },
+  "customReport20": {
+    "name": "Physio Indicators(Custom Excel)",
+    "type": "concatenated",
+    "config": {
+      "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/PhysioIndicatorTemplate.xls",
+      "reports":[
+        {
+          "name": "firstNonIAApts",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/firstNonIAAppointment.sql"
+          }
+        },
+        {
+          "name": "ExitsFromPhysio",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/exitsFromPhysio.sql"
+          }
+        },
+        {
+          "name": "PatientsWith1x",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientsWith1x.sql"
+          }
+        },
+        {
+          "name": "PhysioAppointments",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/physioAppointments.sql"
+          }
+        }
+      ]
+    }
   }
 }

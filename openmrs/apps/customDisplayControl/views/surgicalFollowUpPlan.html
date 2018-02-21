@@ -1,0 +1,35 @@
+<style>
+    .sub-concept {
+        margin-left: 28px;
+    }
+
+    .follow-up-needs-title {
+        margin-left: -5px;
+    }
+</style>
+
+<section>
+    <h2 class="section-title">{{section.title | titleTranslate}}</h2>
+    <ul>
+        <li ng-show="isDataPresent()">
+            <div class="placeholder-text"><p translate="NO_FOLLOW_UP_DATA_FOUND"></p></div>
+        </li>
+    </ul>
+
+    <section class="block hierarchy">
+        <ul >
+            <li ng-repeat="concept in records">
+                <div class="tree-list-item clearfix background-color">
+                    <div ng-if="!isSubTableAble(concept)">
+                        <span class="testUnderPanel">{{concept.name}}</span>
+                        <span class="value-text-only">{{concept.value}}</span>
+                    </div>
+                    <div ng-if="isSubTableAble(concept)" >
+                        <p class="follow-up-needs-title placeholder-text">{{concept.name}}</p>
+                        <div class="sub-concept" ng-repeat="value in concept.value">{{value}}</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </section>
+</section>

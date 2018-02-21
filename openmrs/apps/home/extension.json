@@ -99,5 +99,15 @@
     "icon": "fa-download",
     "order": 10,
     "requiredPrivilege": "app:exports"
+  },
+  "Pharmacy": {
+    "id": "bahmni.pharmacy",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "label": "Pharmacy",
+    "url": "../clinical/#/pharmacy/patient/search",
+    "icon": "fa-flask",
+    "order": 11,
+    "requiredPrivilege": "app:pharmacy"
   }
 }

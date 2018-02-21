@@ -32,6 +32,9 @@
         <thead>
         <tr>
             <th width="80px">
+                Day
+            </th>
+            <th width="80px">
                 Date
             </th>
             <th width="80px">
@@ -39,6 +42,9 @@
             </th>
             <th class="largeWidth">
                 Patient Name
+            </th>
+            <th>
+                Patient Age
             </th>
             <th>
                 Est Time
@@ -55,10 +61,19 @@
             <th>
                 Status
             </th>
+            <th>
+                Bed Location
+            </th>
+            <th>
+                Bed ID
+            </th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="appointment in surgicalAppointmentList" ng-class="{'current-date': isCurrentDate(appointment.derivedAttributes.expectedStartDate)}">
+            <td width="80px">
+                {{appointment.derivedAttributes.expectedStartDate | date : 'EEEE'}}
+            </td>
             <td width="80px">
                 {{appointment.derivedAttributes.expectedStartDate | bahmniDate}}
             </td>
@@ -67,6 +82,9 @@
             </td>
             <td  class="largeWidth">
                 {{appointment.derivedAttributes.patientName}}
+            </td>
+            <td>
+                {{appointment.derivedAttributes.patientAge}}
             </td>
             <td>
                 {{appointment.surgicalAppointmentAttributes.estTimeHours.value}} {{'OT_SURGICAL_APPOINTMENT_HOURS' |
@@ -86,6 +104,12 @@
             </td>
             <td>
                 {{appointment.status}}
+            </td>
+            <td>
+                {{appointment.bedLocation}}
+            </td>
+            <td>
+                {{appointment.bedId}}
             </td>
         </tr>
         </tbody>

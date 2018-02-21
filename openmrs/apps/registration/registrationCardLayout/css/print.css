@@ -36,7 +36,7 @@ h1, h2, h3 ,h4 {
 /* line 20, print.scss */
 .registrationCard-print-table {
 
-  height: 3.38in;
+  height: 3.70in;
   overflow: scroll;
   margin: 0 auto;
   table-layout: fixed;
@@ -123,7 +123,7 @@ h1, h2, h3 ,h4 {
 
 /* line 55, print.scss */
 .print-table-right {
-  width : 2.13in;
+  width : 2in;
 }
 
 /* line 58, print.scss */

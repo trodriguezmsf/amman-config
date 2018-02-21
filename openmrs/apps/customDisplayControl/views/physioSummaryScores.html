@@ -1,0 +1,46 @@
+<style>
+    .physio-summary-scores {
+        background: white;
+    }
+    .physio-summary-scores-table {
+        text-align: center;
+        width: 98%;
+        margin-left: 1% !important;
+        margin-right: 1% !important;
+        margin-bottom: .5% !important;
+    }
+
+    .physio-summary-scores-table th, .physio-summary-scores-table td {
+        width: 1% !important;
+    }
+
+    .physio-summary-scores-block-title{
+        font-weight: bold;
+        font-size: 14px;
+        text-decoration: underline;
+        margin-bottom: .5% !important;
+    }
+
+</style>
+
+<section class="physio-summary-scores">
+    <h2 class="section-title">{{section.title | titleTranslate}}</h2>
+    <div ng-show="isEmptySummary" class="placeholder-text">
+        <p>{{"NO_SCORES_FOUND_MESSAGE"|translate}}</p>
+    </div>
+    <div ng-show="!isEmptySummary">
+        <section class="block hierarchy" ng-repeat="record in data track by $index">
+            <div ng-show="!isEmptyRecord(record)">
+                <p class="physio-summary-scores-block-title placeholder-text">{{record.display}}</p>
+                <table class="physio-summary-scores-table">
+                    <tr>
+                        <th ng-repeat="header in record.headers track by $index">{{header}}</th>
+                    </tr>
+                    <tr ng-repeat="row in record.rows track by $index">
+                        <td ng-repeat="value in row.values track by $index">{{value}}</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </div>
+</section>
