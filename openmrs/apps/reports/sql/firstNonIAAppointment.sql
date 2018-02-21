@@ -46,7 +46,7 @@ FROM
           ON pws.concept_id = cn.concept_id AND cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.voided IS FALSE
       WHERE cn.name IN ('Network Follow-up')) nwFollowUpInfo
        ON nwFollowUpInfo.patient_id = preOperativeInfo.patient_id AND
-          nwFollowUpInfo.start_date >= preOperativeInfo.start_date
+          nwFollowUpInfo.start_date > preOperativeInfo.start_date
    GROUP BY preOperativeInfo.patient_id, nwFollowUpInfo.start_date) nwAndPreOpStateInfo
     ON appointmentInfo.patient_id = nwAndPreOpStateInfo.patient_id AND appointmentInfo.non_IA_appointment BETWEEN
     nwAndPreOpStateInfo.preOperativeStartDate AND nwAndPreOpStateInfo.nwFollowUpStartDate
