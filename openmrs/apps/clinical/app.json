@@ -1637,7 +1637,10 @@
             },
             "APN, Anaesthesia end time":{
               "allowFutureDates": true
-            }
+            },
+          "MDOF, Discharge medication section":{
+            "allowAddMore": true
+          }
             },
         "visitPage": {
             "observationDisplay": {
