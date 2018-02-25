@@ -135,6 +135,11 @@ h1, h2, h3 ,h4 {
   height: 12mm;
 }
 
+.patient_id_card {
+  border: 2px solid black;
+  height: 2.13in;
+  width: 3.35in;
+}
 /* line 65, print.scss */
 .print-table-right-header {
   text-align: center;
