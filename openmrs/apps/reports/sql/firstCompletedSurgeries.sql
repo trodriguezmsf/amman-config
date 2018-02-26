@@ -1,18 +1,17 @@
 SELECT
-  firstSurgeryDetails.patient_id                 AS patient_id,
-  MAX(CAST(preOperativeDate.start_date AS DATE)) AS recentPreOperativeDate,
-  CAST(surgeryStartDate AS DATE)                 AS surgeryStartDate
+  allCompletedSurgeryDetails.patient_id     AS patient_id,
+  CAST(preOperativeDate.start_date AS DATE) AS preOperativeDate,
+  MIN(CAST(surgeryStartDate AS DATE))       AS firstSurgeryStartDate
 FROM
   (SELECT
      patient_id,
-     MIN(CAST(sb.start_datetime AS DATE)) AS surgeryStartDate,
-     CAST(sa.date_changed AS DATE)        AS dateChanged,
-     sa.status
+     CAST(sb.start_datetime AS DATE) AS surgeryStartDate
    FROM
      surgical_appointment sa
      INNER JOIN surgical_block sb ON sa.surgical_block_id = sb.surgical_block_id AND
                                      sb.voided IS FALSE AND sa.voided IS FALSE AND status = 'Completed'
-   GROUP BY patient_id) firstSurgeryDetails
+    WHERE YEAR(sb.start_datetime)=YEAR('#startDate#')
+  ) allCompletedSurgeryDetails
   INNER JOIN
   (SELECT
      pp3.patient_id,
@@ -26,10 +25,6 @@ FROM
      INNER JOIN concept_name cn
        ON cn.concept_id = pws.concept_id AND cn.concept_name_type = 'FULLY_SPECIFIED'
           AND cn.voided IS FALSE AND cn.name = 'Pre-Operative') preOperativeDate ON
-                                                                                   preOperativeDate.patient_id =
-                                                                                   firstSurgeryDetails.patient_id AND
-                                                                                   preOperativeDate.start_date <=
-                                                                                   firstSurgeryDetails.surgeryStartDate
-  WHERE YEAR(firstSurgeryDetails.surgeryStartDate)=YEAR('#startDate#')
-GROUP BY preOperativeDate.patient_id, firstSurgeryDetails.surgeryStartDate
-
+             preOperativeDate.patient_id = allCompletedSurgeryDetails.patient_id AND
+             preOperativeDate.start_date <= allCompletedSurgeryDetails.surgeryStartDate
+GROUP BY preOperativeDate.patient_id, preOperativeDate.start_date;
