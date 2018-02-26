@@ -8,7 +8,7 @@ FROM drug d
   INNER JOIN encounter e ON e.encounter_id = o.encounter_id AND e.voided IS FALSE
   INNER JOIN provider p ON e.creator = p.provider_id AND p.retired IS FALSE
   INNER JOIN person_name pn ON p.person_id = pn.person_id AND pn.voided IS FALSE
-WHERE concat(pn.given_name, ' ', pn.family_name) = 'Super Man' AND d.name IN (
+WHERE concat(pn.given_name, ' ', pn.family_name) = 'Baha Deen Tabaza' AND d.name IN (
   'AMITRIPTYLINE hydrochloride 25 mg',
   'BROMAZEPAM 3mg',
   'CARBAMAZEPINE 200 mg',

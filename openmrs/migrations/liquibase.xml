@@ -7135,4 +7135,50 @@
         <comment>Adding global property for patient medical diagnosis display control</comment>
         <sqlFile path="displayControl/medicalDiagnosisDisplayControl.sql"/>
     </changeSet>
+    <changeSet id="Amman-201802211324" author="Mahesh" context="rel3.5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set cs where cs.concept_set in (SELECT concept_id from concept_name where name = 'MDOF, Discharge medication section' and concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new concept_set</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'MDOF, Discharge medication section', 'Discharge medication', 'N/A', 'misc', true);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-2018021345" author="Mahesh" context="rel3.5" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='MDOF, Discharge medication section' and concept_name_type = 'FULLY_SPECIFIED') and concept_id =(select concept_id  from concept_name where name ='MDOF, Type of medication' and concept_name_type = 'FULLY_SPECIFIED');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding concepts to Discharge medication section</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set_old FROM concept_name WHERE name = 'Medical Doctor OPD Follow-up' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_set_new FROM concept_name WHERE name = 'MDOF, Discharge medication section' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'MDOF, Type of medication' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET concept_set= @concept_set_new WHERE concept_id=@concept_id1 AND concept_set=@concept_set_old;
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'MDOF, Dose and frequency' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET concept_set= @concept_set_new WHERE concept_id=@concept_id2 AND concept_set=@concept_set_old;
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = 'MDOF, Duration' AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET concept_set= @concept_set_new WHERE concept_id=@concept_id3 AND concept_set=@concept_set_old;
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201802211353" author="Mahesh" context="rel3.5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                select count(*) from concept_set where concept_set = (select concept_id  from concept_name where name ='Medical Doctor OPD Follow-up' and concept_name_type = 'FULLY_SPECIFIED') and concept_id =(select concept_id  from concept_name where name ='MDOF, Discharge medication section' and concept_name_type = 'FULLY_SPECIFIED');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New concepts to Medical Doctor OPD Follow-up</comment>
+        <sql>
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name = 'Medical Doctor OPD Follow-up' AND concept_name_type= 'FULLY_SPECIFIED';
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name = 'MDOF, Discharge medication section' AND concept_name_type= 'FULLY_SPECIFIED';
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID1,@conceptsetID,1165,8,now(),uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>

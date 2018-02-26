@@ -2276,10 +2276,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['MDOF, Discharge medication'];
         if (conditionConcept == "Yes"){
-            conditions.show.push("MDOF, Type of medication", "MDOF, Dose and frequency", "MDOF, Duration")
+            conditions.show.push("MDOF, Discharge medication section")
         }
         else {
-            conditions.hide.push("MDOF, Type of medication", "MDOF, Dose and frequency", "MDOF, Duration")
+            conditions.hide.push("MDOF, Discharge medication section")
         }
         return conditions;
     },

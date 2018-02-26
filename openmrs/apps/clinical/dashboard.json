@@ -398,7 +398,7 @@
             "MD, History of Fixation"
           ],
           "scope": "latest",
-          "showGroupDateTime": true
+          "showGroupDateTime": false
         },
         "expandedViewConfig": {
           "conceptNames": [
