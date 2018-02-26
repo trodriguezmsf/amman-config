@@ -153,20 +153,6 @@
           }
         },
         {
-          "name": "Pat_State",
-          "type": "MRSGeneric",
-          "config": {
-            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientState.sql"
-          }
-        },
-        {
-          "name": "Nw_State",
-          "type": "MRSGeneric",
-          "config": {
-            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/networkStateInfo.sql"
-          }
-        },
-        {
           "name": "Nw_Follow_Up",
           "type": "MRSGeneric",
           "config": {
