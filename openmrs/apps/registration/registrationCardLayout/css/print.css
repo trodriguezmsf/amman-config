@@ -136,8 +136,8 @@ h1, h2, h3 ,h4 {
 }
 
 .patient_id_card {
-  border: 2px solid black;
-  height: 2.13in;
+  border: 0.5px solid grey;
+  height: 1.8in;
   width: 3.35in;
 }
 /* line 65, print.scss */
