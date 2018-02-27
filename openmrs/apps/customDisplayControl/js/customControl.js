@@ -798,7 +798,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         return defer.promise;
     }
 
-}]).directive('lowerLimbPhysioSummary', ['appService', 'physioSummaryService', 'spinner', function (appService, physioSummaryService, spinner) {
+}]).directive('lowerLimbPhynsioSummary', ['appService', 'physioSummaryService', 'spinner', function (appService, physioSummaryService, spinner) {
     const requiredGroupConceptNames = [
         {name: "Hip Flex.", sort: 4},
         {name: "Hip Ext.", sort: 5},
@@ -1424,7 +1424,7 @@ angular.module('bahmni.common.displaycontrol.custom')
     }
 }]).directive('dischargeMedication', ['appService', '$http', function (appService, $http) {
 
-    const fetchObservationsData = function (conceptNames, enrollment, numberOfVisits, scope) {
+    var fetchObservationsData = function (conceptNames, enrollment, numberOfVisits, scope) {
         var params = {
             concept: conceptNames,
             patientProgramUuid: enrollment,
@@ -1437,44 +1437,38 @@ angular.module('bahmni.common.displaycontrol.custom')
         });
     };
 
-    const findConcept = function (members, conceptName) {
-        return _.find(members.groupMembers, ['conceptNameToDisplay', conceptName]) || {};
-    };
-
-    const getConceptDetails = function (records, conceptName) {
-        var conceptDetails = [];
-        _.forEach(records, function (eachObs) {
-            conceptDetails = findConcept(eachObs, conceptName);
+    var filterConcept = function (groupMembers, conceptName) {
+        return _.filter(groupMembers, function (groupMember) {
+            return groupMember.concept.name === conceptName;
         });
-        return conceptDetails;
     };
 
     var link = function ($scope) {
-
         $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/dischargeMedication.html";
         var conceptNames = ["Medical Doctor OPD Follow-up"];
 
         fetchObservationsData(conceptNames, $scope.enrollment, 1, "latest").then(function (response) {
-            var values = [];
-            var subConcept = ["Type of medication", "Dose and frequency", "Duration"];
-            var medication = getConceptDetails(response.data, "Discharge medication");
+            var groupMembers = response.data[0].groupMembers;
+            var medication = filterConcept(groupMembers, "MDOF, Discharge medication")[0];
 
             if (!_.isEmpty(medication)) {
-                if (medication.value.name === "Yes") {
-                    _.forEach(subConcept, function (concept) {
-                        var eachConceptDetails = getConceptDetails(response.data, concept);
-                        if (eachConceptDetails.valueAsString) {
-                            values.push({
-                                title: eachConceptDetails.conceptNameToDisplay,
-                                value: eachConceptDetails.valueAsString
-                            })
-                        }
-                    });
-                }
-                $scope.records = {title: "Discharge Medication: " + medication.value.name, data: values};
+                var values = [];
+                var dischargeMedication = {name: medication.concept.shortName, answer: medication.valueAsString};
+                var answers = filterConcept(groupMembers, "MDOF, Discharge medication section");
+                values.push(dischargeMedication);
+                _.forEach(answers, function (answer) {
+                    _.forEach(answer.groupMembers, function (member) {
+                        values.push({
+                            name: member.concept.shortName,
+                            answer: member.valueAsString
+                        });
+                    })
+                });
+                $scope.medications = values;
+                
             }
             $scope.isDataPresent = function () {
-                return _.isEmpty(medication);
+                return _.isEmpty($scope.medications);
             }
 
         });
