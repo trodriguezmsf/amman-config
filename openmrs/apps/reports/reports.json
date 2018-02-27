@@ -182,6 +182,12 @@
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/fstgDetails.sql"
           }
         },{
+          "name": "XrayDetails",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/xRayUploads.sql"
+          }
+        },{
           "name": "Pat_State",
           "type": "MRSGeneric",
           "config": {
