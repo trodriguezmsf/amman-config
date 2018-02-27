@@ -281,9 +281,6 @@
     "translationKey": "DASHBOARD_TAB_PATIENT_SUMMARY_KEY",
     "displayByDefault": true,
     "maxRecentlyViewedPatients": 10,
-    "printing": {
-      "logo": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/images/msf.jpg"
-    },
     "sections": {
       "patient Information": {
         "type": "custom",
@@ -391,6 +388,7 @@
             "AIA, Past medical history",
             "AIA, Past medical history, other",
             "MD, Medical History",
+            "MD, Other medical problems",
             "AIA, Adverse reaction to anaesthesia",
             "AIA, Comments about adverse reaction",
             "AIA, Did an incident occur during previous blood transfusion",
@@ -405,6 +403,7 @@
             "AIA, Past medical history",
             "AIA, Past medical history, other",
             "MD, Medical History",
+            "MD, Other medical problems",
             "AIA, Adverse reaction to anaesthesia",
             "AIA, Comments about adverse reaction",
             "AIA, Did an incident occur during previous blood transfusion",
@@ -435,7 +434,12 @@
             "PIA, PTSD (score)",
             "PIA, PSYca 3-6 (child)",
             "PIA, SDQ P7-10",
-            "PIA, SDQ S11-17"
+            "PIA, SDQ S11-17",
+            "PIAD, SQR20 (score)",
+            "PIAD, PTSD (score)",
+            "PIAD, PSYca 3-6 (child)",
+            "PIAD, SDQ P7-10",
+            "PIAD, SDQ S11-17"
           ],
           "showGroupDateTime": false,
           "latestCount": 5
@@ -448,7 +452,12 @@
             "PIA, PTSD (score)",
             "PIA, PSYca 3-6 (child)",
             "PIA, SDQ P7-10",
-            "PIA, SDQ S11-17"
+            "PIA, SDQ S11-17",
+            "PIAD, SQR20 (score)",
+            "PIAD, PTSD (score)",
+            "PIAD, PSYca 3-6 (child)",
+            "PIAD, SDQ P7-10",
+            "PIAD, SDQ S11-17"
           ],
           "numberOfVisits": 5,
           "showDetailsButton": true,
@@ -727,12 +736,16 @@
           "isEditable": true,
           "conceptNames": [
             "Administrative Note"
-          ]
+          ],
+          "scope": "latest",
+          "showGroupDateTime": false
         },
         "expandedViewConfig": {
           "conceptNames": [
             "Administrative Note"
           ],
+          "scope": "latest",
+          "showGroupDateTime": false,
           "isEditable": true,
           "numberOfVisits": 3,
           "showDetailsButton": true,
@@ -799,19 +812,12 @@
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
+          "hideEmptyRecords": true,
           "conceptNames": [
             "FP, Early Follow-up",
             "CC, Complications"
           ],
           "obsIgnoreList":[
-            "CC, Anemia due to acute blood loss, description",
-            "CC, Anaesthetic complication in OT, description",
-            "CC, Antibiotic adverse reaction, description",
-            "CC, Cardiac arrhythmia, description",
-            "CC, Flap necrosis, description",
-            "CC, Pressure ulcer, description",
-            "CC, Grade of complication",
-            "CC, Additional comments, complications",
             "SFP, Early Follow-up",
             "SFP, Partial achievement of objective",
             "SFP, Patient requires amputation"
@@ -823,14 +829,6 @@
             "CC, Complications"
           ],
           "obsIgnoreList":[
-            "CC, Anemia due to acute blood loss, description",
-            "CC, Anaesthetic complication in OT, description",
-            "CC, Antibiotic adverse reaction, description",
-            "CC, Cardiac arrhythmia, description",
-            "CC, Flap necrosis, description",
-            "CC, Pressure ulcer, description",
-            "CC, Grade of complication",
-            "CC, Additional comments, complications",
             "SFP, Early Follow-up",
             "SFP, Partial achievement of objective",
             "SFP, Patient requires amputation"
@@ -853,7 +851,8 @@
             "PIA, Social needs or other referrals",
             "PIA, Specific comments regarding the caretaker"
           ],
-          "scope": "latest"
+          "scope": "latest",
+          "showGroupDateTime": false
         },
         "expandedViewConfig": {
           "conceptNames": [
@@ -861,6 +860,8 @@
             "PIA, Social needs or other referrals",
             "PIA, Specific comments regarding the caretaker"
           ],
+          "scope": "latest",
+          "showGroupDateTime": false,
           "isEditable": true,
           "numberOfVisits": 3,
           "showDetailsButton": true,
