@@ -1448,7 +1448,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         var conceptNames = ["Medical Doctor OPD Follow-up"];
 
         fetchObservationsData(conceptNames, $scope.enrollment, 1, "latest").then(function (response) {
-            var groupMembers = response.data[0].groupMembers;
+            var groupMembers = response.data[0] && response.data[0].groupMembers;
             var medication = filterConcept(groupMembers, "MDOF, Discharge medication")[0];
 
             if (!_.isEmpty(medication)) {
@@ -1465,12 +1465,11 @@ angular.module('bahmni.common.displaycontrol.custom')
                     })
                 });
                 $scope.medications = values;
-                
             }
+
             $scope.isDataPresent = function () {
                 return _.isEmpty($scope.medications);
             }
-
         });
     };
     return {
