@@ -798,7 +798,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         return defer.promise;
     }
 
-}]).directive('lowerLimbPhynsioSummary', ['appService', 'physioSummaryService', 'spinner', function (appService, physioSummaryService, spinner) {
+}]).directive('lowerLimbPhysioSummary', ['appService', 'physioSummaryService', 'spinner', function (appService, physioSummaryService, spinner) {
     const requiredGroupConceptNames = [
         {name: "Hip Flex.", sort: 4},
         {name: "Hip Ext.", sort: 5},
