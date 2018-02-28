@@ -65,25 +65,26 @@ FROM
               GROUP BY obs.person_id
             ) latest_obs ON latest_obs.person_id = personData.person_id
   INNER JOIN (
-               SELECT p.patient_id,
-                 COALESCE(orders.date_stopped, orders.date_created) AS 'updated_time',
+               SELECT
+                 p.patient_id,
+                 CONCAT(pn.given_name, ' ', pn.family_name) AS 'prescriber',
                  IF(drug_code.code IS NOT NULL, drug.name, drug_order.drug_non_coded)                         AS 'drugName',
+                 COALESCE(orders.date_stopped, orders.date_created) AS 'updated_time',
                  orders.date_activated,
-                 CONCAT(drug_order.duration,' ',durationUnitscn.name) AS 'durartion_units',
-                 CONCAT(pn.given_name, ' ', pn.family_name) AS 'prescriber'
+                 CONCAT(drug_order.duration,' ',durationUnitscn.name) AS 'durartion_units'
                FROM patient p
                  JOIN patient_program pp ON pp.patient_id = p.patient_id AND pp.voided IS FALSE
                  JOIN encounter e ON e.patient_id = p.patient_id AND e.voided IS FALSE
-                 JOIN orders  ON orders.patient_id = pp.patient_id AND orders.encounter_id = e.encounter_id AND
-                                 orders.voided IS FALSE AND orders.date_created > date_sub(now(), INTERVAL 8 HOUR)
-                 INNER JOIN (SELECT
-                               patient_id as `patient_id`,
-                               max(date_created)  as `date_created`
-                             from orders group BY  patient_id ) maxDateOrder ON orders.date_created = maxDateOrder.`date_created` AND maxDateOrder.`patient_id` = orders.patient_id
+                 JOIN orders ON orders.patient_id = pp.patient_id AND orders.encounter_id = e.encounter_id AND
+                                orders.voided IS FALSE AND orders.order_action != 'DISCONTINUE' AND orders.date_created > date_sub(now(), INTERVAL 8 HOUR)
+                                AND orders.date_stopped IS NULL
                  JOIN users on users.user_id = orders.creator
                  JOIN person on person.person_id = users.person_id
                  JOIN person_name pn on pn.person_id = person.person_id
                  LEFT JOIN obs ON obs.order_id = orders.order_id AND obs.voided IS FALSE AND obs.concept_id = (SELECT concept_id FROM concept_name WHERE name = 'Dispensed' )
+                 LEFT JOIN orders stopped_order ON stopped_order.patient_id = pp.patient_id AND stopped_order.voided = 0 AND
+                                                   stopped_order.order_action = 'DISCONTINUE' AND
+                                                   stopped_order.previous_order_id = orders.order_id
                  JOIN concept c on c.concept_id = orders.concept_id AND c.retired IS FALSE
                  LEFT JOIN drug_order drug_order ON drug_order.order_id = orders.order_id
                  LEFT JOIN concept_name durationUnitscn ON durationUnitscn.concept_id = drug_order.duration_units AND durationUnitscn.concept_name_type = 'FULLY_SPECIFIED' AND durationUnitscn.voided = 0
@@ -105,4 +106,5 @@ FROM
                       INNER JOIN location on location.location_id = blm.location_id
                     GROUP BY bpam.patient_id
                   ) bed on bed.patient_id = personData.person_id
-ORDER BY personData.person_id", 'New/Modified Prescriptions',@uuid);
+ORDER BY personData.person_id
+", 'New/Modified Prescriptions',@uuid);
