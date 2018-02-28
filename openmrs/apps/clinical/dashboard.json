@@ -384,6 +384,7 @@
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
+          "persistOrderOfConcepts": true,
           "conceptNames": [
             "AIA, Past medical history",
             "AIA, Past medical history, other",
@@ -411,6 +412,7 @@
             "MD, History of Fixation"
           ],
           "scope": "latest",
+          "persistOrderOfConcepts": true,
           "isEditable": true,
           "numberOfVisits": 3,
           "showDetailsButton": true,
@@ -591,6 +593,7 @@
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
+          "persistOrderOfConcepts": true,
           "conceptNames": [
             "LLA, Follow-up Plan",
             "ULA, Followup Plan",
@@ -606,6 +609,7 @@
             "MPA, Followup Plan"
           ],
           "isEditable": true,
+          "persistOrderOfConcepts": true,
           "numberOfVisits": 3,
           "showDetailsButton": true,
           "pivotTable": {}
@@ -846,6 +850,7 @@
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
+          "persistOrderOfConcepts": true,
           "conceptNames": [
             "PIA, Psychosocial overview and comments",
             "PIA, Social needs or other referrals",
@@ -861,6 +866,7 @@
             "PIA, Specific comments regarding the caretaker"
           ],
           "scope": "latest",
+          "persistOrderOfConcepts": true,
           "showGroupDateTime": false,
           "isEditable": true,
           "numberOfVisits": 3,
