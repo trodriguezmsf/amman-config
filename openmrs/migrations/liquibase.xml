@@ -7193,4 +7193,15 @@
             Update concept_name set name = "Discharge Medication" where concept_id = @conceptid and concept_name_type ="SHORT";
         </sql>
     </changeSet>
+    <changeSet id="Amman-201803011544" author="Mahesh" context="rel3.5">
+        <comment>Adding codes to specific concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'MSF-INTERNAL';
+            call create_reference_mapping_msf_internal('PIAD, SQR20 (score)', 'SRQ20');
+            call create_reference_mapping_msf_internal('PIAD, PTSD (score)', 'PTSD');
+            call create_reference_mapping_msf_internal('PIAD, PSYca 3-6 (child)', 'PSYCA');
+            call create_reference_mapping_msf_internal('PIAD, SDQ P7-10', 'SDQ7_10');
+            call create_reference_mapping_msf_internal('PIAD, SDQ S11-17', 'SDQ11_17');
+        </sql>
+    </changeSet>
 </databaseChangeLog>
