@@ -307,6 +307,13 @@
           }
         },
         {
+          "name": "pnfPainSeverity",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/painSeverity.sql"
+          }
+        },
+        {
           "name": "Nw_Follow_Up",
           "type": "MRSGeneric",
           "config": {
