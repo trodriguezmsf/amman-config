@@ -12,20 +12,22 @@ FROM
         patient_id,
         name,
         start_date,
-        end_date
+        IF(name = 'Network Follow-up' AND end_date IS NULL, DATE_ADD(CURDATE(), INTERVAL 31 DAY), end_date) AS end_date
       FROM patient_state ps
         INNER JOIN patient_program pp
           ON pp.patient_program_id = ps.patient_program_id AND ps.voided IS FALSE AND pp.voided IS FALSE
         INNER JOIN program_workflow_state pws ON pws.program_workflow_state_id = ps.state AND pws.retired IS FALSE
         LEFT JOIN concept_name cn
           ON pws.concept_id = cn.concept_id AND cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.voided IS FALSE
+      ORDER BY patient_id, start_date
      ) allStates
      LEFT JOIN (
                  SELECT
                    patient_id,
                    name,
                    start_date,
-                   IF(name = 'Network Follow-up' AND end_date IS NULL, CURDATE(), end_date) AS end_date
+                   IF(name = 'Network Follow-up' AND end_date IS NULL, DATE_ADD(CURDATE(), INTERVAL 31 DAY),
+                      end_date) AS end_date
                  FROM patient_state ps
                    INNER JOIN patient_program pp
                      ON pp.patient_program_id = ps.patient_program_id AND ps.voided IS FALSE AND pp.voided IS FALSE
@@ -39,10 +41,49 @@ FROM
    WHERE allStates.name IN ('Pre-Operative', 'Surgical / Hospitalisation', 'Rehabilitation') AND
          nextStates.name = 'Network Follow-up'
    UNION
+
+   SELECT
+     firstStateOfEachPatient.patient_id,
+     firstStateOfEachPatient.minStartDate,
+     IF(allStateInfo.end_date IS NULL, DATE_ADD(CURDATE(), INTERVAL 31 DAY), allStateInfo.end_date) AS end_date
+   FROM
+     (SELECT
+        patient_id,
+        name,
+        MIN(start_date) AS minStartDate,
+        end_date
+      FROM patient_state ps
+        INNER JOIN patient_program pp
+          ON pp.patient_program_id = ps.patient_program_id AND ps.voided IS FALSE AND pp.voided IS FALSE
+        INNER JOIN program_workflow_state pws ON pws.program_workflow_state_id = ps.state AND pws.retired IS FALSE
+        LEFT JOIN concept_name cn
+          ON pws.concept_id = cn.concept_id AND cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.voided IS FALSE
+      GROUP BY patient_id
+      ORDER BY patient_id, start_date) firstStateOfEachPatient
+     INNER JOIN (
+                  SELECT
+                    patient_id,
+                    name,
+                    start_date,
+                    end_date
+                  FROM patient_state ps
+                    INNER JOIN patient_program pp
+                      ON pp.patient_program_id = ps.patient_program_id AND ps.voided IS FALSE AND pp.voided IS FALSE
+                    INNER JOIN program_workflow_state pws
+                      ON pws.program_workflow_state_id = ps.state AND pws.retired IS FALSE
+                    LEFT JOIN concept_name cn
+                      ON pws.concept_id = cn.concept_id AND cn.concept_name_type = 'FULLY_SPECIFIED' AND
+                         cn.voided IS FALSE
+                ) allStateInfo ON allStateInfo.patient_id = firstStateOfEachPatient.patient_id AND
+                                  allStateInfo.start_date = firstStateOfEachPatient.minStartDate
+   WHERE allStateInfo.name = 'Network Follow-up'
+
+   UNION
+
    SELECT
      continueUnderFlpOutcome.patient_id,
      continueUnderFlpOutcome.flpOutcomeObsDate,
-     MIN(IF(allPreOpSurgRehabStates.start_date IS NULL, CURDATE(),
+     MIN(IF(allPreOpSurgRehabStates.start_date IS NULL, DATE_ADD(CURDATE(), INTERVAL 31 DAY),
             allPreOpSurgRehabStates.start_date)) AS preOrSurgOrRehabStartDate
    FROM
      (SELECT
@@ -72,8 +113,7 @@ FROM
                         cn.voided IS FALSE
                  WHERE name IN ('Pre-Operative', 'Surgical / Hospitalisation', 'Rehabilitation')
                ) allPreOpSurgRehabStates ON continueUnderFlpOutcome.patient_id = allPreOpSurgRehabStates.patient_id AND
-                                            continueUnderFlpOutcome.flpOutcomeObsDate <
-                                            allPreOpSurgRehabStates.start_date
+                                            continueUnderFlpOutcome.flpOutcomeObsDate < allPreOpSurgRehabStates.start_date
    GROUP BY continueUnderFlpOutcome.patient_id, continueUnderFlpOutcome.flpOutcomeObsDate
   ) nwFlpStateAndOutcomeInfo
 GROUP BY nwFlpStateAndOutcomeInfo.patient_id, nwFlpStateAndOutcomeInfo.end_date;
