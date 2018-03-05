@@ -160,6 +160,13 @@
           }
         },
         {
+          "name": "Nw_Treatment",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/nwAndPreOpInfoForTreatment.sql"
+          }
+        },
+        {
           "name": "IsolatedWardBeds",
           "type": "MRSGeneric",
           "config": {
