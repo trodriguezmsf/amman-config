@@ -410,6 +410,13 @@
           "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientsUnderFollowUp.sql"
           }
+        },
+        {
+          "name": "allPatientsAttr",
+          "type": "MRSGeneric",
+          "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/allPatientAttributes.sql"
+          }
         }
       ]
     }
