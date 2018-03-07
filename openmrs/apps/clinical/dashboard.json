@@ -428,6 +428,7 @@
         "dashboardConfig": {
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
+	  "hideEmptyRecords": true,
           "isEditable": true,
           "groupByConcept": "PIA, Date of consultation",
           "templateName": "Psychology initial assessment",
