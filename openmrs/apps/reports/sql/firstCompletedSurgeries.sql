@@ -15,7 +15,6 @@ FROM
         surgical_appointment sa
         INNER JOIN surgical_block sb ON sa.surgical_block_id = sb.surgical_block_id AND
                                         sb.voided IS FALSE AND sa.voided IS FALSE AND status = 'Completed'
-      WHERE YEAR(sb.start_datetime) = YEAR('#startDate#')
      ) allCompletedSurgeryDetails
      INNER JOIN
      (SELECT
