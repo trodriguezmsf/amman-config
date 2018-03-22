@@ -19,21 +19,30 @@ FROM
   ) patientAttributes
   LEFT JOIN (
               SELECT
-                o.person_id,
-                o.encounter_id,
-                GROUP_CONCAT(IF(qcvn.concept_full_name = 'Stage', o.value_numeric, NULL))                           AS stage,
-                GROUP_CONCAT(IF(qcvn.concept_full_name = 'FSTG, Specialty determined by MLO', acvn.concept_full_name,
+                latestObsDateTimes.person_id,
+                MAX(IF(qcvn.concept_full_name = 'Stage', obs.value_numeric, NULL))                                  AS stage,
+                GROUP_CONCAT(DISTINCT
+                             IF(qcvn.concept_full_name = 'FSTG, Specialty determined by MLO', acvn.concept_full_name,
                                 NULL))                                                                              AS specialty,
-                GROUP_CONCAT(IF(qcvn.concept_full_name = 'MH, Name of MLO',
-                                COALESCE(acvn.concept_full_name, acvn.concept_short_name),
-                                NULL))                                                                              AS nameOfMLO
-              FROM obs o
-                INNER JOIN concept_view qcvn ON qcvn.concept_id = o.concept_id AND
-                                                qcvn.concept_full_name IN (
-                                                  'Stage',
-                                                  'FSTG, Specialty determined by MLO',
-                                                  'MH, Name of MLO'
-                                                ) AND qcvn.retired IS FALSE AND o.voided IS FALSE
-                LEFT JOIN concept_view acvn ON acvn.concept_id = o.value_coded AND acvn.retired IS FALSE
-              GROUP BY o.encounter_id
-            ) formAttributes ON patientAttributes.patient_id = formAttributes.person_id;
+                GROUP_CONCAT(DISTINCT IF(qcvn.concept_full_name = 'MH, Name of MLO', acvn.concept_full_name,
+                                         NULL))                                                                     AS nameOfMLO
+              FROM
+                (SELECT
+                   o.person_id,
+                   o.concept_id,
+                   MAX(o.obs_datetime) AS latest_obs_datetime
+                 FROM obs o INNER JOIN concept_view qcvn ON qcvn.concept_id = o.concept_id AND
+                                                            qcvn.concept_full_name IN (
+                                                              'Stage',
+                                                              'FSTG, Specialty determined by MLO',
+                                                              'MH, Name of MLO'
+                                                            ) AND qcvn.retired IS FALSE AND o.voided IS FALSE
+                 GROUP BY o.person_id, o.concept_id
+                 ORDER BY o.person_id, o.concept_id) latestObsDateTimes
+                INNER JOIN obs ON latestObsDateTimes.person_id = obs.person_id AND
+                                  latestObsDateTimes.concept_id = obs.concept_id AND
+                                  latestObsDateTimes.latest_obs_datetime = obs.obs_datetime
+                INNER JOIN concept_view qcvn ON qcvn.concept_id = obs.concept_id
+                LEFT JOIN concept_view acvn ON acvn.concept_id = obs.value_coded AND acvn.retired IS FALSE
+              GROUP BY obs.person_id
+            ) formAttributes ON patientAttributes.patient_id = formAttributes.person_id
