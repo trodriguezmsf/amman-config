@@ -20,7 +20,7 @@ SELECT
      DATE_FORMAT(latest_future_appointment.startdate, '%d/%m/%Y'))                                         AS 'Date of Appointment',
   IF(latest_future_appointment.startdate IS NULL , latest_past_appointment.serviceappointmenttype, latest_future_appointment.serviceappointmenttype) AS 'Service Appointment Type',
   IF(latest_future_appointment.startdate IS NULL , latest_past_appointment.providername, latest_future_appointment.providername) AS 'Provider name',
-  latestnotevalue.value_text AS 'Nursing consultation notes',
+  CONCAT_WS(',', latestNoteAndCorrespoindingDateRecorded.ONN_date_recorded,latestNoteAndCorrespoindingDateRecorded.value_text) AS 'Nursing consultation notes',
   `Bed allocation`,
   cn.name AS `Phase of treatment`
 FROM
@@ -255,20 +255,39 @@ FROM
                         GROUP BY value_coded.person_id
                     )length_value on length_value.person_id = personData.person_id
       LEFT JOIN (
-                  SELECT
-                    o.person_id,
-                    o.value_text
-                  FROM obs o
-                    INNER JOIN(
-                                SELECT
-                                  o.person_id,
-                                  MAX(o.date_created) AS 'obs_datecreated',
-                                  o.concept_id
-                                FROM
-                                  obs o
-                                  INNER JOIN concept_name cn ON cn.concept_id = o.concept_id AND o.voided IS FALSE AND cn.voided IS FALSE AND
-                                                                cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.name = 'ONN, Nursing consultation notes'
-                                GROUP BY o.person_id)latest_obsdatetime ON latest_obsdatetime.obs_datecreated = o.date_created AND latest_obsdatetime.person_id = o.person_id
-                                                                           AND latest_obsdatetime.concept_id = o.concept_id GROUP BY latest_obsdatetime.person_id
-            )latestnotevalue ON latestnotevalue.person_id = personData.person_id
+              SELECT
+                o.person_id,
+                o.encounter_id,
+                o.value_text,
+                onnDateRecorded.ONN_date_recorded
+              FROM obs o
+                INNER JOIN (
+                             SELECT
+                               o.person_id,
+                               MAX(o.date_created) AS 'obs_date_created',
+                               o.concept_id
+                             FROM
+                               obs o
+                               INNER JOIN concept_name cn
+                                 ON cn.concept_id = o.concept_id AND o.voided IS FALSE AND cn.voided IS FALSE AND
+                                    cn.concept_name_type = 'FULLY_SPECIFIED' AND
+                                    cn.name = 'ONN, Nursing consultation notes'
+                             GROUP BY o.person_id
+                           ) latest_obsdatetime ON latest_obsdatetime.obs_date_created = o.date_created AND
+                                                   latest_obsdatetime.person_id = o.person_id AND
+                                                   latest_obsdatetime.concept_id = o.concept_id
+                LEFT JOIN (
+                            SELECT
+                              obs.person_id,
+                              obs.encounter_id,
+                              CAST(obs.value_datetime AS DATE) AS ONN_date_recorded
+                            FROM obs
+                              INNER JOIN concept_view qcvn
+                                ON obs.concept_id = qcvn.concept_id AND
+                                qcvn.retired IS FALSE AND obs.voided IS FALSE AND
+                                   qcvn.concept_full_name = 'ONN, Date recorded'
+                            ORDER BY person_id
+                          ) onnDateRecorded ON o.encounter_id = onnDateRecorded.encounter_id
+                ) latestNoteAndCorrespoindingDateRecorded
+    ON latestNoteAndCorrespoindingDateRecorded.person_id = personData.person_id
 ORDER BY dateOfArrival.date_of_arrival
