@@ -145,26 +145,27 @@ FROM
             ) bed_allocation ON bed_allocation.patient_id = personData.person_id
   LEFT JOIN (
               SELECT
-                latest_appointment.patient_id,
-                sb.start_datetime AS 'First Surgery',
-                saa.value AS 'Procedure'
-              FROM
-                surgical_block sb
-                INNER JOIN surgical_appointment sa
-                  ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND sa.status != 'CANCELLED'
-                INNER JOIN (SELECT
-                              sa.patient_id,
-                              MIN(sb.start_datetime) AS blockStartTime
-                            FROM
-                              surgical_appointment sa
-                              INNER JOIN surgical_block sb
-                                ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND sa.status != 'CANCELLED'
-                            GROUP BY sa.patient_id) latest_appointment
-                  ON latest_appointment.patient_id = sa.patient_id AND latest_appointment.blockStartTime = sb.start_datetime
-                LEFT OUTER JOIN surgical_appointment_attribute saa ON saa.surgical_appointment_id = sa.surgical_appointment_id
-                INNER JOIN surgical_appointment_attribute_type saat
-                  ON saat.surgical_appointment_attribute_type_id = saa.surgical_appointment_attribute_type_id AND saat.name = 'procedure'
-              GROUP BY latest_appointment.patient_id
+               first_appointment.patient_id,
+               sb.start_datetime AS 'First Surgery',
+               saa.value AS 'Procedure'
+             FROM
+               surgical_block sb
+               INNER JOIN surgical_appointment sa
+                 ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND sa.status NOT IN ('CANCELLED', 'POSTPONED')
+               INNER JOIN (SELECT
+                             sa.patient_id,
+                             MIN(sb.start_datetime) AS blockStartTime
+                           FROM
+                             surgical_appointment sa
+                             INNER JOIN surgical_block sb
+                               ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND
+                                  sa.status NOT IN ('CANCELLED', 'POSTPONED')
+                           GROUP BY sa.patient_id) first_appointment
+                 ON first_appointment.patient_id = sa.patient_id AND first_appointment.blockStartTime = sb.start_datetime
+               LEFT OUTER JOIN surgical_appointment_attribute saa ON saa.surgical_appointment_id = sa.surgical_appointment_id AND saa.voided IS FALSE
+               INNER JOIN surgical_appointment_attribute_type saat
+                 ON saat.surgical_appointment_attribute_type_id = saa.surgical_appointment_attribute_type_id AND saat.name = 'procedure'
+             GROUP BY first_appointment.patient_id
             )first_surgery on first_surgery.patient_id = personData.person_id
   LEFT JOIN (
               SELECT
@@ -174,21 +175,22 @@ FROM
               FROM
                 surgical_block sb
                 INNER JOIN surgical_appointment sa
-                  ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND sa.status != 'CANCELLED'
+                  ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND sa.status NOT IN ('CANCELLED', 'POSTPONED')
                 INNER JOIN (SELECT
                               sa.patient_id,
                               MAX(sb.start_datetime) AS blockStartTime
                             FROM
                               surgical_appointment sa
                               INNER JOIN surgical_block sb
-                                ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND sa.status != 'CANCELLED'
+                                ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND
+                                   sa.status NOT IN ('CANCELLED', 'POSTPONED')
                             GROUP BY sa.patient_id) latest_appointment
                   ON latest_appointment.patient_id = sa.patient_id AND latest_appointment.blockStartTime = sb.start_datetime
-                LEFT OUTER JOIN surgical_appointment_attribute saa ON saa.surgical_appointment_id = sa.surgical_appointment_id
+                LEFT OUTER JOIN surgical_appointment_attribute saa ON saa.surgical_appointment_id = sa.surgical_appointment_id AND saa.voided IS FALSE
                 INNER JOIN surgical_appointment_attribute_type saat
                   ON saat.surgical_appointment_attribute_type_id = saa.surgical_appointment_attribute_type_id AND saat.name = 'procedure'
               GROUP BY latest_appointment.patient_id
-            )last_surgery on last_surgery.patient_id = personData.person_id
+              )last_surgery on last_surgery.patient_id = personData.person_id
   LEFT OUTER JOIN (
                     SELECT
                       patappoint.patient_id,
