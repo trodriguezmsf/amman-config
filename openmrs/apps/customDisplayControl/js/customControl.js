@@ -891,8 +891,8 @@ angular.module('bahmni.common.displaycontrol.custom')
 
     const findByConceptNameToDisplay = physioSummaryService.findByConceptNameToDisplay;
 
-    const assignToHolder = function (holder, headers, values) {
-        if (!_.isEmpty(_.compact(_.slice(values, 1)))) {
+    var assignToHolder = function (holder, headers, values) {
+        if (!isUndefined(values)) {
             holder.headers = headers;
             holder.rows.push({values: values});
         }
@@ -925,7 +925,7 @@ angular.module('bahmni.common.displaycontrol.custom')
         var dateRecorded = findByConceptNameToDisplay(record.groupMembers, "Date recorded");
         var basicGripTestMember = findByConceptNameToDisplay(record.groupMembers, "Basic Grip Test");
         var basicGripTotal = findByConceptNameToDisplay(basicGripTestMember.groupMembers, "Total Score");
-        var upperExtremityFunctionalIndex = getExtremityFunctionalIndex(record.groupMembers, "Upper Extremity Functional Index (UEFI) 15", "Pediatric Upper Extremity Function ( Fine Motor, ADL)");
+        var upperExtremityFunctionalIndex = getExtremityFunctionalIndex(record.groupMembers, "Upper Extremity Functional Index (UEFI) - 15", "Pediatric Upper Extremity Function ( Fine Motor, ADL)");
         var upperExtremityFunctionalIndexTotal = findByConceptNameToDisplay(upperExtremityFunctionalIndex.groupMembers, "Final score");
         if (_.isEmpty(upperExtremityFunctionalIndexTotal)) {
             upperExtremityFunctionalIndexTotal = findByConceptNameToDisplay(upperExtremityFunctionalIndex.groupMembers, "Total score");
@@ -974,6 +974,13 @@ angular.module('bahmni.common.displaycontrol.custom')
         return physioSummaryService.isEmptyRecord(record, "rows");
     };
 
+    var isUndefined = function (values) {
+        var definedValues = _.filter(values, function (value) {
+            return !((value === undefined) || (value === null));
+        });
+        return _.isEmpty(definedValues);
+    };
+
 }]).directive("physioSummaryScores", ["appService", 'physioSummaryScoresService', 'spinner', '$q', function (appService, physioSummaryScoresService, spinner, $q) {
     var link = function ($scope, element) {
         var defer = $q.defer();
@@ -987,10 +994,43 @@ angular.module('bahmni.common.displaycontrol.custom')
         ];
 
         physioSummaryScoresService.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
-            $scope.data = physioSummaryScoresService.map(response.data, {});
+            var data = physioSummaryScoresService.map(response.data, {});
+            $scope.data = removeEmptyColumns(data);
             $scope.isEmptySummary = physioSummaryScoresService.isEmptySummary($scope.data);
             defer.resolve();
         });
+
+        var removeEmptyColumns = function (input) {
+            var data = _.cloneDeep(input);
+            var clone = _.cloneDeep(input);
+            _.forEach(data, function (record) {
+                var formsData = _.get(record, "rows");
+                var headers = _.get(record, "headers");
+                var headersLength = _.size(headers);
+                for (var lastIndex = headersLength - 1; lastIndex >= 0; lastIndex--){
+                    var isWholeColumnUndefined = isColumnDataUndefined(formsData, lastIndex);
+                    if(isWholeColumnUndefined){
+                        var formHeader = record.display;
+                        removeColumn(clone, formHeader, lastIndex);
+                    }
+                }
+            });
+            return clone;
+        };
+
+        var isColumnDataUndefined = function (formsData, index) {
+            return _.every(formsData, function (encounterData) {
+                var values = _.get(encounterData, "values");
+                return (values[index] === undefined) || (values[index] === null);
+            });
+        };
+
+        var removeColumn = function (data, formHeader, index) {
+            data[formHeader].headers.splice(index, 1);
+            _.forEach(data[formHeader].rows, function (encounterData) {
+                encounterData.values.splice(index, 1);
+            });
+        };
 
         $scope.isEmptyRecord = physioSummaryScoresService.isEmptyRecord;
     };
