@@ -752,8 +752,11 @@ angular.module('bahmni.common.displaycontrol.custom')
         $scope.isEmptyRow = isEmptyRow;
         $scope.isEmptyRecord = self.isEmptyRecord;
 
-        var promise1 = self.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
-            var data = _.sortBy(response.data, function (record) {
+        var numberOfEncounters = 5;
+        var promise1 = self.fetchObservationsData(conceptNames, $scope.enrollment, numberOfEncounters).then(function (response) {
+            var latestEncountersInDescOrder = _.sortBy(response.data, 'encounterDateTime').reverse();
+            latestEncountersInDescOrder.splice(numberOfEncounters);
+            var data = _.sortBy(latestEncountersInDescOrder, function (record) {
                 var typeOfAssessment = self.findByConceptNameToDisplay(record.groupMembers, 'Type of assessment').valueAsString;
                 return priorities[typeOfAssessment];
             });
