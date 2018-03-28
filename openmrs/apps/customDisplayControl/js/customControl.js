@@ -993,9 +993,28 @@ angular.module('bahmni.common.displaycontrol.custom')
             "Maxillofacial Physio Assessment"
         ];
 
-        physioSummaryScoresService.fetchObservationsData(conceptNames, $scope.enrollment, 5).then(function (response) {
-            var data = physioSummaryScoresService.map(response.data, {});
-            $scope.data = removeEmptyColumns(data);
+        var findSpecificFormData = function (allEncounters, conceptName) {
+            return _.filter(allEncounters, function (encounter) {
+                return encounter.conceptNameToDisplay === conceptName;
+            });
+        };
+
+        var getLatestEncounters = function (data, numberOfEncounters) {
+            var allFormsData = [];
+            var sortedEncounterData = _.sortBy(data, 'encounterDateTime').reverse();
+            _.forEach(conceptNames, function (conceptName) {
+                var formData = findSpecificFormData(sortedEncounterData, conceptName);
+                formData.splice(numberOfEncounters);
+                allFormsData = _.concat(allFormsData,formData);
+            });
+            return allFormsData;
+        };
+
+        var numberOfEncounters = 5;
+        physioSummaryScoresService.fetchObservationsData(conceptNames, $scope.enrollment, numberOfEncounters).then(function (response) {
+            var latestEncountersData = getLatestEncounters(response.data, numberOfEncounters);
+            var mappedData = physioSummaryScoresService.map(latestEncountersData, {});
+            $scope.data = removeEmptyColumns(mappedData);
             $scope.isEmptySummary = physioSummaryScoresService.isEmptySummary($scope.data);
             defer.resolve();
         });
@@ -1007,9 +1026,9 @@ angular.module('bahmni.common.displaycontrol.custom')
                 var formsData = _.get(record, "rows");
                 var headers = _.get(record, "headers");
                 var headersLength = _.size(headers);
-                for (var lastIndex = headersLength - 1; lastIndex >= 0; lastIndex--){
+                for (var lastIndex = headersLength - 1; lastIndex >= 0; lastIndex--) {
                     var isWholeColumnUndefined = isColumnDataUndefined(formsData, lastIndex);
-                    if(isWholeColumnUndefined){
+                    if (isWholeColumnUndefined) {
                         var formHeader = record.display;
                         removeColumn(clone, formHeader, lastIndex);
                     }
