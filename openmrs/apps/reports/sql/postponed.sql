@@ -8,6 +8,7 @@ FROM (SELECT
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Outcomes for 1st stage surgical validation' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Outcomes for 1st Stage surgical validation',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Outcomes for 1st stage Anaesthesia validation' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Outcomes for 1st Stage Anaesthesia validation',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Postpone reason' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'Postpone reason',
+        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FV, Outcomes FV' AND latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id DESC) AS 'FV Outcome',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Comments about postpone reason' AND latest_encounter.person_id IS NOT NULL, o.value_text, NULL)) ORDER BY o.obs_id DESC) AS 'Comments About Postpone Reason',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Medical file to be submitted again by' AND latest_encounter.person_id IS NOT NULL , DATE_FORMAT(o.value_datetime, '%d/%m/%Y'), NULL)) ORDER BY o.obs_id DESC)       AS 'Medical file to be submitted again by',
         `Name of MLO`,
@@ -18,7 +19,12 @@ FROM (SELECT
         JOIN obs o ON p.person_id = o.person_id AND o.voided IS FALSE
         JOIN concept_name obs_fscn ON o.concept_id = obs_fscn.concept_id AND
                                       obs_fscn.name IN
-                                      ('FSTG, Date of presentation at 1st stage','FSTG, Outcomes for 1st stage surgical validation','FSTG, Postpone reason','FSTG, Comments about postpone reason', 'FSTG, Medical file to be submitted again by')
+                                      ('FSTG, Date of presentation at 1st stage',
+                                       'FSTG, Outcomes for 1st stage surgical validation',
+                                       'FSTG, Postpone reason',
+                                       'FSTG, Comments about postpone reason',
+                                       'FSTG, Medical file to be submitted again by',
+                                       'FV, Outcomes FV')
                                       AND obs_fscn.voided IS FALSE AND obs_fscn.concept_name_type= 'FULLY_SPECIFIED'
         LEFT OUTER JOIN person_attribute pa ON p.person_id = pa.person_id AND pa.voided is false
         LEFT OUTER JOIN person_attribute_type pat ON pa.person_attribute_type_id = pat.person_attribute_type_id AND pat.retired is false
@@ -71,4 +77,4 @@ FROM (SELECT
                   ) obs_across_visits ON p.person_id = obs_across_visits.person_id
         JOIN patient_program pp ON p.person_id = pp.patient_id AND  pp.date_completed is NULL and pp.voided IS FALSE
       GROUP BY p.person_id) result
-WHERE (`Date of Presentation` IS NOT NULL) AND (`Outcomes for 1st stage surgical validation` = 'Postponed')
+WHERE ((`Date of Presentation` IS NOT NULL) AND (`Outcomes for 1st stage surgical validation` = 'Postponed')) OR result.`FV Outcome` = 'Further Evaluation'

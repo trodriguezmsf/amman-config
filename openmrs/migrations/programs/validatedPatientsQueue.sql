@@ -492,7 +492,8 @@ WHERE latest_visit_type.name IN ('First Stage Validation' , 'Follow-Up Validatio
 			'R2A : Surgery Outside',
 			'R2B: Refused Treatment or Follow-up',
 			'R2C: refused to travel to Amman',
-			'R2D: Refused to Undergo Surgery'
+			'R2D: Refused to Undergo Surgery',
+			'Further Evaluation'
 		)
 	)
 ORDER BY dateOfPresentation.value_datetime
