@@ -9,12 +9,13 @@
 p, h1, h2, h3, tr, div, span, li {
   margin: 0px;
   padding: 3px;
-  text-align:center;
+  text-align:left;
 }
 
 
 td {
-margin: 0px;
+  vertical-align: top;
+  margin: 0px;
   padding: 2px;
   text-align:left;
   font-size:12px;
@@ -138,7 +139,21 @@ h1, h2, h3 ,h4 {
 .patient_id_card {
   border: 0.5px solid grey;
   height: 1.8in;
+  max-height: 1.9in;
   width: 3.35in;
+  max-width: 3.35in;
+}
+
+.patient_id_card tr td:first-child {
+  width: .8in;
+}
+
+.patient_id_card tr td:last-child {
+  width: 1in;
+}
+
+.patient_id_card tr img {
+  width: 1.35in;
 }
 /* line 65, print.scss */
 .print-table-right-header {
@@ -171,4 +186,8 @@ h1, h2, h3 ,h4 {
 .data-text {
  text-size:5px;
 
+}
+
+.full_name {
+  font-size: 12px;
 }

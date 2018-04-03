@@ -12,8 +12,9 @@ SELECT
   `nameOfSurgeon`                                                         AS `Name of surgeon`,
   `stage`                                                                 AS `Stage`,
   `priority`                                                              AS `Priority`,
-  `Outcomes for 1st stage surgical validation`,
+  `Outcomes for 1st stage surgical validation`                            AS `Outcome for Surgical Validation`,
   `Outcomes for 1st stage Anaesthesia validation`,
+  `latestFinalValidationOutcome`                                          AS `Outcome for Final validation`,
   CONCAT_WS(', ', surgical_assessment_medical_info,
             anaesthesia_assessment_medical_info)                          AS `Type of medical information needed for next submission`,
   `postPoneReason`                                                        AS `Postpone Reason`,
@@ -170,17 +171,6 @@ FROM (SELECT
                    FROM obs
                      JOIN encounter en
                        ON obs.encounter_id = en.encounter_id AND obs.voided IS FALSE AND en.voided IS FALSE
-                          AND en.visit_id IN (SELECT v.visit_id
-                                              FROM
-                                                visit v
-                                                JOIN (SELECT
-                                                        patient_id        AS patient_id,
-                                                        max(date_started) AS date_started
-                                                      FROM visit
-                                                      WHERE voided IS FALSE
-                                                      GROUP BY patient_id) latest_visit
-                                                  ON v.date_started = latest_visit.date_started AND
-                                                     v.patient_id = latest_visit.patient_id AND v.voided IS FALSE)
                    GROUP BY obs.person_id, obs.concept_id) latest_encounter
           ON o.person_id = latest_encounter.person_id AND o.concept_id = latest_encounter.concept_id
              AND latest_encounter.max_encounter_datetime = e.encounter_datetime
@@ -421,16 +411,19 @@ WHERE (
       'R2A : Surgery Outside',
       'R2B: Refused Treatment or Follow-up',
       'R2C: refused to travel to Amman',
-      'R2D: Refused to Undergo Surgery'
+      'R2D: Refused to Undergo Surgery',
+      'Further Evaluation'
     )))
   OR
   ((`Date of Presentation` IS NOT NULL) AND (`Outcomes for 1st stage surgical validation` = 'More Information' OR
                                              `Outcomes for 1st stage Anaesthesia validation` =
                                              'Need complementary investigation'))
   OR
-  ((`Date of Presentation` IS NOT NULL) AND (`Outcomes for 1st stage surgical validation` = 'Postponed'))
+  ((`Date of Presentation` IS NOT NULL AND `Outcomes for 1st stage surgical validation` = 'Postponed') OR latestFinalValidationOutcome IS NOT NULL )
   OR
   (dateOfArrival IS NULL AND expectedDateOfArrival IS NOT NULL)
   OR
   (`Outcomes for 1st stage surgical validation` = 'Refused')
+  OR
+  (latestFollowupFormOutcome = 'Further stage admission')
 );

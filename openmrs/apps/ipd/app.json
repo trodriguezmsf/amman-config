@@ -333,23 +333,23 @@
         "hideStartNewVisitPopUp": true,
         "colorForTags": [
             {
-                "name": "Lost",
+                "name": "LOST_KEY",
                 "color": "#da2121"
             },
             {
-                "name": "Isolation",
+                "name": "ISOLATION_KEY",
                 "color": "#3462f3"
             },
             {
-                "name": "Strict Isolation",
+                "name": "STRICT_ISOLATION_KEY",
                 "color": "#9b04a2"
             },
             {
-                "name": "Reserved for CT",
+                "name": "RESERVED_FOR_CT_KEY",
                 "color": "#DAA520"
             },
             {
-                "name": "MultiTag",
+                "name": "MULTITAG_KEY",
                 "color": "#000000"
             }
         ]

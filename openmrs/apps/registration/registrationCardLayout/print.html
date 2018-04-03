@@ -8,11 +8,7 @@
                     Patient ID
                 </td>
                 <td class="registrationCard-details-seperator"> :</td>
-                <td>{{patient.primaryIdentifier.identifier}}</td>
-                <td rowspan="4">
-                    <img class="patient-image" ng-src="{{patient.image}}" style="width: 20mm; height: 20mm; "
-                         onerror="this.onerror=null;this.src='../images/blank.jpeg';"/>
-                </td>
+                <td colspan="2">{{patient.primaryIdentifier.identifier}}</td>
             </tr>
             <tr>
                 <td class="registrationCard-details-name">
@@ -20,8 +16,8 @@
                 </td>
 
                 <td class="registrationCard-details-seperator"> :</td>
-                <td style="width: 40px">
-                    {{patient.givenName}}&nbsp;{{patient.familyName}}
+                <td  colspan="2" class="full_name" style="line-height: 10px;">
+                    <div>{{(patient.givenName.split(" ")[0]).substring(0,34)}}</div><div>{{(patient.familyName.split(" ")[0]).substring(0,34)}}</div>
                 </td>
             </tr>
             <tr>
@@ -30,8 +26,8 @@
                 </td>
 
                 <td class="registrationCard-details-seperator"> :</td>
-                <td style="width: 40px">
-                    {{patient.givenNameLocal}}&nbsp;{{patient.familyNameLocal}}
+                <td  colspan="2" style="width: 40px">
+                    {{(patient.givenNameLocal.split(" "))[0].substring(0,34)}}&nbsp;{{(patient.familyNameLocal.split(" ")[0]).substring(0,34)}}
                 </td>
             </tr>
             <tr>
@@ -40,6 +36,10 @@
                 </td>
                 <td class="registrationCard-details-seperator"> :</td>
                 <td>{{patient.age | age}}</td>
+                <td rowspan="4">
+                    <img class="patient-image" ng-src="{{patient.image}}" style="width: 20mm; height: 20mm; "
+                         onerror="this.onerror=null;this.src='../images/blank.jpeg';"/>
+                </td>
             </tr>
 
             <tr>

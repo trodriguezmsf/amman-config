@@ -20,7 +20,7 @@ SELECT
      DATE_FORMAT(latest_future_appointment.startdate, '%d/%m/%Y'))                                         AS 'Date of Appointment',
   IF(latest_future_appointment.startdate IS NULL , latest_past_appointment.serviceappointmenttype, latest_future_appointment.serviceappointmenttype) AS 'Service Appointment Type',
   IF(latest_future_appointment.startdate IS NULL , latest_past_appointment.providername, latest_future_appointment.providername) AS 'Provider name',
-  latestnotevalue.value_text AS 'Nursing consultation notes',
+  CONCAT_WS(',', latestNoteAndCorrespoindingDateRecorded.ONN_date_recorded,latestNoteAndCorrespoindingDateRecorded.value_text) AS 'Nursing consultation notes',
   `Bed allocation`,
   cn.name AS `Phase of treatment`
 FROM
@@ -137,26 +137,27 @@ FROM
             ) bed_allocation ON bed_allocation.patient_id = personData.person_id
   LEFT JOIN (
               SELECT
-                latest_appointment.patient_id,
-                sb.start_datetime AS 'First Surgery',
-                saa.value AS 'Procedure'
-              FROM
-                surgical_block sb
-                INNER JOIN surgical_appointment sa
-                  ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND sa.status != 'CANCELLED'
-                INNER JOIN (SELECT
-                              sa.patient_id,
-                              MIN(sb.start_datetime) AS blockStartTime
-                            FROM
-                              surgical_appointment sa
-                              INNER JOIN surgical_block sb
-                                ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND sa.status != 'CANCELLED'
-                            GROUP BY sa.patient_id) latest_appointment
-                  ON latest_appointment.patient_id = sa.patient_id AND latest_appointment.blockStartTime = sb.start_datetime
-                LEFT OUTER JOIN surgical_appointment_attribute saa ON saa.surgical_appointment_id = sa.surgical_appointment_id
-                INNER JOIN surgical_appointment_attribute_type saat
-                  ON saat.surgical_appointment_attribute_type_id = saa.surgical_appointment_attribute_type_id AND saat.name = 'procedure'
-              GROUP BY latest_appointment.patient_id
+               first_appointment.patient_id,
+               sb.start_datetime AS 'First Surgery',
+               saa.value AS 'Procedure'
+             FROM
+               surgical_block sb
+               INNER JOIN surgical_appointment sa
+                 ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND sa.status NOT IN ('CANCELLED', 'POSTPONED')
+               INNER JOIN (SELECT
+                             sa.patient_id,
+                             MIN(sb.start_datetime) AS blockStartTime
+                           FROM
+                             surgical_appointment sa
+                             INNER JOIN surgical_block sb
+                               ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND
+                                  sa.status NOT IN ('CANCELLED', 'POSTPONED')
+                           GROUP BY sa.patient_id) first_appointment
+                 ON first_appointment.patient_id = sa.patient_id AND first_appointment.blockStartTime = sb.start_datetime
+               LEFT OUTER JOIN surgical_appointment_attribute saa ON saa.surgical_appointment_id = sa.surgical_appointment_id AND saa.voided IS FALSE
+               INNER JOIN surgical_appointment_attribute_type saat
+                 ON saat.surgical_appointment_attribute_type_id = saa.surgical_appointment_attribute_type_id AND saat.name = 'procedure'
+             GROUP BY first_appointment.patient_id
             )first_surgery on first_surgery.patient_id = personData.person_id
   LEFT JOIN (
               SELECT
@@ -166,21 +167,22 @@ FROM
               FROM
                 surgical_block sb
                 INNER JOIN surgical_appointment sa
-                  ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND sa.status != 'CANCELLED'
+                  ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND sa.status NOT IN ('CANCELLED', 'POSTPONED')
                 INNER JOIN (SELECT
                               sa.patient_id,
                               MAX(sb.start_datetime) AS blockStartTime
                             FROM
                               surgical_appointment sa
                               INNER JOIN surgical_block sb
-                                ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND sa.status != 'CANCELLED'
+                                ON sb.surgical_block_id = sa.surgical_block_id AND sa.voided IS FALSE AND sb.voided IS FALSE AND
+                                   sa.status NOT IN ('CANCELLED', 'POSTPONED')
                             GROUP BY sa.patient_id) latest_appointment
                   ON latest_appointment.patient_id = sa.patient_id AND latest_appointment.blockStartTime = sb.start_datetime
-                LEFT OUTER JOIN surgical_appointment_attribute saa ON saa.surgical_appointment_id = sa.surgical_appointment_id
+                LEFT OUTER JOIN surgical_appointment_attribute saa ON saa.surgical_appointment_id = sa.surgical_appointment_id AND saa.voided IS FALSE
                 INNER JOIN surgical_appointment_attribute_type saat
                   ON saat.surgical_appointment_attribute_type_id = saa.surgical_appointment_attribute_type_id AND saat.name = 'procedure'
               GROUP BY latest_appointment.patient_id
-            )last_surgery on last_surgery.patient_id = personData.person_id
+              )last_surgery on last_surgery.patient_id = personData.person_id
   LEFT OUTER JOIN (
                      SELECT
                       patappoint.patient_id,
@@ -255,20 +257,39 @@ FROM
                         GROUP BY value_coded.person_id
                     )length_value on length_value.person_id = personData.person_id
       LEFT JOIN (
-                  SELECT
-                    o.person_id,
-                    o.value_text
-                  FROM obs o
-                    INNER JOIN(
-                                SELECT
-                                  o.person_id,
-                                  MAX(o.date_created) AS 'obs_datecreated',
-                                  o.concept_id
-                                FROM
-                                  obs o
-                                  INNER JOIN concept_name cn ON cn.concept_id = o.concept_id AND o.voided IS FALSE AND cn.voided IS FALSE AND
-                                                                cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.name = 'ONN, Nursing consultation notes'
-                                GROUP BY o.person_id)latest_obsdatetime ON latest_obsdatetime.obs_datecreated = o.date_created AND latest_obsdatetime.person_id = o.person_id
-                                                                           AND latest_obsdatetime.concept_id = o.concept_id GROUP BY latest_obsdatetime.person_id
-            )latestnotevalue ON latestnotevalue.person_id = personData.person_id
+              SELECT
+                o.person_id,
+                o.encounter_id,
+                o.value_text,
+                onnDateRecorded.ONN_date_recorded
+              FROM obs o
+                INNER JOIN (
+                             SELECT
+                               o.person_id,
+                               MAX(o.date_created) AS 'obs_date_created',
+                               o.concept_id
+                             FROM
+                               obs o
+                               INNER JOIN concept_name cn
+                                 ON cn.concept_id = o.concept_id AND o.voided IS FALSE AND cn.voided IS FALSE AND
+                                    cn.concept_name_type = 'FULLY_SPECIFIED' AND
+                                    cn.name = 'ONN, Nursing consultation notes'
+                             GROUP BY o.person_id
+                           ) latest_obsdatetime ON latest_obsdatetime.obs_date_created = o.date_created AND
+                                                   latest_obsdatetime.person_id = o.person_id AND
+                                                   latest_obsdatetime.concept_id = o.concept_id
+                LEFT JOIN (
+                            SELECT
+                              obs.person_id,
+                              obs.encounter_id,
+                              CAST(obs.value_datetime AS DATE) AS ONN_date_recorded
+                            FROM obs
+                              INNER JOIN concept_view qcvn
+                                ON obs.concept_id = qcvn.concept_id AND
+                                qcvn.retired IS FALSE AND obs.voided IS FALSE AND
+                                   qcvn.concept_full_name = 'ONN, Date recorded'
+                            ORDER BY person_id
+                          ) onnDateRecorded ON o.encounter_id = onnDateRecorded.encounter_id
+                ) latestNoteAndCorrespoindingDateRecorded
+    ON latestNoteAndCorrespoindingDateRecorded.person_id = personData.person_id
 ORDER BY dateOfArrival.date_of_arrival

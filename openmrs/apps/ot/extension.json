@@ -14,7 +14,7 @@
       "view": "tabular",
       "searchHandler": "emrapi.sqlSearch.otToBeScheduledQueue",
       "translationKey": "PATIENT_LISTING_QUEUE_TO_BE_SCHEDULED_LABEL_KEY",
-      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Planned Procedure", "Surgeon Name", "Speciality", "Status", "Outcome of Anaesthesia"]
+      "searchColumns": ["PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Planned Procedure", "Surgeon Name", "Speciality", "Status", "Outcome of Anaesthesia"]
     },
     "label": "To Be Scheduled",
     "order": 1,
