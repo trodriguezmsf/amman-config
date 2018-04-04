@@ -408,7 +408,7 @@ LEFT OUTER JOIN (
 			AND e.voided IS FALSE
 		GROUP BY o.person_id
 	) latest_first_stage_encounter ON latest_first_stage_encounter.person_id = e.patient_id AND latest_first_stage_encounter.encounter_datetime = e.encounter_datetime
-) latest_first_stage_form ON latest_first_stage_form.patient_id = p.person_id
+) latest_first_stage_form ON latest_first_stage_form.patient_id = p.person_id AND latest_first_stage_form.visit_id = latest_visit_type.visit_id
 LEFT OUTER JOIN (
 	SELECT
 		e.patient_id,
@@ -441,7 +441,7 @@ LEFT OUTER JOIN (
 			AND e.voided IS FALSE
 		GROUP BY o.person_id
 	) latest_followup_encounter ON latest_followup_encounter.person_id = e.patient_id AND latest_followup_encounter.encounter_datetime = e.encounter_datetime
-) latest_followup_form ON latest_followup_form.patient_id = p.person_id
+) latest_followup_form ON latest_followup_form.patient_id = p.person_id AND latest_followup_form.visit_id = latest_visit_type.visit_id
 LEFT OUTER JOIN (
 	SELECT
 		e.patient_id,
@@ -474,27 +474,28 @@ LEFT OUTER JOIN (
 			AND e.voided IS FALSE
 		GROUP BY o.person_id
 	) latest_final_validation_encounter ON latest_final_validation_encounter.person_id = e.patient_id AND latest_final_validation_encounter.encounter_datetime = e.encounter_datetime
-) latest_final_validation_form ON latest_final_validation_form.patient_id = p.person_id
-WHERE latest_visit_type.name IN ('First Stage Validation' , 'Follow-Up Validation')
-	AND expectedDateOfArrival.value IS NULL
-    AND ((
-		latest_first_stage_form.surgicalOutcome = 'Valid'
-			AND latest_first_stage_form.anaesthesiaOutcome = 'Fits anaesthesia criteria'
-            AND latest_followup_form.patient_id IS NULL
-            AND program_state.name = 'Identification'
-	) OR (
-		latest_followup_form.outcome = 'Further stage admission'
-            AND program_state.name = 'Network Follow-up'
-	))
-    AND (
-		latest_final_validation_form.outcome IS NULL OR latest_final_validation_form.outcome NOT IN (
-			'Rejected',
-			'R2A : Surgery Outside',
-			'R2B: Refused Treatment or Follow-up',
-			'R2C: refused to travel to Amman',
-			'R2D: Refused to Undergo Surgery',
-			'Further Evaluation'
-		)
-	)
+) latest_final_validation_form ON latest_final_validation_form.patient_id = p.person_id AND latest_final_validation_form.visit_id = latest_visit_type.visit_id
+WHERE latest_visit_type.name IN ('First Stage Validation' , 'Follow-Up Validation') AND
+      expectedDateOfArrival.value IS NULL AND
+      (
+        (
+          (
+            latest_first_stage_form.surgicalOutcome = 'Valid' AND
+            latest_first_stage_form.anaesthesiaOutcome = 'Fits anaesthesia criteria' AND
+            latest_followup_form.patient_id IS NULL AND
+            program_state.name = 'Identification'
+          )
+          OR
+          (
+            latest_followup_form.outcome = 'Further stage admission' AND
+            program_state.name = 'Network Follow-up' AND
+            latest_final_validation_form.outcome IS NULL
+          )
+        )
+        OR
+        (
+          latest_final_validation_form.outcome = 'Accepted'
+        )
+      )
 ORDER BY dateOfPresentation.value_datetime
 ", 'Validated Patients Queue', @uuid);

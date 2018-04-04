@@ -396,24 +396,29 @@ FROM (SELECT
                                                           latest_visit_type.visit_id
       GROUP BY p.person_id) result
 WHERE (
-  (latest_visit_name IN ('First Stage Validation', 'Follow-Up Validation') AND
-   (expectedDateOfArrival IS NULL) AND
-   ((`Outcomes for 1st stage surgical validation` = 'Valid' AND
-     `latestFollowupPatientID` IS NULL AND
-     `Outcomes for 1st stage Anaesthesia validation` = 'Fits anaesthesia criteria' AND
-     `programStateName` = 'Identification')
-    OR
-    (`latestFollowupFormOutcome` = 'Further stage admission'
-     AND `programStateName` = 'Network Follow-up')) AND
-   (`latestFinalValidationOutcome` IS NULL OR
-    `latestFinalValidationOutcome` NOT IN (
-      'Rejected',
-      'R2A : Surgery Outside',
-      'R2B: Refused Treatment or Follow-up',
-      'R2C: refused to travel to Amman',
-      'R2D: Refused to Undergo Surgery',
-      'Further Evaluation'
-    )))
+  (latest_visit_name IN ('First Stage Validation' , 'Follow-Up Validation') AND
+      expectedDateOfArrival IS NULL AND
+      (
+        (
+          (
+            `Outcomes for 1st stage surgical validation` = 'Valid' AND
+            `Outcomes for 1st stage Anaesthesia validation` = 'Fits anaesthesia criteria' AND
+            `latestFollowupPatientID` IS NULL AND
+            `programStateName` = 'Identification'
+          )
+          OR
+          (
+            `latestFollowupFormOutcome` = 'Further stage admission' AND
+            `programStateName` = 'Network Follow-up' AND
+            `latestFinalValidationOutcome` IS NULL
+          )
+        )
+        OR
+        (
+          `latestFinalValidationOutcome` = 'Accepted'
+        )
+      )
+  )
   OR
   ((`Date of Presentation` IS NOT NULL) AND (`Outcomes for 1st stage surgical validation` = 'More Information' OR
                                              `Outcomes for 1st stage Anaesthesia validation` =
