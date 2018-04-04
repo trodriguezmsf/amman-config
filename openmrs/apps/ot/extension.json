@@ -7,7 +7,7 @@
       "links": [
         {
           "url": "/bahmni/ot/#/otScheduling",
-          "linkColumn": "identifier",
+          "linkColumn": "PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER",
           "newTab": true
         }
       ],
