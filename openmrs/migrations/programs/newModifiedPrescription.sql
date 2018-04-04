@@ -106,4 +106,4 @@ FROM
                       INNER JOIN location on location.location_id = blm.location_id
                     GROUP BY bpam.patient_id
                   ) bed on bed.patient_id = personData.person_id
-ORDER BY medications.updated_time;", 'New/Modified Prescriptions',@uuid);
+ORDER BY medications.updated_time DESC;", 'New/Modified Prescriptions',@uuid);
