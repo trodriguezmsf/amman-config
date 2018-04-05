@@ -12,11 +12,14 @@ SELECT
   `nameOfSurgeon`                                                         AS `Name of surgeon`,
   `stage`                                                                 AS `Stage`,
   `priority`                                                              AS `Priority`,
-  programStateName,
-  IF(encounter_date_time_for_flp_outcome >=
-     encounter_date_time_for_fstg_outcome,
-     `Outcomes for flp surgical validation`,
-     `Outcomes for 1st Stage surgical validation`)                        AS `Outcome for Surgical Validation`,
+  IF(ISNULL(encounter_date_time_for_flp_outcome >=
+            encounter_date_time_for_fstg_outcome),
+      COALESCE(`Outcomes for flp surgical validation`,
+               `Outcomes for 1st Stage surgical validation`),
+               IF(encounter_date_time_for_flp_outcome >=
+                    encounter_date_time_for_fstg_outcome,
+                    `Outcomes for flp surgical validation`,
+    `Outcomes for 1st Stage surgical validation`))                        AS `Outcome for Surgical Validation`,
   `Outcomes for 1st stage Anaesthesia validation`,
   `latestFinalValidationOutcome`                                          AS `Outcome for Final validation`,
   CONCAT_WS(', ',
