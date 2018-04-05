@@ -12,7 +12,11 @@ SELECT
   `nameOfSurgeon`                                                         AS `Name of surgeon`,
   `stage`                                                                 AS `Stage`,
   `priority`                                                              AS `Priority`,
-  `Outcomes for 1st stage surgical validation`                            AS `Outcome for Surgical Validation`,
+  programStateName,
+  IF(encounter_date_time_for_flp_outcome >=
+     encounter_date_time_for_fstg_outcome,
+     `Outcomes for flp surgical validation`,
+     `Outcomes for 1st Stage surgical validation`)                        AS `Outcome for Surgical Validation`,
   `Outcomes for 1st stage Anaesthesia validation`,
   `latestFinalValidationOutcome`                                          AS `Outcome for Final validation`,
   CONCAT_WS(', ', surgical_assessment_medical_info,
@@ -46,6 +50,18 @@ FROM (SELECT
                                   latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name),
                                   NULL)) ORDER BY o.obs_id
                      DESC)                                     AS 'Outcomes for 1st Stage surgical validation',
+        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Outcomes for 1st stage surgical validation' AND
+                                  latest_encounter.person_id IS NOT NULL, e.encounter_datetime,
+                                  NULL)) ORDER BY o.obs_id
+                     DESC)                                     AS 'encounter_date_time_for_fstg_outcome',
+        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Outcomes for follow-up surgical validation' AND
+                                  latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name),
+                                  NULL)) ORDER BY o.obs_id
+                     DESC)                                     AS 'Outcomes for flp surgical validation',
+        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FUP, Outcomes for follow-up surgical validation' AND
+                                  latest_encounter.person_id IS NOT NULL, e.encounter_datetime,
+                                  NULL)) ORDER BY o.obs_id
+                     DESC)                                     AS 'encounter_date_time_for_flp_outcome',
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Outcomes for 1st stage Anaesthesia validation' AND
                                   latest_encounter.person_id IS NOT NULL, COALESCE(coded_fscn.name, coded_scn.name),
                                   NULL)) ORDER BY o.obs_id
@@ -117,6 +133,7 @@ FROM (SELECT
                                       obs_fscn.name IN
                                       ('FSTG, Date of presentation at 1st stage',
                                         'FSTG, Outcomes for 1st stage surgical validation',
+                                        'FUP, Outcomes for follow-up surgical validation',
                                         'FSTG, Outcomes for 1st stage Anaesthesia validation',
                                         'FST, Type of medical information needed for next submission',
                                         'FSTG, Type of medical information needed for next submission',
