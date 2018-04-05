@@ -19,12 +19,12 @@ SELECT
      `Outcomes for 1st Stage surgical validation`)                        AS `Outcome for Surgical Validation`,
   `Outcomes for 1st stage Anaesthesia validation`,
   `latestFinalValidationOutcome`                                          AS `Outcome for Final validation`,
-  CONCAT_WS(', ', surgical_assessment_medical_info,
-            anaesthesia_assessment_medical_info)                          AS `Type of medical information needed for next submission`,
-  `postPoneReason`                                                        AS `Postpone Reason`,
-  `postPoneComments`                                                      AS `Comments about postpone reason`,
-  `refusedReason`                                                         AS `Refused reason`,
-  `refusedComments`                                                       AS `Comments about refusal`,
+  CONCAT_WS(', ',
+  fstgMedicalInformationNeeded, fstMedicalInformationNeeded)              AS `Type of medical information needed for next submission`,
+  fstgPostponeReason                                                      AS `Postpone Reason`,
+  fstgCommentsOnPostponeReason                                            AS `Comments about postpone reason`,
+  fstgRefusedReason                                                       AS `Refused reason`,
+  fstgCommentsOnRefusal                                                   AS `Comments about refusal`,
   `doesPatientNeedSurgicalValidation`                                     AS `Does the patient need surgical final validation`,
   `finalValidationExpectedArrival`                                        AS `Expected month / year of arrival`,
   `isCareTakerRequired`                                                   AS `Is caretaker required`,
@@ -69,33 +69,19 @@ FROM (SELECT
         GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Date received' AND latest_encounter.person_id IS NOT NULL,
                                   DATE_FORMAT(o.value_datetime, '%d/%m/%Y'), NULL)) ORDER BY o.obs_id
                      DESC)                                     AS 'dateOfMedicalFileReceived',
-        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Type of medical information needed for next submission' AND
-                                  latest_encounter.person_id IS NOT NULL, o.value_text, NULL)) ORDER BY o.obs_id
-                     DESC)                                     AS 'surgical_assessment_medical_info',
-        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FST, Type of medical information needed for next submission' AND
-                                  latest_encounter.person_id IS NOT NULL, o.value_text, NULL)) ORDER BY o.obs_id
-                     DESC)                                     AS 'anaesthesia_assessment_medical_info',
+        latest_first_stage_validation_form.`fstMedicalInformationNeeded`      AS 'fstMedicalInformationNeeded',
+        latest_first_stage_validation_form.`fstgMedicalInformationNeeded`     AS 'fstgMedicalInformationNeeded',
+        latest_first_stage_validation_form.`fstgPostponeReason`               AS 'fstgPostPoneReason',
+        latest_first_stage_validation_form.`fstgCommentsOnPostponeReason`     AS 'fstgCommentsOnPostponeReason' ,
+        latest_first_stage_validation_form.`fstgRefusedReason`                AS 'fstgRefusedReason',
+        latest_first_stage_validation_form.`fstgCommentsOnRefusal`            AS 'fstgCommentsOnRefusal',
         surgeon_name.name                                      AS 'nameOfSurgeon',
         doesThePatientNeedSurgicalValidation.value             AS 'doesPatientNeedSurgicalValidation',
         priority.value                                         AS 'priority',
-        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Postpone reason' AND latest_encounter.person_id IS NOT NULL,
-                                  COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id
-                     DESC)                                     AS 'postPoneReason',
-        GROUP_CONCAT(DISTINCT (IF(obs_fscn.name = 'FSTG, Refused Reason' AND latest_encounter.person_id IS NOT NULL,
-                                  COALESCE(coded_fscn.name, coded_scn.name), NULL)) ORDER BY o.obs_id
-                     DESC)                                     AS 'refusedReason',
         GROUP_CONCAT(DISTINCT
                      (IF(obs_fscn.name = 'Stage' AND latest_encounter.person_id IS NOT NULL, o.value_numeric, NULL))
                      ORDER BY o.obs_id
                      DESC)                                     AS 'stage',
-        GROUP_CONCAT(DISTINCT (IF(
-            obs_fscn.name = 'FSTG, Comments about postpone reason' AND latest_encounter.person_id IS NOT NULL,
-            o.value_text, NULL)) ORDER BY o.obs_id
-                     DESC)                                     AS 'postPoneComments',
-        GROUP_CONCAT(DISTINCT
-                     (IF(obs_fscn.name = 'FSTG, Comments about refusal' AND latest_encounter.person_id IS NOT NULL,
-                         o.value_text, NULL)) ORDER BY o.obs_id
-                     DESC)                                     AS 'refusedComments',
         GROUP_CONCAT(DISTINCT
                      (IF(obs_fscn.name = 'FV, Expected Date of Arrival' AND latest_encounter.person_id IS NOT NULL,
                          DATE_FORMAT(o.value_datetime, '%b/%Y'), NULL)) ORDER BY o.obs_id
@@ -132,19 +118,13 @@ FROM (SELECT
         JOIN concept_name obs_fscn ON o.concept_id = obs_fscn.concept_id AND
                                       obs_fscn.name IN
                                       ('FSTG, Date of presentation at 1st stage',
-                                        'FSTG, Outcomes for 1st stage surgical validation',
-                                        'FUP, Outcomes for follow-up surgical validation',
-                                        'FSTG, Outcomes for 1st stage Anaesthesia validation',
-                                        'FST, Type of medical information needed for next submission',
-                                        'FSTG, Type of medical information needed for next submission',
-                                        'FSTG, Date received',
-                                        'Stage',
-                                        'FSTG, Priority',
-                                        'FUP, Priority',
-                                        'FSTG, Postpone reason',
-                                        'FSTG, Comments about postpone reason',
-                                       'FSTG, Refused Reason',
-                                       'FSTG, Comments about refusal',
+                                       'FSTG, Outcomes for 1st stage surgical validation',
+                                       'FUP, Outcomes for follow-up surgical validation',
+                                       'FSTG, Outcomes for 1st stage Anaesthesia validation',
+                                       'FSTG, Date received',
+                                       'Stage',
+                                       'FSTG, Priority',
+                                       'FUP, Priority',
                                        'FV, Expected Date of Arrival',
                                        'FV, Outcomes FV')
                                       AND obs_fscn.voided IS FALSE AND obs_fscn.concept_name_type = 'FULLY_SPECIFIED'
@@ -333,6 +313,53 @@ FROM (SELECT
                           GROUP BY o.person_id
                         ) doesThePatientNeedSurgicalValidation
           ON doesThePatientNeedSurgicalValidation.person_id = p.person_id
+        LEFT OUTER JOIN (
+                          SELECT
+                            e.patient_id,
+                            e.visit_id,
+                            GROUP_CONCAT(IF(outcome_cn.name = 'FSTG, Postpone reason', outcome_answer_cn.name, NULL )) AS `fstgPostponeReason`,
+                            GROUP_CONCAT(IF(outcome_cn.name = 'FSTG, Comments about postpone reason', o.value_text, NULL )) AS `fstgCommentsOnPostponeReason`,
+                            GROUP_CONCAT(IF(outcome_cn.name = 'FSTG, Refused Reason', outcome_answer_cn.name, NULL )) AS `fstgRefusedReason`,
+                            GROUP_CONCAT(IF(outcome_cn.name = 'FSTG, Comments about refusal', o.value_text, NULL )) AS `fstgCommentsOnRefusal`,
+                            GROUP_CONCAT(IF(outcome_cn.name = 'FSTG, Type of medical information needed for next submission', o.value_text, NULL )) AS `fstgMedicalInformationNeeded`,
+                            GROUP_CONCAT(IF(outcome_cn.name = 'FST, Type of medical information needed for next submission', o.value_text, NULL )) AS `fstMedicalInformationNeeded`
+                          FROM
+                            encounter e
+                            INNER JOIN obs o ON o.encounter_id = e.encounter_id AND
+                                                e.voided IS FALSE AND o.voided IS FALSE
+                            INNER JOIN concept_name outcome_cn ON outcome_cn.concept_id = o.concept_id AND
+                                                                  outcome_cn.concept_name_type = 'FULLY_SPECIFIED' AND
+                                                                  outcome_cn.name IN (
+                                                                    'FSTG, Postpone reason',
+                                                                    'FSTG, Comments about postpone reason',
+                                                                    'FSTG, Refused Reason',
+                                                                    'FSTG, Comments about refusal',
+                                                                    'FSTG, Type of medical information needed for next submission',
+                                                                    'FST, Type of medical information needed for next submission'
+                                                                  ) AND
+                                                                  outcome_cn.voided IS FALSE
+                            LEFT JOIN concept_name outcome_answer_cn ON outcome_answer_cn.concept_id = o.value_coded AND
+                                                                         outcome_answer_cn.concept_name_type = 'FULLY_SPECIFIED' AND
+                                                                         outcome_answer_cn.voided IS FALSE
+                            INNER JOIN (
+                                         SELECT
+                                           o.person_id,
+                                           MAX(e.encounter_datetime) AS encounter_datetime
+                                         FROM
+                                           obs o
+                                           INNER JOIN concept_name cn ON cn.concept_id = o.concept_id AND
+                                                                         cn.concept_name_type = 'FULLY_SPECIFIED' AND
+                                                                         cn.voided IS FALSE AND o.voided IS FALSE AND
+                                                                         cn.name = 'First Stage Validation'
+                                           INNER JOIN encounter e ON e.encounter_id = o.encounter_id AND
+                                                                     e.voided IS FALSE
+                                         GROUP BY o.person_id
+                                       ) latest_first_stage_validation_encounter
+                              ON latest_first_stage_validation_encounter.person_id = e.patient_id AND
+                                 latest_first_stage_validation_encounter.encounter_datetime = e.encounter_datetime
+                            GROUP BY e.patient_id
+        ) latest_first_stage_validation_form ON latest_first_stage_validation_form.patient_id = p.person_id AND
+                                                latest_first_stage_validation_form.visit_id = latest_visit_type.visit_id
         LEFT OUTER JOIN (
                           SELECT
                             e.patient_id,
