@@ -2348,6 +2348,11 @@
                    tableName="metadatamapping_metadata_term_mapping"/>
     </changeSet>
     <changeSet id="Amman-201705031542" author="Kaustav, Shireesha" context="rel3.0" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM location_tag_map WHERE location_tag_id = (SELECT location_tag_id FROM location_tag WHERE name = 'Operation Theater' and description = 'Operation Theater');
+            </sqlCheck>
+        </preConditions>
         <comment>Add operation theater locations and OT tag</comment>
         <sqlFile path="operationTheater/otLocations.sql"/>
     </changeSet>
