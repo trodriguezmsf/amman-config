@@ -3,5 +3,6 @@
   roles:
     - { role: bahmni-apps-customization }
     - { role: bahmni-amman-exports }
+    - { role: bahmni-mart}
   tags:
     - bahmni-amman-customization
