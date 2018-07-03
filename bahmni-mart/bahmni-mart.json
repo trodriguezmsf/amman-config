@@ -18,6 +18,7 @@
         {
           "tableName": "appointment_service_default",
           "columnsToIgnore": [
+            "speciality"
           ]
         }
       ]
