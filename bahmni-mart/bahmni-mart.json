@@ -136,7 +136,12 @@
     },
     {
       "name": "Bacteriology Data",
-      "type": "bacteriology"
+      "type": "bacteriology",
+      "incrementalUpdateConfig": {
+        "updateOn": "encounter_id",
+        "eventCategory": "Encounter",
+        "openmrsTableName": "encounter"
+      }
     },
     {
       "name": "MetaData Dictionary",
@@ -146,12 +151,14 @@
     {
       "name": "Obs Data",
       "type": "obs",
+      "incrementalUpdateConfig": {
+        "updateOn": "encounter_id",
+        "eventCategory": "Encounter",
+        "openmrsTableName": "encounter"
+      },
       "separateTableConfig": {
         "enableForAddMoreAndMultiSelect": true,
         "separateTables": [
-          "PA, Location of Assessment",
-          "SMH, Pain Assessment",
-          "FV, Outcomes FV"
         ]
       },
       "ignoreAllFreeTextConcepts": true,
@@ -159,18 +166,17 @@
         "Video",
         "Image",
         "Documents, Image Upload",
-        "Documents, Image",
-        "FSTG, Comments",
-        "CC, Additional comments, complications",
-        "FUP, Comments about dismissal",
-        "FUP, Comments about next follow-up",
-        "FSTG, Comments about refusal"
+        "Documents, Image"
       ]
     },
     {
       "name": "Disposition Data",
       "type": "disposition",
-      "columnsToIgnore": []
+      "incrementalUpdateConfig": {
+        "updateOn": "encounter_id",
+        "eventCategory": "Encounter",
+        "openmrsTableName": "encounter"
+      }
     }
   ],
   "procedures":[
