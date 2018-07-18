@@ -159,9 +159,6 @@
       "separateTableConfig": {
         "enableForAddMoreAndMultiSelect": true,
         "separateTables": [
-          "PA, Location of Assessment",
-          "SMH, Pain Assessment",
-          "FV, Outcomes FV"
         ]
       },
       "ignoreAllFreeTextConcepts": true,
@@ -169,12 +166,7 @@
         "Video",
         "Image",
         "Documents, Image Upload",
-        "Documents, Image",
-        "FSTG, Comments",
-        "CC, Additional comments, complications",
-        "FUP, Comments about dismissal",
-        "FUP, Comments about next follow-up",
-        "FSTG, Comments about refusal"
+        "Documents, Image"
       ]
     },
     {
@@ -184,8 +176,7 @@
         "updateOn": "encounter_id",
         "eventCategory": "Encounter",
         "openmrsTableName": "encounter"
-      },
-      "columnsToIgnore": []
+      }
     }
   ],
   "procedures":[
