@@ -20,6 +20,12 @@
           "columnsToIgnore": [
             "speciality"
           ]
+        },
+        {
+          "tableName": "patient_appointment_default",
+          "columnsToIgnore": [
+            "comments"
+          ]
         }
       ]
     },
@@ -93,7 +99,8 @@
             "legalRepDob",
             "nameoftheBlock",
             "nameoftheStreet",
-            "orkut"
+            "orkut",
+            "spokenLanguages"
           ]
         },
         {
@@ -105,7 +112,15 @@
             "family_name_prefix",
             "family_name",
             "family_name2",
-            "family_name_suffix"
+            "family_name_suffix",
+            "birthdate"
+          ]
+        },
+        {
+          "tableName": "person_address_default",
+          "columnsToIgnore": [
+            "address4",
+            "address6"
           ]
         }
       ]
@@ -129,7 +144,8 @@
           "tableName": "medication_data_default",
           "columnsToIgnore": [
             "instructions",
-            "stop_notes"
+            "stop_notes",
+            "additional_instructions"
           ]
         }
       ]
@@ -166,7 +182,11 @@
         "Video",
         "Image",
         "Documents, Image Upload",
-        "Documents, Image"
+        "Documents, Image",
+        "FUP, Dismissal confirmed",
+        "FUP, Dismissal reason",
+        "HE, Pregnancy status",
+        "HE, Drug and Alcohol use"
       ]
     },
     {
@@ -176,7 +196,10 @@
         "updateOn": "encounter_id",
         "eventCategory": "Encounter",
         "openmrsTableName": "encounter"
-      }
+      },
+      "columnsToIgnore": [
+        "Disposition Note"
+      ]
     }
   ],
   "procedures":[
