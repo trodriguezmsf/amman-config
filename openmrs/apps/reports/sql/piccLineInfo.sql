@@ -46,7 +46,7 @@ FROM
           'PICC line occlusion',
           'PICC-related DVT',
           'PICC-related thrombophlebitis',
-          'Other'
+          'Other PICC-line related complications'
         ) AND ca.retired IS FALSE) patientComplication
      INNER JOIN
      (SELECT
