@@ -34,7 +34,10 @@
         "program": {
             "patientInformation": {
                 "ageLimit": 100
-            }
+            },
+            "debouncePatientSearchApi": true,
+            "debouncePatientSearchApiInterval": 2000,
+            "runPatientSearchInSerial": true
         },
         "obsIgnoreList": [
             "REGISTRATION FEES",
