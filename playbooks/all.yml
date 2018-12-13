@@ -2,6 +2,5 @@
   sudo: yes
   roles:
     - { role: bahmni-apps-customization }
-    - { role: bahmni-amman-exports }
   tags:
     - bahmni-amman-customization
