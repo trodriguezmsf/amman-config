@@ -65,7 +65,7 @@
     "type": "link",
     "translationKey": "MODULE_LABEL_BED_MANAGEMENT_KEY",
     "label": "InPatient",
-    "url": "../ipd/#/admit",
+    "url": "../bedmanagement/#/admit",
     "icon": "fa-bed",
     "order": 7,
     "requiredPrivilege": "app:adt"
@@ -109,5 +109,28 @@
     "icon": "fa-flask",
     "order": 11,
     "requiredPrivilege": "app:pharmacy"
-  }
+  },
+ "implementerInterface": {
+    "id": "bahmni.implementer.interface",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "MODULE_LABEL_IMPLEMENTER_INTERFACE_KEY",
+    "url": "/implementer-interface",
+    "icon": "fa fa-pencil-square-o",
+    "order": 13,
+    "requiredPrivilege": "app:implementer-interface"
+  },
+
+"PrintForms": {
+	 "id": "bahmni.print.forms",
+         "extensionPointId": "org.bahmni.home.dashboard",
+         "type": "link",
+         "label": "Print Forms",
+         "url": "/print-forms",
+         "icon": "fa fa-print",
+         "order": 12,
+         "requiredPrivilege": "app:print-forms"
+}
+
+
 }

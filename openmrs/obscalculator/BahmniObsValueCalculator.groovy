@@ -212,13 +212,13 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     }
 
     void run(BahmniEncounterTransaction bahmniEncounterTransaction) {
-        Collection<BahmniObservation> observations = bahmniEncounterTransaction.getObservations()
+       /* Collection<BahmniObservation> observations = bahmniEncounterTransaction.getObservations()
         BahmniObservation baselineVitalsForm = find("Vital Signs", observations, null)
         if (baselineVitalsForm != null) {
             calculateBMIAndSave(baselineVitalsForm)
         }
         calculateScores(observations)
-        voidExistingObservationWithoutValue(observations)
+        voidExistingObservationWithoutValue(observations)*/
     }
 
     static Double getValueFromConceptName(String conceptName) {

@@ -59,6 +59,19 @@
                 },
               "hideEmptyDisplayControl": true
             },
+          "Forms-2.0": {
+            "type": "formsV2",
+            "displayOrder": 1,
+            "dashboardConfig": {
+              "title": null,
+              "maximumNoOfVisits": 1
+            },
+            "formGroup": [
+              "sectionAddMore",
+              "DemoTableForm"
+            ],
+            "translationKey": "Edit Forms (2.0)"
+          },
           "Medical History":{
             "translationKey": "DASHBOARD_TITLE_PATIENT_MEDICAL_HISTORY",
             "type": "vitals",
@@ -233,7 +246,7 @@
                     "Lower Limb Physiotherapy Assessment",
                     "Upper Limb Physiotherapy Assessment",
                     "Maxillofacial Physio Assessment",
-		            "Medical Doctor OPD Follow-up",
+                    "Medical Doctor OPD Follow-up",
                     "Pain Nurse Follow-up",
                     "Administrative Note"
                 ],
@@ -331,7 +344,8 @@
             "MD, Comments about allergy",
             "AIA, Is the patient allergic to any drugs / medications ?",
             "AIA, Type of medication allergy",
-            "MD, History of present illness"
+            "MD, History of present illness",
+	    "DIA, Surgical Diagnosis coded"
           ],
           "scope": "latest",
           "showGroupDateTime": false
@@ -428,7 +442,7 @@
         "dashboardConfig": {
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
-	  "hideEmptyRecords": true,
+      "hideEmptyRecords": true,
           "isEditable": true,
           "groupByConcept": "PIA, Date of consultation",
           "templateName": "Psychology initial assessment",
@@ -1077,3 +1091,4 @@
     }
   }
   }
+
