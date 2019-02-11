@@ -2,7 +2,7 @@
  select uuid() into @uuid;
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.awaitingValidationFirstStage',
-    "SELECT
+    "SELECT SQL_CACHE
        `Type Of Medical Information`,`Date of File Received`, `identifier`, name AS PATIENT_LISTING_QUEUES_HEADER_NAME, uuid, `Name of MLO`, `Nationality`, `Specialty`
      FROM (
             SELECT

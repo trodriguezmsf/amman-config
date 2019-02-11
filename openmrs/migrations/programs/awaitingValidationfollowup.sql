@@ -5,7 +5,7 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.awaitingValidatio
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.awaitingValidationFollowup',
 "
-SELECT
+SELECT SQL_CACHE
   pi.identifier  AS `identifier`,
   p.uuid  AS uuid,
   concat(pn.given_name, ' ', pn.family_name)  AS  PATIENT_LISTING_QUEUES_HEADER_NAME,

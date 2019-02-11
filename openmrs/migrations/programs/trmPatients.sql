@@ -2,7 +2,7 @@
  select uuid() into @uuid;
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.trmPatients',
-"SELECT
+"SELECT SQL_CACHE
   dateOfArrival.dateOfArrival                                AS `Date of Arrival`,
   pi.identifier                                              AS `identifier`,
   concat(pn.given_name, ' ', pn.family_name)                 AS PATIENT_LISTING_QUEUES_HEADER_NAME,
