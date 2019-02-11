@@ -4,7 +4,7 @@ select uuid() into @uuid;
 
 INSERT INTO global_property (property, property_value, description, uuid)
 VALUES ('emrapi.sqlSearch.expectedArrival',
-        "SELECT
+        "SELECT SQL_CACHE
                             personData.identifier,
                             personData.name AS PATIENT_LISTING_QUEUES_HEADER_NAME,
                             personData.age  AS 'Age',
