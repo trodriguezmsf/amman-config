@@ -165,18 +165,14 @@
       "conceptReferenceSource": "MSF-INTERNAL"
     },
     {
-      "name": "Obs Data",
-      "type": "obs",
-      "incrementalUpdateConfig": {
-        "updateOn": "encounter_id",
-        "eventCategory": "Encounter",
-        "openmrsTableName": "encounter"
-      },
+      "name": "Form 2 Obs Data",
+      "type": "form2obs",
       "separateTableConfig": {
         "enableForAddMoreAndMultiSelect": true,
         "separateTables": [
         ]
       },
+      "conceptReferenceSource": "",
       "ignoreAllFreeTextConcepts": true,
       "columnsToIgnore": [
         "Video",
