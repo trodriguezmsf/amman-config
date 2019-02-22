@@ -4,7 +4,7 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.hospitalRSP';
 
  INSERT INTO global_property (property, property_value, description, uuid)
  VALUES ('emrapi.sqlSearch.hospitalRSP',
-"SELECT
+"SELECT SQL_CACHE
   dateOfArrival.dateOfArrival AS `Date of Arrival`,
   personData.patient_identifier AS 'identifier',
   personData.name AS 'PATIENT_LISTING_QUEUES_HEADER_NAME',

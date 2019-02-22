@@ -1,6 +1,7 @@
 - hosts: bahmni-emr
   sudo: yes
   roles:
-    - { role: bahmni-amman-exports }
+    - { role: bahmni-apps-customization}
+    - { role: bahmni-mysql-cache-properties, tags: mysql_cache }
   tags:
     - bahmni-amman-customization
