@@ -7183,4 +7183,17 @@
             call create_reference_mapping_msf_internal('PIAD, SDQ S11-17', 'SDQ11_17');
         </sql>
     </changeSet>
+    <changeSet id="Amman-201902281553" author="Raju, Vineela" context="rel4.0">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from global_property
+                where property = 'atomfeed.publish.eventsForPatientProgramStateChange';
+            </sqlCheck>
+        </preConditions>
+        <comment>Enable publishing events for patient program state change</comment>
+        <update tableName="global_property">
+            <column name="property_value" value="true" />
+            <where>property = 'atomfeed.publish.eventsForPatientProgramStateChange'</where>
+        </update>
+    </changeSet>
 </databaseChangeLog>
