@@ -203,7 +203,14 @@
         "FUP, Comments about MBA",
         "FUP, Comments about next follow-up",
         "FUP, Comments about re-admission",
-        "FV, Comments on FV"
+        "FV, Comments on FV",
+        "DIA, Medical Diagnosis non coded",
+        "DIA, Surgical Diagnosis non coded",
+        "Alerts, Non coded",
+        "OR, Operation performed non coded",
+        "SAP, Non-coded Planned procedure",
+        "MD, Non-Coded Procedures performed outside AMH",
+        "SFP, Non coded Planned Procedure (surgical)"
       ]
     },
     {
