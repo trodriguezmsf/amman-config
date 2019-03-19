@@ -262,7 +262,10 @@ FROM
                 o.encounter_id,
                 o.value_text,
                 onnDateRecorded.ONN_date_recorded
-              FROM obs o
+              FROM (select person_id, encounter_id, value_text, date_created, concept_id
+                       FROM obs
+                       WHERE concept_id = (select concept_id from concept_name cn where cn.concept_name_type = 'FULLY_SPECIFIED' AND
+                                                                                        cn.name = 'ONN, Nursing consultation notes')) o
                 INNER JOIN (
                              SELECT
                                o.person_id,
