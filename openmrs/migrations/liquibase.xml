@@ -7183,4 +7183,37 @@
             call create_reference_mapping_msf_internal('PIAD, SDQ S11-17', 'SDQ11_17');
         </sql>
     </changeSet>
+    <changeSet id="Amman-201903221127" author="Vinisha, Alekhya" context="rel3.6.4">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM privilege WHERE privilege = "app:print-forms";
+            </sqlCheck>
+        </preConditions>
+        <comment>Creating app:print-forms privilege </comment>
+        <sql>
+            INSERT INTO privilege(privilege, description, uuid) VALUES ("app:print-forms", "Will give access to print forms app", uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201903221128" author="Vinisha, Alekhya" context="rel3.6.4">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role WHERE role = "Print-Forms-App";
+            </sqlCheck>
+        </preConditions>
+        <comment>Creating Print-Forms-App role </comment>
+        <sql>
+            INSERT INTO role (role, uuid) VALUES ("Print-Forms-App", uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201903221129" author="Vinisha, Alekhya" context="rel3.6.4">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "Print-Forms-App" AND privilege = "app:print-forms";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Print-Forms-App role to app:print-forms privilege</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("Print-Forms-App", "app:print-forms");
+        </sql>
+    </changeSet>
 </databaseChangeLog>
