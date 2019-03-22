@@ -109,5 +109,15 @@
     "icon": "fa-flask",
     "order": 11,
     "requiredPrivilege": "app:pharmacy"
+  },
+  "PrintForms": {
+    "id": "bahmni.print.forms",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "label": "Print Forms",
+    "url": "/print-forms",
+    "icon": "fa fa-print",
+    "order": 12,
+    "requiredPrivilege": "app:print-forms"
   }
 }
