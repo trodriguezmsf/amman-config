@@ -1,7 +1,7 @@
 SELECT
           dateOfArrival.dateOfArrival                                AS `Date of Arrival`,
-          pi.identifier                                              AS `identifier`,
-          concat(pn.given_name, ' ', pn.family_name)                 AS PATIENT_LISTING_QUEUES_HEADER_NAME,
+          pi.identifier                                              AS `Identifier`,
+          concat(pn.given_name, ' ', pn.family_name)                 AS `Name`,
           floor(DATEDIFF(CURDATE(), p.birthdate) / 365)              AS `Age`,
           paddr.address3                                             AS `Country`,
           careTakerRequired.isCareTakerRequired                      AS `Is Caretaker Required?`,
@@ -10,8 +10,7 @@ SELECT
           MAX(DATE_FORMAT(surgeonTRM.value_datetime, '%d/%m/%Y')     )    AS `Surgeon TRM`,
               MAX(DATE_FORMAT(physioTRM.value_datetime, '%d/%m/%Y') )         AS `Physio TRM`,
                   MAX(DATE_FORMAT(psychoSocialTRM.value_datetime, '%d/%m/%Y') )   AS `Psycho-social TRM`,
-          MAX( DATE_FORMAT(reasonForVisitDate.value_datetime, '%d/%m/%Y')) AS `OPD Doctor TRM`,
-          p.uuid
+          MAX( DATE_FORMAT(reasonForVisitDate.value_datetime, '%d/%m/%Y')) AS `OPD Doctor TRM`
         FROM person p
           INNER JOIN patient_identifier pi ON pi.patient_id = p.person_id AND p.voided IS FALSE AND pi.voided IS FALSE
           INNER JOIN person_name pn ON pn.person_id = p.person_id AND pn.voided IS FALSE
