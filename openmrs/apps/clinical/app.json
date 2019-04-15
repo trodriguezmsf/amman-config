@@ -27,7 +27,7 @@
 	"showSaveConfirmDialog" : true,    
         "ipdButton": {
             "hideGoToIPDButton": false,
-            "forwardUrl": "../ipd/#/patient/{{patientUuid}}/visit/{{visitUuid}}/dashboard",
+            "forwardUrl": "../bedmanagement/#/patient/{{patientUuid}}/visit/{{visitUuid}}/dashboard",
             "privilege": "app:adt",
             "title": "Go to IPD dashboard"
         },
