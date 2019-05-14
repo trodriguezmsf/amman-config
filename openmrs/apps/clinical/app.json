@@ -24,8 +24,8 @@
     ],
     "config": {
         "diagnosisStatus": "Inactive",
-	"showSaveConfirmDialog" : true,    
-        "ipdButton": {
+	"showSaveConfirmDialog" : true,
+        "adtNavigationConfig": {
             "hideGoToIPDButton": false,
             "forwardUrl": "../bedmanagement/#/patient/{{patientUuid}}/visit/{{visitUuid}}/dashboard",
             "privilege": "app:adt",
