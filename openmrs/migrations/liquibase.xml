@@ -7229,4 +7229,8 @@
             INSERT INTO role_privilege(role, privilege) VALUES ("Print-Forms-App", "app:print-forms");
         </sql>
     </changeSet>
+    <changeSet id="Amman-201905152040" author="Sowmika, Bindu" runOnChange="true">
+        <comment>Retire duplicate Admission locations locations tag and map the used ward locations to minimum id of Admission Location in location_tag_map</comment>
+        <sqlFile path="bedManagement/mapWardLocationsToMinAdmissionLocationTag.sql"/>
+    </changeSet>
 </databaseChangeLog>
