@@ -7233,4 +7233,65 @@
         <comment>Retire duplicate Admission locations locations tag and map the used ward locations to minimum id of Admission Location in location_tag_map</comment>
         <sqlFile path="bedManagement/mapWardLocationsToMinAdmissionLocationTag.sql"/>
     </changeSet>
+    <changeSet id="Amman-201905301827" author="Vineela, Sowmika" context="rel4.0" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_name where name = "Cameroonian" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding a new concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Cameroonian', 'Cameroonian', 'N/A', 'misc', false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201905301830" author="Vineela, Sowmika" context="rel4.0" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name = "Cameroonian" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="Nationality" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Cameroonian' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding a concept answer to Nationality</comment>
+        <sql>
+        SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Cameroonian' AND concept_name_type="FULLY_SPECIFIED";
+        SELECT concept_id INTO @nationality_concept_id FROM concept_name WHERE name = 'Nationality' AND concept_name_type="FULLY_SPECIFIED";
+        INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@nationality_concept_id,@concept_id,1,now(),11,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201906031238" author="Vineela, Sowmika" context="rel4.0">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name = "Cameroonian" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding abbreviation for Cameroonian concept</comment>
+        <sql>
+            SET @concept_source_id = 0;
+            SET @uuid = 0;
+            SET @time_now = 0;
+            SET @concept_reference_term_id = 0;
+            SET @concept_map_type_id = 0;
+            SET @concept_id = 0;
+            SELECT concept_source_id INTO @concept_source_id FROM concept_reference_source WHERE name = "Abbreviation";
+            SELECT concept_map_type_id INTO @concept_map_type_id FROM concept_map_type WHERE name='SAME-AS';
+            SELECT uuid() INTO @uuid;
+            SELECT now() INTO @time_now;
+
+            INSERT INTO concept_reference_term (name, code, creator, date_created,concept_source_id, retired, uuid)
+            VALUES ('CM', 'CM', 1, @time_now, @concept_source_id, 0, @uuid);
+
+            SELECT concept_reference_term_id INTO @concept_reference_term_id FROM concept_reference_term WHERE name='CM';
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'Cameroonian' AND concept_name_type = 'FULLY_SPECIFIED';
+            SELECT uuid() INTO @uuid;
+
+            INSERT INTO concept_reference_map (concept_reference_term_id, concept_map_type_id, concept_id, date_created, creator, uuid)
+            VALUES(@concept_reference_term_id , @concept_map_type_id, @concept_id, @time_now,1, @uuid);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
