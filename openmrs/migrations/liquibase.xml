@@ -7294,4 +7294,34 @@
             VALUES(@concept_reference_term_id , @concept_map_type_id, @concept_id, @time_now,1, @uuid);
         </sql>
     </changeSet>
+    <!-- The below migration is a duplicate of "Amman-201707031330". Please don't delete it -->
+    <changeSet id="Amman-201906171430" author="Santosh, Bindu" context="rel4.1" runOnChange="true">
+        <comment>Adding patient listing queues for patients whose are in scheduled queue</comment>
+        <sqlFile path="operationTheater/patientListingQueueScheduled.sql"/>
+    </changeSet>
+    <changeSet id="Amman-201906171500" author="Santosh, Bindu" context="rel4.1" runOnChange="true" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">select count(*) from privilege where privilege='Edit Tags'</sqlCheck>
+        </preConditions>
+        <comment>Create privilege - Edit Tags</comment>
+        <insert tableName="privilege">
+            <column name="privilege" value="Edit Tags"/>
+            <column name="description" value="Able to associate tags to the bed"/>
+            <column name="uuid" valueComputed="uuid()"/>
+        </insert>
+    </changeSet>
+    <changeSet id="Amman-201906171510" author="Santosh, Bindu" context="rel4.1" >
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM privilege WHERE privilege = "Edit Tags";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "InPatient-Edit-BedTags-Only" AND privilege = "Edit Tags";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Edit Tags privilege to InPatient-Edit-BedTags-Only role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("InPatient-Edit-BedTags-Only", "Edit Tags");
+        </sql>
+    </changeSet>
 </databaseChangeLog>
