@@ -7324,4 +7324,48 @@
             INSERT INTO role_privilege(role, privilege) VALUES ("InPatient-Edit-BedTags-Only", "Edit Tags");
         </sql>
     </changeSet>
+    <changeSet id="Amman-201906241604" author="Bindu, Alekhya" context="rel5.0.0">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM global_property WHERE property = "emrapi.sqlSearch.postponed";
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing the 'Postpone' queue from global property</comment>
+        <sql>
+            DELETE FROM global_property WHERE property = "emrapi.sqlSearch.postponed";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201906241612" author="Bindu, Alekhya" context="rel5.0.0">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM global_property WHERE property = "emrapi.sqlSearch.moreInformation";
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing the 'More information' queue from global property</comment>
+        <sql>
+            DELETE FROM global_property WHERE property = "emrapi.sqlSearch.moreInformation";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201906241616" author="Bindu, Alekhya" context="rel5.0.0">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM global_property WHERE property = "emrapi.sqlSearch.continueUnderFollowup";
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing the 'To Continue under follow-up' queue from global property</comment>
+        <sql>
+            DELETE FROM global_property WHERE property = "emrapi.sqlSearch.continueUnderFollowup";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-201906241618" author="Bindu, Alekhya" context="rel5.0.0">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM global_property WHERE property = "emrapi.sqlSearch.validatedPatients";
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing the 'Validated Patients' queue from global property</comment>
+        <sql>
+            DELETE FROM global_property WHERE property = "emrapi.sqlSearch.validatedPatients";
+        </sql>
+    </changeSet>
 </databaseChangeLog>
