@@ -49,6 +49,13 @@
     "colorsForListView": {
       "Missed": "#fceab6",
       "Cancelled": "#fcb6b6"
+    },
+    "recurrence": {
+      "recurrenceTypes": [
+        "Day",
+        "Week"
+      ],
+      "defaultNumberOfOccurrences": 10
     }
   }
 }
