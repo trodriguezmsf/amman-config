@@ -119,6 +119,8 @@
         {
           "tableName": "person_address_default",
           "columnsToIgnore": [
+            "address1",
+            "address2",
             "address4",
             "address6"
           ]
