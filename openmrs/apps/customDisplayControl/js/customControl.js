@@ -690,7 +690,8 @@ angular.module('bahmni.common.displaycontrol.custom')
             concept: conceptNames,
             patientProgramUuid: enrollment,
             scope: scope,
-            numberOfVisits: numberOfVisits
+            numberOfVisits: numberOfVisits,
+            loadComplexData: false
         };
         return $http.get('/openmrs/ws/rest/v1/bahmnicore/observations', {
             params: params,
@@ -769,7 +770,7 @@ angular.module('bahmni.common.displaycontrol.custom')
 
             if (encounterUuid) {
                 $http.get("/openmrs/ws/rest/v1/bahmnicore/bahmniencounter/" + encounterUuid, {
-                    params: {includeAll: true},
+                    params: {includeAll: true, loadComplexData: false},
                     withCredentials: true
                 }).then(function (res) {
                     var physioAssessment = self.findByConceptNameToDisplay(_.get(res.data, "observations"), _.first(conceptNames));
@@ -1213,7 +1214,8 @@ angular.module('bahmni.common.displaycontrol.custom')
             concept: conceptNames,
             patientProgramUuid: enrollment,
             scope: scope,
-            numberOfVisits: numberOfVisits
+            numberOfVisits: numberOfVisits,
+            loadComplexData: false
         };
         return $http.get('/openmrs/ws/rest/v1/bahmnicore/observations', {
             params: params,
@@ -1300,7 +1302,8 @@ angular.module('bahmni.common.displaycontrol.custom')
             var params = {
                 concept: conceptNames,
                 patientProgramUuid: enrollment,
-                scope: scope
+                scope: scope,
+                loadComplexData: false
             };
             return $http.get('/openmrs/ws/rest/v1/bahmnicore/observations', {
                 params: params,
@@ -1359,7 +1362,8 @@ angular.module('bahmni.common.displaycontrol.custom')
             concept: conceptNames,
             patientProgramUuid: enrollment,
             scope: scope,
-            numberOfVisits: numberOfVisits
+            numberOfVisits: numberOfVisits,
+            loadComplexData: false
         };
         return $http.get('/openmrs/ws/rest/v1/bahmnicore/observations', {
             params: params,
@@ -1491,7 +1495,8 @@ angular.module('bahmni.common.displaycontrol.custom')
             concept: conceptNames,
             patientProgramUuid: enrollment,
             scope: scope,
-            numberOfVisits: numberOfVisits
+            numberOfVisits: numberOfVisits,
+            loadComplexData: false
         };
         return $http.get('/openmrs/ws/rest/v1/bahmnicore/observations', {
             params: params,
