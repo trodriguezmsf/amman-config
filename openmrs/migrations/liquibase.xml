@@ -7368,4 +7368,9 @@
             DELETE FROM global_property WHERE property = "emrapi.sqlSearch.validatedPatients";
         </sql>
     </changeSet>
+    <changeSet id="Amman-201912061730" author="Vineela">
+        <comment>Updating Ward bed layout</comment>
+        <sqlFile path="bedManagement/updatedWardBedLayout.sql"/>
+    </changeSet>
+
 </databaseChangeLog>
