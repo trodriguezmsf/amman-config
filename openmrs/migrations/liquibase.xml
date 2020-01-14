@@ -7368,12 +7368,8 @@
             DELETE FROM global_property WHERE property = "emrapi.sqlSearch.validatedPatients";
         </sql>
     </changeSet>
-    <changeSet id="Amman-201912181730" author="Vineela">
-        <comment>Adding stored procedure to insert beds into locations if it does not exist</comment>
-        <sqlFile path="bedManagement/insertBedIntoLocationStoredProcedure.sql" endDelimiter="#"/>
-    </changeSet>
     <changeSet id="Amman-201912061730" author="Vineela">
-        <comment>Updating Ward bed layout and adding new beds</comment>
+        <comment>Updating Ward bed layout</comment>
         <sqlFile path="bedManagement/updatedWardBedLayout.sql"/>
     </changeSet>
     <changeSet id="Amman-2020011141700" author="Michael, Bontyes" context="amman-enhancements-january2020">
