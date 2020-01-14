@@ -7376,5 +7376,8 @@
         <comment>Updating Ward bed layout and adding new beds</comment>
         <sqlFile path="bedManagement/updatedWardBedLayout.sql"/>
     </changeSet>
-
+    <changeSet id="Amman-2020011141700" author="Michael, Bontyes" context="amman-enhancements-january2020">
+        <comment>Renaming Country Name - Gaza to Palestine (Address hierarchy, address3 and address6 tables)</comment>
+        <sqlFile path="registration/RenamingCountryName.sql"/>
+    </changeSet>
 </databaseChangeLog>
