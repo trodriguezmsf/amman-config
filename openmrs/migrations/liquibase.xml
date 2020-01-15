@@ -7384,4 +7384,12 @@
             WHERE name = "Sudan";
         </sql>
     </changeSet>
+    <changeSet id="Amman-2020011151042" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>Renaming Doctor Name - Dr. Hussian Abdullah to Dr. Hussein Abdullah (concept_name table)</comment>
+        <sql>
+            UPDATE concept_name
+            SET name = "Dr. Hussein Abdullah"
+            WHERE name = "Dr. Hussian Abdullah";
+        </sql>
+    </changeSet>
 </databaseChangeLog>
