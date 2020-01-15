@@ -7372,8 +7372,16 @@
         <comment>Updating Ward bed layout</comment>
         <sqlFile path="bedManagement/updatedWardBedLayout.sql"/>
     </changeSet>
-    <changeSet id="Amman-2020011141700" author="Michael, Bontyes" context="amman-enhancements-january2020">
+    <changeSet id="Amman-2020011141700" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>Renaming Country Name - Gaza to Palestine (Address hierarchy, address3 and address6 tables)</comment>
         <sqlFile path="registration/RenamingCountryName.sql"/>
+    </changeSet>
+    <changeSet id="Amman-2020011142019" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>Renaming Nationality Name - Sudan to Sudanese (concept_name table)</comment>
+        <sql>
+            UPDATE concept_name
+            SET name = "Sudanese"
+            WHERE name = "Sudan";
+        </sql>
     </changeSet>
 </databaseChangeLog>
