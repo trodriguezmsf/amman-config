@@ -7372,12 +7372,13 @@
         <comment>Updating Ward bed layout</comment>
         <sqlFile path="bedManagement/updatedWardBedLayout.sql"/>
     </changeSet>
+
     <changeSet id="Amman-2020011141700" author="Michael Bontyes" context="amman-enhancements-january2020">
-        <comment>Renaming Country Name - Gaza to Palestine (Address hierarchy, address3 and address6 tables)</comment>
+        <comment>MOBN-831 | Renaming country name from Gaza to Palestine (Address hierarchy, address3 and address6 tables)</comment>
         <sqlFile path="registration/RenamingCountryName.sql"/>
     </changeSet>
     <changeSet id="Amman-2020011142019" author="Michael Bontyes" context="amman-enhancements-january2020">
-        <comment>Renaming Nationality Name - Sudan to Sudanese (concept_name table)</comment>
+        <comment>MOBN-833 | Renaming nationality concept name from Sudan to Sudanese (concept_name table)</comment>
         <sql>
             UPDATE concept_name
             SET name = "Sudanese"
@@ -7385,11 +7386,27 @@
         </sql>
     </changeSet>
     <changeSet id="Amman-2020011151042" author="Michael Bontyes" context="amman-enhancements-january2020">
-        <comment>Renaming Doctor Name - Dr. Hussian Abdullah to Dr. Hussein Abdullah (concept_name table)</comment>
+        <comment>MOBN-832 | Renaming Doctor Name - Dr. Hussian Abdullah to Dr. Hussein Abdullah (concept_name table)</comment>
         <sql>
             UPDATE concept_name
             SET name = "Dr. Hussein Abdullah"
             WHERE name = "Dr. Hussian Abdullah";
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001151740" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>Adding new concept weight change in concept set procedure</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS change_concept_weight_in_concept_set;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/ChangeConceptWeightInConceptSet.sql"/>
+    </changeSet>
+    <changeSet id="Amman-202001151744" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>Change Patient document dropdown order - Passport, Patient file, National document, Refugee registration document (concept_set table)</comment>
+        <sql>
+            call change_concept_weight_in_concept_set(142, 0);
+            call change_concept_weight_in_concept_set(755, 1);
+            call change_concept_weight_in_concept_set(141, 2);
+            call change_concept_weight_in_concept_set(143, 3);
         </sql>
     </changeSet>
 </databaseChangeLog>
