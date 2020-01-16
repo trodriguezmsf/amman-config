@@ -7426,4 +7426,18 @@
             call change_concept_weight_in_concept_answers(3203, 385, 4);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202001152229" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-835 | Adding a new procedure concept shortname change</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS change_concept_shortname;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/ChangeConceptShortname.sql"/>
+    </changeSet>
+    <changeSet id="Amman-202001152236" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-835 | Change concept shortnames (concept_name table) - 'PNF, Pain severity' from 'Pain severity' to 'Pain score' and # 'PNF, Patient score' from 'Patient score' to 'Patient neuropathic pain score'</comment>
+        <sql>
+            call change_concept_shortname(3156, 'Pain score');
+            call change_concept_shortname(3167, 'Patient neuropathic pain score');
+        </sql>
+    </changeSet>
 </databaseChangeLog>
