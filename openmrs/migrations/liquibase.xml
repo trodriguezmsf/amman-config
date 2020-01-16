@@ -7368,10 +7368,7 @@
             DELETE FROM global_property WHERE property = "emrapi.sqlSearch.validatedPatients";
         </sql>
     </changeSet>
-    <changeSet id="Amman-201912061730" author="Vineela">
-        <comment>Updating Ward bed layout</comment>
-        <sqlFile path="bedManagement/updatedWardBedLayout.sql"/>
-    </changeSet>
+
 
     <changeSet id="Amman-2020011141700" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-831 | Renaming country name from Gaza to Palestine (Address hierarchy, address3 and address6 tables)</comment>
@@ -7434,10 +7431,43 @@
         <sqlFile splitStatements="false" path="utils/ChangeConceptShortname.sql"/>
     </changeSet>
     <changeSet id="Amman-202001152236" author="Michael Bontyes" context="amman-enhancements-january2020">
-        <comment>MOBN-835 | Change concept shortnames (concept_name table) - 'PNF, Pain severity' from 'Pain severity' to 'Pain score' and # 'PNF, Patient score' from 'Patient score' to 'Patient neuropathic pain score'</comment>
+        <comment>MOBN-835 | Change concept shortnames (concept_name table) - 'PNF, Pain severity' from 'Pain severity' to 'Pain score' and # 'e' from 'Patient score' to 'Patient neuropathic pain score'</comment>
         <sql>
             call change_concept_shortname(3156, 'Pain score');
             call change_concept_shortname(3167, 'Patient neuropathic pain score');
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001161533" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-836 | Adding a new procedure to add new concept</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_new_concept;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/AddNewConcept.sql"/>
+    </changeSet>
+    <changeSet id="Amman-202001161608" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-836 | Add new "Eyelid" concept (concept table)</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Site, Eyelid', 'Eyelid', 'N/A', 'misc', true);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001161624" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-836 | Adding a new procedure to add answers to concept</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_concept_to_concept_answer;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/AddConceptToConceptAnswer.sql"/>
+    </changeSet>
+    <changeSet id="Amman-202001161625" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-836 | Add concepts "Eyelid, Upper lip and lower lip" to PPN, Site of wound</comment>
+        <sql>
+            # Add to PPN, Site of wound
+            call add_concept_to_concept_answer(2158,"Site, Eyelid", True);
+            call add_concept_to_concept_answer(2158,"Site, Lower lip", True);
+            call add_concept_to_concept_answer(2158,"Site, Upper lip", True);
         </sql>
     </changeSet>
 </databaseChangeLog>
