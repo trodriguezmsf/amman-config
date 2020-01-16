@@ -7470,4 +7470,37 @@
             call add_concept_to_concept_answer(2158,"Site, Upper lip", True);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202001161845" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-837 | Add new "Walker" concept (concept table)</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Walker', 'Walker', 'N/A', 'misc', true);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001161846" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-837 | Adding a new procedure to reorder concept answers per name</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS change_concept_weight_in_concept_answers_per_name;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/ChangeConceptWeightInConceptAnswersPerName.sql"/>
+    </changeSet>
+    <changeSet id="Amman-202001161847" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-837 | Add new concept "Walker" to "LLA, Type of assistive device or orthosis"</comment>
+        <sql>
+            # Add "Walker" to LLA, Type of assistive device or orthosis
+            call add_concept_to_concept_answer(2671,"Walker", True);
+            # Reorder answers (Parent concept ID, Concept answer name, sort weight)
+            call change_concept_weight_in_concept_answers_per_name(2671, "Orthosis", 0);
+            call change_concept_weight_in_concept_answers_per_name(2671, "One axillary crutch", 1);
+            call change_concept_weight_in_concept_answers_per_name(2671, "Two axillary crutches", 2);
+            call change_concept_weight_in_concept_answers_per_name(2671, "One elbow crutch", 3);
+            call change_concept_weight_in_concept_answers_per_name(2671, "Two elbow crutches", 4);
+            call change_concept_weight_in_concept_answers_per_name(2671, "LLA, Cane", 5);
+            call change_concept_weight_in_concept_answers_per_name(2671, "Walker", 6);
+            call change_concept_weight_in_concept_answers_per_name(2671, "Other", 7);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
