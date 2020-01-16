@@ -7394,19 +7394,36 @@
         </sql>
     </changeSet>
     <changeSet id="Amman-202001151740" author="Michael Bontyes" context="amman-enhancements-january2020">
-        <comment>Adding new concept weight change in concept set procedure</comment>
+        <comment>MOBN-834 | Adding a new procedure for sort weight change in concept set</comment>
         <sql>
             DROP PROCEDURE IF EXISTS change_concept_weight_in_concept_set;
         </sql>
         <sqlFile splitStatements="false" path="utils/ChangeConceptWeightInConceptSet.sql"/>
     </changeSet>
     <changeSet id="Amman-202001151744" author="Michael Bontyes" context="amman-enhancements-january2020">
-        <comment>Change Patient document dropdown order - Passport, Patient file, National document, Refugee registration document (concept_set table)</comment>
+        <comment>MOBN-834 | Change Patient document dropdown order - Passport, Patient file, National document, Refugee registration document (concept_set table)</comment>
         <sql>
             call change_concept_weight_in_concept_set(142, 0);
             call change_concept_weight_in_concept_set(755, 1);
             call change_concept_weight_in_concept_set(141, 2);
             call change_concept_weight_in_concept_set(143, 3);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001151746" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-834 | Adding a new procedure for sort weight change in concept answers</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS change_concept_weight_in_concept_answers;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/ChangeConceptWeightInConceptAnswers.sql"/>
+    </changeSet>
+    <changeSet id="Amman-202001151747" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-839 | Change Frequency of Dressing order (concept_answer table)</comment>
+        <sql>
+            call change_concept_weight_in_concept_answers(3203, 3187, 0);
+            call change_concept_weight_in_concept_answers(3203, 3188, 1);
+            call change_concept_weight_in_concept_answers(3203, 3189, 2);
+            call change_concept_weight_in_concept_answers(3203, 3186, 3);
+            call change_concept_weight_in_concept_answers(3203, 385, 4);
         </sql>
     </changeSet>
 </databaseChangeLog>
