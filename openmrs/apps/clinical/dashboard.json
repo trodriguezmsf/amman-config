@@ -290,179 +290,73 @@
           "template": "<patient-information section='config' patient='patient' enrollment='enrollment'></patient-information>"
         }
       },
-      "Medications administered": {
-        "translationKey": "DASHBOARD_TITLE_MEDICATION_KEY",
-        "type": "treatment",
-        "displayOrder": 12,
-        "dashboardConfig": {
-          "showFlowSheet": true,
-          "showListView": true,
-          "showRoute": true,
-          "showDrugForm": true,
-          "numberOfVisits": 5,
-          "showOtherActive": true,
-          "showDetailsButton": false
-        },
-        "expandedViewConfig": {
-          "translationKey": "DASHBOARD_TITLE_MEDICATION_KEY",
-          "showFlowSheet": true,
-          "showListView": true,
-          "showRoute": true,
-          "showDrugForm": true,
-          "numberOfVisits": 10,
-          "showOtherActive": true,
-          "showDetailsButton": false
-        }
-      },
-      "Medical History": {
-        "translationKey": "DASHBOARD_TITLE_PATIENT_MEDICAL_HISTORY",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 4,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "persistOrderOfConcepts": true,
-          "isEditable": true,
-          "conceptNames": [
-            "MH, Date of injury",
-            "MH, Cause of injury",
-            "MD, Reason for admission to program",
-            "MD, History of Allergy",
-            "MD, Comments about allergy",
-            "AIA, Is the patient allergic to any drugs / medications ?",
-            "AIA, Type of medication allergy",
-            "MD, History of present illness"
-          ],
-          "scope": "latest",
-          "showGroupDateTime": false
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "MH, Date of injury",
-            "MH, Cause of injury",
-            "MD, Reason for admission to program",
-            "MD, History of Allergy",
-            "MD, Comments about allergy",
-            "AIA, Is the patient allergic to any drugs / medications ?",
-            "AIA, Type of medication allergy",
-            "MD, History of present illness"
-          ],
-          "isEditable": true,
-          "numberOfVisits": 3,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
-      "Medical Course": {
-        "translationKey": "DASHBOARD_TITLE_PSYCHO_MEDICAL_COURSE",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 13,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "MDOF, Medical course of patient in RSP"
-          ],
-          "scope": "latest"
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "MDOF, Medical course of patient in RSP"
-          ],
-          "isEditable": true,
-          "numberOfVisits": 3,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
-      "Past Medical history": {
-        "translationKey": "DASHBOARD_TITLE_PAST_MEDICAL_HISTORY",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 6,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "persistOrderOfConcepts": true,
-          "conceptNames": [
-            "AIA, Past medical history",
-            "AIA, Past medical history, other",
-            "MD, Medical History",
-            "MD, Other medical problems",
-            "AIA, Adverse reaction to anaesthesia",
-            "AIA, Comments about adverse reaction",
-            "AIA, Did an incident occur during previous blood transfusion",
-            "AIA, Describe",
-            "MD, History of Fixation"
-          ],
-          "scope": "latest",
-          "showGroupDateTime": false
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "AIA, Past medical history",
-            "AIA, Past medical history, other",
-            "MD, Medical History",
-            "MD, Other medical problems",
-            "AIA, Adverse reaction to anaesthesia",
-            "AIA, Comments about adverse reaction",
-            "AIA, Did an incident occur during previous blood transfusion",
-            "AIA, Describe",
-            "MD, History of Fixation"
-          ],
-          "scope": "latest",
-          "persistOrderOfConcepts": true,
-          "isEditable": true,
-          "numberOfVisits": 3,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
-      "Psycho-Social Course": {
-        "translationKey": "DASHBOARD_TITLE_PSYCHO_SOCIAL_COURSE",
+      "Medication History": {
+        "translationKey": "DASHBOARD_TITLE_MEDICATION_HISTORY",
         "type": "obsToObsFlowSheet",
         "headingConceptSource": "Abbreviation",
         "dataConceptSource": "Abbreviation",
-        "displayOrder": 16,
+        "displayOrder": 1,
         "dashboardConfig": {
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
-	  "hideEmptyRecords": true,
           "isEditable": true,
-          "groupByConcept": "PIA, Date of consultation",
-          "templateName": "Psychology initial assessment",
+          "groupByConcept": "MD, Date of last dose",
+          "templateName": "MD, Medication",
           "conceptNames": [
-            "PIA, SQR20 (score)",
-            "PIA, PTSD (score)",
-            "PIA, PSYca 3-6 (child)",
-            "PIA, SDQ P7-10",
-            "PIA, SDQ S11-17",
-            "PIAD, SQR20 (score)",
-            "PIAD, PTSD (score)",
-            "PIAD, PSYca 3-6 (child)",
-            "PIAD, SDQ P7-10",
-            "PIAD, SDQ S11-17"
+            "MD, Type of medication",
+            "MD, Dose and frequency"
           ],
-          "showGroupDateTime": false,
-          "latestCount": 5
+          "showGroupDateTime": false
         },
         "expandedViewConfig": {
-          "groupByConcept": "PIA, Date of consultation",
-          "templateName": "Psychology initial assessment",
+          "groupByConcept": "MD, Date of last dose",
+          "templateName": "MD, Medication",
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Diagnoses": {
+        "translationKey": "DASHBOARD_TITLE_SURGICAL_DIAGNOSES",
+        "type": "custom",
+        "displayOrder": 2,
+        "config": {
+          "title": "DASHBOARD_TITLE_SURGICAL_DIAGNOSES",
+          "template": "<surgical-diagnosis section='config' patient='patient' enrollment='enrollment'></surgical-diagnosis>"
+        },
+        "expandedViewConfig": {
           "conceptNames": [
-            "PIA, SQR20 (score)",
-            "PIA, PTSD (score)",
-            "PIA, PSYca 3-6 (child)",
-            "PIA, SDQ P7-10",
-            "PIA, SDQ S11-17",
-            "PIAD, SQR20 (score)",
-            "PIAD, PTSD (score)",
-            "PIAD, PSYca 3-6 (child)",
-            "PIAD, SDQ P7-10",
-            "PIAD, SDQ S11-17"
+            "OBS, Surgical Diagnoses",
+            "OBS, Medical Diagnoses"
           ],
-          "numberOfVisits": 5,
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Surgeries Performed outside AMH": {
+        "translationKey": "DASHBOARD_TITLE_SURGERIES_PERFORMED",
+        "type": "obsToObsFlowSheet",
+        "headingConceptSource": "Abbreviation",
+        "dataConceptSource": "Abbreviation",
+        "displayOrder": 3,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "persistOrderOfConcepts": true,
+          "isEditable": true,
+          "groupByConcept": "MD, Date of procedure",
+          "templateName": "MD, Surgical Procedures Outside AMH",
+          "conceptNames": [
+            "MD, Surgical Procedures Performed Outside AMH Data",
+            "MD, Side of procedure",
+            "MD, Site of procedure",
+            "MD, Comment of procedure"
+          ],
+          "showGroupDateTime": false
+        },
+        "expandedViewConfig": {
+          "groupByConcept": "MD, Date of procedure",
+          "templateName": "MD, Surgical Procedures Outside AMH",
           "showDetailsButton": true,
           "pivotTable": {}
         }
@@ -471,7 +365,7 @@
         "translationKey": "DASHBOARD_TITLE_SOCIAL_HISTORY",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 2,
+        "displayOrder": 4,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -520,7 +414,7 @@
         "type": "obsToObsFlowSheet",
         "headingConceptSource": "Abbreviation",
         "dataConceptSource": "Abbreviation",
-        "displayOrder": 3,
+        "displayOrder": 5,
         "dashboardConfig": {
           "isEditable": true,
           "hideEmptyRecords": true,
@@ -586,31 +480,40 @@
           "pivotTable": {}
         }
       },
-      "Physiotherapy Follow-up Plan": {
-        "translationKey": "DASHBOARD_TITLE_PHYSIOTHERAPY_FOLLOW-UP_PLAN",
+      "Medical History": {
+        "translationKey": "DASHBOARD_TITLE_PATIENT_MEDICAL_HISTORY",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 20,
+        "displayOrder": 6,
         "dashboardConfig": {
           "showDetailsButton": true,
-          "isEditable": true,
           "persistOrderOfConcepts": true,
+          "isEditable": true,
           "conceptNames": [
-            "LLA, Follow-up Plan",
-            "ULA, Followup Plan",
-            "MPA, Followup Plan"
+            "MH, Date of injury",
+            "MH, Cause of injury",
+            "MD, Reason for admission to program",
+            "MD, History of Allergy",
+            "MD, Comments about allergy",
+            "AIA, Is the patient allergic to any drugs / medications ?",
+            "AIA, Type of medication allergy",
+            "MD, History of present illness"
           ],
           "scope": "latest",
           "showGroupDateTime": false
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "LLA, Follow-up Plan",
-            "ULA, Followup Plan",
-            "MPA, Followup Plan"
+            "MH, Date of injury",
+            "MH, Cause of injury",
+            "MD, Reason for admission to program",
+            "MD, History of Allergy",
+            "MD, Comments about allergy",
+            "AIA, Is the patient allergic to any drugs / medications ?",
+            "AIA, Type of medication allergy",
+            "MD, History of present illness"
           ],
           "isEditable": true,
-          "persistOrderOfConcepts": true,
           "numberOfVisits": 3,
           "showDetailsButton": true,
           "pivotTable": {}
@@ -618,41 +521,49 @@
       },
       "physical Examination": {
         "type": "custom",
-        "displayOrder": 5,
+        "displayOrder": 7,
         "config": {
           "title": "DASHBOARD_TITLE_PHYSICAL_EXAMINATION_KEY",
           "template": "<physical-examination section='config' patient='patient' enrollment='enrollment'></physical-examination>"
         }
       },
-      "Surgical Follow-up Plan": {
-        "type": "custom",
-        "displayOrder": 19,
-        "config": {
-          "title": "DASHBOARD_TITLE_SURGICAL_FOLLOW_UP_PLAN_KEY",
-          "template": "<surgical-follow_up section='config' patient='patient' enrollment='enrollment'></surgical-follow_up>"
-        }
-      },
-      "Discharge Medication": {
-        "type": "custom",
-        "displayOrder": 17,
-        "config": {
-          "title": "DASHBOARD_TITLE_DISCHARGE_MEDICATION_KEY",
-          "template": "<discharge-medication section='config' patient='patient' enrollment='enrollment'></discharge-medication>"
-        }
-      },
-      "Diagnoses": {
-        "translationKey": "DASHBOARD_TITLE_SURGICAL_DIAGNOSES",
-        "type": "custom",
-        "displayOrder": 7,
-        "config": {
-          "title": "DASHBOARD_TITLE_SURGICAL_DIAGNOSES",
-          "template": "<surgical-diagnosis section='config' patient='patient' enrollment='enrollment'></surgical-diagnosis>"
+      "Past Medical history": {
+        "translationKey": "DASHBOARD_TITLE_PAST_MEDICAL_HISTORY",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 8,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "persistOrderOfConcepts": true,
+          "conceptNames": [
+            "AIA, Past medical history",
+            "AIA, Past medical history, other",
+            "MD, Medical History",
+            "MD, Other medical problems",
+            "AIA, Adverse reaction to anaesthesia",
+            "AIA, Comments about adverse reaction",
+            "AIA, Did an incident occur during previous blood transfusion",
+            "AIA, Describe",
+            "MD, History of Fixation"
+          ],
+          "scope": "latest",
+          "showGroupDateTime": false
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "OBS, Surgical Diagnoses",
-            "OBS, Medical Diagnoses"
+            "AIA, Past medical history",
+            "AIA, Past medical history, other",
+            "MD, Medical History",
+            "MD, Other medical problems",
+            "AIA, Adverse reaction to anaesthesia",
+            "AIA, Comments about adverse reaction",
+            "AIA, Did an incident occur during previous blood transfusion",
+            "AIA, Describe",
+            "MD, History of Fixation"
           ],
+          "scope": "latest",
+          "persistOrderOfConcepts": true,
           "isEditable": true,
           "numberOfVisits": 3,
           "showDetailsButton": true,
@@ -666,147 +577,6 @@
         "config": {
           "title": "DASHBOARD_TITLE_OPERATIVE_COURSE_IN_AMMAN_KEY",
           "template": "<surgical-history section='section' patient='patient'></surgical-history>"
-        }
-      },
-      "Pain Management": {
-        "translationKey": "DASHBOARD_TITLE_PAIN_MANAGEMENT",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 14,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "showGroupDateTime": false,
-          "persistOrderOfConcepts": true,
-          "isEditable": true,
-          "conceptNames": [
-            "PNF, Date recorded",
-            "PNF, Type of pain experienced by the patient",
-            "PNF, Pain severity",
-            "PNF, Patient score",
-            "PNF, Side of pain",
-            "PNF, Site of pain",
-            "PNF, Chief complaint of patient",
-            "PNF, Is the pain:",
-            "PNF, Onset of the pain:",
-            "PNF, Current medication",
-            "PNF, Pain usually occurs with:",
-            "PNF, Increasing or decreasing factors:",
-            "PNF, Referral needed:",
-            "PNF, Other comments"
-          ],
-          "scope": "latest"
-        },
-        "expandedViewConfig": {
-          "persistOrderOfConcepts": true,
-          "conceptNames": [
-            "PNF, Date recorded",
-            "PNF, Type of pain experienced by the patient",
-            "PNF, Pain severity",
-            "PNF, Patient score",
-            "PNF, Side of pain",
-            "PNF, Site of pain",
-            "PNF, Chief complaint of patient",
-            "PNF, Is the pain:",
-            "PNF, Onset of the pain:",
-            "PNF, Current medication",
-            "PNF, Pain usually occurs with:",
-            "PNF, Increasing or decreasing factors:",
-            "PNF, Referral needed:",
-            "PNF, Other comments"
-          ],
-          "scope": "latest",
-          "showGroupDateTime": false,
-          "isEditable": true,
-          "numberOfVisits": 3,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
-      "bacteriology": {
-        "type": "custom",
-        "displayOrder": 11,
-        "displayType": "Full-Page",
-        "config": {
-          "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
-          "template": "<microbiology-lab-results section='config' patient='patient' enrollment='enrollment'></microbiology-lab-results>"
-        }
-      },
-      "Administrative Note": {
-        "translationKey": "ADMINISTRATIVE_NOTE_KEY",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 21,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "Administrative Note"
-          ],
-          "scope": "latest",
-          "showGroupDateTime": false
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "Administrative Note"
-          ],
-          "scope": "latest",
-          "showGroupDateTime": false,
-          "isEditable": true,
-          "numberOfVisits": 3,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
-      "Medication History": {
-        "translationKey": "DASHBOARD_TITLE_MEDICATION_HISTORY",
-        "type": "obsToObsFlowSheet",
-        "headingConceptSource": "Abbreviation",
-        "dataConceptSource": "Abbreviation",
-        "displayOrder": 8,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "persistOrderOfConcepts": true,
-          "isEditable": true,
-          "groupByConcept": "MD, Date of last dose",
-          "templateName": "MD, Medication",
-          "conceptNames": [
-            "MD, Type of medication",
-            "MD, Dose and frequency"
-          ],
-          "showGroupDateTime": false
-        },
-        "expandedViewConfig": {
-          "groupByConcept": "MD, Date of last dose",
-          "templateName": "MD, Medication",
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
-      "Surgeries Performed outside AMH": {
-        "translationKey": "DASHBOARD_TITLE_SURGERIES_PERFORMED",
-        "type": "obsToObsFlowSheet",
-        "headingConceptSource": "Abbreviation",
-        "dataConceptSource": "Abbreviation",
-        "displayOrder": 1,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "persistOrderOfConcepts": true,
-          "isEditable": true,
-          "groupByConcept": "MD, Date of procedure",
-          "templateName": "MD, Surgical Procedures Outside AMH",
-          "conceptNames": [
-            "MD, Surgical Procedures Performed Outside AMH Data",
-            "MD, Side of procedure",
-            "MD, Site of procedure",
-            "MD, Comment of procedure"
-          ],
-          "showGroupDateTime": false
-        },
-        "expandedViewConfig": {
-          "groupByConcept": "MD, Date of procedure",
-          "templateName": "MD, Surgical Procedures Outside AMH",
-          "showDetailsButton": true,
-          "pivotTable": {}
         }
       },
       "Early Complications": {
@@ -843,6 +613,172 @@
           "pivotTable": {}
         }
       },
+      "bacteriology": {
+        "type": "custom",
+        "displayOrder": 11,
+        "displayType": "Full-Page",
+        "config": {
+          "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
+          "template": "<microbiology-lab-results section='config' patient='patient' enrollment='enrollment'></microbiology-lab-results>"
+        }
+      },
+      "Medications administered": {
+        "translationKey": "DASHBOARD_TITLE_MEDICATION_KEY",
+        "type": "treatment",
+        "displayOrder": 12,
+        "dashboardConfig": {
+          "showFlowSheet": true,
+          "showListView": true,
+          "showRoute": true,
+          "showDrugForm": true,
+          "numberOfVisits": 5,
+          "showOtherActive": true,
+          "showDetailsButton": false
+        },
+        "expandedViewConfig": {
+          "translationKey": "DASHBOARD_TITLE_MEDICATION_KEY",
+          "showFlowSheet": true,
+          "showListView": true,
+          "showRoute": true,
+          "showDrugForm": true,
+          "numberOfVisits": 10,
+          "showOtherActive": true,
+          "showDetailsButton": false
+        }
+      },
+      "Medical Course": {
+        "translationKey": "DASHBOARD_TITLE_PSYCHO_MEDICAL_COURSE",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 13,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "MDOF, Medical course of patient in RSP"
+          ],
+          "scope": "latest"
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "MDOF, Medical course of patient in RSP"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Pain Management": {
+        "translationKey": "DASHBOARD_TITLE_PAIN_MANAGEMENT",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 14,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "showGroupDateTime": false,
+          "persistOrderOfConcepts": true,
+          "isEditable": true,
+          "conceptNames": [
+            "PNF, Date recorded",
+            "PNF, Type of pain experienced by the patient",
+            "PNF, Pain severity",
+            "PNF, Patient score",
+            "PNF, Side of pain",
+            "PNF, Site of pain",
+            "PNF, Chief complaint of patient",
+            "PNF, Is the pain:",
+            "PNF, Onset of the pain:",
+            "PNF, Current medication",
+            "PNF, Pain usually occurs with:",
+            "PNF, Increasing or decreasing factors:",
+            "PNF, Referral needed:",
+            "PNF, Other comments"
+          ],
+          "scope": "latest"
+        }
+      },
+      "Medical Follow-up Plan": {
+        "translationKey": "DASHBOARD_TITLE_MEDICAL_FOLLOW-UP_PLAN",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 15,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "MDOF, Medical follow-up needs"
+          ],
+          "scope": "latest",
+          "showGroupDateTime": false
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "MDOF, Medical follow-up needs"
+          ],
+          "scope": "latest",
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Psycho-Social Course": {
+        "translationKey": "DASHBOARD_TITLE_PSYCHO_SOCIAL_COURSE",
+        "type": "obsToObsFlowSheet",
+        "headingConceptSource": "Abbreviation",
+        "dataConceptSource": "Abbreviation",
+        "displayOrder": 16,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "persistOrderOfConcepts": true,
+          "hideEmptyRecords": true,
+          "isEditable": true,
+          "groupByConcept": "PIA, Date of consultation",
+          "templateName": "Psychology initial assessment",
+          "conceptNames": [
+            "PIA, SQR20 (score)",
+            "PIA, PTSD (score)",
+            "PIA, PSYca 3-6 (child)",
+            "PIA, SDQ P7-10",
+            "PIA, SDQ S11-17",
+            "PIAD, SQR20 (score)",
+            "PIAD, PTSD (score)",
+            "PIAD, PSYca 3-6 (child)",
+            "PIAD, SDQ P7-10",
+            "PIAD, SDQ S11-17"
+          ],
+          "showGroupDateTime": false,
+          "latestCount": 5
+        },
+        "expandedViewConfig": {
+          "groupByConcept": "PIA, Date of consultation",
+          "templateName": "Psychology initial assessment",
+          "conceptNames": [
+            "PIA, SQR20 (score)",
+            "PIA, PTSD (score)",
+            "PIA, PSYca 3-6 (child)",
+            "PIA, SDQ P7-10",
+            "PIA, SDQ S11-17",
+            "PIAD, SQR20 (score)",
+            "PIAD, PTSD (score)",
+            "PIAD, PSYca 3-6 (child)",
+            "PIAD, SDQ P7-10",
+            "PIAD, SDQ S11-17"
+          ],
+          "numberOfVisits": 5,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Discharge Medication": {
+        "type": "custom",
+        "displayOrder": 17,
+        "config": {
+          "title": "DASHBOARD_TITLE_DISCHARGE_MEDICATION_KEY",
+          "template": "<discharge-medication section='config' patient='patient' enrollment='enrollment'></discharge-medication>"
+        }
+      },
       "Psycho-Social Overview": {
         "translationKey": "DASHBOARD_TITLE_PSYCHO_SOCIAL_COMMENTS",
         "type": "vitals",
@@ -875,25 +811,64 @@
           "pivotTable": {}
         }
       },
-      "Medical Follow-up Plan": {
-        "translationKey": "DASHBOARD_TITLE_MEDICAL_FOLLOW-UP_PLAN",
+      "Surgical Follow-up Plan": {
+        "type": "custom",
+        "displayOrder": 19,
+        "config": {
+          "title": "DASHBOARD_TITLE_SURGICAL_FOLLOW_UP_PLAN_KEY",
+          "template": "<surgical-follow_up section='config' patient='patient' enrollment='enrollment'></surgical-follow_up>"
+        }
+      },
+      "Physiotherapy Follow-up Plan": {
+        "translationKey": "DASHBOARD_TITLE_PHYSIOTHERAPY_FOLLOW-UP_PLAN",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 15,
+        "displayOrder": 20,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
+          "persistOrderOfConcepts": true,
           "conceptNames": [
-            "MDOF, Medical follow-up needs"
+            "LLA, Follow-up Plan",
+            "ULA, Followup Plan",
+            "MPA, Followup Plan"
           ],
           "scope": "latest",
           "showGroupDateTime": false
         },
         "expandedViewConfig": {
           "conceptNames": [
-            "MDOF, Medical follow-up needs"
+            "LLA, Follow-up Plan",
+            "ULA, Followup Plan",
+            "MPA, Followup Plan"
+          ],
+          "isEditable": true,
+          "persistOrderOfConcepts": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Administrative Note": {
+        "translationKey": "ADMINISTRATIVE_NOTE_KEY",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 21,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "Administrative Note"
           ],
           "scope": "latest",
+          "showGroupDateTime": false
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Administrative Note"
+          ],
+          "scope": "latest",
+          "showGroupDateTime": false,
           "isEditable": true,
           "numberOfVisits": 3,
           "showDetailsButton": true,
