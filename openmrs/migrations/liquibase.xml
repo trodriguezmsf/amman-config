@@ -7368,10 +7368,7 @@
             DELETE FROM global_property WHERE property = "emrapi.sqlSearch.validatedPatients";
         </sql>
     </changeSet>
-    <changeSet id="Amman-201912061730" author="Vineela">
-        <comment>Updating Ward bed layout</comment>
-        <sqlFile path="bedManagement/updatedWardBedLayout.sql"/>
-    </changeSet>
+
 
     <changeSet id="Amman-2020011141700" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-831 | Renaming country name from Gaza to Palestine (Address hierarchy, address3 and address6 tables)</comment>
@@ -7506,4 +7503,144 @@
             call change_concept_weight_in_concept_answers_per_name(2671, "Other", 7);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202001171000" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-843 | Add new concepts for Muscle test for upper limbs</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Left : Thumb Abd.', 'Left : Thumb Abd.', 'N/A', 'misc', true);
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Right : Thumb Abd.', 'Right : Thumb Abd.', 'N/A', 'misc', true);
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Left : Thumb Add.', 'Left : Thumb Add.', 'N/A', 'misc', true);
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Right : Thumb Add.', 'Right : Thumb Add.', 'N/A', 'misc', true);
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Left : Thumb Flex.', 'Left : Thumb Flex.', 'N/A', 'misc', true);
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Right : Thumb Flex.', 'Right : Thumb Flex.', 'N/A', 'misc', true);
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Left : Thumb Ext.', 'Left : Thumb Ext.', 'N/A', 'misc', true);
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Right : Thumb Ext.', 'Right : Thumb Ext.', 'N/A', 'misc', true);
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Left : Thumb Opp.', 'Left : Thumb Opp.', 'N/A', 'misc', true);
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Right : Thumb Opp.', 'Right : Thumb Opp.', 'N/A', 'misc', true);
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Left : Fingers Ext.', 'Left : Fingers Ext.', 'N/A', 'misc', true);
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Right : Fingers Ext.', 'Right : Fingers Ext.', 'N/A', 'misc', true);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001171040" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-843 | Adding a new procedure to add concepts to concept sets (per name)</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_concept_to_concept_set_per_name;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/AddConceptToConceptSetPerName.sql"/>
+    </changeSet>
+    <changeSet id="Amman-202001171041" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-843 | Add new concepts to "ULA, Muscle Test for Upper Limbs Left and Right" concept sets</comment>
+        <sql>
+            # Add concepts to "ULA, Muscle Test for Upper Limbs Left" (ID 3667) concept set
+            call add_concept_to_concept_set_per_name(3667,"Left : Thumb Abd.", True);
+            call add_concept_to_concept_set_per_name(3667,"Left : Thumb Add.", True);
+            call add_concept_to_concept_set_per_name(3667,"Left : Thumb Flex.", True);
+            call add_concept_to_concept_set_per_name(3667,"Left : Thumb Ext.", True);
+            call add_concept_to_concept_set_per_name(3667,"Left : Thumb Opp.", True);
+            call add_concept_to_concept_set_per_name(3667,"Left : Fingers Ext.", True);
+
+            # Add concepts to "ULA, Muscle Test for Upper Limbs Right" (ID 3668) concept set
+            call add_concept_to_concept_set_per_name(3668,"Right : Thumb Abd.", True);
+            call add_concept_to_concept_set_per_name(3668,"Right : Thumb Add.", True);
+            call add_concept_to_concept_set_per_name(3668,"Right : Thumb Flex.", True);
+            call add_concept_to_concept_set_per_name(3668,"Right : Thumb Ext.", True);
+            call add_concept_to_concept_set_per_name(3668,"Right : Thumb Opp.", True);
+            call add_concept_to_concept_set_per_name(3668,"Right : Fingers Ext.", True);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001171050" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-843 | Adding a new procedure to rename concepts (per name)</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS rename_concept_per_name;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/RenameConceptPerName.sql"/>
+    </changeSet>
+    <changeSet id="Amman-202001171104" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-843 | Rename new concepts of the Muscle test for upper limbs to match existing naming structure (Fully Specified Name)</comment>
+        <sql>
+            # Add concepts to "ULA, Muscle Test for Upper Limbs Left" (ID 3667) concept set
+            call rename_concept_per_name("Left : Thumb Abd.","Left : Thumb Abd.","ULA, Muscle Left : Thumb Abd.");
+            call rename_concept_per_name("Left : Thumb Add.","Left : Thumb Add.","ULA, Muscle Left : Thumb Add.");
+            call rename_concept_per_name("Left : Thumb Flex.","Left : Thumb Flex.","ULA, Muscle Left : Thumb Flex.");
+            call rename_concept_per_name("Left : Thumb Ext.","Left : Thumb Ext.","ULA, Muscle Left : Thumb Ext.");
+            call rename_concept_per_name("Left : Thumb Opp.","Left : Thumb Opp.","ULA, Muscle Left : Thumb Opp.");
+            call rename_concept_per_name("Left : Fingers Ext.","Left : Fingers Ext.","ULA, Muscle Left : Fingers Ext.");
+
+            # Add concepts to "ULA, Muscle Test for Upper Limbs Right" (ID 3668) concept set
+            call rename_concept_per_name("Right : Thumb Abd.","Right : Thumb Abd.","ULA, Muscle Right : Thumb Abd.");
+            call rename_concept_per_name("Right : Thumb Add.","Right : Thumb Add.","ULA, Muscle Right : Thumb Add.");
+            call rename_concept_per_name("Right : Thumb Flex.","Right : Thumb Flex.","ULA, Muscle Right : Thumb Flex.");
+            call rename_concept_per_name("Right : Thumb Ext.","Right : Thumb Ext","ULA, Muscle Right : Thumb Ext");
+            call rename_concept_per_name("Right : Thumb Opp.","Right : Thumb Opp.","ULA, Muscle Right : Thumb Opp.");
+            call rename_concept_per_name("Right : Fingers Ext.","Right : Fingers Ext.","ULA, Muscle Right : Fingers Ext.");
+        </sql>
+    </changeSet>
 </databaseChangeLog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
