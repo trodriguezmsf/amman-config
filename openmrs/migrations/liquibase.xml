@@ -7368,7 +7368,10 @@
             DELETE FROM global_property WHERE property = "emrapi.sqlSearch.validatedPatients";
         </sql>
     </changeSet>
-
+    <changeSet id="Amman-201912061730" author="Vineela">
+        <comment>Updating Ward bed layout</comment>
+        <sqlFile path="bedManagement/updatedWardBedLayout.sql"/>
+    </changeSet>
 
     <changeSet id="Amman-2020011141700" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-831 | Renaming country name from Gaza to Palestine (Address hierarchy, address3 and address6 tables)</comment>
