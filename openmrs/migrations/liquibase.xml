@@ -7551,6 +7551,22 @@
             call add_concept_to_concept_set_per_name(3668,"ULA, Muscle Right : Fingers Ext.", True);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202001171625" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add new concept "HE, Follow-up notes" for the "Health Education obs. form"</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'HE, Follow-up notes', 'Follow-up notes', 'Text', 'Misc', false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001171626" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add new concept "HE, Follow-up notes" to the "Health Education obs. form" concept set</comment>
+        <sql>
+            call add_concept_to_concept_set_per_name(1719,"HE, Follow-up notes", True);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
