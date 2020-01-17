@@ -316,6 +316,11 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 averageFormula,
                 find("MPA, Facial Disability Index", observations, null),
                 "MPA, Total score (FDI)")
+        Section upperLimbGripSection = new Section(
+                defaultScoreCalculation,
+                defaultScoreFormula,
+                find("ULA, Basic Grip Test", observations, null),
+                "ULA, Basic grip test, total score")
 
         Section[] forms = [lowerLimbGaitSection,
                            lowerLimbBalanceSection,
@@ -328,7 +333,8 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                            facialDisabiltyPhysicalFunction,
                            facialDisabilitySocialFunction,
                            facialDisabilityIndexFunction,
-                           lowerLimbRiskFallsSection]
+                           lowerLimbRiskFallsSection,
+                           upperLimbGripSection]
         for (Section form : forms) {
             form.setScore();
         }
