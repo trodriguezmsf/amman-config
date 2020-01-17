@@ -1114,6 +1114,54 @@
                 "conciseText": true,
                 "disableAddNotes": true
 	     },
+          "ULA, Muscle Left : Thumb Abd.":{
+            "conciseText": true,
+            "disableAddNotes": true
+          },
+          "ULA, Muscle Right : Thumb Abd.":{
+            "conciseText": true,
+            "disableAddNotes": true
+          },
+          "ULA, Muscle Left : Thumb Add.":{
+            "conciseText": true,
+            "disableAddNotes": true
+          },
+          "ULA, Muscle Right : Thumb Add.":{
+            "conciseText": true,
+            "disableAddNotes": true
+          },
+          "ULA, Muscle Left : Thumb Flex.":{
+            "conciseText": true,
+            "disableAddNotes": true
+          },
+          "ULA, Muscle Right : Thumb Flex.":{
+            "conciseText": true,
+            "disableAddNotes": true
+          },
+          "ULA, Muscle Left : Thumb Ext.":{
+            "conciseText": true,
+            "disableAddNotes": true
+          },
+          "ULA, Muscle Right : Thumb Ext.":{
+            "conciseText": true,
+            "disableAddNotes": true
+          },
+          "ULA, Muscle Left : Thumb Opp.":{
+            "conciseText": true,
+            "disableAddNotes": true
+          },
+          "ULA, Muscle Right : Thumb Opp.":{
+            "conciseText": true,
+            "disableAddNotes": true
+          },
+          "ULA, Muscle Left : Fingers Ext.":{
+            "conciseText": true,
+            "disableAddNotes": true
+          },
+          "ULA, Muscle Right : Fingers Ext.":{
+            "conciseText": true,
+            "disableAddNotes": true
+          },
 	     "ULA, Site of pain":{
                 "multiSelect":true
              },
