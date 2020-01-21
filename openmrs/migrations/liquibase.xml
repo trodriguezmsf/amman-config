@@ -7646,6 +7646,66 @@
             call reorder_concept_answer('ONN, Type of assessment', 'Final', 2);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202001202300" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-840 | Add "PNF, Type of assessment" concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PNF, Type of assessment', 'Type of assessment', 'Coded', 'Finding', false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001202301" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-840 | Map "PNF, Type of assessment" to </comment>
+        <sql>
+            call create_reference_mapping_msf_internal('PNF, Type of assessment', 'ASSESSMENT_TYPE');
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001202302" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-840 | Add new concepts 'Initial, Post-operative and Final' to 'PNF, Type of assessment' concept set</comment>
+        <sql>
+            call add_answer_to_concept_set('PNF, Type of assessment','Initial', True);
+            call add_answer_to_concept_set('PNF, Type of assessment','Post-operative', True);
+            call add_answer_to_concept_set('PNF, Type of assessment','Final', True);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001202303" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-840 | Reorder 'PNF, Type of assessment'</comment>
+        <sql>
+            # Reorder concepts (Parent concept name, Concept answer name, sort weight)
+            call reorder_concept_answer('PNF, Type of assessment', 'Initial', 0);
+            call reorder_concept_answer('PNF, Type of assessment', 'Post-operative', 1);
+            call reorder_concept_answer('PNF, Type of assessment', 'Final', 2);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001202304" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-840 | Add 'PNF, Type of assessment' to 'Pain Nurse Follow-up' and reorder concept set</comment>
+        <sql>
+            # Add concept set 'PNF, Type of assessment' to 'Pain Nurse Follow-up'
+            call add_concept_to_concept_set('Pain Nurse Follow-up','PNF, Type of assessment', True);
+            # Reorder concepts (Parent concept name, Concept answer name, sort weight)
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Date recorded', 0);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Type of assessment', 1);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Type of pain experienced by the patient', 2);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Nociceptive pain', 3);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Questionnaire DN4', 4);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Side of pain', 5);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Site of pain', 6);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Site of pain, other', 7);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Chief complaint of patient', 8);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Is the pain:', 9);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Onset of the pain:', 10);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Current medication', 11);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Pain usually occurs with:', 12);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Dressing', 13);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Comments about physiotherapy', 14);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Other times pain is occurring', 15);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Increasing or decreasing factors:', 16);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Referral needed:', 17);
+            call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Other comments', 18);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
