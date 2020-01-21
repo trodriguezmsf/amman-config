@@ -1,9 +1,10 @@
-CREATE PROCEDURE add_concept_to_concept_set_per_name (IN concept_set_id_proc INT,
+CREATE PROCEDURE add_concept_to_concept_set (IN concept_set_name_proc VARCHAR(255),
                              IN concept_name_proc VARCHAR(255),
                              is_set BOOLEAN)
 BEGIN
  DECLARE is_set_val TINYINT(1);
  DECLARE user_id_proc INT;
+ DECLARE concept_set_id_proc INT;
  DECLARE concept_id_proc INT;
  DECLARE max_sort_weight_proc INT;
 
@@ -16,6 +17,9 @@ BEGIN
 
  SELECT concept_id INTO concept_id_proc FROM concept_name
  WHERE name = concept_name_proc and concept_name_type = "FULLY_SPECIFIED";
+
+ SELECT concept_id INTO concept_set_id_proc FROM concept_name
+ WHERE name = concept_set_name_proc and concept_name_type = "FULLY_SPECIFIED";
 
  SELECT count(distinct concept_id) into @concept_count from concept_set where concept_set = concept_set_id_proc and concept_id = concept_id_proc;
  IF @concept_count > 0 THEN
