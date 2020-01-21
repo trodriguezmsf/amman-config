@@ -7706,6 +7706,22 @@
             call reorder_concept_set('Pain Nurse Follow-up', 'PNF, Other comments', 18);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202001211134" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-830 | Adding of the "Subcutaneous" route to the 'Drug route'</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Subcutaneous', 'Subcutaneous', 'Text', 'Misc', false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001211138" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-830 | Add 'Subcutaneous' concept to 'Drug routes' concept set</comment>
+        <sql>
+            call add_concept_to_concept_set('Drug routes','Subcutaneous', True);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
