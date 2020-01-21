@@ -7722,9 +7722,51 @@
             call add_concept_to_concept_set('Drug routes','Subcutaneous', True);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202001211452" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add "PE, Assessment of Wound" concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PE, Assessment of Wound', 'Assessment of Wound', 'Coded', 'Misc', true);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001211458" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add concepts to 'PE, Assessment of Wound' concept set</comment>
+        <sql>
+            call add_concept_to_concept_set('PE, Assessment of Wound','PPN, Side of wound', True);
+            call add_concept_to_concept_set('PE, Assessment of Wound','PPN, Site of wound', True);
+            call add_concept_to_concept_set('PE, Assessment of Wound','PPN, Wound status, 1', True);
+            call add_concept_to_concept_set('PE, Assessment of Wound','PPN, Wound status, 2', True);
+            call add_concept_to_concept_set('PE, Assessment of Wound','PPN, Removal of clips', True);
+            call add_concept_to_concept_set('PE, Assessment of Wound','PPN, Wound assessment', True);
+            call add_concept_to_concept_set('PE, Assessment of Wound','PPN, Description of wound', True);
+            call add_concept_to_concept_set('PE, Assessment of Wound','PPN, Description of wound, other', True);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001211630" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add "PE, Soft tissue photos" concept to 'PE, Assessment of Wound' concept set</comment>
+        <sql>
+            # Create the concept
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'PE, Soft tissue photos', 'Soft tissue photos', 'N/A', 'Misc', True);
+            # Add to concept set
+            call add_concept_to_concept_set('PE, Assessment of Wound','PE, Soft tissue photos', True);
+            # Add 'Image' concept
+            call add_concept_to_concept_set('PE, Soft tissue photos','Image', True);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001211508" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add "PE, Assessment of Wound" concept set to "Physical Examination" form</comment>
+        <sql>
+            call add_concept_to_concept_set('Physical Examination','PE, Assessment of Wound', True);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
-
-
 
 
 
