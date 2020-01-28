@@ -1,11 +1,14 @@
 CREATE PROCEDURE add_concept_to_concept_set (IN concept_set_name_proc VARCHAR(255),
+                             IN concept_set_id_proc INT,
                              IN concept_name_proc VARCHAR(255),
+                             IN concept_id_proc INT,
+                             IN concept_locale_proc VARCHAR(255),
                              is_set BOOLEAN)
+
 BEGIN
  DECLARE is_set_val TINYINT(1);
  DECLARE user_id_proc INT;
  DECLARE concept_set_id_proc INT;
- DECLARE concept_id_proc INT;
  DECLARE max_sort_weight_proc INT;
 
  CASE
@@ -15,16 +18,20 @@ BEGIN
       SET is_set_val = '0';
  END CASE;
 
- SELECT concept_id INTO concept_id_proc FROM concept_name
- WHERE name = concept_name_proc and concept_name_type = "FULLY_SPECIFIED";
+ IF concept_id_proc IS NULL THEN
+    SELECT concept_id INTO concept_id_proc FROM concept_name
+    WHERE name = concept_name_proc AND concept_name_type = "FULLY_SPECIFIED" AND locale = concept_locale_proc AND voided = 0;
+ END IF;
 
- SELECT concept_id INTO concept_set_id_proc FROM concept_name
- WHERE name = concept_set_name_proc and concept_name_type = "FULLY_SPECIFIED";
+ IF concept_set_id_proc IS NULL THEN
+     SELECT concept_id INTO concept_set_id_proc FROM concept_name
+     WHERE name = concept_set_name_proc AND concept_name_type = "FULLY_SPECIFIED" AND locale = concept_locale_proc AND voided = 0;
+ END IF;
 
- SELECT count(distinct concept_id) into @concept_count from concept_set where concept_set = concept_set_id_proc and concept_id = concept_id_proc;
+ SELECT count(distinct concept_id_proc) into @concept_count from concept_set where concept_set = concept_set_id_proc and concept_id = concept_id_proc;
  IF @concept_count > 0 THEN
    SIGNAL SQLSTATE '45000'
-     SET MESSAGE_TEXT = 'Concept Already Exists';
+     SET MESSAGE_TEXT = 'Concept Already Exists in Concept Set';
  ELSE
    SELECT uuid() INTO @uuid;
    SELECT MAX(sort_weight)+1 INTO max_sort_weight_proc FROM concept_set WHERE concept_set = concept_set_id_proc;
