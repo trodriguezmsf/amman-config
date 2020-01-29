@@ -7597,19 +7597,19 @@
             call create_reference_mapping_msf_internal('ONN, Type of assessment', 'ASSESSMENT_TYPE');
         </sql>
     </changeSet>
-    <changeSet id="Amman-202001201833" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <changeSet id="Amman-202001281458" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-841 | Adding a new procedure to add answers to concept set</comment>
         <sql>
             DROP PROCEDURE IF EXISTS add_answer_to_concept_set;
         </sql>
         <sqlFile splitStatements="false" path="utils/AddAnswerToConceptSet.sql"/>
     </changeSet>
-    <changeSet id="Amman-202001201834" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <changeSet id="Amman-202001281456" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-841 | Add new concepts 'Initial, Post-operative and Final' to 'ONN, Type of assessment' concept set</comment>
         <sql>
-            call add_answer_to_concept_set('ONN, Type of assessment','Initial', True);
-            call add_answer_to_concept_set('ONN, Type of assessment','Post-operative', True);
-            call add_answer_to_concept_set('ONN, Type of assessment','Final', True);
+            call add_answer_to_concept_set('ONN, Type of assessment', NULL, 'Initial', NULL, "en", True);
+            call add_answer_to_concept_set('ONN, Type of assessment', NULL, 'Post-operative', NULL, "en", True);
+            call add_answer_to_concept_set('ONN, Type of assessment', NULL, 'Final', NULL, "en", True);
         </sql>
     </changeSet>
     <changeSet id="Amman-202001202233" author="Michael Bontyes" context="amman-enhancements-january2020">
@@ -7669,12 +7669,12 @@
             call create_reference_mapping_msf_internal('PNF, Type of assessment', 'ASSESSMENT_TYPE');
         </sql>
     </changeSet>
-    <changeSet id="Amman-202001202302" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <changeSet id="Amman-202001281455" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-840 | Add new concepts 'Initial, Post-operative and Final' to 'PNF, Type of assessment' concept set</comment>
         <sql>
-            call add_answer_to_concept_set('PNF, Type of assessment','Initial', True);
-            call add_answer_to_concept_set('PNF, Type of assessment','Post-operative', True);
-            call add_answer_to_concept_set('PNF, Type of assessment','Final', True);
+            call add_answer_to_concept_set('PNF, Type of assessment', NULL, 'Initial', NULL, "en", True);
+            call add_answer_to_concept_set('PNF, Type of assessment', NULL, 'Post-operative', NULL, "en", True);
+            call add_answer_to_concept_set('PNF, Type of assessment', NULL, 'Final', NULL, "en", True);
         </sql>
     </changeSet>
     <changeSet id="Amman-202001202303" author="Michael Bontyes" context="amman-enhancements-january2020">
@@ -7729,7 +7729,291 @@
             call add_concept_to_concept_set('Drug routes', NULL, 'Subcutaneous', NULL, "en", True);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202001281600" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add "PE, Assessment of Wound" concept</comment>
+        <sql>
+            set @observation_form_name = "Physical Examination";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Assessment of Wound";
+            set @concept_name_full = "PE, Assessment of Wound";
+            set @concept_datatype = "Coded";
+            set @concept_class = "Misc";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_datatype, @concept_class, true);
 
+            set @mapping_code_name = "ASSESS_WOUND";
+            call create_reference_mapping_msf_internal(@concept_name_full, @mapping_code_name);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001281601" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add "PE, Side of wound" concept</comment>
+        <sql>
+            set @observation_form_name = "PE, Assessment of Wound";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Side of wound";
+            set @concept_name_full = "PE, Side of wound";
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_datatype, @concept_class, false);
+
+            set @mapping_code_name = "WOUND_SIDE";
+            call create_reference_mapping_msf_internal(@concept_name_full, @mapping_code_name);
+
+            set @locale = "en";
+            # add_concept_to_concept_set(Concept Set full name, Concept full name, Concept ID (optional), Locale, Set option);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 874, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 875, @locale, True);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001281602" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add "PE, Site of wound" concept</comment>
+        <sql>
+            set @observation_form_name = "PE, Assessment of Wound";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Site of wound";
+            set @concept_name_full = "PE, Site of wound";
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_datatype, @concept_class, false);
+
+            set @mapping_code_name = "WOUND_SITE";
+            call create_reference_mapping_msf_internal(@concept_name_full, @mapping_code_name);
+
+            set @locale = "en";
+            # add_concept_to_concept_set(Concept Set full name, Concept full name, Concept ID (optional), Locale, Set option);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 888, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 876, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2050, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 882, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 883, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 886, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 884, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 885, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2051, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2052, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 887, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 889, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 890, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 891, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 878, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2053, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2054, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 892, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 893, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 894, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 895, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 896, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 877, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 879, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2055, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2056, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 897, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 898, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 880, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 899, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 900, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 901, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 902, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 903, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 881, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 3732, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2353, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2352, @locale, True);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001281603" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add "PE, Wound status, 1" concept</comment>
+        <sql>
+            set @observation_form_name = "PE, Assessment of Wound";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Wound status, 1";
+            set @concept_name_full = "PE, Wound status, 1";
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_datatype, @concept_class, false);
+
+            set @mapping_code_name = "STATUS_WOUND_1";
+            call create_reference_mapping_msf_internal(@concept_name_full, @mapping_code_name);
+
+            set @locale = "en";
+            # add_concept_to_concept_set(Concept Set full name, Concept full name, Concept ID (optional), Locale, Set option);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2855, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2854, @locale, True);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001281604" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add "PE, Wound status, 2" concept set and concepts</comment>
+        <sql>
+            set @observation_form_name = "PE, Assessment of Wound";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Wound status, 2";
+            set @concept_name_full = "PE, Wound status, 2";
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_datatype, @concept_class, false);
+
+            set @mapping_code_name = "STATUS_WOUND_2";
+            call create_reference_mapping_msf_internal(@concept_name_full, @mapping_code_name);
+
+            set @locale = "en";
+            # add_concept_to_concept_set(Concept Set full name, Concept full name, Concept ID (optional), Locale, Set option);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 30, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 3185, @locale, True);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001281605" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add "PE, Removal of clips" concept set and concepts</comment>
+        <sql>
+            set @observation_form_name = "PE, Assessment of Wound";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Removal of clips";
+            set @concept_name_full = "PE, Removal of clips";
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_datatype, @concept_class, false);
+
+            set @mapping_code_name = "REMOVAL_CLIPS";
+            call create_reference_mapping_msf_internal(@concept_name_full, @mapping_code_name);
+
+            set @locale = "en";
+            # add_concept_to_concept_set(Concept Set full name, Concept full name, Concept ID (optional), Locale, Set option);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 1, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2, @locale, True);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001281606" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add "PE, Wound assessment" concept set and concepts</comment>
+        <sql>
+            set @observation_form_name = "PE, Assessment of Wound";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Wound assessment";
+            set @concept_name_full = "PE, Wound assessment";
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_datatype, @concept_class, false);
+
+            set @mapping_code_name = "ASSESS_WOUND";
+            call create_reference_mapping_msf_internal(@concept_name_full, @mapping_code_name);
+
+            set @locale = "en";
+            # add_concept_to_concept_set(Concept Set full name, Concept full name, Concept ID (optional), Locale, Set option);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2059, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2060, @locale, True);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001281607" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add "PE, Description of wound" concept set and concepts</comment>
+        <sql>
+            set @observation_form_name = "PE, Assessment of Wound";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Description of wound";
+            set @concept_name_full = "PE, Description of wound";
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_datatype, @concept_class, false);
+
+            set @mapping_code_name = "ASSESS_WOUND";
+            call create_reference_mapping_msf_internal(@concept_name_full, @mapping_code_name);
+
+            set @locale = "en";
+            # add_concept_to_concept_set(Concept Set full name, Concept full name, Concept ID (optional), Locale, Set option);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2061, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2062, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2063, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2064, @locale, True);
+            call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 385, @locale, True);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001281608" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add "PE, Description of wound, other" concept set and concepts</comment>
+        <sql>
+            set @observation_form_name = "PE, Assessment of Wound";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Description of wound, other";
+            set @concept_name_full = "PE, Description of wound, other";
+            set @concept_datatype = "Text";
+            set @concept_class = "Finding";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_datatype, @concept_class, false);
+
+            set @mapping_code_name = "OTHER_DESC_WOUND";
+            call create_reference_mapping_msf_internal(@concept_name_full, @mapping_code_name);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202001281609" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add "PE, Soft tissue photos" concept to 'PE, Assessment of Wound' concept set</comment>
+        <sql>
+            set @observation_form_name = "PE, Assessment of Wound";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Soft tissue photos";
+            set @concept_name_full = "PE, Soft tissue photos";
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_datatype, @concept_class, false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001281640" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add sections to "PE, Assessment of Wound" observation form</comment>
+        <sql>
+            # Add concepts to concept set
+            set @observation_form_name = "PE, Assessment of Wound";
+            set @locale = "en";
+            call add_concept_to_concept_set(@observation_form_name, NULL, 'PE, Side of wound', NULL, @locale, True);
+            call add_concept_to_concept_set(@observation_form_name, NULL, 'PE, Site of wound', NULL, @locale, True);
+            call add_concept_to_concept_set(@observation_form_name, NULL, 'PE, Wound status, 1', NULL, @locale, True);
+            call add_concept_to_concept_set(@observation_form_name, NULL, 'PE, Wound status, 2', NULL, @locale, True);
+            call add_concept_to_concept_set(@observation_form_name, NULL, 'PE, Removal of clips', NULL, @locale, True);
+            call add_concept_to_concept_set(@observation_form_name, NULL, 'PE, Wound assessment', NULL, @locale, True);
+            call add_concept_to_concept_set(@observation_form_name, NULL, 'PE, Description of wound', NULL, @locale, True);
+            call add_concept_to_concept_set(@observation_form_name, NULL, 'PE, Description of wound, other', NULL, @locale, True);
+            call add_concept_to_concept_set(@observation_form_name, NULL, 'PE, Soft tissue photos', NULL, @locale, True);
+            # Add 'Image' concept
+            call add_concept_to_concept_set('PE, Soft tissue photos', NULL, 'Image', NULL, "en", True);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001281621" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Reorder sections in "PE, Assessment of Wound" observation form</comment>
+        <sql>
+            set @observation_form_name = "PE, Assessment of Wound";
+            # Reorder concepts (Concept set full name, Concept full name, sort weight)
+            call reorder_concept_set(@observation_form_name, 'PE, Side of wound', 0);
+            call reorder_concept_set(@observation_form_name, 'PE, Site of wound', 1);
+            call reorder_concept_set(@observation_form_name, 'PE, Wound status, 1', 2);
+            call reorder_concept_set(@observation_form_name, 'PE, Wound status, 2', 3);
+            call reorder_concept_set(@observation_form_name, 'PE, Removal of clips', 4);
+            call reorder_concept_set(@observation_form_name, 'PE, Wound assessment', 5);
+            call reorder_concept_set(@observation_form_name, 'PE, Description of wound', 6);
+            call reorder_concept_set(@observation_form_name, 'PE, Description of wound, other', 7);
+            call reorder_concept_set(@observation_form_name, 'PE, Soft tissue photos', 8);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001281635" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add section "PE, Assessment of Wound" to "Physical Examination" observation form</comment>
+        <sql>
+            set @observation_form_name = "Physical Examination";
+            set @locale = "en";
+            call add_concept_to_concept_set(@observation_form_name, NULL, 'PE, Assessment of Wound', NULL, @locale, True);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 

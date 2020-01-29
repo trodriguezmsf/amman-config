@@ -1154,6 +1154,40 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
+    'PE, Wound assessment': function (formName, formFieldValues) {
+            var conditions = {
+                show: [],
+                hide: []
+            };
+            var conditionConcept = formFieldValues['PE, Wound assessment'];
+            if (conditionConcept == "Wound seen") {
+                conditions.show.push("PE, Description of wound","PE, Description of wound, other")
+                var conditionConcept2 = formFieldValues['PE, Description of wound'];
+                if (conditionConcept2 == "Other") {
+                    conditions.show.push("PE, Description of wound, other")
+                }
+                else {
+                    conditions.hide.push("PE, Description of wound, other")
+                }
+            } else {
+                conditions.hide.push("PE, Description of wound")
+            }
+            return conditions;
+        },
+        'PE, Description of wound': function (formName, formFieldValues) {
+            var conditions = {
+                show: [],
+                hide: []
+            };
+            var conditionConcept = formFieldValues['PE, Description of wound'];
+            if (conditionConcept == "Other"){
+                conditions.show.push("PE, Description of wound, other")
+            }
+            else {
+                conditions.hide.push("PE, Description of wound, other")
+            }
+            return conditions;
+        },
     'CC, Patient complication': function (formName, formFieldValues) {
         var conditions = {
             show: [],
