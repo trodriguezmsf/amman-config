@@ -613,39 +613,6 @@
           "pivotTable": {}
         }
       },
-      "bacteriology": {
-        "type": "custom",
-        "displayOrder": 11,
-        "displayType": "Full-Page",
-        "config": {
-          "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
-          "template": "<microbiology-lab-results section='config' patient='patient' enrollment='enrollment'></microbiology-lab-results>"
-        }
-      },
-      "Medications administered": {
-        "translationKey": "DASHBOARD_TITLE_MEDICATION_KEY",
-        "type": "treatment",
-        "displayOrder": 12,
-        "dashboardConfig": {
-          "showFlowSheet": true,
-          "showListView": true,
-          "showRoute": true,
-          "showDrugForm": true,
-          "numberOfVisits": 5,
-          "showOtherActive": true,
-          "showDetailsButton": false
-        },
-        "expandedViewConfig": {
-          "translationKey": "DASHBOARD_TITLE_MEDICATION_KEY",
-          "showFlowSheet": true,
-          "showListView": true,
-          "showRoute": true,
-          "showDrugForm": true,
-          "numberOfVisits": 10,
-          "showOtherActive": true,
-          "showDetailsButton": false
-        }
-      },
       "Medical Course": {
         "translationKey": "DASHBOARD_TITLE_PSYCHO_MEDICAL_COURSE",
         "type": "vitals",
@@ -1047,6 +1014,39 @@
           "numberOfVisits": 3,
           "showDetailsButton": true,
           "pivotTable": {}
+        }
+      },
+      "bacteriology": {
+        "type": "custom",
+        "displayOrder": 11,
+        "displayType": "Full-Page",
+        "config": {
+          "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
+          "template": "<microbiology-lab-results section='config' patient='patient' enrollment='enrollment'></microbiology-lab-results>"
+        }
+      },
+      "Medications administered": {
+        "translationKey": "DASHBOARD_TITLE_MEDICATION_KEY",
+        "type": "treatment",
+        "displayOrder": 12,
+        "dashboardConfig": {
+          "showFlowSheet": true,
+          "showListView": true,
+          "showRoute": true,
+          "showDrugForm": true,
+          "numberOfVisits": 5,
+          "showOtherActive": true,
+          "showDetailsButton": false
+        },
+        "expandedViewConfig": {
+          "translationKey": "DASHBOARD_TITLE_MEDICATION_KEY",
+          "showFlowSheet": true,
+          "showListView": true,
+          "showRoute": true,
+          "showDrugForm": true,
+          "numberOfVisits": 10,
+          "showOtherActive": true,
+          "showDetailsButton": false
         }
       }
     }
