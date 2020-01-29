@@ -8,7 +8,6 @@ CREATE PROCEDURE add_concept_to_concept_set (IN concept_set_name_proc VARCHAR(25
 BEGIN
  DECLARE is_set_val TINYINT(1);
  DECLARE user_id_proc INT;
- DECLARE concept_set_id_proc INT;
  DECLARE max_sort_weight_proc INT;
 
  CASE

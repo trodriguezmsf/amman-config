@@ -7524,7 +7524,7 @@
             call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'ULA, Muscle Right : Fingers Ext.', 'Right : Fingers Ext.', 'Text', 'Finding', false);
         </sql>
     </changeSet>
-    <changeSet id="Amman-202001271800" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <changeSet id="Amman-202001291500" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-841 | Adding a new procedure to add concept to concept set</comment>
         <sql>
             DROP PROCEDURE IF EXISTS add_concept_to_concept_set;
@@ -7957,8 +7957,8 @@
         </sql>
     </changeSet>
 
-    <changeSet id="Amman-202001281609" author="Michael Bontyes" context="amman-enhancements-january2020">
-        <comment>MOBN-849 | Add "PE, Soft tissue photos" concept to 'PE, Assessment of Wound' concept set</comment>
+    <changeSet id="Amman-202001291410" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | Add "PE, Soft tissue photos" concept to "PE, Assessment of Wound" concept set</comment>
         <sql>
             set @observation_form_name = "PE, Assessment of Wound";
             set @concept_id = 0;
@@ -7968,7 +7968,7 @@
             set @concept_name_full = "PE, Soft tissue photos";
             set @concept_datatype = "N/A";
             set @concept_class = "Misc";
-            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_datatype, @concept_class, false);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_datatype, @concept_class, true);
         </sql>
     </changeSet>
     <changeSet id="Amman-202001281640" author="Michael Bontyes" context="amman-enhancements-january2020">
@@ -8012,6 +8012,26 @@
             set @observation_form_name = "Physical Examination";
             set @locale = "en";
             call add_concept_to_concept_set(@observation_form_name, NULL, 'PE, Assessment of Wound', NULL, @locale, True);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202001291430" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-842 | Create "LLD, Comments" concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "LLD, Comments";
+            set @concept_name_full = "LLD, Comments";
+            set @concept_datatype = "Text";
+            set @concept_class = "Finding";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_datatype, @concept_class, false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-20200129145" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-842 | Add "LLD, Comments" to "Leg Length Discrepancy (LLD)" section in Lower Limb Physio Assessment</comment>
+        <sql>
+            set @locale = "en";
+            call add_concept_to_concept_set("LLA, Leg Length Discrepancy (LLD)", NULL, "LLD, Comments", NULL, @locale, False);
         </sql>
     </changeSet>
 </databaseChangeLog>
