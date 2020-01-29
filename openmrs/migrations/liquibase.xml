@@ -8034,6 +8034,21 @@
             call add_concept_to_concept_set("LLA, Leg Length Discrepancy (LLD)", NULL, "LLD, Comments", NULL, @locale, False);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202001291845" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from location where name ="3D";
+            </sqlCheck>
+        </preConditions>
+        <comment>MOBN-838 | Adding "3D" as a new location</comment>
+        <sql>
+            SELECT user_id INTO @user_id_proc FROM users WHERE system_id = "admin";
+            INSERT INTO location (name, description, retired, uuid, date_created, creator, parent_location) VALUES ('3D', '3D', FALSE, uuid(), NOW(), @user_id_proc, NULL);
+            SELECT location_tag_id INTO @location_tagID1 FROM location_tag WHERE name = 'Appointment Location' and description = 'When a user user creates a appointment service and chooses a location, they may only choose one with this tag';
+            SELECT location_id INTO @location_ID1 FROM location WHERE location.name='3D' and description = '3D';
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
