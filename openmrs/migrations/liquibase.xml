@@ -7927,7 +7927,7 @@
             set @concept_class = "Finding";
             call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_datatype, @concept_class, false);
 
-            set @mapping_code_name = "ASSESS_WOUND";
+            set @mapping_code_name = "DESC_WOUND";
             call create_reference_mapping_msf_internal(@concept_name_full, @mapping_code_name);
 
             set @locale = "en";
