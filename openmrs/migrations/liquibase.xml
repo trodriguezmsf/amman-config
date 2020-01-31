@@ -7445,13 +7445,14 @@
         <sqlFile splitStatements="false" path="utils/AddNewConcept.sql"/>
     </changeSet>
     <changeSet id="Amman-202001161608" author="Michael Bontyes" context="amman-enhancements-january2020">
-        <comment>MOBN-836 | Add new "Eyelid" concept (concept table)</comment>
+        <comment>MOBN-836 | Add new "Lower and Upper eyelid" concepts (concept table)</comment>
         <sql>
             set @concept_id = 0;
             set @concept_name_short_id = 0;
             set @concept_name_full_id = 0;
             set @concept_datatype_coded = 0;
-            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Site, Eyelid', 'Eyelid', 'N/A', 'misc', true);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Site, Lower eyelid', 'Lower eyelid', 'N/A', 'misc', true);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'Site, Upper eyelid', 'Upper eyelid', 'N/A', 'misc', true);
         </sql>
     </changeSet>
     <changeSet id="Amman-202001161624" author="Michael Bontyes" context="amman-enhancements-january2020">
@@ -7462,10 +7463,11 @@
         <sqlFile splitStatements="false" path="utils/AddConceptToConceptAnswer.sql"/>
     </changeSet>
     <changeSet id="Amman-202001161625" author="Michael Bontyes" context="amman-enhancements-january2020">
-        <comment>MOBN-836 | Add concepts "Eyelid, Upper lip and lower lip" to PPN, Site of wound</comment>
+        <comment>MOBN-836 | Add concepts "Upper and lower eyelid, Upper lip and lower lip" to PPN, Site of wound</comment>
         <sql>
             # Add to PPN, Site of wound
-            call add_concept_to_concept_answer(2158,"Site, Eyelid", True);
+            call add_concept_to_concept_answer(2158,"Site, Lower eyelid", True);
+            call add_concept_to_concept_answer(2158,"Site, Upper eyelid", True);
             call add_concept_to_concept_answer(2158,"Site, Lower lip", True);
             call add_concept_to_concept_answer(2158,"Site, Upper lip", True);
         </sql>
