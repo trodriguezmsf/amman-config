@@ -32,9 +32,8 @@ from patient_identifier
        join (select person_id,
                     group_concat(first_name)                             as first_name,
                     group_concat(last_name)                              as last_name,
-                    (select CASE
-                              WHEN strcmp(group_concat(is_caretaker_required), 'true') THEN 'No'
-                              ELSE 'Yes' END)                            as is_caretaker_required,
+                    if(group_concat(is_caretaker_required) = 'true', 'Yes',
+                       'No')                                             as is_caretaker_required,
                     group_concat(caretaker_gender)                       as caretaker_gender,
                     group_concat(caretaker_name_english)                 as caretaker_name_english,
                     group_concat(caretaker_name_arabic)                  as caretaker_name_arabic,
