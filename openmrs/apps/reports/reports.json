@@ -450,5 +450,12 @@
         }
       ]
     }
+  },
+  "customReport17" : {
+    "name": "Patient key information report",
+    "type": "MRSGeneric",
+    "config": {
+      "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientKeyInfo.sql"
+    }
   }
 }
