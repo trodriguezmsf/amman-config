@@ -8051,6 +8051,23 @@
             INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202002031754" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-860 | Adding a new procedure to add new drugs</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_new_drug;
+        </sql>
+        <sqlFile splitStatements="false" path="drugs/AddNewDrug.sql"/>
+    </changeSet>
+    <changeSet id="Amman-202002031800" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-860 | Adding new drugs</comment>
+        <sql>
+            set @locale = "en";
+            # Add new drug (drug_name, drug_strength, dosage_form_name, locale)
+            CALL add_new_drug("This is another new drug","200 mg","Tablet", @locale);
+        </sql>
+    </changeSet>
+
+
 </databaseChangeLog>
 
 
