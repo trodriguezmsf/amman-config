@@ -8058,12 +8058,40 @@
         </sql>
         <sqlFile splitStatements="false" path="drugs/AddNewDrug.sql"/>
     </changeSet>
-    <changeSet id="Amman-202002031800" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <changeSet id="Amman-202002041130" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-860 | Adding new drugs</comment>
         <sql>
             set @locale = "en";
             # Add new drug (drug_name, drug_strength, dosage_form_name, locale)
-            CALL add_new_drug("This is another new drug","200 mg","Tablet", @locale);
+            CALL add_new_drug("ATV 300 mg / r 100 mg, tab.","300 mg / r 100 mg","Tablet", @locale);
+            CALL add_new_drug("BECLOMETASONE dipropionate, 0.25mg/puff, 200 puffs,aerosol","0.25mg/puff","Aerosol", @locale);
+            CALL add_new_drug("FERROUS SALT, EQ. IRON 50MG/5ML, SYRUP, 100ML, BOT.","50MG/5ML","Syrup", @locale);
+            CALL add_new_drug("LINEZOLID, 600mg, tab.","600mg","Tablet", @locale);
+            CALL add_new_drug("MELOXICAM, 15mg, tab., tablette","15mg","Tablet", @locale);
+            CALL add_new_drug("MORPHINE sulfate, 10 mg, sustained release, caps.","10 mg","Capsule", @locale);
+            CALL add_new_drug("MORPHINE sulfate, 30 mg, sustained release, tab.","30 mg","Tablet", @locale);
+            CALL add_new_drug("SIMPLE PLAIN SUGAR SYRUP,  100 ML","100 ML","Injection", @locale);
+            CALL add_new_drug("TDF 300 mg / 3TC 300 mg, tab.","300 mg / 3TC 300 mg","Tablet", @locale);
+            CALL add_new_drug("AMINOPHYLLINE, 25 mg/ml, 10 ml, amp. (obsolete)","25 mg/ml","Injection", @locale);
+            CALL add_new_drug("ARTICAINE 4%/ EPINEPHRINE 1/100 000, 1.7 ml, dent.cartr. (ob","4%/100000","Injection", @locale);
+            CALL add_new_drug("CLONIDINE , 0.15 MG/ML, 1ML, AMP. ","0.15 MG/ML","Injection", @locale);
+            CALL add_new_drug("COLISTIMETHATE sodium, 1 MIU, powder, vial","1 MIU","Injection", @locale);
+            CALL add_new_drug("IMIPENEM 500 mg / CILASTATIN sodium 500 mg, powder, vial","500 mg / 500 mg","Injection", @locale);
+            CALL add_new_drug("VACCINE HEPATITIS B, 1 child dose, monodose, 0.5ml, vial","--","Vaccine", @locale);
+            CALL add_new_drug("DERMANIOS, SCRUB CHLORHEXIDINE, 5 l","5 l","Soap", @locale);
+            CALL add_new_drug("HYDROGEN PEROXIDE, 3%, sol., 250 ml, bot.","3%, sol.","Solution", @locale);
+            CALL add_new_drug("LUBRICANT, GENERAL USE, WATER-SOLUBLE, JELLY, 82 G, TUBE","82 G","Gel", @locale);
+            CALL add_new_drug("PARACETAMOL, 250 MG, SUPPOSITORY","250 MG","Suppository", @locale);
+            CALL add_new_drug("PERMETHRIN, 5 %, lotion, bot.( anti lice)","5 %, lotion","Shampoo/Lotion", @locale);
+            CALL add_new_drug("VASELINE JAR 240 ml","240 ml","Gel", @locale);
+            CALL add_new_drug("VASELINE, 120ml","120ml","Gel", @locale);
+            CALL add_new_drug("ANTAZOLINE HCL 0.05% /TETRAHYDROZOLINE HCL 0.04%, ED,10ML","0.05% / 0.04%, ED,10ML","Eye drops", @locale);
+            CALL add_new_drug("CARBOMERS,  2MG, EYE GEL, 10 G, TUBE","2MG, EYE GEL, 10 G","Eye gel", @locale);
+            CALL add_new_drug("MULTIPLE MICRONUTRIENT POWDER, 400 g Vanilla (Ensure)","400 g ","Powder", @locale);
+            CALL add_new_drug("PLUMPY NUT RUTF (READY TO USE THERAPEUTIC FOOD)","500 kcal","Sach", @locale);
+            CALL add_new_drug("PERMETHRIN 1% , SPRAY .( ANTI LICE )","1% , SPRAY","Topical", @locale);
+            CALL add_new_drug("MORPHINE hydrochloride, 100 mg/100ml 0.9% NS Via PCA","100 mg/100ml","Injection", @locale);
+            CALL add_new_drug("MORPHINE hydrochloride, 50 mg/100ml 0.9% NS Via PCA","100 mg/100ml","Injection", @locale);
         </sql>
     </changeSet>
 
