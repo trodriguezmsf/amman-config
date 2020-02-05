@@ -98,6 +98,9 @@
           },
           "Vaginal tablet": {
             "route": "Vaginal"
+          },
+          "Soap": {
+            "route": "Topical"
           }
         }
       }

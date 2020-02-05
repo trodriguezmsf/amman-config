@@ -8051,14 +8051,14 @@
             INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
         </sql>
     </changeSet>
-    <changeSet id="Amman-202002031754" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <changeSet id="Amman-202002041230" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-860 | Adding a new procedure to add new drugs</comment>
         <sql>
             DROP PROCEDURE IF EXISTS add_new_drug;
         </sql>
         <sqlFile splitStatements="false" path="drugs/AddNewDrug.sql"/>
     </changeSet>
-    <changeSet id="Amman-202002041130" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <changeSet id="Amman-202002041232" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-860 | Adding new drugs</comment>
         <sql>
             set @locale = "en";
@@ -8094,8 +8094,35 @@
             CALL add_new_drug("MORPHINE hydrochloride, 50 mg/100ml 0.9% NS Via PCA","100 mg/100ml","Injection", @locale);
         </sql>
     </changeSet>
-
-
+    <changeSet id="Amman-202002041900" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1078 | Adding a new procedure to add new service types</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_new_service_type;
+        </sql>
+        <sqlFile splitStatements="false" path="appointments/AddNewServiceType.sql"/>
+    </changeSet>
+    <changeSet id="Amman-202002041904" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1078 | Adding new appointment service types</comment>
+        <sql>
+            # Add new drug (Service name, Service Description, Color HEX, Duration in minutes, Location name, Service type name, Service type duration)
+            CALL add_new_service_type ("3D",NULL,"#00CED1",60,"3D","Assessment",60);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",45,"3D","Scanning",45);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",90,"3D","Modification and Fitting",90);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",30,"3D","Follow-up",30);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",0,NULL,"Other",0);
+            CALL add_new_service_type ("3D Field",NULL,"#00CED11",65,NULL,"Assessment and Scanning",165);
+            CALL add_new_service_type ("3D Field",NULL,"#00CED1",90,NULL,"Modification and Fitting",90);
+            CALL add_new_service_type ("3D Field",NULL,"#00CED1",60,NULL,"Follow-up",60);
+            CALL add_new_service_type ("3D OT",NULL,"#00CED1",90,"3D","Assessment",90);
+            CALL add_new_service_type ("3D OT",NULL,"#00CED1",75,"3D","Session",75);
+            CALL add_new_service_type ("3D OT",NULL,"#00CED1",30,"3D","Follow-up",30);
+            CALL add_new_service_type ("3D OT",NULL,"#00CED1",30,"3D","Assistive Device",30);
+            CALL add_new_service_type ("3D OT",NULL,"#00CED1",150,"3D","Group therapy",150);
+            CALL add_new_service_type ("3D OT Field",NULL,"#00CED1",150,NULL,"Assessment",150);
+            CALL add_new_service_type ("3D OT Field",NULL,"#00CED1",135,NULL,"Session",135);
+            CALL add_new_service_type ("3D OT Field",NULL,"#00CED1",60,NULL,"Follow-up",60);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
