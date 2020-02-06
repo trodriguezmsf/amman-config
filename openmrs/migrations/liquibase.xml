@@ -7744,9 +7744,6 @@
             set @concept_class = "Misc";
             set @locale = "en";
             call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, null, @concept_datatype, @concept_class, @locale, true);
-
-            set @mapping_code_name = "ASSESS_WOUND";
-            call create_reference_mapping_msf_internal(@concept_name_full, @mapping_code_name);
         </sql>
     </changeSet>
     <changeSet id="Amman-202001281601" author="Michael Bontyes" context="amman-enhancements-january2020">
