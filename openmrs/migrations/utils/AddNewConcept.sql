@@ -3,8 +3,10 @@ CREATE PROCEDURE add_new_concept (INOUT new_concept_id INT,
                              INOUT concept_name_full_id INT,
                              name_of_concept VARCHAR(255),
                              concept_short_name VARCHAR(255),
+                             concept_description VARCHAR(500),
                              data_type_name VARCHAR(255),
                              class_name VARCHAR(255),
+                             locale VARCHAR(11),
                              is_set BOOLEAN)
 BEGIN
  DECLARE data_type_id INT;
@@ -35,12 +37,18 @@ BEGIN
 
    SELECT uuid() into @uuid;
    INSERT INTO concept_name (concept_id, name, locale, locale_preferred, creator, date_created, concept_name_type, uuid)
-     values (new_concept_id, concept_short_name, 'en', 0, user_id_proc, now(), 'SHORT', @uuid);
+     values (new_concept_id, concept_short_name, locale, 0, user_id_proc, now(), 'SHORT', @uuid);
    SELECT MAX(concept_name_id) INTO concept_name_short_id FROM concept_name;
 
    SELECT uuid() into @uuid;
    INSERT INTO concept_name (concept_id, name, locale, locale_preferred, creator, date_created, concept_name_type, uuid)
-     values (new_concept_id, name_of_concept, 'en', 1, user_id_proc, now(), 'FULLY_SPECIFIED', @uuid);
+     values (new_concept_id, name_of_concept, locale, 1, user_id_proc, now(), 'FULLY_SPECIFIED', @uuid);
    SELECT MAX(concept_name_id) INTO concept_name_full_id FROM concept_name;
+
+   IF concept_description IS NOT NULL THEN
+   SELECT uuid() into @uuid;
+   INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid) VALUES
+   (new_concept_id,concept_description,locale,user_id_proc,now(),NULL,NULL,@uuid);
+   END IF;
  END IF;
 END;
