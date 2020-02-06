@@ -8191,29 +8191,7 @@
             call add_concept_to_concept_set(@observation_form_name, NULL, @concept_name_full, NULL, @locale, True);
         </sql>
     </changeSet>
-    <changeSet id="Amman-202002051503" author="Michael Bontyes" context="amman-enhancements-january2020">
-        <comment>MOBN-845 | Add "LEFT/RIGHT UPPER EXTREMITY" and "Other" concepts for Vital Signs form</comment>
-        <sql>
-            set @parent_concept_name = "MUAC was checked on";
-            set @concept_id = 0;
-            set @concept_name_short_id = 0;
-            set @concept_name_full_id = 0;
-            set @concept_datatype = "N/A";
-            set @concept_class = "Misc";
-            set @locale = "en";
-            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Left upper arm", "LEFT UPPER EXTREMITY", null, @concept_datatype, @concept_class, @locale, True);
-            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Right upper arm", "RIGHT UPPER EXTREMITY", null, @concept_datatype, @concept_class, @locale, True);
 
-            # Set CIEL mapping (Concept fully specified name - FSN, CIEL code)
-            call create_reference_mapping('LEFT UPPER EXTREMITY','1232');
-            call create_reference_mapping('RIGHT UPPER EXTREMITY','1233');
-
-            call add_answer_to_concept_set(@parent_concept_name, NULL, "LEFT UPPER EXTREMITY", NULL, "en", True);
-            call add_answer_to_concept_set(@parent_concept_name, NULL, "RIGHT UPPER EXTREMITY", NULL, "en", True);
-            call add_answer_to_concept_set(@parent_concept_name, NULL, 'Other', NULL, "en", True);
-
-        </sql>
-    </changeSet>
     <changeSet id="Amman-202002051505" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-845 | Add "&lt;-3, -3, -2, -1, 0, +1,+2, +3, &gt;+3" concepts for Vital Signs form</comment>
         <sql>
