@@ -8152,6 +8152,26 @@
             call add_concept_to_concept_set(@observation_form_name, NULL, @concept_name_full, NULL, @locale, True);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202002061504" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-845 | Add "LEFT/RIGHT UPPER EXTREMITY" and "Other" concepts for Vital Signs form</comment>
+        <sql>
+            set @parent_concept_name = "MUAC was checked on";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "LEFT UPPER EXTREMITY", "Left upper arm", null, @concept_datatype, @concept_class, @locale, False);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "RIGHT UPPER EXTREMITY", "Right upper arm", null, @concept_datatype, @concept_class, @locale, False);
+
+            # Set CIEL mapping (Concept fully specified name - FSN, CIEL code)
+            call create_reference_mapping('LEFT UPPER EXTREMITY','1232');
+            call create_reference_mapping('RIGHT UPPER EXTREMITY','1233');
+
+        </sql>
+    </changeSet>
     <changeSet id="Amman-202002051501" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-845 | Add "Mid-Upper Arm Circumference (MUAC)" concept for Vital Signs form</comment>
         <sql>
@@ -8165,7 +8185,7 @@
             set @concept_datatype = "Coded";
             set @concept_class = "Finding";
             set @locale = "en";
-            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, True);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, False);
 
             call add_concept_to_concept_set(@observation_form_name, NULL, @concept_name_full, NULL, @locale, True);
         </sql>
@@ -8183,7 +8203,7 @@
             set @concept_datatype = "Coded";
             set @concept_class = "Finding";
             set @locale = "en";
-            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, True);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, False);
 
             # Set CIEL mapping (Concept fully specified name - FSN, CIEL code)
             call create_reference_mapping(@concept_name_full,'163515');
@@ -8220,6 +8240,108 @@
             call add_answer_to_concept_set(@parent_concept_name, NULL, "+2", NULL, "en", True);
             call add_answer_to_concept_set(@parent_concept_name, NULL, "+3", NULL, "en", True);
             call add_answer_to_concept_set(@parent_concept_name, NULL, "&gt;+3", NULL, "en", True);
+
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002061600" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-845 | Add "LEFT/RIGHT UPPER EXTREMITY" and "Other" to "MUAC was checked on" for Vital Signs form</comment>
+        <sql>
+            set @parent_concept_name = "MUAC was checked on";
+            call add_answer_to_concept_set(@parent_concept_name, NULL, "LEFT UPPER EXTREMITY", NULL, "en", True);
+            call add_answer_to_concept_set(@parent_concept_name, NULL, "RIGHT UPPER EXTREMITY", NULL, "en", True);
+            call add_answer_to_concept_set(@parent_concept_name, NULL, 'Other', NULL, "en", True);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002061700" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-845 | Reorder concepts in Vital Signs form</comment>
+        <sql>
+            set @form_name = "Vital Signs";
+            # Reorder concepts (Parent concept ID, Concept answer name, sort weight)
+            call reorder_concept_set(@form_name, 'VS, Date recorded', 0);
+            call reorder_concept_set(@form_name, 'Weight', 1);
+            call reorder_concept_set(@form_name, 'Height', 2);
+            call reorder_concept_set(@form_name, 'BMI Data', 3);
+            call reorder_concept_set(@form_name, 'Mid-Upper Arm Circumference (MUAC)', 4);
+            call reorder_concept_set(@form_name, 'MUAC was checked on', 5);
+            call reorder_concept_set(@form_name, 'Weight for height status (WFH)', 6);
+            call reorder_concept_set(@form_name, 'VS, Respiratory Rate', 7);
+            call reorder_concept_set(@form_name, 'VS, Temperature', 8);
+            call reorder_concept_set(@form_name, 'VS, Pulse', 9);
+            call reorder_concept_set(@form_name, 'VS, Blood pressure', 10);
+            call reorder_concept_set(@form_name, 'VS, Blood oxygen saturation', 11);
+            call reorder_concept_set(@form_name, 'VS, Blood glucose', 12);
+            call reorder_concept_set(@form_name, 'VS, Comments about baseline vital signs', 13);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002070953" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-845 | Adding a new procedure to update concepts</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS update_concept;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/UpdateConcept.sql"/>
+    </changeSet>
+    <changeSet id="Amman-202002070955" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-845 | Update concept descriptions in Vital Signs</comment>
+        <sql>
+            # Update "VS, Temperature"
+            SET @concept_fully_specified_name = "VS, Temperature";
+            SET @concept_locale = "en";
+            SET @updated_concept_fully_specified_name = NULL;
+            SET @updated_concept_short_name = NULL;
+            SET @updated_concept_description = "Normal Temperature Range by Method: Rectal 36.6-38 (oC), Ear 35.8-38 (oC), Oral 35.5-37.5 (oC), Axillary 36.5-37.5 (oC). Temperature ranges do not vary with age. Axillary, tympanic and temporal temps for screening (less accurate). Rectal and oral temps for definitive measurement (unless contraindication).";
+            SET @updated_concept_form_text = NULL;
+            SET @updated_concept_datatype_id = NULL;
+            SET @updated_concept_class_id = NULL;
+            SET @updated_concept_is_set = NULL;
+            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_is_set);
+
+            # Update "VS, Pulse"
+            SET @concept_fully_specified_name = "VS, Pulse";
+            SET @concept_locale = "en";
+            SET @updated_concept_fully_specified_name = NULL;
+            SET @updated_concept_short_name = NULL;
+            SET @updated_concept_description = "Normal pediatric awake rate is: Neonate (&lt;28 d) 100-205 bpm, Infant (1 mo-1 y) 100-190 bpm, Toddler (1-2 y) 98-140 bpm, Preschool (3-5 y) 80-120 bpm, School-age (6-11 y) 75-118 bpm, Adolescent (12-15 y) 60-100 bpm";
+            SET @updated_concept_form_text = NULL;
+            SET @updated_concept_datatype_id = NULL;
+            SET @updated_concept_class_id = NULL;
+            SET @updated_concept_is_set = NULL;
+            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_is_set);
+
+            # Update "VS, Systolic blood pressure"
+            SET @concept_fully_specified_name = "VS, Systolic blood pressure";
+            SET @concept_locale = "en";
+            SET @updated_concept_fully_specified_name = NULL;
+            SET @updated_concept_short_name = NULL;
+            SET @updated_concept_description = "Normal pediatric systolic pressure is Birth (12 h, &lt;1000 g) 39-59 mmHg, Birth (12 h, 3 kg) 60-76 mmHg, Neonate (96 h) 67-84 mmHg, Infant (1-12 mo) 72-104 mmHg, Toddler (1-2 y) 86-106 mmHg, Preschooler (3-5 y) 89-112 mmHg, School-age (6-9 y) 97-115 mmHg, Preadolescent (10-11 y) 102-120 mmHg, Adolescent (12-15 y) 110-131 mmHg";
+            SET @updated_concept_form_text = NULL;
+            SET @updated_concept_datatype_id = NULL;
+            SET @updated_concept_class_id = NULL;
+            SET @updated_concept_is_set = NULL;
+            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_is_set);
+
+            # Update "VS, Diastolic blood pressure"
+            SET @concept_fully_specified_name = "VS, Diastolic blood pressure";
+            SET @concept_locale = "en";
+            SET @updated_concept_fully_specified_name = NULL;
+            SET @updated_concept_short_name = NULL;
+            SET @updated_concept_description = "Normal pediatric diastolic pressure is Birth (12 h, &lt;1000 g) 16-36 mmHg, Birth (12 h, 3 kg) 31-45 mmHg, Neonate (96 h) 35-53 mmHg, Infant (1-12 mo) 37-56 mmHg, Toddler (1-2 y) 42-63 mmHg, Preschooler (3-5 y) 46-72 mmHg, School-age (6-9 y) 57-76 mmHg, Preadolescent (10-11 y) 61-80 mmHg, Adolescent (12-15 y) 64-83 mmHg";
+            SET @updated_concept_form_text = NULL;
+            SET @updated_concept_datatype_id = NULL;
+            SET @updated_concept_class_id = NULL;
+            SET @updated_concept_is_set = NULL;
+            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_is_set);
+
+            # Update "VS, Blood glucose"
+            SET @concept_fully_specified_name = "VS, Blood glucose";
+            SET @concept_locale = "en";
+            SET @updated_concept_fully_specified_name = NULL;
+            SET @updated_concept_short_name = NULL;
+            SET @updated_concept_description = "Normal pediatric Temperature Range by Method is Rectal 36.6-38 (°C), Ear 35.8-38 (°C) , Oral 35.5-37.5 (°C) , Axillary 36.5-37.5 (°C). Temperature ranges do not vary with age. Axillary, tympanic and temporal temps for screening (less accurate). Rectal and oral temps for definitive measurement (unless contraindication).";
+            SET @updated_concept_form_text = NULL;
+            SET @updated_concept_datatype_id = NULL;
+            SET @updated_concept_class_id = NULL;
+            SET @updated_concept_is_set = NULL;
+            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_is_set);
 
         </sql>
     </changeSet>

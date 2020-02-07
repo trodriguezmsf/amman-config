@@ -67,6 +67,9 @@
             "All Observation Templates": {
                 "showPanelView": false
             },
+            "Weight for height status (WFH)": {
+                "dropdown": true
+            },
             "Video": {
                 "allowAddMore": true
             },
