@@ -8273,14 +8273,14 @@
             call reorder_concept_set(@form_name, 'VS, Comments about baseline vital signs', 13);
         </sql>
     </changeSet>
-    <changeSet id="Amman-202002070953" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <changeSet id="Amman-202002071015" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-845 | Adding a new procedure to update concepts</comment>
         <sql>
             DROP PROCEDURE IF EXISTS update_concept;
         </sql>
         <sqlFile splitStatements="false" path="utils/UpdateConcept.sql"/>
     </changeSet>
-    <changeSet id="Amman-202002070955" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <changeSet id="Amman-202002071012" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-845 | Update concept descriptions in Vital Signs</comment>
         <sql>
             # Update "VS, Temperature"
@@ -8292,8 +8292,9 @@
             SET @updated_concept_form_text = NULL;
             SET @updated_concept_datatype_id = NULL;
             SET @updated_concept_class_id = NULL;
+            SET @updated_concept_units = NULL;
             SET @updated_concept_is_set = NULL;
-            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_is_set);
+            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_units, @updated_concept_is_set);
 
             # Update "VS, Pulse"
             SET @concept_fully_specified_name = "VS, Pulse";
@@ -8304,8 +8305,9 @@
             SET @updated_concept_form_text = NULL;
             SET @updated_concept_datatype_id = NULL;
             SET @updated_concept_class_id = NULL;
+            SET @updated_concept_units = NULL;
             SET @updated_concept_is_set = NULL;
-            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_is_set);
+            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_units, @updated_concept_is_set);
 
             # Update "VS, Systolic blood pressure"
             SET @concept_fully_specified_name = "VS, Systolic blood pressure";
@@ -8316,8 +8318,9 @@
             SET @updated_concept_form_text = NULL;
             SET @updated_concept_datatype_id = NULL;
             SET @updated_concept_class_id = NULL;
+            SET @updated_concept_units = NULL;
             SET @updated_concept_is_set = NULL;
-            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_is_set);
+            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_units, @updated_concept_is_set);
 
             # Update "VS, Diastolic blood pressure"
             SET @concept_fully_specified_name = "VS, Diastolic blood pressure";
@@ -8328,8 +8331,9 @@
             SET @updated_concept_form_text = NULL;
             SET @updated_concept_datatype_id = NULL;
             SET @updated_concept_class_id = NULL;
+            SET @updated_concept_units = NULL;
             SET @updated_concept_is_set = NULL;
-            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_is_set);
+            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_units, @updated_concept_is_set);
 
             # Update "VS, Blood glucose"
             SET @concept_fully_specified_name = "VS, Blood glucose";
@@ -8340,8 +8344,22 @@
             SET @updated_concept_form_text = NULL;
             SET @updated_concept_datatype_id = NULL;
             SET @updated_concept_class_id = NULL;
+            SET @updated_concept_units = NULL;
             SET @updated_concept_is_set = NULL;
-            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_is_set);
+            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_units, @updated_concept_is_set);
+
+            # Update "Mid-Upper Arm Circumference (MUAC)"
+            SET @concept_fully_specified_name = "Mid-Upper Arm Circumference (MUAC)";
+            SET @concept_locale = "en";
+            SET @updated_concept_fully_specified_name = NULL;
+            SET @updated_concept_short_name = NULL;
+            SET @updated_concept_description = NULL;
+            SET @updated_concept_form_text = NULL;
+            SET @updated_concept_datatype_id = NULL;
+            SET @updated_concept_class_id = NULL;
+            SET @updated_concept_units = "mm";
+            SET @updated_concept_is_set = NULL;
+            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_units, @updated_concept_is_set);
 
         </sql>
     </changeSet>
