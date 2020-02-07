@@ -8,10 +8,10 @@ BEGIN
  DECLARE answer_id_proc INT;
 
  SELECT concept_id INTO concept_id_proc FROM concept_name
- WHERE name = concept_name_proc and concept_name_type = "FULLY_SPECIFIED";
+ WHERE name = concept_name_proc and concept_name_type = "FULLY_SPECIFIED" AND voided = 0;
 
  SELECT concept_id INTO answer_id_proc FROM concept_name
- WHERE name = answer_name_proc and concept_name_type = "FULLY_SPECIFIED";
+ WHERE name = answer_name_proc and concept_name_type = "FULLY_SPECIFIED" AND voided = 0;
 
  UPDATE concept_answer
  SET sort_weight = answer_sort_weight_proc

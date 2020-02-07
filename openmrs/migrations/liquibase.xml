@@ -7505,6 +7505,22 @@
             call change_concept_weight_in_concept_answers_per_name(2671, "Other", 7);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202002071200" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-843 | Add concept "Walker" to "ULA, Type of assistive device or orthosis"</comment>
+        <sql>
+            # Add "Walker" to ULA, Type of assistive device or orthosis
+            call add_answer_to_concept_set('ULA, Type of assistive device or orthosis', NULL, 'Walker', NULL, "en", False);
+            # Reorder answers (Parent concept ID, Concept answer name, sort weight)
+            call reorder_concept_answer("ULA, Type of assistive device or orthosis", "Orthosis", 0);
+            call reorder_concept_answer("ULA, Type of assistive device or orthosis", "One axillary crutch", 1);
+            call reorder_concept_answer("ULA, Type of assistive device or orthosis", "Two axillary crutches", 2);
+            call reorder_concept_answer("ULA, Type of assistive device or orthosis", "One elbow crutch", 3);
+            call reorder_concept_answer("ULA, Type of assistive device or orthosis", "Two elbow crutches", 4);
+            call reorder_concept_answer("ULA, Type of assistive device or orthosis", "LLA, Cane", 5);
+            call reorder_concept_answer("ULA, Type of assistive device or orthosis", "Walker", 6);
+            call reorder_concept_answer("ULA, Type of assistive device or orthosis", "Other", 7);
+        </sql>
+    </changeSet>
     <changeSet id="Amman-202001171204" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-843 | Add new concepts for Muscle test for upper limbs</comment>
         <sql>
@@ -7639,7 +7655,7 @@
             call reorder_concept_set('OPD Nursing Note', 'ONN, Nursing consultation notes', 9);
         </sql>
     </changeSet>
-    <changeSet id="Amman-202001202236" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <changeSet id="Amman-202002071158" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-841 | Adding a new procedure to reorder concept answer</comment>
         <sql>
             DROP PROCEDURE IF EXISTS reorder_concept_answer;
