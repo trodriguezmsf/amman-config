@@ -8379,6 +8379,475 @@
 
         </sql>
     </changeSet>
+    <changeSet id="Amman-202002071231" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add "HE, Type of assessment" to "Health Education" form</comment>
+        <sql>
+            set @parent_concept = "Health Education";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Type of assessment";
+            set @concept_name_full = "HE, Type of assessment";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            set @mapping_code_name = "ASSESSMENT_TYPE";
+            call create_reference_mapping_msf_internal(@concept_name_full, @mapping_code_name);
+
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071456" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add concepts to "HE, Type of assessment"</comment>
+        <sql>
+            set @parent_concept = "HE, Type of assessment";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_description = NULL;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "OPD follow-up", "OPD follow-up", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Ward follow-up", "Ward follow-up", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            call add_answer_to_concept_set(@parent_concept, NULL, "Initial", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "OPD follow-up", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Ward follow-up", NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071505" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add "HE, Limitations interfering with learning process" to "Health Education" form</comment>
+        <sql>
+            set @parent_concept = "Health Education";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Limitations interfering with learning process";
+            set @concept_name_full = "HE, Limitations interfering with learning process";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071506" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add concepts to "HE, Limitations interfering with learning process"</comment>
+        <sql>
+            # Create concepts
+            set @parent_concept = "HE, Limitations interfering with learning process";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_description = NULL;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Health literacy", "Health literacy", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Cultural differences", "Cultural differences", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Patient age", "Patient age", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "HE, Gender", "Gender", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Language or accent", "Language or accent", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Inability to comprehend", "Inability to comprehend", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Sensory defects", "Sensory defects", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Cognitive impairment, executive function", "Cognitive impairment, executive function", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add answers
+            call add_answer_to_concept_set(@parent_concept, NULL, "Health literacy", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Cultural differences", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Patient age", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "HE, Gender", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Language or accent", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Language or accent", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Inability to comprehend", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Anxiety", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Pain", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Sensory defects", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Cognitive impairment, executive function", NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071527" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add "HE, Initial medical and nonmedical educational needs" to "Health Education" form</comment>
+        <sql>
+            set @parent_concept = "Health Education";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Initial medical and nonmedical educational needs";
+            set @concept_name_full = "HE, Initial medical and nonmedical educational needs";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071528" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add concepts to "HE, Initial medical and nonmedical educational needs"</comment>
+        <sql>
+            # Create concepts
+            set @parent_concept = "HE, Initial medical and nonmedical educational needs";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_description = NULL;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Anemia management", "Anemia management", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Asthma-breathing problem-COPD management", "Asthma-breathing problem-COPD management", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Epilepsy-seizure management", "Epilepsy-seizure management", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Diabetes management", "Diabetes management", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Hypertension management", "Hypertension management", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Cardiac diseases management", "Cardiac diseases management", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "High cholesterol management", "High cholesterol management", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Kidney diseases management", "Kidney diseases management", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Hepatitis-Jaundice management", "Hepatitis-Jaundice management", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Peptic ulcer management", "Peptic ulcer management", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Personal hygiene", "Personal hygiene", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Hospital safety", "Hospital safety", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Rules and responsibilities", "Rules and responsibilities", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Patient rights", "Patient rights", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Infection prevention", "Infection prevention", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Other educational needs", "Other educational needs", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add answers
+            call add_answer_to_concept_set(@parent_concept, NULL, "Anemia management", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Asthma-breathing problem-COPD management", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Epilepsy-seizure management", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Diabetes management", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Hypertension management", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Cardiac diseases management", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "High cholesterol management", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Kidney diseases management", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Hepatitis-Jaundice management", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Peptic ulcer management", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Personal hygiene", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Hospital safety", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Rules and responsibilities", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Patient rights", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Infection prevention", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Other educational needs", NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071529" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add "HE, Educational station" to "Health Education" form</comment>
+        <sql>
+            set @parent_concept = "Health Education";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Educational station";
+            set @concept_name_full = "HE, Educational station";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Question";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071530" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add concepts to "HE, Educational station"</comment>
+        <sql>
+            # Create concepts
+            set @parent_concept = "HE, Educational station";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_description = NULL;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "First station", "First station", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Second station", "Second station", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Third station", "Third station", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Fourth station", "Fourth station", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add answers
+            call add_answer_to_concept_set(@parent_concept, NULL, "First station", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Second station", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Third station", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Fourth station", NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071531" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add "HE, Covered topic at the first station" to "Health Education" form</comment>
+        <sql>
+            set @parent_concept = "Health Education";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Covered topic at the first station";
+            set @concept_name_full = "HE, Covered topic at the first station";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Question";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071532" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add concepts to "HE, Covered topic at the first station"</comment>
+        <sql>
+            # Create concepts
+            set @parent_concept = "HE, Covered topic at the first station";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_description = NULL;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Code of conduct", "Code of conduct", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add answers
+            call add_answer_to_concept_set(@parent_concept, NULL, "Code of conduct", NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071538" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add "HE, Covered topics at the second station" to "Health Education" form</comment>
+        <sql>
+            set @parent_concept = "Health Education";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Covered topics at the second station";
+            set @concept_name_full = "HE, Covered topics at the second station";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071555" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add concepts to "HE, Covered topics at the second station"</comment>
+        <sql>
+            # Create concepts
+            set @parent_concept = "HE, Covered topics at the second station";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_description = NULL;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "General instructions about hospital admission and room orientation", "General instructions about hospital admission and room orientation", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Room organization and decluttering", "Room organization and decluttering", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Hospital daily routine", "Hospital daily routine", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Patient safety instruction", "Patient safety instruction", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "No smoking policy", "No smoking policy", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Safekeeping of patient belongings", "Safekeeping of patient belongings", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Handwashing", "Handwashing", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Food safety and meals timing", "Food safety and meals timing", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add answers
+            call add_answer_to_concept_set(@parent_concept, NULL, "General instructions about hospital admission and room orientation", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Room organization and decluttering", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Visiting hours", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Hospital daily routine", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Patient safety instruction", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "No smoking policy", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Safekeeping of patient belongings", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Handwashing", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Food safety and meals timing", NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071534" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add "HE, Covered topics at the third station" to "Health Education" form</comment>
+        <sql>
+            set @parent_concept = "Health Education";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Covered topics at the third station";
+            set @concept_name_full = "HE, Covered topics at the third station";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071556" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add concepts to "HE, Covered topics at the third station"</comment>
+        <sql>
+            # Create concepts
+            set @parent_concept = "HE, Covered topics at the third station";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_description = NULL;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Patient rules and responsibilities", "Patient rules and responsibilities", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Preparing patient to surgery", "Preparing patient to surgery", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Antibiotic compliance and antibiotic misuse", "Antibiotic compliance and antibiotic misuse", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add answers
+            call add_answer_to_concept_set(@parent_concept, NULL, "Patient rules and responsibilities", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Preparing patient to surgery", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Antibiotic compliance and antibiotic misuse", NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071536" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add "HE, Covered topics at the fourth station" to "Health Education" form</comment>
+        <sql>
+            set @parent_concept = "Health Education";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Covered topics at the fourth station";
+            set @concept_name_full = "HE, Covered topics at the fourth station";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Question";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071537" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add concepts to "HE, Covered topics at the fourth station"</comment>
+        <sql>
+            # Create concepts
+            set @parent_concept = "HE, Covered topics at the fourth station";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_description = NULL;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Infection control measures", "Infection control measures", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Dealing with wound dressing", "Dealing with wound dressing", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Signs of infection", "Signs of infection", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Dealing with external fixator", "Dealing with external fixator", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Isolation precautions", "Isolation precautions", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Dealing with drains and wound devices", "Dealing with drains and wound devices", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add answers
+            call add_answer_to_concept_set(@parent_concept, NULL, "Infection control measures", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Dealing with wound dressing", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Signs of infection", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Dealing with external fixator", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Isolation precautions", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Dealing with drains and wound devices", NULL, @locale, @is_set);
+
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071600" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <comment>MOBN-848 | Add "HE, Topic of the follow-up educational session" to "Health Education" form</comment>
+    <sql>
+        set @parent_concept = "Health Education";
+        set @concept_id = 0;
+        set @concept_name_short_id = 0;
+        set @concept_name_full_id = 0;
+        set @concept_name_short = "Topic of the follow-up educational session";
+        set @concept_name_full = "HE, Topic of the follow-up educational session";
+        set @concept_description = NULL;
+        set @concept_datatype = "Text";
+        set @concept_class = "Finding";
+        set @locale = "en";
+        set @is_set = False;
+        call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+        call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+    </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071601" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add "HE, Educational tool" to "Health Education" form</comment>
+        <sql>
+            set @parent_concept = "Health Education";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Educational tool";
+            set @concept_name_full = "HE, Educational tool";
+            set @concept_description = NULL;
+            set @concept_datatype = "Text";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071602" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add "HE, Follow-up notes, health education" to "Health Education" form</comment>
+        <sql>
+            set @parent_concept = "Health Education";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Follow-up notes, health education";
+            set @concept_name_full = "HE, Follow-up notes, health education";
+            set @concept_description = NULL;
+            set @concept_datatype = "Text";
+            set @concept_class = "Question";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002071603" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Add "HE, Date of receiving the hygiene kits" to "Health Education" form</comment>
+        <sql>
+            set @parent_concept = "Health Education";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Date of receiving the hygiene kits";
+            set @concept_name_full = "HE, Date of receiving the hygiene kits";
+            set @concept_description = NULL;
+            set @concept_datatype = "Datetime";
+            set @concept_class = "Question";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 

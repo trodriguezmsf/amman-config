@@ -67,6 +67,15 @@
             "All Observation Templates": {
                 "showPanelView": false
             },
+          "HE, Covered topics at the second station": {
+            "multiSelect":true
+          },
+          "HE, Covered topics at the third station": {
+            "multiSelect":true
+          },
+          "HE, Covered topics at the fourth station": {
+            "multiSelect":true
+          },
             "Weight for height status (WFH)": {
                 "dropdown": true
             },
