@@ -7606,12 +7606,51 @@
         </sql>
         <sqlFile splitStatements="false" path="utils/AddAnswerToConceptSet.sql"/>
     </changeSet>
-    <changeSet id="Amman-202001281456" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <changeSet id="Amman-202002101500" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-841 | Add new concepts 'Initial, Post-operative and Final' to 'ONN, Type of assessment' concept set</comment>
         <sql>
-            call add_answer_to_concept_set('ONN, Type of assessment', NULL, 'Initial', NULL, "en", True);
-            call add_answer_to_concept_set('ONN, Type of assessment', NULL, 'Post-operative', NULL, "en", True);
-            call add_answer_to_concept_set('ONN, Type of assessment', NULL, 'Final', NULL, "en", True);
+            # Create concepts
+            set @parent_concept = "ONN, Type of assessment";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_description = NULL;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "ONN, Initial", "Initial", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "ONN, Follow-up", "Follow-up", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "ONN, TRM", "TRM", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            call add_answer_to_concept_set(@parent_concept, NULL, 'Initial', NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, 'Follow-up', NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, 'TRM', NULL, @locale, @is_set);
+
+            # Add sites of wound
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Lip";
+            set @concept_name_full = "Site, Lip";
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, null, @concept_datatype, @concept_class, @locale, false);
+
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Eyelid";
+            set @concept_name_full = "Site, Eyelid";
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, null, @concept_datatype, @concept_class, @locale, false);
+
+            set @concept_name_full = "ONN, Site";
+            call add_answer_to_concept_set(@concept_name_full, NULL, "Site, Lip", NULL, @locale, False);
+            call add_answer_to_concept_set(@concept_name_full, NULL, "Site, Eyelid", NULL, @locale, False);
         </sql>
     </changeSet>
     <changeSet id="Amman-202001202233" author="Michael Bontyes" context="amman-enhancements-january2020">
@@ -7650,9 +7689,9 @@
         <comment>MOBN-841 | Add 'ONN, Type of assessment' to 'OPD Nursing Note' and reorder concept set</comment>
         <sql>
             # Reorder concepts (Parent concept name, Concept answer name, sort weight)
-            call reorder_concept_answer('ONN, Type of assessment', 'Initial', 0);
-            call reorder_concept_answer('ONN, Type of assessment', 'Post-operative', 1);
-            call reorder_concept_answer('ONN, Type of assessment', 'Final', 2);
+            call reorder_concept_answer('ONN, Type of assessment', 'ONN, Initial', 0);
+            call reorder_concept_answer('ONN, Type of assessment', 'ONN, Follow-up', 1);
+            call reorder_concept_answer('ONN, Type of assessment', 'ONN, TRM', 2);
         </sql>
     </changeSet>
     <changeSet id="Amman-202001202300" author="Michael Bontyes" context="amman-enhancements-january2020">
@@ -7785,26 +7824,6 @@
 
             set @mapping_code_name = "WOUND_SITE";
             call create_reference_mapping_msf_internal(@concept_name_full, @mapping_code_name);
-
-            set @concept_id = 0;
-            set @concept_name_short_id = 0;
-            set @concept_name_full_id = 0;
-            set @concept_name_short = "Lip";
-            set @concept_name_full = "Site, Lip";
-            set @concept_datatype = "N/A";
-            set @concept_class = "Misc";
-            set @locale = "en";
-            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, null, @concept_datatype, @concept_class, @locale, false);
-
-            set @concept_id = 0;
-            set @concept_name_short_id = 0;
-            set @concept_name_full_id = 0;
-            set @concept_name_short = "Eyelid";
-            set @concept_name_full = "Site, Eyelid";
-            set @concept_datatype = "N/A";
-            set @concept_class = "Misc";
-            set @locale = "en";
-            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, null, @concept_datatype, @concept_class, @locale, false);
 
             set @concept_name_full = "PE, Site of wound";
             set @locale = "en";
