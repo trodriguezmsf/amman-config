@@ -8848,6 +8848,15 @@
             call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202002101025" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Reorder "HE, Educational station" answers</comment>
+        <sql>
+            call reorder_concept_answer("HE, Educational station", "First station", 1);
+            call reorder_concept_answer("HE, Educational station", "Second station", 2);
+            call reorder_concept_answer("HE, Educational station", "Third station", 3);
+            call reorder_concept_answer("HE, Educational station", "Fourth station", 4);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
