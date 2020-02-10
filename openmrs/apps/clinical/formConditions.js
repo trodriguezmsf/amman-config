@@ -23,6 +23,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
+    'HE, Initial medical and nonmedical educational needs': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['HE, Initial medical and nonmedical educational needs'];
+        if (conditionConcept.indexOf("Other educational needs")>=0){
+            conditions.show.push("HE, Education learning needs")
+        }
+        else {
+            conditions.hide.push("HE, Education learning needs")
+        }
+        return conditions;
+    },
     'FSTG, Outcomes for 1st stage surgical validation': function (formName, formFieldValues) {
         var conditions = {
             show: [],
