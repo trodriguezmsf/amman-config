@@ -1,4 +1,28 @@
 Bahmni.ConceptSet.FormConditions.rules = {
+    'HE, Educational station': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['HE, Educational station'];
+        if (conditionConcept == "First station") {
+            conditions.show.push("HE, Covered topic at the first station")
+            conditions.hide.push("HE, Covered topics at the second station", "HE, Covered topics at the third station", "HE, Covered topics at the fourth station")
+        }
+        else if (conditionConcept == "Second station") {
+            conditions.show.push("HE, Covered topics at the second station")
+            conditions.hide.push("HE, Covered topic at the first station", "HE, Covered topics at the third station", "HE, Covered topics at the fourth station")
+        }
+        else if (conditionConcept == "Third station") {
+            conditions.show.push("HE, Covered topics at the third station")
+            conditions.hide.push("HE, Covered topic at the first station", "HE, Covered topics at the second station", "HE, Covered topics at the fourth station")
+        }
+        else if (conditionConcept == "Fourth station") {
+            conditions.show.push("HE, Covered topics at the fourth station")
+            conditions.hide.push("HE, Covered topic at the first station", "HE, Covered topics at the second station", "HE, Covered topics at the third station")
+        }
+        return conditions;
+    },
     'FSTG, Outcomes for 1st stage surgical validation': function (formName, formFieldValues) {
         var conditions = {
             show: [],
