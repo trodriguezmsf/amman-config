@@ -7576,22 +7576,6 @@
             call add_concept_to_concept_set_per_name(3668,"ULA, Muscle Right : Fingers Ext.", True);
         </sql>
     </changeSet>
-    <changeSet id="Amman-202001171625" author="Michael Bontyes" context="amman-enhancements-january2020">
-        <comment>MOBN-848 | Add new concept "HE, Follow-up notes" for the "Health Education obs. form"</comment>
-        <sql>
-            set @concept_id = 0;
-            set @concept_name_short_id = 0;
-            set @concept_name_full_id = 0;
-            set @concept_datatype_coded = 0;
-            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'HE, Follow-up notes', 'Follow-up notes', null, 'Text', 'Misc', 'en', false);
-        </sql>
-    </changeSet>
-    <changeSet id="Amman-202001171626" author="Michael Bontyes" context="amman-enhancements-january2020">
-        <comment>MOBN-848 | Add new concept "HE, Follow-up notes" to the "Health Education obs. form" concept set</comment>
-        <sql>
-            call add_concept_to_concept_set_per_name(1719,"HE, Follow-up notes", True);
-        </sql>
-    </changeSet>
     <changeSet id="Amman-202001201810" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-841 | Add "ONN, Type of assessment" to "OPD Nursing Note" form</comment>
         <sql>
@@ -8857,8 +8841,140 @@
             call reorder_concept_answer("HE, Educational station", "Fourth station", 4);
         </sql>
     </changeSet>
-</databaseChangeLog>
+    <changeSet id="Amman-202002101040" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Reorder "HE, Type of assessment" answers</comment>
+        <sql>
+            call reorder_concept_answer("HE, Type of assessment", "Initial", 1);
+            call reorder_concept_answer("HE, Type of assessment", "OPD follow-up", 2);
+            call reorder_concept_answer("HE, Type of assessment", "Ward follow-up", 3);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002101035" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Reorder "Health Education" form sections</comment>
+        <sql>
 
+            call reorder_concept_set("Health Education", "HE, Date of consultation", 1);
+            call reorder_concept_set("Health Education", "HE, Type of assessment", 2);
+            call reorder_concept_set("Health Education", "HE, Marital status", 3);
+            call reorder_concept_set("Health Education", "HE, Highest education level", 4);
+            call reorder_concept_set("Health Education", "HE, Limitations interfering with learning process", 5);
+            call reorder_concept_set("Health Education", "HE, Pregnancy status", 6);
+            call reorder_concept_set("Health Education", "HE, Current smoker", 7);
+            call reorder_concept_set("Health Education", "HE, Number of cigarettes per day", 8);
+            call reorder_concept_set("Health Education", "HE, Duration of smoking (in years)", 9);
+            call reorder_concept_set("Health Education", "HE, Drug and Alcohol use", 10);
+            call reorder_concept_set("Health Education", "HE, External devices, present", 11);
+            call reorder_concept_set("Health Education", "HE, Other type of external device", 12);
+            call reorder_concept_set("Health Education", "HE, Nutritional Assessment", 13);
+            call reorder_concept_set("Health Education", "HE, Personal hygiene", 14);
+            call reorder_concept_set("Health Education", "HE, Date of receiving the hygiene kits", 15);
+            call reorder_concept_set("Health Education", "HE, Initial medical and nonmedical educational needs", 16);
+            call reorder_concept_set("Health Education", "HE, Education learning needs", 17);
+            call reorder_concept_set("Health Education", "HE, Referral care Plan", 18);
+            call reorder_concept_set("Health Education", "HE, Educational station", 19);
+            call reorder_concept_set("Health Education", "HE, Covered topic at the first station", 20);
+            call reorder_concept_set("Health Education", "HE, Covered topics at the second station", 21);
+            call reorder_concept_set("Health Education", "HE, Covered topics at the third station", 22);
+            call reorder_concept_set("Health Education", "HE, Covered topics at the fourth station", 23);
+            call reorder_concept_set("Health Education", "HE, Topic of the follow-up educational session", 24);
+            call reorder_concept_set("Health Education", "HE, Educational tool", 25);
+            call reorder_concept_set("Health Education", "HE, Follow-up notes, health education", 26);
+
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002101050" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Update "HE, Education learning needs" shortname</comment>
+        <sql>
+            # Update "VS, Temperature"
+            SET @concept_fully_specified_name = "HE, Education learning needs";
+            SET @concept_locale = "en";
+            SET @updated_concept_fully_specified_name = NULL;
+            SET @updated_concept_short_name = "Other educational needs";
+            SET @updated_concept_description = NULL;
+            SET @updated_concept_form_text = NULL;
+            SET @updated_concept_datatype_id = NULL;
+            SET @updated_concept_class_id = NULL;
+            SET @updated_concept_units = NULL;
+            SET @updated_concept_is_set = NULL;
+            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_units, @updated_concept_is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002101105" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Reorder "HE, Limitations interfering with learning process" answers</comment>
+        <sql>
+            set @parent_concept = "HE, Limitations interfering with learning process";
+            call reorder_concept_answer(@parent_concept, "Health literacy", 1);
+            call reorder_concept_answer(@parent_concept, "Cultural differences", 2);
+            call reorder_concept_answer(@parent_concept, "Patient age", 3);
+            call reorder_concept_answer(@parent_concept, "HE, Gender", 4);
+            call reorder_concept_answer(@parent_concept, "Language or accent", 5);
+            call reorder_concept_answer(@parent_concept, "Language or accent", 6);
+            call reorder_concept_answer(@parent_concept, "Inability to comprehend", 7);
+            call reorder_concept_answer(@parent_concept, "Anxiety", 8);
+            call reorder_concept_answer(@parent_concept, "Pain", 9);
+            call reorder_concept_answer(@parent_concept, "Sensory defects", 10);
+            call reorder_concept_answer(@parent_concept, "Cognitive impairment, executive function", 11);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002101110" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Reorder "HE, Initial medical and nonmedical educational needs" answers</comment>
+        <sql>
+            set @parent_concept = "HE, Initial medical and nonmedical educational needs";
+            call reorder_concept_answer(@parent_concept, "Anemia management", 1);
+            call reorder_concept_answer(@parent_concept, "Asthma-breathing problem-COPD management", 2);
+            call reorder_concept_answer(@parent_concept, "Epilepsy-seizure management", 3);
+            call reorder_concept_answer(@parent_concept, "Diabetes management", 4);
+            call reorder_concept_answer(@parent_concept, "Hypertension management", 5);
+            call reorder_concept_answer(@parent_concept, "Cardiac diseases management", 6);
+            call reorder_concept_answer(@parent_concept, "High cholesterol management", 7);
+            call reorder_concept_answer(@parent_concept, "Kidney diseases management", 8);
+            call reorder_concept_answer(@parent_concept, "Hepatitis-Jaundice management", 9);
+            call reorder_concept_answer(@parent_concept, "Peptic ulcer management", 10);
+            call reorder_concept_answer(@parent_concept, "Personal hygiene", 11);
+            call reorder_concept_answer(@parent_concept, "Hospital safety", 12);
+            call reorder_concept_answer(@parent_concept, "Rules and responsibilities", 13);
+            call reorder_concept_answer(@parent_concept, "Patient rights", 14);
+            call reorder_concept_answer(@parent_concept, "Infection prevention", 15);
+            call reorder_concept_answer(@parent_concept, "Other educational needs", 16);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002101115" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Reorder "HE, Covered topics at the second station" answers</comment>
+        <sql>
+            set @parent_concept = "HE, Covered topics at the second station";
+            call reorder_concept_answer(@parent_concept, "General instructions about hospital admission and room orientation", 1);
+            call reorder_concept_answer(@parent_concept, "Room organization and decluttering", 2);
+            call reorder_concept_answer(@parent_concept, "Visiting hours", 3);
+            call reorder_concept_answer(@parent_concept, "Hospital daily routine", 4);
+            call reorder_concept_answer(@parent_concept, "Patient safety instruction", 5);
+            call reorder_concept_answer(@parent_concept, "No smoking policy", 6);
+            call reorder_concept_answer(@parent_concept, "Safekeeping of patient belongings", 7);
+            call reorder_concept_answer(@parent_concept, "Handwashing", 8);
+            call reorder_concept_answer(@parent_concept, "Food safety and meals timing", 9);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002101120" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Reorder "HE, Covered topics at the third station" answers</comment>
+        <sql>
+            set @parent_concept = "HE, Covered topics at the third station";
+            call reorder_concept_answer(@parent_concept, "Patient rules and responsibilities", 1);
+            call reorder_concept_answer(@parent_concept, "Preparing patient to surgery", 2);
+            call reorder_concept_answer(@parent_concept, "Antibiotic compliance and antibiotic misuse", 3);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002101125" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | Reorder "HE, Covered topics at the fourth station" answers</comment>
+        <sql>
+            set @parent_concept = "HE, Covered topics at the fourth station";
+            call reorder_concept_answer(@parent_concept, "Infection control measures", 1);
+            call reorder_concept_answer(@parent_concept, "Dealing with wound dressing", 2);
+            call reorder_concept_answer(@parent_concept, "Signs of infection", 3);
+            call reorder_concept_answer(@parent_concept, "Dealing with external fixator", 4);
+            call reorder_concept_answer(@parent_concept, "Isolation precautions", 5);
+            call reorder_concept_answer(@parent_concept, "Dealing with drains and wound devices", 6);
+        </sql>
+    </changeSet>
+</databaseChangeLog>
 
 
 
