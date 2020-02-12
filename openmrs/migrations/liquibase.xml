@@ -9410,39 +9410,77 @@
         <sqlFile splitStatements="false" path="utils/RemoveAnswerFromConceptSet.sql"/>
     </changeSet>
     <changeSet id="Amman-202002121535" author="Michael Bontyes" context="amman-enhancements-january2020">
-        <comment>MOBN-1108 | Add concepts to "HE, Covered topics at the fourth station"</comment>
+    <comment>MOBN-1108 | Add concepts to "HE, Covered topics at the fourth station"</comment>
+    <sql>
+        # Create concepts
+        set @parent_concept = "PNF, Type of assessment";
+        set @concept_id = 0;
+        set @concept_name_short_id = 0;
+        set @concept_name_full_id = 0;
+        set @concept_description = NULL;
+        set @concept_datatype = "N/A";
+        set @concept_class = "Misc";
+        set @locale = "en";
+        set @is_set = False;
+
+        call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "First assessment", "First assessment", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+        call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Initial consultation note inpatient", "Initial consultation note inpatient", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+        call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Follow-up note inpatient", "Follow-up note inpatient", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+        call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Pain clinic visit", "Pain clinic visit", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+        call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Final assessment at TRM", "Final assessment at TRM", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+        # Add answers
+        call add_answer_to_concept_set(@parent_concept, NULL, "First assessment", NULL, @locale, @is_set);
+        call add_answer_to_concept_set(@parent_concept, NULL, "Initial consultation note inpatient", NULL, @locale, @is_set);
+        call add_answer_to_concept_set(@parent_concept, NULL, "Follow-up note inpatient", NULL, @locale, @is_set);
+        call add_answer_to_concept_set(@parent_concept, NULL, "Pain clinic visit", NULL, @locale, @is_set);
+        call add_answer_to_concept_set(@parent_concept, NULL, "Final assessment at TRM", NULL, @locale, @is_set);
+
+        # Remove previous answers
+        call remove_answer_from_concept_set(@parent_concept, NULL, "Initial", NULL, @locale);
+        call remove_answer_from_concept_set(@parent_concept, NULL, "Post-operative", NULL, @locale);
+        call remove_answer_from_concept_set(@parent_concept, NULL, "Final", NULL, @locale);
+
+    </sql>
+    </changeSet>
+    <changeSet id="Amman-202002121545" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <comment>MOBN-1108 | Update "PNF, Pain severity" short name</comment>
+    <sql>
+        SET @concept_fully_specified_name = "PNF, Pain severity";
+        SET @concept_locale = "en";
+        SET @updated_concept_fully_specified_name = NULL;
+        SET @updated_concept_short_name = "Pain score at rest";
+        SET @updated_concept_description = NULL;
+        SET @updated_concept_form_text = NULL;
+        SET @updated_concept_datatype_id = NULL;
+        SET @updated_concept_class_id = NULL;
+        SET @updated_concept_units = NULL;
+        SET @updated_concept_is_set = NULL;
+        CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_units, @updated_concept_is_set);
+    </sql>
+    </changeSet>
+    <changeSet id="Amman-202002121555" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1108 | Add "PNF, Pain score with activity" to "PNF, Nociceptive pain"</comment>
         <sql>
-            # Create concepts
-            set @parent_concept = "PNF, Type of assessment";
+            # Create concept
+            set @parent_concept = "PNF, Nociceptive pain";
             set @concept_id = 0;
             set @concept_name_short_id = 0;
             set @concept_name_full_id = 0;
-            set @concept_description = NULL;
-            set @concept_datatype = "N/A";
-            set @concept_class = "Misc";
+            set @concept_name_short = "Pain score with activity";
+            set @concept_name_full = "PNF, Pain score with activity";
+            set @concept_description = "For children 3-5 years, use Wong-Baker scale. For children over 5 years and adults use visual numeric pain scale";
+            set @concept_datatype = "Numeric";
+            set @concept_class = "Finding";
             set @locale = "en";
             set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
 
-            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "First assessment", "First assessment", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
-            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Initial consultation note inpatient", "Initial consultation note inpatient", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
-            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Follow-up note inpatient", "Follow-up note inpatient", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
-            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Pain clinic visit", "Pain clinic visit", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
-            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Final assessment at TRM", "Final assessment at TRM", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
-
-            # Add answers
-            call add_answer_to_concept_set(@parent_concept, NULL, "First assessment", NULL, @locale, @is_set);
-            call add_answer_to_concept_set(@parent_concept, NULL, "Initial consultation note inpatient", NULL, @locale, @is_set);
-            call add_answer_to_concept_set(@parent_concept, NULL, "Follow-up note inpatient", NULL, @locale, @is_set);
-            call add_answer_to_concept_set(@parent_concept, NULL, "Pain clinic visit", NULL, @locale, @is_set);
-            call add_answer_to_concept_set(@parent_concept, NULL, "Final assessment at TRM", NULL, @locale, @is_set);
-
-            # Remove previous answers
-            call remove_answer_from_concept_set(@parent_concept, NULL, "Initial", NULL, @locale);
-            call remove_answer_from_concept_set(@parent_concept, NULL, "Post-operative", NULL, @locale);
-            call remove_answer_from_concept_set(@parent_concept, NULL, "Final", NULL, @locale);
-
+            # Add to concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
         </sql>
     </changeSet>
+
 </databaseChangeLog>
 
 
