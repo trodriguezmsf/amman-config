@@ -9480,7 +9480,101 @@
             call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202002121600" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1108 | Update "PNF, Patient score" short name</comment>
+        <sql>
+            SET @concept_fully_specified_name = "PNF, Patient score";
+            SET @concept_locale = "en";
+            SET @updated_concept_fully_specified_name = NULL;
+            SET @updated_concept_short_name = "Neuropathic pain score at rest";
+            SET @updated_concept_description = NULL;
+            SET @updated_concept_form_text = NULL;
+            SET @updated_concept_datatype_id = NULL;
+            SET @updated_concept_class_id = NULL;
+            SET @updated_concept_units = NULL;
+            SET @updated_concept_is_set = NULL;
+            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_units, @updated_concept_is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002121605" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <comment>MOBN-1108 | Add "PNF, Neuropathic pain score with activity" to "PNF, Questionnaire DN4"</comment>
+    <sql>
+        # Create concept
+        set @parent_concept = "PNF, Questionnaire DN4";
+        set @concept_id = 0;
+        set @concept_name_short_id = 0;
+        set @concept_name_full_id = 0;
+        set @concept_name_short = "Neuropathic pain score with activity";
+        set @concept_name_full = "PNF, Neuropathic pain score with activity";
+        set @concept_description = "If the score is equal or greater than 4/10, the test is positive";
+        set @concept_datatype = "Numeric";
+        set @concept_class = "Finding";
+        set @locale = "en";
+        set @is_set = False;
+        call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
 
+        # Add to concept set
+        call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+    </sql>
+    </changeSet>
+    <changeSet id="Amman-202002121610" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1108 | Add "Bilateral" to "PNF, Side of pain"</comment>
+        <sql>
+            # Create concept
+            set @parent_concept = "PNF, Side of pain";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Bilateral";
+            set @concept_name_full = "Bilateral";
+            set @concept_description = NULL;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to concept set
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002121615" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1108 | Update "PNF, Is the pain:" short name</comment>
+        <sql>
+            SET @concept_fully_specified_name = "PNF, Is the pain:";
+            SET @concept_locale = "en";
+            SET @updated_concept_fully_specified_name = NULL;
+            SET @updated_concept_short_name = "Timing:";
+            SET @updated_concept_description = NULL;
+            SET @updated_concept_form_text = NULL;
+            SET @updated_concept_datatype_id = NULL;
+            SET @updated_concept_class_id = NULL;
+            SET @updated_concept_units = NULL;
+            SET @updated_concept_is_set = NULL;
+            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_units, @updated_concept_is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002121620" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1108 | Add "Duration:" to "Pain Nurse Follow-up"</comment>
+        <sql>
+            # Create concept
+            set @parent_concept = "Pain Nurse Follow-up";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Duration:";
+            set @concept_name_full = "PNF, Duration:";
+            set @concept_description = NULL;
+            set @concept_datatype = "Text";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to concept set
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
