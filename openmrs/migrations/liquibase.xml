@@ -9376,6 +9376,32 @@
             call map_concept("Unspecified mental retardation", @locale,"F79", @concept_reference_source, @concept_map_type);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202002121349" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1105 | Reorder sections in "Type of assistive device or orthosis"</comment>
+        <sql>
+            set @observation_form_name = "ULA, Type of assistive device or orthosis";
+            # Reorder concepts (Concept set full name, Concept full name, sort weight)
+            call reorder_concept_set(@observation_form_name, 'Orthosis', 0);
+            call reorder_concept_set(@observation_form_name, 'One axillary crutch', 1);
+            call reorder_concept_set(@observation_form_name, 'Two axillary crutches', 2);
+            call reorder_concept_set(@observation_form_name, 'One elbow crutch', 3);
+            call reorder_concept_set(@observation_form_name, 'Two elbow crutches', 4);
+            call reorder_concept_set(@observation_form_name, 'ULA, Cane', 5);
+            call reorder_concept_set(@observation_form_name, 'Walker', 6);
+            call reorder_concept_set(@observation_form_name, 'Other', 7);
+
+            set @observation_form_name = "LLA, Type of assistive device or orthosis";
+            # Reorder concepts (Concept set full name, Concept full name, sort weight)
+            call reorder_concept_set(@observation_form_name, 'Orthosis', 0);
+            call reorder_concept_set(@observation_form_name, 'One axillary crutch', 1);
+            call reorder_concept_set(@observation_form_name, 'Two axillary crutches', 2);
+            call reorder_concept_set(@observation_form_name, 'One elbow crutch', 3);
+            call reorder_concept_set(@observation_form_name, 'Two elbow crutches', 4);
+            call reorder_concept_set(@observation_form_name, 'ULA, Cane', 5);
+            call reorder_concept_set(@observation_form_name, 'Walker', 6);
+            call reorder_concept_set(@observation_form_name, 'Other', 7);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
