@@ -9323,6 +9323,59 @@
             call reorder_concept_answer(@parent_concept, "Xerophthalmia",212);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202002112355" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1104 | Mapping diagnoses</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS map_concept;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/MapConcept.sql"/>
+    </changeSet>
+    <changeSet id="Amman-202002120010" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1104 | Mapping diagnoses</comment>
+        <sql>
+            set @locale = "en";
+            set @concept_reference_source = "ICD-10-WHO";
+            set @concept_map_type = "SAME-AS";
+            call map_concept("Acute and transient psychotic disorders", @locale,"F23", @concept_reference_source, @concept_map_type);
+            call map_concept("Acute stress reaction", @locale,"F43.0", @concept_reference_source, @concept_map_type);
+            call map_concept("Adjustment disorders", @locale,"F43.2", @concept_reference_source, @concept_map_type);
+            call map_concept("Bipolar affective disorder", @locale,"F31", @concept_reference_source, @concept_map_type);
+            call map_concept("Childhood emotional disorder, unspecified", @locale,"F93.9", @concept_reference_source, @concept_map_type);
+            call map_concept("Chronic intractable pain", @locale,"R52.1", @concept_reference_source, @concept_map_type);
+            call map_concept("Complex Regional Pain Syndrome", @locale,"G58.9", @concept_reference_source, @concept_map_type);
+            call map_concept("Conduct disorder, unspecified", @locale,"F91.9", @concept_reference_source, @concept_map_type);
+            call map_concept("Delirium, not induced by alcohol and other psychoactive substances", @locale,"F05.9", @concept_reference_source, @concept_map_type);
+            call map_concept("Depressive episode", @locale,"F32", @concept_reference_source, @concept_map_type);
+            call map_concept("Dissociative [conversion] disorders", @locale,"F44", @concept_reference_source, @concept_map_type);
+            call map_concept("Dissociative convulsions", @locale,"F44.5", @concept_reference_source, @concept_map_type);
+            call map_concept("Disturbance of activity and attention", @locale,"F90.0", @concept_reference_source, @concept_map_type);
+            call map_concept("Hyperaesthesia", @locale,"R20.3", @concept_reference_source, @concept_map_type);
+            call map_concept("Mental and behavioural disorders due to use of alcohol", @locale,"F10", @concept_reference_source, @concept_map_type);
+            call map_concept("Mental and behavioural disorders due to multiple drug use and use of other psychoactive substances", @locale,"F19", @concept_reference_source, @concept_map_type);
+            call map_concept("Mild mental and behavioural disorders associated with the puerperium, not elsewhere classified", @locale,"F53.0", @concept_reference_source, @concept_map_type);
+            call map_concept("Moderate depressive episode", @locale,"F32.1", @concept_reference_source, @concept_map_type);
+            call map_concept("Moderate protein-energy malnutrition", @locale,"E44.0", @concept_reference_source, @concept_map_type);
+            call map_concept("Neuropathy", @locale,"G62.9", @concept_reference_source, @concept_map_type);
+            call map_concept("Nonorganic enuresis", @locale,"F98.0", @concept_reference_source, @concept_map_type);
+            call map_concept("Obsessive-compulsive disorder", @locale,"F42", @concept_reference_source, @concept_map_type);
+            call map_concept("Other anxiety disorder", @locale,"F41", @concept_reference_source, @concept_map_type);
+            call map_concept("Other and unspecified convulsions", @locale,"R56.8", @concept_reference_source, @concept_map_type);
+            call map_concept("Pervasive developmental disorder, unspecified", @locale,"F84.9", @concept_reference_source, @concept_map_type);
+            call map_concept("Phantom limb syndrome without pain", @locale,"G54.7", @concept_reference_source, @concept_map_type);
+            call map_concept("Protein-calorie malnutrition", @locale,"E46", @concept_reference_source, @concept_map_type);
+            call map_concept("Sciatica", @locale,"M54.3", @concept_reference_source, @concept_map_type);
+            call map_concept("Schizophrenia", @locale,"F20", @concept_reference_source, @concept_map_type);
+            call map_concept("Separation anxiety disorder of childhood", @locale,"F93.0", @concept_reference_source, @concept_map_type);
+            call map_concept("Severe complicated malnutrition", @locale,"E41", @concept_reference_source, @concept_map_type);
+            call map_concept("Severe depressive episode without psychotic symptoms", @locale,"F32.2", @concept_reference_source, @concept_map_type);
+            call map_concept("Severe depressive episode with psychotic symptoms", @locale,"F32.3", @concept_reference_source, @concept_map_type);
+            call map_concept("Severe mental and behavioural disorders associated with the puerperium, not elsewhere classified", @locale,"F53.1", @concept_reference_source, @concept_map_type);
+            call map_concept("Severe uncomplicated malnutrition", @locale,"E41", @concept_reference_source, @concept_map_type);
+            call map_concept("Somatoform disorders", @locale,"F45", @concept_reference_source, @concept_map_type);
+            call map_concept("Unspecified dementia", @locale,"F03", @concept_reference_source, @concept_map_type);
+            call map_concept("Unspecified mental retardation", @locale,"F79", @concept_reference_source, @concept_map_type);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
