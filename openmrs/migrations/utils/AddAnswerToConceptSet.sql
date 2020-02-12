@@ -8,6 +8,7 @@ BEGIN
  DECLARE is_set_val TINYINT(1);
  DECLARE user_id_proc INT;
  DECLARE max_sort_weight_proc INT;
+ DECLARE answer_count INT;
 
  CASE
    WHEN is_set = TRUE THEN
@@ -26,7 +27,7 @@ BEGIN
    WHERE name = concept_set_name_proc AND concept_name_type = "FULLY_SPECIFIED" AND locale = concept_locale_proc AND voided = 0;
  END IF;
 
- SELECT count(distinct answer_id_proc) into @concept_count from concept_set where concept_set = concept_set_id_proc and concept_id = answer_id_proc;
+ SELECT count(distinct answer_id_proc) INTO @answer_count FROM concept_answer WHERE concept_id = concept_set_id_proc AND answer_concept = answer_id_proc;
  IF @concept_count > 0 THEN
    SIGNAL SQLSTATE '45000'
      SET MESSAGE_TEXT = 'Concept Answer Already Exists';

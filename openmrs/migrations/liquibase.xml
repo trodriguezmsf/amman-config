@@ -7599,7 +7599,7 @@
             call create_reference_mapping_msf_internal('ONN, Type of assessment', 'ASSESSMENT_TYPE');
         </sql>
     </changeSet>
-    <changeSet id="Amman-202001281458" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <changeSet id="Amman-202002121540" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-841 | Adding a new procedure to add answers to concept set</comment>
         <sql>
             DROP PROCEDURE IF EXISTS add_answer_to_concept_set;
@@ -9400,6 +9400,47 @@
             call reorder_concept_set(@observation_form_name, 'ULA, Cane', 5);
             call reorder_concept_set(@observation_form_name, 'Walker', 6);
             call reorder_concept_set(@observation_form_name, 'Other', 7);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002121532" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1108 | Mapping diagnoses</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS remove_answer_from_concept_set;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/RemoveAnswerFromConceptSet.sql"/>
+    </changeSet>
+    <changeSet id="Amman-202002121535" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1108 | Add concepts to "HE, Covered topics at the fourth station"</comment>
+        <sql>
+            # Create concepts
+            set @parent_concept = "PNF, Type of assessment";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_description = NULL;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "First assessment", "First assessment", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Initial consultation note inpatient", "Initial consultation note inpatient", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Follow-up note inpatient", "Follow-up note inpatient", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Pain clinic visit", "Pain clinic visit", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Final assessment at TRM", "Final assessment at TRM", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add answers
+            call add_answer_to_concept_set(@parent_concept, NULL, "First assessment", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Initial consultation note inpatient", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Follow-up note inpatient", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Pain clinic visit", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Final assessment at TRM", NULL, @locale, @is_set);
+
+            # Remove previous answers
+            call remove_answer_from_concept_set(@parent_concept, NULL, "Initial", NULL, @locale);
+            call remove_answer_from_concept_set(@parent_concept, NULL, "Post-operative", NULL, @locale);
+            call remove_answer_from_concept_set(@parent_concept, NULL, "Final", NULL, @locale);
+
         </sql>
     </changeSet>
 </databaseChangeLog>
