@@ -1,4 +1,18 @@
 Bahmni.ConceptSet.FormConditions.rules = {
+    'PNF, Quality:': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNF, Quality:'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("PNF, Other Quality:")
+        }
+        else {
+            conditions.hide.push("PNF, Other Quality:")
+        }
+        return conditions;
+    },
     'HE, Educational station': function (formName, formFieldValues) {
         var conditions = {
             show: [],
