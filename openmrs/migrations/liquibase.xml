@@ -9572,7 +9572,110 @@
             call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
 
             # Add to concept set
-            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002121625" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1108 | Add "Quality" concepts</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "Pain Nurse Follow-up";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Quality:";
+            set @concept_name_full = "PNF, Quality:";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Create concept
+            set @parent_concept = "PNF, Quality:";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_description = NULL;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+            set @concept_name = "Dull";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            set @concept_name = "Burning";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            set @concept_name = "Stabbing";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            set @concept_name = "Pulsating";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            set @concept_name = "Heavy";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            set @concept_name = "Tightening";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to concept set
+            set @concept_name = "Sharp";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            set @concept_name = "Dull";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            set @concept_name = "Burning";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            set @concept_name = "Stabbing";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            set @concept_name = "Pulsating";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            set @concept_name = "Heavy";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            set @concept_name = "Tightening";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            set @concept_name = "Other";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002131145" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | CIEL Mapping update</comment>
+        <sql>
+            set @locale = "en";
+            set @concept_reference_source = "CIEL";
+            set @concept_map_type = "SAME-AS";
+            call map_concept("Yes", @locale,"1065", @concept_reference_source, @concept_map_type);
+            call map_concept("No", @locale,"1066", @concept_reference_source, @concept_map_type);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002131150" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-849 | CIEL Mapping update</comment>
+        <sql>
+            set @locale = "en";
+            set @concept_reference_source = "CIEL";
+            set @concept_map_type = "SAME-AS";
+            call map_concept("Initial", @locale,"162080", @concept_reference_source, @concept_map_type);
+            call map_concept("Patient age", @locale,"989", @concept_reference_source, @concept_map_type);
+            call map_concept("Cognitive impairment, executive function", @locale,"161105", @concept_reference_source, @concept_map_type);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002131155" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-845 | CIEL Mapping update</comment>
+        <sql>
+            set @locale = "en";
+            set @concept_reference_source = "CIEL";
+            set @concept_map_type = "SAME-AS";
+            call map_concept("Mid-Upper Arm Circumference (MUAC)", @locale,"1343", @concept_reference_source, @concept_map_type);
+            call map_concept("Weight for height status (WFH)", @locale,"163515", @concept_reference_source, @concept_map_type);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002131200" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-845 | Additional CIEL Mapping update</comment>
+        <sql>
+            set @locale = "en";
+            set @concept_reference_source = "CIEL";
+            set @concept_map_type = "SAME-AS";
+            call map_concept("RIGHT UPPER EXTREMITY", @locale,"1233", @concept_reference_source, @concept_map_type);
+            call map_concept("LEFT UPPER EXTREMITY", @locale,"1232", @concept_reference_source, @concept_map_type);
         </sql>
     </changeSet>
 </databaseChangeLog>
