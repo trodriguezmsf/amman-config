@@ -35,16 +35,22 @@ BEGIN
 
     # Update concept_short_name
     IF updated_concept_short_name IS NOT NULL THEN
-        UPDATE concept_name
-        SET name = updated_concept_short_name
-        WHERE concept_id = concept_id_proc AND concept_name_type='SHORT' AND voided = 0 AND locale = concept_locale;
+        SELECT COUNT(DISTINCT concept_id) INTO @concept_count FROM concept_name WHERE concept_id = concept_id_proc AND concept_name_type='SHORT' AND voided = 0 AND locale = concept_locale;
+        IF @concept_count = 0 THEN
+            INSERT INTO concept_name (concept_id,name,locale,locale_preferred,creator,date_created,concept_name_type,voided,voided_by,date_voided,void_reason,uuid,date_changed,changed_by) VALUES
+            (concept_id_proc,updated_concept_short_name,concept_locale,1,user_id_proc,now(),'SHORT',0,NULL,NULL,NULL,uuid(),NULL,NULL);
+        ELSE
+            UPDATE concept_name
+            SET name = updated_concept_short_name
+            WHERE concept_id = concept_id_proc AND concept_name_type='SHORT' AND voided = 0 AND locale = concept_locale;
+        END IF;
     END IF;
 
     # Update concept_description
     IF updated_concept_description IS NOT NULL THEN
-        SELECT COUNT(DISTINCT concept_id) INTO @concept_count FROM concept_description WHERE concept_id = concept_id_proc;
+         SELECT COUNT(DISTINCT concept_id) INTO @concept_count FROM concept_description WHERE concept_id = concept_id_proc;
          IF @concept_count = 0 THEN
-            INSERT INTO openmrs.concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid) VALUES
+            INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid) VALUES
             (concept_id_proc,updated_concept_description,concept_locale,user_id_proc,now(),user_id_proc,now(),uuid());
          ELSE
             UPDATE concept_description
