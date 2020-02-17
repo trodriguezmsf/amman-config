@@ -8313,7 +8313,7 @@
             call reorder_concept_set(@form_name, 'VS, Comments about baseline vital signs', 13);
         </sql>
     </changeSet>
-    <changeSet id="Amman-202002071015" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <changeSet id="Amman-202002171110" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-845 | Adding a new procedure to update concepts</comment>
         <sql>
             DROP PROCEDURE IF EXISTS update_concept;
@@ -10068,6 +10068,22 @@
             call map_concept("Abdominal pain", @locale,"151", @concept_reference_source, @concept_map_type);
             call map_concept("Melena", @locale,"134394", @concept_reference_source, @concept_map_type);
             call map_concept("Hematemesis", @locale,"139006", @concept_reference_source, @concept_map_type);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171040" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1107 | Update "Pain Nurse Follow-up" short name</comment>
+        <sql>
+            SET @concept_fully_specified_name = "Pain Nurse Follow-up";
+            SET @concept_locale = "en";
+            SET @updated_concept_fully_specified_name = NULL;
+            SET @updated_concept_short_name = "Pain Service Note";
+            SET @updated_concept_description = NULL;
+            SET @updated_concept_form_text = NULL;
+            SET @updated_concept_datatype_id = NULL;
+            SET @updated_concept_class_id = NULL;
+            SET @updated_concept_units = NULL;
+            SET @updated_concept_is_set = NULL;
+            CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_units, @updated_concept_is_set);
         </sql>
     </changeSet>
 </databaseChangeLog>
