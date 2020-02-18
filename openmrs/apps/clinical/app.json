@@ -67,6 +67,12 @@
             "All Observation Templates": {
                 "showPanelView": false
             },
+          "OR, Sterile barrier": {
+            "multiSelect":true
+          },
+          "OR, Local anesthetic given": {
+            "multiSelect":true
+          },
           "HE, Covered topics at the second station": {
             "multiSelect":true
           },

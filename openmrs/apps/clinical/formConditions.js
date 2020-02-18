@@ -1,4 +1,18 @@
 Bahmni.ConceptSet.FormConditions.rules = {
+    'OR, Peripheral Nerve Block': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['OR, Peripheral Nerve Block'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("OR, Peripheral Nerve Block Section")
+        }
+        else {
+            conditions.hide.push("OR, Peripheral Nerve Block Section")
+        }
+        return conditions;
+    },
     'PNF, Quality:': function (formName, formFieldValues) {
         var conditions = {
             show: [],
@@ -10,6 +24,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         else {
             conditions.hide.push("PNF, Other Quality:")
+        }
+        return conditions;
+    },
+    'OR, Local anesthetic given': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['OR, Local anesthetic given'];
+        if (conditionConcept.indexOf("Other")>=0){
+            conditions.show.push("OR, Other local anesthetic given")
+        }
+        else {
+            conditions.hide.push("OR, Other local anesthetic given")
         }
         return conditions;
     },
