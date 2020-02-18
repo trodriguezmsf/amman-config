@@ -10009,7 +10009,7 @@
             call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
         </sql>
     </changeSet>
-    <changeSet id="Amman-202002131710" author="Michael Bontyes" context="amman-enhancements-january2020">
+    <changeSet id="Amman-202002171400" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-1108 | Reorder sections in "Pain Nurse Follow-up"</comment>
         <sql>
             set @observation_form_name = "Pain Nurse Follow-up";
@@ -10018,20 +10018,20 @@
             call reorder_concept_set(@observation_form_name, "PNF, Type of assessment", 1);
             call reorder_concept_set(@observation_form_name, "PNF, Type of pain experienced by the patient", 2);
             call reorder_concept_set(@observation_form_name, "PNF, Nociceptive pain", 3);
-            call reorder_concept_set(@observation_form_name, "PNF, Questionnaire DN4", 4);
-            call reorder_concept_set(@observation_form_name, "PNF, Side of pain", 5);
-            call reorder_concept_set(@observation_form_name, "PNF, Site of pain", 6);
-            call reorder_concept_set(@observation_form_name, "PNF, Site of pain, other", 7);
-            call reorder_concept_set(@observation_form_name, "PNF, Chief complaint of patient", 8);
-            call reorder_concept_set(@observation_form_name, "PNF, Is the pain:", 9);
-            call reorder_concept_set(@observation_form_name, "PNF, Onset of the pain:", 10);
-            call reorder_concept_set(@observation_form_name, "PNF, Duration:", 11);
-            call reorder_concept_set(@observation_form_name, "PNF, Quality:", 12);
-            call reorder_concept_set(@observation_form_name, "PNF, Other Quality:", 13);
-            call reorder_concept_set(@observation_form_name, "PNF, Current medication", 14);
-            call reorder_concept_set(@observation_form_name, "PNF, PRN Pain medications", 15);
-            call reorder_concept_set(@observation_form_name, "PNF, GI symptoms", 16);
-            call reorder_concept_set(@observation_form_name, "PNF, Pain usually occurs with:", 17);
+            call reorder_concept_set(@observation_form_name, "PNF, Side of pain", 4);
+            call reorder_concept_set(@observation_form_name, "PNF, Site of pain", 5);
+            call reorder_concept_set(@observation_form_name, "PNF, Site of pain, other", 6);
+            call reorder_concept_set(@observation_form_name, "PNF, Chief complaint of patient", 7);
+            call reorder_concept_set(@observation_form_name, "PNF, Is the pain:", 8);
+            call reorder_concept_set(@observation_form_name, "PNF, Onset of the pain:", 9);
+            call reorder_concept_set(@observation_form_name, "PNF, Duration:", 10);
+            call reorder_concept_set(@observation_form_name, "PNF, Quality:", 11);
+            call reorder_concept_set(@observation_form_name, "PNF, Other Quality:", 12);
+            call reorder_concept_set(@observation_form_name, "PNF, Current medication", 13);
+            call reorder_concept_set(@observation_form_name, "PNF, PRN Pain medications", 14);
+            call reorder_concept_set(@observation_form_name, "PNF, GI symptoms", 15);
+            call reorder_concept_set(@observation_form_name, "PNF, Pain usually occurs with:", 16);
+            call reorder_concept_set(@observation_form_name, "PNF, Questionnaire DN4", 17);
             call reorder_concept_set(@observation_form_name, "PNF, Ambulation", 18);
             call reorder_concept_set(@observation_form_name, "PNF, Dressing", 19);
             call reorder_concept_set(@observation_form_name, "PNF, Comments about physiotherapy", 20);
@@ -10084,6 +10084,894 @@
             SET @updated_concept_units = NULL;
             SET @updated_concept_is_set = NULL;
             CALL update_concept(@concept_fully_specified_name, @concept_locale, @updated_concept_fully_specified_name, @updated_concept_short_name, @updated_concept_description, @updated_concept_form_text, @updated_concept_datatype_id, @updated_concept_class_id, @updated_concept_units, @updated_concept_is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171600" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add ""Dr. Fadi Abu Alrub"" to "OR, Anaesthetist"</comment>
+        <sql>
+            set @parent_concept = "OR, Anaesthetist";
+            set @locale = "en";
+            set @is_set = False;
+            # Add to concept set
+            set @concept_name = "Dr. Fadi Abu Alrub";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+
+            # Reorder concepts
+            call reorder_concept_answer(@parent_concept, "Dr. Hadeel Al-Ani",0);
+            call reorder_concept_answer(@parent_concept, "Dr. Abdelraouf Alhamad",1);
+            call reorder_concept_answer(@parent_concept, "Dr. Ammar Subhi",2);
+            call reorder_concept_answer(@parent_concept, "Dr. Fadi Abu Alrub",3);
+            call reorder_concept_answer(@parent_concept, "Other",4);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171605" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Peripheral Nerve Block" to "Operative Report"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "Operative Report";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Peripheral Nerve Block";
+            set @concept_name_full = "OR, Peripheral Nerve Block";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Add to concept set
+            set @parent_concept = @concept_name_full;
+            set @concept_name = "Yes";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            set @concept_name = "No";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+
+            # Reorder concepts
+            call reorder_concept_answer(@parent_concept, "Yes", 0);
+            call reorder_concept_answer(@parent_concept, "No", 1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002172100" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Peripheral Nerve Block Section" to "Operative Report"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "Operative Report";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Peripheral Nerve Block Section";
+            set @concept_name_full = "OR, Peripheral Nerve Block Section";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = True;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171610" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Laterality" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Laterality";
+            set @concept_name_full = "OR, Laterality";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Add answers to concept set and reorder
+            set @parent_concept = @concept_name_full;
+            set @concept_name = "Right";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 0);
+            set @concept_name = "Left";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 1);
+            set @concept_name = "Bilateral";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 2);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171630" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Nerve Block Site" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Nerve Block Site";
+            set @concept_name_full = "OR, Nerve Block Site";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Create and add answers to concept set and reorder
+            set @parent_concept = @concept_name_full;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+
+            set @concept_name = "Supraclavicular";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 0);
+
+            set @concept_name = "Popliteal";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 1);
+
+            set @concept_name = "Sciatic";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 2);
+
+            set @concept_name = "Femoral";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 3);
+
+            set @concept_name = "Fascia iliaca";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 4);
+
+            set @concept_name = "Interscalene";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 5);
+
+            set @concept_name = "Infraclavicular";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 6);
+
+            set @concept_name = "Axillary";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 7);
+
+            set @concept_name = "Lumbar plexus";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 8);
+
+            set @concept_name = "Saphenous";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 9);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171615" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Monitoring EKG" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Monitoring EKG";
+            set @concept_name_full = "OR, Monitoring EKG";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Add answers to concept set and reorder
+            set @parent_concept = @concept_name_full;
+            set @concept_name = "Yes";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 0);
+            set @concept_name = "No";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171620" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Monitoring BP" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Monitoring BP";
+            set @concept_name_full = "OR, Monitoring BP";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Add answers to concept set and reorder
+            set @parent_concept = @concept_name_full;
+            set @concept_name = "Yes";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 0);
+            set @concept_name = "No";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171625" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Monitoring Pulse Oximeter" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Monitoring Pulse Oximeter";
+            set @concept_name_full = "OR, Monitoring Pulse Oximeter";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Add answers to concept set and reorder
+            set @parent_concept = @concept_name_full;
+            set @concept_name = "Yes";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 0);
+            set @concept_name = "No";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171635" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Sterile barrier" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Sterile barrier";
+            set @concept_name_full = "OR, Sterile barrier";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Create and add answers to concept set and reorder
+            set @parent_concept = @concept_name_full;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+
+            set @concept_name = "Cap";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 0);
+
+            set @concept_name = "Mask";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 1);
+
+            set @concept_name = "Sterile gloves";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 2);
+
+            set @concept_name = "Sterile sheet";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 3);
+
+            set @concept_name = "Gown";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 4);
+
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171640" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Prep" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Prep";
+            set @concept_name_full = "OR, Prep";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Create and add answers to concept set and reorder
+            set @parent_concept = @concept_name_full;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+
+            set @concept_name = "Betadine";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 0);
+
+            set @concept_name = "Chlorhexidine";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171645" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Needle type" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Needle type";
+            set @concept_name_full = "OR, Needle type";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Create and add answers to concept set and reorder
+            set @parent_concept = @concept_name_full;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+
+            set @concept_name = "Insulating stimulating needle";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 0);
+
+            set @concept_name = "Other";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171650" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Needle size" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Needle size";
+            set @concept_name_full = "OR, Needle size";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Create and add answers to concept set and reorder
+            set @parent_concept = @concept_name_full;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+
+            set @concept_name = "22G";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 0);
+
+            set @concept_name = "18G";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171850" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Needle length" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Needle length";
+            set @concept_name_full = "OR, Needle length";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Create and add answers to concept set and reorder
+            set @parent_concept = @concept_name_full;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+
+            set @concept_name = "50mm";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 0);
+
+            set @concept_name = "80mm";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 1);
+
+            set @concept_name = "100mm";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 2);
+
+            set @concept_name = "120mm";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 3);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171655" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Ultrasound" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Ultrasound";
+            set @concept_name_full = "OR, Ultrasound";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Create and add answers to concept set and reorder
+            set @parent_concept = @concept_name_full;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+
+            set @concept_name = "Used";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 0);
+
+            set @concept_name = "Not used";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171900" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Nerve stimulator" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Nerve stimulator";
+            set @concept_name_full = "OR, Nerve stimulator";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Create and add answers to concept set and reorder
+            set @parent_concept = @concept_name_full;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+
+            set @concept_name = "Used";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 0);
+
+            set @concept_name = "Not used";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171705" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Catheter placed" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Catheter placed";
+            set @concept_name_full = "OR, Catheter placed";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Add answers to concept set and reorder
+            set @parent_concept = @concept_name_full;
+            set @concept_name = "Yes";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 0);
+            set @concept_name = "No";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171715" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Aspiration" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Aspiration";
+            set @concept_name_full = "OR, Aspiration";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Create and add answers to concept set and reorder
+            set @parent_concept = @concept_name_full;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+
+            set @concept_name = "Negative";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 0);
+
+            set @concept_name = "Heme present";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171905" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Paresthesia" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Paresthesia";
+            set @concept_name_full = "OR, Paresthesia";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Create and add answers to concept set and reorder
+            set @parent_concept = @concept_name_full;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+
+            set @concept_name = "Negative";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 0);
+
+            set @concept_name = "Heme present";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171735" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Local anesthetic given" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept set
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Local anesthetic given";
+            set @concept_name_full = "OR, Local anesthetic given";
+            set @concept_description = NULL;
+            set @concept_datatype = "Coded";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to parent concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+
+            # Create and add answers to concept set and reorder
+            set @parent_concept = @concept_name_full;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+
+            set @concept_name = "Bupivacaine";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 0);
+
+            set @concept_name = "Levobupivacaine";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 1);
+
+            set @concept_name = "Lidocaine";
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name, @concept_name, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 2);
+
+            set @concept_name = "Other";
+            call add_answer_to_concept_set(@parent_concept, NULL, @concept_name, NULL, @locale, @is_set);
+            call reorder_concept_answer(@parent_concept, @concept_name, 3);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171800" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Other local anesthetic given" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Other local anesthetic given";
+            set @concept_name_full = "OR, Other local anesthetic given";
+            set @concept_description = NULL;
+            set @concept_datatype = "Text";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171810" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Local anesthetic concentration" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Local anesthetic concentration";
+            set @concept_name_full = "OR, Local anesthetic concentration";
+            set @concept_description = NULL;
+            set @concept_datatype = "Text";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171820" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Local anesthetic volume" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Local anesthetic volume";
+            set @concept_name_full = "OR, Local anesthetic volume";
+            set @concept_description = NULL;
+            set @concept_datatype = "Text";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171830" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Complication" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Complication";
+            set @concept_name_full = "OR, Complication";
+            set @concept_description = NULL;
+            set @concept_datatype = "Text";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002171840" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Add "OR, Peripheral Nerve Block Comments" to "OR, Peripheral Nerve Block"</comment>
+        <sql>
+            # Create concept
+            set @parent_concept = "OR, Peripheral Nerve Block Section";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "Peripheral Nerve Block Comments";
+            set @concept_name_full = "OR, Peripheral Nerve Block Comments";
+            set @concept_description = NULL;
+            set @concept_datatype = "Text";
+            set @concept_class = "Finding";
+            set @locale = "en";
+            set @is_set = False;
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, @concept_name_full, @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to concept set
+            call add_concept_to_concept_set(@parent_concept, NULL, @concept_name_full, NULL, @locale, @is_set);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002172200" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Reorder sections in "Operative Report" form</comment>
+        <sql>
+            set @observation_form_name = "Operative Report";
+            # Reorder concepts (Concept set full name, Concept full name, sort weight)
+            call reorder_concept_set(@observation_form_name, "OR, Time started", 0);
+            call reorder_concept_set(@observation_form_name, "OR, Time completed", 1);
+            call reorder_concept_set(@observation_form_name, "OR, Surgeon", 2);
+            call reorder_concept_set(@observation_form_name, "OR, Surgeon assistant", 3);
+            call reorder_concept_set(@observation_form_name, "OR, Anaesthetist", 4);
+            call reorder_concept_set(@observation_form_name, "OR, Anaesthesia technician", 5);
+            call reorder_concept_set(@observation_form_name, "OR, Type of anaesthesia", 6);
+            call reorder_concept_set(@observation_form_name, "OR, Peripheral Nerve Block", 7);
+            call reorder_concept_set(@observation_form_name, "OR, Peripheral Nerve Block Section", 8);
+            call reorder_concept_set(@observation_form_name, "OR, Scrub nurse", 9);
+            call reorder_concept_set(@observation_form_name, "OR, Operations performed in the OT", 10);
+            call reorder_concept_set(@observation_form_name, "OR, Findings", 11);
+            call reorder_concept_set(@observation_form_name, "OR, Operation details", 12);
+            call reorder_concept_set(@observation_form_name, "OR, Does the patient have a drain?", 13);
+            call reorder_concept_set(@observation_form_name, "OR , Drainage Section", 14);
+            call reorder_concept_set(@observation_form_name, "OR, Specimen sent to lab", 15);
+            call reorder_concept_set(@observation_form_name, "OR, Estimated blood loss", 16);
+            call reorder_concept_set(@observation_form_name, "OR, Blood transfusion", 17);
+            call reorder_concept_set(@observation_form_name, "OR, Number of units", 18);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002172010" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | CIEL Mapping update</comment>
+        <sql>
+            set @locale = "en";
+            set @concept_reference_source = "CIEL";
+            set @concept_map_type = "SAME-AS";
+            call map_concept("OR, Laterality", @locale,"160594", @concept_reference_source, @concept_map_type);
+            call map_concept("Right", @locale,"5141", @concept_reference_source, @concept_map_type);
+            call map_concept("Left", @locale,"5139", @concept_reference_source, @concept_map_type);
+            call map_concept("Supraclavicular", @locale,"505", @concept_reference_source, @concept_map_type);
+            call map_concept("Axillary", @locale,"5112", @concept_reference_source, @concept_map_type);
+            call map_concept("Chlorhexidine", @locale,"73263", @concept_reference_source, @concept_map_type);
+            call map_concept("Other", @locale,"385", @concept_reference_source, @concept_map_type);
+            call map_concept("Bupivacaine", @locale,"72505", @concept_reference_source, @concept_map_type);
+            call map_concept("Levobupivacaine", @locale,"78779", @concept_reference_source, @concept_map_type);
+            call map_concept("Lidocaine", @locale,"78849", @concept_reference_source, @concept_map_type);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202002172230" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-1106 | Reorder sections in "OR, Peripheral Nerve Block Section"</comment>
+        <sql>
+            set @observation_form_name = "OR, Peripheral Nerve Block Section";
+            # Reorder concepts (Concept set full name, Concept full name, sort weight)
+            call reorder_concept_set(@observation_form_name, "OR, Laterality", 0);
+            call reorder_concept_set(@observation_form_name, "OR, Nerve Block Site", 1);
+            call reorder_concept_set(@observation_form_name, "OR, Monitoring EKG", 2);
+            call reorder_concept_set(@observation_form_name, "OR, Monitoring BP", 3);
+            call reorder_concept_set(@observation_form_name, "OR, Monitoring Pulse Oximeter", 4);
+            call reorder_concept_set(@observation_form_name, "OR, Sterile barrier", 5);
+            call reorder_concept_set(@observation_form_name, "OR, Prep", 6);
+            call reorder_concept_set(@observation_form_name, "OR, Needle type", 7);
+            call reorder_concept_set(@observation_form_name, "OR, Needle size", 8);
+            call reorder_concept_set(@observation_form_name, "OR, Needle length", 9);
+            call reorder_concept_set(@observation_form_name, "OR, Ultrasound", 10);
+            call reorder_concept_set(@observation_form_name, "OR, Nerve stimulator", 11);
+            call reorder_concept_set(@observation_form_name, "OR, Catheter placed", 12);
+            call reorder_concept_set(@observation_form_name, "OR, Aspiration", 13);
+            call reorder_concept_set(@observation_form_name, "OR, Paresthesia", 14);
+            call reorder_concept_set(@observation_form_name, "OR, Local anesthetic given", 15);
+            call reorder_concept_set(@observation_form_name, "OR, Other local anesthetic given", 16);
+            call reorder_concept_set(@observation_form_name, "OR, Local anesthetic concentration", 17);
+            call reorder_concept_set(@observation_form_name, "OR, Local anesthetic volume", 18);
+            call reorder_concept_set(@observation_form_name, "OR, Complication", 19);
+            call reorder_concept_set(@observation_form_name, "OR, Peripheral Nerve Block Comments", 20);
         </sql>
     </changeSet>
 </databaseChangeLog>
