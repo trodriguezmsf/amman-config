@@ -7489,6 +7489,20 @@
         </sql>
         <sqlFile splitStatements="false" path="utils/ChangeConceptWeightInConceptAnswersPerName.sql"/>
     </changeSet>
+    <changeSet id="Amman-202002121540" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-841 | Adding a new procedure to add answers to concept set</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_answer_to_concept_set;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/AddAnswerToConceptSet.sql"/>
+    </changeSet>
+    <changeSet id="Amman-202002071158" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-841 | Adding a new procedure to reorder concept answer</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS reorder_concept_answer;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/ReorderConceptAnswer.sql"/>
+    </changeSet>
     <changeSet id="Amman-202001161847" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-837 | Add new concept "Walker" to "LLA, Type of assistive device or orthosis"</comment>
         <sql>
@@ -7599,13 +7613,6 @@
             call create_reference_mapping_msf_internal('ONN, Type of assessment', 'ASSESSMENT_TYPE');
         </sql>
     </changeSet>
-    <changeSet id="Amman-202002121540" author="Michael Bontyes" context="amman-enhancements-january2020">
-        <comment>MOBN-841 | Adding a new procedure to add answers to concept set</comment>
-        <sql>
-            DROP PROCEDURE IF EXISTS add_answer_to_concept_set;
-        </sql>
-        <sqlFile splitStatements="false" path="utils/AddAnswerToConceptSet.sql"/>
-    </changeSet>
     <changeSet id="Amman-202002101500" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-841 | Add new concepts 'Initial, Follow-up and TRM' to 'ONN, Type of assessment' concept set</comment>
         <sql>
@@ -7677,13 +7684,6 @@
             call reorder_concept_set('OPD Nursing Note', 'ONN, Tissue Expander', 8);
             call reorder_concept_set('OPD Nursing Note', 'ONN, Nursing consultation notes', 9);
         </sql>
-    </changeSet>
-    <changeSet id="Amman-202002071158" author="Michael Bontyes" context="amman-enhancements-january2020">
-        <comment>MOBN-841 | Adding a new procedure to reorder concept answer</comment>
-        <sql>
-            DROP PROCEDURE IF EXISTS reorder_concept_answer;
-        </sql>
-        <sqlFile splitStatements="false" path="utils/ReorderConceptAnswer.sql"/>
     </changeSet>
     <changeSet id="Amman-202001202240" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-841 | Add 'ONN, Type of assessment' to 'OPD Nursing Note' and reorder concept set</comment>
