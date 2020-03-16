@@ -8155,20 +8155,20 @@
             # Add new drug (Service name, Service Description, Color HEX, Duration in minutes, Location name, Service type name, Service type duration)
             CALL add_new_service_type ("3D",NULL,"#00CED1",60,"3D","Assessment",60);
             CALL add_new_service_type ("3D",NULL,"#00CED1",45,"3D","Scanning",45);
-            CALL add_new_service_type ("3D",NULL,"#00CED1",90,"3D","Modification and Fitting",90);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",90,"3D","Mod. & Fitting",90);
             CALL add_new_service_type ("3D",NULL,"#00CED1",30,"3D","Follow-up",30);
-            CALL add_new_service_type ("3D",NULL,"#00CED1",0,NULL,"Other",0);
-            CALL add_new_service_type ("3D Field",NULL,"#00CED11",65,NULL,"Assessment and Scanning",165);
-            CALL add_new_service_type ("3D Field",NULL,"#00CED1",90,NULL,"Modification and Fitting",90);
-            CALL add_new_service_type ("3D Field",NULL,"#00CED1",60,NULL,"Follow-up",60);
-            CALL add_new_service_type ("3D OT",NULL,"#00CED1",90,"3D","Assessment",90);
-            CALL add_new_service_type ("3D OT",NULL,"#00CED1",75,"3D","Session",75);
-            CALL add_new_service_type ("3D OT",NULL,"#00CED1",30,"3D","Follow-up",30);
-            CALL add_new_service_type ("3D OT",NULL,"#00CED1",30,"3D","Assistive Device",30);
-            CALL add_new_service_type ("3D OT",NULL,"#00CED1",150,"3D","Group therapy",150);
-            CALL add_new_service_type ("3D OT Field",NULL,"#00CED1",150,NULL,"Assessment",150);
-            CALL add_new_service_type ("3D OT Field",NULL,"#00CED1",135,NULL,"Session",135);
-            CALL add_new_service_type ("3D OT Field",NULL,"#00CED1",60,NULL,"Follow-up",60);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",0,NULL,"3D Other",0);
+            CALL add_new_service_type ("3D",NULL,"#00CED11",65,NULL,"Field - Assmt & Scan",165);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",90,NULL,"Field - Mod. & Fitting",90);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",60,NULL,"Field - Follow-up",60);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",90,"3D","OT - Assessment",90);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",75,"3D","OT - Session",75);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",30,"3D","OT - Follow-up",30);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",30,"3D","OT - Assistive Device",30);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",150,"3D","OT - Group therapy",150);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",150,NULL,"OT Field - Assmt",150);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",135,NULL,"OT Field - Session",135);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",60,NULL,"OT Field - Follow-up",60);
         </sql>
     </changeSet>
     <changeSet id="Amman-202002051500" author="Michael Bontyes" context="amman-enhancements-january2020">
