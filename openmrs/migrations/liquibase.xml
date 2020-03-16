@@ -8155,11 +8155,11 @@
             # Add new drug (Service name, Service Description, Color HEX, Duration in minutes, Location name, Service type name, Service type duration)
             CALL add_new_service_type ("3D",NULL,"#00CED1",60,"3D","Assessment",60);
             CALL add_new_service_type ("3D",NULL,"#00CED1",45,"3D","Scanning",45);
-            CALL add_new_service_type ("3D",NULL,"#00CED1",90,"3D","Mod. & Fitting",90);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",90,"3D","Mod. &amp; Fitting",90);
             CALL add_new_service_type ("3D",NULL,"#00CED1",30,"3D","Follow-up",30);
             CALL add_new_service_type ("3D",NULL,"#00CED1",0,NULL,"3D Other",0);
-            CALL add_new_service_type ("3D",NULL,"#00CED11",65,NULL,"Field - Assmt & Scan",165);
-            CALL add_new_service_type ("3D",NULL,"#00CED1",90,NULL,"Field - Mod. & Fitting",90);
+            CALL add_new_service_type ("3D",NULL,"#00CED11",65,NULL,"Field - Assmt &amp; Scan",165);
+            CALL add_new_service_type ("3D",NULL,"#00CED1",90,NULL,"Field - Mod. &amp; Fitting",90);
             CALL add_new_service_type ("3D",NULL,"#00CED1",60,NULL,"Field - Follow-up",60);
             CALL add_new_service_type ("3D",NULL,"#00CED1",90,"3D","OT - Assessment",90);
             CALL add_new_service_type ("3D",NULL,"#00CED1",75,"3D","OT - Session",75);
