@@ -8863,7 +8863,7 @@
             set @concept_name_short = "Date of receiving the hygiene kits";
             set @concept_name_full = "HE, Date of receiving the hygiene kits";
             set @concept_description = NULL;
-            set @concept_datatype = "Datetime";
+            set @concept_datatype = "Date";
             set @concept_class = "Question";
             set @locale = "en";
             set @is_set = False;
