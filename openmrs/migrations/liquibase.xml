@@ -8069,7 +8069,7 @@
             set @concept_id = 0;
             set @concept_name_short_id = 0;
             set @concept_name_full_id = 0;
-            set @concept_name_short = "LLD, Comments";
+            set @concept_name_short = "Comments";
             set @concept_name_full = "LLD, Comments";
             set @concept_datatype = "Text";
             set @concept_class = "Finding";
