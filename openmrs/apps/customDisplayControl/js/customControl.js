@@ -1322,14 +1322,18 @@ angular.module('bahmni.common.displaycontrol.custom')
         };
 
         const getDisplayableEncounter = function (records, methods) {
+        console.log("Values ", JSON.parse(JSON.stringify(records)));
             var allValues = [];
             _.forEach(methods, function (method) {
                 var encounterValue = method(records);
                 if (!_.isEmpty(encounterValue)) {
+                    console.log("encounterValue ", JSON.parse(JSON.stringify(encounterValue)));
                     var value = getPhysicalExaminationData(encounterValue);
                     allValues.push({date: encounterValue.encounterDateTime, value: value})
                 }
             });
+            console.log("Values ", JSON.parse(JSON.stringify(allValues)));
+
             return allValues;
         };
 
