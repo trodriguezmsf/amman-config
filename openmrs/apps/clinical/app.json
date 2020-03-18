@@ -739,6 +739,9 @@
 		"autocomplete":true,
                 "multiSelect":true
             },
+        "PNF, GI symptoms":{
+          "multiSelect":true
+        },
 	    "PNF, Pain usually occurs with:":{
               "multiSelect":true
             },
