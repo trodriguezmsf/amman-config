@@ -7472,6 +7472,16 @@
             call add_concept_to_concept_answer(2158,"Site, Upper lip", True);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202003181700" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-836 | Add concepts "Upper and lower eyelid, Upper lip and lower lip" to PPN, Site of drain removal</comment>
+        <sql>
+            # Add to PPN, Site of drain removal
+            call add_concept_to_concept_answer(2169,"Site, Lower eyelid", True);
+            call add_concept_to_concept_answer(2169,"Site, Upper eyelid", True);
+            call add_concept_to_concept_answer(2169,"Site, Lower lip", True);
+            call add_concept_to_concept_answer(2169,"Site, Upper lip", True);
+        </sql>
+    </changeSet>
     <changeSet id="Amman-202001161845" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-837 | Add new "Walker" concept (concept table)</comment>
         <sql>
