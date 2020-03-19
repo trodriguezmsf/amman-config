@@ -1082,7 +1082,13 @@ angular.module('bahmni.common.displaycontrol.custom')
         {name: "Wrist Flex.", sort: 14},
         {name: "Wrist Ext.", sort: 15},
         {name: "Ulnar Dev.", sort: 16},
-        {name: "Radial Dev.", sort: 17}
+        {name: "Radial Dev.", sort: 17},
+        {name: "Thumb Abd.", sort: 18},
+        {name: "Thumb Add.", sort: 19},
+        {name: "Thumb Flex.", sort: 20},
+        {name: "Thumb Ext.", sort: 21},
+        {name: "Thumb Opp.", sort: 22},
+        {name: "Fingers Ext.", sort: 23}
     ];
 
     const groupConceptsForROMHandAndFinger = [
@@ -1314,12 +1320,41 @@ angular.module('bahmni.common.displaycontrol.custom')
         const getPhysicalExaminationData = function (encounterData) {
             var concepts = [];
             _.each(encounterData.groupMembers, function (groupMember) {
+                if(groupMember.groupMembers.length > 0) {
+                    console.log("Sub Group Members case");
+                    getPhysicalExaminationData(groupMember);
+                }
                 var conceptName = {name: groupMember.conceptNameToDisplay, answer: groupMember.valueAsString}
                 concepts.push(conceptName)
             });
             return concepts;
 
         };
+         const getPhysicalExaminationData1 = function (encounterData, concepts = []) {
+                    //var concepts = [];
+                    _.each(encounterData.groupMembers, function (groupMember) {
+                       if(groupMember.groupMembers.length > 0) {
+                            console.log("Sub Group Members case");
+                            var values = getMultiSelectValues(groupMember);
+                            concepts.push({name: groupMember.conceptNameToDisplay, answer: values});
+                            return;
+                        }
+
+                        var conceptName = {name: groupMember.conceptNameToDisplay, answer: groupMember.valueAsString}
+                        concepts.push(conceptName)
+                    });
+                    return concepts;
+
+                };
+
+        const getMultiSelectValues = function (groupMember)  {
+            let values = '';
+            _.each(groupMember.groupMembers, function(multiSelectObs) {
+                values += ' ' + multiSelectObs.valueAsString;
+            })
+            return values;
+        }
+
 
         const getDisplayableEncounter = function (records, methods) {
         console.log("Values ", JSON.parse(JSON.stringify(records)));
@@ -1329,10 +1364,11 @@ angular.module('bahmni.common.displaycontrol.custom')
                 if (!_.isEmpty(encounterValue)) {
                     console.log("encounterValue ", JSON.parse(JSON.stringify(encounterValue)));
                     var value = getPhysicalExaminationData(encounterValue);
+                    var value = getPhysicalExaminationData1(encounterValue);
                     allValues.push({date: encounterValue.encounterDateTime, value: value})
                 }
             });
-            console.log("Values ", JSON.parse(JSON.stringify(allValues)));
+            console.log("allValues ", JSON.parse(JSON.stringify(allValues)));
 
             return allValues;
         };
