@@ -8221,7 +8221,7 @@
             set @concept_name_full_id = 0;
             set @concept_name_short = "MUAC was checked on";
             set @concept_name_full = "MUAC was checked on";
-            set @concept_description = "Normal pediatric HR according to age is Neonate (&lt;28 d) 100-205 BPM, Infant (1 mo-1 y) 100-190 BPM, Toddler (1-2 y) 98-140 BPM, Preschool (3-5 y) 80-120 BPM, School-age (6-11 y) 75-118 BPM, Adolescent (12-15 y) 60-100 BPM";
+            set @concept_description = "";
             set @concept_datatype = "Coded";
             set @concept_class = "Finding";
             set @locale = "en";
@@ -8339,12 +8339,12 @@
     <changeSet id="Amman-202002071012" author="Michael Bontyes" context="amman-enhancements-january2020">
         <comment>MOBN-845 | Update concept descriptions in Vital Signs</comment>
         <sql>
-            # Update "VS, Temperature"
-            SET @concept_fully_specified_name = "VS, Temperature";
+            # Update "VS, Respiratory rate"
+            SET @concept_fully_specified_name = "VS, Respiratory rate";
             SET @concept_locale = "en";
             SET @updated_concept_fully_specified_name = NULL;
             SET @updated_concept_short_name = NULL;
-            SET @updated_concept_description = "Normal Temperature Range by Method: Rectal 36.6-38 (oC), Ear 35.8-38 (oC), Oral 35.5-37.5 (oC), Axillary 36.5-37.5 (oC). Temperature ranges do not vary with age. Axillary, tympanic and temporal temps for screening (less accurate). Rectal and oral temps for definitive measurement (unless contraindication).";
+            SET @updated_concept_description = "Normal pediatric RR (Breaths/min): &lt; 2 months (30-60), 2 to 12 months (30-50), &gt;1 to 5 years (25-40), &gt;5 to 12 years (20-30), &gt; 12 years (14-20)";
             SET @updated_concept_form_text = NULL;
             SET @updated_concept_datatype_id = NULL;
             SET @updated_concept_class_id = NULL;
@@ -8370,7 +8370,7 @@
             SET @concept_locale = "en";
             SET @updated_concept_fully_specified_name = NULL;
             SET @updated_concept_short_name = NULL;
-            SET @updated_concept_description = "Normal pediatric systolic pressure is Birth (12 h, &lt;1000 g) 39-59 mmHg, Birth (12 h, 3 kg) 60-76 mmHg, Neonate (96 h) 67-84 mmHg, Infant (1-12 mo) 72-104 mmHg, Toddler (1-2 y) 86-106 mmHg, Preschooler (3-5 y) 89-112 mmHg, School-age (6-9 y) 97-115 mmHg, Preadolescent (10-11 y) 102-120 mmHg, Adolescent (12-15 y) 110-131 mmHg";
+            SET @updated_concept_description = "Normal pediatric HR (Beats/min): &lt; 2 months (100-160), 2 to 12 months (90-160), &gt;1 to 5 years (80-140), &gt;5 to 12 years (70-120), &gt; 12 years (60-100)";
             SET @updated_concept_form_text = NULL;
             SET @updated_concept_datatype_id = NULL;
             SET @updated_concept_class_id = NULL;
@@ -8383,7 +8383,7 @@
             SET @concept_locale = "en";
             SET @updated_concept_fully_specified_name = NULL;
             SET @updated_concept_short_name = NULL;
-            SET @updated_concept_description = "Normal pediatric diastolic pressure is Birth (12 h, &lt;1000 g) 16-36  mmHg, Birth (12 h, 3 kg) 31-45 mmHg, Neonate (96 h) 35-53 mmHg, Infant (1-12 mo) 37-56 mmHg, Toddler (1-2 y) 42-63 mmHg, Preschooler (3-5 y) 46-72 mmHg, School-age (6-9 y) 57-76 mmHg, Preadolescent (10-11 y) 61-80 mmHg, Adolescent (12-15 y) 64-83 mmHg";
+            SET @updated_concept_description = "Normal pediatric SBP (mmHg): &lt; 2 months (≥50), 2 to 12 months (≥60), &gt;1 to 5 years (≥70), &gt;5 to 12 years (≥80), &gt; 12 years (&gt;90)";
             SET @updated_concept_form_text = NULL;
             SET @updated_concept_datatype_id = NULL;
             SET @updated_concept_class_id = NULL;
@@ -8396,7 +8396,7 @@
             SET @concept_locale = "en";
             SET @updated_concept_fully_specified_name = NULL;
             SET @updated_concept_short_name = NULL;
-            SET @updated_concept_description = "Normal pediatric Temperature Range by Method is Rectal 36.6-38 (°C), Ear 35.8-38 (°C) , Oral 35.5-37.5 (°C) , Axillary 36.5-37.5 (°C). Temperature ranges do not vary with age. Axillary, tympanic and temporal temps for screening (less accurate). Rectal and oral temps for definitive measurement (unless contraindication).";
+            SET @updated_concept_description = "Only the normal minimum value for systolic blood pressure as defined by age because hypertension is not a common emergency problem among children";
             SET @updated_concept_form_text = NULL;
             SET @updated_concept_datatype_id = NULL;
             SET @updated_concept_class_id = NULL;
@@ -8409,7 +8409,7 @@
             SET @concept_locale = "en";
             SET @updated_concept_fully_specified_name = NULL;
             SET @updated_concept_short_name = NULL;
-            SET @updated_concept_description = NULL;
+            SET @updated_concept_description = "";
             SET @updated_concept_form_text = NULL;
             SET @updated_concept_datatype_id = NULL;
             SET @updated_concept_class_id = NULL;
