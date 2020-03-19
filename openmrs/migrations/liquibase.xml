@@ -7994,6 +7994,14 @@
             call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2063, @locale, True);
             call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 2064, @locale, True);
             call add_answer_to_concept_set(@concept_name_full, NULL, NULL, 385, @locale, True);
+
+            # Reorder answers
+            call reorder_concept_answer(@concept_name_full, 'Healed', 0);
+            call reorder_concept_answer(@concept_name_full, 'Healing', 1);
+            call reorder_concept_answer(@concept_name_full, 'Inflamed', 2);
+            call reorder_concept_answer(@concept_name_full, 'Dehiscence', 3);
+            call reorder_concept_answer(@concept_name_full, 'Other', 4);
+
         </sql>
     </changeSet>
     <changeSet id="Amman-202001281608" author="Michael Bontyes" context="amman-enhancements-january2020">

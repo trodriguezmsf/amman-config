@@ -1317,12 +1317,13 @@ angular.module('bahmni.common.displaycontrol.custom')
             });
         };
 
-        const getPhysicalExaminationData = function (encounterData) {
-            var concepts = [];
+
+         const getPhysicalExaminationData = function (encounterData, concepts = []) {
             _.each(encounterData.groupMembers, function (groupMember) {
-                if(groupMember.groupMembers.length > 0) {
-                    console.log("Sub Group Members case");
-                    getPhysicalExaminationData(groupMember);
+               if(groupMember.groupMembers.length > 0) {
+                    var values = getMultiSelectValues(groupMember);
+                    concepts.push({name: groupMember.conceptNameToDisplay, answer: values});
+                    return;
                 }
                 var conceptName = {name: groupMember.conceptNameToDisplay, answer: groupMember.valueAsString}
                 concepts.push(conceptName)
@@ -1330,46 +1331,28 @@ angular.module('bahmni.common.displaycontrol.custom')
             return concepts;
 
         };
-         const getPhysicalExaminationData1 = function (encounterData, concepts = []) {
-                    //var concepts = [];
-                    _.each(encounterData.groupMembers, function (groupMember) {
-                       if(groupMember.groupMembers.length > 0) {
-                            console.log("Sub Group Members case");
-                            var values = getMultiSelectValues(groupMember);
-                            concepts.push({name: groupMember.conceptNameToDisplay, answer: values});
-                            return;
-                        }
-
-                        var conceptName = {name: groupMember.conceptNameToDisplay, answer: groupMember.valueAsString}
-                        concepts.push(conceptName)
-                    });
-                    return concepts;
-
-                };
 
         const getMultiSelectValues = function (groupMember)  {
-            let values = '';
+            let values = [];
             _.each(groupMember.groupMembers, function(multiSelectObs) {
-                values += ' ' + multiSelectObs.valueAsString;
-            })
-            return values;
+                if(multiSelectObs.conceptNameToDisplay == "Site of wound"){
+                    values.push(multiSelectObs.valueAsString);
+
+                }
+            });
+            return values.join(', ');
         }
 
 
         const getDisplayableEncounter = function (records, methods) {
-        console.log("Values ", JSON.parse(JSON.stringify(records)));
             var allValues = [];
             _.forEach(methods, function (method) {
                 var encounterValue = method(records);
                 if (!_.isEmpty(encounterValue)) {
-                    console.log("encounterValue ", JSON.parse(JSON.stringify(encounterValue)));
                     var value = getPhysicalExaminationData(encounterValue);
-                    var value = getPhysicalExaminationData1(encounterValue);
                     allValues.push({date: encounterValue.encounterDateTime, value: value})
                 }
             });
-            console.log("allValues ", JSON.parse(JSON.stringify(allValues)));
-
             return allValues;
         };
 
