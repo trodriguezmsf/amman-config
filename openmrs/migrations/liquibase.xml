@@ -8518,7 +8518,6 @@
             call add_answer_to_concept_set(@parent_concept, NULL, "Patient age", NULL, @locale, @is_set);
             call add_answer_to_concept_set(@parent_concept, NULL, "HE, Gender", NULL, @locale, @is_set);
             call add_answer_to_concept_set(@parent_concept, NULL, "Language or accent", NULL, @locale, @is_set);
-            call add_answer_to_concept_set(@parent_concept, NULL, "Language or accent", NULL, @locale, @is_set);
             call add_answer_to_concept_set(@parent_concept, NULL, "Inability to comprehend", NULL, @locale, @is_set);
             call add_answer_to_concept_set(@parent_concept, NULL, "Anxiety", NULL, @locale, @is_set);
             call add_answer_to_concept_set(@parent_concept, NULL, "Pain", NULL, @locale, @is_set);
@@ -10998,6 +10997,15 @@
             call reorder_concept_set(@observation_form_name, "OR, Local anesthetic volume", 18);
             call reorder_concept_set(@observation_form_name, "OR, Complication", 19);
             call reorder_concept_set(@observation_form_name, "OR, Peripheral Nerve Block Comments", 20);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202003181705" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-848 | "Unknown" CIEL Mapping update</comment>
+        <sql>
+            set @locale = "en";
+            set @concept_reference_source = "CIEL";
+            set @concept_map_type = "SAME-AS";
+            call map_concept("Unknown", @locale,"1067", @concept_reference_source, @concept_map_type);
         </sql>
     </changeSet>
 </databaseChangeLog>
