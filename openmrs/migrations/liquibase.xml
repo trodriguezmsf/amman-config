@@ -11029,6 +11029,16 @@
             call map_concept("Unknown", @locale,"1067", @concept_reference_source, @concept_map_type);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202003209000" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-841 | Adding "Eyelid and lip" to "Site of pain" in OPD Nursing Note form</comment>
+        <sql>
+            set @concept_name_full = "ONN, Site of pain";
+            set @locale = "en";
+            # add_concept_to_concept_set(Concept Set full name, Concept full name, Concept ID (optional), Locale, Set option);
+            call add_answer_to_concept_set(@concept_name_full, NULL, "Site, Lip", NULL, @locale, False);
+            call add_answer_to_concept_set(@concept_name_full, NULL, "Site, Eyelid", NULL, @locale, False);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
