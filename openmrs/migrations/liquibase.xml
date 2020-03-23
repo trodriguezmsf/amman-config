@@ -11039,6 +11039,15 @@
             call add_answer_to_concept_set(@concept_name_full, NULL, "Site, Eyelid", NULL, @locale, False);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202003239000" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-841 | "ONN, Initial" CIEL Mapping update</comment>
+        <sql>
+            set @locale = "en";
+            set @concept_reference_source = "CIEL";
+            set @concept_map_type = "SAME-AS";
+            call map_concept("ONN, Initial", @locale,"162080", @concept_reference_source, @concept_map_type);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 
