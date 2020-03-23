@@ -8374,7 +8374,7 @@
             SET @concept_locale = "en";
             SET @updated_concept_fully_specified_name = NULL;
             SET @updated_concept_short_name = NULL;
-            SET @updated_concept_description = "Normal pediatric awake rate is: Neonate (&lt;28 d) 100-205 bpm, Infant (1 mo-1 y) 100-190 bpm, Toddler (1-2 y) 98-140 bpm, Preschool (3-5 y) 80-120 bpm, School-age (6-11 y) 75-118 bpm, Adolescent (12-15 y) 60-100 bpm";
+            SET @updated_concept_description = "Normal pediatric HR (Beats/min): &lt; 2 months (100-160), 2 to 12 months (90-160), &gt;1 to 5 years (80-140), &gt;5 to 12 years (70-120), &gt; 12 years (60-100)";
             SET @updated_concept_form_text = NULL;
             SET @updated_concept_datatype_id = NULL;
             SET @updated_concept_class_id = NULL;
@@ -8387,7 +8387,7 @@
             SET @concept_locale = "en";
             SET @updated_concept_fully_specified_name = NULL;
             SET @updated_concept_short_name = NULL;
-            SET @updated_concept_description = "Normal pediatric HR (Beats/min): &lt; 2 months (100-160), 2 to 12 months (90-160), &gt;1 to 5 years (80-140), &gt;5 to 12 years (70-120), &gt; 12 years (60-100)";
+            SET @updated_concept_description = "Normal pediatric SBP (mmHg): &lt; 2 months (≥50), 2 to 12 months (≥60), &gt;1 to 5 years (≥70), &gt;5 to 12 years (≥80), &gt; 12 years (&gt;90)";
             SET @updated_concept_form_text = NULL;
             SET @updated_concept_datatype_id = NULL;
             SET @updated_concept_class_id = NULL;
@@ -8400,7 +8400,7 @@
             SET @concept_locale = "en";
             SET @updated_concept_fully_specified_name = NULL;
             SET @updated_concept_short_name = NULL;
-            SET @updated_concept_description = "Normal pediatric SBP (mmHg): &lt; 2 months (≥50), 2 to 12 months (≥60), &gt;1 to 5 years (≥70), &gt;5 to 12 years (≥80), &gt; 12 years (&gt;90)";
+            SET @updated_concept_description = "Only the normal minimum value for systolic blood pressure as defined by age because hypertension is not a common emergency problem among children";
             SET @updated_concept_form_text = NULL;
             SET @updated_concept_datatype_id = NULL;
             SET @updated_concept_class_id = NULL;
@@ -8962,7 +8962,7 @@
             SET @concept_locale = "en";
             SET @updated_concept_fully_specified_name = NULL;
             SET @updated_concept_short_name = "Other educational needs";
-            SET @updated_concept_description = NULL;
+            SET @updated_concept_description = "Normal Temperature Range by Method: Rectal 36.6-38 (oC), Ear 35.8-38 (oC), Oral 35.5-37.5 (oC), Axillary 36.5-37.5 (oC). Temperature ranges do not vary with age. Axillary, tympanic and temporal temps for screening (less accurate). Rectal and oral temps for definitive measurement (unless contraindication).";
             SET @updated_concept_form_text = NULL;
             SET @updated_concept_datatype_id = NULL;
             SET @updated_concept_class_id = NULL;
@@ -11015,22 +11015,14 @@
             call map_concept("Unknown", @locale,"1067", @concept_reference_source, @concept_map_type);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202003209000" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-841 | Adding "Eyelid and lip" to "Site of pain" in OPD Nursing Note form</comment>
+        <sql>
+            set @concept_name_full = "ONN, Site of pain";
+            set @locale = "en";
+            # add_concept_to_concept_set(Concept Set full name, Concept full name, Concept ID (optional), Locale, Set option);
+            call add_answer_to_concept_set(@concept_name_full, NULL, "Site, Lip", NULL, @locale, False);
+            call add_answer_to_concept_set(@concept_name_full, NULL, "Site, Eyelid", NULL, @locale, False);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
