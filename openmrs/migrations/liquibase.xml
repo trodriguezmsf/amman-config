@@ -8955,13 +8955,13 @@
         </sql>
     </changeSet>
     <changeSet id="Amman-202002101050" author="Michael Bontyes" context="amman-enhancements-january2020">
-        <comment>MOBN-848 | Update "HE, Education learning needs" shortname</comment>
+        <comment>MOBN-845 | Adding gelp text for Temperature </comment>
         <sql>
             # Update "VS, Temperature"
-            SET @concept_fully_specified_name = "HE, Education learning needs";
+            SET @concept_fully_specified_name = "VS, Temperature";
             SET @concept_locale = "en";
             SET @updated_concept_fully_specified_name = NULL;
-            SET @updated_concept_short_name = "Other educational needs";
+            SET @updated_concept_short_name = "Temperature";
             SET @updated_concept_description = "Normal Temperature Range by Method: Rectal 36.6-38 (oC), Ear 35.8-38 (oC), Oral 35.5-37.5 (oC), Axillary 36.5-37.5 (oC). Temperature ranges do not vary with age. Axillary, tympanic and temporal temps for screening (less accurate). Rectal and oral temps for definitive measurement (unless contraindication).";
             SET @updated_concept_form_text = NULL;
             SET @updated_concept_datatype_id = NULL;
@@ -11023,6 +11023,15 @@
             # add_concept_to_concept_set(Concept Set full name, Concept full name, Concept ID (optional), Locale, Set option);
             call add_answer_to_concept_set(@concept_name_full, NULL, "Site, Lip", NULL, @locale, False);
             call add_answer_to_concept_set(@concept_name_full, NULL, "Site, Eyelid", NULL, @locale, False);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202003239000" author="Michael Bontyes" context="amman-enhancements-january2020">
+        <comment>MOBN-841 | "ONN, Initial" CIEL Mapping update</comment>
+        <sql>
+            set @locale = "en";
+            set @concept_reference_source = "CIEL";
+            set @concept_map_type = "SAME-AS";
+            call map_concept("ONN, Initial", @locale,"162080", @concept_reference_source, @concept_map_type);
         </sql>
     </changeSet>
 </databaseChangeLog>
