@@ -11034,4 +11034,13 @@
             call map_concept("ONN, Initial", @locale,"162080", @concept_reference_source, @concept_map_type);
         </sql>
     </changeSet>
+    <changeSet id="Amman-2603" author="Pritam" context="amman-enhancements-january2020" >
+        <comment>Adding concept to concept_numeric table to allow capturing observations for PNF, Pain score with activity and PNF, Neuropathic pain score with activity </comment>
+        <sql>
+            INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
+            VALUES ((select concept_id from concept_name where name = "PNF, Pain score with activity" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+            INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
+            VALUES ((select concept_id from concept_name where name = "PNF, Neuropathic pain score with activity" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
