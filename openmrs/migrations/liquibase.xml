@@ -11043,4 +11043,83 @@
             VALUES ((select concept_id from concept_name where name = "PNF, Neuropathic pain score with activity" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202004061445" author="Pritam" context="Amman-release-4.2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="29">
+                SELECT
+                COUNT(*)
+                FROM drug d
+                WHERE name IN ("ATV 300 mg / r 100 mg, tab.", "BECLOMETASONE dipropionate, 0.25mg/puff, 200 puffs,aerosol", "FERROUS SALT, EQ. IRON 50MG/5ML, SYRUP, 100ML, BOT.", "LINEZOLID, 600mg, tab.", "MELOXICAM, 15mg, tab., tablette", "MORPHINE sulfate, 10 mg, sustained release, caps.", "MORPHINE sulfate, 30 mg, sustained release, tab.", "SIMPLE PLAIN SUGAR SYRUP,  100 ML", "TDF 300 mg / 3TC 300 mg, tab.", "AMINOPHYLLINE, 25 mg/ml, 10 ml, amp. (obsolete)", "ARTICAINE 4%/ EPINEPHRINE 1/100 000, 1.7 ml, dent.cartr. (ob", "CLONIDINE , 0.15 MG/ML, 1ML, AMP. ", "COLISTIMETHATE sodium, 1 MIU, powder, vial", "IMIPENEM 500 mg / CILASTATIN sodium 500 mg, powder, vial", "VACCINE HEPATITIS B, 1 child dose, monodose, 0.5ml, vial", "DERMANIOS, SCRUB CHLORHEXIDINE, 5 l", "HYDROGEN PEROXIDE, 3%, sol., 250 ml, bot.", "LUBRICANT, GENERAL USE, WATER-SOLUBLE, JELLY, 82 G, TUBE", "PARACETAMOL, 250 MG, SUPPOSITORY", "PERMETHRIN, 5 %, lotion, bot.( anti lice)", "VASELINE JAR 240 ml", "vaseline, 120ml", "ANTAZOLINE HCL 0.05% /TETRAHYDROZOLINE HCL 0.04%, ED,10ML", "CARBOMERS,  2MG, EYE GEL, 10 G, TUBE", "MULTIPLE MICRONUTRIENT POWDER, 400 g Vanilla (Ensure)", "PLUMPY NUT RUTF (READY TO USE THERAPEUTIC FOOD)", "PERMETHRIN 1% , SPRAY .( ANTI LICE )", "MORPHINE hydrochloride, 100 mg/100ml 0.9% NS Via PCA", "MORPHINE hydrochloride, 50 mg/100ml 0.9% NS Via PCA");
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                SELECT
+                COUNT(*)
+                FROM concept_reference_term crt
+                WHERE code IN ("DORAATVR3T-", "DORABECL2SF", "DORAZJO1060", "DORALINE6T-", "DORAZJO1062", "DORAMORP1CS", "DORAMORP3TS", "DORAZJO1061", "DORATELA1T-", "DINJAMIN2A-", "DINJAREP4C1", "DINJCLON1A-", "DINJCOLI1V-", "DINJIMCI55V", "DVACVHEB3V-", "DEXTZJO1030", "DEXTHYPE3B2", "DEXTLUBR8J-", "DEXTZJO1040", "DEXTZJO1020", "DEXTZJO1026", "DEXTZJO0021", "DEXOZJO1006", "DEXOZJO1005", "NFOSZJO1004", "NFOSRUTFPEP92", "DEXTZJO1037", "DINFZJO1009", "DINFZJO1010");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding codes to specific concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'MSF-INTERNAL';
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAATVR3T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORABECL2SF",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAZJO1060",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORALINE6T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAZJO1062",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAMORP1CS",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAMORP3TS",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAZJO1061",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORATELA1T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJAMIN2A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJAREP4C1",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJCLON1A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJCOLI1V-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJIMCI55V",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DVACVHEB3V-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DEXTZJO1030",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DEXTHYPE3B2",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DEXTLUBR8J-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DEXTZJO1040",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DEXTZJO1020",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DEXTZJO1026",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DEXTZJO0021",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DEXOZJO1006",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DEXOZJO1005",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"NFOSZJO1004",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"NFOSRUTFPEP92",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINFZJO1009",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINFZJO1010",@source_id,uuid(),now());
+
+            call create_reference_mapping_msf_internal("ATV 300 mg / r 100 mg, tab.","DORAATVR3T-");
+            call create_reference_mapping_msf_internal("BECLOMETASONE dipropionate, 0.25mg/puff, 200 puffs,aerosol","DORABECL2SF");
+            call create_reference_mapping_msf_internal("FERROUS SALT, EQ. IRON 50MG/5ML, SYRUP, 100ML, BOT.","DORAZJO1060");
+            call create_reference_mapping_msf_internal("LINEZOLID, 600mg, tab.","DORALINE6T-");
+            call create_reference_mapping_msf_internal("MELOXICAM, 15mg, tab., tablette","DORAZJO1062");
+            call create_reference_mapping_msf_internal("MORPHINE sulfate, 10 mg, sustained release, caps.","DORAMORP1CS");
+            call create_reference_mapping_msf_internal("MORPHINE sulfate, 30 mg, sustained release, tab.","DORAMORP3TS");
+            call create_reference_mapping_msf_internal("SIMPLE PLAIN SUGAR SYRUP,  100 ML","DORAZJO1061");
+            call create_reference_mapping_msf_internal("TDF 300 mg / 3TC 300 mg, tab.","DORATELA1T-");
+            call create_reference_mapping_msf_internal("AMINOPHYLLINE, 25 mg/ml, 10 ml, amp. (obsolete)","DINJAMIN2A-");
+            call create_reference_mapping_msf_internal("ARTICAINE 4%/ EPINEPHRINE 1/100 000, 1.7 ml, dent.cartr. (ob","DINJAREP4C1");
+            call create_reference_mapping_msf_internal("CLONIDINE , 0.15 MG/ML, 1ML, AMP. ","DINJCLON1A-");
+            call create_reference_mapping_msf_internal("COLISTIMETHATE sodium, 1 MIU, powder, vial","DINJCOLI1V-");
+            call create_reference_mapping_msf_internal("IMIPENEM 500 mg / CILASTATIN sodium 500 mg, powder, vial","DINJIMCI55V");
+            call create_reference_mapping_msf_internal("VACCINE HEPATITIS B, 1 child dose, monodose, 0.5ml, vial","DVACVHEB3V-");
+            call create_reference_mapping_msf_internal("DERMANIOS, SCRUB CHLORHEXIDINE, 5 l","DEXTZJO1030");
+            call create_reference_mapping_msf_internal("HYDROGEN PEROXIDE, 3%, sol., 250 ml, bot.","DEXTHYPE3B2");
+            call create_reference_mapping_msf_internal("LUBRICANT, GENERAL USE, WATER-SOLUBLE, JELLY, 82 G, TUBE","DEXTLUBR8J-");
+            call create_reference_mapping_msf_internal("PARACETAMOL, 250 MG, SUPPOSITORY","DEXTZJO1040");
+            call create_reference_mapping_msf_internal("PERMETHRIN, 5 %, lotion, bot.( anti lice)","DEXTZJO1020");
+            call create_reference_mapping_msf_internal("VASELINE JAR 240 ml","DEXTZJO1026");
+            call create_reference_mapping_msf_internal("vaseline, 120ml","DEXTZJO0021");
+            call create_reference_mapping_msf_internal("ANTAZOLINE HCL 0.05% /TETRAHYDROZOLINE HCL 0.04%, ED,10ML","DEXOZJO1006");
+            call create_reference_mapping_msf_internal("CARBOMERS,  2MG, EYE GEL, 10 G, TUBE","DEXOZJO1005");
+            call create_reference_mapping_msf_internal("MULTIPLE MICRONUTRIENT POWDER, 400 g Vanilla (Ensure)","NFOSZJO1004");
+            call create_reference_mapping_msf_internal("PLUMPY NUT RUTF (READY TO USE THERAPEUTIC FOOD)","NFOSRUTFPEP92");
+            call create_reference_mapping_msf_internal("PERMETHRIN 1% , SPRAY .( ANTI LICE )","DEXTZJO1037");
+            call create_reference_mapping_msf_internal("MORPHINE hydrochloride, 100 mg/100ml 0.9% NS Via PCA","DINFZJO1009");
+            call create_reference_mapping_msf_internal("MORPHINE hydrochloride, 50 mg/100ml 0.9% NS Via PCA","DINFZJO1010");
+        </sql>
+    </changeSet>
 </databaseChangeLog>
