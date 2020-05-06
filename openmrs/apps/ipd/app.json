@@ -26,7 +26,9 @@
     "config": {
         "wardListPrintEnabled": true,
         "wardListPrintViewTemplateUrl": "/bahmni_config/openmrs/apps/ipd/wardListPrint.html",
-        "wardListPrintAttributes":[],
+        "wardListPrintAttributes":["Bed Tags","Bed Number","Patient ID","Patient Name","Age","Admission Date","Expected Date of Discharge",
+            "Speciality","Name of Surgeon","Date of Surgery","Surgery","Dressing Frequency", "Recent Lab Results","Is Caretaker Required?",
+            "Caretaker Gender","Date of Appointment","Slot","Provider name"],
         "wardListSqlSearchHandler": "emrapi.sqlGet.allWardsListDetails",
         "diagnosisStatus": "Inactive",
         "onAdmissionForwardTo": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
