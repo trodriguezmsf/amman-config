@@ -15,14 +15,14 @@
 - name: check if bahmni-batch is installed
   yum:
     list: bahmni-amman-batch
-  register: bahmni-amman-batch_info
+  register: bahmni_amman_batch_info
   ignore_errors: true
 
 - name: Uninstall bahmni-batch
   yum:
     name: bahmni-amman-batch
     state: absent
-  when: bahmni-amman-batch_info is defined
+  when: bahmni_amman_batch_info is defined
 
 - find:
     paths: /opt/
