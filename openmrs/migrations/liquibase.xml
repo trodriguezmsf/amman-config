@@ -11122,4 +11122,17 @@
             call create_reference_mapping_msf_internal("MORPHINE hydrochloride, 50 mg/100ml 0.9% NS Via PCA","DINFZJO1010");
         </sql>
     </changeSet>
+
+    <changeSet id="Amman_202005271616" author="Suraj" context="Amman appointment Service added">
+        <comment>Adding new appointment service</comment>
+        <sql>
+            SELECT user_id into @user_id FROM users WHERE system_id = "admin";
+            SELECT location_id INTO @service_location_id FROM location WHERE name = 'OPD' AND retired = 0;
+
+            INSERT INTO appointment_service
+            (name,description,start_time,end_time,location_id,speciality_id,max_appointments_limit,duration_mins,color,date_created,creator,date_changed,changed_by,voided,voided_by,date_voided,void_reason,uuid)
+            VALUES ('Pain Clinic','Pain Clinic',NULL,NULL,@service_location_id,NULL,NULL,15,"#D3D3D3",now(), @user_id,now(),@user_id,0,NULL,NULL,NULL,uuid());
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
