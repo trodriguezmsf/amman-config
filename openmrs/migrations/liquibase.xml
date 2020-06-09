@@ -11135,4 +11135,20 @@
         </sql>
     </changeSet>
 
+    <changeSet id="Amman_202006091445" author="Suraj" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from location where name ="3D";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding 3D Location </comment>
+        <sql>
+            SELECT location_id INTO @locationID FROM location where name = 'Al Mowasah Hospital' and description = 'Al Mowasah Hospital';
+            UPDATE location SET parent_location = @locationID WHERE name = '3D' and description = '3D';
+            SELECT location_tag_id INTO @location_tagID1 FROM location_tag WHERE name = 'Login Location' and description = 'When a user logs in and chooses a session location, they may only choose one with this tag';
+            SELECT location_id INTO @location_ID1 FROM location WHERE location.name='3D' and description = '3D';
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
