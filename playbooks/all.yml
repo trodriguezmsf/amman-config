@@ -12,5 +12,3 @@
     - { role: bahmni-amman-exports, tags: bahmni-amman-exports }
     - { role: print-forms, tags: print-forms }
     - { role: appointment-frontend, tags: appointment-frontend }
-    - { role: bahmni-mart, tags: bahmni-mart }
-
