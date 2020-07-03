@@ -9,7 +9,7 @@
   ],
   "config": {
     "enableSpecialities": false,
-    "startOfWeek": 1,
+    "startOfWeek": "Sunday",
     "weekStart": "week",
     "calendarSlotDuration": "00:10:00",
     "calendarSlotLabelInterval": "00:30:00",
