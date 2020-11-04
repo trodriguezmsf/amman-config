@@ -1,0 +1,158 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="Amman-202011041457" author="Supriya,Vinisha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Covid-19","Covid-19-workflow","Covid-19-outcome","Active Covid-19 patient","Active ICU
+                patient","Active HDU patient", "Discharged","Left against medical advice","Transfer to another hospital") and
+                concept_name_type =
+                'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding COVID-19 program concepts</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Covid-19","Covid-19","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Covid-19-workflow","Covid-19-workflow","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Covid-19-outcome","Covid-19-outcome","N/A","Misc",true);
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Active Covid-19 patient","Active Covid-19 patient","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Active ICU patient","Active ICU patient","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Active HDU patient","Active HDU patient","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Discharged","Discharged","N/A","Misc",false);
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Left against medical advice","Left against medical advice","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Transfer to another hospital","Transfer to another hospital","N/A","Misc",false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202011041530" author="Supriya, Vinisha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name in("Discharged","Left against
+                medical advice","Transfer to another hospital","Death","Dismissal" ) AND concept_name_type =
+                "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'Covid-19-outcome') and
+                concept_name_type = "FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for "Covid-19-outcome" concept</comment>
+        <sql>
+            select concept_id into @Covid_19_outcome_concept_id from concept_name where name = "Covid-19-outcome" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Discharged" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Left against medical advice" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Transfer to another hospital" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Death" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Dismissal" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members(@Covid_19_outcome_concept_id, @child1_concept_id, 1);
+            call add_concept_set_members(@Covid_19_outcome_concept_id, @child2_concept_id, 2);
+            call add_concept_set_members(@Covid_19_outcome_concept_id, @child3_concept_id, 3);
+            call add_concept_set_members(@Covid_19_outcome_concept_id, @child4_concept_id, 4);
+            call add_concept_set_members(@Covid_19_outcome_concept_id, @child5_concept_id, 5);
+
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202011041610" author="Supriya, Vinisha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program where name='Covid-19';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding program Covid-19</comment>
+        <sql>
+            select concept_id into @Covid_19_Concept_id from concept_name where name = 'Covid-19' and concept_name_type
+            = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Covid_19_Outcome_Concept_id from concept_name where name = 'Covid-19-outcome' and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select user_id into @Creator_Concept_id from users where username='superman';
+
+            INSERT INTO program(concept_id,outcomes_concept_id,creator,date_created,name,description,uuid)
+            VALUES (@Covid_19_Concept_id,@Covid_19_Outcome_Concept_id,@Creator_Concept_id,now(),'Covid-19','Covid-19
+            Program',uuid());
+
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202011041615" author="Supriya, Vinisha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program_workflow pw join concept_name cn on pw.concept_id = cn.concept_id
+                where pw.concept_id = (select concept_id from concept_name where name = 'Covid-19-workflow' and
+                concept_name_type = 'FULLY_SPECIFIED') and concept_name_type = 'FULLY_SPECIFIED';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Covid-19 Program workflow</comment>
+        <sql>
+
+            select program_id into @Covid_19_program_id from program where name='Covid-19';
+            select concept_id into @Covid_19_workflow_concept_id from concept_name where name ="Covid-19-workflow" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select user_id into @Creator_Concept_id from users where username='superman';
+
+            INSERT INTO program_workflow (program_id , concept_id , creator , date_created , retired , uuid)
+            VALUES (@Covid_19_program_id,@Covid_19_workflow_concept_id,@Creator_Concept_id, now(),0, uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202011041620" author="Supriya, Vinisha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program_workflow_state where concept_id in (select concept_id from concept_name
+                where name in ('Active Covid-19 patient','Active ICU patient','Active HDU patient','Discharged')
+                and program_workflow_id = (select program_workflow_id from program_workflow pw join concept_name cn on
+                pw.concept_id = cn.concept_id
+                where pw.concept_id = (select concept_id from concept_name where name = 'Covid-19-workflow' and
+                concept_name_type = 'FULLY_SPECIFIED' ) and concept_name_type = 'FULLY_SPECIFIED')
+                and concept_name_type = 'FULLY_SPECIFIED');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Program states for Covid-19-workflow</comment>
+        <sql>
+
+            select concept_id into @Covid_19_workflow_concept_id from concept_name where name = "Covid-19-workflow" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select program_workflow_id into @program_workflow_id from program_workflow where concept_id =
+            @Covid_19_workflow_concept_id;
+
+            select concept_id into @Active_Covid_19_patient_concept_id from concept_name where name = "Active Covid-19 patient" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Active_ICU_patient_concept_id from concept_name where name = "Active ICU patient"
+            and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Active_HDU_patient_concept_id from concept_name where name = "Active HDU patient"
+            and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Discharged_state_concept_id from concept_name where name = "Discharged" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            insert into program_workflow_state
+            (program_workflow_id,concept_id,initial,terminal,creator,date_created,retired ,uuid) values
+            (@program_workflow_id,@Active_Covid_19_patient_concept_id,0,0,1,now(),0,uuid()),
+            (@program_workflow_id,@Active_ICU_patient_concept_id,0,0,1,now(),0,uuid()),
+            (@program_workflow_id,@Active_HDU_patient_concept_id,0,0,1,now(),0,uuid()),
+            (@program_workflow_id,@Discharged_state_concept_id,0,0,1,now(),0,uuid());
+        </sql>
+    </changeSet>
+</databaseChangeLog>
