@@ -11150,5 +11150,5 @@
             INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
         </sql>
     </changeSet>
-
+    <include file="programs/addCovidProgram.xml"/>
 </databaseChangeLog>
