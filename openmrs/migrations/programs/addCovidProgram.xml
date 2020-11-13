@@ -155,4 +155,269 @@
             (@program_workflow_id,@Discharged_state_concept_id,0,0,1,now(),0,uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-202011130000" author="Bindu, Tarun" context="amman-enhancements-nov2020">
+        <comment>MOBN-1540 | Add concepts to "DIA, Medical Diagnosis coded"</comment>
+        <sql>
+            set @parent_concept = "DIA, Medical Diagnosis coded";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = "";
+            set @concept_description = NULL;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+
+            # Create concepts
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "COVID19", "COVID-19", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Post COVID-19 condition", @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Multisystem inflammatory syndrome associated with COVID-19", @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add to coded diagnoses
+            call add_answer_to_concept_set(@parent_concept, NULL, "COVID19", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Post COVID-19 condition", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Multisystem inflammatory syndrome associated with COVID-19", NULL, @locale, @is_set);
+
+            # Reorder concepts
+            call reorder_concept_answer(@parent_concept, "Abdominal Pain",1);
+            call reorder_concept_answer(@parent_concept, "Abnormal Uterine and Vaginal Bleeding",2);
+            call reorder_concept_answer(@parent_concept, "Abscess",3);
+            call reorder_concept_answer(@parent_concept, "Acute Abdomen",4);
+            call reorder_concept_answer(@parent_concept, "Acute and subacute endocarditis",5);
+            call reorder_concept_answer(@parent_concept, "Acute and transient psychotic disorders",6);
+            call reorder_concept_answer(@parent_concept, "Acute Bronchiolitis",7);
+            call reorder_concept_answer(@parent_concept, "Acute Bronchitis",8);
+            call reorder_concept_answer(@parent_concept, "Acute Flaccid Paralysis Poliomyelitis",9);
+            call reorder_concept_answer(@parent_concept, "Acute Hepatitis A",10);
+            call reorder_concept_answer(@parent_concept, "Acute Hepatitis B",11);
+            call reorder_concept_answer(@parent_concept, "Acute Hepatitis E",12);
+            call reorder_concept_answer(@parent_concept, "Acute Ischaemic Heart Disease",13);
+            call reorder_concept_answer(@parent_concept, "Acute myocarditis",14);
+            call reorder_concept_answer(@parent_concept, "Acute pericarditis",15);
+            call reorder_concept_answer(@parent_concept, "Acute Pulmonary Oedema",16);
+            call reorder_concept_answer(@parent_concept, "Acute Pyelonephritis",17);
+            call reorder_concept_answer(@parent_concept, "Acute Renal Failure",18);
+            call reorder_concept_answer(@parent_concept, "Acute Respiratory Failure",19);
+            call reorder_concept_answer(@parent_concept, "Acute stress reaction",20);
+            call reorder_concept_answer(@parent_concept, "Acute transmural myocardial infarction of anterior wall",21);
+            call reorder_concept_answer(@parent_concept, "Acute transmural myocardial infarction of inferior wall",22);
+            call reorder_concept_answer(@parent_concept, "Acute transmural myocardial infarction of unspecified site",23);
+            call reorder_concept_answer(@parent_concept, "Adjustment disorders",24);
+            call reorder_concept_answer(@parent_concept, "Agina Pectoris",25);
+            call reorder_concept_answer(@parent_concept, "Altered Consciousness",26);
+            call reorder_concept_answer(@parent_concept, "Amoebiasis",27);
+            call reorder_concept_answer(@parent_concept, "Anaemia",28);
+            call reorder_concept_answer(@parent_concept, "Anaphylactic Shock",29);
+            call reorder_concept_answer(@parent_concept, "Angioneurotic oedema",30);
+            call reorder_concept_answer(@parent_concept, "Anxiety",31);
+            call reorder_concept_answer(@parent_concept, "Appendicitis",32);
+            call reorder_concept_answer(@parent_concept, "Arterial embolism and thrombosis",33);
+            call reorder_concept_answer(@parent_concept, "Ascites",34);
+            call reorder_concept_answer(@parent_concept, "Asthma",35);
+            call reorder_concept_answer(@parent_concept, "Atherosclerosis",36);
+            call reorder_concept_answer(@parent_concept, "Bacterial Meningitis",37);
+            call reorder_concept_answer(@parent_concept, "Bacterial pneumonia",38);
+            call reorder_concept_answer(@parent_concept, "Beri-Beri",39);
+            call reorder_concept_answer(@parent_concept, "Bipolar affective disorder",40);
+            call reorder_concept_answer(@parent_concept, "Bloody Diarrhea",41);
+            call reorder_concept_answer(@parent_concept, "Breast Pathology",42);
+            call reorder_concept_answer(@parent_concept, "Brucellosis",43);
+            call reorder_concept_answer(@parent_concept, "Candidiasis",44);
+            call reorder_concept_answer(@parent_concept, "Cardiac Arrest",45);
+            call reorder_concept_answer(@parent_concept, "Cardiac Tamponade",46);
+            call reorder_concept_answer(@parent_concept, "Cardiogenic Shock",47);
+            call reorder_concept_answer(@parent_concept, "Cardiomyopathy",48);
+            call reorder_concept_answer(@parent_concept, "Carrier of viral hepatitis C",49);
+            call reorder_concept_answer(@parent_concept, "Cellulitis",50);
+            call reorder_concept_answer(@parent_concept, "Childhood emotional disorder, unspecified",51);
+            call reorder_concept_answer(@parent_concept, "Chlamydia trachomatis",52);
+            call reorder_concept_answer(@parent_concept, "Cholecystitis",53);
+            call reorder_concept_answer(@parent_concept, "Cholera",54);
+            call reorder_concept_answer(@parent_concept, "Chronic bronchitis",55);
+            call reorder_concept_answer(@parent_concept, "Chronic Diseases (Noncommunicable)",56);
+            call reorder_concept_answer(@parent_concept, "Chronic ishaemic heart disease",57);
+            call reorder_concept_answer(@parent_concept, "Chronic intractable pain",58);
+            call reorder_concept_answer(@parent_concept, "Chronic Kidney Disease",59);
+            call reorder_concept_answer(@parent_concept, "Chronic Obstructive Pulmonary Disease",60);
+            call reorder_concept_answer(@parent_concept, "Chronic Respiratory Failure",61);
+            call reorder_concept_answer(@parent_concept, "Chronic Viral Hepatitis B",62);
+            call reorder_concept_answer(@parent_concept, "Chronic Viral Hepatitis C",63);
+            call reorder_concept_answer(@parent_concept, "Complex Regional Pain Syndrome",64);
+            call reorder_concept_answer(@parent_concept, "Conduct disorder, unspecified",65);
+            call reorder_concept_answer(@parent_concept, "Conjunctivitis",66);
+            call reorder_concept_answer(@parent_concept, "Contact eczema",67);
+            call reorder_concept_answer(@parent_concept, "Convulsions",68);
+            call reorder_concept_answer(@parent_concept, "COVID19",69);
+            call reorder_concept_answer(@parent_concept, "Cutaneous Leishmaniasis",70);
+            call reorder_concept_answer(@parent_concept, "Death, Unknown",71);
+            call reorder_concept_answer(@parent_concept, "Dehydration",72);
+            call reorder_concept_answer(@parent_concept, "Delirium, not induced by alcohol and other psychoactive substances",73);
+            call reorder_concept_answer(@parent_concept, "Depression",74);
+            call reorder_concept_answer(@parent_concept, "Depressive episode",75);
+            call reorder_concept_answer(@parent_concept, "Diabetes insipidus",76);
+            call reorder_concept_answer(@parent_concept, "Diabetes Mellitus, Type 1",77);
+            call reorder_concept_answer(@parent_concept, "Diabetes Mellitus, Type 2",78);
+            call reorder_concept_answer(@parent_concept, "Diabetes with Ketoacidosis",79);
+            call reorder_concept_answer(@parent_concept, "Diphtheria",80);
+            call reorder_concept_answer(@parent_concept, "Disorder of Skin and Subcutaneous Tissue",81);
+            call reorder_concept_answer(@parent_concept, "Disorder of Urinary System",82);
+            call reorder_concept_answer(@parent_concept, "Disorders of the Stomach and Duodenum",83);
+            call reorder_concept_answer(@parent_concept, "Dissociative [conversion] disorders",84);
+            call reorder_concept_answer(@parent_concept, "Dissociative convulsions",85);
+            call reorder_concept_answer(@parent_concept, "Disturbance of activity and attention",86);
+            call reorder_concept_answer(@parent_concept, "Emphysema",87);
+            call reorder_concept_answer(@parent_concept, "Endemic Goitre (Iodine-Deficiency-Related)",88);
+            call reorder_concept_answer(@parent_concept, "Epilepsy",89);
+            call reorder_concept_answer(@parent_concept, "Examination for Unspecified Reason",90);
+            call reorder_concept_answer(@parent_concept, "Extra Pulmonary Tuberculosis, Suspect",91);
+            call reorder_concept_answer(@parent_concept, "Female Pelvic Inflammatory Disease",92);
+            call reorder_concept_answer(@parent_concept, "Fever of Unknown Origin",93);
+            call reorder_concept_answer(@parent_concept, "Gastrojejunal Ulcer with Haemorrhage",94);
+            call reorder_concept_answer(@parent_concept, "Gonococcal infection",95);
+            call reorder_concept_answer(@parent_concept, "Haemorrhage",96);
+            call reorder_concept_answer(@parent_concept, "Heart Disease, Unspecified",97);
+            call reorder_concept_answer(@parent_concept, "Heart Failure",98);
+            call reorder_concept_answer(@parent_concept, "Hepatitis B surface antigen [HBsAg] carrier",99);
+            call reorder_concept_answer(@parent_concept, "Hernia",100);
+            call reorder_concept_answer(@parent_concept, "HIV Infection and AIDS",101);
+            call reorder_concept_answer(@parent_concept, "Hyperaesthesia",102);
+            call reorder_concept_answer(@parent_concept, "Hypertension",103);
+            call reorder_concept_answer(@parent_concept, "Hypertensive Heart Disease",104);
+            call reorder_concept_answer(@parent_concept, "Hypertensive Renal Disease",105);
+            call reorder_concept_answer(@parent_concept, "Hypoglycaemia",106);
+            call reorder_concept_answer(@parent_concept, "Hypotension",107);
+            call reorder_concept_answer(@parent_concept, "Hypothyroidism",108);
+            call reorder_concept_answer(@parent_concept, "Hypovolemic Shock",109);
+            call reorder_concept_answer(@parent_concept, "Ileus",110);
+            call reorder_concept_answer(@parent_concept, "Intestinal Parasitism",111);
+            call reorder_concept_answer(@parent_concept, "Jaundice",112);
+            call reorder_concept_answer(@parent_concept, "Joint Pain",113);
+            call reorder_concept_answer(@parent_concept, "Leg Ulcers",114);
+            call reorder_concept_answer(@parent_concept, "Leprosy",115);
+            call reorder_concept_answer(@parent_concept, "Liver Disease",116);
+            call reorder_concept_answer(@parent_concept, "Lower Respiratory Tract Infection",117);
+            call reorder_concept_answer(@parent_concept, "Measles",118);
+            call reorder_concept_answer(@parent_concept, "Meningitis, Unspecified",119);
+            call reorder_concept_answer(@parent_concept, "Menstrual Disorder",120);
+            call reorder_concept_answer(@parent_concept, "Mental and behavioural disorders due to use of alcohol",121);
+            call reorder_concept_answer(@parent_concept, "Mental and behavioural disorders due to multiple drug use and use of other psychoactive substances",122);
+            call reorder_concept_answer(@parent_concept, "Metabolic Syndrom",123);
+            call reorder_concept_answer(@parent_concept, "Mild mental and behavioural disorders associated with the puerperium, not elsewhere classified",124);
+            call reorder_concept_answer(@parent_concept, "Moderate Acute Malnutrition",125);
+            call reorder_concept_answer(@parent_concept, "Moderate depressive episode",126);
+            call reorder_concept_answer(@parent_concept, "Moderate protein-energy malnutrition",127);
+            call reorder_concept_answer(@parent_concept, "Mumps",128);
+            call reorder_concept_answer(@parent_concept, "Multisystem inflammatory syndrome associated with COVID-19",129);
+            call reorder_concept_answer(@parent_concept, "Myalgia",130);
+            call reorder_concept_answer(@parent_concept, "Myocardial infarction with non-ST elevation",131);
+            call reorder_concept_answer(@parent_concept, "Nephrotic Syndrome",132);
+            call reorder_concept_answer(@parent_concept, "Neurological Disorder",133);
+            call reorder_concept_answer(@parent_concept, "Neuropathy",134);
+            call reorder_concept_answer(@parent_concept, "Non-Bloody Diarrhea",135);
+            call reorder_concept_answer(@parent_concept, "Nonorganic enuresis",136);
+            call reorder_concept_answer(@parent_concept, "Obsessive-compulsive disorder",137);
+            call reorder_concept_answer(@parent_concept, "Other anxiety disorder",138);
+            call reorder_concept_answer(@parent_concept, "Other Complications - Pregnancy, Childbirth and the Puerperium",139);
+            call reorder_concept_answer(@parent_concept, "Other Digestive System Symptoms",140);
+            call reorder_concept_answer(@parent_concept, "Other Eye Disorder",141);
+            call reorder_concept_answer(@parent_concept, "Other Gynecological Conditions",142);
+            call reorder_concept_answer(@parent_concept, "Other Infectious Diseases",143);
+            call reorder_concept_answer(@parent_concept, "Other Mental Health Disorder",144);
+            call reorder_concept_answer(@parent_concept, "Other Pathologies",145);
+            call reorder_concept_answer(@parent_concept, "Other predominantly sexually transmitted diseases, not elsewhere classified",146);
+            call reorder_concept_answer(@parent_concept, "Other Respiratory Problems",147);
+            call reorder_concept_answer(@parent_concept, "Other and unspecified convulsions",148);
+            call reorder_concept_answer(@parent_concept, "Ovarian Cyst",149);
+            call reorder_concept_answer(@parent_concept, "Pain",150);
+            call reorder_concept_answer(@parent_concept, "Pervasive developmental disorder, unspecified",151);
+            call reorder_concept_answer(@parent_concept, "Pediculosis (lice)",152);
+            call reorder_concept_answer(@parent_concept, "Pellagra",153);
+            call reorder_concept_answer(@parent_concept, "Peritonitis",154);
+            call reorder_concept_answer(@parent_concept, "Phlebitis and Thrombophlebitis",155);
+            call reorder_concept_answer(@parent_concept, "Phantom limb syndrome without pain",156);
+            call reorder_concept_answer(@parent_concept, "Pleurisy",157);
+            call reorder_concept_answer(@parent_concept, "Post Traumatic Stress Disorder",158);
+            call reorder_concept_answer(@parent_concept, "Post COVID-19 condition",159);
+            call reorder_concept_answer(@parent_concept, "Postprocedural disorders of circulatory system",160);
+            call reorder_concept_answer(@parent_concept, "Pregnancy confirmed",161);
+            call reorder_concept_answer(@parent_concept, "Protein-calorie malnutrition",162);
+            call reorder_concept_answer(@parent_concept, "Psychosis",163);
+            call reorder_concept_answer(@parent_concept, "Pulmonary Embolism",164);
+            call reorder_concept_answer(@parent_concept, "Pulmonary valve disorders",165);
+            call reorder_concept_answer(@parent_concept, "Rabies",166);
+            call reorder_concept_answer(@parent_concept, "Renal Stones",167);
+            call reorder_concept_answer(@parent_concept, "Rickets",168);
+            call reorder_concept_answer(@parent_concept, "Rubella",169);
+            call reorder_concept_answer(@parent_concept, "Scabies",170);
+            call reorder_concept_answer(@parent_concept, "Sciatica",171);
+            call reorder_concept_answer(@parent_concept, "Schizophrenia",172);
+            call reorder_concept_answer(@parent_concept, "Scurvy",173);
+            call reorder_concept_answer(@parent_concept, "Secondary Hypertension",174);
+            call reorder_concept_answer(@parent_concept, "Sepsis",175);
+            call reorder_concept_answer(@parent_concept, "Separation anxiety disorder of childhood",176);
+            call reorder_concept_answer(@parent_concept, "Septic Shock",177);
+            call reorder_concept_answer(@parent_concept, "Severe Acute Malnutrition",178);
+            call reorder_concept_answer(@parent_concept, "Severe complicated malnutrition",179);
+            call reorder_concept_answer(@parent_concept, "Severe depressive episode without psychotic symptoms",180);
+            call reorder_concept_answer(@parent_concept, "Severe depressive episode with psychotic symptoms",181);
+            call reorder_concept_answer(@parent_concept, "Severe mental and behavioural disorders associated with the puerperium, not elsewhere classified",182);
+            call reorder_concept_answer(@parent_concept, "Severe uncomplicated malnutrition",183);
+            call reorder_concept_answer(@parent_concept, "Sexual Violence",184);
+            call reorder_concept_answer(@parent_concept, "Sexually Transmitted Disease",185);
+            call reorder_concept_answer(@parent_concept, "Shigellosis",186);
+            call reorder_concept_answer(@parent_concept, "Shock",187);
+            call reorder_concept_answer(@parent_concept, "Sickle Cell Disease",188);
+            call reorder_concept_answer(@parent_concept, "Skin Infection",189);
+            call reorder_concept_answer(@parent_concept, "Somatoform disorders",190);
+            call reorder_concept_answer(@parent_concept, "Spontaneous Pneumothorax",191);
+            call reorder_concept_answer(@parent_concept, "Stroke",192);
+            call reorder_concept_answer(@parent_concept, "Syphilis",193);
+            call reorder_concept_answer(@parent_concept, "Tetanus",194);
+            call reorder_concept_answer(@parent_concept, "Thalassemia",195);
+            call reorder_concept_answer(@parent_concept, "Thyrotoxicosis",196);
+            call reorder_concept_answer(@parent_concept, "Trachoma",197);
+            call reorder_concept_answer(@parent_concept, "Tuberculosis Respiratory, Confirmed",198);
+            call reorder_concept_answer(@parent_concept, "Tuberculosis Respiratory, Not Confirmed",199);
+            call reorder_concept_answer(@parent_concept, "Typhoid Fever",200);
+            call reorder_concept_answer(@parent_concept, "Unspecified dementia",201);
+            call reorder_concept_answer(@parent_concept, "Unspecified mental retardation",202);
+            call reorder_concept_answer(@parent_concept, "Upper Respiratory Tract Infection",203);
+            call reorder_concept_answer(@parent_concept, "Urinary Tract Infection",204);
+            call reorder_concept_answer(@parent_concept, "Urticaria",205);
+            call reorder_concept_answer(@parent_concept, "Uterine Fibroids",206);
+            call reorder_concept_answer(@parent_concept, "Vaginal Discharge",207);
+            call reorder_concept_answer(@parent_concept, "Venereal Warts",208);
+            call reorder_concept_answer(@parent_concept, "Viral Hepatitis, Other ",209);
+            call reorder_concept_answer(@parent_concept, "Viral Meningitis",210);
+            call reorder_concept_answer(@parent_concept, "Viral pneumonia",211);
+            call reorder_concept_answer(@parent_concept, "Visceral Leishmaniasis",212);
+            call reorder_concept_answer(@parent_concept, "Vitamin Deficiencies, Unspecified",213);
+            call reorder_concept_answer(@parent_concept, "Whooping Cough (Pertussis)",214);
+            call reorder_concept_answer(@parent_concept, "Xerophthalmia",215);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202011130001" author="Bindu, Tarun" context="amman-enhancements-nov2020">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_source where name = "ICD-11-WHO";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding ICD-11-WHO concept_reference_sources</comment>
+        <sql>
+            INSERT INTO concept_reference_source(name,description,hl7_code,creator,date_created,uuid) values ("ICD-11-WHO","ICD-11-WHO Bacteriology concept source",NULL,1,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202011130002" author="Bindu, Tarun" context="amman-enhancements-nov2020">
+        <comment>MOBN-1540 | Mapping concepts</comment>
+        <sql>
+            set @locale = "en";
+            set @concept_reference_source = "ICD-11-WHO";
+            set @concept_map_type = "SAME-AS";
+
+            call map_concept("COVID19", @locale,"RA01", @concept_reference_source, @concept_map_type);
+            call map_concept("Multisystem inflammatory syndrome associated with COVID-19", @locale,"RA03", @concept_reference_source, @concept_map_type);
+            call map_concept("Post COVID-19 condition", @locale,"RA02", @concept_reference_source, @concept_map_type);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
