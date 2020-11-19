@@ -11157,5 +11157,16 @@
         </sql>
         <sqlFile splitStatements="false" path="utils/AddNewConcept_v1.sql"/>
     </changeSet>
+    <changeSet id="Amman-202011191253" author="Supriya, Vinisha" context="updating bed layout for buffer beds">
+        <comment>Procedure to update bed layout</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS updateBedInTheLocation;
+        </sql>
+        <sqlFile path="bedManagement/UpdateBedInTheLocationStoredProcedure.sql" endDelimiter="#"/>
+    </changeSet>
+    <changeSet id="Amman-202011191753" author="Supriya, Vinisha" context="updating bed layout for buffer beds">
+        <comment>Updating bed layout to Hotel Kahramana Buffer Beds</comment>
+        <sqlFile path="bedManagement/UpdatedKahramanaBedLayout.sql"/>
+    </changeSet>
     <include file="programs/addCovidProgram.xml"/>
 </databaseChangeLog>
