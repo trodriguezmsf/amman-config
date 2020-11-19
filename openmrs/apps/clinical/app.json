@@ -1734,8 +1734,14 @@
             },
           "MDOF, Discharge medication section":{
             "allowAddMore": true
+          },
+          "MD, Severity of Covid-19 case":{
+            "disableAddNotes": true
+          },
+          "MD, Date of first positive PCR test":{
+            "disableAddNotes": true
           }
-            },
+        },
         "visitPage": {
             "observationDisplay": {
                 "conceptNames": []

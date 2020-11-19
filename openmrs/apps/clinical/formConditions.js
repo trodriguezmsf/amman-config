@@ -2798,5 +2798,19 @@ Bahmni.ConceptSet.FormConditions.rules = {
                conditions.hide.push("OS, Drainage Set")
           }
            return conditions;
-       }
+    },
+    'MD, Severity of Covid-19 case': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MD, Severity of Covid-19 case'];
+        if (conditionConcept){
+            conditions.show.push("MD, Date of first positive PCR test")
+        }
+        else {
+            conditions.hide.push("MD, Date of first positive PCR test")
+        }
+        return conditions;
+    }
 }

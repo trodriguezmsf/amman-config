@@ -420,4 +420,189 @@
             call map_concept("Post COVID-19 condition", @locale,"RA02", @concept_reference_source, @concept_map_type);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202011170000" author="Tarun" context="amman-enhancements-nov2020">
+        <comment>MOBN-1543 | Add answers to MD, Review of systems, general"</comment>
+        <sql>
+            set @parent_concept = "MD, Review of systems, general";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = NULL;
+            set @concept_description = NULL;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+            set @concept_reference_source = "CIEL";
+            set @concept_map_type = "SAME-AS";
+
+            # Create concepts
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Chills", @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Cutaneous symptoms", @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add Mappings
+            call map_concept("Chills", @locale, "871", @concept_reference_source, @concept_map_type);
+
+            # Add to MD, Review of systems, general
+            call add_answer_to_concept_set(@parent_concept, NULL, "Chills", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Cutaneous symptoms", NULL, @locale, @is_set);
+
+            # Reorder concepts
+            call reorder_concept_answer(@parent_concept, "Negative", 1);
+            call reorder_concept_answer(@parent_concept, "Weight Loss", 2);
+            call reorder_concept_answer(@parent_concept, "Fatigue", 3);
+            call reorder_concept_answer(@parent_concept, "Fever", 4);
+            call reorder_concept_answer(@parent_concept, "Night Sweats", 5);
+            call reorder_concept_answer(@parent_concept, "Pain", 6);
+            call reorder_concept_answer(@parent_concept, "Chills", 7);
+            call reorder_concept_answer(@parent_concept, "Cutaneous symptoms", 8);
+            call reorder_concept_answer(@parent_concept, "Other", 9);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202011170001" author="Tarun" context="amman-enhancements-nov2020">
+        <comment>MOBN-1543 | Add answers to MD, Review of systems, gastrointestinal"</comment>
+        <sql>
+            set @parent_concept = "MD, Review of systems, gastrointestinal";
+            set @locale = "en";
+            set @is_set = False;
+
+            # Add to MD, Review of systems, gastrointestinal
+            call add_answer_to_concept_set(@parent_concept, NULL, "Abdominal pain", NULL, @locale, @is_set);
+
+            # Reorder concepts
+            call reorder_concept_answer(@parent_concept, "Negative", 1);
+            call reorder_concept_answer(@parent_concept, "Nausea", 2);
+            call reorder_concept_answer(@parent_concept, "Pain after meals", 3);
+            call reorder_concept_answer(@parent_concept, "Heartburn", 4);
+            call reorder_concept_answer(@parent_concept, "Diarrhea", 5);
+            call reorder_concept_answer(@parent_concept, "Constipation", 6);
+            call reorder_concept_answer(@parent_concept, "Vomiting", 7);
+            call reorder_concept_answer(@parent_concept, "Black/Tarry Stool", 8);
+            call reorder_concept_answer(@parent_concept, "Bloody Stool", 9);
+            call reorder_concept_answer(@parent_concept, "Jaundice", 10);
+            call reorder_concept_answer(@parent_concept, "Abdominal pain", 11);
+            call reorder_concept_answer(@parent_concept, "Other", 12);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202011170002" author="Tarun" context="amman-enhancements-nov2020">
+        <comment>MOBN-1543 | Add answers to MD, Review of systems, HEENT"</comment>
+        <sql>
+            set @parent_concept = "MD, Review of systems, HEENT";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = NULL;
+            set @concept_description = NULL;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+            set @concept_reference_source = "CIEL";
+            set @concept_map_type = "SAME-AS";
+
+            # Create concepts
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Nasal congestion", @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Runny nose", @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Loss/change of taste", @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Loss/change of smell", @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Sore throat", @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add Mappings
+            call map_concept("Nasal congestion", @locale, "133502", @concept_reference_source, @concept_map_type);
+            call map_concept("Runny nose", @locale, "165501", @concept_reference_source, @concept_map_type);
+            call map_concept("Loss/change of smell", @locale, "135589", @concept_reference_source, @concept_map_type);
+            call map_concept("Sore throat", @locale, "158843", @concept_reference_source, @concept_map_type);
+
+            # Add to MD, Review of systems, HEENT
+            call add_answer_to_concept_set(@parent_concept, NULL, "Nasal congestion", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Runny nose", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Loss/change of taste", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Loss/change of smell", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Sore throat", NULL, @locale, @is_set);
+
+            # Reorder concepts
+            call reorder_concept_answer(@parent_concept, "Negative", 1);
+            call reorder_concept_answer(@parent_concept, "Vision Difficulties", 2);
+            call reorder_concept_answer(@parent_concept, "Decreased Hearing", 3);
+            call reorder_concept_answer(@parent_concept, "Epistaxis", 4);
+            call reorder_concept_answer(@parent_concept, "Gum Bleeding", 5);
+            call reorder_concept_answer(@parent_concept, "Dental Caries", 6);
+            call reorder_concept_answer(@parent_concept, "Difficulty Chewing", 7);
+            call reorder_concept_answer(@parent_concept, "Dysphagia", 8);
+            call reorder_concept_answer(@parent_concept, "Nasal congestion", 9);
+            call reorder_concept_answer(@parent_concept, "Runny nose", 10);
+            call reorder_concept_answer(@parent_concept, "Loss/change of taste", 11);
+            call reorder_concept_answer(@parent_concept, "Loss/change of smell", 12);
+            call reorder_concept_answer(@parent_concept, "Sore throat", 13);
+            call reorder_concept_answer(@parent_concept, "Other", 14);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202011170003" author="Tarun" context="amman-enhancements-nov2020">
+        <comment>MOBN-1543 | Add concepts to MD Initial Assessment"</comment>
+        <sql>
+            #set @parent_concept = "MD Initial Assessment";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_description = NULL;
+            set @concept_datatype_coded = "Coded";
+            set @concept_datatype_date = "Date";
+            set @concept_class = "Question";
+            set @locale = "en";
+            set @is_set = False;
+
+            # Create concepts
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "MD, Severity of Covid-19 case", "Severity of Covid-19 case", @concept_description, @concept_datatype_coded, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "MD, Date of first positive PCR test", "Date of first positive PCR test", @concept_description, @concept_datatype_date , @concept_class, @locale, @is_set);
+
+            # Add to MD Initial Assessment
+            SELECT concept_id INTO @conceptsetID FROM concept_name WHERE name ="MD Initial Assessment" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="MD, History of present illness" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID2 FROM concept_name WHERE name ="MD, Severity of Covid-19 case" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID3 FROM concept_name WHERE name ="MD, Date of first positive PCR test" AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_set SET sort_weight=1018 WHERE concept_id=@conceptID1 and concept_set=@conceptsetID;
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID2,@conceptsetID,1019,8,now(),uuid());
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@conceptID3,@conceptsetID,1020,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202011170004" author="Tarun" context="amman-enhancements-nov2020">
+        <comment>MOBN-1543 | Add answers to MD, Severity of Covid-19 case"</comment>
+        <sql>
+            set @parent_concept = "MD, Severity of Covid-19 case";
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_name_short = NULL;
+            set @concept_description = NULL;
+            set @concept_datatype = "N/A";
+            set @concept_class = "Misc";
+            set @locale = "en";
+            set @is_set = False;
+            set @concept_reference_source = "CIEL";
+            set @concept_map_type = "SAME-AS";
+
+            # Create concepts
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Mild", @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Severe", @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+            call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Critical", @concept_name_short, @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+
+            # Add Mappings
+            call map_concept("Mild", @locale, "1498", @concept_reference_source, @concept_map_type);
+            call map_concept("Moderate", @locale, "1499", @concept_reference_source, @concept_map_type);
+            call map_concept("Severe", @locale, "1500", @concept_reference_source, @concept_map_type);
+            call map_concept("Critical", @locale, "164830", @concept_reference_source, @concept_map_type);
+
+            # Add to MD, Severity of Covid-19 case
+            call add_answer_to_concept_set(@parent_concept, NULL, "Mild", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Moderate", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Severe", NULL, @locale, @is_set);
+            call add_answer_to_concept_set(@parent_concept, NULL, "Critical", NULL, @locale, @is_set);
+
+            # Reorder concepts
+            call reorder_concept_answer(@parent_concept, "Mild",1);
+            call reorder_concept_answer(@parent_concept, "Moderate",2);
+            call reorder_concept_answer(@parent_concept, "Severe",3);
+            call reorder_concept_answer(@parent_concept, "Critical",4);
+        </sql>
+    </changeSet>
 </databaseChangeLog>

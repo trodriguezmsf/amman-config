@@ -11150,5 +11150,12 @@
             INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202011160000" author="Tarun" context="amman-enhancements-nov2020">
+        <comment>MOBN-1543 | Update procedure add_new_concept to allow shortname as null</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_new_concept;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/AddNewConcept_v1.sql"/>
+    </changeSet>
     <include file="programs/addCovidProgram.xml"/>
 </databaseChangeLog>
