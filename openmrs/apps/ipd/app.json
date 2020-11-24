@@ -356,6 +356,10 @@
             {
                 "name": "MULTITAG_KEY",
                 "color": "#000000"
+            },
+            {
+                "name": "OUT_OF_SERVICE",
+                "color": "#808080"
             }
         ]
     }
