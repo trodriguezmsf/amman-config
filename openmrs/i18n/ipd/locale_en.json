@@ -47,5 +47,6 @@
   "RESERVED_FOR_CT_KEY": "Reserved for CT",
   "MULTITAG_KEY": "MultiTag",
   "OCCUPIED_VALUE_KEY": "Occupied",
-  "AVAILABLE_VALUE_KEY": "Available"
+  "AVAILABLE_VALUE_KEY": "Available",
+  "OUT_OF_SERVICE": "Out of service"
 }
