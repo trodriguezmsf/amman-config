@@ -11168,5 +11168,16 @@
         <comment>Updating bed layout to Hotel Kahramana Buffer Beds</comment>
         <sqlFile path="bedManagement/UpdatedKahramanaBedLayout.sql"/>
     </changeSet>
+    <changeSet id="Amman-202011241819" author="Vinisha" context="updating bed layout for buffer beds">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from bed_tag where name="Out of service";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Out of service bed tag</comment>
+        <sql>
+            INSERT INTO bed_tag(name, creator, date_created, voided, uuid) VALUES ("Out of service", 1, now(), 0, uuid());
+        </sql>
+    </changeSet>
     <include file="programs/addCovidProgram.xml"/>
 </databaseChangeLog>
