@@ -1,0 +1,1392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!---Change Set For addition of concepts to openmrs -->
+    <changeSet id="AMMAN_CONFIG_202011251038" author="Pritam">
+        <comment>Adding Concepts for covid 19 assessment form</comment>
+        <sqlFile path="concepts/addCovidConcept.sql"/>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260409" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select
+                count(*)
+                From
+                concept_reference_term
+                where `code` in
+                ("162743", "159392", "162863", "703", "160551", "1500", "140238", "141600", "135589", "80", "163196", "152807", "119481", "115115", "117399", "155569", "119270", "731", "6032", "6033", "160034", "1195", "162306", "162869")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where `name` = 'CEIL'  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding codes to specific concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'CEIL';
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162743",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"159392",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162863",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"703",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160551",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1500",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"140238",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"141600",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"135589",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"80",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"163196",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"152807",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"119481",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"115115",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"117399",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"155569",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"119270",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"731",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"6032",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"6033",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160034",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1195",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162306",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162869",@source_id,uuid(),now());
+            call CREATE_REFERENCE_MAPPING_CEIL("Suspect","162743");
+            call CREATE_REFERENCE_MAPPING_CEIL("Confirmed","159392");
+            call CREATE_REFERENCE_MAPPING_CEIL("Probable","162863");
+            call CREATE_REFERENCE_MAPPING_CEIL("Positive","703");
+            call CREATE_REFERENCE_MAPPING_CEIL("Self","160551");
+            call CREATE_REFERENCE_MAPPING_CEIL("Severe","1500");
+            call CREATE_REFERENCE_MAPPING_CEIL("Fever","140238");
+            call CREATE_REFERENCE_MAPPING_CEIL("Difficulty Breathing","141600");
+            call CREATE_REFERENCE_MAPPING_CEIL("Loss of Smell","135589");
+            call CREATE_REFERENCE_MAPPING_CEIL("Joint Pain","80");
+            call CREATE_REFERENCE_MAPPING_CEIL("Current Smoker","163196");
+            call CREATE_REFERENCE_MAPPING_CEIL("Former Smoker","152807");
+            call CREATE_REFERENCE_MAPPING_CEIL("Diabetes","119481");
+            call CREATE_REFERENCE_MAPPING_CEIL("Obesity","115115");
+            call CREATE_REFERENCE_MAPPING_CEIL("Hypertension","117399");
+            call CREATE_REFERENCE_MAPPING_CEIL("Chronic Lung Disease","155569");
+            call CREATE_REFERENCE_MAPPING_CEIL("Cardiovascular Disease","119270");
+            call CREATE_REFERENCE_MAPPING_CEIL("Asthma","731");
+            call CREATE_REFERENCE_MAPPING_CEIL("Liver Disease","6032");
+            call CREATE_REFERENCE_MAPPING_CEIL("Renal Disease","6033");
+            call CREATE_REFERENCE_MAPPING_CEIL("Died","160034");
+            call CREATE_REFERENCE_MAPPING_CEIL("Antibiotics","1195");
+            call CREATE_REFERENCE_MAPPING_CEIL("NSAID","162306");
+            call CREATE_REFERENCE_MAPPING_CEIL("CV, Date Recorded","162869");
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260506" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Initial', 'Discharge')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Type of Assessment");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Type of Assessment</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Type of Assessment" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Initial" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Discharge" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260507" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Suspect', 'Confirmed','Probable','Not a Case')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, COVID-19 Case");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, COVID-19 Case</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, COVID-19 Case" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Suspect" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Discharge" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Probable" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Not a Case" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260508" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Nasal', 'Oropharyngeal','Blood','Not a Case')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Type of Specimen");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Type of Specimen</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Type of Specimen" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Nasal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Oropharyngeal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Blood" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260509" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Positive', 'Negative','Invalid','Pending')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, PCR Test Results");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, PCR Test Results</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, PCR Test Results" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Positive" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Negative" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Invalid" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Pending" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260520" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Rapid Test', 'Suggestive CT Scan','Suggestive Chest X-Ray')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Other COVID-19 Test Done");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Other COVID-19 Test Done</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Other COVID-19 Test Done" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Rapid Test" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Suggestive CT Scan" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Suggestive Chest X-Ray" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260523" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Self', 'Referral','Other')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Mode of Arrival");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Mode of Arrival</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Mode of Arrival" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Self" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Referral" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260526" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("No","Yes")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Contact with a Confirmed COVID-19 Case in Last 14 Days?");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Contact with a Confirmed COVID-19 Case in Last 14 Days?</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Contact with a Confirmed COVID-19 Case in Last 14 Days?" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260527" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("No","Yes")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Has Patient Traveled in the Past 14 Days?");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Has Patient Traveled in the Past 14 Days?</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Has Patient Traveled in the Past 14 Days?" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260528" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("No","Yes")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Has Patient Been in a Healthcare Facility in the Last 14 Days?");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Has Patient Been in a Healthcare Facility in the Last 14 Days?</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Has Patient Been in a Healthcare Facility in the Last 14 Days?" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260529" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Outpatient","In-Patient Admission")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, In or Outpatient Care in the Healthcare Facility?");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Has Patient Been in a Healthcare Facility in the Last 14 Days?</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, In or Outpatient Care in the Healthcare Facility?" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Outpatient" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="In-Patient Admission" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260538" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Yes', 'Healthcare Worker at Non-MSF Facility','Yes MSF Staff','No')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Is Patient a Healthcare Worker?");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Is Patient a Healthcare Worker?</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Is Patient a Healthcare Worker?" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Healthcare Worker at Non-MSF Facility" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Yes MSF Staff" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260550" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Yes', 'Healthcare Worker at Non-MSF Facility','Yes MSF Staff','No')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Pain");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Pain</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Pain" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="No Pain" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Minor" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Moderate" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Severe" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260555" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("No","Yes")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Is the Patient a Woman of Reproductive Age Group (15 - 51)?");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Is the Patient a Woman of Reproductive Age Group (15 - 51)?</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Is the Patient a Woman of Reproductive Age Group (15 - 51)?" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260557" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("No","Yes","Unknown")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Pregnant");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Pregnant</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Pregnant" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Unknown" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260601" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("No","Yes")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Breastfeeding");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Breastfeeding</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Breastfeeding" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260602" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("No","Yes")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Post-Partum (less than 6 Weeks)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Post-Partum (less than 6 Weeks)</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Post-Partum (less than 6 Weeks)" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260608" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Remdesivir", "Corticosteroids", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Current/Recent COVID-19 Medications (Past 14 Days)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Current/Recent COVID-19 Medications (Past 14 Days)</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Current/Recent COVID-19 Medications (Past 14 Days)" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Remdesivir" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Corticosteroids" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260615" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Current Smoker", "Former Smoker", "Non-Smoker")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Smoking History");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to 	CV, Smoking History</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Smoking History" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Current Smoker" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Former Smoker" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Non-Smoker" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260619" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Alert", "Verbal", "Pain", "Unresponsive")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Level of Consciousness");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Level of Consciousness</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Level of Consciousness" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Alert" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Verbal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Pain" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Unresponsive" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011260631" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Mild", "Moderate", "Severe", "Critical")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, COVID-19 Severity");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, COVID-19 Severity</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, COVID-19 Severity" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Mild" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Moderate" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Severe" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Critical" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011270538" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Respiratory Failure","Septic Shock","Cardiogenic Shock","Renal Failure","Multi Organ Failure","Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Cause of Death");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Cause of Death</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Cause of Death" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Respiratory Failure" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Septic Shock" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Cardiogenic Shock" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Renal Failure" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Multi Organ Failure" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011270523" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Within 1 Hour', 'Greater than equal to 1 and less than 24 Hours','Greater than equal to 24 Hours')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, ICU Death");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, ICU Death</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, ICU Death" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Within 1 Hour" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Greater than equal to 1 and less than 24 Hours" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Greater than equal to 24 Hours" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011270529" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Outpatient","In-Patient Admission")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Was the Death in the ICU?");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Was the Death in the ICU?</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Was the Death in the ICU?" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Outpatient" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="In-Patient Admission" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011270559" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Death less than 24 Hours Admission","Death greater than 24 Hours Admission")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Death");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Death</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Death" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Death less than 24 Hours Admission" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Death greater than 24 Hours Admission" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011270610" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Discharge Home', 'Left Against Medical Advice','Referral to Another Hospital','Death')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Hospital Discharge Status");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Hospital Discharge Status</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Hospital Discharge Status" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Discharge Home" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Left Against Medical Advice" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Referral to Another Hospital" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Death" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011271813" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Positive', 'Negative','Invalid','Pending')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, COVID-19 Test Results");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, COVID-19 Test Results</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, COVID-19 Test Results" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Positive" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Negative" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Invalid" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Pending" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011270529" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Discharged With Pregnancy Intact","Miscarriage")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, If Pregnant");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, If Pregnant</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, If Pregnant" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Discharged With Pregnancy Intact" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Miscarriage" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011271829" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Enteral Nutrition","Thoracostomy Tube","Blood Transfusion","Parenteral Nutrition","Intubated Prone Position","Non Intubated Prone Position","Central Line Insertion","Vasopressor Infusion","Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Procedures During ICU Stay");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Procedures During ICU Stay</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Procedures During ICU Stay" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Enteral Nutrition" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Thoracostomy Tube" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Blood Transfusion" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Parenteral Nutrition" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Intubated Prone Position" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Non Intubated Prone Position" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Central Line Insertion" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Vasopressor Infusion" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Other, non-violence related" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011261116" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Positive", "Negative")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Pregnancy Test");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Pregnancy Test</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Pregnancy Test" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Positive" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Negative" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011261120" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Discharged Home for Self-Isolation", "Left Against Medical Advice", "Died", "Referred to Other Facility", "Admitted to Hospital")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Disposition");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Disposition</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Disposition" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Discharged Home for Self-Isolation" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Left Against Medical Advice" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Died" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Referred to Other Facility" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Admitted to Hospital" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011261124" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("COVID-19 Ward", "ICU With Intubation at Admission", "ICU Without Intubation at Admission", "Other Ward")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Admitted to");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Admitted to</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Admitted to" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="COVID-19 Ward" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="ICU With Intubation at Admission" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="ICU Without Intubation at Admission" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Other Ward" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011261130" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Signs of Deterioration Explained", "IPC/Hygiene Advice Provide", "Out-Patient Follow-Up by MSF")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Discharged Home");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Discharged Home</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Discharged Home" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Signs of Deterioration Explained" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="IPC/Hygiene Advice Provide" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Out-Patient Follow-Up by MSF" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011261133" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Shock", "Myocarditis", "Acute Respiratory Distress Syndrome", "Deep Vein Thrombosis/PE", "Viral Encephalitis", "Renal Failure", "Liver Failure", "Superimposed Bacterial Pneumonia", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Complications");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, Complications</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, Complications" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Shock" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Myocarditis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Acute Respiratory Distress Syndrome" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Deep Vein Thrombosis/PE" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Viral Encephalitis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Renal Failure" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Liver Failure" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Superimposed Bacterial Pneumonia" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011261133" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Bed Sore", "Bed Sores Prone Related", "Nasal Sore NIV Related", "Central Line Infection", "Peripheral IV Site Infection", "Urinary Catheter Infection", "Ventilator Associated Pneumonia", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, ICU Complications");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, ICU Complications</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, ICU Complications" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Bed Sore" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Bed Sores Prone Related" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Nasal Sore NIV Related" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Central Line Infection" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Peripheral IV Site Infection" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Urinary Catheter Infection" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Ventilator Associated Pneumonia" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011261145" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Cough", "Fever", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, COVID-19 Persistent Symptoms at Discharge");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, COVID-19 Persistent Symptoms at Discharge</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, COVID-19 Persistent Symptoms at Discharge" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Cough" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Fever" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011261150" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Antibiotics", "ACE-I/ARB", "NSAID", "Corticosteroid", "Insulin", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, COVID-19 Persistent Symptoms at Discharge");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, COVID-19 Persistent Symptoms at Discharge</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, COVID-19 Persistent Symptoms at Discharge" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Antibiotics" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="ACE-I/ARB" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="NSAID" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Corticosteroid" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Insulin" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011261154" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("No","Yes")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, ICU During Hospitalization?");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, ICU During Hospitalization?</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, ICU During Hospitalization?" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011261156" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("CPAP", "BiPAP", "Invasive Mechanical Ventilation")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, ICU Respiratory Support");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CV, ICU Respiratory Support</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CV, ICU Respiratory Support" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="CPAP" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="BiPAP" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Invasive Mechanical Ventilation" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>

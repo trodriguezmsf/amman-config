@@ -11150,6 +11150,13 @@
             INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_ID1, @location_tagID1);
         </sql>
     </changeSet>
+    <changeSet id="Amman_config_202011260347" author="Bindu, Pritam">
+        <comment>Stored Procedure to add reference term</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_CEIL;
+        </sql>
+        <sqlFile path="utils/createProcedureForCEIL.sql" endDelimiter="#"/>
+    </changeSet>
     <changeSet id="Amman-202011160000" author="Tarun" context="amman-enhancements-nov2020">
         <comment>MOBN-1543 | Update procedure add_new_concept to allow shortname as null</comment>
         <sql>
@@ -11180,4 +11187,5 @@
         </sql>
     </changeSet>
     <include file="programs/addCovidProgram.xml"/>
+    <include file="clinicalForms/covid19AssessmentForm.xml"/>
 </databaseChangeLog>
