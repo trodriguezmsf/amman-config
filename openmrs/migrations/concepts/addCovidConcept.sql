@@ -110,8 +110,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Was the Dea
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, ICU Death","ICU Death","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Cause of Death","Cause of Death","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Other Cause of Death","Other Cause of Death","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Discharge Time","Discharge Time","Time","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Discharge Date","Discharge Date","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Discharge Date and Time","Discharge Date and Time","Datetime","Misc",false);
 
 
 -- adding answer concepts
@@ -179,6 +178,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Other Immune Su
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Other Ward","Other Ward","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Out-Patient Follow-Up by MSF","Out-Patient Follow-Up by MSF","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Outpatient","Outpatient","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Blood Transfusion","Blood Transfusion","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Parenteral Nutrition","Parenteral Nutrition","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pending","Pending","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Peripheral IV Site Infection","Peripheral IV Site Infection","N/A","Misc",false);

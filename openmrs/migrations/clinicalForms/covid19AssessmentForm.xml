@@ -944,7 +944,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="AMMAN_CONFIG_202011270529" author="Bindu, Pritam">
+    <changeSet id="AMMAN_CONFIG_202011250529" author="Bindu, Pritam">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -1009,7 +1009,7 @@
             select concept_id into @child6_concept_id from concept_name where name ="Non Intubated Prone Position" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child7_concept_id from concept_name where name ="Central Line Insertion" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child8_concept_id from concept_name where name ="Vasopressor Infusion" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child9_concept_id from concept_name where name ="Other, non-violence related" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
 
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
@@ -1207,7 +1207,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="AMMAN_CONFIG_202011261133" author="Bindu, Pritam">
+    <changeSet id="AMMAN_CONFIG_202011251133" author="Bindu, Pritam">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -1286,7 +1286,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="AMMAN_CONFIG_202011261150" author="Bindu, Pritam">
+    <changeSet id="AMMAN_CONFIG_202011251150" author="Bindu, Pritam">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -1297,12 +1297,12 @@
                 ("Antibiotics", "ACE-I/ARB", "NSAID", "Corticosteroid", "Insulin", "Other")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "CV, COVID-19 Persistent Symptoms at Discharge");
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Newly Introduced Treatment During Hospitalization");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to CV, COVID-19 Persistent Symptoms at Discharge</comment>
+        <comment>Adding Answers to CV, Newly Introduced Treatment During Hospitalization</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "CV, COVID-19 Persistent Symptoms at Discharge" and
+            select concept_id into @concept_id from concept_name where name = "CV, Newly Introduced Treatment During Hospitalization" and
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -1525,5 +1525,545 @@
             call add_concept_answer(@concept_id, @child18_concept_id, 18);
         </sql>
     </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011281136" author="Pritam, Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ('CV, Date of PCR Test','CV, Type of Specimen','CV, Other Specimen Type','CV, PCR Test Results','CV, Other COVID-19 Test Done','CV, Date of Other COVID-19 Test') AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'CV, COVID-19 Testing');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for "CV, COVID-19 Testing" Concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+            set @member6_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'CV, COVID-19 Testing' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'CV, Date of PCR Test' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = 'CV, Type of Specimen' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = 'CV, Other Specimen Type' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name = 'CV, PCR Test Results' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name = 'CV, Other COVID-19 Test Done' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name = 'CV, Date of Other COVID-19 Test' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members (@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members (@concept_id, @member4_concept_id, 4);
+            call add_concept_set_members (@concept_id, @member5_concept_id, 5);
+            call add_concept_set_members (@concept_id, @member6_concept_id, 6);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011281230" author="Pritam, Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ('CV, Weight','CV, Height','CV, Temp','CV, RR','CV, SpO2 on room air','CV, SpO2 on Oxygen','CV, How Many Liters of Oxygen Per Min?','CV, Heart Rate','CV, Systolic BP','CV, Diastolic BP','CV, Pain') AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'CV, Patient Vitals at Arrival');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for "CV, Patient Vitals at Arrival" Concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+            set @member6_concept_id = 0;
+            set @member7_concept_id = 0;
+            set @member8_concept_id = 0;
+            set @member9_concept_id = 0;
+            set @member10_concept_id = 0;
+            set @member11_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'CV, Patient Vitals at Arrival' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'CV, Weight' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = 'CV, Height' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = 'CV, Temp' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name = 'CV, RR' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name = 'CV, SpO2 on room air' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name = 'CV, SpO2 on Oxygen' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name = 'CV, How Many Liters of Oxygen Per Min?' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member8_concept_id from concept_name where name = 'CV, Heart Rate' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member9_concept_id from concept_name where name = 'CV, Systolic BP' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member10_concept_id from concept_name where name = 'CV, Diastolic BP' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member11_concept_id from concept_name where name = 'CV, Pain' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members (@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members (@concept_id, @member4_concept_id, 4);
+            call add_concept_set_members (@concept_id, @member5_concept_id, 5);
+            call add_concept_set_members (@concept_id, @member6_concept_id, 6);
+            call add_concept_set_members (@concept_id, @member7_concept_id, 7);
+            call add_concept_set_members (@concept_id, @member8_concept_id, 8);
+            call add_concept_set_members (@concept_id, @member9_concept_id, 9);
+            call add_concept_set_members (@concept_id, @member10_concept_id, 10);
+            call add_concept_set_members (@concept_id, @member11_concept_id, 11);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011281235" author="Pritam, Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ('CV, Level of Consciousness','CV, Cardiac','CV, Respiratory','CV, Abdomen','CV, Skin','CV, Neuro/Other Systems','CV, Other Physical Examination Findings') AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'CV, Physical Examination');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for "CV, Physical Examination" Concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+            set @member6_concept_id = 0;
+            set @member7_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'CV, Physical Examination' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'CV, Level of Consciousness' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = 'CV, Cardiac' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = 'CV, Respiratory' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name = 'CV, Abdomen' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name = 'CV, Skin' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name = 'CV, Neuro/Other Systems' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name = 'CV, Other Physical Examination Findings' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members (@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members (@concept_id, @member4_concept_id, 4);
+            call add_concept_set_members (@concept_id, @member5_concept_id, 5);
+            call add_concept_set_members (@concept_id, @member6_concept_id, 6);
+            call add_concept_set_members (@concept_id, @member7_concept_id, 7);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011281236" author="Pritam, Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ('CV, HB','CV, Glucose','CV, Pregnancy Test','CV, Biochem/Blood Gases','CV, Other Tests If Indicated','CV, Radiology Findings','CV, ECG') AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'CV, Initial Lab and Radiology Examinations');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for "CV, Initial Lab and Radiology Examinations" Concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+            set @member6_concept_id = 0;
+            set @member7_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'CV, Initial Lab and Radiology Examinations' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'CV, HB' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = 'CV, Glucose' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = 'CV, Pregnancy Test' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name = 'CV, Biochem/Blood Gases' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name = 'CV, Other Tests If Indicated' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name = 'CV, Radiology Findings' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name = 'CV, ECG' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members (@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members (@concept_id, @member4_concept_id, 4);
+            call add_concept_set_members (@concept_id, @member5_concept_id, 5);
+            call add_concept_set_members (@concept_id, @member6_concept_id, 6);
+            call add_concept_set_members (@concept_id, @member7_concept_id, 7);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011281137" author="Pritam, Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ('CV, Exit Time','CV, Exit Date','CV, Admission Time','CV, Admission Date','CV, Admitted to','CV, Referral to','CV, Discharged Home') AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'CV, Disposition');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for "CV, Disposition" Concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+            set @member6_concept_id = 0;
+            set @member7_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'CV, Disposition' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'CV, Exit Time' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = 'CV, Exit Date' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = 'CV, Admission Time' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name = 'CV, Admission Date' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name = 'CV, Admitted to' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name = 'CV, Referral to' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name = 'CV, Discharged Home' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members (@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members (@concept_id, @member4_concept_id, 4);
+            call add_concept_set_members (@concept_id, @member5_concept_id, 5);
+            call add_concept_set_members (@concept_id, @member6_concept_id, 6);
+            call add_concept_set_members (@concept_id, @member7_concept_id, 7);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202011271237" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ("CV, COVID-19 Case", "CV, COVID-19 Testing", "CV, Mode of Arrival", "CV, Referral From", "CV, Other Mode of Arrival", "CV, Contact with a Confirmed COVID-19 Case in Last 14 Days?", "CV, Has Patient Traveled in the Past 14 Days?", "CV, Traveled to Which Country", "CV, Date of Return from Travel", "CV, Has Patient Been in a Healthcare Facility in the Last 14 Days?", "CV, Name of the Healthcare Facility", "CV, In or Outpatient Care in the Healthcare Facility?", "CV, Is Patient a Healthcare Worker?", "CV, Patient Vitals at Arrival", "CV, Signs and Symptoms at Admission", "CV, Other Signs and Symptoms", "CV, Days Since Onset of First Symptoms", "CV, History of Present Illness", "CV, Is the Patient a Woman of Reproductive Age Group (15 - 51)?", "CV, Pregnant", "CV, Gestational Age", "CV, Breastfeeding", "CV, Post-Partum (less than 6 Weeks)", "CV, Current/Recent COVID-19 Medications (Past 14 Days)", "CV, Other Current/Recent Medications", "CV, Medication Allergies", "CV, Smoking History", "CV, Co-Morbidities", "CV, Other Co-Morbidities", "CV, Past Complimentary Medical History", "CV, Physical Examination", "CV, COVID-19 Severity", "CV, Initial Lab and Radiology Examinations", "CV, Disposition") AND concept_name_type = "FULLY_SPECIFIED") and cs.concept_set IN (select concept_id from concept_name where name = 'CV, Initial Assessment');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for CV, Initial Assessment</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+            set @member6_concept_id = 0;
+            set @member7_concept_id = 0;
+            set @member8_concept_id = 0;
+            set @member9_concept_id = 0;
+            set @member10_concept_id = 0;
+            set @member11_concept_id = 0;
+            set @member12_concept_id = 0;
+            set @member13_concept_id = 0;
+            set @member14_concept_id = 0;
+            set @member15_concept_id = 0;
+            set @member16_concept_id = 0;
+            set @member17_concept_id = 0;
+            set @member18_concept_id = 0;
+            set @member19_concept_id = 0;
+            set @member20_concept_id = 0;
+            set @member21_concept_id = 0;
+            set @member22_concept_id = 0;
+            set @member23_concept_id = 0;
+            set @member24_concept_id = 0;
+            set @member25_concept_id = 0;
+            set @member26_concept_id = 0;
+            set @member27_concept_id = 0;
+            set @member28_concept_id = 0;
+            set @member29_concept_id = 0;
+            set @member30_concept_id = 0;
+            set @member31_concept_id = 0;
+            set @member32_concept_id = 0;
+            set @member33_concept_id = 0;
+            set @member34_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'CV, Initial Assessment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'CV, COVID-19 Case' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = 'CV, COVID-19 Testing' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = 'CV, Mode of Arrival' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name = 'CV, Referral From' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name = 'CV, Other Mode of Arrival' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name = 'CV, Contact with a Confirmed COVID-19 Case in Last 14 Days?' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name = 'CV, Has Patient Traveled in the Past 14 Days?' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member8_concept_id from concept_name where name = 'CV, Traveled to Which Country' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member9_concept_id from concept_name where name = 'CV, Date of Return from Travel' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member10_concept_id from concept_name where name = 'CV, Has Patient Been in a Healthcare Facility in the Last 14 Days?' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member11_concept_id from concept_name where name = 'CV, Name of the Healthcare Facility' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member12_concept_id from concept_name where name = 'CV, In or Outpatient Care in the Healthcare Facility?' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member13_concept_id from concept_name where name = 'CV, Is Patient a Healthcare Worker?' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member14_concept_id from concept_name where name = 'CV, Patient Vitals at Arrival' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member15_concept_id from concept_name where name = 'CV, Signs and Symptoms at Admission' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member16_concept_id from concept_name where name = 'CV, Other Signs and Symptoms' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member17_concept_id from concept_name where name = 'CV, Days Since Onset of First Symptoms' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member18_concept_id from concept_name where name = 'CV, History of Present Illness' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member19_concept_id from concept_name where name = 'CV, Is the Patient a Woman of Reproductive Age Group (15 - 51)?' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member20_concept_id from concept_name where name = 'CV, Pregnant' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member21_concept_id from concept_name where name = 'CV, Gestational Age' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member22_concept_id from concept_name where name = 'CV, Breastfeeding' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member23_concept_id from concept_name where name = 'CV, Post-Partum (less than 6 Weeks)' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member24_concept_id from concept_name where name = 'CV, Current/Recent COVID-19 Medications (Past 14 Days)' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member25_concept_id from concept_name where name = 'CV, Other Current/Recent Medications' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member26_concept_id from concept_name where name = 'CV, Medication Allergies' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member27_concept_id from concept_name where name = 'CV, Smoking History' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member28_concept_id from concept_name where name = 'CV, Co-Morbidities' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member29_concept_id from concept_name where name = 'CV, Other Co-Morbidities' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member30_concept_id from concept_name where name = 'CV, Past Complimentary Medical History' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member31_concept_id from concept_name where name = 'CV, Physical Examination' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member32_concept_id from concept_name where name = 'CV, COVID-19 Severity' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member33_concept_id from concept_name where name = 'CV, Initial Lab and Radiology Examinations' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member34_concept_id from concept_name where name = 'CV, Disposition' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members (@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members (@concept_id, @member4_concept_id, 4);
+            call add_concept_set_members (@concept_id, @member5_concept_id, 5);
+            call add_concept_set_members (@concept_id, @member6_concept_id, 6);
+            call add_concept_set_members (@concept_id, @member7_concept_id, 7);
+            call add_concept_set_members (@concept_id, @member8_concept_id, 8);
+            call add_concept_set_members (@concept_id, @member9_concept_id, 9);
+            call add_concept_set_members (@concept_id, @member10_concept_id, 10);
+            call add_concept_set_members (@concept_id, @member11_concept_id, 11);
+            call add_concept_set_members (@concept_id, @member12_concept_id, 12);
+            call add_concept_set_members (@concept_id, @member13_concept_id, 13);
+            call add_concept_set_members (@concept_id, @member14_concept_id, 14);
+            call add_concept_set_members (@concept_id, @member15_concept_id, 15);
+            call add_concept_set_members (@concept_id, @member16_concept_id, 16);
+            call add_concept_set_members (@concept_id, @member17_concept_id, 17);
+            call add_concept_set_members (@concept_id, @member18_concept_id, 18);
+            call add_concept_set_members (@concept_id, @member19_concept_id, 19);
+            call add_concept_set_members (@concept_id, @member20_concept_id, 20);
+            call add_concept_set_members (@concept_id, @member21_concept_id, 21);
+            call add_concept_set_members (@concept_id, @member22_concept_id, 22);
+            call add_concept_set_members (@concept_id, @member23_concept_id, 23);
+            call add_concept_set_members (@concept_id, @member24_concept_id, 24);
+            call add_concept_set_members (@concept_id, @member25_concept_id, 25);
+            call add_concept_set_members (@concept_id, @member26_concept_id, 26);
+            call add_concept_set_members (@concept_id, @member27_concept_id, 27);
+            call add_concept_set_members (@concept_id, @member28_concept_id, 28);
+            call add_concept_set_members (@concept_id, @member29_concept_id, 29);
+            call add_concept_set_members (@concept_id, @member30_concept_id, 30);
+            call add_concept_set_members (@concept_id, @member31_concept_id, 31);
+            call add_concept_set_members (@concept_id, @member32_concept_id, 32);
+            call add_concept_set_members (@concept_id, @member33_concept_id, 33);
+            call add_concept_set_members (@concept_id, @member34_concept_id, 34);
+        </sql>
+    </changeSet>
     
+    <changeSet id="AMMAN_CONFIG_202011281352" author="Pritam, Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ("CV, Date of COVID-19 Test", "CV, Type of COVID-19 Test", "CV, Type of Specimen", "CV, COVID-19 Test Results") AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'CV, Laboratory Tests During Hospitalization');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for "CV, Laboratory Tests During Hospitalization" Concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'CV, Laboratory Tests During Hospitalization' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'CV, Date of COVID-19 Test' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = 'CV, Type of COVID-19 Test' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = 'CV, Type of Specimen' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name = 'CV, COVID-19 Test Results' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members (@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members (@concept_id, @member4_concept_id, 4);
+        </sql>
+    </changeSet>
+    
+    <changeSet id="AMMAN_CONFIG_202011271341" author="Bindu, Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                   select COUNT(*) from concept_set cs
+                   join concept_name cn
+                   on cs.concept_id = cn.concept_id
+                   where cs.concept_id IN (select concept_id from concept_name where name IN
+                   ("CV, Complications", "CV, Other Complications", "CV, ICU Complications", "CV, Other ICU Complications", "CV, COVID-19 Persistent Symptoms at Discharge", "CV, Other Symptoms at Discharge", "CV, Newly Introduced Treatment During Hospitalization", "CV, Antibiotics", "CV, Corticosteroid", "CV, Other Newly Introduced Treatment During Hospitalization", "CV, Treatment Adverse Events", "CV, ICU During Hospitalization?", "CV, ICU Respiratory Support", "CV, Number of Days Under Invasive Mechanical Ventilation", "CV, Number of Days Under Non Invasive Mechanical Ventilation", "CV, Number of Days in ICU", "CV, Procedures During ICU Stay", "CV, Other Procedures During ICU Stay", "CV, If Pregnant", "CV, Laboratory Tests During Hospitalization", "CV, Discharge Treatment Plan", "CV, Newly Introduced Treatment to Be Continued at Home", "CV, Treatment of Pre-Existing/Chronic Conditions to Be Continued", "CV, Clinical Follow-Up Requirements", "CV, Hospital Discharge Status", "CV, Referral to Another Hospital", "CV, Death", "CV, Was the Death in the ICU?", "CV, ICU Death", "CV, Cause of Death", "CV, Other Cause of Death", "CV, Discharge Date and Time") AND concept_name_type = "FULLY_SPECIFIED")
+                   and cs.concept_set IN (select concept_id from concept_name where name = 'CV, Discharge Assessment');
+                </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for CV, Initial Assessment</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+            set @member6_concept_id = 0;
+            set @member7_concept_id = 0;
+            set @member8_concept_id = 0;
+            set @member9_concept_id = 0;
+            set @member10_concept_id = 0;
+            set @member11_concept_id = 0;
+            set @member12_concept_id = 0;
+            set @member13_concept_id = 0;
+            set @member14_concept_id = 0;
+            set @member15_concept_id = 0;
+            set @member16_concept_id = 0;
+            set @member17_concept_id = 0;
+            set @member18_concept_id = 0;
+            set @member19_concept_id = 0;
+            set @member20_concept_id = 0;
+            set @member21_concept_id = 0;
+            set @member22_concept_id = 0;
+            set @member23_concept_id = 0;
+            set @member24_concept_id = 0;
+            set @member25_concept_id = 0;
+            set @member26_concept_id = 0;
+            set @member27_concept_id = 0;
+            set @member28_concept_id = 0;
+            set @member29_concept_id = 0;
+            set @member30_concept_id = 0;
+            set @member31_concept_id = 0;
+            set @member32_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'CV, Discharge Assessment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @member1_concept_id from concept_name where name = 'CV, Complications' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = 'CV, Other Complications' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = 'CV, ICU Complications' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name = 'CV, Other ICU Complications' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name = 'CV, COVID-19 Persistent Symptoms at Discharge' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name = 'CV, Other Symptoms at Discharge' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name = 'CV, Newly Introduced Treatment During Hospitalization' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member8_concept_id from concept_name where name = 'CV, Antibiotics' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member9_concept_id from concept_name where name = 'CV, Corticosteroid' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member10_concept_id from concept_name where name = 'CV, Other Newly Introduced Treatment During Hospitalization' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member11_concept_id from concept_name where name = 'CV, Treatment Adverse Events' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member12_concept_id from concept_name where name = 'CV, ICU During Hospitalization?' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member13_concept_id from concept_name where name = 'CV, ICU Respiratory Support' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member14_concept_id from concept_name where name = 'CV, Number of Days Under Invasive Mechanical Ventilation' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member15_concept_id from concept_name where name = 'CV, Number of Days Under Non Invasive Mechanical Ventilation' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member16_concept_id from concept_name where name = 'CV, Number of Days in ICU' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member17_concept_id from concept_name where name = 'CV, Procedures During ICU Stay' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member18_concept_id from concept_name where name = 'CV, Other Procedures During ICU Stay' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member19_concept_id from concept_name where name = 'CV, If Pregnant' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member20_concept_id from concept_name where name = 'CV, Laboratory Tests During Hospitalization' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member21_concept_id from concept_name where name = 'CV, Discharge Treatment Plan' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member22_concept_id from concept_name where name = 'CV, Newly Introduced Treatment to Be Continued at Home' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member23_concept_id from concept_name where name = 'CV, Treatment of Pre-Existing/Chronic Conditions to Be Continued' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member24_concept_id from concept_name where name = 'CV, Clinical Follow-Up Requirements' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member25_concept_id from concept_name where name = 'CV, Hospital Discharge Status' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member26_concept_id from concept_name where name = 'CV, Referral to Another Hospital' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member27_concept_id from concept_name where name = 'CV, Death' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member28_concept_id from concept_name where name = 'CV, Was the Death in the ICU?' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member29_concept_id from concept_name where name = 'CV, ICU Death' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member30_concept_id from concept_name where name = 'CV, Cause of Death' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member31_concept_id from concept_name where name = 'CV, Other Cause of Death' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member32_concept_id from concept_name where name = 'CV, Discharge Date and Time' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members (@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members (@concept_id, @member4_concept_id, 4);
+            call add_concept_set_members (@concept_id, @member5_concept_id, 5);
+            call add_concept_set_members (@concept_id, @member6_concept_id, 6);
+            call add_concept_set_members (@concept_id, @member7_concept_id, 7);
+            call add_concept_set_members (@concept_id, @member8_concept_id, 8);
+            call add_concept_set_members (@concept_id, @member9_concept_id, 9);
+            call add_concept_set_members (@concept_id, @member10_concept_id, 10);
+            call add_concept_set_members (@concept_id, @member11_concept_id, 11);
+            call add_concept_set_members (@concept_id, @member12_concept_id, 12);
+            call add_concept_set_members (@concept_id, @member13_concept_id, 13);
+            call add_concept_set_members (@concept_id, @member14_concept_id, 14);
+            call add_concept_set_members (@concept_id, @member15_concept_id, 15);
+            call add_concept_set_members (@concept_id, @member16_concept_id, 16);
+            call add_concept_set_members (@concept_id, @member17_concept_id, 17);
+            call add_concept_set_members (@concept_id, @member18_concept_id, 18);
+            call add_concept_set_members (@concept_id, @member19_concept_id, 19);
+            call add_concept_set_members (@concept_id, @member20_concept_id, 20);
+            call add_concept_set_members (@concept_id, @member21_concept_id, 21);
+            call add_concept_set_members (@concept_id, @member22_concept_id, 22);
+            call add_concept_set_members (@concept_id, @member23_concept_id, 23);
+            call add_concept_set_members (@concept_id, @member24_concept_id, 24);
+            call add_concept_set_members (@concept_id, @member25_concept_id, 25);
+            call add_concept_set_members (@concept_id, @member26_concept_id, 26);
+            call add_concept_set_members (@concept_id, @member27_concept_id, 27);
+            call add_concept_set_members (@concept_id, @member28_concept_id, 28);
+            call add_concept_set_members (@concept_id, @member29_concept_id, 29);
+            call add_concept_set_members (@concept_id, @member30_concept_id, 30);
+            call add_concept_set_members (@concept_id, @member31_concept_id, 31);
+            call add_concept_set_members (@concept_id, @member32_concept_id, 32);
+
+        </sql>
+    </changeSet>
+    
+    <changeSet id="AMMAN_CONFIG_202011281421" author="Pritam, Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ("CV, Date Recorded", "CV, Type of Assessment", "CV, Initial Assessment", "CV, Discharge Assessment") AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'CV, COVID-19 Assessment');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for "CV, COVID-19 Assessment" Concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'CV, COVID-19 Assessment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'CV, Date Recorded' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = 'CV, Type of Assessment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = 'CV, Initial Assessment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name = 'CV, Discharge Assessment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members (@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members (@concept_id, @member4_concept_id, 4);
+        </sql>
+    </changeSet>
+    <changeSet id="AMMAN_CONFIG_202011281426" author="Pritam, Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name ='CV, COVID-19 Assessment'  AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'All Observation Templates');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for to all observation templates</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'All Observation Templates' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @member1_concept_id from concept_name where name = 'CV, COVID-19 Assessment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
