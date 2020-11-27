@@ -162,12 +162,12 @@
                 ('Nasal', 'Oropharyngeal','Blood','Not a Case')
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "CV, Type of Specimen");
+                cn.concept_id IN (select concept_id from concept_name where name = "CV, Type of Specimen COVID-19");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to CV, Type of Specimen</comment>
+        <comment>Adding Answers to CV, Type of Specimen COVID-19</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "CV, Type of Specimen" and
+            select concept_id into @concept_id from concept_name where name = "CV, Type of Specimen COVID-19" and
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
 
             set @child1_concept_id = 0;
