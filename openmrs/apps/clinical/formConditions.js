@@ -1,4 +1,396 @@
 Bahmni.ConceptSet.FormConditions.rules = {
+    'CV, Type of Assessment': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Type of Assessment' +
+        ''];
+        if (conditionConcept == "Initial"){
+            conditions.hide.push("CV, Discharge Assessment")
+            conditions.hide.push("CV, Laboratory Tests During Hospitalization")
+            conditions.show.push("CV, Initial Assessment")
+            conditions.show.push("CV, Patient Vitals at Arrival")
+            conditions.show.push("CV, Physical Examination")
+            conditions.show.push("CV, COVID-19 Testing")
+            conditions.show.push("CV, Initial Lab and Radiology Examinations")
+            conditions.show.push("CV, Disposition")
+        }
+        else if (conditionConcept == "Discharge"){
+            conditions.hide.push("CV, Initial Assessment")
+            conditions.hide.push("CV, Patient Vitals at Arrival")
+            conditions.hide.push("CV, Physical Examination")
+            conditions.hide.push("CV, COVID-19 Testing")
+            conditions.hide.push("CV, Initial Lab and Radiology Examinations")
+            conditions.hide.push("CV, Disposition")
+            conditions.show.push("CV, Discharge Assessment")
+            conditions.show.push("CV, Laboratory Tests During Hospitalization")
+        }
+        return conditions;
+    },
+    'CV, Disposition': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Disposition' +
+        ''];
+        if (conditionConcept == "Discharged Home for Self-Isolation"){
+            conditions.show.push("CV, Exit Date and Time")
+            conditions.show.push("CV, Discharged Home")
+            conditions.hide.push("CV, Referral to")
+            conditions.hide.push("CV, Admission Date and Time")
+            conditions.hide.push("CV, Admitted to")
+        }
+        else if (conditionConcept == "Left against medical advice" || conditionConcept == "Died"){
+            conditions.show.push("CV, Exit Date and Time")
+            conditions.hide.push("CV, Discharged Home")
+            conditions.hide.push("CV, Referral to")
+            conditions.hide.push("CV, Admission Date and Time")
+            conditions.hide.push("CV, Admitted to")
+        }
+        else if (conditionConcept == "Referred to Other Facility"){
+            conditions.show.push("CV, Exit Date and Time")
+            conditions.show.push("CV, Referral to")
+            conditions.hide.push("CV, Discharged Home")
+            conditions.hide.push("CV, Admission Date and Time")
+            conditions.hide.push("CV, Admitted to")
+        }
+        else if (conditionConcept == "Admitted to Hospital"){
+            conditions.show.push("CV, Admission Date and Time")
+            conditions.show.push("CV, Admitted to")
+            conditions.hide.push("CV, Exit Date and Time")
+            conditions.hide.push("CV, Discharged Home")
+            conditions.hide.push("CV, Referral to")
+        }
+        else {
+            conditions.hide.push("CV, Exit Date and Time")
+            conditions.hide.push("CV, Discharged Home")
+            conditions.hide.push("CV, Referral to")
+            conditions.hide.push("CV, Admission Date and Time")
+            conditions.hide.push("CV, Admitted to")
+        }
+        return conditions;
+    },
+    'CV, ICU During Hospitalization?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, ICU During Hospitalization?' +
+        ''];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("CV, ICU Respiratory Support")
+            conditions.show.push("CV, Number of Days in ICU")
+            conditions.show.push("CV, Procedures During ICU Stay")
+        }
+        else {
+            conditions.hide.push("CV, ICU Respiratory Support")
+            conditions.hide.push("CV, Number of Days in ICU")
+            conditions.hide.push("CV, Procedures During ICU Stay")
+        }
+        return conditions;
+    },
+    'CV, ICU Respiratory Support': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, ICU Respiratory Support' +
+        ''];
+        if (conditionConcept == "CPAP" || conditionConcept == "BiPAP" ){
+            conditions.show.push("CV, Number of Days Under Non Invasive Mechanical Ventilation")
+            conditions.hide.push("CV, Number of Days Under Invasive Mechanical Ventilation")
+        }
+        else if (conditionConcept == "Invasive Mechanical Ventilation" ){
+            conditions.show.push("CV, Number of Days Under Invasive Mechanical Ventilation")
+            conditions.hide.push("CV, Number of Days Under Non Invasive Mechanical Ventilation")
+        } else {
+            conditions.hide.push("CV, Number of Days Under Invasive Mechanical Ventilation")
+            conditions.hide.push("CV, Number of Days Under Non Invasive Mechanical Ventilation")
+        }
+        return conditions;
+    },
+    'CV, Hospital Discharge Status': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Hospital Discharge Status' +
+        ''];
+        if (conditionConcept == "Referral to Another Hospital"){
+            conditions.show.push("CV, Referral to Another Hospital")
+            conditions.hide.push("CV, Death")
+            conditions.hide.push("CV, Was the Death in the ICU?")
+            conditions.hide.push("CV, Cause of Death")
+        }
+        else if(conditionConcept == "Death"){
+            conditions.hide.push("CV, Referral to Another Hospital")
+            conditions.show.push("CV, Death")
+            conditions.show.push("CV, Was the Death in the ICU?")
+            conditions.show.push("CV, Cause of Death")
+        } else {
+            conditions.hide.push("CV, Referral to Another Hospital")
+            conditions.hide.push("CV, Death")
+            conditions.hide.push("CV, Was the Death in the ICU?")
+            conditions.hide.push("CV, Cause of Death")
+        }
+        return conditions;
+    },
+    'CV, Procedures During ICU Stay': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Procedures During ICU Stay' +
+        ''];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("CV, Other Procedures During ICU Stay")
+        }
+        else {
+            conditions.hide.push("CV, Other Procedures During ICU Stay")
+        }
+        return conditions;
+    },
+    'CV, Newly Introduced Treatment During Hospitalization': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Newly Introduced Treatment During Hospitalization' +
+        ''];
+        if (conditionConcept == "Other"){
+            conditions.show.push("CV, Other Newly Introduced Treatment During Hospitalization")
+        }
+        else {
+            conditions.hide.push("CV, Other Newly Introduced Treatment During Hospitalization")
+        }
+        return conditions;
+    },
+    'CV, COVID-19 Persistent Symptoms at Discharge': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, COVID-19 Persistent Symptoms at Discharge'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("CV, Other Symptoms at Discharge")
+        }
+        else {
+            conditions.hide.push("CV, Other Symptoms at Discharge")
+        }
+        return conditions;
+    },
+    'CV, ICU Complications': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, ICU Complications'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("CV, Other ICU Complications")
+        }
+        else {
+            conditions.hide.push("CV, Other ICU Complications")
+        }
+        return conditions;
+    },
+    'CV, Complications': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Complications'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("CV, Other Complications")
+        }
+        else {
+            conditions.hide.push("CV, Other Complications")
+        }
+        return conditions;
+    },
+    'CV, Co-Morbidities': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Co-Morbidities'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("CV, Other Co-Morbidities")
+        }
+        else {
+            conditions.hide.push("CV, Other Co-Morbidities")
+        }
+        return conditions;
+    },
+    'CV, Current/Recent COVID-19 Medications (Past 14 Days)': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Current/Recent COVID-19 Medications (Past 14 Days)'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("CV, Other Current/Recent Medications")
+        }
+        else {
+            conditions.hide.push("CV, Other Current/Recent Medications")
+        }
+        return conditions;
+    },
+    'CV, Pregnant': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Pregnant'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("CV, Gestational Age")
+        }
+        else {
+            conditions.hide.push("CV, Gestational Age")
+        }
+        return conditions;
+    },
+    'CV, Is the Patient a Woman of Reproductive Age Group (15 - 51)?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Is the Patient a Woman of Reproductive Age Group (15 - 51)?'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("CV, Pregnant")
+            conditions.show.push("CV, Breastfeeding")
+            conditions.show.push("CV, Post-Partum (less than 6 Weeks)")
+        }
+        else {
+            conditions.hide.push("CV, Pregnant")
+            conditions.hide.push("CV, Breastfeeding")
+            conditions.hide.push("CV, Post-Partum (less than 6 Weeks)")
+        }
+        return conditions;
+    },
+    'CV, Signs and Symptoms at Admission': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Signs and Symptoms at Admission'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("CV, Other Signs and Symptoms")
+        }
+        else {
+            conditions.hide.push("CV, Other Signs and Symptoms")
+        }
+        return conditions;
+    },
+    'CV, Has Patient Been in a Healthcare Facility in the Last 14 Days?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Has Patient Been in a Healthcare Facility in the Last 14 Days?'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("CV, Name of the Healthcare Facility")
+            conditions.show.push("CV, In or Outpatient Care in the Healthcare Facility?")
+        }
+        else {
+            conditions.hide.push("CV, Name of the Healthcare Facility")
+            conditions.hide.push("CV, In or Outpatient Care in the Healthcare Facility?")
+        }
+        return conditions;
+    },
+    'CV, Has Patient Traveled in the Past 14 Days?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Has Patient Traveled in the Past 14 Days?'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("CV, Traveled to Which Country")
+            conditions.show.push("CV, Date of Return from Travel")
+        }
+        else {
+            conditions.hide.push("CV, Traveled to Which Country")
+            conditions.hide.push("CV, Date of Return from Travel")
+        }
+        return conditions;
+    },
+    'CV, Mode of Arrival': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Mode of Arrival'];
+        if (conditionConcept == "Referral"){
+            conditions.show.push("CV, Referral From")
+            conditions.hide.push("CV, Other Mode of Arrival")
+        }
+        else if (conditionConcept == "Other") {
+            conditions.show.push("CV, Other Mode of Arrival")
+            conditions.hide.push("CV, Referral From")
+        }
+        else {
+            conditions.hide.push("CV, Other Mode of Arrival")
+            conditions.hide.push("CV, Referral From")
+        }
+        return conditions;
+    },
+    'CV, Type of Specimen COVID-19': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Type of Specimen COVID-19'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("CV, Other Specimen Type")
+        }
+        else {
+            conditions.hide.push("CV, Other Specimen Type")
+        }
+        return conditions;
+    },
+    'CV, Type of Specimen COVID-19': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Type of Specimen COVID-19'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("CV, Other Specimen Type")
+        }
+        else {
+            conditions.hide.push("CV, Other Specimen Type")
+        }
+        return conditions;
+    },
+    'CV, Cause of Death': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Cause of Death'];
+        if (conditionConcept == "Other"){
+            conditions.show.push("CV, Other Cause of Death")
+        }
+        else {
+            conditions.hide.push("CV, Other Cause of Death")
+        }
+        return conditions;
+    },
+    'CV, Was the Death in the ICU?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CV, Was the Death in the ICU?'];
+        if (conditionConcept == "Yes"){
+            conditions.show.push("CV, ICU Death")
+        }
+        else {
+            conditions.hide.push("CV, ICU Death")
+        }
+        return conditions;
+    },
     'OR, Peripheral Nerve Block': function (formName, formFieldValues) {
         var conditions = {
             show: [],

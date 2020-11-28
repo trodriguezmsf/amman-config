@@ -69,10 +69,8 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Other Tests
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Radiology Findings","Radiology Findings","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, ECG","ECG","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Disposition","Disposition","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Exit Time","Exit Time","Time","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Exit Date","Exit Date","Date","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Admission Time","Admission Time","Time","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Admission Date","Admission Date","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Exit Date and Time","Exit Date and Time","Datetime","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Admission Date and Time","Admission Date and Time","Datetime","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Admitted to","Admitted to","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Referral to","Referral to","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CV, Discharged Home","Discharged Home","Coded","Misc",false);
