@@ -15,6 +15,22 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.show.push("CV, COVID-19 Testing")
             conditions.show.push("CV, Initial Lab and Radiology Examinations")
             conditions.show.push("CV, Disposition")
+            conditions.hide.push("CV, Other Specimen Type")
+            conditions.hide.push("CV, Referral From")
+            conditions.hide.push("CV, Other Mode of Arrival")
+            conditions.hide.push("CV, Traveled to Which Country")
+            conditions.hide.push("CV, Date of Return from Travel")
+            conditions.hide.push("CV, Name of the Healthcare Facility")
+            conditions.hide.push("CV, Date of Return from Travel")
+            conditions.hide.push("CV, In or Outpatient Care in the Healthcare Facility?")
+            conditions.hide.push("CV, Other Signs and Symptoms")
+            conditions.hide.push("CV, Pregnant")
+            conditions.hide.push("CV, Breastfeeding")
+            conditions.hide.push("CV, Post-Partum (less than 6 Weeks)")
+            conditions.hide.push("CV, Gestational Age")
+            conditions.hide.push("CV, Other Current/Recent Medications")
+            conditions.hide.push("CV, Other Co-Morbidities")
+
         }
         else if (conditionConcept == "Discharge"){
             conditions.hide.push("CV, Initial Assessment")
@@ -25,6 +41,32 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("CV, Disposition")
             conditions.show.push("CV, Discharge Assessment")
             conditions.show.push("CV, Laboratory Tests During Hospitalization")
+            conditions.hide.push("CV, Other Complications")
+            conditions.hide.push("CV, Other ICU Complications")
+            conditions.hide.push("CV, Other Symptoms at Discharge")
+            conditions.hide.push("CV, Other Newly Introduced Treatment During Hospitalization")
+            conditions.hide.push("CV, ICU Respiratory Support")
+            conditions.hide.push("CV, Number of Days in ICU")
+            conditions.hide.push("CV, Procedures During ICU Stay")
+            conditions.hide.push("CV, Other Procedures During ICU Stay")
+            conditions.hide.push("CV, Referral to Another Hospital")
+            conditions.hide.push("CV, Death")
+            conditions.hide.push("CV, Was the Death in the ICU?")
+            conditions.hide.push("CV, Cause of Death")
+            conditions.hide.push("CV, ICU Death")
+            conditions.hide.push("CV, Other Cause of Death")
+
+
+        }
+        else {
+            conditions.hide.push("CV, Initial Assessment")
+            conditions.hide.push("CV, Patient Vitals at Arrival")
+            conditions.hide.push("CV, Physical Examination")
+            conditions.hide.push("CV, COVID-19 Testing")
+            conditions.hide.push("CV, Initial Lab and Radiology Examinations")
+            conditions.hide.push("CV, Disposition")
+            conditions.hide.push("CV, Discharge Assessment")
+            conditions.hide.push("CV, Laboratory Tests During Hospitalization")
         }
         return conditions;
     },
@@ -72,7 +114,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
-    'CV, ICU During Hospitalization?': function (formName, formFieldValues) {
+    'CV, ICU During Hospitalization?': function (formName, formFieldValues)     {
         var conditions = {
             show: [],
             hide: []
@@ -98,7 +140,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['CV, ICU Respiratory Support' +
         ''];
-        if (conditionConcept == "CPAP" || conditionConcept == "BiPAP" ){
+        if (conditionConcept.indexOf("CPAP")>=0 || conditionConcept.indexOf("BiPAP")>=0 ){
             conditions.show.push("CV, Number of Days Under Non Invasive Mechanical Ventilation")
             conditions.hide.push("CV, Number of Days Under Invasive Mechanical Ventilation")
         }
@@ -142,9 +184,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
             show: [],
             hide: []
         };
-        var conditionConcept = formFieldValues['CV, Procedures During ICU Stay' +
-        ''];
-        if (conditionConcept == "Yes"){
+        var conditionConcept = formFieldValues['CV, Procedures During ICU Stay'];
+        if (conditionConcept.indexOf("Other")>=0){
             conditions.show.push("CV, Other Procedures During ICU Stay")
         }
         else {
@@ -159,7 +200,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['CV, Newly Introduced Treatment During Hospitalization' +
         ''];
-        if (conditionConcept == "Other"){
+        if (conditionConcept.indexOf("Other")>=0){
             conditions.show.push("CV, Other Newly Introduced Treatment During Hospitalization")
         }
         else {
@@ -173,7 +214,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['CV, COVID-19 Persistent Symptoms at Discharge'];
-        if (conditionConcept == "Other"){
+        if (conditionConcept.indexOf("Other")>=0){
             conditions.show.push("CV, Other Symptoms at Discharge")
         }
         else {
@@ -187,7 +228,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['CV, ICU Complications'];
-        if (conditionConcept == "Other"){
+        if (conditionConcept.indexOf("Other")>=0){
             conditions.show.push("CV, Other ICU Complications")
         }
         else {
@@ -201,7 +242,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['CV, Complications'];
-        if (conditionConcept == "Other"){
+        if (conditionConcept.indexOf("Other")>=0){
             conditions.show.push("CV, Other Complications")
         }
         else {
@@ -215,7 +256,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['CV, Co-Morbidities'];
-        if (conditionConcept == "Other"){
+        if (conditionConcept.indexOf("Other")>=0){
             conditions.show.push("CV, Other Co-Morbidities")
         }
         else {
@@ -229,7 +270,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['CV, Current/Recent COVID-19 Medications (Past 14 Days)'];
-        if (conditionConcept == "Other"){
+        if (conditionConcept.indexOf("Other")>=0){
             conditions.show.push("CV, Other Current/Recent Medications")
         }
         else {
@@ -275,7 +316,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['CV, Signs and Symptoms at Admission'];
-        if (conditionConcept == "Other"){
+        if (conditionConcept.indexOf("Other")>=0){
             conditions.show.push("CV, Other Signs and Symptoms")
         }
         else {
@@ -2244,7 +2285,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
               hide: []
           };
           var conditionConcept = formFieldValues['LLA, Type of assistive device or orthosis'];
-	  if (conditionConcept.indexOf("Other")>=0){              
+	  if (conditionConcept.indexOf("Other")>=0){
 	      conditions.show.push("LLA, Other type of assistive device")
           }
           else {
@@ -2258,7 +2299,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
               hide: []
           };
           var conditionConcept = formFieldValues['ULA, Type of assistive device or orthosis'];
-	  if (conditionConcept.indexOf("Other")>=0){              
+	  if (conditionConcept.indexOf("Other")>=0){
 	      conditions.show.push("ULA, Other type of assistive device")
           }
           else {
@@ -2455,7 +2496,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
         },
-	'ULA, Summary neurological examination (sensation)': function (formName, formFieldValues) {                
+	'ULA, Summary neurological examination (sensation)': function (formName, formFieldValues) {
         var conditions = {
             show: [],
             hide: []
@@ -2683,7 +2724,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
           var conditionConcept = formFieldValues['MDOF, Reason for visit'];
 
   if (conditionConcept) {
-          
+
 	  if (conditionConcept.indexOf("Medication renewal")>=0){
               conditions.show.push("MDOF, Medication renewal, comments")
           }
@@ -2715,7 +2756,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
              conditions.hide.push("MDOF, Reason for visit, other")
           }
   }
-  else {            
+  else {
              conditions.hide.push("MDOF, Medication renewal, comments", "MDOF, New complaint of patient", "MDOF, Complaint of patient (ABx clinic)", "MDOF, Status of wound", "MDOF, Kidney function", "MDOF, Liver function", "MDOF, Plan", "MDOF, Consultation notes, ABx clinic", "MDOF, Medical course of patient in RSP", "MDOF, Condition of patient at discharge (TRM)", "MDOF, Discharge medication", "MDOF, Medical follow-up needs", "MDOF, Reason for visit, other")
           }
           return conditions;
@@ -2728,7 +2769,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
           var conditionConcept = formFieldValues['MDOF, New complaint of patient'];
 
   if (conditionConcept) {
-          
+
 	  if (conditionConcept.indexOf("Pain")>=0){
               conditions.show.push("MDOF, Comments about pain")
           }
