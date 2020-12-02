@@ -22,7 +22,7 @@
                 From
                 concept_reference_term
                 where `code` in
-                ("162743", "159392", "162863", "703", "160551", "1500", "140238", "141600", "135589", "80", "163196", "152807", "119481", "115115", "117399", "155569", "119270", "731", "6032", "6033", "160034", "1195", "162306", "162869")
+                ("162743", "159392", "162863", "703", "160551", "140238", "141600", "135589", "80", "163196", "152807", "119481", "115115", "117399", "155569", "119270", "731", "6032", "6033", "160034", "1195", "162306", "162869")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where `name` = 'CEIL'  and retired =0
@@ -38,7 +38,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162863",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"703",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160551",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1500",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"140238",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"141600",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"135589",@source_id,uuid(),now());
@@ -62,7 +61,6 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Probable","162863");
             call CREATE_REFERENCE_MAPPING_CEIL("Positive","703");
             call CREATE_REFERENCE_MAPPING_CEIL("Self","160551");
-            call CREATE_REFERENCE_MAPPING_CEIL("Severe","1500");
             call CREATE_REFERENCE_MAPPING_CEIL("Fever","140238");
             call CREATE_REFERENCE_MAPPING_CEIL("Difficulty Breathing","141600");
             call CREATE_REFERENCE_MAPPING_CEIL("Loss of Smell","135589");
