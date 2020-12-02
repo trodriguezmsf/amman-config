@@ -190,6 +190,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Renal Disease",
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Renal Failure","Renal Failure","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Respiratory Failure","Respiratory Failure","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Self","Self","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Severe","Severe","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Signs of Deterioration Explained","Signs of Deterioration Explained","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Suggestive Chest X-Ray","Suggestive Chest X-Ray","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Suggestive CT Scan","Suggestive CT Scan","N/A","Misc",false);

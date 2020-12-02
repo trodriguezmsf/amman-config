@@ -450,7 +450,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ('Yes', 'Healthcare Worker at Non-MSF Facility','Yes MSF Staff','No')
+                ('No Pain','Minor','Moderate','Severe')
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "CV, Pain");
