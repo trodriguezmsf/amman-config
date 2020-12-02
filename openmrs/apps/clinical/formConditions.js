@@ -140,13 +140,16 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['CV, ICU Respiratory Support' +
         ''];
-        if (conditionConcept.indexOf("CPAP")>=0 || conditionConcept.indexOf("BiPAP")>=0 ){
+        if(conditionConcept) {
+        if (conditionConcept.indexOf("CPAP")>=0 || conditionConcept.indexOf("BiPAP")>=0 )
             conditions.show.push("CV, Number of Days Under Non Invasive Mechanical Ventilation")
-            conditions.hide.push("CV, Number of Days Under Invasive Mechanical Ventilation")
-        }
-        else if (conditionConcept == "Invasive Mechanical Ventilation" ){
-            conditions.show.push("CV, Number of Days Under Invasive Mechanical Ventilation")
+        else
             conditions.hide.push("CV, Number of Days Under Non Invasive Mechanical Ventilation")
+
+        if (conditionConcept.indexOf("Invasive Mechanical Ventilation")>=0)
+            conditions.show.push("CV, Number of Days Under Invasive Mechanical Ventilation")
+            else
+            conditions.hide.push("CV, Number of Days Under Invasive Mechanical Ventilation")
         } else {
             conditions.hide.push("CV, Number of Days Under Invasive Mechanical Ventilation")
             conditions.hide.push("CV, Number of Days Under Non Invasive Mechanical Ventilation")

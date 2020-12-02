@@ -139,7 +139,7 @@
             set @child4_concept_id = 0;
 
             select concept_id into @child1_concept_id from concept_name where name ="Suspect" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Discharge" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Confirmed" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Probable" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="Not a Case" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
 
@@ -1855,7 +1855,7 @@
             call add_concept_set_members (@concept_id, @member34_concept_id, 34);
         </sql>
     </changeSet>
-    
+
     <changeSet id="AMMAN_CONFIG_202011281352" author="Pritam, Bindu">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -1887,7 +1887,7 @@
             call add_concept_set_members (@concept_id, @member4_concept_id, 4);
         </sql>
     </changeSet>
-    
+
     <changeSet id="AMMAN_CONFIG_202011271341" author="Bindu, Pritam">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -2007,7 +2007,7 @@
 
         </sql>
     </changeSet>
-    
+
     <changeSet id="AMMAN_CONFIG_202011281421" author="Pritam, Bindu">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">

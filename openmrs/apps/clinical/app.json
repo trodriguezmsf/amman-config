@@ -1771,6 +1771,9 @@
           "CV, Date of COVID-19 Test": {
             "addMore": true
           },
+          "CV, Laboratory Tests During Hospitalization": {
+            "allowAddMore": true
+          },
           "MD, Severity of Covid-19 case":{
             "disableAddNotes": true
           },
