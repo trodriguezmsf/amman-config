@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="Amman-202012111432" author="Vinisha">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(1) FROM global_property WHERE property='visits.closeOnAnOutcome.visitType(s)';
+            </sqlCheck>
+        </preConditions>
+        <comment>Add all visit types to be closed on an outcome or program state</comment>
+        <sql>
+            UPDATE global_property SET property_value = 'First Stage Validation,Follow-Up Validation,Hospital' WHERE property='visits.closeOnAnOutcome.visitType(s)';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202012111439" author="Vinisha">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(1) FROM global_property WHERE property='visits.closeOnAnOutcome.conceptName(s)';
+            </sqlCheck>
+        </preConditions>
+        <comment>Add concept names whose outcome is used to close configured visits</comment>
+        <sql>
+            UPDATE global_property SET property_value = 'FSTG, Outcomes for 1st stage surgical validation | FUP, Outcomes for follow-up surgical validation | FV, Outcomes FV' WHERE property='visits.closeOnAnOutcome.conceptName(s)';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202012111442" author="Vinisha">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(1) FROM global_property WHERE property='visits.closeOnAnOutcome.programState(s)';
+            </sqlCheck>
+        </preConditions>
+        <comment>Add program states whose state is used to close configured visits</comment>
+        <sql>
+            UPDATE global_property SET property_value = 'Network Follow-up | Discharged' WHERE property='visits.closeOnAnOutcome.programState(s)';
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
