@@ -2,7 +2,6 @@
   sudo: yes
   roles:
     - { role: bahmni-mysql-cache-properties, tags: mysql_cache }
-    - { role: bahmni-92-mysql-performance, tags: mysql_performance }
     - { role: appointments, tags: appointments }
     - { role: bahmni-core, tags: bahmni-core }
     - { role: bahmni-ie-apps, tags: bahmni-ie-apps }
