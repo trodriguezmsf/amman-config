@@ -51,7 +51,7 @@
         </preConditions>
         <comment>Void Auto Close Visits Task created by bahmni-msf-omod</comment>
         <sql>
-            update scheduler_task_config set schedulable_class ='org.bahmni.module.bahmnimsf.CloseVisitTask', start_on_startup = 0 where name = 'Auto Close Visits Task';
+            update scheduler_task_config set schedulable_class ='org.bahmni.module.bahmnimsf.CloseVisitTask', start_on_startup = 0,started = 0  where name = 'Auto Close Visits Task';
         </sql>
     </changeSet>
 

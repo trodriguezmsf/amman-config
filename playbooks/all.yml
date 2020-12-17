@@ -11,3 +11,6 @@
     - { role: bahmni-amman-exports, tags: bahmni-amman-exports }
     - { role: print-forms, tags: print-forms }
     - { role: appointment-frontend, tags: appointment-frontend }
+    - { role: visit-close-module, tags: visit-close-module }
+    - { role: emr-api-omod, tags: emr-api-omod }
+    - { role: event-omod, tags: event-omod }
