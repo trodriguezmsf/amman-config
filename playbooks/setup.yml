@@ -10,3 +10,4 @@ appointment_frontend: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.0
 visit_close_omod: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.1.0/visit-close-module-0.93-2.1.0.omod
 emr_api_omod: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.1.0/emrapi-omod-1.24.7-2.1.0-SNAPSHOT.omod
 event_omod: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.1.0/event-2.8.0-2.1.0.omod
+uiframework: https://dl.bintray.com/openmrs/omod/uiframework-3.19.0.omod

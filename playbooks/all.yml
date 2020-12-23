@@ -14,3 +14,4 @@
     - { role: visit-close-module, tags: visit-close-module }
     - { role: emr-api-omod, tags: emr-api-omod }
     - { role: event-omod, tags: event-omod }
+    - { role: openmrs-ui-framework, tags: openmrs_ui_framework }
