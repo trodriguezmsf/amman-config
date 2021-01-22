@@ -1,0 +1,136 @@
+set @concept_id = 0;
+set @concept_short_id = 0;
+set @concept_full_id = 0;
+set @count = 0;
+set @uuid = NULL;
+
+-- question concepts
+
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Discharge reason, network physio","Discharge reason, network physio","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Dominant side","Dominant side","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Network physio follow-up at","Network physio follow-up at","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Network physio goals status","Network physio goals status","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Physiotherapy prescription","Physiotherapy prescription","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Special case","Special case","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Targeted side","Targeted side","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Targeted site","Targeted site","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Treatment duration of the physiotherapy prescription","Treatment duration of the physiotherapy prescription","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Type of assessment","Type of assessment","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Was the patient refered by network physio to other MSF or non-MSF project?","Was the patient refered by network physio to other MSF or non-MSF project?","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Date of admission to network physio","Date of admission to network physio","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Date of discharge from network physio","Date of discharge from network physio","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Date recorded","Date recorded","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Activity Independence Measure for Trauma (AIM-T) score","Activity Independence Measure for Trauma (AIM-T) score","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Total Modified Functional Independence Measure (FIM) score","Total Modified Functional Independence Measure (FIM) score","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Total core score (AIM-T)","Total core score (AIM-T)","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Total lower limb score (AIM-T)","Total lower limb score (AIM-T)","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Total lower limb sub-score (FIM)","Total lower limb sub-score (FIM)","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Total upper limb score (AIM-T)","Total upper limb score (AIM-T)","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Total upper limb sub-score (FIM)","Total upper limb sub-score (FIM)","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Comments","Comments","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Comments on Network physio goals","Comments on Network physio goals","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Network physio feedback to the surgeons","Network physio feedback to the surgeons","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Network physio treatment goals","Network physio treatment goals","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Notes about network physio special cases","Notes about network physio special cases","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Other discharge reason, network physio","Other discharge reason, network physio","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Other physiotherapy prescription","Other physiotherapy prescription","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Referred by network physio to","Referred by network physio to","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Special case, other","Special case, other","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Target/ Modalities/ Specifications","Target/ Modalities/ Specifications","Text","Misc",false);
+
+-- adding answer concepts
+
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ankle","Ankle","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Anterior mandible","Anterior mandible","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Anterior maxilla","Anterior maxilla","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Assisted/ active movement","Assisted/ active movement","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Axilla","Axilla","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Bone transportation/ lengthening","Bone transportation/ lengthening","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Brachialplexus","Brachialplexus","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Breast","Breast","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Cheek","Cheek","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Chin","Chin","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Commissure","Commissure","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Craniofacial","Craniofacial","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ear","Ear","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Elbow","Elbow","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Electrotherapy/ Ultra Sound therapy","Electrotherapy/ Ultra Sound therapy","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Eye","Eye","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Femur","Femur","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Finger","Finger","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Follow-up","Follow-up","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Foot","Foot","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Forearm","Forearm","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Forehead including eyebrow","Forehead including eyebrow","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Full achievement of all network physio goals","Full achievement of all network physio goals","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Further stage admission to RSP","Further stage admission to RSP","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Gluteal","Gluteal","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Groin","Groin","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Iliac","Iliac","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Jaw","Jaw","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Left Amputation","Left Amputation","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Left see list of sites below Right","Left see list of sites below Right","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lower back","Lower back","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lower lip","Lower lip","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mandible","Mandible","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Maxilla","Maxilla","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Median","Median","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Medical or surgical order","Medical or surgical order","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mid-faceexcl. orbit","Mid-faceexcl. orbit","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mouth","Mouth","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Muscle strengthening","Muscle strengthening","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Network physio Defaulter","Network physio Defaulter","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Network physio MBA","Network physio MBA","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"No 1st stage admission to RSP","No 1st stage admission to RSP","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"None of the network physio goals were achieved","None of the network physio goals were achieved","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Nose","Nose","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Orbit","Orbit","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pain management","Pain management","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Palatal defect","Palatal defect","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Palatal fistula","Palatal fistula","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Partial achievement of network physio goals","Partial achievement of network physio goals","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Passive joint mobilization","Passive joint mobilization","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Positioning","Positioning","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Premaxilla","Premaxilla","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Prosthesis/ Orthosis/ Hand splint/ Cast","Prosthesis/ Orthosis/ Hand splint/ Cast","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Radial","Radial","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Refused network physio services","Refused network physio services","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Scalp","Scalp","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Scar massage/ Silicone + Pressure therapy","Scar massage/ Silicone + Pressure therapy","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Stump","Stump","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Temporomandibular joint (TMJ)","Temporomandibular joint (TMJ)","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Thigh","Thigh","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Tibial","Tibial","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Toe","Toe","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Total hip replacement","Total hip replacement","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Total knee replacement","Total knee replacement","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Trunk","Trunk","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ulnar","Ulnar","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Upper back","Upper back","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Upper jaw","Upper jaw","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Upper lip","Upper lip","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Weight bearing/ Gait training","Weight bearing/ Gait training","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Wrist","Wrist","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Yes to non-MSF project","Yes to non-MSF project","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Yes to other MSF project","Yes to other MSF project","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Zygoma","Zygoma","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Zygomatico-orbital complex","Zygomatico-orbital complex","N/A","Misc",false);
+
+-- adding concept sets
+
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Network Physiotherapy Assessment","Network Physiotherapy Assessment","N/A","ConvSet",true);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Discharge","Discharge","N/A","Misc",true);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Functional score","Functional score","N/A","Misc",true);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Initial Assessment","Initial Assessment","N/A","Misc",true);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Targeted site and side","Targeted site and side","N/A","Misc",true);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Video Upload","Video Upload","N/A","Misc",true);
+
+-- Adding Numeric concepts to the concept Numeric table
+
+INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)VALUES ((select concept_id from concept_name where name = "NP, Activity Independence Measure for Trauma (AIM-T) score" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)VALUES ((select concept_id from concept_name where name = "NP, Total Modified Functional Independence Measure (FIM) score" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)VALUES ((select concept_id from concept_name where name = "NP, Total core score (AIM-T)" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)VALUES ((select concept_id from concept_name where name = "NP, Total lower limb score (AIM-T)" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)VALUES ((select concept_id from concept_name where name = "NP, Total lower limb sub-score (FIM)" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)VALUES ((select concept_id from concept_name where name = "NP, Total upper limb score (AIM-T)" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)VALUES ((select concept_id from concept_name where name = "NP, Total upper limb sub-score (FIM)" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
