@@ -1,0 +1,142 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="Amman-202101210001" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Caretaker","Caretaker-workflow","Caretaker-outcome","Active caretaker","Departure") and
+                concept_name_type =
+                'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Caretaker program concepts</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Caretaker","Caretaker","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Caretaker-workflow","Caretaker-workflow","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Caretaker-outcome","Caretaker-outcome","N/A","Misc",true);
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Active caretaker","Active caretaker","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Departure","Departure","N/A","Misc",false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202101210002" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name in ("Discharge","Dismissal","Death","Refused")
+                AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'Caretaker-outcome') and
+                concept_name_type = "FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for "Caretaker-outcome" concept</comment>
+        <sql>
+            select concept_id into @Caretaker_outcome_concept_id from concept_name where name = "Caretaker-outcome" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Discharge" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Dismissal" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Death" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Refused" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members(@Caretaker_outcome_concept_id, @child1_concept_id, 1);
+            call add_concept_set_members(@Caretaker_outcome_concept_id, @child2_concept_id, 2);
+            call add_concept_set_members(@Caretaker_outcome_concept_id, @child3_concept_id, 3);
+            call add_concept_set_members(@Caretaker_outcome_concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202101210003" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program where name='Caretaker';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding program Caretaker</comment>
+        <sql>
+            select concept_id into @Caretaker_Concept_id from concept_name where name = 'Caretaker' and concept_name_type
+            = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Caretaker_Outcome_Concept_id from concept_name where name = 'Caretaker-outcome' and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select user_id into @Creator_Concept_id from users where username='superman';
+
+            INSERT INTO program(concept_id,outcomes_concept_id,creator,date_created,name,description,uuid)
+            VALUES (@Caretaker_Concept_id,@Caretaker_Outcome_Concept_id,@Creator_Concept_id,now(),'Caretaker','Caretaker
+            Program',uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202101210004" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program_workflow pw join concept_name cn on pw.concept_id = cn.concept_id
+                where pw.concept_id = (select concept_id from concept_name where name = 'Caretaker-workflow' and
+                concept_name_type = 'FULLY_SPECIFIED') and concept_name_type = 'FULLY_SPECIFIED';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Caretaker Program workflow</comment>
+        <sql>
+            select program_id into @Caretaker_program_id from program where name='Caretaker';
+            select concept_id into @Caretaker_workflow_concept_id from concept_name where name ="Caretaker-workflow" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select user_id into @Creator_Concept_id from users where username='superman';
+
+            INSERT INTO program_workflow (program_id , concept_id , creator , date_created , retired , uuid)
+            VALUES (@Caretaker_program_id,@Caretaker_workflow_concept_id,@Creator_Concept_id, now(),0, uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202101210005" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program_workflow_state where concept_id in (select concept_id from concept_name
+                where name in ('Identification','Active caretaker','Departure')
+                and program_workflow_id = (select program_workflow_id from program_workflow pw join concept_name cn on
+                pw.concept_id = cn.concept_id
+                where pw.concept_id = (select concept_id from concept_name where name = 'Caretaker-workflow' and
+                concept_name_type = 'FULLY_SPECIFIED' ) and concept_name_type = 'FULLY_SPECIFIED')
+                and concept_name_type = 'FULLY_SPECIFIED');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Program states for Caretaker-workflow</comment>
+        <sql>
+            select concept_id into @Caretaker_workflow_concept_id from concept_name where name = "Caretaker-workflow" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select program_workflow_id into @program_workflow_id from program_workflow where concept_id =
+            @Caretaker_workflow_concept_id;
+
+            select concept_id into @Identification_concept_id from concept_name where name = "Identification"
+            and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Active_caretaker_concept_id from concept_name where name = "Active caretaker"
+            and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Departure_concept_id from concept_name where name = "Departure" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            insert into program_workflow_state
+            (program_workflow_id,concept_id,initial,terminal,creator,date_created,retired ,uuid) values
+            (@program_workflow_id,@Identification_concept_id,0,0,1,now(),0,uuid()),
+            (@program_workflow_id,@Active_caretaker_concept_id,0,0,1,now(),0,uuid()),
+            (@program_workflow_id,@Departure_concept_id,0,0,1,now(),0,uuid());
+        </sql>
+    </changeSet>
+</databaseChangeLog>

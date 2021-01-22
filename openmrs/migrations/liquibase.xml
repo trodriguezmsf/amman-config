@@ -11189,4 +11189,5 @@
     <include file="programs/addCovidProgram.xml"/>
     <include file="clinicalForms/covid19AssessmentForm.xml"/>
     <include file="visitCloseData.xml"/>
+    <include file="programs/addCaretakerProgram.xml"/>
 </databaseChangeLog>
