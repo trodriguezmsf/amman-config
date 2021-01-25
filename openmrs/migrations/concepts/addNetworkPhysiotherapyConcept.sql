@@ -68,7 +68,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Gluteal","Glute
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Groin","Groin","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Iliac","Iliac","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Jaw","Jaw","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Amputation","Amputation","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lower back","Lower back","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lower lip","Lower lip","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mandible","Mandible","N/A","Misc",false);
