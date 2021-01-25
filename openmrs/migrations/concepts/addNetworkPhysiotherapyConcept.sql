@@ -68,8 +68,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Gluteal","Glute
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Groin","Groin","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Iliac","Iliac","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Jaw","Jaw","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Left Amputation","Left Amputation","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Left see list of sites below Right","Left see list of sites below Right","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Amputation","Amputation","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lower back","Lower back","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lower lip","Lower lip","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mandible","Mandible","N/A","Misc",false);
@@ -81,7 +80,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mouth","Mouth",
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Muscle strengthening","Muscle strengthening","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Network physio Defaulter","Network physio Defaulter","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Network physio MBA","Network physio MBA","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"No 1st stage admission to RSP","No 1st stage admission to RSP","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"1st stage admission to RSP","1st stage admission to RSP","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"None of the network physio goals were achieved","None of the network physio goals were achieved","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Nose","Nose","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Orbit","Orbit","N/A","Misc",false);
