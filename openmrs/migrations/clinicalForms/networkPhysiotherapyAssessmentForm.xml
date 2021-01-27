@@ -883,6 +883,30 @@
             call add_concept_set_members(@concept_id, @member2_concept_id, 2);
         </sql>
     </changeSet>
+    <changeSet id="AMMAN_CONFIG_2021012716380" author="Vinisha,Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Video")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "NP, Video Upload");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Set Members to Video Upload</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "NP, Video Upload" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @member1_concept_id = 0;
+            select concept_id into @member1_concept_id from concept_name where name ="Video" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1);
+        </sql>
+    </changeSet>
+
     <changeSet id="AMMAN_CONFIG_202101251547" author="Vinisha, Supriya">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
