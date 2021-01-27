@@ -689,55 +689,55 @@
                 cn.concept_id IN (select concept_id from concept_name where name = "NP, Network Physiotherapy Assessment");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to Network Physiotherapy Assessment</comment>
+        <comment>Adding Set Members to Network Physiotherapy Assessment</comment>
         <sql>
             select concept_id into @concept_id from concept_name where name = "NP, Network Physiotherapy Assessment" and
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
-            set @child5_concept_id = 0;
-            set @child6_concept_id = 0;
-            set @child7_concept_id = 0;
-            set @child8_concept_id = 0;
-            set @child9_concept_id = 0;
-            set @child10_concept_id = 0;
-            set @child11_concept_id = 0;
-            set @child12_concept_id = 0;
-            set @child13_concept_id = 0;
-            set @child14_concept_id = 0;
-            set @child15_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="NP, Date recorded" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="NP, Type of assessment" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="NP, Initial Assessment" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="NP, Functional score" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="NP, Was the patient refered by network physio to other MSF or non-MSF project?" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child6_concept_id from concept_name where name ="NP, Referred by network physio to" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child7_concept_id from concept_name where name ="NP, Network physio feedback to the surgeons" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child8_concept_id from concept_name where name ="NP, Discharge" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child9_concept_id from concept_name where name ="NP, Network physio follow-up at" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child10_concept_id from concept_name where name ="NP, Physiotherapy prescription" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child11_concept_id from concept_name where name ="NP, Other physiotherapy prescription" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child12_concept_id from concept_name where name ="NP, Target/ Modalities/ Specifications" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child13_concept_id from concept_name where name ="NP, Treatment duration of the physiotherapy prescription" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child14_concept_id from concept_name where name ="NP, Comments" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child15_concept_id from concept_name where name ="NP, Video Upload" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            call add_concept_answer(@concept_id, @child1_concept_id, 1);
-            call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child3_concept_id, 3);
-            call add_concept_answer(@concept_id, @child4_concept_id, 4);
-            call add_concept_answer(@concept_id, @child5_concept_id, 5);
-            call add_concept_answer(@concept_id, @child6_concept_id, 6);
-            call add_concept_answer(@concept_id, @child7_concept_id, 7);
-            call add_concept_answer(@concept_id, @child8_concept_id, 8);
-            call add_concept_answer(@concept_id, @child9_concept_id, 9);
-            call add_concept_answer(@concept_id, @child10_concept_id, 10);
-            call add_concept_answer(@concept_id, @child11_concept_id, 11);
-            call add_concept_answer(@concept_id, @child12_concept_id, 12);
-            call add_concept_answer(@concept_id, @child13_concept_id, 13);
-            call add_concept_answer(@concept_id, @child14_concept_id, 14);
-            call add_concept_answer(@concept_id, @child15_concept_id, 15);
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+            set @member6_concept_id = 0;
+            set @member7_concept_id = 0;
+            set @member8_concept_id = 0;
+            set @member9_concept_id = 0;
+            set @member10_concept_id = 0;
+            set @member11_concept_id = 0;
+            set @member12_concept_id = 0;
+            set @member13_concept_id = 0;
+            set @member14_concept_id = 0;
+            set @member15_concept_id = 0;
+            select concept_id into @member1_concept_id from concept_name where name ="NP, Date recorded" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name ="NP, Type of assessment" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name ="NP, Initial Assessment" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name ="NP, Functional score" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name ="NP, Was the patient refered by network physio to other MSF or non-MSF project?" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name ="NP, Referred by network physio to" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name ="NP, Network physio feedback to the surgeons" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member8_concept_id from concept_name where name ="NP, Discharge" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member9_concept_id from concept_name where name ="NP, Network physio follow-up at" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member10_concept_id from concept_name where name ="NP, Physiotherapy prescription" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member11_concept_id from concept_name where name ="NP, Other physiotherapy prescription" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member12_concept_id from concept_name where name ="NP, Target/ Modalities/ Specifications" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member13_concept_id from concept_name where name ="NP, Treatment duration of the physiotherapy prescription" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member14_concept_id from concept_name where name ="NP, Comments" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member15_concept_id from concept_name where name ="NP, Video Upload" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members(@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members(@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members(@concept_id, @member4_concept_id, 4);
+            call add_concept_set_members(@concept_id, @member5_concept_id, 5);
+            call add_concept_set_members(@concept_id, @member6_concept_id, 6);
+            call add_concept_set_members(@concept_id, @member7_concept_id, 7);
+            call add_concept_set_members(@concept_id, @member8_concept_id, 8);
+            call add_concept_set_members(@concept_id, @member9_concept_id, 9);
+            call add_concept_set_members(@concept_id, @member10_concept_id, 10);
+            call add_concept_set_members(@concept_id, @member11_concept_id, 11);
+            call add_concept_set_members(@concept_id, @member12_concept_id, 12);
+            call add_concept_set_members(@concept_id, @member13_concept_id, 13);
+            call add_concept_set_members(@concept_id, @member14_concept_id, 14);
+            call add_concept_set_members(@concept_id, @member15_concept_id, 15);
         </sql>
     </changeSet>
     <changeSet id="AMMAN_CONFIG_2021012513307" author="Vinisha, Supriya">
@@ -754,31 +754,31 @@
                 cn.concept_id IN (select concept_id from concept_name where name = "NP, Initial Assessment");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to Initial Assessment</comment>
+        <comment>Adding Set Members to Initial Assessment</comment>
         <sql>
             select concept_id into @concept_id from concept_name where name = "NP, Initial Assessment" and
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
-            set @child5_concept_id = 0;
-            set @child6_concept_id = 0;
-            set @child7_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="NP, Date of admission to network physio" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="NP, Dominant side" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="NP, Targeted site and side" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="NP, Network physio treatment goals" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="NP, Special case" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child6_concept_id from concept_name where name ="NP, Special case, other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child7_concept_id from concept_name where name ="NP, Notes about network physio special cases" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            call add_concept_answer(@concept_id, @child1_concept_id, 1);
-            call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child3_concept_id, 3);
-            call add_concept_answer(@concept_id, @child4_concept_id, 4);
-            call add_concept_answer(@concept_id, @child5_concept_id, 5);
-            call add_concept_answer(@concept_id, @child6_concept_id, 6);
-            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+            set @member6_concept_id = 0;
+            set @member7_concept_id = 0;
+            select concept_id into @member1_concept_id from concept_name where name ="NP, Date of admission to network physio" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name ="NP, Dominant side" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name ="NP, Targeted site and side" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name ="NP, Network physio treatment goals" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name ="NP, Special case" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name ="NP, Special case, other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name ="NP, Notes about network physio special cases" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members(@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members(@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members(@concept_id, @member4_concept_id, 4);
+            call add_concept_set_members(@concept_id, @member5_concept_id, 5);
+            call add_concept_set_members(@concept_id, @member6_concept_id, 6);
+            call add_concept_set_members(@concept_id, @member7_concept_id, 7);
         </sql>
     </changeSet>
     <changeSet id="AMMAN_CONFIG_2021012513357" author="Vinisha,Supriya">
@@ -795,31 +795,31 @@
                 cn.concept_id IN (select concept_id from concept_name where name = "NP, Functional score");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to Functional score</comment>
+        <comment>Adding Set Members to Functional score</comment>
         <sql>
             select concept_id into @concept_id from concept_name where name = "NP, Functional score" and
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
-            set @child5_concept_id = 0;
-            set @child6_concept_id = 0;
-            set @child7_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="NP, Total lower limb sub-score (FIM)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="NP, Total upper limb sub-score (FIM)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="NP, Total Modified Functional Independence Measure (FIM) score" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="NP, Total core score (AIM-T)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="NP, Total lower limb score (AIM-T)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child6_concept_id from concept_name where name ="NP, Total upper limb score (AIM-T)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child7_concept_id from concept_name where name ="NP, Activity Independence Measure for Trauma (AIM-T) score" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            call add_concept_answer(@concept_id, @child1_concept_id, 1);
-            call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child3_concept_id, 3);
-            call add_concept_answer(@concept_id, @child4_concept_id, 4);
-            call add_concept_answer(@concept_id, @child5_concept_id, 5);
-            call add_concept_answer(@concept_id, @child6_concept_id, 6);
-            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+            set @member6_concept_id = 0;
+            set @member7_concept_id = 0;
+            select concept_id into @member1_concept_id from concept_name where name ="NP, Total lower limb sub-score (FIM)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name ="NP, Total upper limb sub-score (FIM)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name ="NP, Total Modified Functional Independence Measure (FIM) score" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name ="NP, Total core score (AIM-T)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name ="NP, Total lower limb score (AIM-T)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name ="NP, Total upper limb score (AIM-T)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name ="NP, Activity Independence Measure for Trauma (AIM-T) score" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members(@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members(@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members(@concept_id, @member4_concept_id, 4);
+            call add_concept_set_members(@concept_id, @member5_concept_id, 5);
+            call add_concept_set_members(@concept_id, @member6_concept_id, 6);
+            call add_concept_set_members(@concept_id, @member7_concept_id, 7);
         </sql>
     </changeSet>
     <changeSet id="AMMAN_CONFIG_2021012513406" author="Vinisha,Supriya">
@@ -836,25 +836,25 @@
                 cn.concept_id IN (select concept_id from concept_name where name = "NP, Discharge");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to Discharge</comment>
+        <comment>Adding Set Members to Discharge</comment>
         <sql>
             select concept_id into @concept_id from concept_name where name = "NP, Discharge" and
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
-            set @child5_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="NP, Date of discharge from network physio" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="NP, Discharge reason, network physio" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="NP, Other discharge reason, network physio" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="NP, Network physio goals status" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="NP, Comments on Network physio goals" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            call add_concept_answer(@concept_id, @child1_concept_id, 1);
-            call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child3_concept_id, 3);
-            call add_concept_answer(@concept_id, @child4_concept_id, 4);
-            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+            select concept_id into @member1_concept_id from concept_name where name ="NP, Date of discharge from network physio" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name ="NP, Discharge reason, network physio" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name ="NP, Other discharge reason, network physio" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name ="NP, Network physio goals status" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name ="NP, Comments on Network physio goals" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members(@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members(@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members(@concept_id, @member4_concept_id, 4);
+            call add_concept_set_members(@concept_id, @member5_concept_id, 5);
         </sql>
     </changeSet>
     <changeSet id="AMMAN_CONFIG_2021012513429" author="Vinisha,Supriya">
@@ -871,16 +871,16 @@
                 cn.concept_id IN (select concept_id from concept_name where name = "NP, Targeted site and side");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to Targeted site and side</comment>
+        <comment>Adding Set Members to Targeted site and side</comment>
         <sql>
             select concept_id into @concept_id from concept_name where name = "NP, Targeted site and side" and
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="NP, Targeted site" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="NP, Targeted side" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            call add_concept_answer(@concept_id, @child1_concept_id, 1);
-            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            select concept_id into @member1_concept_id from concept_name where name ="NP, Targeted site" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name ="NP, Targeted side" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members(@concept_id, @member2_concept_id, 2);
         </sql>
     </changeSet>
     <changeSet id="AMMAN_CONFIG_202101251547" author="Vinisha, Supriya">
