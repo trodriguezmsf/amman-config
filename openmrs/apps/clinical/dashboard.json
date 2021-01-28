@@ -236,7 +236,8 @@
                     "Maxillofacial Physio Assessment",
 		            "Medical Doctor OPD Follow-up",
                     "Pain Nurse Follow-up",
-                    "Administrative Note"
+                    "Administrative Note",
+                    "NP, Network Physiotherapy Assessment"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
             }

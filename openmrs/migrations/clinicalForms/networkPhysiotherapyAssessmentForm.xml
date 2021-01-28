@@ -654,7 +654,7 @@
                 From
                 concept_reference_term
                 where `code` in
-                ("162869", "164009", "164967", "131022")
+                ("164009", "164967", "131022")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where `name` = 'CEIL'  and retired =0
@@ -665,7 +665,6 @@
         <sql>
             SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'CEIL';
 
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162869",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"164009",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"164967",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"131022",@source_id,uuid(),now());

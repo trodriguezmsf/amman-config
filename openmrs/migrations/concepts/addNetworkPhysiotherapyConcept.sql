@@ -20,8 +20,8 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Was the pat
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Date of admission to network physio","Date of admission to network physio","Date","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Date of discharge from network physio","Date of discharge from network physio","Date","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Date recorded","Date recorded","Date","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Activity Independence Measure for Trauma (AIM-T) score","Activity Independence Measure for Trauma (AIM-T) score","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Total Modified Functional Independence Measure (FIM) score","Total Modified Functional Independence Measure (FIM) score","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Activity Independence Measure for Trauma (AIM-T) score","Activity Independence Measure for Trauma (AIM-T) score","Numeric","Computed",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Total Modified Functional Independence Measure (FIM) score","Total Modified Functional Independence Measure (FIM) score","Numeric","Computed",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Total core score (AIM-T)","Total core score (AIM-T)","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Total lower limb score (AIM-T)","Total lower limb score (AIM-T)","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Total lower limb sub-score (FIM)","Total lower limb sub-score (FIM)","Numeric","Misc",false);

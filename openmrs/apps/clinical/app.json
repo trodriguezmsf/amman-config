@@ -1768,9 +1768,6 @@
           "CV, Procedures During ICU Stay": {
             "multiSelect": true
           },
-          "CV, Date of COVID-19 Test": {
-            "addMore": true
-          },
           "CV, Laboratory Tests During Hospitalization": {
             "allowAddMore": true
           },
@@ -1779,6 +1776,21 @@
           },
           "MD, Date of first positive PCR test":{
             "disableAddNotes": true
+          },
+          "NP, Targeted site and side": {
+            "allowAddMore": true
+          },
+          "NP, Targeted site": {
+            "autocomplete":true
+          },
+          "NP, Network physio follow-up at": {
+            "autocomplete":true
+          },
+          "NP, Physiotherapy prescription": {
+            "multiSelect":true
+          },
+          "NP, Treatment duration of the physiotherapy prescription": {
+            "autocomplete":true
           }
         },
         "visitPage": {
