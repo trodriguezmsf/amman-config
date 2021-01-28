@@ -217,6 +217,11 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         if (baselineVitalsForm != null) {
             calculateBMIAndSave(baselineVitalsForm)
         }
+        BahmniObservation functionalScoreInNPForm = find("NP, Functional score", observations, null)
+        if (functionalScoreInNPForm != null) {
+            calculateFIMScore(functionalScoreInNPForm)
+            calculateAIMTScore(functionalScoreInNPForm)
+        }
         calculateScores(observations)
         voidExistingObservationWithoutValue(observations)
     }
@@ -375,6 +380,43 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         }
     }
 
+    static def calculateFIMScore(BahmniObservation functionalScoreInNPForm) {
+        Collection<BahmniObservation> observations = functionalScoreInNPForm.getGroupMembers()
+        BahmniObservation lowerFimObservation = find("NP, Total lower limb sub-score (FIM)", observations, null)
+        BahmniObservation upperFimObservation = find("NP, Total upper limb sub-score (FIM)", observations, null)
+        BahmniObservation fimObservation = find("NP, Total Modified Functional Independence Measure (FIM) score", observations, null)
+
+        if (!(hasValue(lowerFimObservation)) && !(hasValue(upperFimObservation))) {
+            voidObs(fimObservation)
+            return
+        }
+        Double lowerFim = hasValue(lowerFimObservation) ? lowerFimObservation.getValue() as Double : 0
+        Double upperFim = hasValue(upperFimObservation) ? upperFimObservation.getValue() as Double : 0
+        Date obsDatetime = getDate(lowerFimObservation) != null ? getDate(lowerFimObservation) : getDate(upperFimObservation)
+        fimObservation = fimObservation ?: createObs("NP, Total Modified Functional Independence Measure (FIM) score", functionalScoreInNPForm, null, obsDatetime) as BahmniObservation;
+        fimObservation.setValue(roundOffToTwoDecimalPlaces(lowerFim + upperFim))
+    }
+
+    static def calculateAIMTScore(BahmniObservation functionalScoreInNPForm) {
+        Collection<BahmniObservation> observations = functionalScoreInNPForm.getGroupMembers()
+        BahmniObservation coreAimtObservation = find("NP, Total core score (AIM-T)", observations, null)
+        BahmniObservation lowerAimtObservation = find("NP, Total lower limb score (AIM-T)", observations, null)
+        BahmniObservation upperAimtObservation = find("NP, Total upper limb score (AIM-T)", observations, null)
+        BahmniObservation activeAimtScoreObservation = find("NP, Activity Independence Measure for Trauma (AIM-T) score", observations, null)
+
+        if (!(hasValue(coreAimtObservation)) && !(hasValue(lowerAimtObservation)) && !(hasValue(upperAimtObservation))) {
+            voidObs(activeAimtScoreObservation)
+            return
+        }
+        Double coreAimt = hasValue(coreAimtObservation) ? coreAimtObservation.getValue() as Double : 0
+        Double lowerAimt = hasValue(lowerAimtObservation) ? lowerAimtObservation.getValue() as Double : 0
+        Double upperAimt = hasValue(upperAimtObservation) ? upperAimtObservation.getValue() as Double : 0
+        Date obsDatetime = getDate(coreAimtObservation) != null ? getDate(coreAimtObservation)
+                : (getDate(lowerAimtObservation) != null ? getDate(lowerAimtObservation) : getDate(upperAimtObservation))
+        activeAimtScoreObservation = activeAimtScoreObservation ?: createObs("NP, Activity Independence Measure for Trauma (AIM-T) score", functionalScoreInNPForm, null, obsDatetime) as BahmniObservation;
+        activeAimtScoreObservation.setValue(roundOffToTwoDecimalPlaces(coreAimt + lowerAimt + upperAimt))
+    }
+
     private static Date getDate(BahmniObservation observation) {
         return hasValue(observation) && !observation.voided ? observation.getObservationDateTime() : null;
     }
@@ -383,9 +425,9 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         return observation != null && observation.getValue() != null && !StringUtils.isEmpty(observation.getValue().toString());
     }
 
-    private static void voidObs(BahmniObservation bmiObservation) {
-        if (hasValue(bmiObservation)) {
-            bmiObservation.voided = true
+    private static void voidObs(BahmniObservation observation) {
+        if (hasValue(observation)) {
+            observation.voided = true
         }
     }
 
