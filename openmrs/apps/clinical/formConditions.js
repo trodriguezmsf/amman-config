@@ -3248,5 +3248,90 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("MD, Date of first positive PCR test")
         }
         return conditions;
+    },
+    'NP, Type of assessment': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['NP, Type of assessment'];
+        if (conditionConcept == "Follow-up") {
+            conditions.hide.push("NP, Functional score", "NP, Initial Assessment", "NP, Discharge");
+        }
+        else if (conditionConcept == "Discharge") {
+            conditions.hide.push("NP, Initial Assessment");
+            conditions.show.push("NP, Functional score", "NP, Discharge");
+            conditions.hide.push("NP, Other discharge reason, network physio");
+        }
+        else if (conditionConcept == "Initial") {
+            conditions.hide.push("NP, Discharge");
+            conditions.show.push("NP, Functional score", "NP, Initial Assessment");
+            conditions.hide.push("NP, Notes about network physio special cases");
+            conditions.hide.push("NP, Special case, other");
+        }
+        else {
+            conditions.hide.push("NP, Functional score", "NP, Initial Assessment", "NP, Discharge");
+        }
+        return conditions;
+    },
+    'NP, Special case': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['NP, Special case'];
+        if (conditionConcept) {
+            conditions.show.push("NP, Notes about network physio special cases");
+            if (conditionConcept == "Other") {
+                conditions.show.push("NP, Special case, other");
+            }
+        }
+        else {
+            conditions.hide.push("NP, Notes about network physio special cases");
+            conditions.hide.push("NP, Special case, other");
+        }
+        return conditions;
+    },
+    'NP, Was the patient refered by network physio to other MSF or non-MSF project?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['NP, Was the patient refered by network physio to other MSF or non-MSF project?'];
+        if (conditionConcept == "Yes to other MSF project" || conditionConcept == "Yes to non-MSF project") {
+            conditions.show.push("NP, Referred by network physio to");
+        }
+        else {
+            conditions.hide.push("NP, Referred by network physio to");
+        }
+        return conditions;
+    },
+    'NP, Discharge reason, network physio': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['NP, Discharge reason, network physio'];
+        if (conditionConcept == "Other") {
+            conditions.show.push("NP, Other discharge reason, network physio");
+        }
+        else {
+            conditions.hide.push("NP, Other discharge reason, network physio");
+        }
+        return conditions;
+    },
+    'NP, Physiotherapy prescription': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['NP, Physiotherapy prescription'];
+        if (conditionConcept && conditionConcept.indexOf("Other") >=0) {
+            conditions.show.push("NP, Other physiotherapy prescription");
+        }
+        else {
+            conditions.hide.push("NP, Other physiotherapy prescription");
+        }
+        return conditions;
     }
 }

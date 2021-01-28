@@ -11190,4 +11190,5 @@
     <include file="clinicalForms/covid19AssessmentForm.xml"/>
     <include file="visitCloseData.xml"/>
     <include file="programs/addCaretakerProgram.xml"/>
+    <include file="clinicalForms/networkPhysiotherapyAssessmentForm.xml"/>
 </databaseChangeLog>
