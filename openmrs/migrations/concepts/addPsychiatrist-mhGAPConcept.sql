@@ -21,32 +21,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Treatment p
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, GAD 7","GAD 7 (if anxiolytic prescribed)","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, PHQ9","PHQ9 (if antidepressant prescribed)","Numeric","Misc",false);
 
--- adding answer concepts
-
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Among the most extremely ill","Among the most extremely ill","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Behavioral (<15yrs)","Behavioral (<15yrs)","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Behavioral/substance (≥ 15yrs)","Behavioral/substance (≥ 15yrs)","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Borderline mentally ill","Borderline mentally ill","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Epilepsy / seizure","Epilepsy / seizure","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Family support session","Family support session","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Individual session","Individual session","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Joint session with med/physio","Joint session with med/physio","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Markedly ill","Markedly ill","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Midly ill","Midly ill","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Minimally improved","Minimally improved","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Minimally worse","Minimally worse","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Moderately ill","Moderately ill","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Much improved","Much improved","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Neurocognitive","Neurocognitive","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"No change","No change","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"No: Assessment without follow-up","No: Assessment without follow-up","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Psychosis (≥15 years)","Psychosis (≥15 years)","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Psychosomatic / MUPS","Psychosomatic / MUPS","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Severely ill","Severely ill","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Trauma related","Trauma related","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Very much improved","Very much improved","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Very much worse","Very much worse","N/A","Misc",false);
-
 -- adding concept sets
 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Psychiatrist-mhGAP Assessment","Psychiatrist-mhGAP Assessment","N/A","ConvSet",true);

@@ -123,7 +123,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Very much improved","Much improved","Minimally improved","No change","Minimally worse","Very much worse")
+                ("Very much improved","Much improved","Minimally improved","No change","Minimally worse","Much worse","Very much worse")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "PA, Improvement / outcomes (CGI-I scale)");
@@ -139,18 +139,21 @@
             set @child4_concept_id = 0;
             set @child5_concept_id = 0;
             set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Very much improved" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Much improved" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Minimally improved" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="No change" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child5_concept_id from concept_name where name ="Minimally worse" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child6_concept_id from concept_name where name ="Very much worse" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Much worse" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Very much worse" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
             call add_concept_answer(@concept_id, @child4_concept_id, 4);
             call add_concept_answer(@concept_id, @child5_concept_id, 5);
             call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
         </sql>
     </changeSet>
 
