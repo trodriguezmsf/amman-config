@@ -1791,6 +1791,9 @@
           },
           "NP, Treatment duration of the physiotherapy prescription": {
             "autocomplete":true
+          },
+          "PA, Type of assessment": {
+            "required":true
           }
         },
         "visitPage": {

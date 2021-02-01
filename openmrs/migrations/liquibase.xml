@@ -11192,4 +11192,5 @@
     <include file="programs/addCaretakerProgram.xml"/>
     <include file="clinicalForms/networkPhysiotherapyAssessmentForm.xml"/>
     <include file="clinicalForms/psychoSocialAssessmentForm.xml"/>
+    <include file="clinicalForms/psychiatrist_mhGAPAssessmentForm.xml"/>
 </databaseChangeLog>
