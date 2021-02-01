@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!---Change Set For addition of concepts to openmrs -->
+    <changeSet id="AMMAN_CONFIG_2021012021503" author="Supriya">
+        <comment>Adding Concepts for Psychiatrist mhGAP Assessment form</comment>
+        <sqlFile path="concepts/addPsychiatrist-mhGAPConcept.sql"/>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_2021020115184" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Initial","Follow-up","Discharge")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Type of assessment");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Type of assessment</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Type of assessment" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Initial" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Follow-up" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Discharge" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_2021020115228" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Individual session","Family support session","Joint session with med/physio")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Type of activity");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Type of activity</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Type of activity" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Individual session" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Family support session" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Joint session with med/physio" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_2021020115243" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal","Borderline mentally ill","Midly ill","Moderately ill","Markedly ill","Severely ill","Among the most extremely ill")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Severity of symptoms (CGI-S scale)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Severity of symptoms (CGI-S scale)</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Severity of symptoms (CGI-S scale)" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Borderline mentally ill" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Midly ill" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Moderately ill" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Markedly ill" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Severely ill" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Among the most extremely ill" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_2021020115268" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Very much improved","Much improved","Minimally improved","No change","Minimally worse","Much worse","Very much worse")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Improvement / outcomes (CGI-I scale)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Improvement / outcomes (CGI-I scale)</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Improvement / outcomes (CGI-I scale)" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Very much improved" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Much improved" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Minimally improved" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="No change" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Minimally worse" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Much worse" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Very much worse" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_2021020115306" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Depression","Anxiety","Trauma related","Psychosis","Behavioral/substance","Behavioral","Neurocognitive","Psychosomatic / MUPS","Epilepsy / seizure")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Syndrome");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Syndrome</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Syndrome" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Depression" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Anxiety" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Trauma related" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Psychosis (≥15 years)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Behavioral/substance (≥ 15yrs)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Behavioral (&lt;15yrs)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Neurocognitive" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Psychosomatic / MUPS" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Epilepsy / seizure" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_2021020115332" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Depression","Anxiety","Trauma related","Psychosis","Behavioral/substance","Behavioral","Neurocognitive","Psychosomatic / MUPS","Epilepsy / seizure")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Secondary Syndrome");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Secondary Syndrome</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Secondary Syndrome" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Depression" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Anxiety" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Trauma related" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Psychosis (≥15 years)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Behavioral/substance (≥ 15yrs)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Behavioral (&lt;15yrs)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Neurocognitive" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Psychosomatic / MUPS" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Epilepsy / seizure" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_2021020115343" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Yes","No: Assessment without follow-up")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Does the patient need a follow-up?");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Does the patient need a follow-up?</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Does the patient need a follow-up?" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No: Assessment without follow-up" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_2021020113005" author="Supriya">
+        <comment>Adding codes to specific concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'CEIL';
+
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Date of consultation","162869");
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_2021020113007" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("PA, Date of consultation","PA, Type of assessment","PA, Type of activity","PA, Severity of symptoms (CGI-S scale)","PA, Improvement / outcomes (CGI-I scale)","PA, General comment about session","PA, PHQ9","PA, GAD 7","PA, Comment on the screening tool","PA, Syndrome","PA, Secondary Syndrome","PA, Does the patient need a follow-up?","PA, Summary of MSE (mental state examination)","PA, Treatment plan")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Psychiatrist-mhGAP Assessment");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Set Members to Psychiatrist-mhGAP Assessment</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Psychiatrist-mhGAP Assessment" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+            set @member6_concept_id = 0;
+            set @member7_concept_id = 0;
+            set @member8_concept_id = 0;
+            set @member9_concept_id = 0;
+            set @member10_concept_id = 0;
+            set @member11_concept_id = 0;
+            set @member12_concept_id = 0;
+            set @member13_concept_id = 0;
+            set @member14_concept_id = 0;
+            set @member15_concept_id = 0;
+            select concept_id into @member1_concept_id from concept_name where name ="PA, Date of consultation" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name ="PA, Type of assessment" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name ="PA, Type of activity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name ="PA, Severity of symptoms (CGI-S scale)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name ="PA, Improvement / outcomes (CGI-I scale)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name ="PA, General comment about session" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name ="PA, PHQ9" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member8_concept_id from concept_name where name ="PA, GAD 7" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member9_concept_id from concept_name where name ="PA, Comment on the screening tool" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member10_concept_id from concept_name where name ="PA, Syndrome" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member11_concept_id from concept_name where name ="PA, Secondary Syndrome" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member12_concept_id from concept_name where name ="PA, Does the patient need a follow-up?" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member13_concept_id from concept_name where name ="PA, Summary of MSE (mental state examination)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member14_concept_id from concept_name where name ="PA, Treatment plan" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members(@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members(@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members(@concept_id, @member4_concept_id, 4);
+            call add_concept_set_members(@concept_id, @member5_concept_id, 5);
+            call add_concept_set_members(@concept_id, @member6_concept_id, 6);
+            call add_concept_set_members(@concept_id, @member7_concept_id, 7);
+            call add_concept_set_members(@concept_id, @member8_concept_id, 8);
+            call add_concept_set_members(@concept_id, @member9_concept_id, 9);
+            call add_concept_set_members(@concept_id, @member10_concept_id, 10);
+            call add_concept_set_members(@concept_id, @member11_concept_id, 11);
+            call add_concept_set_members(@concept_id, @member12_concept_id, 12);
+            call add_concept_set_members(@concept_id, @member13_concept_id, 13);
+            call add_concept_set_members(@concept_id, @member14_concept_id, 14);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202102011547" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name ='PA, Psychiatrist-mhGAP Assessment'  AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'All Observation Templates');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members to all observation templates</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'All Observation Templates' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @member1_concept_id from concept_name where name = 'PA, Psychiatrist-mhGAP Assessment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
