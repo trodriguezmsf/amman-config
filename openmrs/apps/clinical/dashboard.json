@@ -237,7 +237,8 @@
 		            "Medical Doctor OPD Follow-up",
                     "Pain Nurse Follow-up",
                     "Administrative Note",
-                    "NP, Network Physiotherapy Assessment"
+                    "NP, Network Physiotherapy Assessment",
+                    "PSA, Psycho-Social Assessment"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
             }

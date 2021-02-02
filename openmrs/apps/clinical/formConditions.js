@@ -3333,5 +3333,28 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("NP, Other physiotherapy prescription");
         }
         return conditions;
-    }
+    },
+    'PSA, Type of assessment': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PSA, Type of assessment'];
+        if (conditionConcept == "Initial") {
+            conditions.hide.push("PSA, Type of activity", "PSA, Improvement / outcomes (CGI-I scale)", "PSA, General comment about session", "PSA, Discharge Assessment");
+            conditions.show.push("PSA, General information", "PSA, Clinical assessment", "PSA, Screening tool", "PSA, Findings");
+        }
+        else if (conditionConcept == "Follow-up") {
+            conditions.hide.push("PSA, General information", "PSA, Screening tool", "PSA, Findings", "PSA, Discharge Assessment");
+            conditions.show.push("PSA, Type of activity", "PSA, Clinical assessment");
+        }
+        else if (conditionConcept == "Discharge") {
+            conditions.hide.push("PSA, Type of activity", "PSA, General information", "PSA, Findings");
+            conditions.show.push("PSA, Clinical assessment", "PSA, Screening tool", "PSA, Discharge Assessment");
+        }
+        else {
+            conditions.hide.push("PSA, Type of activity", "PSA, General information", "PSA, Clinical assessment", "PSA, Screening tool", "PSA, Findings", "PSA, Discharge Assessment");
+        }
+        return conditions;
+    },
 }

@@ -1794,6 +1794,9 @@
           },
           "PA, Type of assessment": {
             "required":true
+          },
+          "PSA, Type of assessment": {
+            "required":true
           }
         },
         "visitPage": {
