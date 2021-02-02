@@ -6,7 +6,7 @@ set @uuid = NULL;
 
 -- question concepts
 
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Date of consultation","Date of consultation","Datetime","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Date of consultation","Date of consultation","Date","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Does the patient need a follow-up?","Does the patient need a follow-up?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Improvement / outcomes (CGI-I scale)","Improvement / outcomes (CGI-I scale)","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Secondary Syndrome","Secondary Syndrome","Coded","Misc",false);

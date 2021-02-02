@@ -238,7 +238,8 @@
                     "Pain Nurse Follow-up",
                     "Administrative Note",
                     "NP, Network Physiotherapy Assessment",
-                    "PSA, Psycho-Social Assessment"
+                    "PSA, Psycho-Social Assessment",
+                    "PA, Psychiatrist-mhGAP Assessment"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
             }
