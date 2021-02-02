@@ -3357,4 +3357,28 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
+    'PA, Type of assessment': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PA, Type of assessment'];
+        if (conditionConcept == "Follow-up") {
+            conditions.show.push("PA, Type of activity", "PA, Severity of symptoms (CGI-S scale)","PA, General comment about session", "PA, Improvement / outcomes (CGI-I scale)","PA, Syndrome","PA, Secondary Syndrome","PA, Summary of MSE (mental state examination)","PA, Treatment plan");
+            conditions.hide.push("PA, PHQ9", "PA, GAD 7", "PA, Comment on the screening tool","PA, Does the patient need a follow-up?");
+        }
+        else if (conditionConcept == "Discharge") {
+            conditions.show.push("PA, Severity of symptoms (CGI-S scale)","PA, Improvement / outcomes (CGI-I scale)","PA, PHQ9","PA, GAD 7","PA, Comment on the screening tool","PA, Syndrome","PA, Secondary Syndrome","PA, Summary of MSE (mental state examination)","PA, Treatment plan");
+            conditions.hide.push("PA, Type of activity","PA, General comment about session","PA, Does the patient need a follow-up?");
+        }
+        else if (conditionConcept == "Initial") {
+            conditions.show.push("PA, Severity of symptoms (CGI-S scale)","PA, PHQ9", "PA, GAD 7","PA, Comment on the screening tool","PA, Does the patient need a follow-up?","PA, Syndrome","PA, Secondary Syndrome","PA, Summary of MSE (mental state examination)","PA, Treatment plan");
+            conditions.hide.push("PA, Type of activity","PA, Improvement / outcomes (CGI-I scale)", "PA, General comment about session");
+        }
+        else {
+            conditions.hide.push("PA, Type of activity","PA, Severity of symptoms (CGI-S scale)","PA, Improvement / outcomes (CGI-I scale)","PA, General comment about session","PA, PHQ9","PA, GAD 7","PA, Comment on the screening tool","PA, Syndrome","PA, Secondary Syndrome","PA, Does the patient need a follow-up?","PA, Summary of MSE (mental state examination)","PA, Treatment plan");
+
+        }
+        return conditions;
+    }
 }
