@@ -55,4 +55,16 @@
         </sql>
     </changeSet>
 
+    <changeSet id="Amman-202102020001" author="Tarun">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(1) FROM global_property WHERE property='visits.closeOnAnOutcome.programState(s)';
+            </sqlCheck>
+        </preConditions>
+        <comment>Update program states whose state is used to close configured visits</comment>
+        <sql>
+            UPDATE global_property SET property_value = 'Network Follow-up | Discharged | Departure' WHERE property='visits.closeOnAnOutcome.programState(s)';
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
