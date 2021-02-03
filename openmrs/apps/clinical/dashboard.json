@@ -696,67 +696,11 @@
           "pivotTable": {}
         }
       },
-      "Psycho-Social Course": {
-        "translationKey": "DASHBOARD_TITLE_PSYCHO_SOCIAL_COURSE",
-        "type": "obsToObsFlowSheet",
-        "headingConceptSource": "Abbreviation",
-        "dataConceptSource": "Abbreviation",
-        "displayOrder": 16,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "persistOrderOfConcepts": true,
-          "hideEmptyRecords": true,
-          "isEditable": true,
-          "groupByConcept": "PIA, Date of consultation",
-          "templateName": "Psychology initial assessment",
-          "conceptNames": [
-            "PIA, SQR20 (score)",
-            "PIA, PTSD (score)",
-            "PIA, PSYca 3-6 (child)",
-            "PIA, SDQ P7-10",
-            "PIA, SDQ S11-17",
-            "PIAD, SQR20 (score)",
-            "PIAD, PTSD (score)",
-            "PIAD, PSYca 3-6 (child)",
-            "PIAD, SDQ P7-10",
-            "PIAD, SDQ S11-17"
-          ],
-          "showGroupDateTime": false,
-          "latestCount": 5
-        },
-        "expandedViewConfig": {
-          "groupByConcept": "PIA, Date of consultation",
-          "templateName": "Psychology initial assessment",
-          "conceptNames": [
-            "PIA, SQR20 (score)",
-            "PIA, PTSD (score)",
-            "PIA, PSYca 3-6 (child)",
-            "PIA, SDQ P7-10",
-            "PIA, SDQ S11-17",
-            "PIAD, SQR20 (score)",
-            "PIAD, PTSD (score)",
-            "PIAD, PSYca 3-6 (child)",
-            "PIAD, SDQ P7-10",
-            "PIAD, SDQ S11-17"
-          ],
-          "numberOfVisits": 5,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
-      "Discharge Medication": {
-        "type": "custom",
-        "displayOrder": 17,
-        "config": {
-          "title": "DASHBOARD_TITLE_DISCHARGE_MEDICATION_KEY",
-          "template": "<discharge-medication section='config' patient='patient' enrollment='enrollment'></discharge-medication>"
-        }
-      },
       "Psycho-Social Overview": {
         "translationKey": "DASHBOARD_TITLE_PSYCHO_SOCIAL_COMMENTS",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 18,
+        "displayOrder": 16,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -779,6 +723,44 @@
           "persistOrderOfConcepts": true,
           "showGroupDateTime": false,
           "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Discharge Medication": {
+        "type": "custom",
+        "displayOrder": 17,
+        "config": {
+          "title": "DASHBOARD_TITLE_DISCHARGE_MEDICATION_KEY",
+          "template": "<discharge-medication section='config' patient='patient' enrollment='enrollment'></discharge-medication>"
+        }
+      },
+      "Physiotherapy Follow-up Plan": {
+        "translationKey": "DASHBOARD_TITLE_PHYSIOTHERAPY_FOLLOW-UP_PLAN",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 18,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "persistOrderOfConcepts": true,
+          "conceptNames": [
+            "LLA, Follow-up Plan",
+            "ULA, Followup Plan",
+            "MPA, Followup Plan"
+          ],
+          "scope": "latest",
+          "showGroupDateTime": false
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "LLA, Follow-up Plan",
+            "ULA, Followup Plan",
+            "MPA, Followup Plan"
+          ],
+          "isEditable": true,
+          "persistOrderOfConcepts": true,
           "numberOfVisits": 3,
           "showDetailsButton": true,
           "pivotTable": {}
@@ -792,39 +774,9 @@
           "template": "<surgical-follow_up section='config' patient='patient' enrollment='enrollment'></surgical-follow_up>"
         }
       },
-      "Physiotherapy Follow-up Plan": {
-        "translationKey": "DASHBOARD_TITLE_PHYSIOTHERAPY_FOLLOW-UP_PLAN",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 20,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "persistOrderOfConcepts": true,
-          "conceptNames": [
-            "LLA, Follow-up Plan",
-            "ULA, Followup Plan",
-            "MPA, Followup Plan"
-          ],
-          "scope": "latest",
-          "showGroupDateTime": false
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "LLA, Follow-up Plan",
-            "ULA, Followup Plan",
-            "MPA, Followup Plan"
-          ],
-          "isEditable": true,
-          "persistOrderOfConcepts": true,
-          "numberOfVisits": 3,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
       "bacteriology": {
         "type": "custom",
-        "displayOrder": 21,
+        "displayOrder": 20,
         "displayType": "Full-Page",
         "config": {
           "title": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
@@ -834,7 +786,7 @@
       "Medications administered": {
         "translationKey": "DASHBOARD_TITLE_MEDICATION_KEY",
         "type": "treatment",
-        "displayOrder": 22,
+        "displayOrder": 21,
         "dashboardConfig": {
           "showFlowSheet": true,
           "showListView": true,
