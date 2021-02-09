@@ -11219,4 +11219,36 @@
             DELETE FROM concept_set where concept_set=@concept_set and concept_id=@member_concept_id;
         </sql>
     </changeSet>
+    <changeSet id="Amman-202102090000" author="Tarun" context="Adding Dr. Ali Tahseen Al Kinani to name of MLO concept_answers">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_name where name ="Dr. Ali Tahseen Al Kinani" and concept_name_type = "FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Dr. Ali Tahseen Al Kinani to name of MLO concept_answers</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dr. Ali Tahseen Al Kinani","","N/A","Misc",false);
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'MH, Name of MLO' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Dr. Ali Tahseen Al Kinani' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,1,now(),27,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202102090001" author="Tarun" context="Add mappings for name of MLO concept_answers">
+        <comment>Add mappings for name of MLO concept_answers</comment>
+        <sql>
+            call create_reference_mapping_msf_internal('Dr. Marwan Nasher', '20');
+            call create_reference_mapping_msf_internal('Dr. Farooq Adel Saleh', '21');
+            call create_reference_mapping_msf_internal('Dr. Osama Ahmed Saif Abdullah', '22');
+            call create_reference_mapping_msf_internal('Dr. Bandar Al Maslamani', '23');
+            call create_reference_mapping_msf_internal('Dr. Aliaa AL Khazendar', '24');
+            call create_reference_mapping_msf_internal('Dr. Akaber Abdulraheem', '25');
+            call create_reference_mapping_msf_internal('Dr. Yacoub Majdoubeh', '26');
+            call create_reference_mapping_msf_internal('Dr. Ali Tahseen Al Kinani', '27');
+        </sql>
+    </changeSet>
 </databaseChangeLog>
