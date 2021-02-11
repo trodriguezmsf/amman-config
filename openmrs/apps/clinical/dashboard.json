@@ -696,38 +696,6 @@
           "pivotTable": {}
         }
       },
-      "Psycho-Social Overview": {
-        "translationKey": "DASHBOARD_TITLE_PSYCHO_SOCIAL_COMMENTS",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 16,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "persistOrderOfConcepts": true,
-          "conceptNames": [
-            "PIA, Psychosocial overview and comments",
-            "PIA, Social needs or other referrals",
-            "PIA, Specific comments regarding the caretaker"
-          ],
-          "scope": "latest",
-          "showGroupDateTime": false
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "PIA, Psychosocial overview and comments",
-            "PIA, Social needs or other referrals",
-            "PIA, Specific comments regarding the caretaker"
-          ],
-          "scope": "latest",
-          "persistOrderOfConcepts": true,
-          "showGroupDateTime": false,
-          "isEditable": true,
-          "numberOfVisits": 3,
-          "showDetailsButton": true,
-          "pivotTable": {}
-        }
-      },
       "Discharge Medication": {
         "type": "custom",
         "displayOrder": 17,
