@@ -737,7 +737,7 @@
                 select count(*) from concept_name  where name='Psycho-Social Assessment' and concept_name_type='SHORT' and voided = 0;
             </sqlCheck>
         </preConditions>
-        <comment>Renaming Date Diagnostic ARV to Date diagnostic VIH in Antecedents form </comment>
+        <comment>Renaming Psycho-Social Assessment to Mental Health assessment </comment>
         <sql>
             update concept_name set name ='Mental Health assessment'  where name ='Psycho-Social Assessment' and voided = 0 and concept_name_type='SHORT';
         </sql>
