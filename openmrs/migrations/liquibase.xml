@@ -11251,5 +11251,18 @@
             call create_reference_mapping_msf_internal('Dr. Ali Tahseen Al Kinani', '27');
         </sql>
     </changeSet>
-
+    <changeSet id="AMMAN_CONFIG_202102111628" author="Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_name  where name='Psycho-Social Assessment' and concept_name_type='SHORT' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Renaming Psycho-Social Assessment to Mental Health assessment </comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PSA, Psycho-Social Assessment" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            update concept_name set name ='Mental Health assessment'  where name ='Psycho-Social Assessment'
+            and voided = 0 and concept_name_type='SHORT' and concept_id = @concept_id;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
