@@ -1039,4 +1039,17 @@
         </sql>
     </changeSet>
 
+    <changeSet id="AMMAN_CONFIG_202102151233" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(cn2.concept_name_id) from concept_name cn1,concept_name cn2 where cn1.name='NP, Target/ Modalities/ Specifications' and cn1.concept_name_type='FULLY_SPECIFIED' and cn1.voided = 0 and cn2.name='Target/ Modalities/ Specifications' and cn2.concept_name_type='SHORT' and cn2.voided = 0 and cn1.concept_id=cn2.concept_id;
+            </sqlCheck>
+        </preConditions>
+        <comment>Renaming Target/ Modalities/ Specifications to Modalities/ Specifications</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "NP, Target/ Modalities/ Specifications" and concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            update concept_name set name ='Modalities/ Specifications' where name ='Target/ Modalities/ Specifications' and concept_name_type='SHORT' and locale = "en" and voided = 0 and concept_id = @concept_id;
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
