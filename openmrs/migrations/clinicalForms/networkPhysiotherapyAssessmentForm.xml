@@ -1052,4 +1052,49 @@
         </sql>
     </changeSet>
 
+    <changeSet id="AMMAN_CONFIG_202102150333" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(cs.concept_set_id) from concept_set cs, concept_name cn1, concept_name cn2 where cs.concept_set = cn1.concept_id and cs.concept_id = cn2.concept_id and cn1.name = 'NP, Initial Assessment' and cn1.concept_name_type = 'FULLY_SPECIFIED' and cn1.locale = 'en' and cn1.voided = 0 and cn2.name = 'NP, Network physio treatment goals' and cn2.concept_name_type = 'FULLY_SPECIFIED' and cn2.locale = 'en' and cn2.voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Remove Network physio treatment goals from Initial Assessment</comment>
+        <sql>
+            select concept_id into @concept_set from concept_name where name = 'NP, Initial Assessment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member_concept_id from concept_name where name = 'NP, Network physio treatment goals' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            DELETE FROM concept_set where concept_set=@concept_set and concept_id=@member_concept_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202102150400" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(cs.concept_set_id) from concept_set cs, concept_name cn1, concept_name cn2 where cs.concept_set = cn1.concept_id and cs.concept_id = cn2.concept_id and cn1.name = 'NP, Network Physiotherapy Assessment' and cn1.concept_name_type = 'FULLY_SPECIFIED' and cn1.locale = 'en' and cn1.voided = 0 and cn2.name = 'NP, Network physio treatment goals' and cn2.concept_name_type = 'FULLY_SPECIFIED' and cn2.locale = 'en' and cn2.voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Network physio treatment goals to network physiotherapy assessment form</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "NP, Network Physiotherapy Assessment" and concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @member1_concept_id = 0;
+            select concept_id into @member1_concept_id from concept_name where name ="NP, Network physio treatment goals" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members(@concept_id, @member1_concept_id, 10);
+
+            select concept_id into @concept_set from concept_name where name = 'NP, Network Physiotherapy Assessment' AND concept_name_type="FULLY_SPECIFIED" and locale = 'en' and voided = 0;
+            select concept_id into @concept_id1 from concept_name where name ="NP, Physiotherapy prescription" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id2 from concept_name where name ="NP, Other physiotherapy prescription" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id3 from concept_name where name ="NP, Target/ Modalities/ Specifications" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id4 from concept_name where name ="NP, Treatment duration of the physiotherapy prescription" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id5 from concept_name where name ="NP, Comments" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id6 from concept_name where name ="NP, Video Upload" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            UPDATE concept_set SET sort_weight=11 WHERE concept_id=@concept_id1 and concept_set=@concept_set;
+            UPDATE concept_set SET sort_weight=12 WHERE concept_id=@concept_id2 and concept_set=@concept_set;
+            UPDATE concept_set SET sort_weight=13 WHERE concept_id=@concept_id3 and concept_set=@concept_set;
+            UPDATE concept_set SET sort_weight=14 WHERE concept_id=@concept_id4 and concept_set=@concept_set;
+            UPDATE concept_set SET sort_weight=15 WHERE concept_id=@concept_id5 and concept_set=@concept_set;
+            UPDATE concept_set SET sort_weight=16 WHERE concept_id=@concept_id6 and concept_set=@concept_set;
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
