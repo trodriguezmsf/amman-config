@@ -204,16 +204,20 @@ SELECT o.concept_id, surgeon_cn.name AS surgeonName, o.person_id
                                              o.person_id
                                       FROM obs o
                                              JOIN concept_name cn ON cn.concept_id = o.concept_id AND
-                                                                     cn.name = 'PIA, Psychosocial overview and comments'
+                                                                     cn.name = 'PSA, Type of assessment'
                                                                        AND cn.concept_name_type = 'FULLY_SPECIFIED'
                                                                        AND o.voided IS FALSE AND cn.voided IS FALSE
+                                             JOIN concept_name cn1 ON cn1.concept_id = o.value_coded
+                                                                        AND cn1.name = 'Discharge'
+                                                                        AND cn1.concept_name_type = 'FULLY_SPECIFIED'
+                                                                        AND cn1.voided IS FALSE
                                       GROUP BY person_id) latest_obs ON latest_obs.obsDateTime = o.obs_datetime
                                                                           AND latest_obs.person_id = o.person_id
                                                                           AND o.voided IS FALSE
                                  JOIN obs daterecorded
                                    ON daterecorded.obs_group_id = o.obs_group_id AND daterecorded.voided IS FALSE
                                  JOIN concept_name drConcept
-                                   ON drConcept.name = 'PIA, Date of consultation' AND
+                                   ON drConcept.name = 'PSA, Date of consultation' AND
                                       drConcept.concept_id = daterecorded.concept_id
                           GROUP BY o.person_id
                           )psychoSocialTRM ON psychoSocialTRM.person_id = p.person_id AND psychoSocialTRM.encounter_id = e.encounter_id

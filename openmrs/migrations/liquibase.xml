@@ -11265,4 +11265,8 @@
             and voided = 0 and concept_name_type='SHORT' and concept_id = @concept_id;
         </sql>
     </changeSet>
+    <changeSet id="AMMAN_CONFIG_202102251115" author="Tarun">
+        <comment>MOBN-1613 | Update patient listing queue for trm patients to show psychosocial trm date from new psycho social form</comment>
+        <sqlFile path="programs/trmPatients.sql"/>
+    </changeSet>
 </databaseChangeLog>
