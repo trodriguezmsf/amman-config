@@ -3259,15 +3259,30 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("NP, Functional score", "NP, Initial Assessment", "NP, Discharge", "NP, Network physio treatment goals");
         }
         else if (conditionConcept == "Discharge") {
-            conditions.hide.push("NP, Initial Assessment");
+            conditions.hide.push("NP, Initial Assessment", "NP, Network physio treatment goals");
             conditions.show.push("NP, Functional score", "NP, Discharge");
-            conditions.hide.push("NP, Other discharge reason, network physio", "NP, Network physio treatment goals");
+            var conditionConcept = formFieldValues['NP, Discharge reason, network physio'];
+            if (conditionConcept == "Other") {
+                conditions.show.push("NP, Other discharge reason, network physio");
+            }
+            else {
+                conditions.hide.push("NP, Other discharge reason, network physio");
+            }
         }
         else if (conditionConcept == "Initial") {
             conditions.hide.push("NP, Discharge");
             conditions.show.push("NP, Functional score", "NP, Initial Assessment", "NP, Network physio treatment goals");
-            conditions.hide.push("NP, Notes about network physio special cases");
-            conditions.hide.push("NP, Special case, other");
+            var conditionConcept = formFieldValues['NP, Special case'];
+            if (conditionConcept) {
+                conditions.show.push("NP, Notes about network physio special cases");
+                if (conditionConcept == "Other") {
+                    conditions.show.push("NP, Special case, other");
+                }
+            }
+            else {
+                conditions.hide.push("NP, Notes about network physio special cases");
+                conditions.hide.push("NP, Special case, other");
+            }
         }
         else {
             conditions.hide.push("NP, Functional score", "NP, Initial Assessment", "NP, Discharge", "NP, Network physio treatment goals");
