@@ -11269,4 +11269,24 @@
         <comment>MOBN-1613 | Update patient listing queue for trm patients to show psychosocial trm date from new psycho social form</comment>
         <sqlFile path="programs/trmPatients.sql"/>
     </changeSet>
+    <changeSet id="AMMAN_CONFIG_202102251230" author="Tarun" context="Adding Dr. Hatem Amer Abdulhameed to name of MLO concept_answers">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_name where name ='Dr. Hatem Amer Abdulhameed' and concept_name_type = 'FULLY_SPECIFIED';
+            </sqlCheck>
+        </preConditions>
+        <comment>MOBN-1614 | Adding Dr. Hatem Amer Abdulhameed to name of MLO concept_answers</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Dr. Hatem Amer Abdulhameed','','N/A','Misc',false);
+            call create_reference_mapping_msf_internal('Dr. Hatem Amer Abdulhameed', '28');
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'MH, Name of MLO' AND concept_name_type='FULLY_SPECIFIED';
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Dr. Hatem Amer Abdulhameed' AND concept_name_type='FULLY_SPECIFIED';
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer,1,now(),28,uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
