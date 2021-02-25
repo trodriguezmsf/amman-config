@@ -207,7 +207,17 @@
         "OR, Operation performed non coded",
         "SAP, Non-coded Planned procedure",
         "MD, Non-Coded Procedures performed outside AMH",
-        "SFP, Non coded Planned Procedure (surgical)"
+        "SFP, Non coded Planned Procedure (surgical)",
+        "NP, Comments",
+        "NP, Comments on Network physio goals",
+        "NP, Network physio feedback to the surgeons",
+        "NP, Network physio treatment goals",
+        "NP, Notes about network physio special cases",
+        "NP, Other discharge reason, network physio",
+        "NP, Other physiotherapy prescription",
+        "NP, Referred by network physio to",
+        "NP, Special case, other",
+        "NP, Target/ Modalities/ Specifications"
       ]
     },
     {
