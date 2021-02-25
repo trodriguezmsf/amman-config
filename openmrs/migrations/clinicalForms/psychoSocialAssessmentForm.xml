@@ -731,4 +731,96 @@
             call add_concept_set_members (@concept_id, @member1_concept_id, 1);
         </sql>
     </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202102241619" author="Tarun, Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(concept_id) from concept_name where name='PSA, Referral to' and concept_name_type="FULLY_SPECIFIED" and locale='en' and voided=0;
+            </sqlCheck>
+        </preConditions>
+        <comment>MOBN-1613 | Create Referral to concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            call add_concept(@concept_id, @concept_short_id, @concept_full_id, 'PSA, Referral to','Referral to','Coded','Misc',false);
+        </sql>
+    </changeSet>
+    <changeSet id="AMMAN_CONFIG_202102241630" author="Tarun, Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(concept_id) from concept_name where name IN ('Counselor', 'Psychologist', 'Psychiatrist', 'mhGAP') and concept_name_type="FULLY_SPECIFIED" and locale='en' and voided=0;
+            </sqlCheck>
+        </preConditions>
+        <comment>MOBN-1613 | Create answer concepts for Referral to concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Counselor','Counselor','N/A','Misc',false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Psychologist','Psychologist','N/A','Misc',false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Psychiatrist','Psychiatrist','N/A','Misc',false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,'mhGAP','mhGAP','N/A','Misc',false);
+        </sql>
+    </changeSet>
+    <changeSet id="AMMAN_CONFIG_202102241640" author="Tarun, Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Counselor', 'Psychologist', 'Psychiatrist', 'mhGAP', 'Peer counselor', 'other')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = 'PSA, Referral to');
+            </sqlCheck>
+        </preConditions>
+        <comment>MOBN-1613 | Adding answers to Referral to</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = 'PSA, Referral to' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ='Counselor' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ='Psychologist' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ='Psychiatrist' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ='mhGAP' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ='Peer counselor' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ='other' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+        </sql>
+    </changeSet>
+    <changeSet id="AMMAN_CONFIG_202102241655" author="Tarun, Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(cs.concept_set_id) from concept_set cs, concept_name cn1, concept_name cn2
+                where cs.concept_set = cn1.concept_id and cs.concept_id = cn2.concept_id and cn1.name = 'PSA, Findings'
+                and cn1.concept_name_type = 'FULLY_SPECIFIED' and cn1.locale = 'en' and cn1.voided = 0
+                and cn2.name = 'PSA, Referral to' and cn2.concept_name_type = 'FULLY_SPECIFIED'
+                and cn2.locale = 'en' and cn2.voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>MOBN-1613 | Adding new set member to Findings</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = 'PSA, Findings' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            set @member_concept_id = 0;
+            select concept_id into @member_concept_id from concept_name where name ='PSA, Referral to' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members(@concept_id, @member_concept_id, 4);
+
+            select concept_id into @concept_id1 from concept_name where name = 'PSA, General observations (main symptoms, syndrome,..)' AND concept_name_type='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id2 from concept_name where name = 'PSA, Recommendations for medical/physio team' AND concept_name_type='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            UPDATE concept_set SET sort_weight=5 WHERE concept_id=@concept_id1 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=6 WHERE concept_id=@concept_id2 and concept_set=@concept_id;
+        </sql>
+    </changeSet>
 </databaseChangeLog>

@@ -3343,6 +3343,14 @@ Bahmni.ConceptSet.FormConditions.rules = {
         if (conditionConcept == "Initial") {
             conditions.hide.push("PSA, Type of activity", "PSA, Improvement / outcomes (CGI-I scale)", "PSA, General comment about session", "PSA, Discharge Assessment");
             conditions.show.push("PSA, General information", "PSA, Clinical assessment", "PSA, Screening tool", "PSA, Findings");
+            var conditionConcept = formFieldValues['PSA, Does the patient need a follow-up?'];
+            if (conditionConcept == "Yes") {
+                conditions.show.push("PSA, Referral to");
+            }
+            else {
+                conditions.hide.push("PSA, Referral to");
+
+            }
         }
         else if (conditionConcept == "Follow-up") {
             conditions.hide.push("PSA, General information", "PSA, Screening tool", "PSA, Findings", "PSA, Discharge Assessment");
@@ -3378,6 +3386,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
         else {
             conditions.hide.push("PA, Type of activity","PA, Severity of symptoms (CGI-S scale)","PA, Improvement / outcomes (CGI-I scale)","PA, General comment about session","PA, PHQ9","PA, GAD 7","PA, Comment on the screening tool","PA, Syndrome","PA, Secondary Syndrome","PA, Does the patient need a follow-up?","PA, Summary of MSE (mental state examination)","PA, Treatment plan");
 
+        }
+        return conditions;
+    },
+    'PSA, Does the patient need a follow-up?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PSA, Does the patient need a follow-up?'];
+        if (conditionConcept == "Yes") {
+            conditions.show.push("PSA, Referral to");
+        }
+        else {
+            conditions.hide.push("PSA, Referral to");
         }
         return conditions;
     }
