@@ -8,3 +8,11 @@
     -  {  regexp:  '^query_cache_size=', line: 'query_cache_size=512M'  }
     -  {  regexp:  '^query_cache_type=', line: 'query_cache_type=2'  }
     -  {  regexp:  '^query_cache_limit=', line: 'query_cache_limit=128M'  }
+
+- name: Update heap memory to 4GB
+  lineinfile:
+    destfile: /opt/openmrs/etc/openmrs.conf
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line  }}'
+  with_items:
+    -  {  regexp:  '^export SERVER_OPTS=', line: 'export SERVER_OPTS="-Xms512m -Xmx4096m"'  }
