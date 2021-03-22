@@ -11289,4 +11289,15 @@
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer,1,now(),28,uuid());
         </sql>
     </changeSet>
+    <changeSet id="Amman-202103222250" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM global_property WHERE property = "obs.complex_obs_dir";
+            </sqlCheck>
+        </preConditions>
+        <comment>Update value for obs.complex_obs_dir global property</comment>
+        <sql>
+            update global_property set property_value = 'complex_obs' where property = 'obs.complex_obs_dir';
+        </sql>
+    </changeSet>
 </databaseChangeLog>
