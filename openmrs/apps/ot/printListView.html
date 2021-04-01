@@ -20,7 +20,7 @@
         min-width: 100px;
     }
 </style>
-<h4> OT Schedule</h4>
+<h4>{{'OT_SCHEDULE_HEADER_KEY' | translate}}</h4>
 <p ng-if="weekOrDay === 'day'">
     {{viewDate | date : 'dd MMM yyyy, EEE'}}
 </p>
@@ -32,40 +32,40 @@
         <thead>
         <tr>
             <th width="80px">
-                Day
+                {{'OT_DAY_KEY' | translate}}
             </th>
             <th width="80px">
-                Date
+                {{'OT_SURGICAL_BLOCK_START_DATE' | translate}}
             </th>
             <th width="80px">
-                Identifier
+                {{'PATIENT_ATTRIBUTE_IDENTIFIER' | translate}}
             </th>
             <th class="largeWidth">
-                Patient Name
+                {{'PATIENT_ATTRIBUTE_PATIENT_NAME' | translate}}
             </th>
             <th>
-                Patient Age
+                {{'PERSON_ATTRIBUTE_PATIENT_AGE' | translate}}
             </th>
             <th>
-                Est Time
+                {{'OT_SURGICAL_APPOINTMENT_EST_TIME' | translate}}
             </th>
             <th class="largeWidth">
-                Procedure(s)
+                {{'OT_SURGICAL_APPOINTMENT_PROCEDURE' | translate}}
             </th>
             <th class="largeWidth">
-                Notes
+                {{'OT_SURGICAL_APPOINTMENT_NOTES' | translate}}
             </th>
             <th class="largeWidth">
-                Surgeon
+                {{'OT_SURGEON_KEY' | translate }}
             </th>
             <th>
-                Status
+                {{'OT_SURGICAL_APPOINTMENT_STATUS' | translate}}
             </th>
             <th>
-                Bed Location
+                {{'OT_SURGICAL_APPOINTMENT_BED_LOCATION' | translate}}
             </th>
             <th>
-                Bed ID
+                {{'OT_SURGICAL_APPOINTMENT_BED_ID' | translate}}
             </th>
         </tr>
         </thead>
