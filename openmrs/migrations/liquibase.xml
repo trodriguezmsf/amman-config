@@ -11674,5 +11674,8 @@
             ORDER BY procedureBlock.obs_datetime DESC;" where property = 'emrapi.sqlSearch.otToBeScheduledQueue';
         </sql>
     </changeSet>
-
+    <changeSet id="AMMAN_CONFIG_20210421185243" author="Pritam">
+        <comment>MOBN-1647 | Duplicate records in Bahmni</comment>
+        <sqlFile path="utils/removeRedundantPatient.sql"/>
+    </changeSet>
 </databaseChangeLog>
