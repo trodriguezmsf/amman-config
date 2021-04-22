@@ -2,7 +2,7 @@ appointments: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.1.0/appoi
 bahmni_core: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.1.0/bahmnicore-0.93-SNAPSHOT-2.1.0.omod
 bahmni_ie_apps: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.0.0/bahmni.ie.apps-0.92-SNAPSHOT-2.0.0.omod
 bahmni_msf_omod: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.1.0/bahmnimsf-0.93-2.1.0.omod
-bahmniapps: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.0.0/bahmniapps-2.0.0.zip
+bahmniapps: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.3.0/bahmniapps-2.3.0.zip
 implementer_interface: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.0.0/bahmni-implementer-interface-91-2.0.0.noarch.rpm
 bahmni_batch: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.0.0/bahmni-amman-batch-1.0.0-2.0.0.noarch.rpm
 print_forms: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.0.0/print-forms-2.0.0.zip
