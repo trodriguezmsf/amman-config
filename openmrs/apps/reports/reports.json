@@ -3,6 +3,7 @@
   "customReport1": {
     "name": "Feedback to MLOs (New)",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/ExtractionOfValidationCommitteeNew.sql"
     }
@@ -10,6 +11,7 @@
   "customReport2": {
     "name": "Feedback to MLOs (Follow-Up)",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/ExtractionOfValidationCommitteeFollowUp.sql"
     }
@@ -17,6 +19,7 @@
   "customReport3": {
     "name": "Arrival / Scheduling",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/ExtractionForArrival.sql"
     }
@@ -24,6 +27,7 @@
   "customReport4": {
     "name": "Indicators - Dashboard",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/ExtractionForIndicators.sql"
     }
@@ -31,6 +35,7 @@
   "customReport5": {
     "name": "Patient Information Report",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientInformationReport.sql"
     }
@@ -38,6 +43,7 @@
   "customReport6": {
     "name": "Awaiting Validation -1st Stage",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/awaitingValidationFirstStage.sql"
     }
@@ -45,6 +51,7 @@
   "customReport7": {
     "name": "Awaiting Validation - Follow Up Stage",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/awaitingValidationFollowup.sql"
     }
@@ -52,6 +59,7 @@
   "customReport8": {
     "name": "To Continue Under Follow Up",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/continueUnderFollowup.sql"
     }
@@ -59,6 +67,7 @@
   "customReport9": {
     "name": "Validated Patients",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/validatedPatients.sql"
     }
@@ -66,6 +75,7 @@
   "customReport10": {
     "name": "Expected Arrival",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/expectedArrivalPatientQueue.sql"
     }
@@ -73,6 +83,7 @@
   "customReport11": {
     "name": "More Information",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/moreInformation.sql"
     }
@@ -80,6 +91,7 @@
   "customReport12": {
     "name": "Postponed",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/postponed.sql"
     }
@@ -87,6 +99,7 @@
   "customReport13": {
     "name": "Hospital RSP",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/hosptialRSP.sql"
     }
@@ -94,12 +107,14 @@
   "customReport14": {
     "name": "TRM Patients",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/trmPatients.sql"
     }
   },"customReport15": {
     "name": "Cases Feedback",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/casesFeedback.sql"
     }
@@ -107,6 +122,7 @@
   "customReport16" : {
     "name": "Patient Bed Details",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientwarddetails.sql"
     }
@@ -114,6 +130,7 @@
   "customReport18": {
     "name": "Bed Management Indicators(Custom Excel)",
     "type": "concatenated",
+    "requiredPrivilege": "app:reports",
     "config": {
       "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/bedManagementIndicators.xls",
       "reports": [
@@ -179,6 +196,7 @@
   "customReport19": {
     "name": "Indicators(Custom Excel)",
     "type": "concatenated",
+    "requiredPrivilege": "app:reports",
     "config": {
       "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/indicatorTemplate.xls",
       "reports": [
@@ -417,6 +435,7 @@
   "customReport20": {
     "name": "Physio Indicators(Custom Excel)",
     "type": "concatenated",
+    "requiredPrivilege": "app:reports",
     "config": {
       "macroTemplatePath" : "/var/www/bahmni_config/openmrs/apps/reports/macroTemplates/PhysioIndicatorTemplate.xls",
       "reports":[
@@ -454,6 +473,7 @@
   "customReport17" : {
     "name": "Patient key information report",
     "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
     "config": {
       "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/patientKeyInfo.sql"
     }
