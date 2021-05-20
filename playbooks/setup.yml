@@ -4,7 +4,7 @@ bahmni_ie_apps: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.0.0/bah
 bahmni_msf_omod: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.1.0/bahmnimsf-0.93-2.1.0.omod
 bahmniapps: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.3.0/bahmniapps-2.3.0.zip
 implementer_interface: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.0.0/bahmni-implementer-interface-91-2.0.0.noarch.rpm
-bahmni_batch: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.0.0/bahmni-amman-batch-1.0.0-2.0.0.noarch.rpm
+bahmni_batch: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.4.0/bahmni-amman-batch-1.1.0-2.4.0.noarch.rpm
 print_forms: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.0.0/print-forms-2.0.0.zip
 appointment_frontend: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.0.1/appointment-frontend-2.0.1.zip
 visit_close_omod: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.1.0/visit-close-module-0.93-2.1.0.omod
