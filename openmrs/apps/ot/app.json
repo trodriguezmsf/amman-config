@@ -9,7 +9,7 @@
     },
     "surgeryAttributes": ["procedure", "estTimeHours", "estTimeMinutes", "cleaningTime", "otherSurgeon", "surgicalAssistant", "anaesthetist", "scrubNurse", "circulatingNurse", "notes"],
     "primarySurgeonsForOT" : ["Ali Al Ani","Sufyan Al Qasab","Hanna Janho","Ashraf Nabhan","Rasheed Al Sammarraie","Muckhaled Naseef","Ashraf Bustanji","Ghassan S.Abu-Sittah","Other Surgeon","Anaesthetist",
-    "Samiha Al Hadid","Rami Habalruman","Dr Ali Al Ani and Dr Hanna Janho","Muthana AL-Rayyan"],
+    "Samiha Al Hadid","Rami Habalruman","Dr Ali Al Ani and Dr Hanna Janho","Muthana AL-Rayyan","THR Team"],
     "printListViewTemplateUrl" : "/bahmni_config/openmrs/apps/ot/printListView.html",
     "procedureSQLGlobalProperty": "emrapi.sqlSearch.plannedProcedureForPatient",
     "calendarView": {
