@@ -11876,9 +11876,7 @@
         </preConditions>
         <comment>Add THR Team as a provider</comment>
         <sql>
-            call create_provider('M','THR Team','THR Team','thr_team','f04082104f7a32391725bee428a8b060c6489e6915484a4071f98c3e51dc88f102e9cbd5686d8f1848bc97a4760d300c4778f7a7040e96ae153c2375ccaaba39','2de7f206742b9bd59854334e979eef1347c509d0536439f988d13489b4ed060046ee7e952a868e9e8272fa787ded8f7a197349160e4246ce916e0602abf1d8e7');
+            call create_provider('M','THR','Team','thr_team','f04082104f7a32391725bee428a8b060c6489e6915484a4071f98c3e51dc88f102e9cbd5686d8f1848bc97a4760d300c4778f7a7040e96ae153c2375ccaaba39','2de7f206742b9bd59854334e979eef1347c509d0536439f988d13489b4ed060046ee7e952a868e9e8272fa787ded8f7a197349160e4246ce916e0602abf1d8e7');
         </sql>
     </changeSet>
 </databaseChangeLog>
-
-
