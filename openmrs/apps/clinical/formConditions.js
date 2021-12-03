@@ -3417,5 +3417,233 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("PSA, Referral to");
         }
         return conditions;
-    }
+    },
+    'PNA, Type of assessment': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNA, Type of assessment'];
+        if (conditionConcept == "Initial") {
+            conditions.show.push("PNA, Medical history", "PNA, Review of systems and physical examination");
+        }
+        else {
+            conditions.hide.push("PNA, Medical history", "PNA, Review of systems and physical examination");
+        }
+        if (conditionConcept == "Ward follow-up") {
+            conditions.show.push("PNA, PICC line", "PNA, Peripheral line");
+        }
+        else {
+            conditions.hide.push("PNA, PICC line", "PNA, Peripheral line");
+        }
+        if (["Initial", "OPD follow-up", "Ward follow-up"].includes(conditionConcept)) {
+            conditions.show.push("PNA, Pain assessment");
+        }
+        else {
+            conditions.hide.push("PNA, Pain assessment");
+        }
+        if (["OPD follow-up", "Ward follow-up"].includes(conditionConcept)) {
+            conditions.show.push("PNA, Tissue expander");
+        }
+        else {
+            conditions.hide.push("PNA, Tissue expander");
+        }
+        return conditions;
+    },
+    'PNA, Currently taking medication': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNA, Currently taking medication'];
+        console.log("currently", conditionConcept);
+        if (conditionConcept == "Yes") {
+            conditions.show.push("PNA, Type of medication");
+        }
+        else {
+            conditions.hide.push("PNA, Type of medication");
+        }
+        console.log("currently", conditions);
+        return conditions;
+    },
+    'PNA, Pain severity': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNA, Pain severity'];
+        console.log(conditionConcept);
+        if (conditionConcept >1 ) {
+            conditions.show.push("PNA, Type of pain","PNA, Site of pain","PNA, Side of pain");
+        }
+        else {
+            conditions.hide.push("PNA, Type of pain","PNA, Site of pain","PNA, Side of pain");
+        }
+        console.log("currently", conditions);
+        return conditions;
+    },
+    'PNA, Does the patient have a dressing?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNA, Does the patient have a dressing?'];
+        console.log(conditionConcept);
+        if (conditionConcept == "Yes" ) {
+            conditions.show.push("PNA, Dressing");
+
+        }
+        else {
+            conditions.hide.push("PNA, Dressing");
+        }
+        return conditions;
+    },
+    'PNA, Description of wound': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNA, Description of wound'];
+        console.log(conditionConcept);
+        if (conditionConcept == "Other") {
+            conditions.show.push("PNA, Description of wound, other");
+        }
+        else {
+            conditions.hide.push("PNA, Description of wound, other");
+        }
+        return conditions;
+    },
+    'PNA, Does the patient have a peripheral line?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNA, Does the patient have a peripheral line?'];
+        console.log(conditionConcept);
+        if (conditionConcept == "Yes") {
+            conditions.show.push(
+                "PNA, Comments, peripheral line",
+                "PNA, Date of removal, peripheral line",
+                "PNA, Date of insertion, peripheral line",
+                "PNA, Site of peripheral line"
+            );
+        }
+        else {
+            conditions.hide.push(
+                "PNA, Comments, peripheral line",
+                "PNA, Date of removal, peripheral line",
+                "PNA, Date of insertion, peripheral line",
+                "PNA, Site of peripheral line"
+            );
+        }
+        return conditions;
+    },
+    'PNA, Does the patient have a PICC line?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNA, Does the patient have a PICC line?'];
+        console.log(conditionConcept);
+        if (conditionConcept == "Yes") {
+            conditions.show.push(
+                "PNA, Date of insertion, PICC line",
+                "PNA, Date of dressing",
+                "PNA, Comments, dressing PICC line",
+                "PNA, Date of removal, PICC line"
+            );
+        }
+        else {
+            conditions.hide.push(
+                "PNA, Date of insertion, PICC line",
+                "PNA, Date of dressing",
+                "PNA, Comments, dressing PICC line",
+                "PNA, Date of removal, PICC line"
+            );
+        }
+        return conditions;
+    },
+    'PNA, Does the patient have a tissue expander?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNA, Does the patient have a tissue expander?'];
+        console.log(conditionConcept);
+        if (conditionConcept == "Yes") {
+            conditions.show.push(
+                "PNA, Site of tissue expander",
+                "PNA, Quantity injected",
+                "PNA, Quantity withdrawn",
+                "PNA, Total volume in tissue expander",
+                "PNA, Condition of tissue expander"
+            );
+        }
+        else {
+            conditions.hide.push(
+                "PNA, Site of tissue expander",
+                "PNA, Quantity injected",
+                "PNA, Quantity withdrawn",
+                "PNA, Total volume in tissue expander",
+                "PNA, Condition of tissue expander"
+            );
+        }
+        return conditions;
+    },
+    'PNA, Does the patient have a Foley catheter?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNA, Does the patient have a Foley catheter?'];
+        console.log(conditionConcept);
+        if (conditionConcept == "Yes") {
+            conditions.show.push("PNA, Comments on Foley catheter");
+        }
+        else {
+            conditions.hide.push("PNA, Comments on Foley catheter");
+        }
+        return conditions;
+    },
+    'PNA, Blood sugar': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNA, Blood sugar'];
+        console.log(conditionConcept);
+        if (conditionConcept == "Yes") {
+            conditions.show.push(
+                "PNA, RBS before meal",
+                "PNA, RBS after meal",
+                "PNA, FBS",
+                "PNA, Insulin given"
+                );
+        }
+        else {
+            conditions.hide.push(
+                "PNA, RBS before meal",
+                "PNA, RBS after meal",
+                "PNA, FBS",
+                "PNA, Insulin given"
+            );
+        }
+        return conditions;
+    },
+    'PNA, Insulin given': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PNA, Insulin given'];
+        console.log(conditionConcept);
+        if (conditionConcept == "Yes") {
+            conditions.show.push("PNA, How much insulin given?");
+        }
+        else {
+            conditions.hide.push("PNA, How much insulin given?");
+        }
+        return conditions;
+    },
 }
+
