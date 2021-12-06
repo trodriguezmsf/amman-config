@@ -11689,4 +11689,5 @@
     <include file="freshdesk/addKahramanaBeds.xml"/>
     <include file="freshdesk/addSurgicalAppointment.xml"/>
     <include file="clinicalForms/pediatricNurseAssessment.xml"/>
+    <include file="clinicalForms/occupationalTherapyForm.xml"/>
 </databaseChangeLog>

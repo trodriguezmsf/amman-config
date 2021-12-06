@@ -3518,14 +3518,12 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['PNA, Currently taking medication'];
-        console.log("currently", conditionConcept);
         if (conditionConcept == "Yes") {
             conditions.show.push("PNA, Type of medication");
         }
         else {
             conditions.hide.push("PNA, Type of medication");
         }
-        console.log("currently", conditions);
         return conditions;
     },
     'PNA, Pain severity': function (formName, formFieldValues) {
@@ -3656,7 +3654,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['PNA, Does the patient have a Foley catheter?'];
-        console.log(conditionConcept);
         if (conditionConcept == "Yes") {
             conditions.show.push("PNA, Comments on Foley catheter");
         }
@@ -3699,5 +3696,227 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         return conditions;
     },
+    'OTA, Type of assessment': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['OTA, Type of assessment'];
+        if (conditionConcept == "Initial") {
+            conditions.show.push("OTA, Initial assessment");
+            conditions.show.push("OTA, Sollermann test");
+            conditions.show.push("OTA, Assessment scores");
+            conditions.hide.push("OTA, Follow-up");
+            conditions.hide.push("OTA, Discharge");
+            if (formFieldValues['OTA, Sollermann test administered'] == "Yes") {
+                conditions.show.push("OTA, Put key into Yale lock, turn 90 degrees");
+                conditions.show.push("OTA, Pick up coins up from flat surface, put into purses mounted on wall");
+                conditions.show.push("OTA, Pick up coins from purses");
+                conditions.show.push("OTA, Lift telephone receiver, put to ear");
+                conditions.show.push("OTA, Turn door-handle 30 degrees");
+                conditions.show.push("OTA, Lift wooden cubes over edge 5 cm in height");
+                conditions.show.push("OTA, Lift iron over edge 5 cm in height");
+                conditions.show.push("OTA, Turn screw with screwdriver");
+                conditions.show.push("OTA, Pick up nuts");
+                conditions.show.push("OTA, Open/close zip");
+                conditions.show.push("OTA, Put on tub grip stocking on the other hand");
+                conditions.show.push("OTA, Write with pen");
+                conditions.show.push("OTA, Do up buttons");
+                conditions.show.push("OTA, Unscrew lid of jars");
+                conditions.show.push("OTA, Put paper-clip on envelope");
+                conditions.show.push("OTA, Cut play-doh with knife and fork");
+                conditions.show.push("OTA, Fold paper, put into envelope");
+                conditions.show.push("OTA, Pour water from pure-pak");
+                conditions.show.push("OTA, Pour water from jug");
+                conditions.show.push("OTA, Pour water from cup");
+                conditions.show.push("OTA, Sollermann test total score");
+            }
+            else {
+                conditions.hide.push("OTA, Put key into Yale lock, turn 90 degrees");
+                conditions.hide.push("OTA, Pick up coins up from flat surface, put into purses mounted on wall");
+                conditions.hide.push("OTA, Pick up coins from purses");
+                conditions.hide.push("OTA, Lift telephone receiver, put to ear");
+                conditions.hide.push("OTA, Turn door-handle 30 degrees");
+                conditions.hide.push("OTA, Lift wooden cubes over edge 5 cm in height");
+                conditions.hide.push("OTA, Lift iron over edge 5 cm in height");
+                conditions.hide.push("OTA, Turn screw with screwdriver");
+                conditions.hide.push("OTA, Pick up nuts");
+                conditions.hide.push("OTA, Open/close zip");
+                conditions.hide.push("OTA, Put on tub grip stocking on the other hand");
+                conditions.hide.push("OTA, Write with pen");
+                conditions.hide.push("OTA, Do up buttons");
+                conditions.hide.push("OTA, Unscrew lid of jars");
+                conditions.hide.push("OTA, Put paper-clip on envelope");
+                conditions.hide.push("OTA, Cut play-doh with knife and fork");
+                conditions.hide.push("OTA, Fold paper, put into envelope");
+                conditions.hide.push("OTA, Pour water from pure-pak");
+                conditions.hide.push("OTA, Pour water from jug");
+                conditions.hide.push("OTA, Pour water from cup");
+                conditions.hide.push("OTA, Sollermann test total score");
+            }
+        }
+        else if (conditionConcept == "Follow-up"){
+            conditions.show.push("OTA, Follow-up");
+            conditions.hide.push("OTA, Initial assessment");
+            conditions.hide.push("OTA, Sollermann test");
+            conditions.hide.push("OTA, Assessment scores");
+            conditions.hide.push("OTA, Discharge");
+        }
+        else if (conditionConcept == "Discharge"){
+            conditions.show.push("OTA, Sollermann test");
+            conditions.show.push("OTA, Assessment scores");
+            conditions.show.push("OTA, Discharge");
+            conditions.hide.push("OTA, Initial assessment");
+            conditions.hide.push("OTA, Follow-up");
+            if (formFieldValues['OTA, Sollermann test administered'] == "Yes") {
+                conditions.show.push("OTA, Put key into Yale lock, turn 90 degrees");
+                conditions.show.push("OTA, Pick up coins up from flat surface, put into purses mounted on wall");
+                conditions.show.push("OTA, Pick up coins from purses");
+                conditions.show.push("OTA, Lift telephone receiver, put to ear");
+                conditions.show.push("OTA, Turn door-handle 30 degrees");
+                conditions.show.push("OTA, Lift wooden cubes over edge 5 cm in height");
+                conditions.show.push("OTA, Lift iron over edge 5 cm in height");
+                conditions.show.push("OTA, Turn screw with screwdriver");
+                conditions.show.push("OTA, Pick up nuts");
+                conditions.show.push("OTA, Open/close zip");
+                conditions.show.push("OTA, Put on tub grip stocking on the other hand");
+                conditions.show.push("OTA, Write with pen");
+                conditions.show.push("OTA, Do up buttons");
+                conditions.show.push("OTA, Unscrew lid of jars");
+                conditions.show.push("OTA, Put paper-clip on envelope");
+                conditions.show.push("OTA, Cut play-doh with knife and fork");
+                conditions.show.push("OTA, Fold paper, put into envelope");
+                conditions.show.push("OTA, Pour water from pure-pak");
+                conditions.show.push("OTA, Pour water from jug");
+                conditions.show.push("OTA, Pour water from cup");
+                conditions.show.push("OTA, Sollermann test total score");
+            }
+            else {
+                conditions.hide.push("OTA, Put key into Yale lock, turn 90 degrees");
+                conditions.hide.push("OTA, Pick up coins up from flat surface, put into purses mounted on wall");
+                conditions.hide.push("OTA, Pick up coins from purses");
+                conditions.hide.push("OTA, Lift telephone receiver, put to ear");
+                conditions.hide.push("OTA, Turn door-handle 30 degrees");
+                conditions.hide.push("OTA, Lift wooden cubes over edge 5 cm in height");
+                conditions.hide.push("OTA, Lift iron over edge 5 cm in height");
+                conditions.hide.push("OTA, Turn screw with screwdriver");
+                conditions.hide.push("OTA, Pick up nuts");
+                conditions.hide.push("OTA, Open/close zip");
+                conditions.hide.push("OTA, Put on tub grip stocking on the other hand");
+                conditions.hide.push("OTA, Write with pen");
+                conditions.hide.push("OTA, Do up buttons");
+                conditions.hide.push("OTA, Unscrew lid of jars");
+                conditions.hide.push("OTA, Put paper-clip on envelope");
+                conditions.hide.push("OTA, Cut play-doh with knife and fork");
+                conditions.hide.push("OTA, Fold paper, put into envelope");
+                conditions.hide.push("OTA, Pour water from pure-pak");
+                conditions.hide.push("OTA, Pour water from jug");
+                conditions.hide.push("OTA, Pour water from cup");
+                conditions.hide.push("OTA, Sollermann test total score");
+            }
+            if (formFieldValues['OTA, Did the patient receive a written home program?'] == "Yes") {
+                conditions.show.push("OTA, Written home program");
+            }
+            else {
+                conditions.hide.push("OTA, Written home program");
+            }
+            if (formFieldValues['OTA, Did the patient/family receive an occupational therapy education?'] == "Yes") {
+                conditions.show.push("OTA, Patient/family occupational therapy education");
+            }
+            else {
+                conditions.hide.push("OTA, Patient/family occupational therapy education");
+            }
+        }
+        else {
+            conditions.hide.push("OTA, Initial assessment");
+            conditions.hide.push("OTA, Sollermann test");
+            conditions.hide.push("OTA, Assessment scores");
+            conditions.hide.push("OTA, Follow-up");
+            conditions.hide.push("OTA, Discharge");
+        }
+        return conditions;
+    },
+    'OTA, Sollermann test administered': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['OTA, Sollermann test administered'];
+        if (conditionConcept == "Yes") {
+            conditions.show.push("OTA, Put key into Yale lock, turn 90 degrees");
+            conditions.show.push("OTA, Pick up coins up from flat surface, put into purses mounted on wall");
+            conditions.show.push("OTA, Pick up coins from purses");
+            conditions.show.push("OTA, Lift telephone receiver, put to ear");
+            conditions.show.push("OTA, Turn door-handle 30 degrees");
+            conditions.show.push("OTA, Lift wooden cubes over edge 5 cm in height");
+            conditions.show.push("OTA, Lift iron over edge 5 cm in height");
+            conditions.show.push("OTA, Turn screw with screwdriver");
+            conditions.show.push("OTA, Pick up nuts");
+            conditions.show.push("OTA, Open/close zip");
+            conditions.show.push("OTA, Put on tub grip stocking on the other hand");
+            conditions.show.push("OTA, Write with pen");
+            conditions.show.push("OTA, Do up buttons");
+            conditions.show.push("OTA, Unscrew lid of jars");
+            conditions.show.push("OTA, Put paper-clip on envelope");
+            conditions.show.push("OTA, Cut play-doh with knife and fork");
+            conditions.show.push("OTA, Fold paper, put into envelope");
+            conditions.show.push("OTA, Pour water from pure-pak");
+            conditions.show.push("OTA, Pour water from jug");
+            conditions.show.push("OTA, Pour water from cup");
+            conditions.show.push("OTA, Sollermann test total score");
+        }
+        else {
+            conditions.hide.push("OTA, Put key into Yale lock, turn 90 degrees");
+            conditions.hide.push("OTA, Pick up coins up from flat surface, put into purses mounted on wall");
+            conditions.hide.push("OTA, Pick up coins from purses");
+            conditions.hide.push("OTA, Lift telephone receiver, put to ear");
+            conditions.hide.push("OTA, Turn door-handle 30 degrees");
+            conditions.hide.push("OTA, Lift wooden cubes over edge 5 cm in height");
+            conditions.hide.push("OTA, Lift iron over edge 5 cm in height");
+            conditions.hide.push("OTA, Turn screw with screwdriver");
+            conditions.hide.push("OTA, Pick up nuts");
+            conditions.hide.push("OTA, Open/close zip");
+            conditions.hide.push("OTA, Put on tub grip stocking on the other hand");
+            conditions.hide.push("OTA, Write with pen");
+            conditions.hide.push("OTA, Do up buttons");
+            conditions.hide.push("OTA, Unscrew lid of jars");
+            conditions.hide.push("OTA, Put paper-clip on envelope");
+            conditions.hide.push("OTA, Cut play-doh with knife and fork");
+            conditions.hide.push("OTA, Fold paper, put into envelope");
+            conditions.hide.push("OTA, Pour water from pure-pak");
+            conditions.hide.push("OTA, Pour water from jug");
+            conditions.hide.push("OTA, Pour water from cup");
+            conditions.hide.push("OTA, Sollermann test total score");
+        }
+        return conditions;
+    },
+    'OTA, Did the patient receive a written home program?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['OTA, Did the patient receive a written home program?'];
+        if (conditionConcept == "Yes") {
+            conditions.show.push("OTA, Written home program");
+        }
+        else {
+            conditions.hide.push("OTA, Written home program");
+        }
+        return conditions;
+    },
+    'OTA, Did the patient/family receive an occupational therapy education?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['OTA, Did the patient/family receive an occupational therapy education?'];
+        if (conditionConcept == "Yes") {
+            conditions.show.push("OTA, Patient/family occupational therapy education");
+        }
+        else {
+            conditions.hide.push("OTA, Patient/family occupational therapy education");
+        }
+        return conditions;
+    }
 }
 

@@ -222,6 +222,10 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
             calculateFIMScore(functionalScoreInNPForm)
             calculateAIMTScore(functionalScoreInNPForm)
         }
+        BahmniObservation sollermannTestTotalScoreInOTAForm = find("OTA, Sollermann test", observations, null)
+        if (sollermannTestTotalScoreInOTAForm != null) {
+            calculateSollermannTestTotalScore(sollermannTestTotalScoreInOTAForm)
+        }
         calculateScores(observations)
         voidExistingObservationWithoutValue(observations)
     }
@@ -415,6 +419,75 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 : (getDate(lowerAimtObservation) != null ? getDate(lowerAimtObservation) : getDate(upperAimtObservation))
         activeAimtScoreObservation = activeAimtScoreObservation ?: createObs("NP, Activity Independence Measure for Trauma (AIM-T) score", functionalScoreInNPForm, null, obsDatetime) as BahmniObservation;
         activeAimtScoreObservation.setValue(roundOffToTwoDecimalPlaces(coreAimt + lowerAimt + upperAimt))
+    }
+
+    static def calculateSollermannTestTotalScore(BahmniObservation sollermannTestTotalScoreInOTAForm) {
+        Collection<BahmniObservation> observations = sollermannTestTotalScoreInOTAForm.getGroupMembers()
+        BahmniObservation ans1Observation = find("OTA, Put key into Yale lock, turn 90 degrees", observations, null)
+        BahmniObservation ans2Observation = find("OTA, Pick up coins up from flat surface, put into purses mounted on wall", observations, null)
+        BahmniObservation ans3Observation = find("OTA, Pick up coins from purses", observations, null)
+        BahmniObservation ans4Observation = find("OTA, Lift telephone receiver, put to ear", observations, null)
+        BahmniObservation ans5Observation = find("OTA, Turn door-handle 30 degrees", observations, null)
+        BahmniObservation ans6Observation = find("OTA, Lift wooden cubes over edge 5 cm in height", observations, null)
+        BahmniObservation ans7Observation = find("OTA, Lift iron over edge 5 cm in height", observations, null)
+        BahmniObservation ans8Observation = find("OTA, Turn screw with screwdriver", observations, null)
+        BahmniObservation ans9Observation = find("OTA, Pick up nuts", observations, null)
+        BahmniObservation ans10Observation = find("OTA, Open/close zip", observations, null)
+        BahmniObservation ans11Observation = find("OTA, Put on tub grip stocking on the other hand", observations, null)
+        BahmniObservation ans12Observation = find("OTA, Write with pen", observations, null)
+        BahmniObservation ans13Observation = find("OTA, Do up buttons", observations, null)
+        BahmniObservation ans14Observation = find("OTA, Unscrew lid of jars", observations, null)
+        BahmniObservation ans15Observation = find("OTA, Put paper-clip on envelope", observations, null)
+        BahmniObservation ans16Observation = find("OTA, Cut play-doh with knife and fork", observations, null)
+        BahmniObservation ans17Observation = find("OTA, Fold paper, put into envelope", observations, null)
+        BahmniObservation ans18Observation = find("OTA, Pour water from pure-pak", observations, null)
+        BahmniObservation ans19Observation = find("OTA, Pour water from jug", observations, null)
+        BahmniObservation ans20Observation = find("OTA, Pour water from cup", observations, null)
+        BahmniObservation sollermannTestTotalScoreObservation = find("OTA, Sollermann test total score", observations, null)
+
+        BahmniObservation[] answerObservations = [
+            ans1Observation,
+            ans2Observation,
+            ans3Observation,
+            ans4Observation,
+            ans5Observation,
+            ans6Observation,
+            ans7Observation,
+            ans8Observation,
+            ans9Observation,
+            ans10Observation,
+            ans11Observation,
+            ans12Observation,
+            ans13Observation,
+            ans14Observation,
+            ans15Observation,
+            ans16Observation,
+            ans17Observation,
+            ans18Observation,
+            ans19Observation,
+            ans20Observation
+        ]
+
+        Boolean ret = true
+        for (BahmniObservation observation : answerObservations) {
+            ret = ret && !(hasValue(observation))
+        }
+
+        if (ret) {
+            voidObs(sollermannTestTotalScoreObservation)
+            return
+        }
+
+        Double answer = 0
+        for (BahmniObservation observation : answerObservations) {
+            if(hasValue(observation)){
+                String val = observation.getValue().get('displayString') == null ? observation.getValue().get('name') : observation.getValue().get('displayString')
+                answer += Double.parseDouble((val))
+            }
+        }
+
+        sollermannTestTotalScoreObservation = sollermannTestTotalScoreObservation ?: createObs("OTA, Sollermann test total score", sollermannTestTotalScoreInOTAForm, null, getDate(sollermannTestTotalScoreInOTAForm)) as BahmniObservation
+        sollermannTestTotalScoreObservation.setValue(roundOffToTwoDecimalPlaces(answer))
     }
 
     private static Date getDate(BahmniObservation observation) {
