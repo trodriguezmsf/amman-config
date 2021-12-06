@@ -11688,4 +11688,5 @@
     <include file="freshdesk/addTHRProvider.xml"/>
     <include file="freshdesk/addKahramanaBeds.xml"/>
     <include file="freshdesk/addSurgicalAppointment.xml"/>
+    <include file="clinicalForms/pediatricNurseAssessment.xml"/>
 </databaseChangeLog>

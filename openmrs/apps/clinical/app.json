@@ -1797,6 +1797,151 @@
           },
           "PSA, Type of assessment": {
             "required":true
+          },
+          "PNA, Type of assessment":{
+            "required":true,
+            "disableAddNotes": true
+          },
+          "PNA, General appearance":{
+            "multiSelect":true
+          },
+          "PNA, Respiratory":{
+            "multiSelect":true
+          },
+          "PNA, Cardiac":{
+            "multiSelect":true
+          },
+          "PNA, Genitourinary":{
+            "multiSelect":true
+          },
+          "PNA, Nervous system":{
+            "multiSelect":true
+          },
+          "PNA, HEENT":{
+            "multiSelect":true
+          },
+          "PNA, Skin":{
+            "multiSelect":true
+          },
+          "PNA, Immunization":{
+            "multiSelect":true
+          },
+          "PNA, History of allergy":{
+            "multiSelect":true
+          },
+          "PNA, Pain assessment":{
+            "allowAddMore" : true
+          },
+          "PNA, Dressing":{
+            "allowAddMore" : true
+          },
+          "PNA, Site of dressing":{
+            "autocomplete":true
+          },
+          "PNA, Tissue expander":{
+            "allowAddMore" : true
+          },
+          "PNA, Site of tissue expander":{
+            "autocomplete":true
+          },
+          "PNA, Date recorded":{
+            "disableAddNotes": true
+          },
+          "PNA, Nutritional status":{
+            "disableAddNotes": true
+          },
+          "PNA, Pain severity":{
+            "disableAddNotes": true
+          },
+          "PNA, Side of pain":{
+            "disableAddNotes": true
+          },
+          "PNA, Site of pain":{
+            "disableAddNotes": true
+          },
+          "PNA, Does the patient have a dressing?":{
+            "disableAddNotes": true
+          },
+          "PNA, Does the patient have a tissue expander?":{
+            "disableAddNotes": true
+          },
+          "PNA, Does the patient have a Foley catheter?":{
+            "disableAddNotes": true
+          },
+          "PNA, Blood sugar":{
+            "disableAddNotes": true
+          },
+          "PNA, Insulin given":{
+            "disableAddNotes": true
+          },
+          "PNA, Caretaker relationship to the child":{
+            "disableAddNotes": true
+          },
+          "PNA, Previous blood transfusion":{
+            "disableAddNotes": true
+          },
+          "PNA, Currently taking medication":{
+            "disableAddNotes": true
+          },
+          "PNA, Infectious disease":{
+            "disableAddNotes": true
+          },
+          "PNA, Gastrointestinal":{
+            "disableAddNotes": true
+          },
+          "PNA, How much insulin given?":{
+            "disableAddNotes": true
+          },
+          "PNA, Date of removal, PICC line":{
+            "disableAddNotes": true
+          },
+          "PNA, Date of dressing":{
+            "disableAddNotes": true
+          },
+          "PNA, Date of insertion, PICC line":{
+            "disableAddNotes": true
+          },
+          "PNA, Does the patient have a PICC line?":{
+            "disableAddNotes": true
+          },
+          "PNA, Date of removal, peripheral line":{
+            "disableAddNotes": true
+          },
+          "PNA, Date of insertion, peripheral line":{
+            "disableAddNotes": true
+          },
+          "PNA, Site of peripheral line":{
+            "disableAddNotes": true
+          },
+          "PNA, Does the patient have a peripheral line?":{
+            "disableAddNotes": true
+          },
+          "PNA, Was the dressing changed":{
+            "disableAddNotes": true
+          },
+          "PNA, Description of wound":{
+            "disableAddNotes": true
+          },
+          "PNA, Total volume in tissue expander":{
+            "disableAddNotes": true
+          },
+          "PNA, Quantity withdrawn":{
+            "disableAddNotes": true
+          },
+          "PNA, Quantity injected":{
+            "disableAddNotes": true
+          },
+          "PNA, Side of dressing":{
+            "disableAddNotes": true
+          },
+          "PNA, FBS":{
+            "disableAddNotes": true
+          },
+          "PNA, RBS after meal":{
+            "disableAddNotes": true
+          },
+          "PNA, RBS before meal":{
+            "disableAddNotes": true
           }
         },
         "visitPage": {

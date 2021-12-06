@@ -234,12 +234,13 @@
                     "Lower Limb Physiotherapy Assessment",
                     "Upper Limb Physiotherapy Assessment",
                     "Maxillofacial Physio Assessment",
-		            "Medical Doctor OPD Follow-up",
+		                "Medical Doctor OPD Follow-up",
                     "Pain Nurse Follow-up",
                     "Administrative Note",
                     "NP, Network Physiotherapy Assessment",
                     "PSA, Psycho-Social Assessment",
-                    "PA, Psychiatrist-mhGAP Assessment"
+                    "PA, Psychiatrist-mhGAP Assessment",
+                    "PNA, Pediatric Nurse Assessment"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
             }
