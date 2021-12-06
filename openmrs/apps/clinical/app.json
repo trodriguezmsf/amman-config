@@ -1799,7 +1799,8 @@
             "required":true
           },
           "PNA, Type of assessment":{
-            "required":true
+            "required":true,
+            "disableAddNotes": true
           },
           "PNA, General appearance":{
             "multiSelect":true
@@ -1915,10 +1916,33 @@
           "PNA, Does the patient have a peripheral line?":{
             "disableAddNotes": true
           },
-          "PNA, Type of Assessment":{
+          "PNA, Was the dressing changed":{
+            "disableAddNotes": true
+          },
+          "PNA, Description of wound":{
+            "disableAddNotes": true
+          },
+          "PNA, Total volume in tissue expander":{
+            "disableAddNotes": true
+          },
+          "PNA, Quantity withdrawn":{
+            "disableAddNotes": true
+          },
+          "PNA, Quantity injected":{
+            "disableAddNotes": true
+          },
+          "PNA, Side of dressing":{
+            "disableAddNotes": true
+          },
+          "PNA, FBS":{
+            "disableAddNotes": true
+          },
+          "PNA, RBS after meal":{
+            "disableAddNotes": true
+          },
+          "PNA, RBS before meal":{
             "disableAddNotes": true
           }
-          
         },
         "visitPage": {
             "observationDisplay": {

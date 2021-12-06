@@ -3426,24 +3426,86 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['PNA, Type of assessment'];
         if (conditionConcept == "Initial") {
             conditions.show.push("PNA, Medical history", "PNA, Review of systems and physical examination");
+            if (formFieldValues['PNA, Currently taking medication'] == "Yes") {
+                conditions.show.push("PNA, Type of medication");
+            }
+            else {
+                conditions.hide.push("PNA, Type of medication");
+            }
         }
         else {
             conditions.hide.push("PNA, Medical history", "PNA, Review of systems and physical examination");
         }
         if (conditionConcept == "Ward follow-up") {
             conditions.show.push("PNA, PICC line", "PNA, Peripheral line");
+            if (formFieldValues['PNA, Does the patient have a peripheral line?'] == "Yes") {
+                conditions.show.push(
+                    "PNA, Comments, peripheral line",
+                    "PNA, Date of removal, peripheral line",
+                    "PNA, Date of insertion, peripheral line",
+                    "PNA, Site of peripheral line"
+                );
+            }
+            else {
+                conditions.hide.push(
+                    "PNA, Comments, peripheral line",
+                    "PNA, Date of removal, peripheral line",
+                    "PNA, Date of insertion, peripheral line",
+                    "PNA, Site of peripheral line"
+                );
+            }
+            if (formFieldValues['PNA, Does the patient have a PICC line?'] == "Yes") {
+                conditions.show.push(
+                    "PNA, Date of insertion, PICC line",
+                    "PNA, Date of dressing",
+                    "PNA, Comments, dressing PICC line",
+                    "PNA, Date of removal, PICC line"
+                );
+            }
+            else {
+                conditions.hide.push(
+                    "PNA, Date of insertion, PICC line",
+                    "PNA, Date of dressing",
+                    "PNA, Comments, dressing PICC line",
+                    "PNA, Date of removal, PICC line"
+                );
+            }
         }
         else {
             conditions.hide.push("PNA, PICC line", "PNA, Peripheral line");
         }
         if (["Initial", "OPD follow-up", "Ward follow-up"].includes(conditionConcept)) {
             conditions.show.push("PNA, Pain assessment");
+            if (formFieldValues['PNA, Pain severity'] >1 ) {
+                conditions.show.push("PNA, Type of pain","PNA, Site of pain","PNA, Side of pain");
+            }
+            else {
+                conditions.hide.push("PNA, Type of pain","PNA, Site of pain","PNA, Side of pain");
+            }
         }
         else {
             conditions.hide.push("PNA, Pain assessment");
         }
         if (["OPD follow-up", "Ward follow-up"].includes(conditionConcept)) {
             conditions.show.push("PNA, Tissue expander");
+            if (formFieldValues['PNA, Does the patient have a tissue expander?'] == "Yes") {
+                conditions.show.push(
+                    "PNA, Site of tissue expander",
+                    "PNA, Quantity injected",
+                    "PNA, Quantity withdrawn",
+                    "PNA, Total volume in tissue expander",
+                    "PNA, Condition of tissue expander"
+                );
+            }
+            else {
+                conditions.hide.push(
+                    "PNA, Site of tissue expander",
+                    "PNA, Quantity injected",
+                    "PNA, Quantity withdrawn",
+                    "PNA, Total volume in tissue expander",
+                    "PNA, Condition of tissue expander"
+                );
+            }
         }
         else {
             conditions.hide.push("PNA, Tissue expander");
@@ -3472,14 +3534,12 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['PNA, Pain severity'];
-        console.log(conditionConcept);
         if (conditionConcept >1 ) {
             conditions.show.push("PNA, Type of pain","PNA, Site of pain","PNA, Side of pain");
         }
         else {
             conditions.hide.push("PNA, Type of pain","PNA, Site of pain","PNA, Side of pain");
         }
-        console.log("currently", conditions);
         return conditions;
     },
     'PNA, Does the patient have a dressing?': function (formName, formFieldValues) {
@@ -3488,10 +3548,14 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['PNA, Does the patient have a dressing?'];
-        console.log(conditionConcept);
         if (conditionConcept == "Yes" ) {
             conditions.show.push("PNA, Dressing");
-
+            if (formFieldValues['PNA, Description of wound'] == "Other") {
+                conditions.show.push("PNA, Description of wound, other");
+            }
+            else {
+                conditions.hide.push("PNA, Description of wound, other");
+            }
         }
         else {
             conditions.hide.push("PNA, Dressing");
@@ -3504,7 +3568,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['PNA, Description of wound'];
-        console.log(conditionConcept);
         if (conditionConcept == "Other") {
             conditions.show.push("PNA, Description of wound, other");
         }
@@ -3519,7 +3582,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['PNA, Does the patient have a peripheral line?'];
-        console.log(conditionConcept);
         if (conditionConcept == "Yes") {
             conditions.show.push(
                 "PNA, Comments, peripheral line",
@@ -3544,7 +3606,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['PNA, Does the patient have a PICC line?'];
-        console.log(conditionConcept);
         if (conditionConcept == "Yes") {
             conditions.show.push(
                 "PNA, Date of insertion, PICC line",
@@ -3569,7 +3630,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['PNA, Does the patient have a tissue expander?'];
-        console.log(conditionConcept);
         if (conditionConcept == "Yes") {
             conditions.show.push(
                 "PNA, Site of tissue expander",
@@ -3611,22 +3671,17 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['PNA, Blood sugar'];
-        console.log(conditionConcept);
         if (conditionConcept == "Yes") {
-            conditions.show.push(
-                "PNA, RBS before meal",
-                "PNA, RBS after meal",
-                "PNA, FBS",
-                "PNA, Insulin given"
-                );
+            conditions.show.push( "PNA, Diabetes monitoring" );
+                if (formFieldValues['PNA, Insulin given'] == "Yes") {
+                    conditions.show.push("PNA, How much insulin given?");
+                }
+                else {
+                    conditions.hide.push("PNA, How much insulin given?");
+                }
         }
         else {
-            conditions.hide.push(
-                "PNA, RBS before meal",
-                "PNA, RBS after meal",
-                "PNA, FBS",
-                "PNA, Insulin given"
-            );
+            conditions.hide.push( "PNA, Diabetes monitoring" );
         }
         return conditions;
     },
@@ -3636,7 +3691,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['PNA, Insulin given'];
-        console.log(conditionConcept);
         if (conditionConcept == "Yes") {
             conditions.show.push("PNA, How much insulin given?");
         }
