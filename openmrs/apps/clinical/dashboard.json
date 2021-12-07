@@ -241,7 +241,8 @@
                     "PSA, Psycho-Social Assessment",
                     "PA, Psychiatrist-mhGAP Assessment",
                     "PNA, Pediatric Nurse Assessment",
-                    "OTA, Occupational Therapy Assessment"
+                    "OTA, Occupational Therapy Assessment",
+                    "EC, External Consultation"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
             }

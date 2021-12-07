@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="AMMAN_CONFIG_20211207070134050" author="Tarun">
+        <comment>Adding Concepts for External Consultation Form</comment>
+        <sqlFile path="concepts/addExternalConsultationConcept.sql"/>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20211207070135485" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Dermatologic", "ENT", "Surgical", "Internal medicine", "Paediatric", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "EC, Type of external consultation");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to EC, Type of external consultation</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "EC, Type of external consultation" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Dermatologic" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="ENT" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Surgical" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Internal medicine" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Paediatric" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20211207070135496" author="Tarun">
+        <comment>Adding CEIL codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
+
+            call CREATE_REFERENCE_MAPPING_CEIL("EC, Date recorded","162869");
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20211207070135502" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Image")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "EC, Photo upload");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Set Members to EC, Photo upload</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "EC, Photo upload" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            set @member1_concept_id = 0;
+
+            select concept_id into @member1_concept_id from concept_name where name ="Image" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20211207070135509" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ("EC, Date recorded","EC, Type of external consultation","EC, Type of external consultation, other", "EC, Notes on the external consultation", "EC, Photo upload") AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = "EC, External Consultation")
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for EC, External Consultation</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = "EC, External Consultation" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = "EC, Date recorded" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = "EC, Type of external consultation" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = "EC, Type of external consultation, other" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name = "EC, Notes on the external consultation" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name = "EC, Photo upload" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members (@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members (@concept_id, @member4_concept_id, 4);
+            call add_concept_set_members (@concept_id, @member5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20211207070135523" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name ="EC, External Consultation"  AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = "All Observation Templates");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members to all observation templates</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = "All Observation Templates" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            select concept_id into @member1_concept_id from concept_name where name = "EC, External Consultation" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

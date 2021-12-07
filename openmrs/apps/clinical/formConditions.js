@@ -3917,6 +3917,20 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("OTA, Patient/family occupational therapy education");
         }
         return conditions;
+    },
+    'EC, Type of external consultation': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['EC, Type of external consultation'];
+        if (conditionConcept == "Other") {
+            conditions.show.push("EC, Type of external consultation, other");
+        }
+        else {
+            conditions.hide.push("EC, Type of external consultation, other");
+        }
+        return conditions;
     }
 }
 
