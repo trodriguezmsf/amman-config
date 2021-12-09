@@ -240,8 +240,8 @@
                     "NP, Network Physiotherapy Assessment",
                     "PSA, Psycho-Social Assessment",
                     "PA, Psychiatrist-mhGAP Assessment",
-                    "PNA, Pediatric Nurse Assessment",
-                    "OTA, Occupational Therapy Assessment",
+                    "Pediatric Nurse Assessment",
+                    "Occupational Therapy Assessment",
                     "EC, External Consultation"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"

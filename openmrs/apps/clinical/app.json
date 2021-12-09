@@ -1836,6 +1836,7 @@
             "allowAddMore" : true
           },
           "PNA, Site of dressing":{
+            "disableAddNotes": true,
             "autocomplete":true
           },
           "PNA, Tissue expander":{
@@ -1857,6 +1858,7 @@
             "disableAddNotes": true
           },
           "PNA, Site of pain":{
+            "autocomplete":true,
             "disableAddNotes": true
           },
           "PNA, Does the patient have a dressing?":{
@@ -1887,6 +1889,7 @@
             "disableAddNotes": true
           },
           "PNA, Gastrointestinal":{
+            "multiSelect":true,
             "disableAddNotes": true
           },
           "PNA, How much insulin given?":{
@@ -1911,6 +1914,7 @@
             "disableAddNotes": true
           },
           "PNA, Site of peripheral line":{
+            "autocomplete":true,
             "disableAddNotes": true
           },
           "PNA, Does the patient have a peripheral line?":{

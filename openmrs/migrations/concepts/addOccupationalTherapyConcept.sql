@@ -164,7 +164,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Full achievemen
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Unable","Unable","N/A","Misc",false);
 
 #Add Concept Sets
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Occupational Therapy Assessment","Occupational Therapy Assessment","N/A","ConvSet",true);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Occupational Therapy Assessment","Occupational Therapy Assessment","N/A","ConvSet",true);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Initial assessment","Initial assessment","N/A","Misc",true);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, ADL bathing/showering","ADL bathing/showering","N/A","Misc",true);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, ADL toileting/toilet hygiene","ADL toileting/toilet hygiene","N/A","Misc",true);

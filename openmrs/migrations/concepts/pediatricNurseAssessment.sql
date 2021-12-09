@@ -32,7 +32,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PNA, The most s
 
 -- coded
 
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PNA, Type of assessment","Type of Assessment","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PNA, Type of assessment","Type of assessment","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PNA, Nutritional status","Nutritional status","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PNA, Infectious disease","Infectious disease","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PNA, Currently taking medication","Currently taking medication","Coded","Misc",false);
@@ -77,7 +77,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PNA, How much i
 
 
 
-INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PNA, Pain severity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PNA, Pain severity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",0,0);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PNA, Quantity injected" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PNA, Quantity withdrawn" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PNA, Total volume in tissue expander" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
@@ -123,11 +123,12 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Record unavaila
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Eyelid","Eyelid","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lip","Lip","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lower jaw","Lower jaw","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Arrhythmia","Arrhythmia","N/A","Misc",false);
 
 
 -- adding concept sets
 
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PNA, Pediatric Nurse Assessment","Pediatric Nurse Assessment","N/A","ConvSet",true);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pediatric Nurse Assessment","Pediatric Nurse Assessment","N/A","ConvSet",true);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PNA, Medical history","Medical history","N/A","Misc",true);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PNA, Review of systems and physical examination","Review of systems and physical examination","N/A","Misc",true);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PNA, Pain assessment","Pain assessment","N/A","Misc",true);
@@ -137,3 +138,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PNA, PICC line"
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PNA, Tissue expander","Tissue expander","N/A","Misc",true);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PNA, Diabetes monitoring","Diabetes monitoring","N/A","Misc",true);
 
+
+-- Adding Description of the  concepts to the concept description table
+
+INSERT INTO concept_description(concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid) VALUES ((select concept_id from concept_name where name = "PNA, Pain severity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),"For children less or equal to 7 years, use EVENDOL. For children over 7 years use visual numeric pain scale. EVENDOL is a 5-item pain scale (vocal or verbal expression, facial expression, movements, postures, and interaction with the environment) for each item 0 = 'sign absent', 1 = 'sign weak or transient', 2 = 'sign moderate or present about half the time', and 3 = 'sign strong or present almost all the time'",'en',1,now(),NULL,NULL,uuid());

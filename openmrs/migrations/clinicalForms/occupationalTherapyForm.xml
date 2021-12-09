@@ -4318,10 +4318,10 @@
                 on cs.concept_id = cn.concept_id
                 where cs.concept_id IN (select concept_id from concept_name where name IN
                 ("OTA, Date recorded","OTA, Type of assessment","OTA, Initial assessment","OTA, Sollermann test","OTA, Assessment scores","OTA, Follow-up","OTA, Discharge","OTA, Photo upload","OTA, Video upload","OTA, Comments") AND concept_name_type = "FULLY_SPECIFIED")
-                and cs.concept_set IN (select concept_id from concept_name where name = "OTA, Occupational Therapy Assessment")
+                and cs.concept_set IN (select concept_id from concept_name where name = "Occupational Therapy Assessment")
             </sqlCheck>
         </preConditions>
-        <comment>Adding set members for OTA, Occupational Therapy Assessment form</comment>
+        <comment>Adding set members for Occupational Therapy Assessment form</comment>
         <sql>
             set @concept_id = 0;
             set @member1_concept_id = 0;
@@ -4335,7 +4335,7 @@
             set @member9_concept_id = 0;
             set @member10_concept_id = 0;
 
-            select concept_id into @concept_id from concept_name where name = "OTA, Occupational Therapy Assessment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @concept_id from concept_name where name = "Occupational Therapy Assessment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member1_concept_id from concept_name where name = "OTA, Date recorded" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member2_concept_id from concept_name where name = "OTA, Type of assessment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member3_concept_id from concept_name where name = "OTA, Initial assessment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
@@ -4366,7 +4366,7 @@
                 select COUNT(*) from concept_set cs
                 join concept_name cn
                 on cs.concept_id = cn.concept_id
-                where cs.concept_id IN (select concept_id from concept_name where name ="OTA, Occupational Therapy Assessment"  AND concept_name_type = "FULLY_SPECIFIED")
+                where cs.concept_id IN (select concept_id from concept_name where name ="Occupational Therapy Assessment"  AND concept_name_type = "FULLY_SPECIFIED")
                 and cs.concept_set IN (select concept_id from concept_name where name = "All Observation Templates");
             </sqlCheck>
         </preConditions>
@@ -4377,7 +4377,7 @@
 
             select concept_id into @concept_id from concept_name where name = "All Observation Templates" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
 
-            select concept_id into @member1_concept_id from concept_name where name = "OTA, Occupational Therapy Assessment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = "Occupational Therapy Assessment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
 
             call add_concept_set_members (@concept_id, @member1_concept_id, 1);
         </sql>

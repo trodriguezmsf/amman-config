@@ -3548,7 +3548,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
         var conditionConcept = formFieldValues['PNA, Does the patient have a dressing?'];
         if (conditionConcept == "Yes" ) {
             conditions.show.push("PNA, Dressing");
-            if (formFieldValues['PNA, Description of wound'] == "Other") {
+            if (formFieldValues['PNA, Description of wound']) {
                 conditions.show.push("PNA, Description of wound, other");
             }
             else {

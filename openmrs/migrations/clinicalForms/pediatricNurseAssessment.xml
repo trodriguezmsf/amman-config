@@ -290,6 +290,48 @@
         </sql>
     </changeSet>
 
+    <changeSet id="AMMAN_CONFIG_202112081044" author="Tarun,Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Negative", "Arrhythmia", "Heart murmur", "Capillary refill time > 3 sec", "Weak, slow, or irregular peripheral pulse", "Cold extremities")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PNA, Cardiac");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PNA, Cardiac</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PNA, Cardiac" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Negative" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Arrhythmia" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Heart murmur" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Capillary refill time > 3 sec" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Weak, slow, or irregular peripheral pulse" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Cold extremities" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+        </sql>
+    </changeSet>
+
     <changeSet id="AMMAN_CONFIG_202111251045" author="Tarun,Venky">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -1825,10 +1867,10 @@
                 on cs.concept_id = cn.concept_id
                 where cs.concept_id IN (select concept_id from concept_name where name IN
                 ('PNA, Date recorded', 'PNA, Type of assessment', 'PNA, Nutritional status', 'PNA, Therapeutic food', 'PNA, Medical history', 'PNA, Review of systems and physical examination', 'PNA, History of allergy', 'PNA, Comments about allergy', 'PNA, Pain assessment', 'PNA, Does the patient have a dressing?', 'PNA, Dressing', 'PNA, Peripheral line', 'PNA, PICC line', 'PNA, Tissue expander', 'PNA, Does the patient have a Foley catheter?', 'PNA, Comments on Foley catheter', 'PNA, Blood sugar', 'PNA, Diabetes monitoring', 'PNA, Nursing consultation notes', 'PNA, The most significant issue to follow') AND concept_name_type = "FULLY_SPECIFIED")
-                and cs.concept_set IN (select concept_id from concept_name where name = 'PNA, Pediatric Nurse Assessment');
+                and cs.concept_set IN (select concept_id from concept_name where name = 'Pediatric Nurse Assessment');
             </sqlCheck>
         </preConditions>
-        <comment>Adding set members for "PNA, Pediatric Nurse Assessment" Concept</comment>
+        <comment>Adding set members for "Pediatric Nurse Assessment" Concept</comment>
         <sql>
             set @concept_id = 0;
             set @member1_concept_id = 0;
@@ -1852,7 +1894,7 @@
             set @member19_concept_id = 0;
             set @member20_concept_id = 0;
 
-            select concept_id into @concept_id from concept_name where name = 'PNA, Pediatric Nurse Assessment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id from concept_name where name = 'Pediatric Nurse Assessment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @member1_concept_id from concept_name where name = 'PNA, Date recorded' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @member2_concept_id from concept_name where name = 'PNA, Type of assessment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @member3_concept_id from concept_name where name = 'PNA, Nutritional status' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
@@ -1902,7 +1944,7 @@
                 select COUNT(*) from concept_set cs
                 join concept_name cn
                 on cs.concept_id = cn.concept_id
-                where cs.concept_id IN (select concept_id from concept_name where name ='PNA, Pediatric Nurse Assessment'  AND concept_name_type = "FULLY_SPECIFIED")
+                where cs.concept_id IN (select concept_id from concept_name where name ='Pediatric Nurse Assessment'  AND concept_name_type = "FULLY_SPECIFIED")
                 and cs.concept_set IN (select concept_id from concept_name where name = 'All Observation Templates');
             </sqlCheck>
         </preConditions>
@@ -1913,9 +1955,75 @@
 
             select concept_id into @concept_id from concept_name where name = 'All Observation Templates' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
 
-            select concept_id into @member1_concept_id from concept_name where name = 'PNA, Pediatric Nurse Assessment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'Pediatric Nurse Assessment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
 
             call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+        </sql>
+    </changeSet>
+     <changeSet id="AMMAN_CONFIG_20211125075617354" author="Tarun, Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("160287", "110247", "164464", "1070", "1080", "1078", "1069", "163301", "971", "970", "972", "159772", "127640", "139063", "150915", "5008", "5009", "1466", "131004", "120148")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding CEIL codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160287",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"110247",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"164464",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1070",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1080",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1078",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1069",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"163301",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"971",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"970",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"972",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"159772",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"127640",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"139063",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"150915",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"5008",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"5009",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1466",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"131004",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"120148",@source_id,uuid(),now());
+
+            call CREATE_REFERENCE_MAPPING_CEIL("PNA, Date recorded", "162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("PNA, Nutritional status", "163301");
+            call CREATE_REFERENCE_MAPPING_CEIL("PNA, General appearance", "1069");
+            call CREATE_REFERENCE_MAPPING_CEIL("PNA, Gastrointestinal", "1078");
+            call CREATE_REFERENCE_MAPPING_CEIL("PNA, Genitourinary", "1080");
+            call CREATE_REFERENCE_MAPPING_CEIL("PNA, HEENT", "1070");
+            call CREATE_REFERENCE_MAPPING_CEIL("PNA, Immunization", "164464");
+            call CREATE_REFERENCE_MAPPING_CEIL("PNA, History of allergy", "110247");
+            call CREATE_REFERENCE_MAPPING_CEIL("PNA, Pain severity", "160287");
+            call CREATE_REFERENCE_MAPPING_CEIL("PNA, Date of insertion, peripheral line", "162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("PNA, Date of removal, peripheral line", "162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("PNA, Date of insertion, PICC line", "162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("PNA, Date of dressing", "162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("PNA, Date of removal, PICC line", "162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("Father", "971");
+            call CREATE_REFERENCE_MAPPING_CEIL("Mother", "970");
+            call CREATE_REFERENCE_MAPPING_CEIL("Sibling", "972");
+            call CREATE_REFERENCE_MAPPING_CEIL("Grandmother", "159772");
+            call CREATE_REFERENCE_MAPPING_CEIL("Crackles", "127640");
+            call CREATE_REFERENCE_MAPPING_CEIL("Heart murmur", "139063");
+            call CREATE_REFERENCE_MAPPING_CEIL("Abdominal distension", "150915");
+            call CREATE_REFERENCE_MAPPING_CEIL("Hepatomegaly", "5008");
+            call CREATE_REFERENCE_MAPPING_CEIL("Splenomegaly", "5009");
+            call CREATE_REFERENCE_MAPPING_CEIL("Focal neurological deficit", "1466");
+            call CREATE_REFERENCE_MAPPING_CEIL("Pale", "131004");
+            call CREATE_REFERENCE_MAPPING_CEIL("Arrhythmia", "120148");
+
         </sql>
     </changeSet>
 </databaseChangeLog>
