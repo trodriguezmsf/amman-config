@@ -1843,6 +1843,7 @@
             "allowAddMore" : true
           },
           "PNA, Site of tissue expander":{
+            "disableAddNotes": true,
             "autocomplete":true
           },
           "PNA, Date recorded":{

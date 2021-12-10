@@ -97,10 +97,10 @@
                 on cs.concept_id = cn.concept_id
                 where cs.concept_id IN (select concept_id from concept_name where name IN
                 ("EC, Date recorded","EC, Type of external consultation","EC, Type of external consultation, other", "EC, Notes on the external consultation", "EC, Photo upload") AND concept_name_type = "FULLY_SPECIFIED")
-                and cs.concept_set IN (select concept_id from concept_name where name = "EC, External Consultation")
+                and cs.concept_set IN (select concept_id from concept_name where name = "External Consultation")
             </sqlCheck>
         </preConditions>
-        <comment>Adding set members for EC, External Consultation</comment>
+        <comment>Adding set members for External Consultation</comment>
         <sql>
             set @concept_id = 0;
             set @member1_concept_id = 0;
@@ -109,7 +109,7 @@
             set @member4_concept_id = 0;
             set @member5_concept_id = 0;
 
-            select concept_id into @concept_id from concept_name where name = "EC, External Consultation" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @concept_id from concept_name where name = "External Consultation" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member1_concept_id from concept_name where name = "EC, Date recorded" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member2_concept_id from concept_name where name = "EC, Type of external consultation" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member3_concept_id from concept_name where name = "EC, Type of external consultation, other" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
@@ -130,7 +130,7 @@
                 select COUNT(*) from concept_set cs
                 join concept_name cn
                 on cs.concept_id = cn.concept_id
-                where cs.concept_id IN (select concept_id from concept_name where name ="EC, External Consultation"  AND concept_name_type = "FULLY_SPECIFIED")
+                where cs.concept_id IN (select concept_id from concept_name where name ="External Consultation"  AND concept_name_type = "FULLY_SPECIFIED")
                 and cs.concept_set IN (select concept_id from concept_name where name = "All Observation Templates");
             </sqlCheck>
         </preConditions>
@@ -141,7 +141,7 @@
 
             select concept_id into @concept_id from concept_name where name = "All Observation Templates" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
 
-            select concept_id into @member1_concept_id from concept_name where name = "EC, External Consultation" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = "External Consultation" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
 
             call add_concept_set_members (@concept_id, @member1_concept_id, 1);
         </sql>

@@ -242,7 +242,7 @@
                     "PA, Psychiatrist-mhGAP Assessment",
                     "Pediatric Nurse Assessment",
                     "Occupational Therapy Assessment",
-                    "EC, External Consultation"
+                    "External Consultation"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
             }

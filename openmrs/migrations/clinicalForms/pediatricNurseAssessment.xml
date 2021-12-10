@@ -1965,7 +1965,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("160287", "110247", "164464", "1070", "1080", "1078", "1069", "163301", "971", "970", "972", "159772", "127640", "139063", "150915", "5008", "5009", "1466", "131004", "120148")
+                ("160287", "110247", "164464", "1070", "1080", "1078", "1069", "163301", "971", "970", "972", "159772", "127640", "139063", "150915", "5008", "5009", "1466", "131004", "120148","162509", "1670", "1065", "1067", "1066", "140501", "143264", "2399", "142412", "996", "122983", "110055", "147038", "979", "980", "840", "118771", "6004", "120345", "990", "114403", "5953", "995", "118958", "142903", "664", "512", "136443")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -1996,6 +1996,34 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1466",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"131004",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"120148",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162509",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1670",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1065",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1067",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1066",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"140501",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"143264",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"2399",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"142412",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"996",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"122983",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"110055",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"147038",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"979",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"980",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"840",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"118771",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"6004",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"120345",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"990",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"114403",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"5953",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"995",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"118958",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"142903",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"664",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"512",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"136443",@source_id,uuid(),now());
 
             call CREATE_REFERENCE_MAPPING_CEIL("PNA, Date recorded", "162869");
             call CREATE_REFERENCE_MAPPING_CEIL("PNA, Nutritional status", "163301");
@@ -2023,6 +2051,35 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Focal neurological deficit", "1466");
             call CREATE_REFERENCE_MAPPING_CEIL("Pale", "131004");
             call CREATE_REFERENCE_MAPPING_CEIL("Arrhythmia", "120148");
+            call CREATE_REFERENCE_MAPPING_CEIL("Cold extremities", "162509");
+            call CREATE_REFERENCE_MAPPING_CEIL("Scabies", "1670");
+            call CREATE_REFERENCE_MAPPING_CEIL("Yes", "1065");
+            call CREATE_REFERENCE_MAPPING_CEIL("Unknown", "1067");
+            call CREATE_REFERENCE_MAPPING_CEIL("No", "1066");
+            call CREATE_REFERENCE_MAPPING_CEIL("Fatigue", "140501");
+            call CREATE_REFERENCE_MAPPING_CEIL("Cough", "143264");
+            call CREATE_REFERENCE_MAPPING_CEIL("Shortness Of Breath", "141600");
+            call CREATE_REFERENCE_MAPPING_CEIL("Poor appetite", "2399");
+            call CREATE_REFERENCE_MAPPING_CEIL("Diarrhea", "142412");
+            call CREATE_REFERENCE_MAPPING_CEIL("Constipation", "996");
+            call CREATE_REFERENCE_MAPPING_CEIL("Vomiting", "122983");
+            call CREATE_REFERENCE_MAPPING_CEIL("Black/Tarry Stool", "110055");
+            call CREATE_REFERENCE_MAPPING_CEIL("Absent bowel sounds", "147038");
+            call CREATE_REFERENCE_MAPPING_CEIL("Bloody stool", "979");
+            call CREATE_REFERENCE_MAPPING_CEIL("Incontinence", "980");
+            call CREATE_REFERENCE_MAPPING_CEIL("Hematuria", "840");
+            call CREATE_REFERENCE_MAPPING_CEIL("Dysuria", "118771");
+            call CREATE_REFERENCE_MAPPING_CEIL("Paresthesia", "6004");
+            call CREATE_REFERENCE_MAPPING_CEIL("Confusion", "120345");
+            call CREATE_REFERENCE_MAPPING_CEIL("Dizziness", "990");
+            call CREATE_REFERENCE_MAPPING_CEIL("Pain", "114403");
+            call CREATE_REFERENCE_MAPPING_CEIL("Vision difficulties", "5953");
+            call CREATE_REFERENCE_MAPPING_CEIL("Dental caries", "995");
+            call CREATE_REFERENCE_MAPPING_CEIL("Deformity of nose", "118958");
+            call CREATE_REFERENCE_MAPPING_CEIL("Decreased hearing", "142903");
+            call CREATE_REFERENCE_MAPPING_CEIL("Negative", "664");
+            call CREATE_REFERENCE_MAPPING_CEIL("Rash", "512");
+            call CREATE_REFERENCE_MAPPING_CEIL("Jaundice", "136443");
 
         </sql>
     </changeSet>

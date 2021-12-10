@@ -23,5 +23,5 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dermatologic","
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Internal medicine","Internal medicine","N/A","Misc",false);
 
 #Add Concept Sets
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"EC, External Consultation","External Consultation","N/A","ConvSet",true);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"External Consultation","External Consultation","N/A","ConvSet",true);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"EC, Photo upload","Photo upload","N/A","Misc",true);
