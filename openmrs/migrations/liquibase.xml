@@ -11691,4 +11691,6 @@
     <include file="clinicalForms/pediatricNurseAssessment.xml"/>
     <include file="clinicalForms/occupationalTherapyForm.xml"/>
     <include file="clinicalForms/externalConsultationForm.xml"/>
+    <include file="clinicalForms/operativeReport.xml"/>
+
 </databaseChangeLog>

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <!---Change Set For addition of concepts to openmrs -->
+  <changeSet id="AMMAN_CONFIG_202112241038" author="Supriya,Venky">
+    <comment>Adding Concepts for Operative Report form</comment>
+    <sqlFile path="concepts/operativeReport.sql"/>
+  </changeSet>
+
+  <changeSet id="Amman-202112041209" author="Supriya, Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="OR, Side of operation" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Bilateral' AND concept_name_type="FULLY_SPECIFIED");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer concepts Bilateral to OR, Side of operation</comment>
+    <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="OR, Side of operation" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Bilateral" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,sort_weight,date_created,uuid) VALUES (@conceptcoded,@conceptID1,27,3,now(),uuid());
+    </sql>
+  </changeSet>
+
+  <changeSet id="Amman-202112041210" author="Supriya, Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="OR, Site of operation" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Lower jaw' AND concept_name_type="FULLY_SPECIFIED");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer concepts Ulna proximal to OR, Site of operation</comment>
+    <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="OR, Site of operation" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Lower jaw" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,sort_weight,date_created,uuid) VALUES (@conceptcoded,@conceptID1,27,37,now(),uuid());
+    </sql>
+  </changeSet>
+  <changeSet id="Amman-202112161406" author="Supriya, Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type='FULLY_SPECIFIED') AND answer_concept=(SELECT concept_id FROM concept_name WHERE name ='Periodontal scaling and root planning' AND concept_name_type='FULLY_SPECIFIED');
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer concept Periodontal scaling and root planning to OR, Operation performed coded</comment>
+    <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Periodontal scaling and root planning' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,27,now(),52,uuid());
+    </sql>
+  </changeSet>
+  <changeSet id="Amman-202112161407" author="Supriya, Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type='FULLY_SPECIFIED') AND answer_concept=(SELECT concept_id FROM concept_name WHERE name ='Periodontal scaling' AND concept_name_type='FULLY_SPECIFIED');
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer concept Periodontal scaling to OR, Operation performed coded</comment>
+    <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Periodontal scaling' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,27,now(),53,uuid());
+    </sql>
+  </changeSet>
+  <changeSet id="Amman-2021121614027" author="Supriya, Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type='FULLY_SPECIFIED') AND answer_concept=(SELECT concept_id FROM concept_name WHERE name ='Surgical tooth extraction' AND concept_name_type='FULLY_SPECIFIED');
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer concept Surgical tooth extraction to OR, Operation performed coded</comment>
+    <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Surgical tooth extraction' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,27,now(),54,uuid());
+    </sql>
+  </changeSet>
+  <changeSet id="Amman-202112161409" author="Supriya, Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type='FULLY_SPECIFIED') AND answer_concept=(SELECT concept_id FROM concept_name WHERE name ='Treatment of root canal obstruction' AND concept_name_type='FULLY_SPECIFIED');
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer concept Treatment of root canal obstruction to OR, Operation performed coded</comment>
+    <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Treatment of root canal obstruction' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,27,now(),55,uuid());
+    </sql>
+  </changeSet>
+  <changeSet id="Amman-202112161410" author="Supriya, Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type='FULLY_SPECIFIED') AND answer_concept=(SELECT concept_id FROM concept_name WHERE name ='Protective tooth restoration' AND concept_name_type='FULLY_SPECIFIED');
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer concept Protective tooth restoration to OR, Operation performed coded</comment>
+    <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Protective tooth restoration' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,27,now(),56,uuid());
+    </sql>
+  </changeSet>
+  <changeSet id="Amman-202112161411" author="Supriya, Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type='FULLY_SPECIFIED') AND answer_concept=(SELECT concept_id FROM concept_name WHERE name ='Resin-based composite' AND concept_name_type='FULLY_SPECIFIED');
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer concept Resin-based composite to OR, Operation performed coded</comment>
+    <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Resin-based composite' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,27,now(),57,uuid());
+    </sql>
+  </changeSet>
+  <changeSet id="Amman-202112161412" author="Supriya, Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type='FULLY_SPECIFIED') AND answer_concept=(SELECT concept_id FROM concept_name WHERE name ='Removal of residual tooth roots (cutting procedure)' AND concept_name_type='FULLY_SPECIFIED');
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer concept Removal of residual tooth roots (cutting procedure) to OR, Operation performed coded</comment>
+    <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Removal of residual tooth roots (cutting procedure)' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,27,now(),58,uuid());
+    </sql>
+  </changeSet>
+  <changeSet id="Amman-202112161413" author="Supriya, Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type='FULLY_SPECIFIED') AND answer_concept=(SELECT concept_id FROM concept_name WHERE name ='Surgical placement of implant body: endosteal implant - Includes second stage surgery and placement of healing cap' AND concept_name_type='FULLY_SPECIFIED');
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer concept Surgical placement of implant body: endosteal implant - Includes second stage surgery and placement of healing cap to OR, Operation performed coded</comment>
+    <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'OR, Operation performed coded' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Surgical placement of implant body: endosteal implant - Includes second stage surgery and placement of healing cap' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,27,now(),59,uuid());
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_202112251041" author="Supriya,Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Clean","Clean-contaminated","Contaminated","Dirty - infected")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OR, Wound classification");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding Answers to OR, Wound classification</comment>
+    <sql>
+            select concept_id into @concept_id from concept_name where name = "OR, Wound classification" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Clean" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Clean-contaminated" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Contaminated" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Dirty - infected" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+    </sql>
+  </changeSet>
+  <changeSet id="AMMAN_CONFIG_20211225075617354" author="Supriya, Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("161921", "161917", "161918", "161919", "161920")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding CEIL codes to concepts for operative report</comment>
+    <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"161921",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"161917",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"161918",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"161919",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"161920",@source_id,uuid(),now());
+            
+            call CREATE_REFERENCE_MAPPING_CEIL("OR, Wound classification", "161921");
+            call CREATE_REFERENCE_MAPPING_CEIL("Clean", "161917");
+            call CREATE_REFERENCE_MAPPING_CEIL("Clean-contaminated", "161918");
+            call CREATE_REFERENCE_MAPPING_CEIL("Contaminated", "161919");
+            call CREATE_REFERENCE_MAPPING_CEIL("Dirty - infected", "161920");
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_20211225075617355" author="Tarun, Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ('OR, Wound classification') AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'Operative Report');
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding set members for "Operative Report" Concept</comment>
+    <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'Operative Report' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'OR, Wound classification' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 19);
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_20211225075617356" author="Supriya, Venky">
+    <comment>Reorder sections in Operative Report form</comment>
+    <sql>
+            set @observation_form_name = "Operative Report";
+            # Reorder concepts (Concept set full name, Concept full name, sort weight)
+            call reorder_concept_set(@observation_form_name, "OR, Wound classification", 13);
+            call reorder_concept_set(@observation_form_name, "OR, Does the patient have a drain?", 14);
+            call reorder_concept_set(@observation_form_name, "OR , Drainage Section", 15);
+            call reorder_concept_set(@observation_form_name, "OR, Specimen sent to lab", 16);
+            call reorder_concept_set(@observation_form_name, "OR, Estimated blood loss", 17);
+            call reorder_concept_set(@observation_form_name, "OR, Blood transfusion", 18);
+            call reorder_concept_set(@observation_form_name, "OR, Number of units", 19);
+    </sql>
+  </changeSet>
+</databaseChangeLog>
+
+
+
+
+
