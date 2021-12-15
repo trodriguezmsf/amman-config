@@ -3310,10 +3310,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['NP, Type of assessment'];
         if (conditionConcept == "Follow-up") {
-            conditions.hide.push("NP, Functional score", "NP, Initial Assessment", "NP, Discharge", "NP, Network physio treatment goals");
+            conditions.hide.push("NP, Functional score", "NP, Initial Assessment", "NP, Discharge");
         }
         else if (conditionConcept == "Discharge") {
-            conditions.hide.push("NP, Initial Assessment", "NP, Network physio treatment goals");
+            conditions.hide.push("NP, Initial Assessment");
             conditions.show.push("NP, Functional score", "NP, Discharge");
             var conditionConcept = formFieldValues['NP, Discharge reason, network physio'];
             if (conditionConcept == "Other") {
@@ -3325,7 +3325,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         else if (conditionConcept == "Initial") {
             conditions.hide.push("NP, Discharge");
-            conditions.show.push("NP, Functional score", "NP, Initial Assessment", "NP, Network physio treatment goals");
+            conditions.show.push("NP, Functional score", "NP, Initial Assessment");
             var conditionConcept = formFieldValues['NP, Special case'];
             if (conditionConcept) {
                 conditions.show.push("NP, Notes about network physio special cases");
@@ -3339,7 +3339,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             }
         }
         else {
-            conditions.hide.push("NP, Functional score", "NP, Initial Assessment", "NP, Discharge", "NP, Network physio treatment goals");
+            conditions.hide.push("NP, Functional score", "NP, Initial Assessment", "NP, Discharge");
         }
         return conditions;
     },
