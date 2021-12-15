@@ -184,6 +184,28 @@
                     "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY"
                 }
             },
+          "Network Physiotherapy": {
+            "translationKey": "DASHBOARD_TITLE_NETWORK_PHYSIOTHERAPY",
+            "type": "vitals",
+            "isObservation": true,
+            "displayOrder":8,
+            "dashboardConfig": {
+              "isEditable": true,
+              "showDetailsButton": true,
+              "conceptNames": [
+                "NP, Network Physiotherapy Assessment"
+              ]
+            },
+            "expandedViewConfig": {
+              "conceptNames": [
+                "NP, Network Physiotherapy Assessment"
+              ],
+              "numberOfVisits": 3,
+              "showDetailsButton": true,
+              "pivotTable": {}
+            },
+            "hideEmptyDisplayControl": true
+          },
           "bacteriologyResults": {
             "translationKey": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
             "type": "bacteriologyResultsControl",

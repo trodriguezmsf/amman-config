@@ -1096,5 +1096,89 @@
             UPDATE concept_set SET sort_weight=16 WHERE concept_id=@concept_id6 and concept_set=@concept_set;
         </sql>
     </changeSet>
+    <changeSet id="Amman-202112151301" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name='Lower Jaw'
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "NP, Targeted site");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding "Lower Jaw" as coded answer for "NP, Targeted site" Concept</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "NP, Targeted site" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Lower Jaw" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202112171527" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name='NP, Photo upload' and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment> Adding "NP, Photo upload" concept  </comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
 
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NP, Photo upload","Photo upload","N/A","Misc",true);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202112171541" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Image")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "NP, Photo upload");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Set Members to NP, Photo upload</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "NP, Photo upload" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            set @member1_concept_id = 0;
+
+            select concept_id into @member1_concept_id from concept_name where name ="Image" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202112171621" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name='NP, Photo upload'
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "NP, Network Physiotherapy Assessment");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Set Members to Network Physiotherapy Assessment</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "NP, Network Physiotherapy Assessment" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @member1_concept_id = 0;
+            select concept_id into @member1_concept_id from concept_name where name ="NP, Photo upload" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members(@concept_id, @member1_concept_id, 16);
+        </sql>
+    </changeSet>
 </databaseChangeLog>

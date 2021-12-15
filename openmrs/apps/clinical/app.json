@@ -332,6 +332,9 @@
             "Diagnosis Data":{
                 "allowAddMore": true
             },
+            "NP, Photo upload": {
+              "allowAddMore": true
+            },
             "defaults" : {
 
                 "PE, General examination": "Well developed female / male in no acute distress",
