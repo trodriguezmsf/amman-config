@@ -11692,5 +11692,5 @@
     <include file="clinicalForms/occupationalTherapyForm.xml"/>
     <include file="clinicalForms/externalConsultationForm.xml"/>
     <include file="clinicalForms/operativeReport.xml"/>
-
+    <include file="clinicalForms/physiciansProgressNote.xml"/>
 </databaseChangeLog>

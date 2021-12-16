@@ -2340,6 +2340,30 @@
           },
           "OR, Wound classification": {
             "disableAddNotes": true
+          },
+          "PPN, Patient surgical status": {
+            "disableAddNotes": true
+          },
+          "PPN, Post-op day": {
+            "disableAddNotes": true
+          },
+          "PPN, Pain severity": {
+            "disableAddNotes": true
+          },
+          "PPN, Diarrhoea frequency per day": {
+            "disableAddNotes": true
+          },
+          "PPN, Acute or chronic abdominal pain": {
+            "disableAddNotes": true
+          },
+          "PPN, Surgical or nonsurgical abdominal pain": {
+            "disableAddNotes": true
+          },
+          "PPN, Temperature": {
+            "disableAddNotes": true
+          },
+          "PPN, Day of IV antibiotic treatment": {
+            "disableAddNotes": true
           }
         },
         "visitPage": {

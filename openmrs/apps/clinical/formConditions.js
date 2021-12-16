@@ -1612,6 +1612,18 @@ Bahmni.ConceptSet.FormConditions.rules = {
         else {
             conditions.hide.push("PPN, Removal of Drain")
         }
+        if (conditionConcept.indexOf("Start antibiotics")>=0){
+            conditions.show.push("PPN, Which antibiotics?")
+        }
+        else {
+            conditions.hide.push("PPN, Which antibiotics?")
+        }
+        if (conditionConcept.indexOf("Review labs")>=0){
+            conditions.show.push("PPN, Ordered labs", "PPN, Pending labs")
+        }
+        else {
+            conditions.hide.push("PPN, Ordered labs", "PPN, Pending labs")
+        }
         return conditions;
     },
     'PPN, Assessment of vital signs': function (formName, formFieldValues) {
@@ -1635,10 +1647,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
         };
         var conditionConcept = formFieldValues['PPN, DVT prophylaxis'];
         if (conditionConcept == "Yes"){
-            conditions.show.push("PPN, Duration", "PPN, Dose")
+            conditions.show.push("PPN, Duration", "PPN, Dose", "PPN, DVT prophylaxis medication")
         }
         else {
-            conditions.hide.push("PPN, Duration", "PPN, Dose")
+            conditions.hide.push("PPN, Duration", "PPN, Dose", "PPN, DVT prophylaxis medication")
         }
         return conditions;
     },
@@ -1667,6 +1679,24 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         else {
             conditions.hide.push("PPN, Active issues of patient, other")
+        }
+        if (conditionConcept.indexOf("IV antibiotics")>=0){
+            conditions.show.push("PPN, Day of IV antibiotic treatment", "PPN, Type and frequency of IV antibiotics")
+        }
+        else {
+            conditions.hide.push("PPN, Day of IV antibiotic treatment", "PPN, Type and frequency of IV antibiotics")
+        }
+        if (conditionConcept.indexOf("Isolation")>=0){
+            conditions.show.push("PPN, Reason for isolation (microorganism)")
+        }
+        else {
+            conditions.hide.push("PPN, Reason for isolation (microorganism)")
+        }
+        if (conditionConcept.indexOf("Pain control")>=0){
+            conditions.show.push("PPN, Type, frequency, regular or PRN pain medications")
+        }
+        else {
+            conditions.hide.push("PPN, Type, frequency, regular or PRN pain medications")
         }
         return conditions;
     },
@@ -3931,6 +3961,19 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("EC, Type of external consultation, other");
         }
         return conditions;
+    },
+    'PPN, Patient surgical status': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PPN, Patient surgical status'];
+        if (conditionConcept == "Post-op") {
+            conditions.show.push("PPN, Post-op day");
+        }
+        else {
+            conditions.hide.push("PPN, Post-op day");
+        }
+        return conditions;
     }
 }
-

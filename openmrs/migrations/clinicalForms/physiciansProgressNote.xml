@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <!---Change Set For addition of concepts to openmrs -->
+  <changeSet id="AMMAN_CONFIG_202112150001" author="Venky">
+    <comment>Adding Concepts for Physicians Progress Note - Ward Form</comment>
+    <sqlFile path="concepts/physiciansProgressNote.sql"/>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_202112150002" author="Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("5088")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding CEIL codes to concepts for operative report</comment>
+    <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"5088",@source_id,uuid(),now());
+            
+            call CREATE_REFERENCE_MAPPING_CEIL("PPN, Pain severity", "160287");
+            call CREATE_REFERENCE_MAPPING_CEIL("PPN, Temperature", "5088");
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_202112150003" author="Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Pre-op", "Post-op", "Waiting for a surgery")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PPN, Patient surgical status");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding Answers to PPN, Patient surgical status</comment>
+    <sql>
+            select concept_id into @concept_id from concept_name where name = "PPN, Patient surgical status" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Pre-op" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Post-op" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Waiting for a surgery" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_202112150004" author="Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Day 0", "Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Other post-op day")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PPN, Post-op day");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding Answers to PPN, Post-op day</comment>
+    <sql>
+            select concept_id into @concept_id from concept_name where name = "PPN, Post-op day" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Day 0" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Day 1" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Day 2" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Day 3" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Day 4" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Day 5" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Day 6" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Day 7" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Other post-op day" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_202112150005" author="Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Acute", "Chronic")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PPN, Acute or chronic abdominal pain");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding Answers to PPN, Acute or chronic abdominal pain</comment>
+    <sql>
+            select concept_id into @concept_id from concept_name where name = "PPN, Acute or chronic abdominal pain" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Acute" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Chronic" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_202112150006" author="Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Surgical", "Nonsurgical")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PPN, Surgical or nonsurgical abdominal pain");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding Answers to PPN, Surgical or nonsurgical abdominal pain</comment>
+    <sql>
+            select concept_id into @concept_id from concept_name where name = "PPN, Surgical or nonsurgical abdominal pain" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Surgical" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Nonsurgical" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_202112150007" author="Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="PPN, Surgical ward patient care plan" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'TRT' AND concept_name_type="FULLY_SPECIFIED");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer concepts TRT to PPN, Surgical ward patient care plan</comment>
+    <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="PPN, Surgical ward patient care plan" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="TRT" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,sort_weight,date_created,uuid) VALUES (@conceptcoded,@conceptID1,27,7,now(),uuid());
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_202112150008" author="Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="PPN, Surgical ward patient care plan" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'TRM' AND concept_name_type="FULLY_SPECIFIED");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer concepts TRM to PPN, Surgical ward patient care plan</comment>
+    <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="PPN, Surgical ward patient care plan" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="TRM" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,sort_weight,date_created,uuid) VALUES (@conceptcoded,@conceptID1,27,8,now(),uuid());
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_202112150009" author="Venky">
+    <comment>reoder answer concepts for PPN, Surgical ward patient care plan</comment>
+    <sql>
+            # Reoder PPN, Surgical ward patient care plan
+            # Reorder answers (Parent concept ID, Concept answer name, sort weight)
+            call reorder_concept_answer("PPN, Surgical ward patient care plan", "TRT", 6);
+            call reorder_concept_answer("PPN, Surgical ward patient care plan", "TRM", 7);
+            call reorder_concept_answer("PPN, Surgical ward patient care plan", "Other", 8);
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_202112150010" author="Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ('PPN, Past medical history', 'PPN, Pain severity', 'PPN, Diarrhoea frequency per day', 'PPN, Site and side of abdominal pain', 'PPN, Radiation of abdominal pain', 'PPN, Acute or chronic abdominal pain', 'PPN, Surgical or nonsurgical abdominal pain', 'PPN, Temperature', 'PPN, DVT prophylaxis medication', 'PPN, Physical examination findings', 'PPN, Type and frequency of IV antibiotics', 'PPN, Day of IV antibiotic treatment', 'PPN, Reason for isolation (microorganism)', 'PPN, Type, frequency, regular or PRN pain medications', 'PPN, Pending labs', 'PPN, Ordered labs', "PPN, Patient surgical status", "PPN, Which antibiotics?", "PPN, Post-op day") AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'Physician Progress Note-Ward');
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding set members for "Physician Progress Note-Ward" Concept</comment>
+    <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+            set @member6_concept_id = 0;
+            set @member7_concept_id = 0;
+            set @member8_concept_id = 0;
+            set @member9_concept_id = 0;
+            set @member10_concept_id = 0;
+            set @member11_concept_id = 0;
+            set @member12_concept_id = 0;
+            set @member13_concept_id = 0;
+            set @member14_concept_id = 0;
+            set @member15_concept_id = 0;
+            set @member16_concept_id = 0;
+            set @member17_concept_id = 0;
+            set @member18_concept_id = 0;
+            set @member19_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'Physician Progress Note-Ward' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'PPN, Past medical history' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = 'PPN, Pain severity' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = 'PPN, Diarrhoea frequency per day' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name = 'PPN, Site and side of abdominal pain' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name = 'PPN, Radiation of abdominal pain' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name = 'PPN, Acute or chronic abdominal pain' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name = 'PPN, Surgical or nonsurgical abdominal pain' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member8_concept_id from concept_name where name = 'PPN, Temperature' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member9_concept_id from concept_name where name = 'PPN, DVT prophylaxis medication' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member10_concept_id from concept_name where name = 'PPN, Physical examination findings' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member11_concept_id from concept_name where name = 'PPN, Type and frequency of IV antibiotics' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member12_concept_id from concept_name where name = 'PPN, Day of IV antibiotic treatment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member13_concept_id from concept_name where name = 'PPN, Reason for isolation (microorganism)' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member14_concept_id from concept_name where name = 'PPN, Type, frequency, regular or PRN pain medications' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member15_concept_id from concept_name where name = 'PPN, Pending labs' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member16_concept_id from concept_name where name = 'PPN, Ordered labs' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member17_concept_id from concept_name where name = 'PPN, Which antibiotics?' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member18_concept_id from concept_name where name = 'PPN, Patient surgical status' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member19_concept_id from concept_name where name = 'PPN, Post-op day' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 27);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 28);
+            call add_concept_set_members (@concept_id, @member3_concept_id, 29);
+            call add_concept_set_members (@concept_id, @member4_concept_id, 30);
+            call add_concept_set_members (@concept_id, @member5_concept_id, 31);
+            call add_concept_set_members (@concept_id, @member6_concept_id, 32);
+            call add_concept_set_members (@concept_id, @member7_concept_id, 33);
+            call add_concept_set_members (@concept_id, @member8_concept_id, 34);
+            call add_concept_set_members (@concept_id, @member9_concept_id, 35);
+            call add_concept_set_members (@concept_id, @member10_concept_id, 36);
+            call add_concept_set_members (@concept_id, @member11_concept_id, 37);
+            call add_concept_set_members (@concept_id, @member12_concept_id, 38);
+            call add_concept_set_members (@concept_id, @member13_concept_id, 39);
+            call add_concept_set_members (@concept_id, @member14_concept_id, 40);
+            call add_concept_set_members (@concept_id, @member15_concept_id, 41);
+            call add_concept_set_members (@concept_id, @member16_concept_id, 42);
+            call add_concept_set_members (@concept_id, @member17_concept_id, 43);
+            call add_concept_set_members (@concept_id, @member18_concept_id, 44);
+            call add_concept_set_members (@concept_id, @member19_concept_id, 45);
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_202112150011" author="Venky">
+    <comment>Reorder sections in Physicians Progress Note - Ward</comment>
+    <sql>
+            set @observation_form_name = "Physician Progress Note-Ward";
+            # Reorder concepts (Concept set full name, Concept full name, sort weight)
+            call reorder_concept_set(@observation_form_name, "PPN, Date recorded", 1);
+            call reorder_concept_set(@observation_form_name, "PPN, Patient surgical status", 2);
+            call reorder_concept_set(@observation_form_name, "PPN, Post-op day", 3);
+            call reorder_concept_set(@observation_form_name, "PPN, Past medical history", 4);
+            call reorder_concept_set(@observation_form_name, "PPN, Subjective (any new complaint)", 5);
+            call reorder_concept_set(@observation_form_name, "PPN, Patient complaints", 6);
+            call reorder_concept_set(@observation_form_name, "PPN, Patient complaints, other", 7);
+            call reorder_concept_set(@observation_form_name, "PPN, Pain severity", 8);
+            call reorder_concept_set(@observation_form_name, "PPN, Diarrhoea frequency per day", 9);
+            call reorder_concept_set(@observation_form_name, "PPN, Site and side of abdominal pain", 10);
+            call reorder_concept_set(@observation_form_name, "PPN, Radiation of abdominal pain", 11);
+            call reorder_concept_set(@observation_form_name, "PPN, Acute or chronic abdominal pain", 12);
+            call reorder_concept_set(@observation_form_name, "PPN, Surgical or nonsurgical abdominal pain", 13);
+            call reorder_concept_set(@observation_form_name, "PPN, Temperature", 14);
+            call reorder_concept_set(@observation_form_name, "PPN, Assessment of vital signs", 15);
+            call reorder_concept_set(@observation_form_name, "PPN, Description of abnormal vital signs", 16);
+            call reorder_concept_set(@observation_form_name, "PPN, Patient appetite", 17);
+            call reorder_concept_set(@observation_form_name, "PPN, DVT prophylaxis", 18);
+            call reorder_concept_set(@observation_form_name, "PPN, DVT prophylaxis medication", 19);
+            call reorder_concept_set(@observation_form_name, "PPN, Duration", 20);
+            call reorder_concept_set(@observation_form_name, "PPN, Dose", 21);
+            call reorder_concept_set(@observation_form_name, "PPN, Assessment of Wound", 22);
+            call reorder_concept_set(@observation_form_name, "PPN, Physical examination findings", 23);
+            call reorder_concept_set(@observation_form_name, "PPN, Drainage", 24);
+            call reorder_concept_set(@observation_form_name, "PPN, Drainage amount", 25);
+            call reorder_concept_set(@observation_form_name, "PPN, Drainage, other", 26);
+            call reorder_concept_set(@observation_form_name, "PPN, Frequency of dressing", 27);
+            call reorder_concept_set(@observation_form_name, "PPN, Frequency of dressing, other", 28);
+            call reorder_concept_set(@observation_form_name, "PPN, Abnormal lab values", 29);
+            call reorder_concept_set(@observation_form_name, "PPN, Active issues of patient", 30);
+            call reorder_concept_set(@observation_form_name, "PPN, Active issues of patient, other", 31);
+            call reorder_concept_set(@observation_form_name, "PPN, Type and frequency of IV antibiotics", 32);
+            call reorder_concept_set(@observation_form_name, "PPN, Day of IV antibiotic treatment", 33);
+            call reorder_concept_set(@observation_form_name, "PPN, Reason for isolation (microorganism)", 34);
+            call reorder_concept_set(@observation_form_name, "PPN, Type, frequency, regular or PRN pain medications", 35);
+            call reorder_concept_set(@observation_form_name, "PPN, Assessment of patient", 36);
+            call reorder_concept_set(@observation_form_name, "PPN, Assessment of patient, other", 37);
+            call reorder_concept_set(@observation_form_name, "PPN, Surgeon informed of patient assessment", 38);
+            call reorder_concept_set(@observation_form_name, "PPN, Surgical ward patient care plan", 39);
+            call reorder_concept_set(@observation_form_name, "PPN, Removal of Drain", 40);
+            call reorder_concept_set(@observation_form_name, "PPN, Which antibiotics?", 41);
+            call reorder_concept_set(@observation_form_name, "PPN, Pending labs", 42);
+            call reorder_concept_set(@observation_form_name, "PPN, Ordered labs", 43);
+            call reorder_concept_set(@observation_form_name, "PPN, Surgical ward patient care plan, other", 44);
+            call reorder_concept_set(@observation_form_name, "PPN, Summary of consultation", 45);
+    </sql>
+  </changeSet>
+</databaseChangeLog>
