@@ -346,4 +346,18 @@
             call reorder_concept_set(@observation_form_name, "PPN, Summary of consultation", 45);
     </sql>
   </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_202112450512" author="Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="1">
+          select count(*) from concept_name where name="Diarrhea";
+      </sqlCheck>
+    </preConditions>
+    <comment>updating the answer concept from Diarrhea to Diarrhoea </comment>
+    <sql>
+      select concept_id into @concept_id from concept_name where name = "Diarrhea" and concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+      update concept_name set name = "Diarrhoea" where concept_id = @concept_id;
+    </sql>
+  </changeSet>
+
 </databaseChangeLog>

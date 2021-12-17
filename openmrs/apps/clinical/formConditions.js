@@ -1530,6 +1530,30 @@ Bahmni.ConceptSet.FormConditions.rules = {
         else {
             conditions.hide.push("PPN, Patient complaints, other")
         }
+        if (conditionConcept.indexOf("Pain")>=0){
+            conditions.show.push("PPN, Pain severity")
+        }
+        else {
+            conditions.hide.push("PPN, Pain severity")
+        }
+        if (conditionConcept.indexOf("Diarrhoea")>=0){
+            conditions.show.push("PPN, Diarrhoea frequency per day")
+        }
+        else {
+            conditions.hide.push("PPN, Diarrhoea frequency per day")
+        }
+        if (conditionConcept.indexOf("Abdominal Pain")>=0){
+            conditions.show.push("PPN, Site and side of abdominal pain", "PPN, Surgical or nonsurgical abdominal pain", "PPN, Acute or chronic abdominal pain", "PPN, Radiation of abdominal pain")
+        }
+        else {
+            conditions.hide.push("PPN, Site and side of abdominal pain", "PPN, Surgical or nonsurgical abdominal pain", "PPN, Acute or chronic abdominal pain", "PPN, Radiation of abdominal pain")
+        }
+        if (conditionConcept.indexOf("Fever")>=0){
+            conditions.show.push("PPN, Temperature")
+        }
+        else {
+            conditions.hide.push("PPN, Temperature")
+        }
         return conditions;
     },
     'PPN, Wound assessment': function (formName, formFieldValues) {
