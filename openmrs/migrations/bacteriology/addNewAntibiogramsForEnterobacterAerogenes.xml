@@ -1,0 +1,154 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="Amman-202112161320" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("EB, Levofloxacin","EB, Tigecycline","EB, Colistin") and
+                concept_name_type =
+                'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Antibiograms for Enterobacter aerogenes</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"EB, Levofloxacin","Levofloxacin","Coded","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"EB, Tigecycline","Tigecycline","Coded","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"EB, Colistin","Colistin","Coded","Misc",false);
+
+            call create_reference_mapping_msf_internal('EB, Levofloxacin', 'EB_LEVOFLOXACIN_ID');
+            call create_reference_mapping_msf_internal('EB, Tigecycline', 'EB_TIGECYCLINE_ID');
+            call create_reference_mapping_msf_internal('EB, Colistin', 'EB_COLISTIN_ID');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202112161321" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Susceptible', 'Resistant', 'Intermediate')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "EB, Levofloxacin");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding answers for EB, Levofloxacin</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "EB, Levofloxacin" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Susceptible" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Resistant" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Intermediate" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202112161331" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Susceptible', 'Resistant', 'Intermediate')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "EB, Tigecycline");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding answers for EB, Tigecycline</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "EB, Tigecycline" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Susceptible" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Resistant" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Intermediate" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202112161815" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Susceptible", "Resistant", "Intermediate")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "EB, Colistin");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding answers for EB, Colistin</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "EB, Colistin" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Susceptible" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Resistant" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Intermediate" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202112161820" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ('EB, Levofloxacin','EB, Tigecycline','EB, Colistin') AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'Bacteriology, Final Identification');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for "Bacteriology, Final Identification" Concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'Bacteriology, Final Identification' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'EB, Levofloxacin' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = 'EB, Tigecycline' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = 'EB, Colistin' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1731);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 1732);
+            call add_concept_set_members (@concept_id, @member3_concept_id, 1733);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

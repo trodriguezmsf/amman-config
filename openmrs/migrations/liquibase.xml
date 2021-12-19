@@ -11707,4 +11707,12 @@
             VALUES ('Anaesthetist Technician', 'Anaesthetist Technician', 'java.lang.String', @anaesthetist_sort_weight+1, 8, NOW(), UUID());
         </sql>
     </changeSet>
+    <include file="bacteriology/addNewAntibiogramsForAcinetobacterBaumannii.xml"/>
+    <include file="bacteriology/addNewAntibiogramsForEnterobacterAerogenes.xml"/>
+    <include file="bacteriology/addNewAntibiogramsForEnterococcusAvium.xml"/>
+    <include file="bacteriology/addNewAntibiogramsForPseudomonasAeruginosa.xml"/>
+    <include file="bacteriology/addNewAntibiogramsForStaphylococcusAureusssAureus.xml"/>
+    <include file="bacteriology/addNewAntibiogramsForStaphylococcusCoagulaseNegative.xml"/>
+    <include file="bacteriology/addNewAntibiogramsForAchromobacterXylosoxidansssDenitrificans.xml"/>
+
 </databaseChangeLog>
