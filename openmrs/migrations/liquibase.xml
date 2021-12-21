@@ -11703,7 +11703,7 @@
             select sort_weight into @anaesthetist_sort_weight from surgical_appointment_attribute_type where name='anaesthetist';
             UPDATE surgical_appointment_attribute_type set sort_weight=sort_weight+1 where sort_weight>@anaesthetist_sort_weight;
             INSERT INTO surgical_appointment_attribute_type (name, description, format, sort_weight, creator, date_created, uuid)
-            VALUES ('Anaesthetist Technician', 'Anaesthetist Technician', 'java.lang.String', @anaesthetist_sort_weight+1, 8, NOW(), UUID());
+            VALUES ('Anaesthesia Technician', 'Anaesthesia Technician', 'java.lang.String', @anaesthetist_sort_weight+1, 8, NOW(), UUID());
         </sql>
     </changeSet>
     <include file="clinicalForms/networkPhysiotherapyAssessmentForm.xml"/>
