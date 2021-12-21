@@ -226,6 +226,10 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         if (sollermannTestTotalScoreInOTAForm != null) {
             calculateSollermannTestTotalScore(sollermannTestTotalScoreInOTAForm)
         }
+        BahmniObservation temperatureInPPNForm = find("Physician Progress Note-Ward", observations, null)
+        if (temperatureInPPNForm != null) {
+            restrictTemperatureToOneDecimal(temperatureInPPNForm)
+        }
         calculateScores(observations)
         voidExistingObservationWithoutValue(observations)
     }
@@ -524,8 +528,24 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         return roundOffToTwoDecimalPlaces(value);
     };
 
+    static Double roundOffToOneDecimalPlace(Double value) {
+        return new BigDecimal(value).setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
+
     static Double roundOffToTwoDecimalPlaces(Double value) {
         return new BigDecimal(value).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
+
+    static def restrictTemperatureToOneDecimal(BahmniObservation temperatureInPPNForm) {
+        Collection<BahmniObservation> observations = temperatureInPPNForm.getGroupMembers();
+        BahmniObservation temperatureObservation = find("PPN, Temperature", observations, null);
+
+        if (!(hasValue(temperatureObservation))) {
+            return;
+        }
+
+        Double temperature = hasValue(temperatureObservation) ? temperatureObservation.getValue() as Double : 0;
+        temperatureObservation.setValue(roundOffToOneDecimalPlace(temperature));
     }
 
     static BahmniObservation find(String conceptName, Collection<BahmniObservation> observations, BahmniObservation parent) {
