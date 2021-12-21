@@ -1,0 +1,333 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="Amman-202120141219" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Citrobacter Koseri (diversus)") and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Create Citrobacter Koseri (diversus) concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Citrobacter Koseri (diversus)","CK","N/A","Misc",false);
+            call create_reference_mapping_msf_internal('Citrobacter Koseri (diversus)', 'CITROBACKER_KOSERI_ID');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202120141220" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Enterobacter amnigenus") and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Create Enterobacter amnigenus concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Enterobacter amnigenus","EA","N/A","Misc",false);
+            call create_reference_mapping_msf_internal('Enterobacter amnigenus', 'ENTEROBACTER_ID');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202120141221" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Esherichia hermanii") and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Create Esherichia hermanii concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Esherichia hermanii","EH","N/A","Misc",false);
+            call create_reference_mapping_msf_internal('Esherichia hermanii', 'ESHERICHIA_ID');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202120141222" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Klebsiella Oxytoca") and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Create Klebsiella Oxytoca concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Klebsiella Oxytoca","KO","N/A","Misc",false);
+            call create_reference_mapping_msf_internal('Klebsiella Oxytoca', 'KLEBSIELLA_OXYTOCA_ID');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202120141223" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Micrococcus sp.") and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Create Moraxella sp. concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Moraxella sp.","MS","N/A","Misc",false);
+            call create_reference_mapping_msf_internal('Moraxella sp.', 'MORAXELLA_ID');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202120141224" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Proteus vulgaris") and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Create Proteus vulgaris concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Proteus vulgaris","PV","N/A","Misc",false);
+            call create_reference_mapping_msf_internal('Proteus vulgaris.', 'PROTEUS_VULGARIS_ID');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202120141227" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Serratia liquefaciens") and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Create Serratia liquefaciens concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Serratia liquefaciens","SL","N/A","Misc",false);
+            call create_reference_mapping_msf_internal('Serratia liquefaciens', 'SERRATIA_LIQUEFACIENS_ID');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202120141228" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Serratia odorifera") and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Create Serratia odorifera concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Serratia odorifera","SEA","N/A","Misc",false);
+            call create_reference_mapping_msf_internal('Serratia odorifer', 'SERRATIA_ODORIFIER_ID');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202120141229" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Staphylococcus capitis ss. Capitis") and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Create Staphylococcus capitis ss. Capitis concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Staphylococcus capitis ss. Capitis","SCSC","N/A","Misc",false);
+            call create_reference_mapping_msf_internal('Staphylococcus capitis ss. Capitis', 'STAPHYLOCOCCUS_CAPITIS_ID');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202120141231" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Staphylococcus cohnii ss. Cohnii") and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Create Staphylococcus cohnii ss. Cohnii concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Staphylococcus cohnii ss. Cohnii","ss.Cohnii","N/A","Misc",false);
+            call create_reference_mapping_msf_internal('Staphylococcus cohnii ss. Cohnii', 'STAPHYLOCOCCUS_COHNII_ID');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202120141232" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Staphylococcus haemolyticus") and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Create Staphylococcus haemolyticus concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Staphylococcus haemolyticus","SH","N/A","Misc",false);
+            call create_reference_mapping_msf_internal('Staphylococcus haemolyticus', 'STAPHYLOCOCCUS_HAEMOLYTICUS_ID');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202120141233" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Staphylococcus hominis ss. Hominis") and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Create Staphylococcus hominis ss. Hominis concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Staphylococcus hominis ss. Hominis","SHSH","N/A","Misc",false);
+            call create_reference_mapping_msf_internal('Staphylococcus hominis ss. Hominis', 'STAPHYLOCOCCUS_HOMINIS_ID');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202120141234" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Stenotrophmonas maltophilia") and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Create Stenotrophmonas maltophilia concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Stenotrophmonas maltophilia","SM","N/A","Misc",false);
+            call create_reference_mapping_msf_internal('Stenotrophmonas maltophilia', 'STAPHYLOCOCCUS_MALTOPHILIA_ID');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-20212014135" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Citrobacter Koseri (diversus)','Enterobacter amnigenus','Esherichia hermanii',
+                'Klebsiella Oxytoca','Moraxella sp.','Serratia liquefaciens','Serratia odorifera',
+                'Staphylococcus capitis ss. Capitis', 'Staphylococcus cohnii ss. Cohnii','Staphylococcus haemolyticus',
+                'Staphylococcus hominis ss. Hominis','Stenotrophmonas maltophilia')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "Microbiology, Final Identification");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding answers for Microbiology, Final Identification</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "Microbiology, Final Identification" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Citrobacter Koseri (diversus)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Enterobacter amnigenus" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Esherichia hermanii" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Klebsiella Oxytoca" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Moraxella sp." and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Serratia liquefaciens" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Serratia odorifera" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Staphylococcus capitis ss. Capitis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Staphylococcus cohnii ss. Cohnii" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="Staphylococcus haemolyticus" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="Staphylococcus hominis ss. Hominis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="Stenotrophmonas maltophilia" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+            call add_concept_answer(@concept_id, @child10_concept_id, 10);
+            call add_concept_answer(@concept_id, @child11_concept_id, 11);
+            call add_concept_answer(@concept_id, @child12_concept_id, 12);
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>

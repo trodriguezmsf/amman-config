@@ -11190,7 +11190,6 @@
     <include file="clinicalForms/covid19AssessmentForm.xml"/>
     <include file="visitCloseData.xml"/>
     <include file="programs/addCaretakerProgram.xml"/>
-    <include file="clinicalForms/networkPhysiotherapyAssessmentForm.xml"/>
     <include file="clinicalForms/psychoSocialAssessmentForm.xml"/>
     <include file="clinicalForms/psychiatrist_mhGAPAssessmentForm.xml"/>
     <changeSet id="Amman-202102030001" author="Tarun" context="Rename existing pyscho-social assessment form short name">
@@ -11707,6 +11706,7 @@
             VALUES ('Anaesthetist Technician', 'Anaesthetist Technician', 'java.lang.String', @anaesthetist_sort_weight+1, 8, NOW(), UUID());
         </sql>
     </changeSet>
+    <include file="clinicalForms/networkPhysiotherapyAssessmentForm.xml"/>
     <include file="bacteriology/addNewAntibiogramsForAcinetobacterBaumannii.xml"/>
     <include file="bacteriology/addNewAntibiogramsForEnterobacterAerogenes.xml"/>
     <include file="bacteriology/addNewAntibiogramsForEnterococcusAvium.xml"/>
@@ -11714,5 +11714,7 @@
     <include file="bacteriology/addNewAntibiogramsForStaphylococcusAureusssAureus.xml"/>
     <include file="bacteriology/addNewAntibiogramsForStaphylococcusCoagulaseNegative.xml"/>
     <include file="bacteriology/addNewAntibiogramsForAchromobacterXylosoxidansssDenitrificans.xml"/>
+    <include file="bacteriology/addNewAntiobiogramsForMicrobiologyBacteria.xml"/>
+    <include file="bacteriology/addBacillusSp_CandidaNotAlbicans_MicrococcusSp_Bacteria.xml"/>
 
 </databaseChangeLog>

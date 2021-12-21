@@ -3044,7 +3044,14 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
 
            }
-           else if (conditionConcept == "Citrobacter freundii" || conditionConcept =="Enterobacter aerogenes" || conditionConcept =="Enterobacter cloacae" || conditionConcept =="Escherichia coli" || conditionConcept == "Escherichia coli O157:H7" || conditionConcept == "Klebsiella pneumoniae ss. pneumoniae" || conditionConcept =="Morganella morganii ss. morganii" || conditionConcept =="Proteus mirabilis" || conditionConcept =="Salmonella enteritidis" || conditionConcept =="Salmonella sp." || conditionConcept =="Salmonella typhi" || conditionConcept =="Salmonella typhimurium" || conditionConcept == "Serratia marcescens" || conditionConcept =="Shigella boydii" || conditionConcept =="Shigella boydii serotype 1"){
+           else if (conditionConcept == "Citrobacter freundii" || conditionConcept =="Enterobacter aerogenes" || conditionConcept =="Enterobacter cloacae" ||
+              conditionConcept =="Escherichia coli" || conditionConcept == "Escherichia coli O157:H7" || conditionConcept == "Klebsiella pneumoniae ss. pneumoniae" ||
+              conditionConcept =="Morganella morganii ss. morganii" || conditionConcept =="Proteus mirabilis" || conditionConcept =="Salmonella enteritidis" ||
+              conditionConcept =="Salmonella sp." || conditionConcept =="Salmonella typhi" || conditionConcept =="Salmonella typhimurium" ||
+              conditionConcept == "Serratia marcescens" || conditionConcept =="Shigella boydii" || conditionConcept =="Shigella boydii serotype 1" ||
+              conditionConcept == "Citrobacter Koseri (diversus)" || conditionConcept == "Enterobacter amnigenus" || conditionConcept == "Esherichia hermanii" ||
+              conditionConcept == "Klebsiella Oxytoca" || conditionConcept == "Proteus vulgaris" || conditionConcept == "Pseudomonas fluorescens"
+          ){
                 conditions.show.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem","EB, Levofloxacin","EB, Tigecycline","EB, Colistin")
                 conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
                 conditions.hide.push("SP, Oxacillin","SP, Trimeth-Sulfa","SP, Chloramphenicol","SP, Erythromycin","SP, Tetracycline","SP, Norfloxacin")
@@ -3138,7 +3145,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
 
            }
-           else if (conditionConcept == "Staphylococcus, coagulase negative"){
+           else if (conditionConcept == "Staphylococcus, coagulase negative" || conditionConcept == "Staphylococcus capitis ss. Capitis" || conditionConcept == "Staphylococcus cohnii ss. Cohnii" || conditionConcept =="Staphylococcus haemolyticus" || conditionConcept =="Staphylococcus hominis ss. Hominis"){
                 conditions.show.push("CNS, Cefoxitin","CNS, Ciprofloxacin","CNS, Norfloxacin","CNS, Amikacin","CNS, Gentamicin","CNS, Tobramycin","CNS, Erythromycin","CNS, Clindamycin","CNS, D-zone:","CNS, Chloramphenicol","CNS, Trimeth-Sulfa","CNS, Fusidic acid","CNS, Rifampicin","CNS, Vancomycin MIC","CNS, Tetracycline","CNS, Teicoplanin","CNS, Levofloxacin")
                 conditions.hide.push("LM, Penicillin","LM, Trimeth-Sulfa","LM, Erythromycin","LM, Ampicillin")
                 conditions.hide.push("HI, Penicillin","HI, Augmentin","HI, Ampicillin","HI, Trimeth-Sulfa","HI, Chloramphenicol","HI, Nalidixic acid")
