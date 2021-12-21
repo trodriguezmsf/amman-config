@@ -3388,6 +3388,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             if (conditionConcept == "Other") {
                 conditions.show.push("NP, Special case, other");
             }
+            else conditions.hide.push("NP, Special case, other");
         }
         else {
             conditions.hide.push("NP, Notes about network physio special cases");
