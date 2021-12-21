@@ -2930,7 +2930,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
               hide: []
           };
           var conditionConcept = formFieldValues['Microbiology, Final Identification'];
-          if (conditionConcept == "Pseudomonas aeruginosa") {
+          if (conditionConcept == "Pseudomonas aeruginosa" || conditionConcept == "Pseudomonas putida"  || conditionConcept == "Pseudomonas fluorescens") {
               conditions.show.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem","PS, Pip-tazobactam","PS, Levofloxacin","PS, Colistin")
               conditions.hide.push("SA, Penicillin","SA, Penicillin sensitive zone:","SA, Cefoxitin","SA, Ciprofloxacin","SA, Norfloxacin","SA, Amikacin","SA, Gentamicin","SA, Tobramycin","SA, Erythromycin","SA, Clindamycin","SA, D-zone:","SA, Chloramphenicol","SA, Trimeth-Sulfa","SA, Fusidic acid","SA, Rifampicin","SA, Vanc MIC","SA, Tetracycline","SA, Teicoplanin","SA, Levofloxacin")
               conditions.hide.push("SS, Penicillin","SS, Chloramphenicol","SS, Erythromycin","SS, Clindamycin","SS, D-zone:","SS, Norfloxacin","SS, Tetracycline")
@@ -3050,7 +3050,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
               conditionConcept =="Salmonella sp." || conditionConcept =="Salmonella typhi" || conditionConcept =="Salmonella typhimurium" ||
               conditionConcept == "Serratia marcescens" || conditionConcept =="Shigella boydii" || conditionConcept =="Shigella boydii serotype 1" ||
               conditionConcept == "Citrobacter Koseri (diversus)" || conditionConcept == "Enterobacter amnigenus" || conditionConcept == "Esherichia hermanii" ||
-              conditionConcept == "Klebsiella Oxytoca" || conditionConcept == "Proteus vulgaris" || conditionConcept == "Pseudomonas fluorescens"
+              conditionConcept == "Klebsiella Oxytoca" || conditionConcept == "Proteus vulgaris" || conditionConcept == "Serratia odorifera" ||
+              conditionConcept =="Serratia liquefaciens" || conditionConcept == "Moraxella sp."
           ){
                 conditions.show.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem","EB, Levofloxacin","EB, Tigecycline","EB, Colistin")
                 conditions.hide.push("SV, Penicillin","SV, Ampicillin","SV, Erythromycin","SV, Clindamycin","SV, D-zone:","SV, Vancomycin","SV, Ceftriaxone")
@@ -3221,7 +3222,14 @@ Bahmni.ConceptSet.FormConditions.rules = {
               conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
 
           }
-           else if (conditionConcept == "Bacteroides fragilis" || conditionConcept == "Burkholderia cepacia" || conditionConcept == "Campylobacter coli" || conditionConcept == "Campylobacter jejuni ss. jejuni" || conditionConcept == "Candida albicans" || conditionConcept == "Cytomegalovirus" || conditionConcept == "Epstein-Barr virus" || conditionConcept == "Hepatitis A virus" || conditionConcept == "Hepatitis B virus" || conditionConcept == "Hepatitis C virus" || conditionConcept == "Herpes simplex virus" || conditionConcept == "Herpes simplex virus 1" || conditionConcept == "Herpes simplex virus 2" || conditionConcept == "Human herpesvirus" || conditionConcept == "Human papillomavirus" || conditionConcept == "Influenza A virus" || conditionConcept == "Influenza B virus" || conditionConcept == "Mixed bacterial species present" || conditionConcept == "Moraxella (Branh.) catarrhalis" || conditionConcept == "Mycobacterium avium-intracellulare complex" || conditionConcept == "Mycobacterium tuberculosis" || conditionConcept == "Neisseria gonorrhoeae" || conditionConcept == "Normal flora" || conditionConcept == "Oral flora" || conditionConcept == "Respiratory syncytial virus" || conditionConcept == "Stenotrophomonas maltophilia" || conditionConcept == "Vibrio cholerae" ) {
+           else if (conditionConcept == "Bacteroides fragilis" || conditionConcept == "Burkholderia cepacia" || conditionConcept == "Campylobacter coli" || conditionConcept == "Campylobacter jejuni ss. jejuni" ||
+              conditionConcept == "Candida albicans" || conditionConcept == "Cytomegalovirus" || conditionConcept == "Epstein-Barr virus" || conditionConcept == "Hepatitis A virus" || conditionConcept == "Hepatitis B virus" ||
+              conditionConcept == "Hepatitis C virus" || conditionConcept == "Herpes simplex virus" || conditionConcept == "Herpes simplex virus 1" || conditionConcept == "Herpes simplex virus 2" || conditionConcept == "Human herpesvirus" ||
+              conditionConcept == "Human papillomavirus" || conditionConcept == "Influenza A virus" || conditionConcept == "Influenza B virus" || conditionConcept == "Mixed bacterial species present" || conditionConcept == "Moraxella (Branh.) catarrhalis" ||
+              conditionConcept == "Mycobacterium avium-intracellulare complex" || conditionConcept == "Mycobacterium tuberculosis" || conditionConcept == "Neisseria gonorrhoeae" || conditionConcept == "Normal flora" || conditionConcept == "Oral flora" ||
+              conditionConcept == "Respiratory syncytial virus" || conditionConcept == "Stenotrophomonas maltophilia" || conditionConcept == "Vibrio cholerae" || conditionConcept == "Bacillus sp" || conditionConcept == "Candida, not albicans" ||
+              conditionConcept == "Micrococcus sp." || conditionConcept == "Stenotrophmonas maltophilia"
+          ) {
                 conditions.show.push("Microbiology, Comments")
                 conditions.show.push("Microbiology, Are there any alerts?")
                 conditions.hide.push("PS, Piperacillin","PS, Ticarcillin","PS, Aztreonam","PS, Tobramycine","PS, Amikacin","PS, Ticar-clav ac","PS, Cefepime","PS, Imipenem","PS, Ceftazidime","PS, Gentamicine","PS, Ciprofloxacin","PS, Meropenem","PS, Pip-tazobactam","PS, Levofloxacin","PS, Colistin")
