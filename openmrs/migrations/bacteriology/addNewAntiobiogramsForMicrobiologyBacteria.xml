@@ -294,12 +294,33 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pseudomonas putida","SM","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pseudomonas putida","PP","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Pseudomonas putida', 'PSEUDOMONAS_PUTIDA_ID');
         </sql>
     </changeSet>
 
-    <changeSet id="Amman-20212014135" author="Supriya">
+    <changeSet id="Amman-202120151236" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in
+                ("Pseudomonas fluorescens") and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Create Pseudomonas fluorescens concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pseudomonas fluorescens","PF","N/A","Misc",false);
+            call create_reference_mapping_msf_internal('Pseudomonas fluorescens', 'PSEUDOMONAS_FLUORESCENS_ID');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-20212014137" author="Supriya">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -310,7 +331,7 @@
                 ('Citrobacter Koseri (diversus)','Enterobacter amnigenus','Esherichia hermanii',
                 'Klebsiella Oxytoca','Moraxella sp.','Serratia liquefaciens','Serratia odorifera',
                 'Staphylococcus capitis ss. Capitis', 'Staphylococcus cohnii ss. Cohnii','Staphylococcus haemolyticus',
-                'Staphylococcus hominis ss. Hominis','Stenotrophmonas maltophilia', 'Proteus vulgaris', 'Pseudomonas putida')
+                'Staphylococcus hominis ss. Hominis','Stenotrophmonas maltophilia', 'Proteus vulgaris', 'Pseudomonas putida', 'Pseudomonas fluorescens')
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "Microbiology, Final Identification");
@@ -336,6 +357,7 @@
             select concept_id into @child12_concept_id from concept_name where name ="Stenotrophmonas maltophilia" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child13_concept_id from concept_name where name ="Proteus vulgaris" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child14_concept_id from concept_name where name ="Pseudomonas putida" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child15_concept_id from concept_name where name ="Pseudomonas fluorescens" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
 
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
@@ -351,6 +373,7 @@
             call add_concept_answer(@concept_id, @child12_concept_id, 12);
             call add_concept_answer(@concept_id, @child13_concept_id, 13);
             call add_concept_answer(@concept_id, @child14_concept_id, 14);
+            call add_concept_answer(@concept_id, @child15_concept_id, 15);
         </sql>
     </changeSet>
 
