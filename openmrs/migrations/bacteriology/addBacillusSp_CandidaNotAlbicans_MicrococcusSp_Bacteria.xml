@@ -21,7 +21,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Bacillus sp","BS","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Bacillus sp","Bacillus sp","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Bacillus sp', 'BACILLUS_ID');
         </sql>
     </changeSet>
@@ -42,7 +42,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Candida, not albicans","CNA","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Candida, not albicans","Candida, not albicans","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Candida, not albicans', 'CANDIDA_NOT_ALBICANS_ID');
         </sql>
     </changeSet>
@@ -63,7 +63,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Micrococcus sp.","CNA","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Micrococcus sp.","Micrococcus sp.","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Micrococcus sp.', 'MICROCOCCUS_SP_ID');
         </sql>
     </changeSet>

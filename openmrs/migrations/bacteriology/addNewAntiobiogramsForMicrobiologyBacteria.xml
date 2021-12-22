@@ -21,7 +21,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Citrobacter Koseri (diversus)","CK","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Citrobacter Koseri (diversus)","Citrobacter Koseri (diversus)","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Citrobacter Koseri (diversus)', 'CITROBACKER_KOSERI_ID');
         </sql>
     </changeSet>
@@ -42,7 +42,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Enterobacter amnigenus","EA","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Enterobacter amnigenus","Enterobacter amnigenus","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Enterobacter amnigenus', 'ENTEROBACTER_ID');
         </sql>
     </changeSet>
@@ -63,7 +63,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Esherichia hermanii","EH","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Esherichia hermanii","Esherichia hermanii","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Esherichia hermanii', 'ESHERICHIA_ID');
         </sql>
     </changeSet>
@@ -84,7 +84,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Klebsiella Oxytoca","KO","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Klebsiella Oxytoca","Klebsiella Oxytoca","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Klebsiella Oxytoca', 'KLEBSIELLA_OXYTOCA_ID');
         </sql>
     </changeSet>
@@ -93,7 +93,7 @@
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_name where name in
-                ("Micrococcus sp.") and
+                ("Moraxella sp.") and
                 concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             </sqlCheck>
         </preConditions>
@@ -105,7 +105,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Moraxella sp.","MS","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Moraxella sp.","Moraxella sp.","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Moraxella sp.', 'MORAXELLA_ID');
         </sql>
     </changeSet>
@@ -126,7 +126,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Proteus vulgaris","PV","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Proteus vulgaris","Proteus vulgaris","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Proteus vulgaris.', 'PROTEUS_VULGARIS_ID');
         </sql>
     </changeSet>
@@ -147,7 +147,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Serratia liquefaciens","SL","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Serratia liquefaciens","Serratia liquefaciens","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Serratia liquefaciens', 'SERRATIA_LIQUEFACIENS_ID');
         </sql>
     </changeSet>
@@ -168,7 +168,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Serratia odorifera","SEA","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Serratia odorifera","Serratia odorifera","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Serratia odorifer', 'SERRATIA_ODORIFIER_ID');
         </sql>
     </changeSet>
@@ -189,7 +189,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Staphylococcus capitis ss. Capitis","SCSC","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Staphylococcus capitis ss. Capitis","Staphylococcus capitis ss. Capitis","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Staphylococcus capitis ss. Capitis', 'STAPHYLOCOCCUS_CAPITIS_ID');
         </sql>
     </changeSet>
@@ -210,7 +210,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Staphylococcus cohnii ss. Cohnii","ss.Cohnii","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Staphylococcus cohnii ss. Cohnii","Staphylococcus cohnii ss. Cohnii","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Staphylococcus cohnii ss. Cohnii', 'STAPHYLOCOCCUS_COHNII_ID');
         </sql>
     </changeSet>
@@ -231,7 +231,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Staphylococcus haemolyticus","SH","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Staphylococcus haemolyticus","Staphylococcus haemolyticus","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Staphylococcus haemolyticus', 'STAPHYLOCOCCUS_HAEMOLYTICUS_ID');
         </sql>
     </changeSet>
@@ -252,7 +252,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Staphylococcus hominis ss. Hominis","SHSH","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Staphylococcus hominis ss. Hominis","Staphylococcus hominis ss. Hominis","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Staphylococcus hominis ss. Hominis', 'STAPHYLOCOCCUS_HOMINIS_ID');
         </sql>
     </changeSet>
@@ -273,7 +273,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Stenotrophmonas maltophilia","SM","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Stenotrophmonas maltophilia","Stenotrophmonas maltophilia","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Stenotrophmonas maltophilia', 'STAPHYLOCOCCUS_MALTOPHILIA_ID');
         </sql>
     </changeSet>
@@ -294,7 +294,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pseudomonas putida","PP","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pseudomonas putida","Pseudomonas putida","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Pseudomonas putida', 'PSEUDOMONAS_PUTIDA_ID');
         </sql>
     </changeSet>
@@ -315,7 +315,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pseudomonas fluorescens","PF","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pseudomonas fluorescens","Pseudomonas fluorescens","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Pseudomonas fluorescens', 'PSEUDOMONAS_FLUORESCENS_ID');
         </sql>
     </changeSet>

@@ -21,7 +21,7 @@
             set @count = 0;
             set @uuid = NULL;
 
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Achromobacter xylosoxidans ss. Denitrificans","AXD","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Achromobacter xylosoxidans ss. Denitrificans","Achromobacter xylosoxidans ss. Denitrificans","N/A","Misc",false);
             call create_reference_mapping_msf_internal('Achromobacter xylosoxidans ss. Denitrificans', 'ACHROMOBACTER_ID');
         </sql>
     </changeSet>
