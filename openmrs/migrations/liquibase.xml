@@ -11716,5 +11716,31 @@
     <include file="bacteriology/addNewAntibiogramsForAchromobacterXylosoxidansssDenitrificans.xml"/>
     <include file="bacteriology/addNewAntiobiogramsForMicrobiologyBacteria.xml"/>
     <include file="bacteriology/addBacillusSp_CandidaNotAlbicans_MicrococcusSp_Bacteria.xml"/>
+    <changeSet id="AMMAN_CONFIG_20221217070135480" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_name where name ="Catheter";
+            </sqlCheck>
+        </preConditions>
+        <comment>creating new concept 'Catheter'</comment>
+        <sql>
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Catheter","Catheter","N/A","Misc",true);
+        </sql>
+    </changeSet>
+    <changeSet id="AMMAN_CONFIG_20221217070135481" author="Venky">
+        <preConditions onFail="MARK_RAN">
+          <sqlCheck expectedResult = "0">
+                SELECT count(*) from concept_set where concept_set = (select concept_id from concept_name where name ="Drug Routes" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0) AND concept_id =(SELECT concept_id  from concept_name where name= 'Catheter' AND concept_name_type="FULLY_SPECIFIED" and locale = "en" and voided = 0);
+          </sqlCheck>
+        </preConditions>
+    <comment>Adding New answer concepts Catheter to Drug Routes</comment>
+    <sql>
+        select concept_id into @concept_id from concept_name where name = "Drug Routes" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+        set @member1_concept_id = 0;
+        select concept_id into @member1_concept_id from concept_name where name ="Catheter" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+        SELECT max(sort_weight) into @maxSortWeight from concept_set where concept_set = (select concept_id from concept_name where name ="Drug Routes" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0);
+        call add_concept_set_members(@concept_id, @member1_concept_id, @maxSortWeight+1);
+    </sql>
+  </changeSet>
 
 </databaseChangeLog>
