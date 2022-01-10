@@ -1001,5 +1001,209 @@
         }
       }
     }
+  },
+  "OPD": {
+    "displayByDefault": false,
+    "translationKey": "DASHBOARD_TITLE_OPD",
+    "maxRecentlyViewedPatients": 1,
+    "sections": {
+      "MD Initial Assessment":{
+        "translationKey": "DASHBOARD_MD_ASSESSMENT",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 0,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "conceptNames": [
+            "MD Initial Assessment"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "MD Initial Assessment"
+          ],
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Vital Signs":{
+        "translationKey": "DASHBOARD_VITAL_SIGNS_FORM",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 1,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "conceptNames": [
+            "Vital Signs"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Vital Signs"
+          ],
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Medical Doctor OPD Follow-up":{
+        "translationKey": "DASHBOARD_MEDICAL_DOCTOR_OPD_FOLLOWUP",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 2,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "conceptNames": [
+            "Medical Doctor OPD Follow-up"
+          ],
+          "obsIgnoreList": [
+            "MDOF, Complaint of patient (ABx clinic)",
+            "MDOF, Status of wound",
+            "MDOF, Kidney function",
+            "MDOF, Liver function",
+            "MDOF, Plan",
+            "MDOF, Consultation notes, ABx clinic"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Medical Doctor OPD Follow-up"
+          ],
+          "obsIgnoreList": [
+            "MDOF, Complaint of patient (ABx clinic)",
+            "MDOF, Status of wound",
+            "MDOF, Kidney function",
+            "MDOF, Liver function",
+            "MDOF, Plan",
+            "MDOF, Consultation notes, ABx clinic"
+          ],
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Health Education":{
+        "translationKey": "DASHBOARD_TITLE_HEALTH_EDUCATION",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 3,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "conceptNames": [
+            "Health Education"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Health Education"
+          ],
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Antibiotic Clinic":{
+        "translationKey": "DASHBOARD_TITLE_ANTIBIOTIC_CLINIC",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 4,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "conceptNames": [
+            "MDOF, Complaint of patient (ABx clinic)",
+            "MDOF, Status of wound",
+            "MDOF, Kidney function",
+            "MDOF, Liver function",
+            "MDOF, Plan",
+            "MDOF, Consultation notes, ABx clinic"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "MDOF, Complaint of patient (ABx clinic)",
+            "MDOF, Status of wound",
+            "MDOF, Kidney function",
+            "MDOF, Liver function",
+            "MDOF, Plan",
+            "MDOF, Consultation notes, ABx clinic"
+          ],
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "OPD Nursing Note":{
+        "translationKey": "DASHBOARD_TITLE_OPD_NURSING_NOTE_ASSESSMENT",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 5,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "conceptNames": [
+            "OPD Nursing Note"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "OPD Nursing Note"
+          ],
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Psychiatrist-mhGAP Assessment":{
+        "translationKey": "DASHBOARD_PSYCHIATRIST_MHGAP_ASSESSMENT",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 6,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "conceptNames": [
+            "PA, Psychiatrist-mhGAP Assessment"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "PA, Psychiatrist-mhGAP Assessment"
+          ],
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Pediatric Nurse Assessment":{
+        "translationKey": "DASHBOARD_PEDIATRIC_NURSE_ASSESSMENT",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 7,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "conceptNames": [
+            "Pediatric Nurse Assessment"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Pediatric Nurse Assessment"
+          ],
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "External Consultation":{
+        "translationKey": "DASHBOARD_EXTERNAL_CONSULTATION",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 8,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "conceptNames": [
+            "External Consultation"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "External Consultation"
+          ],
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      }
+    }
   }
-  }
+}
