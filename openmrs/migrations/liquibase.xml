@@ -11742,5 +11742,50 @@
         call add_concept_set_members(@concept_id, @member1_concept_id, @maxSortWeight+1);
     </sql>
   </changeSet>
+  <changeSet id="Amman-202101131120" author="Tarun">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+        SELECT count(*) from concept_name where name ="Pain intervention follow-up" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+      </sqlCheck>
+    </preConditions>
+    <comment>MOBN-1846 | Create 'Pain intervention follow-up' answer concept</comment>
+    <sql>
+      # Create concepts
+      set @concept_id = 0;
+      set @concept_name_short_id = 0;
+      set @concept_name_full_id = 0;
+      set @concept_description = NULL;
+      set @concept_datatype = "N/A";
+      set @concept_class = "Misc";
+      set @locale = "en";
+      set @is_set = False;
+
+      call add_new_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, "Pain intervention follow-up", "Pain intervention follow-up", @concept_description, @concept_datatype, @concept_class, @locale, @is_set);
+    </sql>
+  </changeSet>
+  <changeSet id="Amman-202101131140" author="Tarun">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+        select count(*) from concept_answer ca
+        join
+        concept_name cn
+        on ca.concept_id = cn.concept_id
+        where ca.answer_concept IN (select concept_id from concept_name where name IN
+        ("Pain intervention follow-up")
+        and concept_name_type = "FULLY_SPECIFIED")
+        AND
+        cn.concept_id IN (select concept_id from concept_name where name = "PNF, Type of assessment");
+      </sqlCheck>
+    </preConditions>
+    <comment>MOBN-1846 | Add 'Pain intervention follow-up' as a new coded answer to 'PNF, Type of assessment' concept</comment>
+    <sql>
+        # Add answers
+        set @parent_concept = "PNF, Type of assessment";
+        set @locale = "en";
+        set @is_set = False;
+
+        call add_answer_to_concept_set(@parent_concept, NULL, "Pain intervention follow-up", NULL, @locale, @is_set);
+    </sql>
+  </changeSet>
 
 </databaseChangeLog>
