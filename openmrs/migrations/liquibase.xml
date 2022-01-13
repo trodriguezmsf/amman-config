@@ -11787,5 +11787,69 @@
         call add_answer_to_concept_set(@parent_concept, NULL, "Pain intervention follow-up", NULL, @locale, @is_set);
     </sql>
   </changeSet>
+    <include file="clinicalForms/addMoreConceptsToSurgeonFollowUpForm.xml"/>
+    <changeSet id="Amman-202201131200" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SFP, Site of surgical procedure" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Site, Lower jaw' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding	Site, Lower jaw into SFP, Site of surgical procedure</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SFP, Site of surgical procedure' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Site, Lower jaw' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,uuid) VALUES (@concept_id,@concept_answer,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202201131201" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Periodontal scaling and root planning', 'Periodontal scaling', 'Surgical tooth extraction',
+                'Treatment of root canal obstruction','Protective tooth restoration','Resin-based composite',
+                'Removal of residual tooth roots (cutting procedure)',
+                'Surgical placement of implant body: endosteal implant - Includes second stage surgery and placement of healing cap')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "SFP, Planned Procedure (surgical)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding	Site, Lower jaw into SFP, Planned Procedure (surgical)</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "SFP, Planned Procedure (surgical)" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Periodontal scaling and root planning" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Periodontal scaling" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Surgical tooth extraction" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Treatment of root canal obstruction" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Protective tooth restoration" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Resin-based composite" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Removal of residual tooth roots (cutting procedure)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Surgical placement of implant body: endosteal implant - Includes second stage surgery and placement of healing cap" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>

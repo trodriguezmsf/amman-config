@@ -1,0 +1,98 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="Amman-202201131156" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name ='SFP, Estimated remaining length of stay' and concept_name_type = "FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Create concept Estimated remaining length of stay </comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SFP, Estimated remaining length of stay","Estimated remaining length of stay","Coded","Misc",false);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202201131157" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name IN ('Less than 7 days', '7-14 days', '15-30 days', '31-60 days','More than 60 days') and concept_name_type = "FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Create answer concepts for Estimated remaining length of stay</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Less than 7 days","Less than 7 days","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"7-14 days","7-14 days","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"15-30 days","15-30 days","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"31-60 days","31-60 days","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"More than 60 days","More than 60 days","N/A","Misc",false);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202201131158" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Less than 7 days', '7-14 days', '15-30 days', '31-60 days','More than 60 days','Unpredictable')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "SFP, Estimated remaining length of stay");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to SFP, Estimated remaining length of stay</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "SFP, Estimated remaining length of stay" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Less than 7 days" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="7-14 days" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="15-30 days" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="31-60 days" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="More than 60 days" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Unpredictable" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman-202201131159" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                select count(*) from concept_set where concept_id = (select concept_id from concept_name where name = "SFP, Estimated remaining length of stay" and concept_name_type = "FULLY_SPECIFIED") and concept_set =(select concept_id from concept_name where name = "Surgeon Follow-up" and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding SFP, Estimated remaining length of stay to Surgeon Follow-up form</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set  from concept_name where name= 'Surgeon Follow-up' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'SFP, Estimated remaining length of stay' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id,@concept_set,1095,8,now(),uuid());
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

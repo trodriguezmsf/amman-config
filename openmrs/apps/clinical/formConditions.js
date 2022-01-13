@@ -1973,19 +1973,19 @@ Bahmni.ConceptSet.FormConditions.rules = {
          };
          var conditionConcept = formFieldValues['SFP, Is patient for surgery'];
          if (conditionConcept == "Yes"){
-             conditions.show.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary")
+             conditions.show.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary","SFP, Estimated remaining length of stay")
              conditions.hide.push("SFP, Follow-up consultation notes", "SFP, Is patient ready to be discharged (TRM)?");
          }
          else if(conditionConcept=="No"){
-             conditions.show.push("SFP, Follow-up consultation notes");
+             conditions.show.push("SFP, Follow-up consultation notes","SFP, Estimated remaining length of stay");
              conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary", "SFP, Is patient ready to be discharged (TRM)?")
         }
         else if(conditionConcept=="No Surgery Planned"){
              conditions.show.push("SFP, Is patient ready to be discharged (TRM)?");
-             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary", "SFP, Follow-up consultation notes")
+             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary", "SFP, Follow-up consultation notes","SFP, Estimated remaining length of stay")
         }
          else {
-             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary","SFP, Follow-up consultation notes", "SFP, Is patient ready to be discharged (TRM)?")
+             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary","SFP, Follow-up consultation notes", "SFP, Is patient ready to be discharged (TRM)?","SFP, Estimated remaining length of stay")
          }
          return conditions;
      },
@@ -1997,10 +1997,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
          var conditionConcept = formFieldValues['SFP, Is patient ready to be discharged (TRM)?'];
          if (conditionConcept == "Yes"){
              conditions.show.push("SFP, Has patient been informed about TRM", "SFP, Follow-up plan", "FP, Follow-up needs")
-             conditions.hide.push("SFP, Consultation notes");
+             conditions.hide.push("SFP, Consultation notes","SFP, Estimated remaining length of stay");
          }
          else if(conditionConcept=="No"){
-             conditions.show.push("SFP, Consultation notes");
+             conditions.show.push("SFP, Consultation notes","SFP, Estimated remaining length of stay");
              conditions.hide.push("SFP, Has patient been informed about TRM", "SFP, Follow-up plan", "FP, Follow-up needs")
 	 }
 	 else {
