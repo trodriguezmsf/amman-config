@@ -11939,5 +11939,98 @@
             call add_concept_answer(@concept_id, @child8_concept_id, 8);
         </sql>
     </changeSet>
+    <changeSet id="AMMAN_202201141339" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name = 'DIA, Site' AND concept_name_type="FULLY_SPECIFIED") AND answer_concept=(SELECT concept_id FROM concept_name WHERE name ="Site, Lower jaw");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New answer concepts to DIA, Site</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'DIA, Site' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Site, Lower jaw' AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer1,8,now(),85,uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="AMMAN_202201141340" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name IN ('Dental calculus', 'Impacted teeth',
+                'Dental caries on smooth surface', 'Dental root caries','Pulpitis',
+                'Chronic gingivitis, plaque induced','Aggressive periodontitis',
+                'Complete loss of teeth due to periodontal disease','Fractured dental restorative material') and
+                concept_name_type = "FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Create answer concepts for DIA, Surgical Diagnosis coded</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dental calculus","Dental calculus","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Impacted teeth","Impacted teeth","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dental caries on smooth surface","1Dental caries on smooth surface","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dental root caries","Dental root caries","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pulpitis","Pulpitis","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Chronic gingivitis, plaque induced","Chronic gingivitis, plaque induced","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Aggressive periodontitis","Aggressive periodontitis","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Complete loss of teeth due to periodontal disease","Complete loss of teeth due to periodontal disease","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Fractured dental restorative material","Fractured dental restorative material","N/A","Misc",false);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_202201141341" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ('Dental calculus', 'Impacted teeth',
+                'Dental caries on smooth surface', 'Dental root caries','Pulpitis',
+                'Chronic gingivitis, plaque induced','Aggressive periodontitis',
+                'Complete loss of teeth due to periodontal disease','Fractured dental restorative material')
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "DIA, Surgical Diagnosis coded");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to DIA, Surgical Diagnosis coded</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "DIA, Surgical Diagnosis coded" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Dental calculus" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Impacted teeth" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Dental caries on smooth surface" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Dental root caries" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Pulpitis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Chronic gingivitis, plaque induced" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Aggressive periodontitis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Complete loss of teeth due to periodontal disease" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Fractured dental restorative material" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>
