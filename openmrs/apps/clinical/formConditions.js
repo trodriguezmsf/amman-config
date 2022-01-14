@@ -1982,7 +1982,11 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         else if(conditionConcept=="No Surgery Planned"){
              conditions.show.push("SFP, Is patient ready to be discharged (TRM)?");
-             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary", "SFP, Follow-up consultation notes","SFP, Estimated remaining length of stay")
+             conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary", "SFP, Follow-up consultation notes")
+             var nestedConditionConcept = formFieldValues['SFP, Is patient ready to be discharged (TRM)?'];
+             if (nestedConditionConcept == undefined || nestedConditionConcept == "Yes") {
+                 conditions.hide.push("SFP, Estimated remaining length of stay")
+             }
         }
          else {
              conditions.hide.push("SFP, Has patient consent been obtained?","FP, Planned Surgical Procedures for next OT","SFP, Estimated duration","SFP, Surgical summary","SFP, Follow-up consultation notes", "SFP, Is patient ready to be discharged (TRM)?","SFP, Estimated remaining length of stay")
