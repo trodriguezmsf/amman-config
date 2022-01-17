@@ -12033,4 +12033,49 @@
         </sql>
     </changeSet>
 
+    <changeSet id="AMMAN_202201171229" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Periodontal scaling and root planning", "Periodontal scaling", "Surgical tooth extraction", "Treatment of root canal obstruction", "Protective tooth restoration", "Resin-based composite", "Removal of residual tooth roots (cutting procedure)", "Surgical placement of implant body: endosteal implant - Includes second stage surgery and placement of healing cap")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "SAP, Site of surgical procedure");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new answers to SAP, Site of surgical procedure</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "SAP, Site of surgical procedure" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select max(sort_weight) into @max_sort_weight from concept_answer ca join concept_name cn where cn.concept_id IN (select concept_id from concept_name where name = "SAP, Site of surgical procedure" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0);
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Periodontal scaling and root planning" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Periodontal scaling" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Surgical tooth extraction" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Treatment of root canal obstruction" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Protective tooth restoration" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Resin-based composite" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Removal of residual tooth roots (cutting procedure)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Surgical placement of implant body: endosteal implant - Includes second stage surgery and placement of healing cap" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, @max_sort_weight+1);
+            call add_concept_answer(@concept_id, @child2_concept_id, @max_sort_weight+2);
+            call add_concept_answer(@concept_id, @child3_concept_id, @max_sort_weight+3);
+            call add_concept_answer(@concept_id, @child4_concept_id, @max_sort_weight+4);
+            call add_concept_answer(@concept_id, @child5_concept_id, @max_sort_weight+5);
+            call add_concept_answer(@concept_id, @child6_concept_id, @max_sort_weight+6);
+            call add_concept_answer(@concept_id, @child7_concept_id, @max_sort_weight+7);
+            call add_concept_answer(@concept_id, @child8_concept_id, @max_sort_weight+8);
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
