@@ -11969,7 +11969,7 @@
             set @concept_full_id = 0;
             call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dental calculus","Dental calculus","N/A","Misc",false);
             call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Impacted teeth","Impacted teeth","N/A","Misc",false);
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dental caries on smooth surface","1Dental caries on smooth surface","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dental caries on smooth surface","Dental caries on smooth surface","N/A","Misc",false);
             call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dental root caries","Dental root caries","N/A","Misc",false);
             call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pulpitis","Pulpitis","N/A","Misc",false);
             call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Chronic gingivitis, plaque induced","Chronic gingivitis, plaque induced","N/A","Misc",false);
