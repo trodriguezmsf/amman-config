@@ -690,7 +690,7 @@
       },
       "Discharge Medication": {
         "type": "custom",
-        "displayOrder": 17,
+        "displayOrder": 14,
         "config": {
           "title": "DASHBOARD_TITLE_DISCHARGE_MEDICATION_KEY",
           "template": "<discharge-medication section='config' patient='patient' enrollment='enrollment'></discharge-medication>"
@@ -700,7 +700,7 @@
         "translationKey": "DASHBOARD_TITLE_PHYSIOTHERAPY_FOLLOW-UP_PLAN",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 18,
+        "displayOrder": 17,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -728,7 +728,7 @@
       },
       "Surgical Follow-up Plan": {
         "type": "custom",
-        "displayOrder": 19,
+        "displayOrder": 16,
         "config": {
           "title": "DASHBOARD_TITLE_SURGICAL_FOLLOW_UP_PLAN_KEY",
           "template": "<surgical-follow_up section='config' patient='patient' enrollment='enrollment'></surgical-follow_up>"
