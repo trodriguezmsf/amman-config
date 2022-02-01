@@ -2231,18 +2231,6 @@
           "OTA, Comments": {
             "disableAddNotes": true
           },
-          "EC, Date recorded": {
-            "disableAddNotes": true
-          },
-          "EC, Type of external consultation": {
-            "disableAddNotes": true
-          },
-          "EC, Type of external consultation, other": {
-            "disableAddNotes": true
-          },
-          "EC, Notes on the external consultation": {
-            "disableAddNotes": true
-          },
           "OR, Wound classification": {
             "disableAddNotes": true
           },
