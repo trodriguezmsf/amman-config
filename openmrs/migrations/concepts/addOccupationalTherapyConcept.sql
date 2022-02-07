@@ -19,23 +19,21 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Long term 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Short term goal","Short term goal","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Other assessments performed","Other assessments performed","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Follow-up notes","Follow-up notes","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Comments on short term goals","Comments on short term goals","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Comment on long term goals","Comment on long term goals","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Difficulty at the beginning of the treatment","Difficulty at the beginning of the treatment","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Difficulty at the end of the treatment","Difficulty at the end of the treatment","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Comments about the difficulties","Comments about the difficulties","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Written home program","Written home program","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Patient/family occupational therapy education","Patient/family occupational therapy education","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Comments","Comments","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Comments on the goals","Comments on the goals","Text","Misc",false);
 
 #Add Numeric Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Sollermann test total score","Sollermann test total score","Numeric","Computed",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, DASH test score","DASH test score","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Grip","Grip","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Lateral pinch","Lateral pinch","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, 2 point pinch","2 point pinch","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, 3 point pinch","3 point pinch","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Power pinch","Power pinch","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Power grip","Power grip","Numeric","Misc",false);
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
@@ -43,15 +41,13 @@ VALUES ((select concept_id from concept_name where name = "OTA, Sollermann test 
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "OTA, DASH test score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "OTA, Grip" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
-INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "OTA, Lateral pinch" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "OTA, 2 point pinch" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "OTA, 3 point pinch" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "OTA, Power pinch" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+VALUES ((select concept_id from concept_name where name = "OTA, Power grip" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 
 #Add Coded Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Type of assessment","Type of assessment","Coded","Misc",false);
@@ -59,7 +55,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Dominant h
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Affected hand","Affected hand","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Is the patient motivated to therapy?","Is the patient motivated to therapy?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Is the patient cooperative in the session?","Is the patient cooperative in the session?","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Does the patient has a neat appearance?","Does the patient has a neat appearance?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Is the patient groomed well?","Is the patient groomed well?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Is the patient over protective to the injured part?","Is the patient over protective to the injured part?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Obtaining and using bathing supplies","Obtaining and using bathing supplies","Coded","Misc",false);
@@ -105,7 +100,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Child rear
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Using mobile phone","Using mobile phone","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Using writing tools","Using writing tools","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Using keyboards","Using keyboards","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Other communication management","Other communication management","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Driving","Driving","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Walking","Walking","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Bicycling","Bicycling","Coded","Misc",false);
@@ -115,14 +109,11 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Make bed",
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Laundry","Laundry","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Washing dishes","Washing dishes","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Gardening","Gardening","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Other home establishment and management","Other home establishment and management","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Carrying pans","Carrying pans","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Opening cans","Opening cans","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Holding cooking utensil","Holding cooking utensil","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Other meal preparation and clean up","Other meal preparation and clean up","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Religious activities","Religious activities","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Carrying grocery bags","Carrying grocery bags","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Other shopping","Other shopping","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Education","Education","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Work","Work","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Leisure","Leisure","Coded","Misc",false);
@@ -149,10 +140,11 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Fold paper
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Pour water from pure-pak","Pour water from pure-pak","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Pour water from jug","Pour water from jug","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Pour water from cup","Pour water from cup","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Short term goals status","Short term goals status","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Did the patient receive a written home program?","Did the patient receive a written home program?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Did the patient/family receive an occupational therapy education?","Did the patient/family receive an occupational therapy education?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Did the patient receive an adaptive device?","Did the patient receive an adaptive device?","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Grip unit","Grip unit","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Long term goals status","Long term goals status","Coded","Misc",false);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"None of the short term goals were achieved","None of the short term goals were achieved","N/A","Misc",false);
@@ -162,6 +154,8 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"No problem","No
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Partial achievement of short term goals","Partial achievement of short term goals","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Full achievement of all short term goals","Full achievement of all short term goals","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Unable","Unable","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pound","Pound","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Kilogram","Kilogram","N/A","Misc",false);
 
 #Add Concept Sets
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Occupational Therapy Assessment","Occupational Therapy Assessment","N/A","ConvSet",true);
@@ -185,3 +179,5 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Follow-up"
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Discharge","Discharge","N/A","Misc",true);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Photo upload","Photo upload","N/A","Misc",true);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Video upload","Video upload","N/A","Misc",true);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Goals","Goals","N/A","Misc",true);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Difficulties","Difficulties","N/A","Misc",true);

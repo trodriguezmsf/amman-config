@@ -153,33 +153,6 @@
         </sql>
     </changeSet>
 
-    <changeSet id="AMMAN_CONFIG_20211125075503581" author="Tarun">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from concept_answer ca
-                join
-                concept_name cn
-                on ca.concept_id = cn.concept_id
-                where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Yes", "No")
-                and concept_name_type = "FULLY_SPECIFIED")
-                AND
-                cn.concept_id IN (select concept_id from concept_name where name = "OTA, Does the patient has a neat appearance?");
-            </sqlCheck>
-        </preConditions>
-        <comment>Adding Answers to OTA, Does the patient has a neat appearance?</comment>
-        <sql>
-            select concept_id into @concept_id from concept_name where name = "OTA, Does the patient has a neat appearance?" and
-            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            call add_concept_answer(@concept_id, @child1_concept_id, 1);
-            call add_concept_answer(@concept_id, @child2_concept_id, 2);
-        </sql>
-    </changeSet>
-
     <changeSet id="AMMAN_CONFIG_20211125075503897" author="Tarun">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -1782,42 +1755,6 @@
         </sql>
     </changeSet>
 
-    <changeSet id="AMMAN_CONFIG_20211125075538348" author="Tarun">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from concept_answer ca
-                join
-                concept_name cn
-                on ca.concept_id = cn.concept_id
-                where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("No problem", "Mild", "Moderate", "Severe", "Unable")
-                and concept_name_type = "FULLY_SPECIFIED")
-                AND
-                cn.concept_id IN (select concept_id from concept_name where name = "OTA, Other communication management");
-            </sqlCheck>
-        </preConditions>
-        <comment>Adding Answers to OTA, Other communication management</comment>
-        <sql>
-            select concept_id into @concept_id from concept_name where name = "OTA, Other communication management" and
-            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
-            set @child5_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="No problem" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Mild" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Moderate" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Severe" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="Unable" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            call add_concept_answer(@concept_id, @child1_concept_id, 1);
-            call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child3_concept_id, 3);
-            call add_concept_answer(@concept_id, @child4_concept_id, 4);
-            call add_concept_answer(@concept_id, @child5_concept_id, 5);
-        </sql>
-    </changeSet>
-
     <changeSet id="AMMAN_CONFIG_20211125075539221" author="Tarun">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -2142,42 +2079,6 @@
         </sql>
     </changeSet>
 
-    <changeSet id="AMMAN_CONFIG_20211125075546637" author="Tarun">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from concept_answer ca
-                join
-                concept_name cn
-                on ca.concept_id = cn.concept_id
-                where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("No problem", "Mild", "Moderate", "Severe", "Unable")
-                and concept_name_type = "FULLY_SPECIFIED")
-                AND
-                cn.concept_id IN (select concept_id from concept_name where name = "OTA, Other home establishment and management");
-            </sqlCheck>
-        </preConditions>
-        <comment>Adding Answers to OTA, Other home establishment and management</comment>
-        <sql>
-            select concept_id into @concept_id from concept_name where name = "OTA, Other home establishment and management" and
-            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
-            set @child5_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="No problem" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Mild" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Moderate" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Severe" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="Unable" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            call add_concept_answer(@concept_id, @child1_concept_id, 1);
-            call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child3_concept_id, 3);
-            call add_concept_answer(@concept_id, @child4_concept_id, 4);
-            call add_concept_answer(@concept_id, @child5_concept_id, 5);
-        </sql>
-    </changeSet>
-
     <changeSet id="AMMAN_CONFIG_20211125075547405" author="Tarun">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -2286,42 +2187,6 @@
         </sql>
     </changeSet>
 
-    <changeSet id="AMMAN_CONFIG_20211125075549743" author="Tarun">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from concept_answer ca
-                join
-                concept_name cn
-                on ca.concept_id = cn.concept_id
-                where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("No problem", "Mild", "Moderate", "Severe", "Unable")
-                and concept_name_type = "FULLY_SPECIFIED")
-                AND
-                cn.concept_id IN (select concept_id from concept_name where name = "OTA, Other meal preparation and clean up");
-            </sqlCheck>
-        </preConditions>
-        <comment>Adding Answers to OTA, Other meal preparation and clean up</comment>
-        <sql>
-            select concept_id into @concept_id from concept_name where name = "OTA, Other meal preparation and clean up" and
-            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
-            set @child5_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="No problem" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Mild" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Moderate" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Severe" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="Unable" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            call add_concept_answer(@concept_id, @child1_concept_id, 1);
-            call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child3_concept_id, 3);
-            call add_concept_answer(@concept_id, @child4_concept_id, 4);
-            call add_concept_answer(@concept_id, @child5_concept_id, 5);
-        </sql>
-    </changeSet>
-
     <changeSet id="AMMAN_CONFIG_20211125075550508" author="Tarun">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -2375,42 +2240,6 @@
         <comment>Adding Answers to OTA, Carrying grocery bags</comment>
         <sql>
             select concept_id into @concept_id from concept_name where name = "OTA, Carrying grocery bags" and
-            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
-            set @child5_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="No problem" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Mild" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Moderate" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Severe" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="Unable" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            call add_concept_answer(@concept_id, @child1_concept_id, 1);
-            call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child3_concept_id, 3);
-            call add_concept_answer(@concept_id, @child4_concept_id, 4);
-            call add_concept_answer(@concept_id, @child5_concept_id, 5);
-        </sql>
-    </changeSet>
-
-    <changeSet id="AMMAN_CONFIG_20211125075552112" author="Tarun">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from concept_answer ca
-                join
-                concept_name cn
-                on ca.concept_id = cn.concept_id
-                where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("No problem", "Mild", "Moderate", "Severe", "Unable")
-                and concept_name_type = "FULLY_SPECIFIED")
-                AND
-                cn.concept_id IN (select concept_id from concept_name where name = "OTA, Other shopping");
-            </sqlCheck>
-        </preConditions>
-        <comment>Adding Answers to OTA, Other shopping</comment>
-        <sql>
-            select concept_id into @concept_id from concept_name where name = "OTA, Other shopping" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -2499,6 +2328,38 @@
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
             call add_concept_answer(@concept_id, @child4_concept_id, 4);
             call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20220125075550071" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Full achievement of all short term goals", "Partial achievement of short term goals", "None of the short term goals were achieved")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTA, Long term goals status");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to "OTA, Long term goals status</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTA, Long term goals status" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Full achievement of all short term goals" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Partial achievement of short term goals" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="None of the short term goals were achieved" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
         </sql>
     </changeSet>
 
@@ -3357,36 +3218,6 @@
         </sql>
     </changeSet>
 
-    <changeSet id="AMMAN_CONFIG_20211125075616409" author="Tarun">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from concept_answer ca
-                join
-                concept_name cn
-                on ca.concept_id = cn.concept_id
-                where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Full achievement of all short term goals", "Partial achievement of short term goals", "None of the short term goals were achieved")
-                and concept_name_type = "FULLY_SPECIFIED")
-                AND
-                cn.concept_id IN (select concept_id from concept_name where name = "OTA, Short term goals status");
-            </sqlCheck>
-        </preConditions>
-        <comment>Adding Answers to OTA, Short term goals status</comment>
-        <sql>
-            select concept_id into @concept_id from concept_name where name = "OTA, Short term goals status" and
-            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Full achievement of all short term goals" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Partial achievement of short term goals" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="None of the short term goals were achieved" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            call add_concept_answer(@concept_id, @child1_concept_id, 1);
-            call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child3_concept_id, 3);
-        </sql>
-    </changeSet>
-
     <changeSet id="AMMAN_CONFIG_20211125075616703" author="Tarun">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -3468,6 +3299,33 @@
         </sql>
     </changeSet>
 
+    <changeSet id="AMMAN_CONFIG_20220205075617301" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Kilogram", "Pound")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTA, Grip unit");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to OTA, Grip unit</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "OTA, Grip unit" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Pound" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Kilogram" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
     <changeSet id="AMMAN_CONFIG_20211125075617314" author="Tarun">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -3488,7 +3346,7 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"159310",@source_id,uuid(),now());
 
             call CREATE_REFERENCE_MAPPING_CEIL("OTA, Walking","159310");
-            call CREATE_REFERENCE_MAPPING_CEIL("OTA, Grip","141826");
+            call CREATE_REFERENCE_MAPPING_CEIL("OTA, Grip unit","141826");
             call CREATE_REFERENCE_MAPPING_CEIL("OTA, Date recorded","162869");
         </sql>
     </changeSet>
@@ -3500,7 +3358,7 @@
                 join concept_name cn
                 on cs.concept_id = cn.concept_id
                 where cs.concept_id IN (select concept_id from concept_name where name IN
-                ("OTA, Carrying grocery bags","OTA, Other shopping, specify","OTA, Other shopping") AND concept_name_type = "FULLY_SPECIFIED")
+                ("OTA, Carrying grocery bags","OTA, Other shopping, specify") AND concept_name_type = "FULLY_SPECIFIED")
                 and cs.concept_set IN (select concept_id from concept_name where name = "OTA, IADL shopping")
             </sqlCheck>
         </preConditions>
@@ -3509,16 +3367,13 @@
             set @concept_id = 0;
             set @member1_concept_id = 0;
             set @member2_concept_id = 0;
-            set @member3_concept_id = 0;
 
             select concept_id into @concept_id from concept_name where name = "OTA, IADL shopping" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member1_concept_id from concept_name where name = "OTA, Carrying grocery bags" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member2_concept_id from concept_name where name = "OTA, Other shopping, specify" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member3_concept_id from concept_name where name = "OTA, Other shopping" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
 
             call add_concept_set_members (@concept_id, @member1_concept_id, 1);
             call add_concept_set_members (@concept_id, @member2_concept_id, 2);
-            call add_concept_set_members (@concept_id, @member3_concept_id, 3);
         </sql>
     </changeSet>
 
@@ -3567,7 +3422,7 @@
                 join concept_name cn
                 on cs.concept_id = cn.concept_id
                 where cs.concept_id IN (select concept_id from concept_name where name IN
-                ("OTA, Date of referral","OTA, Short term goals status","OTA, Comments on short term goals","OTA, Comment on long term goals","OTA, Difficulty at the beginning of the treatment","OTA, Difficulty at the end of the treatment","OTA, Comments about the difficulties","OTA, Did the patient receive a written home program?","OTA, Written home program","OTA, Did the patient/family receive an occupational therapy education?","OTA, Patient/family occupational therapy education","OTA, Did the patient receive an adaptive device?") AND concept_name_type = "FULLY_SPECIFIED")
+                ("OTA, Date of referral","OTA, Did the patient receive a written home program?","OTA, Written home program","OTA, Did the patient/family receive an occupational therapy education?","OTA, Patient/family occupational therapy education","OTA, Did the patient receive an adaptive device?") AND concept_name_type = "FULLY_SPECIFIED")
                 and cs.concept_set IN (select concept_id from concept_name where name = "OTA, Discharge")
             </sqlCheck>
         </preConditions>
@@ -3580,26 +3435,14 @@
             set @member4_concept_id = 0;
             set @member5_concept_id = 0;
             set @member6_concept_id = 0;
-            set @member7_concept_id = 0;
-            set @member8_concept_id = 0;
-            set @member9_concept_id = 0;
-            set @member10_concept_id = 0;
-            set @member11_concept_id = 0;
-            set @member12_concept_id = 0;
 
             select concept_id into @concept_id from concept_name where name = "OTA, Discharge" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member1_concept_id from concept_name where name = "OTA, Date of referral" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member2_concept_id from concept_name where name = "OTA, Short term goals status" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member3_concept_id from concept_name where name = "OTA, Comments on short term goals" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member4_concept_id from concept_name where name = "OTA, Comment on long term goals" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member5_concept_id from concept_name where name = "OTA, Difficulty at the beginning of the treatment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member6_concept_id from concept_name where name = "OTA, Difficulty at the end of the treatment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member7_concept_id from concept_name where name = "OTA, Comments about the difficulties" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member8_concept_id from concept_name where name = "OTA, Did the patient receive a written home program?" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member9_concept_id from concept_name where name = "OTA, Written home program" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member10_concept_id from concept_name where name = "OTA, Did the patient/family receive an occupational therapy education?" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member11_concept_id from concept_name where name = "OTA, Patient/family occupational therapy education" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member12_concept_id from concept_name where name = "OTA, Did the patient receive an adaptive device?" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = "OTA, Did the patient receive a written home program?" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = "OTA, Written home program" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name = "OTA, Did the patient/family receive an occupational therapy education?" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name = "OTA, Patient/family occupational therapy education" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name = "OTA, Did the patient receive an adaptive device?" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
 
             call add_concept_set_members (@concept_id, @member1_concept_id, 1);
             call add_concept_set_members (@concept_id, @member2_concept_id, 2);
@@ -3607,12 +3450,6 @@
             call add_concept_set_members (@concept_id, @member4_concept_id, 4);
             call add_concept_set_members (@concept_id, @member5_concept_id, 5);
             call add_concept_set_members (@concept_id, @member6_concept_id, 6);
-            call add_concept_set_members (@concept_id, @member7_concept_id, 7);
-            call add_concept_set_members (@concept_id, @member8_concept_id, 8);
-            call add_concept_set_members (@concept_id, @member9_concept_id, 9);
-            call add_concept_set_members (@concept_id, @member10_concept_id, 10);
-            call add_concept_set_members (@concept_id, @member11_concept_id, 11);
-            call add_concept_set_members (@concept_id, @member12_concept_id, 12);
         </sql>
     </changeSet>
 
@@ -3699,7 +3536,7 @@
                 join concept_name cn
                 on cs.concept_id = cn.concept_id
                 where cs.concept_id IN (select concept_id from concept_name where name IN
-                ("OTA, DASH test score","OTA, Other assessments performed","OTA, Grip","OTA, Lateral pinch","OTA, 2 point pinch","OTA, 3 point pinch","OTA, Power pinch") AND concept_name_type = "FULLY_SPECIFIED")
+                ("OTA, DASH test score","OTA, Other assessments performed","OTA, Grip unit","OTA, Lateral pinch","OTA, 2 point pinch","OTA, 3 point pinch","OTA, Power grip") AND concept_name_type = "FULLY_SPECIFIED")
                 and cs.concept_set IN (select concept_id from concept_name where name = "OTA, Assessment scores")
             </sqlCheck>
         </preConditions>
@@ -3717,11 +3554,11 @@
             select concept_id into @concept_id from concept_name where name = "OTA, Assessment scores" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member1_concept_id from concept_name where name = "OTA, DASH test score" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member2_concept_id from concept_name where name = "OTA, Other assessments performed" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member3_concept_id from concept_name where name = "OTA, Grip" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = "OTA, Grip unit" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member4_concept_id from concept_name where name = "OTA, Lateral pinch" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member5_concept_id from concept_name where name = "OTA, 2 point pinch" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member6_concept_id from concept_name where name = "OTA, 3 point pinch" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member7_concept_id from concept_name where name = "OTA, Power pinch" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name = "OTA, Power grip" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
 
             call add_concept_set_members (@concept_id, @member1_concept_id, 1);
             call add_concept_set_members (@concept_id, @member2_concept_id, 2);
@@ -3884,7 +3721,7 @@
                 join concept_name cn
                 on cs.concept_id = cn.concept_id
                 where cs.concept_id IN (select concept_id from concept_name where name IN
-                ("OTA, Carrying pans","OTA, Opening cans","OTA, Holding cooking utensil","OTA, Other meal preparation and clean up, specify","OTA, Other meal preparation and clean up") AND concept_name_type = "FULLY_SPECIFIED")
+                ("OTA, Carrying pans","OTA, Opening cans","OTA, Holding cooking utensil","OTA, Other meal preparation and clean up, specify") AND concept_name_type = "FULLY_SPECIFIED")
                 and cs.concept_set IN (select concept_id from concept_name where name = "OTA, IADL meal preparation and clean up")
             </sqlCheck>
         </preConditions>
@@ -3895,20 +3732,17 @@
             set @member2_concept_id = 0;
             set @member3_concept_id = 0;
             set @member4_concept_id = 0;
-            set @member5_concept_id = 0;
 
             select concept_id into @concept_id from concept_name where name = "OTA, IADL meal preparation and clean up" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member1_concept_id from concept_name where name = "OTA, Carrying pans" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member2_concept_id from concept_name where name = "OTA, Opening cans" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member3_concept_id from concept_name where name = "OTA, Holding cooking utensil" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member4_concept_id from concept_name where name = "OTA, Other meal preparation and clean up, specify" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member5_concept_id from concept_name where name = "OTA, Other meal preparation and clean up" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
 
             call add_concept_set_members (@concept_id, @member1_concept_id, 1);
             call add_concept_set_members (@concept_id, @member2_concept_id, 2);
             call add_concept_set_members (@concept_id, @member3_concept_id, 3);
             call add_concept_set_members (@concept_id, @member4_concept_id, 4);
-            call add_concept_set_members (@concept_id, @member5_concept_id, 5);
         </sql>
     </changeSet>
 
@@ -3986,7 +3820,7 @@
                 join concept_name cn
                 on cs.concept_id = cn.concept_id
                 where cs.concept_id IN (select concept_id from concept_name where name IN
-                ("OTA, Using mobile phone","OTA, Using writing tools","OTA, Using keyboards","OTA, Other communication management, specify","OTA, Other communication management") AND concept_name_type = "FULLY_SPECIFIED")
+                ("OTA, Using mobile phone","OTA, Using writing tools","OTA, Using keyboards","OTA, Other communication management, specify") AND concept_name_type = "FULLY_SPECIFIED")
                 and cs.concept_set IN (select concept_id from concept_name where name = "OTA, IADL communication management")
             </sqlCheck>
         </preConditions>
@@ -3997,20 +3831,17 @@
             set @member2_concept_id = 0;
             set @member3_concept_id = 0;
             set @member4_concept_id = 0;
-            set @member5_concept_id = 0;
 
             select concept_id into @concept_id from concept_name where name = "OTA, IADL communication management" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member1_concept_id from concept_name where name = "OTA, Using mobile phone" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member2_concept_id from concept_name where name = "OTA, Using writing tools" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member3_concept_id from concept_name where name = "OTA, Using keyboards" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member4_concept_id from concept_name where name = "OTA, Other communication management, specify" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member5_concept_id from concept_name where name = "OTA, Other communication management" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
 
             call add_concept_set_members (@concept_id, @member1_concept_id, 1);
             call add_concept_set_members (@concept_id, @member2_concept_id, 2);
             call add_concept_set_members (@concept_id, @member3_concept_id, 3);
             call add_concept_set_members (@concept_id, @member4_concept_id, 4);
-            call add_concept_set_members (@concept_id, @member5_concept_id, 5);
         </sql>
     </changeSet>
 
@@ -4056,7 +3887,7 @@
                 join concept_name cn
                 on cs.concept_id = cn.concept_id
                 where cs.concept_id IN (select concept_id from concept_name where name IN
-                ("OTA, Dominant hand","OTA, Affected hand","OTA, Is the patient motivated to therapy?","OTA, Is the patient cooperative in the session?","OTA, Does the patient has a neat appearance?","OTA, Is the patient groomed well?","OTA, Is the patient over protective to the injured part?","OTA, Comments on general impression/informal observation","OTA, ADL bathing/showering","OTA, ADL toileting/toilet hygiene","OTA, ADL dressing","OTA, ADL grooming","OTA, ADL self-feeding","OTA, ADL functional mobility","OTA, ADL personal and device care","OTA, IADL","OTA, Education","OTA, Work","OTA, Leisure","OTA, Play","OTA, Social participation","OTA, Long term goal","OTA, Short term goal") AND concept_name_type = "FULLY_SPECIFIED")
+                ("OTA, Dominant hand","OTA, Affected hand","OTA, Is the patient motivated to therapy?","OTA, Is the patient cooperative in the session?","OTA, Is the patient groomed well?","OTA, Is the patient over protective to the injured part?","OTA, Comments on general impression/informal observation","OTA, ADL bathing/showering","OTA, ADL toileting/toilet hygiene","OTA, ADL dressing","OTA, ADL grooming","OTA, ADL self-feeding","OTA, ADL functional mobility","OTA, ADL personal and device care","OTA, IADL","OTA, Education","OTA, Work","OTA, Leisure","OTA, Play","OTA, Social participation") AND concept_name_type = "FULLY_SPECIFIED")
                 and cs.concept_set IN (select concept_id from concept_name where name = "OTA, Initial assessment")
             </sqlCheck>
         </preConditions>
@@ -4083,34 +3914,28 @@
             set @member18_concept_id = 0;
             set @member19_concept_id = 0;
             set @member20_concept_id = 0;
-            set @member21_concept_id = 0;
-            set @member22_concept_id = 0;
-            set @member23_concept_id = 0;
 
             select concept_id into @concept_id from concept_name where name = "OTA, Initial assessment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member1_concept_id from concept_name where name = "OTA, Dominant hand" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member2_concept_id from concept_name where name = "OTA, Affected hand" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member3_concept_id from concept_name where name = "OTA, Is the patient motivated to therapy?" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member4_concept_id from concept_name where name = "OTA, Is the patient cooperative in the session?" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member5_concept_id from concept_name where name = "OTA, Does the patient has a neat appearance?" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member6_concept_id from concept_name where name = "OTA, Is the patient groomed well?" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member7_concept_id from concept_name where name = "OTA, Is the patient over protective to the injured part?" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member8_concept_id from concept_name where name = "OTA, Comments on general impression/informal observation" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member9_concept_id from concept_name where name = "OTA, ADL bathing/showering" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member10_concept_id from concept_name where name = "OTA, ADL toileting/toilet hygiene" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member11_concept_id from concept_name where name = "OTA, ADL dressing" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member12_concept_id from concept_name where name = "OTA, ADL grooming" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member13_concept_id from concept_name where name = "OTA, ADL self-feeding" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member14_concept_id from concept_name where name = "OTA, ADL functional mobility" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member15_concept_id from concept_name where name = "OTA, ADL personal and device care" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member16_concept_id from concept_name where name = "OTA, IADL" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member17_concept_id from concept_name where name = "OTA, Education" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member18_concept_id from concept_name where name = "OTA, Work" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member19_concept_id from concept_name where name = "OTA, Leisure" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member20_concept_id from concept_name where name = "OTA, Play" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member21_concept_id from concept_name where name = "OTA, Social participation" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member22_concept_id from concept_name where name = "OTA, Long term goal" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member23_concept_id from concept_name where name = "OTA, Short term goal" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name = "OTA, Is the patient groomed well?" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name = "OTA, Is the patient over protective to the injured part?" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name = "OTA, Comments on general impression/informal observation" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member8_concept_id from concept_name where name = "OTA, ADL bathing/showering" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member9_concept_id from concept_name where name = "OTA, ADL toileting/toilet hygiene" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member10_concept_id from concept_name where name = "OTA, ADL dressing" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member11_concept_id from concept_name where name = "OTA, ADL grooming" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member12_concept_id from concept_name where name = "OTA, ADL self-feeding" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member13_concept_id from concept_name where name = "OTA, ADL functional mobility" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member14_concept_id from concept_name where name = "OTA, ADL personal and device care" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member15_concept_id from concept_name where name = "OTA, IADL" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member16_concept_id from concept_name where name = "OTA, Education" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member17_concept_id from concept_name where name = "OTA, Work" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member18_concept_id from concept_name where name = "OTA, Leisure" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member19_concept_id from concept_name where name = "OTA, Play" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member20_concept_id from concept_name where name = "OTA, Social participation" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
 
             call add_concept_set_members (@concept_id, @member1_concept_id, 1);
             call add_concept_set_members (@concept_id, @member2_concept_id, 2);
@@ -4132,9 +3957,6 @@
             call add_concept_set_members (@concept_id, @member18_concept_id, 18);
             call add_concept_set_members (@concept_id, @member19_concept_id, 19);
             call add_concept_set_members (@concept_id, @member20_concept_id, 20);
-            call add_concept_set_members (@concept_id, @member21_concept_id, 21);
-            call add_concept_set_members (@concept_id, @member22_concept_id, 22);
-            call add_concept_set_members (@concept_id, @member23_concept_id, 23);
         </sql>
     </changeSet>
 
@@ -4224,7 +4046,7 @@
                 join concept_name cn
                 on cs.concept_id = cn.concept_id
                 where cs.concept_id IN (select concept_id from concept_name where name IN
-                ("OTA, Cleaning windows-floor-etc.","OTA, Make bed","OTA, Laundry","OTA, Washing dishes","OTA, Gardening","OTA, Other home establishment and management, specify","OTA, Other home establishment and management") AND concept_name_type = "FULLY_SPECIFIED")
+                ("OTA, Cleaning windows-floor-etc.","OTA, Make bed","OTA, Laundry","OTA, Washing dishes","OTA, Gardening","OTA, Other home establishment and management, specify") AND concept_name_type = "FULLY_SPECIFIED")
                 and cs.concept_set IN (select concept_id from concept_name where name = "OTA, IADL home establishment and management")
             </sqlCheck>
         </preConditions>
@@ -4237,7 +4059,6 @@
             set @member4_concept_id = 0;
             set @member5_concept_id = 0;
             set @member6_concept_id = 0;
-            set @member7_concept_id = 0;
 
             select concept_id into @concept_id from concept_name where name = "OTA, IADL home establishment and management" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member1_concept_id from concept_name where name = "OTA, Cleaning windows-floor-etc." and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
@@ -4246,7 +4067,6 @@
             select concept_id into @member4_concept_id from concept_name where name = "OTA, Washing dishes" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member5_concept_id from concept_name where name = "OTA, Gardening" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member6_concept_id from concept_name where name = "OTA, Other home establishment and management, specify" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member7_concept_id from concept_name where name = "OTA, Other home establishment and management" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
 
             call add_concept_set_members (@concept_id, @member1_concept_id, 1);
             call add_concept_set_members (@concept_id, @member2_concept_id, 2);
@@ -4254,7 +4074,6 @@
             call add_concept_set_members (@concept_id, @member4_concept_id, 4);
             call add_concept_set_members (@concept_id, @member5_concept_id, 5);
             call add_concept_set_members (@concept_id, @member6_concept_id, 6);
-            call add_concept_set_members (@concept_id, @member7_concept_id, 7);
         </sql>
     </changeSet>
 
@@ -4310,6 +4129,74 @@
         </sql>
     </changeSet>
 
+    <changeSet id="AMMAN_CONFIG_202202050532100070" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("OTA, Long term goal", "OTA, Short term goal", "OTA, Long term goals status", "OTA, Comments on the goals")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTA, Goals");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Set Members to OTA, Goals</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = "OTA, Goals" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = "OTA, Long term goal" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = "OTA, Short term goal" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = "OTA, Long term goals status" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name = "OTA, Comments on the goals" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members (@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members (@concept_id, @member4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202202050532100074" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("OTA, Difficulty at the beginning of the treatment","OTA, Difficulty at the end of the treatment","OTA, Comments about the difficulties")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "OTA, Difficulties");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Set Members to OTA, Difficulties</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = "OTA, Difficulties" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = "OTA, Difficulty at the beginning of the treatment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = "OTA, Difficulty at the end of the treatment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = "OTA, Comments about the difficulties" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members (@concept_id, @member3_concept_id, 3);
+        </sql>
+    </changeSet>
+
     <changeSet id="AMMAN_CONFIG_20211201053210437" author="Tarun">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -4317,7 +4204,7 @@
                 join concept_name cn
                 on cs.concept_id = cn.concept_id
                 where cs.concept_id IN (select concept_id from concept_name where name IN
-                ("OTA, Date recorded","OTA, Type of assessment","OTA, Initial assessment","OTA, Sollermann test","OTA, Assessment scores","OTA, Follow-up","OTA, Discharge","OTA, Photo upload","OTA, Video upload","OTA, Comments") AND concept_name_type = "FULLY_SPECIFIED")
+                ("OTA, Date recorded","OTA, Type of assessment","OTA, Initial assessment","OTA, Sollermann test","OTA, Assessment scores","OTA, Follow-up","OTA, Discharge","OTA, Photo upload","OTA, Video upload","OTA, Comments", "OTA, Goals", "OTA, Difficulties") AND concept_name_type = "FULLY_SPECIFIED")
                 and cs.concept_set IN (select concept_id from concept_name where name = "Occupational Therapy Assessment")
             </sqlCheck>
         </preConditions>
@@ -4334,18 +4221,22 @@
             set @member8_concept_id = 0;
             set @member9_concept_id = 0;
             set @member10_concept_id = 0;
+            set @member11_concept_id = 0;
+            set @member12_concept_id = 0;
 
             select concept_id into @concept_id from concept_name where name = "Occupational Therapy Assessment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member1_concept_id from concept_name where name = "OTA, Date recorded" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member2_concept_id from concept_name where name = "OTA, Type of assessment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             select concept_id into @member3_concept_id from concept_name where name = "OTA, Initial assessment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member4_concept_id from concept_name where name = "OTA, Sollermann test" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member5_concept_id from concept_name where name = "OTA, Assessment scores" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member6_concept_id from concept_name where name = "OTA, Follow-up" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member7_concept_id from concept_name where name = "OTA, Discharge" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member8_concept_id from concept_name where name = "OTA, Photo upload" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member9_concept_id from concept_name where name = "OTA, Video upload" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            select concept_id into @member10_concept_id from concept_name where name = "OTA, Comments" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name = "OTA, Goals" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name = "OTA, Sollermann test" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name = "OTA, Assessment scores" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name = "OTA, Difficulties" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member8_concept_id from concept_name where name = "OTA, Follow-up" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member9_concept_id from concept_name where name = "OTA, Discharge" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member10_concept_id from concept_name where name = "OTA, Photo upload" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member11_concept_id from concept_name where name = "OTA, Video upload" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member12_concept_id from concept_name where name = "OTA, Comments" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
 
             call add_concept_set_members (@concept_id, @member1_concept_id, 1);
             call add_concept_set_members (@concept_id, @member2_concept_id, 2);
@@ -4357,6 +4248,8 @@
             call add_concept_set_members (@concept_id, @member8_concept_id, 8);
             call add_concept_set_members (@concept_id, @member9_concept_id, 9);
             call add_concept_set_members (@concept_id, @member10_concept_id, 10);
+            call add_concept_set_members (@concept_id, @member11_concept_id, 11);
+            call add_concept_set_members (@concept_id, @member12_concept_id, 12);
         </sql>
     </changeSet>
 
