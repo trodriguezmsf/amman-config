@@ -1176,5 +1176,93 @@
         }
       }
     }
+  },
+  "Vital Signs": {
+    "displayByDefault": false,
+    "translationKey": "DASHBOARD_TAB_VITALS_SIGNS_KEY",
+    "maxRecentlyViewedPatients": 1,
+    "sections": {
+      "Vital Signs FlowSheet": {
+        "title": "Vitals Flowsheet",
+        "type": "flowSheet",
+        "dashboardConfig": {
+          "numberOfEncounters": "5",
+          "groupBy": "encounters",
+          "obsConcepts": [
+            "V, Temperature",
+            "V, Pulse",
+            "V, Respiratory rate",
+            "V, Systolic blood pressure",
+            "V, Diastolic blood pressure"
+          ]
+        },
+        "expandedViewConfig": {
+          "numberOfEncounters": "10",
+          "groupBy": "encounters",
+          "obsConcepts": [
+            "V, Temperature",
+            "V, Pulse",
+            "V, Respiratory rate",
+            "V, Systolic blood pressure",
+            "V, Diastolic blood pressure"
+          ]
+        }
+      }
+    }
+  },
+  "trends": {
+    "translationKey": "DASHBOARD_TAB_TRENDS_KEY",
+    "maxRecentlyViewedPatients": 10,
+    "sections": {
+      "Temperature": {
+        "type": "observationGraph",
+        "translationKey": "DASHBOARD_TITLE_TEMPERATURE",
+        "config": {
+          "yAxisConcepts": [
+            "V, Temperature"
+          ],
+          "xAxisConcept": "observationDateTime",
+          "numberOfVisits": 7
+        },
+        "displayOrder": 1
+      },
+      "Pulse": {
+        "type": "observationGraph",
+        "translationKey": "DASHBOARD_TITLE_PULSE",
+        "config": {
+          "yAxisConcepts": [
+            "V, Pulse"
+          ],
+          "xAxisConcept": "observationDateTime",
+          "numberOfVisits": 7
+        },
+        "displayOrder": 2
+      },
+      "Respiratory Rate": {
+        "type": "observationGraph",
+        "translationKey": "DASHBOARD_TITLE_RR",
+        "config": {
+          "yAxisConcepts": [
+            "V, Respiratory rate"
+          ],
+          "xAxisConcept": "observationDateTime",
+          "numberOfVisits": 7
+        },
+        "displayOrder": 3
+      },
+      "Blood Pressure": {
+        "type": "observationGraph",
+        "translationKey": "DASHBOARD_TITLE_BLOOD_PRESSURE",
+        "config": {
+          "yAxisConcepts": [
+            "V, Systolic blood pressure",
+            "V, Diastolic blood pressure"
+          ],
+          "xAxisConcept": "observationDateTime",
+          "numberOfVisits": 7
+        },
+        "displayOrder": 4
+      }
+    }
   }
 }
