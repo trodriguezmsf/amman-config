@@ -1186,7 +1186,7 @@
         "title": "Vitals Flowsheet",
         "type": "flowSheet",
         "dashboardConfig": {
-          "numberOfEncounters": "5",
+          "numberOfEncounters": "10",
           "groupBy": "encounters",
           "obsConcepts": [
             "V, Temperature",
