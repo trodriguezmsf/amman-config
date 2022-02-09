@@ -1118,11 +1118,49 @@
           "pivotTable": {}
         }
       },
+      "Pain Service Note":{
+        "translationKey": "DASHBOARD_TITLE_PAIN_SERVICE_NOTE",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 6,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "conceptNames": [
+            "Pain Nurse Follow-up"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Pain Nurse Follow-up"
+          ],
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Mental Health assessment":{
+        "translationKey": "DASHBOARD_TITLE_MENTAL_HEALTH_ASSESSMENT",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 7,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "conceptNames": [
+            "PSA, Psycho-Social Assessment"
+          ]
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "PSA, Psycho-Social Assessment"
+          ],
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
       "Psychiatrist-mhGAP Assessment":{
         "translationKey": "DASHBOARD_PSYCHIATRIST_MHGAP_ASSESSMENT",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 6,
+        "displayOrder": 8,
         "dashboardConfig": {
           "showDetailsButton": true,
           "conceptNames": [
@@ -1141,7 +1179,7 @@
         "translationKey": "DASHBOARD_PEDIATRIC_NURSE_ASSESSMENT",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 7,
+        "displayOrder": 9,
         "dashboardConfig": {
           "showDetailsButton": true,
           "conceptNames": [
@@ -1160,7 +1198,7 @@
         "translationKey": "DASHBOARD_EXTERNAL_CONSULTATION",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 8,
+        "displayOrder": 10,
         "dashboardConfig": {
           "showDetailsButton": true,
           "conceptNames": [
