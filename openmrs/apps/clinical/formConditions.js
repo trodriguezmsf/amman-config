@@ -2950,7 +2950,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
               conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
               conditions.hide.push("AXD, Piperacillin","AXD, Ticarcillin","AXD, Aztreonam","AXD, Tobramycine","AXD, Amikacin","AXD, Ticar-clav ac","AXD, Cefepime","AXD, Imipenem","AXD, Ceftazidime","AXD, Gentamicine","AXD, Ciprofloxacin","AXD, Meropenem")
               conditions.show.push("Microbiology, Are there any alerts?")
-              conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+              conditions.show.push("Microbiology, Comments")
+              conditions.hide.push("Microbiology, Latex Agglutination")
 
           }
           else if (conditionConcept == "Staphylococcus aureus ss. aureus"){
@@ -2969,7 +2970,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
                conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
                conditions.hide.push("AXD, Piperacillin","AXD, Ticarcillin","AXD, Aztreonam","AXD, Tobramycine","AXD, Amikacin","AXD, Ticar-clav ac","AXD, Cefepime","AXD, Imipenem","AXD, Ceftazidime","AXD, Gentamicine","AXD, Ciprofloxacin","AXD, Meropenem")
                conditions.show.push("Microbiology, Are there any alerts?")
-               conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+               conditions.show.push("Microbiology, Comments")
+               conditions.hide.push("Microbiology, Latex Agglutination")
 
           }
            else if (conditionConcept == "Streptococcus, beta-haem. Group A" || conditionConcept =="Streptococcus, beta-haem. Group B"){
@@ -2988,7 +2990,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
                 conditions.hide.push("AXD, Piperacillin","AXD, Ticarcillin","AXD, Aztreonam","AXD, Tobramycine","AXD, Amikacin","AXD, Ticar-clav ac","AXD, Cefepime","AXD, Imipenem","AXD, Ceftazidime","AXD, Gentamicine","AXD, Ciprofloxacin","AXD, Meropenem")
                 conditions.show.push("Microbiology, Are there any alerts?")
-                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+                conditions.show.push("Microbiology, Comments")
+                conditions.hide.push("Microbiology, Latex Agglutination")
 
            }
            else if (conditionConcept =="Enterococcus avium" || conditionConcept == "Enterococcus faecalis" || conditionConcept == "Enterococcus faecium" || conditionConcept == "Enterococcus sp."){
@@ -3007,7 +3010,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
                 conditions.hide.push("AXD, Piperacillin","AXD, Ticarcillin","AXD, Aztreonam","AXD, Tobramycine","AXD, Amikacin","AXD, Ticar-clav ac","AXD, Cefepime","AXD, Imipenem","AXD, Ceftazidime","AXD, Gentamicine","AXD, Ciprofloxacin","AXD, Meropenem")
                 conditions.show.push("Microbiology, Are there any alerts?")
-                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+                conditions.show.push("Microbiology, Comments")
+                conditions.hide.push("Microbiology, Latex Agglutination")
 
            }
            else if (conditionConcept == "Streptococcus pneumoniae"){
@@ -3026,7 +3030,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
                 conditions.hide.push("AXD, Piperacillin","AXD, Ticarcillin","AXD, Aztreonam","AXD, Tobramycine","AXD, Amikacin","AXD, Ticar-clav ac","AXD, Cefepime","AXD, Imipenem","AXD, Ceftazidime","AXD, Gentamicine","AXD, Ciprofloxacin","AXD, Meropenem")
                 conditions.show.push("Microbiology, Are there any alerts?")
-                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+                conditions.show.push("Microbiology, Comments")
+                conditions.hide.push("Microbiology, Latex Agglutination")
 
            }
            else if (conditionConcept == "Streptococcus viridans, alpha-hem"){
@@ -3045,7 +3050,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
                 conditions.hide.push("AXD, Piperacillin","AXD, Ticarcillin","AXD, Aztreonam","AXD, Tobramycine","AXD, Amikacin","AXD, Ticar-clav ac","AXD, Cefepime","AXD, Imipenem","AXD, Ceftazidime","AXD, Gentamicine","AXD, Ciprofloxacin","AXD, Meropenem")
                 conditions.show.push("Microbiology, Are there any alerts?")
-                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+                conditions.show.push("Microbiology, Comments")
+                conditions.hide.push("Microbiology, Latex Agglutination")
 
            }
            else if (conditionConcept == "Citrobacter freundii" || conditionConcept =="Enterobacter aerogenes" || conditionConcept =="Enterobacter cloacae" ||
@@ -3072,7 +3078,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
                 conditions.hide.push("AXD, Piperacillin","AXD, Ticarcillin","AXD, Aztreonam","AXD, Tobramycine","AXD, Amikacin","AXD, Ticar-clav ac","AXD, Cefepime","AXD, Imipenem","AXD, Ceftazidime","AXD, Gentamicine","AXD, Ciprofloxacin","AXD, Meropenem")
                 conditions.show.push("Microbiology, Are there any alerts?")
-                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+                conditions.show.push("Microbiology, Comments")
+                conditions.hide.push("Microbiology, Latex Agglutination")
 
            }
            else if (conditionConcept =="Neisseria meningitidis") {
@@ -3091,7 +3098,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
                 conditions.hide.push("AXD, Piperacillin","AXD, Ticarcillin","AXD, Aztreonam","AXD, Tobramycine","AXD, Amikacin","AXD, Ticar-clav ac","AXD, Cefepime","AXD, Imipenem","AXD, Ceftazidime","AXD, Gentamicine","AXD, Ciprofloxacin","AXD, Meropenem")
                 conditions.show.push("Microbiology, Are there any alerts?")
-                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+                conditions.show.push("Microbiology, Comments")
+                conditions.hide.push("Microbiology, Latex Agglutination")
 
            }
            else if (conditionConcept =="Haemophilus influenzae" || conditionConcept =="Haemophilus influenzae (non type b)" || conditionConcept =="Haemophilus influenzae (type b)"){
@@ -3109,7 +3117,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("AS, Imipenem","AS, Meropenem","AS, Ciprofloxacin","AS, Amikacin","AS, Gentamicin","AS, Tobramycin","AS, Levofloxacin","AS, Colistin")
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
                 conditions.show.push("Microbiology, Are there any alerts?")
-                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+                conditions.show.push("Microbiology, Comments")
+                conditions.hide.push("Microbiology, Latex Agglutination")
 
            }
            else if (conditionConcept =="Listeria monocytogenes"){
@@ -3128,7 +3137,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
                 conditions.hide.push("AXD, Piperacillin","AXD, Ticarcillin","AXD, Aztreonam","AXD, Tobramycine","AXD, Amikacin","AXD, Ticar-clav ac","AXD, Cefepime","AXD, Imipenem","AXD, Ceftazidime","AXD, Gentamicine","AXD, Ciprofloxacin","AXD, Meropenem")
                 conditions.show.push("Microbiology, Are there any alerts?")
-                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+                conditions.show.push("Microbiology, Comments")
+                conditions.hide.push("Microbiology, Latex Agglutination")
 
            }
            else if (conditionConcept =="Staphylococcus epidermidis" || conditionConcept =="Staphylococcus saprophyticus ss. saprophyticus"  ){
@@ -3147,7 +3157,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
                 conditions.hide.push("AXD, Piperacillin","AXD, Ticarcillin","AXD, Aztreonam","AXD, Tobramycine","AXD, Amikacin","AXD, Ticar-clav ac","AXD, Cefepime","AXD, Imipenem","AXD, Ceftazidime","AXD, Gentamicine","AXD, Ciprofloxacin","AXD, Meropenem")
                 conditions.show.push("Microbiology, Are there any alerts?")
-                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+                conditions.show.push("Microbiology, Comments")
+                conditions.hide.push("Microbiology, Latex Agglutination")
 
            }
            else if (conditionConcept == "Staphylococcus, coagulase negative" || conditionConcept == "Staphylococcus capitis ss. Capitis" || conditionConcept == "Staphylococcus cohnii ss. Cohnii" || conditionConcept =="Staphylococcus haemolyticus" || conditionConcept =="Staphylococcus hominis ss. Hominis"){
@@ -3166,7 +3177,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
                 conditions.hide.push("AXD, Piperacillin","AXD, Ticarcillin","AXD, Aztreonam","AXD, Tobramycine","AXD, Amikacin","AXD, Ticar-clav ac","AXD, Cefepime","AXD, Imipenem","AXD, Ceftazidime","AXD, Gentamicine","AXD, Ciprofloxacin","AXD, Meropenem")
                 conditions.show.push("Microbiology, Are there any alerts?","Microbiology, Latex Agglutination")
-                conditions.hide.push("Microbiology, Comments")
+                conditions.show.push("Microbiology, Comments")
 
            }
            else if (conditionConcept =="Acinetobacter baumannii"){
@@ -3185,7 +3196,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
                 conditions.hide.push("AXD, Piperacillin","AXD, Ticarcillin","AXD, Aztreonam","AXD, Tobramycine","AXD, Amikacin","AXD, Ticar-clav ac","AXD, Cefepime","AXD, Imipenem","AXD, Ceftazidime","AXD, Gentamicine","AXD, Ciprofloxacin","AXD, Meropenem")
                 conditions.show.push("Microbiology, Are there any alerts?")
-                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+                conditions.show.push("Microbiology, Comments")
+                conditions.hide.push("Microbiology, Latex Agglutination")
 
            }
            else if (conditionConcept =="Corynebacterium sp. (diphtheroids)"){
@@ -3204,7 +3216,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
                 conditions.hide.push("AXD, Piperacillin","AXD, Ticarcillin","AXD, Aztreonam","AXD, Tobramycine","AXD, Amikacin","AXD, Ticar-clav ac","AXD, Cefepime","AXD, Imipenem","AXD, Ceftazidime","AXD, Gentamicine","AXD, Ciprofloxacin","AXD, Meropenem")
                 conditions.show.push("Microbiology, Are there any alerts?")
-                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+                conditions.show.push("Microbiology, Comments")
+                conditions.hide.push("Microbiology, Latex Agglutination")
 
            }
           else if (conditionConcept =="Achromobacter xylosoxidans ss. Denitrificans"){
@@ -3223,7 +3236,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
               conditions.hide.push("EB, Ampicillin","EB, Amikacin","EB, amoxicillin-clav ac","EB, Aztreonam","EB, Cefotaxime","EB, Cefoxitin","EB, Ciprofloxacin","EB, Gentamicin","EB, Ticarcillin","EB, Tobramycin","EB, Trimeto-sulfamet","EB, Cefepime","EB, Ertapenem","EB, Pip-tazobactam","EB, Ceftriaxone","EB, Ceftazidime","EB, ESBL screening:","EB, Meropenem","EB, Imipenem","EB, Levofloxacin","EB, Tigecycline","EB, Colistin")
               conditions.hide.push("NM, Penicillin G","NM, Ampicillin","NM, Ceftriaxone","NM, Ciprofloxacin","NM, Beta-Lactamase test performed")
               conditions.show.push("Microbiology, Are there any alerts?")
-              conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+              conditions.show.push("Microbiology, Comments")
+              conditions.hide.push("Microbiology, Latex Agglutination")
 
           }
            else if (conditionConcept == "Bacteroides fragilis" || conditionConcept == "Burkholderia cepacia" || conditionConcept == "Campylobacter coli" || conditionConcept == "Campylobacter jejuni ss. jejuni" ||
@@ -3268,7 +3282,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
                 conditions.hide.push("CS, Penicillin","CS, Ciprofloxacin","CS, Gentamicin","CS, Vancomycin","CS, Clindamycin","CS, Tetracycine","CS, Rifampicin")
                 conditions.hide.push("AXD, Piperacillin","AXD, Ticarcillin","AXD, Aztreonam","AXD, Tobramycine","AXD, Amikacin","AXD, Ticar-clav ac","AXD, Cefepime","AXD, Imipenem","AXD, Ceftazidime","AXD, Gentamicine","AXD, Ciprofloxacin","AXD, Meropenem")
                 conditions.hide.push("Microbiology, Are there any alerts?")
-                conditions.hide.push("Microbiology, Comments","Microbiology, Latex Agglutination")
+                conditions.show.push("Microbiology, Comments")
+                conditions.hide.push("Microbiology, Latex Agglutination")
           }
           return conditions;
       },
