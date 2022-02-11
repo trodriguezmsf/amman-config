@@ -1224,7 +1224,7 @@
         "title": "Vitals Flowsheet",
         "type": "flowSheet",
         "dashboardConfig": {
-          "numberOfEncounters": "10",
+          "numberOfVisits": "1",
           "groupBy": "encounters",
           "obsConcepts": [
             "V, Temperature",
@@ -1235,7 +1235,7 @@
           ]
         },
         "expandedViewConfig": {
-          "numberOfEncounters": "10",
+          "numberOfVisits": "1",
           "groupBy": "encounters",
           "obsConcepts": [
             "V, Temperature",
@@ -1260,7 +1260,7 @@
             "V, Temperature"
           ],
           "xAxisConcept": "observationDateTime",
-          "numberOfVisits": 7
+          "numberOfVisits": 1
         },
         "displayOrder": 1
       },
@@ -1272,7 +1272,7 @@
             "V, Pulse"
           ],
           "xAxisConcept": "observationDateTime",
-          "numberOfVisits": 7
+          "numberOfVisits": 1
         },
         "displayOrder": 2
       },
@@ -1284,7 +1284,7 @@
             "V, Respiratory rate"
           ],
           "xAxisConcept": "observationDateTime",
-          "numberOfVisits": 7
+          "numberOfVisits": 1
         },
         "displayOrder": 3
       },
@@ -1297,7 +1297,7 @@
             "V, Diastolic blood pressure"
           ],
           "xAxisConcept": "observationDateTime",
-          "numberOfVisits": 7
+          "numberOfVisits": 1
         },
         "displayOrder": 4
       }
