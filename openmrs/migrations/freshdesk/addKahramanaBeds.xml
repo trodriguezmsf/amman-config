@@ -11,4 +11,9 @@
         <comment>Adding more beds for kahramana location</comment>
         <sqlFile path="bedManagement/addMoreBedsToKahramanaBedLayout.sql"/>
     </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20220208112334" author="Tarun" context="update bed layout for kahramana location">
+        <comment>Adding more beds for kahramana location</comment>
+        <sqlFile path="bedManagement/updateKahramanaBedLayout.sql"/>
+    </changeSet>
 </databaseChangeLog>
