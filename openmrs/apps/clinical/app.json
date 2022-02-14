@@ -1846,7 +1846,7 @@
           "PNA, Site of pain":{
             "autocomplete":true
           },
-          
+
           "PNA, Gastrointestinal":{
             "multiSelect":true
           },
@@ -1855,12 +1855,6 @@
           },
           "OTA, Type of assessment": {
             "required":true
-          },
-          "OTA, Difficulty at the beginning of the treatment": {
-            "allowAddMore": true
-          },
-          "OTA, Difficulty at the end of the treatment": {
-            "allowAddMore": true
           },
           "OR, Wound classification": {
             "disableAddNotes": true
@@ -1888,6 +1882,12 @@
           },
           "PPN, Day of IV antibiotic treatment": {
             "disableAddNotes": true
+          },
+          "OTA, Difficulties":{
+            "allowAddMore" : true
+          },
+          "OTA, Goals":{
+            "allowAddMore" : true
           }
         },
         "visitPage": {

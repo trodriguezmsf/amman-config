@@ -3829,8 +3829,11 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.show.push("OTA, Initial assessment");
             conditions.show.push("OTA, Sollermann test");
             conditions.show.push("OTA, Assessment scores");
+            conditions.show.push("OTA, Goals");
             conditions.hide.push("OTA, Follow-up");
             conditions.hide.push("OTA, Discharge");
+            conditions.hide.push("OTA, Short term goal");
+            conditions.hide.push("OTA, Long term goals status");
             if (formFieldValues['OTA, Sollermann test administered'] == "Yes") {
                 conditions.show.push("OTA, Put key into Yale lock, turn 90 degrees");
                 conditions.show.push("OTA, Pick up coins up from flat surface, put into purses mounted on wall");
@@ -3884,11 +3887,15 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("OTA, Sollermann test");
             conditions.hide.push("OTA, Assessment scores");
             conditions.hide.push("OTA, Discharge");
+            conditions.hide.push("OTA, Goals");
+            conditions.hide.push("OTA, Difficulties");
         }
         else if (conditionConcept == "Discharge"){
             conditions.show.push("OTA, Sollermann test");
             conditions.show.push("OTA, Assessment scores");
             conditions.show.push("OTA, Discharge");
+            conditions.show.push("OTA, Goals");
+            conditions.show.push("OTA, Difficulties");
             conditions.hide.push("OTA, Initial assessment");
             conditions.hide.push("OTA, Follow-up");
             if (formFieldValues['OTA, Sollermann test administered'] == "Yes") {
@@ -3956,6 +3963,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("OTA, Assessment scores");
             conditions.hide.push("OTA, Follow-up");
             conditions.hide.push("OTA, Discharge");
+            conditions.hide.push("OTA, Goals");
+            conditions.hide.push("OTA, Difficulties");
         }
         return conditions;
     },
