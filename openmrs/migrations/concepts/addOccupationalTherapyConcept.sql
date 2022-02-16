@@ -15,7 +15,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Other comm
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Other home establishment and management, specify","Other home establishment and management, specify","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Other meal preparation and clean up, specify","Other meal preparation and clean up, specify","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Other shopping, specify","Other shopping, specify","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Long term goal","Long term goal","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Long term goal","Long term goal (during discharge)","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Short term goal","Short term goal","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Other assessments performed","Other assessments performed","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Follow-up notes","Follow-up notes","Text","Misc",false);
@@ -25,7 +25,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Comments a
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Written home program","Written home program","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Patient/family occupational therapy education","Patient/family occupational therapy education","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Comments","Comments","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Comments on the goals","Comments on the goals","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Comments on the goals","Comments on the goals (during discharge)","Text","Misc",false);
 
 #Add Numeric Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Sollermann test total score","Sollermann test total score","Numeric","Computed",false);
@@ -181,3 +181,8 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Photo uplo
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Video upload","Video upload","N/A","Misc",true);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Goals","Goals","N/A","Misc",true);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Difficulties","Difficulties","N/A","Misc",true);
+
+-- Adding Description of the  concepts to the concept description table
+
+INSERT INTO concept_description(concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid) VALUES ((select concept_id from concept_name where name = "OTA, Long term goals status" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),"Applicable only during Discharge",'en',1,now(),NULL,NULL,uuid());
+INSERT INTO concept_description(concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid) VALUES ((select concept_id from concept_name where name = "OTA, Comments on the goals" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),"Applicable only during Discharge",'en',1,now(),NULL,NULL,uuid());

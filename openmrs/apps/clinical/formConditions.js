@@ -3832,8 +3832,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.show.push("OTA, Goals");
             conditions.hide.push("OTA, Follow-up");
             conditions.hide.push("OTA, Discharge");
-            conditions.hide.push("OTA, Long term goals status");
-            conditions.hide.push("OTA, Comments on the goals");
             if (formFieldValues['OTA, Sollermann test administered'] == "Yes") {
                 conditions.show.push("OTA, Put key into Yale lock, turn 90 degrees");
                 conditions.show.push("OTA, Pick up coins up from flat surface, put into purses mounted on wall");
@@ -3965,8 +3963,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("OTA, Discharge");
             conditions.hide.push("OTA, Goals");
             conditions.hide.push("OTA, Difficulties");
-            conditions.hide.push("OTA, Long term goals status");
-            conditions.hide.push("OTA, Comments on the goals");
         }
         return conditions;
     },
@@ -4021,21 +4017,6 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("OTA, Pour water from jug");
             conditions.hide.push("OTA, Pour water from cup");
             conditions.hide.push("OTA, Sollermann test total score");
-        }
-        return conditions;
-    },
-    'OTA, Long term goal': function (formName, formFieldValues) {
-        var conditions = {
-            show: [],
-            hide: []
-        };
-        var conditionConcept = formFieldValues['OTA, Type of assessment'];
-        if (conditionConcept == "Discharge") {
-            conditions.show.push("OTA, Long term goals status");
-            conditions.show.push("OTA, Comments on the goals");
-        }else{
-            conditions.hide.push("OTA, Long term goals status");
-            conditions.hide.push("OTA, Comments on the goals");
         }
         return conditions;
     },
