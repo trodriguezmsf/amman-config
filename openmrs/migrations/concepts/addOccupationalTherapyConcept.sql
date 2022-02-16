@@ -15,7 +15,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Other comm
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Other home establishment and management, specify","Other home establishment and management, specify","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Other meal preparation and clean up, specify","Other meal preparation and clean up, specify","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Other shopping, specify","Other shopping, specify","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Long term goal","Long term goal (during discharge)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Long term goal","Long term goal","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Short term goal","Short term goal","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Other assessments performed","Other assessments performed","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Follow-up notes","Follow-up notes","Text","Misc",false);
@@ -144,7 +144,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Did the pa
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Did the patient/family receive an occupational therapy education?","Did the patient/family receive an occupational therapy education?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Did the patient receive an adaptive device?","Did the patient receive an adaptive device?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Grip unit","Grip unit","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Long term goals status","Long term goals status","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OTA, Long term goals status","Long term goals status (during discharge)","Coded","Misc",false);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"None of the short term goals were achieved","None of the short term goals were achieved","N/A","Misc",false);

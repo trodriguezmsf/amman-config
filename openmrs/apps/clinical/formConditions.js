@@ -3830,6 +3830,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.show.push("OTA, Sollermann test");
             conditions.show.push("OTA, Assessment scores");
             conditions.show.push("OTA, Goals");
+            conditions.hide.push("OTA, Difficulties");
             conditions.hide.push("OTA, Follow-up");
             conditions.hide.push("OTA, Discharge");
             if (formFieldValues['OTA, Sollermann test administered'] == "Yes") {
