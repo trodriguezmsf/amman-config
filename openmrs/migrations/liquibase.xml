@@ -12054,4 +12054,17 @@
         </sql>
     </changeSet>
 
+    <changeSet id="AMMAN_CONFIG_202202171730" author="Tarun, Supriya">
+    <preConditions onFail="MARK_RAN">
+        <sqlCheck expectedResult="1">
+            SELECT count(*) FROM concept_name WHERE name ='Pain Service Note' AND concept_name_type = 'SHORT' AND locale="en" AND voided = 0;
+        </sqlCheck>
+    </preConditions>
+    <comment>Set Locale preferred as false to short name for "Pain Nurse Follow-up" form</comment>
+    <sql>
+        UPDATE concept_name SET locale_preferred = 0 where name ='Pain Service Note' AND concept_name_type = 'SHORT' AND locale="en" AND voided = 0;
+    </sql>
+</changeSet>
+
+
 </databaseChangeLog>
