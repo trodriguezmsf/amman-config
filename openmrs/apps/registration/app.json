@@ -207,8 +207,8 @@
                 "caretakerPhoneNumber1" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
                 "caretakerPhoneNumber2" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
                 "emergencyContactNumber" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
-                "givenNameLocal": {"pattern" : "^[a-zA-Z\\u0621-\\u064A0'_ -]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
-                "familyNameLocal": {"pattern" : "^[a-zA-Z\\u0621-\\u064A0'_ -]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
+                "givenNameLocal": {"pattern" : "^.{0,50}$", "errorMessage" : "Should contain only 50 characters"},
+                "familyNameLocal": {"pattern" : "^.{0,50}$", "errorMessage" : "Should contain only 50 characters"},
                 "address1": {"pattern" : "^.{0,250}$", "errorMessage" : "Should not exceed 250 characters"},
                 "address2": {"pattern" : "^.{0,250}$", "errorMessage" : "Should not exceed 250 characters"},
                 "address3": {"pattern" : "^.{1,250}$", "errorMessage" : "Should not exceed 250 characters"},
@@ -225,7 +225,12 @@
                  "legalRepFullNameArabic": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
                  "legalRepRelationWithPatient": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
                  "emergencyContactName": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
-                 "relationWithPatient": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"}
+                 "relationWithPatient": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                 "nameoftheBlock": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                 "campVillage": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                 "campDistrict": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                 "nameoftheStreet": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                 "campComments": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"}
             },
             "patientSearch": {
                 "address": {
