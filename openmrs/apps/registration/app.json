@@ -199,16 +199,33 @@
                 }
             ],
             "fieldValidation" : {
-                "familyName" : {"pattern" : "^[-a-zA-Z ' _]+$", "errorMessage" : "Should contain characters"},
-                "givenName" : {"pattern" :  "^[-a-zA-Z -' _]+$",  "errorMessage" : "Should it contain characters"},
+                "familyName" : {"pattern" : "^[a-zA-Z -'_ ]{1,50}$.*$","errorMessage" : "Should contain only 50 characters"},
+                "givenName" : {"pattern" : "^[a-zA-Z -'_ ]{1,50}$.*$",  "errorMessage" : "Should contain only 50 characters"},
                 "phoneNumber1" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
                 "phoneNumber2" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
                 "phoneNumber3" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
                 "caretakerPhoneNumber1" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
                 "caretakerPhoneNumber2" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
-                "emergencyContactNumber" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "}
-
-
+                "emergencyContactNumber" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
+                "givenNameLocal": {"pattern" : "^[a-zA-Z\\u0621-\\u064A0'_ -]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
+                "familyNameLocal": {"pattern" : "^[a-zA-Z\\u0621-\\u064A0'_ -]{1,50}$.*$", "errorMessage" : "Should contain only 50 characters"},
+                "address1": {"pattern" : "^.{0,250}$", "errorMessage" : "Should not exceed 250 characters"},
+                "address2": {"pattern" : "^.{0,250}$", "errorMessage" : "Should not exceed 250 characters"},
+                "address3": {"pattern" : "^.{1,250}$", "errorMessage" : "Should not exceed 250 characters"},
+                "address4": {"pattern" : "^.{0,250}$", "errorMessage" : "Should not exceed 250 characters"},
+                "address6": {"pattern" : "^.{0,250}$", "errorMessage" : "Should not exceed 250 characters"},
+                "stateProvince": {"pattern" : "^.{1,250}$", "errorMessage" : "Should not exceed 250 characters"},
+                "spokenLanguages": {"pattern" : "^.{1,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                "emailAddress": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                "whatsapp": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                "facebook": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                 "viber": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                 "occupation": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                 "legalRepFullNameEnglish": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                 "legalRepFullNameArabic": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                 "legalRepRelationWithPatient": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                 "emergencyContactName": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                 "relationWithPatient": {"pattern" : "^.{0,50}$", "errorMessage" : "Should not exceed 50 characters"}
             },
             "patientSearch": {
                 "address": {
