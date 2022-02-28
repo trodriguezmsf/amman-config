@@ -199,8 +199,8 @@
                 }
             ],
             "fieldValidation" : {
-                "familyName" : {"pattern" : "^[a-zA-Z -'_ ]{1,50}$.*$","errorMessage" : "Should contain only 50 characters"},
-                "givenName" : {"pattern" : "^[a-zA-Z -'_ ]{1,50}$.*$",  "errorMessage" : "Should contain only 50 characters"},
+                "familyName" : {"pattern" : "^[a-zA-Z-'_ ]{1,50}$.*$","errorMessage" : "Should contain only 50 characters"},
+                "givenName" : {"pattern" : "^[a-zA-Z-'_ ]{1,50}$.*$",  "errorMessage" : "Should contain only 50 characters"},
                 "phoneNumber1" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
                 "phoneNumber2" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
                 "phoneNumber3" :{"pattern" : "[+0-9]{0,}","errorMessage" : "Should contain Numbers And '+' "},
