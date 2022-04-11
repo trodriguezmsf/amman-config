@@ -12074,7 +12074,10 @@
         </preConditions>
         <comment>Create Dr. Abdallah Abu Latifa concept</comment>
         <sql>
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dr. Abdallah Abu Latifa","","N/A","Misc",false);
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dr. Abdallah Abu Latifa","Dr. Abdallah Abu Latifa","N/A","Misc",false);
             SELECT concept_id into @conceptid1 FROM concept_name where name ="Dr. Abdallah Abu Latifa" and
             concept_name_type = "FULLY_SPECIFIED";
             INSERT INTO concept_name (concept_id, name, locale, locale_preferred, creator, date_created,
