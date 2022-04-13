@@ -12153,7 +12153,7 @@
             SELECT concept_id INTO @conceptid2 FROM concept_name where name ="Dr. Abdallah Abu Latifa" and concept_name_type =
             "FULLY_SPECIFIED";
             INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES
-            (@conceptid1,@conceptid2,1,now(),15,uuid());
+            (@conceptid1,@conceptid2,1,now(),16,uuid());
         </sql>
     </changeSet>
     <changeSet id="AMMAN_CONFIG_202204171005" author="Venky">
