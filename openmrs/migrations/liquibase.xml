@@ -12265,4 +12265,29 @@
     </changeSet>
     <include file="freshdesk/addNewBedInSurgicalWard.xml"/>
 
+    <changeSet id="AMMAN_CONFIG_202206141109" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM concept_name WHERE name="Dr. Sofian Al-Qassab" AND concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Update surgeon name in obs forms</comment>
+        <sql>
+            SELECT concept_id INTO @conceptID FROM concept_name WHERE name="Dr. Sofian Al-Qassab" AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_name set name="Dr. Sufyan Al Qassab" where concept_id=@conceptID AND concept_name_type="FULLY_SPECIFIED";
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202206141135" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM person_name where given_name="Sufyan" and family_name="Al Qasab";
+            </sqlCheck>
+        </preConditions>
+        <comment>Update surgeon name in OT module</comment>
+        <sql>
+            SELECT person_id INTO @personID FROM person_name where given_name="Sufyan" and family_name="Al Qasab";
+            UPDATE person_name set family_name="Al Qassab" where person_id=@personID;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
