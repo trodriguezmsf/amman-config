@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <!---Change Set For addition of concepts to openmrs -->
+  <changeSet id="AMMAN_CONFIG_202206271038" author="Venky">
+    <comment>Adding Concepts for Operative Report form</comment>
+    <sqlFile path="concepts/operativeReport_2.sql"/>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_202206271039" author="Venky">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ('OR, Post-operative order') AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'Operative Report');
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding set members for "Operative Report" Concept</comment>
+    <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'Operative Report' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'OR, Post-operative order' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 20);
+    </sql>
+  </changeSet>
+</databaseChangeLog>
+
+
+
+
+

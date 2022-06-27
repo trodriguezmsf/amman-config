@@ -12290,4 +12290,5 @@
             UPDATE person_name set family_name="Al Qassab" where person_id=@personID;
         </sql>
     </changeSet>
+    <include file="clinicalForms/operativeReport_2.xml"/>
 </databaseChangeLog>
