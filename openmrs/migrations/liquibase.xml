@@ -12353,4 +12353,24 @@
             VALUES(@concept_reference_term_id , @concept_map_type_id, @concept_id, @time_now,1, @uuid);
         </sql>
     </changeSet>
+    <changeSet id="AMMAN_CONFIG_2022100301" author="Kiruthiga, Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_name where name ='Dr. Faisal Al-Bdour' and concept_name_type = 'FULLY_SPECIFIED';
+            </sqlCheck>
+        </preConditions>
+        <comment>MOBN-2022 | Adding  Dr. Faisal Al-Bdour to name of MLO concept_answers</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Dr. Faisal Al-Bdour','','N/A','Misc',false);
+            call create_reference_mapping_msf_internal('Dr. Faisal Al-Bdour', '30');
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'MH, Name of MLO' AND concept_name_type='FULLY_SPECIFIED';
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Dr. Faisal Al-Bdour' AND concept_name_type='FULLY_SPECIFIED';
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer,1,now(),30,uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
