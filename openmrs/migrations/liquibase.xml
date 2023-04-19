@@ -12388,7 +12388,7 @@
             SELECT concept_id into @conceptid1 FROM concept_name where name ="Dr. Fadi Zawawi" and
             concept_name_type = "FULLY_SPECIFIED";
             INSERT INTO concept_name (concept_id, name, locale, locale_preferred, creator, date_created,
-            concept_name_type, uuid) values (@conceptid1, 'AAL', 'en', 0, 1, now(), NULL, uuid());
+            concept_name_type, uuid) values (@conceptid1, 'FZ', 'en', 0, 1, now(), NULL, uuid());
         </sql>
     </changeSet>
     <changeSet id="AMMAN_CONFIG_202304121002" author="Kiruthiga">
