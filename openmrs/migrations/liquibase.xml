@@ -12559,4 +12559,24 @@
             (@conceptid1,@conceptid2,1,now(),17,uuid());
         </sql>
     </changeSet>
+    <changeSet id="AMMAN_CONFIG_20230609131443" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_name where name ='Dr. Ameer Talib' and concept_name_type = 'FULLY_SPECIFIED';
+            </sqlCheck>
+        </preConditions>
+        <comment>MOBN-2110 | Adding  Dr. Ameer Talib to name of MLO concept_answers</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Dr. Ameer Talib','','N/A','Misc',false);
+            call create_reference_mapping_msf_internal('Dr. Ameer Talib', '31');
+
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'MH, Name of MLO' AND concept_name_type='FULLY_SPECIFIED';
+            SELECT concept_id INTO @concept_answer FROM concept_name WHERE name = 'Dr. Ameer Talib' AND concept_name_type='FULLY_SPECIFIED';
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer,1,now(),31,uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
