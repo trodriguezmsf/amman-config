@@ -1888,6 +1888,10 @@
           },
           "OTA, Goals":{
             "allowAddMore" : true
+          },
+          "3DA, Type of assessment":{
+            "required":true,
+            "multiSelect":true
           }
         },
         "visitPage": {

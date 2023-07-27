@@ -262,7 +262,8 @@
                     "PA, Psychiatrist-mhGAP Assessment",
                     "Pediatric Nurse Assessment",
                     "Occupational Therapy Assessment",
-                    "External Consultation"
+                    "External Consultation",
+                    "3DA, 3D Assessment"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
             }

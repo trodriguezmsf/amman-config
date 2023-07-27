@@ -12579,4 +12579,5 @@
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer,1,now(),31,uuid());
         </sql>
     </changeSet>
+    <include file="clinicalForms/3DAssessment.xml"/>
 </databaseChangeLog>
