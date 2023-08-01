@@ -80,9 +80,9 @@ VALUES ((select concept_id from concept_name where name = "3DA, Patient social p
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "3DA, Symptoms total score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),20,NULL,NULL,0,NULL,NULL,"",0,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "3DA, Vertical mouth opening" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,0,NULL,NULL,"Cm",1,1);
+VALUES ((select concept_id from concept_name where name = "3DA, Vertical mouth opening" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,0,NULL,NULL,"cm",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "3DA, Horizontal mouth opening" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,0,NULL,NULL,"Cm",1,1);
+VALUES ((select concept_id from concept_name where name = "3DA, Horizontal mouth opening" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,0,NULL,NULL,"cm",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "3DA, Adult individually prioritized problem assessment (IPPA) total score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
