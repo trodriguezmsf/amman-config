@@ -12580,4 +12580,5 @@
         </sql>
     </changeSet>
     <include file="clinicalForms/3DAssessment.xml"/>
+    <include file="clinicalForms/addAnesthesiaInitialAssessment.xml"/>
 </databaseChangeLog>

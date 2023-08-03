@@ -1892,6 +1892,9 @@
           "3DA, Type of assessment":{
             "required":true,
             "multiSelect":true
+          },
+          "AIA, Date of next follow-up":{
+            "allowFutureDates": true
           }
         },
         "visitPage": {

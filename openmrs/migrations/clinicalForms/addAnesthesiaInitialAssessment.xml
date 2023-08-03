@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!---Change Set For addition of concepts to openmrs -->
+    <changeSet id="AMMAN_CONFIG_202328070506" author="Bindu, Sreelekha">
+        <comment>Adding Concepts for Anesthesia Initial Assessment form</comment>
+        <sqlFile path="concepts/addAnesthesiaInitialAssessment.sql"/>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202301081210" author="Bindu, Sreelekha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name =
+                'AIA, Type of assessment'
+                AND concept_name_type="FULLY_SPECIFIED") AND answer_concept IN (SELECT concept_id FROM concept_name
+                WHERE name IN ("Initial assessment", "Follow-up assessment"));
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New answer concepts to AIA, Type of assessment</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'AIA, Type of assessment' AND
+            concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Initial assessment' AND
+            concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES
+            (@concept_id,@concept_answer1,8,now(),20,uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Follow-up assessment' AND
+            concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES
+            (@concept_id,@concept_answer2,8,now(),40,uuid()); 
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202301080147" author="Bindu, Sreelekha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set where concept_id=(select concept_id from concept_name where name='AIA,
+                Type of assessment');
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Type of assessment to Initial Anesthesia Assessment form</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "Initial Anesthesia Assessment" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @member1_concept_id = 0;
+            select concept_id into @member1_concept_id from concept_name where name ="AIA, Type of assessment" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1010);
+
+            select concept_id into @concept_id1 from concept_name where name ="AIA, History" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id2 from concept_name where name ="AIA, Clinical Examination" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            UPDATE concept_set SET sort_weight=1020 WHERE concept_id=@concept_id1 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=1030 WHERE concept_id=@concept_id2 and concept_set=@concept_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202301080159" author="Bindu, Sreelekha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set where concept_id IN (select concept_id from concept_name where name IN
+                ('AIA, Proposed investigation or consultation','AIA, Date of next follow-up'));
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Proposed investigation or consultation and Date of next follow-up to Initial Anesthesia Assessment
+            form
+        </comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "AIA, Clinical Examination" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            select concept_id into @concept_id1 from concept_name where 
+            name ="AIA, Outcome of anaesthesia initial assessment, comments" 
+            and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id2 from concept_name where 
+            name ="AIA, I discussed the risks and benefits of anaesthesia and answered all questions" 
+            and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and
+            voided = 0;
+
+            UPDATE concept_set SET sort_weight=1090 WHERE concept_id=@concept_id1 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=2000 WHERE concept_id=@concept_id2 and concept_set=@concept_id;
+
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+
+            select concept_id into @member1_concept_id from concept_name where 
+            name ="AIA, Proposed investigation or consultation" and concept_name_type = 'FULLY_SPECIFIED' 
+            and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name ="AIA, Date of next follow-up" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1070);
+            call add_concept_set_members(@concept_id, @member2_concept_id, 1080);
+
+            
+        </sql>
+    </changeSet>
+</databaseChangeLog>
+
+
+
+
+
