@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="AMMAN_CONFIG_20230803074334962" author="Sreelekha, Sri Laxmi">
+        <comment>Adding Concepts for vitalSigns Form</comment>
+        <sqlFile path="concepts/vitalSigns.sql"/>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20230803074335868" author="Sreelekha, Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("1 = Completely Limited", "2 = Very Limited", "3 = Slightly Limited", "4 = No Impairment")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "VS, Sensory Perception");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to VS, Sensory Perception</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "VS, Sensory Perception" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Completely Limited" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Very Limited" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Slightly Limited" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = No Impairment" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20230803074336682" author="Sreelekha, Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("1 = Constantly Moist", "2 = Moist", "3 = Occasionally Moist", "4 = Rarely Moist")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "VS, Moisture");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to VS, Moisture</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "VS, Moisture" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Constantly Moist" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Moist" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Occasionally Moist" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Rarely Moist" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20230803074337498" author="Sreelekha, Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("1 = Bedfast", "2 = Chairfast", "3 = Walks Occasionally", "4 = Walks Frequently")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "VS, Activity");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to VS, Activity</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "VS, Activity" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Bedfast" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Chairfast" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Walks Occasionally" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Walks Frequently" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20230803074338308" author="Sreelekha, Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("1 = Completely Immobile", "2 = Very Limited", "3 = Slightly Limited", "4 = No Limitation")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "VS, Mobility");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to VS, Mobility</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "VS, Mobility" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Completely Immobile" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Very Limited" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Slightly Limited" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = No Limitation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20230803074339089" author="Sreelekha, Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("1 = Very Poor", "2 = Probably Inadequate", "3 = Adequate", "4 = Excellent")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "VS, Nutrition");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to VS, Nutrition</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "VS, Nutrition" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Very Poor" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Probably Inadequate" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = Adequate" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4 = Excellent" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20230803074339682" author="Sreelekha, Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("1 = Problem", "2 = Potential Problem", "3 = No Apparent Problem")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "VS, Friction and Shear");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to VS, Friction and Shear</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "VS, Friction and Shear" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Problem" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2 = Potential Problem" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3 = No Apparent Problem" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202308030147" author="Sreelekha, Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set where concept_id=(select concept_id from concept_name where name='VS, Pressure injury risk assessment');
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Pressure injury risk assessment to Vital Signs form</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "Vital Signs" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            
+
+            select concept_id into @concept_id1 from concept_name where name ="VS, Comments about baseline vital signs" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            UPDATE concept_set SET sort_weight=14 WHERE concept_id=@concept_id1 and concept_set=@concept_id;
+
+            set @member1_concept_id = 0;
+            select concept_id into @member1_concept_id from concept_name where name ="VS, Pressure injury risk assessment" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members(@concept_id, @member1_concept_id, 13);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_2023080314330" author="Sreelekha, Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("VS, Sensory Perception","VS, Moisture","VS, Activity","VS, Mobility","VS, Nutrition","VS, Friction and Shear","VS, Total risk score","VS, Total Pressure Injury Risk Level")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "VS, Pressure injury risk assessment");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Set Members to Pressure injury risk assessment</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "VS, Pressure injury risk assessment" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+            set @member6_concept_id = 0;
+            set @member7_concept_id = 0;
+            set @member8_concept_id = 0;
+
+            select concept_id into @member1_concept_id from concept_name where name ="VS, Sensory Perception" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name ="VS, Moisture" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name ="VS, Activity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name ="VS, Mobility" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name ="VS, Nutrition" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name ="VS, Friction and Shear" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name ="VS, Total risk score" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member8_concept_id from concept_name where name ="VS, Total Pressure Injury Risk Level" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members(@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members(@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members(@concept_id, @member4_concept_id, 4);
+            call add_concept_set_members(@concept_id, @member5_concept_id, 5);
+            call add_concept_set_members(@concept_id, @member6_concept_id, 6);
+            call add_concept_set_members(@concept_id, @member7_concept_id, 7);
+            call add_concept_set_members(@concept_id, @member8_concept_id, 8);
+        </sql>
+    </changeSet>
+
+
+    <changeSet id="AMMAN_CONFIG_202308031517" author="Sreelekha, Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="5">
+                select COUNT(*) from concept_numeric where concept_id IN (select concept_id from concept_name where name IN ("VS, Respiratory Rate","VS, Temperature","VS, Pulse","VS, Systolic blood pressure","VS, Diastolic blood pressure"));
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Critical high/low values to Vital Signs form</comment>
+        <sql>
+            select concept_id into @concept_id1 from concept_name where name ="VS, Respiratory Rate" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id2 from concept_name where name ="VS, Temperature" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id3 from concept_name where name ="VS, Pulse" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id4 from concept_name where name ="VS, Systolic blood pressure" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id5 from concept_name where name ="VS, Diastolic blood pressure" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            
+            UPDATE concept_numeric SET low_absolute=5, hi_absolute=30 WHERE concept_id=@concept_id1;
+            UPDATE concept_numeric SET low_absolute=30, hi_absolute=42 WHERE concept_id=@concept_id2;
+            UPDATE concept_numeric SET low_absolute=30, hi_absolute=200 WHERE concept_id=@concept_id3;
+            UPDATE concept_numeric SET low_absolute=40, hi_absolute=250 WHERE concept_id=@concept_id4;
+            UPDATE concept_numeric SET low_absolute=30, hi_absolute=150 WHERE concept_id=@concept_id5;
+
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
