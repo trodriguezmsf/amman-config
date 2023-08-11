@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="AMMAN_CONFIG_20230810103228825" author="Sreelekha, Sri Laxmi">
+        <comment>Adding Concepts for psychoSocialAssessmentForm Form</comment>
+        <sqlFile path="concepts/psychoSocialAssessmentForm_2.sql"/>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20230810103230447" author="Sreelekha, Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("No", "BMRC MLO", "Sanaa MLO", "Aden MLO", "Gaza MLO", "Self-referral", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PSA, Referrals ordered");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PSA, Referrals ordered</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PSA, Referrals ordered" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="No" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="BMRC MLO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Sanaa MLO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Aden MLO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Gaza MLO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Self-referral" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+        </sql>
+    </changeSet>
+
+        <changeSet id="AMMAN_CONFIG_202310081242" author="Sreelekha, Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set where concept_id=(select concept_id from concept_name where name='PSA,Referrals ordered');
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Referrals ordered to Mental Health Assessment form</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PSA, Discharge Assessment" and concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            select concept_id into @concept_id1 from concept_name where name ="PSA, Comment on the referral" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id2 from concept_name where name ="PSA, Prescribers: Comment on the process of care and discharge" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            UPDATE concept_set SET sort_weight=5 WHERE concept_id=@concept_id1 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=6 WHERE concept_id=@concept_id2 and concept_set=@concept_id;
+
+            
+            set @member1_concept_id = 0;
+            select concept_id into @member1_concept_id from concept_name where name ="PSA, Referrals ordered" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members(@concept_id, @member1_concept_id, 4);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

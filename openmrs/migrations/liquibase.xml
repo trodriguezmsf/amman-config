@@ -12582,4 +12582,5 @@
     <include file="clinicalForms/3DAssessment.xml"/>
     <include file="clinicalForms/addAnesthesiaInitialAssessment.xml"/>
     <include file="clinicalForms/vitalSigns.xml"/>
+    <include file="clinicalForms/psychoSocialAssessmentForm_2.xml"/>
 </databaseChangeLog>
