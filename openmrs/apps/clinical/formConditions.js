@@ -1497,10 +1497,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
                };
               var conditionConcept = formFieldValues['WWN, Does the patient have a peripheral line?'];
               if (conditionConcept == "Yes"){
-                 conditions.show.push("WWN, Site of peripheral line","WWN, Date of insertion, peripheral line","WWN, Date of removal, peripheral line","WWN, Comments, peripheral line")
+                 conditions.show.push("WWN, Site of peripheral line","WWN, Date of insertion, peripheral line","WWN, Date of removal, peripheral line","WWN, Peripheral line status at removal","WWN, Comments, peripheral line")
               }
               else {
-              conditions.hide.push("WWN, Site of peripheral line","WWN, Date of insertion, peripheral line","WWN, Date of removal, peripheral line","WWN, Comments, peripheral line")
+              conditions.hide.push("WWN, Site of peripheral line","WWN, Date of insertion, peripheral line","WWN, Date of removal, peripheral line","WWN, Peripheral line status at removal","WWN, Comments, peripheral line")
               }
               return conditions;
          },
@@ -1511,10 +1511,10 @@ Bahmni.ConceptSet.FormConditions.rules = {
                };
               var conditionConcept = formFieldValues['WWN, Does the patient have a PICC line?'];
               if (conditionConcept == "Yes"){
-                 conditions.show.push("WWN, Date of insertion, PICC line","WWN, Date of dressing","WWN, Comments, dressing PICC line","WWN, Date of removal, PICC line")
+                 conditions.show.push("WWN, Date of insertion, PICC line","WWN, Date of dressing","WWN, Comments, dressing PICC line","WWN, Date of removal, PICC line","WWN, PICC line status at removal")
               }
               else {
-              conditions.hide.push("WWN, Date of insertion, PICC line","WWN, Date of dressing","WWN, Comments, dressing PICC line","WWN, Date of removal, PICC line")
+              conditions.hide.push("WWN, Date of insertion, PICC line","WWN, Date of dressing","WWN, Comments, dressing PICC line","WWN, Date of removal, PICC line","WWN, PICC line status at removal")
               }
               return conditions;
          },

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="Amman_CONFIG_20230811074120940" author="Sri Laxmi">
+        <comment>Adding Concepts for wardNursingNote Form</comment>
+        <sqlFile path="concepts/wardNursingNote.sql"/>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_20230811074126573" author="Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Infected", "Clean")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "WWN, Peripheral line status at removal");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to WWN, Peripheral line status at removal</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "WWN, Peripheral line status at removal" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            
+            select concept_id into @child1_concept_id from concept_name where name ="Infected" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Clean" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_20230811074126905" author="Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Infected", "Clean")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "WWN, PICC line status at removal");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to WWN, PICC line status at removal</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "WWN, PICC line status at removal" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            
+            select concept_id into @child1_concept_id from concept_name where name ="Infected" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Clean" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_20230811074127636" author="Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Site, Lip", "Site, Lower lip", "Site, Upper lip", "Site, Eyelid")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "WWN, Site of pain");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to WWN, Site of pain</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "WWN, Site of pain" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            select concept_id into @concept_id1 from concept_name where name ="Site, Other" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            
+            UPDATE concept_answer SET sort_weight=43 WHERE concept_id=@concept_id and answer_concept=@concept_id1;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Site, Lip" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Site, Lower lip" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Site, Upper lip" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Site, Eyelid" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 39);
+            call add_concept_answer(@concept_id, @child2_concept_id, 40);
+            call add_concept_answer(@concept_id, @child3_concept_id, 41);
+            call add_concept_answer(@concept_id, @child4_concept_id, 42);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_20230811074128362" author="Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Site, Lip", "Site, Lower lip", "Site, Upper lip", "Site, Eyelid")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "WWN, Site of dressing");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to WWN, Site of dressing</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "WWN, Site of dressing" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Site, Lip" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Site, Lower lip" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Site, Upper lip" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Site, Eyelid" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            
+            call add_concept_answer(@concept_id, @child1_concept_id, 38);
+            call add_concept_answer(@concept_id, @child2_concept_id, 39);
+            call add_concept_answer(@concept_id, @child3_concept_id, 40);
+            call add_concept_answer(@concept_id, @child4_concept_id, 41);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20230811143626905" author="Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set where concept_id IN (select concept_id from concept_name where name IN ('WWN, Peripheral line status at removal','WWN, PICC line status at removal'));
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Peripheral line status at removal and PICC line status at removal to Ward Nursing Note form</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "Ward Nursing Note" and concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            select concept_id into @concept_id1 from concept_name where name ="WWN, Comments, peripheral line" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id2 from concept_name where name ="WWN, Does the patient have a PICC line?" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id3 from concept_name where name ="WWN, Date of insertion, PICC line" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id4 from concept_name where name ="WWN, Date of dressing" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id5 from concept_name where name ="WWN, Comments, dressing PICC line" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id6 from concept_name where name ="WWN, Date of removal, PICC line" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id7 from concept_name where name ="WWN, Does the patient have a Foley catheter?" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id8 from concept_name where name ="WWN, Does the patient have a tissue expander?" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id9 from concept_name where name ="WWN, Nursing consultation notes" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id10 from concept_name where name ="WWN, Tissue Expander" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @concept_id11 from concept_name where name ="WWN, Diabetes Monitoring" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            UPDATE concept_set SET sort_weight=1130 WHERE concept_id=@concept_id1 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=1140 WHERE concept_id=@concept_id2 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=1150 WHERE concept_id=@concept_id3 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=1160 WHERE concept_id=@concept_id4 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=1170 WHERE concept_id=@concept_id5 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=1180 WHERE concept_id=@concept_id6 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=1200 WHERE concept_id=@concept_id7 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=1210 WHERE concept_id=@concept_id8 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=1220 WHERE concept_id=@concept_id9 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=1230 WHERE concept_id=@concept_id10 and concept_set=@concept_id;
+            UPDATE concept_set SET sort_weight=1240 WHERE concept_id=@concept_id11 and concept_set=@concept_id;
+
+            
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+
+            select concept_id into @member1_concept_id from concept_name where name ="WWN, Peripheral line status at removal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name ="WWN, PICC line status at removal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1120);
+            call add_concept_set_members(@concept_id, @member2_concept_id, 1190);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
