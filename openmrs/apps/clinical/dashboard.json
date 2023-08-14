@@ -263,7 +263,8 @@
                     "Pediatric Nurse Assessment",
                     "Occupational Therapy Assessment",
                     "External Consultation",
-                    "3DA, 3D Assessment"
+                    "3DA, 3D Assessment",
+                    "CPA, Clinical Pharmacy Assessment"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
             }

@@ -4076,6 +4076,94 @@ Bahmni.ConceptSet.FormConditions.rules = {
             conditions.hide.push("PPN, Post-op day");
         }
         return conditions;
+    },
+    'CPA, Intervention accepted by the prescriber?': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CPA, Intervention accepted by the prescriber?'];
+        if (conditionConcept == "Yes") {
+            conditions.show.push("CPA, Comments on the accepted intervention");
+        }
+        else {
+            conditions.hide.push("CPA, Comments on the accepted intervention");
+        }
+        if (conditionConcept == "No") {
+            conditions.show.push("CPA, Why intervention not accepted by the prescriber?");
+        }
+        else {
+            conditions.hide.push("CPA, Why intervention not accepted by the prescriber?");
+        }
+        return conditions;
+    },
+    'CPA, Reason for intervention': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['CPA, Reason for intervention'];
+        var concepts = {
+            "CPA, Change in treatment plan" : 0,
+            "CPA, Comments on change in treatment plan" : 0,
+            "CPA, Comments on inappropriate drug regimen (dose modification)" : 0,
+            "CPA, Type of drug-drug interaction" : 0,
+            "CPA, Comments on drug-drug interaction" : 0,
+            "CPA, Comments on contraindications" : 0,
+            "CPA, Comments on untreated condition" : 0,
+            "CPA, Comments on therapeutic duplication" : 0,
+            "CPA, Comments on drug without indication" : 0,
+            "CPA, Therapeutic drug monitoring for" : 0,
+            "CPA, Comments on therapeutic drug monitoring" : 0,
+            "CPA, Comments on alternative recommended medications from MSF standard list" : 0,
+            "CPA, Comments on laboratory investigation required" : 0,
+            "CPA, Intervention accepted by the prescriber?" : 0
+        }
+        if (conditionConcept.indexOf("Treatment plan")>=0) {
+            concepts["CPA, Change in treatment plan"] = 1;
+            concepts["CPA, Comments on change in treatment plan"] = 1;
+        }
+        if (conditionConcept.indexOf("Inappropriate drug regimen")>=0) {
+            concepts["CPA, Comments on inappropriate drug regimen (dose modification)"] = 1;
+        }
+        if (conditionConcept.indexOf("Drug-drug interaction")>=0) {
+            concepts["CPA, Type of drug-drug interaction"] = 1;
+            concepts["CPA, Comments on drug-drug interaction"] = 1;
+        }
+        if (conditionConcept.indexOf("Contraindications")>=0) {
+            concepts["CPA, Comments on contraindications"] = 1;
+        }
+        if (conditionConcept.indexOf("Untreated condition")>=0) {
+            concepts["CPA, Comments on untreated condition"] = 1;
+        }
+        if (conditionConcept.indexOf("Therapeutic duplication")>=0) {
+            concepts["CPA, Comments on therapeutic duplication"] = 1;
+        }
+        if (conditionConcept.indexOf("Drug without indication")>=0) {
+            concepts["CPA, Comments on drug without indication"] = 1;
+        }
+        if (conditionConcept.indexOf("Therapeutic drug monitoring")>=0) {
+            concepts["CPA, Therapeutic drug monitoring for"] = 1;
+            concepts["CPA, Comments on therapeutic drug monitoring"] = 1;
+        }
+        if (conditionConcept.indexOf("Alternative recommended medications from MSF standard list")>=0) {
+            concepts["CPA, Comments on alternative recommended medications from MSF standard list"] = 1;
+        }
+        if (conditionConcept.indexOf("Laboratory investigation required")>=0) {
+            concepts["CPA, Comments on laboratory investigation required"] = 1;
+        }
+        if (conditionConcept.indexOf("Intervention follow-up by physician")>=0) {
+            concepts["CPA, Intervention accepted by the prescriber?"] = 1;
+        }
+        for(const concept in concepts){
+            if(concepts[concept] == 1){
+                conditions.show.push(concept);
+            }
+            else{
+                conditions.hide.push(concept);
+            }
+        }
+        return conditions;
     }
 }
 

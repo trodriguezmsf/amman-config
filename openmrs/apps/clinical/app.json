@@ -1895,6 +1895,48 @@
           },
           "AIA, Date of next follow-up":{
             "allowFutureDates": true
+          },
+          "CPA, Reason for intervention":{
+            "multiSelect":true
+          },
+          "CPA, Type of drug-drug interaction":{
+            "multiSelect":true
+          },
+          "CPA, Therapeutic drug monitoring for":{
+            "multiSelect":true
+          },
+          "CPA, Type of adverse drug reaction (ADR)":{
+            "multiSelect":true
+          },
+          "CPA, Date recorded": {
+            "disableAddNotes": true
+          },
+          "CPA, Weight": {
+            "disableAddNotes": true
+          },
+          "CPA, Height": {
+            "disableAddNotes": true
+          },
+          "CPA, BMI": {
+            "disableAddNotes": true
+          },
+          "CPA, Ideal body weight (IBW)": {
+            "disableAddNotes": true
+          },
+          "CPA, Adjusted body weight (ABW)": {
+            "disableAddNotes": true
+          },
+          "CPA, Change in treatment plan": {
+            "disableAddNotes": true
+          },
+          "CPA, Creatinine clearance": {
+            "disableAddNotes": true
+          },
+          "CPA, Intervention accepted by the prescriber?": {
+            "disableAddNotes": true
+          },
+          "CPA, Clinical pharmacy interventions": {
+              "allowAddMore": true
           }
         },
         "visitPage": {

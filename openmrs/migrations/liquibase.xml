@@ -12584,4 +12584,5 @@
     <include file="clinicalForms/vitalSigns.xml"/>
     <include file="clinicalForms/psychoSocialAssessmentForm_2.xml"/>
     <include file="clinicalForms/wardNursingNote.xml"/>
+    <include file="clinicalForms/ClinicalPharmacyAssessment.xml"/>
 </databaseChangeLog>
