@@ -1476,6 +1476,14 @@ Bahmni.ConceptSet.FormConditions.rules = {
               }
               return conditions;
          },
+    'WWN, Dressing': function (formName, formFieldValues) {
+            var conditions = {
+                show: [],
+                hide: []
+             };
+             conditions.hide.push("WWN, Description of wound, other")
+            return conditions;
+       },
     'WWN, Description of wound': function (formName, formFieldValues) {
               var conditions = {
                   show: [],
