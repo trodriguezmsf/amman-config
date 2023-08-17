@@ -19,6 +19,7 @@
     "enableServiceTypes": true,
     "enableCalendarView": true,
     "isServiceOnAppointmentEditable": true,
+    "maxAppointmentProviders": 100,
     "colorsForAppointmentService": [
       "#006400",
       "#DC143C",
