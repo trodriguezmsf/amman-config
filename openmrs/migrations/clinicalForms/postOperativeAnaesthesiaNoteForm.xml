@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="AMMAN_CONFIG_20231608164934962" author="Sreelekha">
+        <comment>Adding Concepts for Post-operative Anesthesia note Form</comment>
+        <sqlFile path="concepts/postOperativeAnaesthesiaNoteForm.sql"/>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20231608165134962" author="Sreelekha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Unanticipated Difficult Intubation", "Unanticipated Movement to ICU/HDU", "Unanticipated Reoperation")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "APN, Complication of anaesthesia");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to additional APN, Complication of anaesthesia</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "APN, Complication of anaesthesia" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+        
+            select concept_id into @child1_concept_id from concept_name where name ="Unanticipated Difficult Intubation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Unanticipated Movement to ICU/HDU" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Unanticipated Reoperation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;     
+            select concept_id into @concept_id1 from concept_name where name = "Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;     
+
+            UPDATE concept_answer set sort_weight = 15 where answer_concept=@concept_id1 and concept_id=@concept_id; 
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 12);
+            call add_concept_answer(@concept_id, @child2_concept_id, 13);
+            call add_concept_answer(@concept_id, @child3_concept_id, 14);
+
+        </sql>
+    </changeSet>
+    
+    <changeSet id="AMMAN_CONFIG_20231608165734962" author="Sreelekha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set where concept_id=(select concept_id from concept_name where name='APN, Anaesthetic post-operative orders');
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Anaesthetic post-operative orders in Post-operative Anaesthesia note form </comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "Post-operative Anaesthesia Note" and 
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            
+            select concept_id into @concept_id2 from concept_name where name ="APN, Anaesthetic post-operative notes" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            UPDATE concept_set SET sort_weight=1110 WHERE concept_id=@concept_id2 and concept_set=@concept_id;
+
+            set @member1_concept_id = 0;
+            select concept_id into @member1_concept_id from concept_name where name ="APN, Anaesthetic post-operative orders" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1100);
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20231608112734962" author="Sreelekha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_name where name= "Allergic Reaction" and concept_name_type = "FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Renaming Allergic Reaction concept to Drug Reaction</comment>
+        <sql>
+            UPDATE concept_name set name = "Drug Reaction" where name ="Allergic Reaction" and concept_name_type ="FULLY_SPECIFIED";
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
