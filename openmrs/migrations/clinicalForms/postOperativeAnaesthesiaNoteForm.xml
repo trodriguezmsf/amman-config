@@ -70,10 +70,10 @@
         </sql>
     </changeSet>
 
-    <changeSet id="AMMAN_CONFIG_20231608112734962" author="Sreelekha">
+    <changeSet id="AMMAN_CONFIG_20231608112735963" author="Sreelekha">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
-                select count(*) from concept_name where name= "Allergic Reaction" and concept_name_type = "FULLY_SPECIFIED");
+                select count(*) from concept_name where name= "Allergic Reaction" and concept_name_type = "FULLY_SPECIFIED";
             </sqlCheck>
         </preConditions>
         <comment>Renaming Allergic Reaction concept to Drug Reaction</comment>
