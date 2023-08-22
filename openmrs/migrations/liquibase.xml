@@ -12579,6 +12579,38 @@
             INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_answer,1,now(),31,uuid());
         </sql>
     </changeSet>
+    <changeSet id="AMMAN_CONFIG_20232108131734964" author="Sreelekha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_name WHERE name = 'Mental Health Assessment' AND concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Creating Mental Health Assessment concept for Patient document upload</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mental Health Assessment","Mental Health Assessment","N/A","Misc",false);
+        </sql>    
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20232108131534962" author="Sreelekha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+            select COUNT(*) from concept where concept_id=(select concept_id from concept_name where name='Mental Health Assessment' and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0);
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Mental Health Assessment option in the Patient Medical Documents</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "Radiology" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+        
+            select concept_id into @child1_concept_id from concept_name where name ="Mental Health Assessment" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+        
+            call add_concept_set_members(@concept_id, @child1_concept_id, 16);
+        </sql>
+    </changeSet>
     <include file="clinicalForms/3DAssessment.xml"/>
     <include file="clinicalForms/addAnesthesiaInitialAssessment.xml"/>
     <include file="clinicalForms/vitalSigns.xml"/>
