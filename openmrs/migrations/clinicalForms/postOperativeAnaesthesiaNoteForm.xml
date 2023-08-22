@@ -81,5 +81,29 @@
             UPDATE concept_name set name = "Drug Reaction" where name ="Allergic Reaction" and concept_name_type ="FULLY_SPECIFIED";
         </sql>
     </changeSet>
+    
+    <changeSet id="Amman_CONFIG_202322081444466" author="Sreelekha">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("149086","156221","166099")
+                and retired = 0
+                and concept_source_id = (select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0);
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding CEIL codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"149086",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"156221",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166099",@source_id,uuid(),now());
+            
+            call CREATE_REFERENCE_MAPPING_CEIL("Drug Reaction","149086");
+            call CREATE_REFERENCE_MAPPING_CEIL("Unanticipated Difficult Intubation","156221");
+            call CREATE_REFERENCE_MAPPING_CEIL("Unanticipated Reoperation","166099");
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>
