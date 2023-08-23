@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!---Change Set For addition of concepts to openmrs -->
+    <changeSet id="AMMAN_CONFIG_202308221517" author="Keerthi">
+        <comment>Adding Concepts Complication form</comment>
+        <sqlFile path="concepts/AddNewConceptsComplications.sql"/>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202308221519" author="Keerthi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_answer WHERE concept_id=(SELECT concept_id FROM concept_name WHERE name =
+                                                                                                                'CC, Patient complication'
+                                                                                                            AND concept_name_type="FULLY_SPECIFIED") AND answer_concept IN (SELECT concept_id FROM concept_name
+                                                                                                                                                                            WHERE name IN ("Central line blood stream infection", "Catheter associated urinary tract infection","Peripheral line blood stream infection"));
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New answer concepts to CC, Patient complication</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name = 'CC, Patient complication' AND
+                concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_answer1 FROM concept_name WHERE name = 'Central line blood stream infection' AND
+                concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES
+                (@concept_id,@concept_answer1,8,now(),45,uuid());
+            SELECT concept_id INTO @concept_answer2 FROM concept_name WHERE name = 'Catheter associated urinary tract infection' AND
+                concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES
+                (@concept_id,@concept_answer2,8,now(),46,uuid());
+            SELECT concept_id INTO @concept_answer3 FROM concept_name WHERE name = 'Peripheral line blood stream infection' AND
+                concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer (concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES
+                (@concept_id,@concept_answer3,8,now(),47,uuid());
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

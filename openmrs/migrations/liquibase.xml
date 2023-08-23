@@ -12618,4 +12618,5 @@
     <include file="clinicalForms/wardNursingNote.xml"/>
     <include file="clinicalForms/ClinicalPharmacyAssessment.xml"/>
     <include file="clinicalForms/postOperativeAnaesthesiaNoteForm.xml"/>
+    <include file="clinicalForms/AddNewConceptsComplications.xml"/>
 </databaseChangeLog>
