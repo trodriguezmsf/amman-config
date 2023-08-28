@@ -39,4 +39,24 @@
 
         </sql>
     </changeSet>
+
+    <changeSet id="Amman_CONFIG_202308250114" author="Keerthi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_reference_term
+                where code in
+                      ("162869")
+                  and retired = 0
+                  and concept_source_id = (
+                    select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding CEIL codes to concepts</comment>
+        <sql>
+
+            call CREATE_REFERENCE_MAPPING_CEIL("CC, Start date of complication","162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("CC, End date of complication","162869");
+        </sql>
+    </changeSet>
 </databaseChangeLog>
