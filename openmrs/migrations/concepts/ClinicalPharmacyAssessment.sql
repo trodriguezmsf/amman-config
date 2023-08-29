@@ -53,9 +53,9 @@ VALUES ((select concept_id from concept_name where name = "CPA, Ideal body weigh
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "CPA, Creatinine clearance" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "BMI Computed" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"Kg/m2",1,1);
+VALUES ((select concept_id from concept_name where name = "BMI Computed" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "ABW Computed" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"Kg/m2",1,1);
+VALUES ((select concept_id from concept_name where name = "ABW Computed" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Drug without indication","Drug without indication","N/A","Misc",false);
@@ -89,7 +89,19 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Carbamazepine",
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Step down","Step down","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Alternative recommended medications from MSF standard list","Alternative recommended medications from MSF standard list","N/A","Misc",false);
 
+#Add Computed concepts
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, BMI","BMI","N/A","Concept Details",true);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Adjusted body weight (ABW)","Adjusted body weight (ABW)","N/A","Concept Details",true);
+
+#Add Concept sets
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Clinical Pharmacy Assessment","Clinical Pharmacy Assessment","N/A","ConvSet",true);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Patient related medical information","Patient related medical information","N/A","ConvSet",true);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Clinical pharmacy interventions","Clinical pharmacy interventions","N/A","ConvSet",true);
+
 #Add Help Text to Concepts
+INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
+VALUES ((select concept_id from concept_name where name = "CPA, Patient related medical information" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
+"Patients' related data supporting the interventions","en",1,now(),NULL,NULL,uuid());
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
 VALUES ((select concept_id from concept_name where name = "CPA, Pre-existing medication" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
 "Medication taken at home","en",1,now(),NULL,NULL,uuid());
@@ -102,12 +114,9 @@ VALUES ((select concept_id from concept_name where name = "CPA, Type of drug-dru
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
 VALUES ((select concept_id from concept_name where name = "CPA, Type of adverse drug reaction (ADR)" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
 "Sensitivity reactions: (Itching, Red Man syndrome,...)","en",1,now(),NULL,NULL,uuid());
-
-
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, BMI","BMI","N/A","Concept Details",true);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Adjusted body weight (ABW)","Adjusted body weight (ABW)","N/A","Concept Details",true);
-
-#Add Concept sets
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Clinical Pharmacy Assessment","Clinical Pharmacy Assessment","N/A","ConvSet",true);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Patient related medical information","Patient related medical information","N/A","ConvSet",true);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Clinical pharmacy interventions","Clinical pharmacy interventions","N/A","ConvSet",true);
+INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
+VALUES ((select concept_id from concept_name where name = "BMI Computed" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
+"Body weight in kilograms/height in meters squared","en",1,now(),NULL,NULL,uuid());
+INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
+VALUES ((select concept_id from concept_name where name = "ABW Computed" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
+"IBW + 0.4 * (ABW - IBW)","en",1,now(),NULL,NULL,uuid());

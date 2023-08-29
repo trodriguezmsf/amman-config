@@ -237,7 +237,12 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         Collection<BahmniObservation> observations = bahmniEncounterTransaction.getObservations()
         BahmniObservation baselineVitalsForm = find("Vital Signs", observations, null)
         if (baselineVitalsForm != null) {
-            calculateBMIAndSave(baselineVitalsForm)
+            calculateBMIAndSave(baselineVitalsForm, "Height", "Weight", "BMI Data", "BMI", "calculateBMI")
+        }
+        BahmniObservation patientRelatedMedicalInfo = find("CPA, Patient related medical information", observations, null)
+        if (patientRelatedMedicalInfo != null) {
+            calculateBMIAndSave(patientRelatedMedicalInfo, "CPA, Height", "CPA, Weight", "CPA, BMI", "BMI Computed", "calculateBMI")
+            calculateBMIAndSave(patientRelatedMedicalInfo, "CPA, Ideal body weight (IBW)", "CPA, Weight", "CPA, Adjusted body weight (ABW)", "ABW Computed", "calculateABW")
         }
         BahmniObservation functionalScoreInNPForm = find("NP, Functional score", observations, null)
         if (functionalScoreInNPForm != null) {
@@ -399,27 +404,36 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         return groupMembers
     }
 
-    static def calculateBMIAndSave(BahmniObservation baselineForm) {
+    static def calculateBMIAndSave(BahmniObservation baselineForm, String fieldOne, String fieldTwo, String fieldParent, String fieldCalValue, String funcName) {
         Collection<BahmniObservation> observations = baselineForm.getGroupMembers()
-        BahmniObservation heightObservation = find("Height", observations, null)
-        BahmniObservation weightObservation = find("Weight", observations, null)
-        BahmniObservation bmiDataObservation = find("BMI Data", observations, null)
-        BahmniObservation bmiObservation = bmiDataObservation ? find("BMI", bmiDataObservation.getGroupMembers(), null) : null
+        BahmniObservation feildOneObservation = find(fieldOne, observations, null)
+        BahmniObservation feildTwoObservation = find(fieldTwo, observations, null)
+        BahmniObservation fieldParentObservation = find(fieldParent, observations, null)
+        BahmniObservation fieldCalValueObservation = fieldParentObservation ? find(fieldCalValue, fieldParentObservation.getGroupMembers(), null) : null
 
-        if ((heightObservation && heightObservation.voided) || (weightObservation && weightObservation.voided)) {
-            voidObs(bmiDataObservation)
-            voidObs(bmiObservation)
+        if ((feildOneObservation && feildOneObservation.voided) || (feildTwoObservation && feildTwoObservation.voided)) {
+            voidObs(fieldParentObservation)
+            voidObs(fieldCalValueObservation)
             return
         }
-        if (hasValue(heightObservation) && hasValue(weightObservation)) {
-            Double height = heightObservation.getValue() as Double
-            Double weight = weightObservation.getValue() as Double
-            Date obsDatetime = getDate(weightObservation) != null ? getDate(weightObservation) : getDate(heightObservation)
+        if (hasValue(feildOneObservation) && hasValue(feildTwoObservation)) {
+            Double fieldOneValue = feildOneObservation.getValue() as Double
+            Double fieldTwoValue = feildTwoObservation.getValue() as Double
+            Date obsDatetime = getDate(feildTwoObservation) != null ? getDate(feildTwoObservation) : getDate(feildOneObservation)
 
-            bmiDataObservation = bmiDataObservation ?: createObs("BMI Data", baselineForm, null, obsDatetime) as BahmniObservation
-            bmiObservation = bmiObservation ?: createObs("BMI", bmiDataObservation, null, obsDatetime) as BahmniObservation;
-            def bmi = calculateBMI(height, weight)
-            bmiObservation.setValue(bmi);
+            fieldParentObservation = fieldParentObservation ?: createObs(fieldParent, baselineForm, null, obsDatetime) as BahmniObservation
+            fieldCalValueObservation = fieldCalValueObservation ?: createObs(fieldCalValue, fieldParentObservation, null, obsDatetime) as BahmniObservation;
+
+            def calculatedValue;
+            if(funcName == "calculateABW"){
+                calculatedValue = calculateABW(fieldOneValue, fieldTwoValue)
+            }
+
+            if(funcName == "calculateBMI"){
+                calculatedValue = calculateBMI(fieldOneValue, fieldTwoValue)
+            }
+
+            fieldCalValueObservation.setValue(calculatedValue);
         }
     }
 
@@ -593,5 +607,15 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         }
         return null
     }
+
+    static def Double calculateABW(Double IBW, Double ABW) {
+        if (IBW == ZERO) {
+            throw new IllegalArgumentException("Please enter ideal body weight greater than zero")
+        } else if (ABW == ZERO) {
+            throw new IllegalArgumentException("Please enter actual body Weight greater than zero")
+        }
+        Double value = IBW + 0.4 * (ABW - IBW);
+        return roundOffToTwoDecimalPlaces(value);
+    };
 
 }
