@@ -123,7 +123,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="Amman_CONFIG_20230724080743355" author="Venky, Sri Laxmi">
+    <changeSet id="Amman_CONFIG_20230724080743356" author="Sri Laxmi">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -134,12 +134,12 @@
                 ("OPD", "Mental Health", "Pain", "Paediatric", "Health education", "Other")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "3DA, Referral");
+                cn.concept_id IN (select concept_id from concept_name where name = "3DA, Referral (TFO)");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to 3DA, Referral</comment>
+        <comment>Adding Answers to 3DA, Referral (TFO)</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "3DA, Referral" and
+            select concept_id into @concept_id from concept_name where name = "3DA, Referral (TFO)" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -162,7 +162,85 @@
         </sql>
     </changeSet>
 
-    <changeSet id="Amman_CONFIG_20230724080743990" author="Venky, Sri Laxmi">
+    <changeSet id="Amman_CONFIG_20230724080743355" author="Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("OPD", "Mental Health", "Pain", "Paediatric", "Health education", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "3DA, Referral (MIDA)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to 3DA, Referral (MIDA)</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "3DA, Referral (MIDA)" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="OPD" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Mental Health" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Pain" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Paediatric" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Health education" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_20230724080743354" author="Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("OPD", "Mental Health", "Pain", "Paediatric", "Health education", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "3DA, Referral (Upper Limb)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to 3DA, Referral (Upper Limb)</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "3DA, Referral (Upper Limb)" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="OPD" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Mental Health" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Pain" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Paediatric" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Health education" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_20230724080743992" author="Sri Laxmi">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -173,12 +251,12 @@
                 ("Individual", "Group", "Home visit")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "3DA, Type of session");
+                cn.concept_id IN (select concept_id from concept_name where name = "3DA, Type of session (TFO)");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to 3DA, Type of session</comment>
+        <comment>Adding Answers to 3DA, Type of session (TFO)</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "3DA, Type of session" and
+            select concept_id into @concept_id from concept_name where name = "3DA, Type of session (TFO)" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -192,7 +270,67 @@
         </sql>
     </changeSet>
 
-    <changeSet id="Amman_CONFIG_20230724080744384" author="Venky, Sri Laxmi">
+    <changeSet id="Amman_CONFIG_20230724080743990" author="Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Individual", "Group", "Home visit")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "3DA, Type of session (MIDA)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to 3DA, Type of session (MIDA)</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "3DA, Type of session (MIDA)" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Individual" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Group" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Home visit" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+    
+    <changeSet id="Amman_CONFIG_20230724080743991" author="Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Individual", "Group", "Home visit")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "3DA, Type of session (Upper Limb)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to 3DA, Type of session (Upper Limb)</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "3DA, Type of session (Upper Limb)" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Individual" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Group" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Home visit" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_20230724080744386" author="Sri Laxmi">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -203,12 +341,66 @@
                 ("Yes", "No")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "3DA, Orthosis or prosthesis delivered?");
+                cn.concept_id IN (select concept_id from concept_name where name = "3DA, Orthosis or prosthesis delivered? (TFO)");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to 3DA, Orthosis or prosthesis delivered?</comment>
+        <comment>Adding Answers to 3DA, Orthosis or prosthesis delivered? (TFO)</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "3DA, Orthosis or prosthesis delivered?" and
+            select concept_id into @concept_id from concept_name where name = "3DA, Orthosis or prosthesis delivered? (TFO)" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_20230724080744384" author="Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Yes", "No")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "3DA, Orthosis or prosthesis delivered? (MIDA)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to 3DA, Orthosis or prosthesis delivered? (MIDA)</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "3DA, Orthosis or prosthesis delivered? (MIDA)" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+    
+    <changeSet id="Amman_CONFIG_20230724080744385" author="Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Yes", "No")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "3DA, Orthosis or prosthesis delivered? (Upper Limb)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to 3DA, Orthosis or prosthesis delivered? (Upper Limb)</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "3DA, Orthosis or prosthesis delivered? (Upper Limb)" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -701,7 +893,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="AMMAN_CONFIG_2023072513500" author="Venky, Sri Laxmi">
+    <changeSet id="AMMAN_CONFIG_202308081510" author="Venky, Sreelekha, Sri Laxmi">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -709,7 +901,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("3DA, Date recorded","3DA, Type of assessment","3DA, Date of scan","3DA, Date of delivery","3DA, Referral source","3DA, Type of TFO activity","3DA, Session date","3DA, TFO clinical assessments","3DA, Image upload","3DA, Video upload","3DA, Date of follow-up session","3DA, Referral","3DA, Comments on referral","3DA, Type of session","3DA, Orthosis or prosthesis delivered?","3DA, Comments on orthosis or prosthesis","3DA, General comments about the session","3DA, Date of discharge","3DA, 3D treatment plan provided in Amman","3DA, 3D recommendations for future treatment plan","3DA, Type of MIDA activity","3DA, MIDA clinical assessments","3DA, Upper limb prosthetic side","3DA, Upper limb prosthetic age group","3DA, Type of prosthesis","3DA, Type of adult upper limb prosthetic activity","3DA, Type of paediatric upper limb prosthetic activity","3DA, Adult upper limb prosthetic clinical assessments","3DA, Paediatric upper limb prosthetic clinical assessments","3DA, Splint side","3DA, Splint site","3DA, Type of splint","3DA, SG referral source","3DA, Other SG referral source","3DA, Hydrocolloid side","3DA, Hydrocolloid date of referral","3DA, Type of Hydrocolloid activity")
+                ("3DA, Date recorded","3DA, Type of assessment","3DA, Date of scan","3DA, Date of delivery","3DA, Session date","3DA, Referral source","3DA, Type of TFO activity","3DA, TFO clinical assessments","3DA, Date of follow-up session (TFO)","3DA, Referral (TFO)","3DA, Comments on referral (TFO)","3DA, Type of session (TFO)","3DA, Orthosis or prosthesis delivered? (TFO)","3DA, Comments on orthosis or prosthesis (TFO)","3DA, General comments about the session (TFO)","3DA, Date of discharge (TFO)","3DA, 3D treatment plan provided in Amman (TFO)","3DA, 3D recommendations for future treatment plan (TFO)","3DA, Comments on referral","3DA, Type of MIDA activity","3DA, MIDA clinical assessments","3DA, Date of follow-up session (MIDA)","3DA, Referral (MIDA)","3DA, Comments on referral (MIDA)","3DA, Type of session (MIDA)","3DA, Orthosis or prosthesis delivered? (MIDA)","3DA, Comments on orthosis or prosthesis (MIDA)","3DA, General comments about the session (MIDA)","3DA, Date of discharge (MIDA)","3DA, 3D treatment plan provided in Amman (MIDA)","3DA, 3D recommendations for future treatment plan (MIDA)","3DA, Upper limb prosthetic","3DA, Splints","3DA, SG referral source","3DA, Other SG referral source","3DA, Hydrocolloid side","3DA, Hydrocolloid date of referral","3DA, Type of Hydrocolloid activity","3DA, Image upload","3DA, Video upload")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "3DA, 3D Assessment");
@@ -756,43 +948,49 @@
             set @member35_concept_id = 0;
             set @member36_concept_id = 0;
             set @member37_concept_id = 0;
+            set @member38_concept_id = 0;
+            set @member39_concept_id = 0;
+            set @member40_concept_id = 0;
             select concept_id into @member1_concept_id from concept_name where name ="3DA, Date recorded" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @member2_concept_id from concept_name where name ="3DA, Type of assessment" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @member3_concept_id from concept_name where name ="3DA, Date of scan" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @member4_concept_id from concept_name where name ="3DA, Date of delivery" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member5_concept_id from concept_name where name ="3DA, Referral source" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member6_concept_id from concept_name where name ="3DA, Type of TFO activity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member7_concept_id from concept_name where name ="3DA, Session date" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member8_concept_id from concept_name where name ="3DA, TFO clinical assessments" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member9_concept_id from concept_name where name ="3DA, Image upload" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member10_concept_id from concept_name where name ="3DA, Video upload" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member11_concept_id from concept_name where name ="3DA, Date of follow-up session" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member12_concept_id from concept_name where name ="3DA, Referral" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member13_concept_id from concept_name where name ="3DA, Comments on referral" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member14_concept_id from concept_name where name ="3DA, Type of session" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member15_concept_id from concept_name where name ="3DA, Orthosis or prosthesis delivered?" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member16_concept_id from concept_name where name ="3DA, Comments on orthosis or prosthesis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member17_concept_id from concept_name where name ="3DA, General comments about the session" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member18_concept_id from concept_name where name ="3DA, Date of discharge" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member19_concept_id from concept_name where name ="3DA, 3D treatment plan provided in Amman" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member20_concept_id from concept_name where name ="3DA, 3D recommendations for future treatment plan" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member21_concept_id from concept_name where name ="3DA, Type of MIDA activity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member22_concept_id from concept_name where name ="3DA, MIDA clinical assessments" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member23_concept_id from concept_name where name ="3DA, Upper limb prosthetic side" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member24_concept_id from concept_name where name ="3DA, Upper limb prosthetic age group" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member25_concept_id from concept_name where name ="3DA, Type of prosthesis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member26_concept_id from concept_name where name ="3DA, Type of adult upper limb prosthetic activity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member27_concept_id from concept_name where name ="3DA, Type of paediatric upper limb prosthetic activity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member28_concept_id from concept_name where name ="3DA, Adult upper limb prosthetic clinical assessments" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member29_concept_id from concept_name where name ="3DA, Paediatric upper limb prosthetic clinical assessments" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member30_concept_id from concept_name where name ="3DA, Splint side" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member31_concept_id from concept_name where name ="3DA, Splint site" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member32_concept_id from concept_name where name ="3DA, Type of splint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member33_concept_id from concept_name where name ="3DA, SG referral source" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member34_concept_id from concept_name where name ="3DA, Other SG referral source" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member35_concept_id from concept_name where name ="3DA, Hydrocolloid side" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member36_concept_id from concept_name where name ="3DA, Hydrocolloid date of referral" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member37_concept_id from concept_name where name ="3DA, Type of Hydrocolloid activity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name ="3DA, Session date" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name ="3DA, Referral source" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name ="3DA, Comments on referral" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member8_concept_id from concept_name where name ="3DA, Type of TFO activity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member9_concept_id from concept_name where name ="3DA, TFO clinical assessments" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member10_concept_id from concept_name where name ="3DA, Date of follow-up session (TFO)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member11_concept_id from concept_name where name ="3DA, Referral (TFO)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member12_concept_id from concept_name where name ="3DA, Comments on referral (TFO)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member13_concept_id from concept_name where name ="3DA, Type of session (TFO)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member14_concept_id from concept_name where name ="3DA, Orthosis or prosthesis delivered? (TFO)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member15_concept_id from concept_name where name ="3DA, Comments on orthosis or prosthesis (TFO)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member16_concept_id from concept_name where name ="3DA, General comments about the session (TFO)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member17_concept_id from concept_name where name ="3DA, Date of discharge (TFO)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member18_concept_id from concept_name where name ="3DA, 3D treatment plan provided in Amman (TFO)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member19_concept_id from concept_name where name ="3DA, 3D recommendations for future treatment plan (TFO)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member20_concept_id from concept_name where name ="3DA, Type of MIDA activity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member21_concept_id from concept_name where name ="3DA, MIDA clinical assessments" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member22_concept_id from concept_name where name ="3DA, Date of follow-up session (MIDA)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member23_concept_id from concept_name where name ="3DA, Referral (MIDA)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member24_concept_id from concept_name where name ="3DA, Comments on referral (MIDA)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member25_concept_id from concept_name where name ="3DA, Type of session (MIDA)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member26_concept_id from concept_name where name ="3DA, Orthosis or prosthesis delivered? (MIDA)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member27_concept_id from concept_name where name ="3DA, Comments on orthosis or prosthesis (MIDA)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member28_concept_id from concept_name where name ="3DA, General comments about the session (MIDA)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member29_concept_id from concept_name where name ="3DA, Date of discharge (MIDA)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member30_concept_id from concept_name where name ="3DA, 3D treatment plan provided in Amman (MIDA)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member31_concept_id from concept_name where name ="3DA, 3D recommendations for future treatment plan (MIDA)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member32_concept_id from concept_name where name ="3DA, Upper limb prosthetic" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member33_concept_id from concept_name where name ="3DA, Splints" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member34_concept_id from concept_name where name ="3DA, SG referral source" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member35_concept_id from concept_name where name ="3DA, Other SG referral source" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member36_concept_id from concept_name where name ="3DA, Hydrocolloid side" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member37_concept_id from concept_name where name ="3DA, Hydrocolloid date of referral" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member38_concept_id from concept_name where name ="3DA, Type of Hydrocolloid activity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member39_concept_id from concept_name where name ="3DA, Image upload" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member40_concept_id from concept_name where name ="3DA, Video upload" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             call add_concept_set_members(@concept_id, @member1_concept_id, 1);
             call add_concept_set_members(@concept_id, @member2_concept_id, 2);
             call add_concept_set_members(@concept_id, @member3_concept_id, 3);
@@ -830,10 +1028,13 @@
             call add_concept_set_members(@concept_id, @member35_concept_id, 35);
             call add_concept_set_members(@concept_id, @member36_concept_id, 36);
             call add_concept_set_members(@concept_id, @member37_concept_id, 37);
+            call add_concept_set_members(@concept_id, @member38_concept_id, 38);
+            call add_concept_set_members(@concept_id, @member39_concept_id, 39);
+            call add_concept_set_members(@concept_id, @member40_concept_id, 40);
         </sql>
     </changeSet>
 
-     <changeSet id="AMMAN_CONFIG_2023072514330" author="Venky, Sri Laxmi">
+    <changeSet id="AMMAN_CONFIG_2023072514330" author="Venky, Sri Laxmi">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -917,7 +1118,7 @@
         </sql>
     </changeSet>
 
-     <changeSet id="AMMAN_CONFIG_2023072514550" author="Venky, Sri Laxmi">
+    <changeSet id="AMMAN_CONFIG_2023072514550" author="Venky, Sri Laxmi">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -959,7 +1160,76 @@
         </sql>
     </changeSet>
 
-     <changeSet id="AMMAN_CONFIG_2023072514520" author="Venky, Sri Laxmi">
+    <changeSet id="AMMAN_CONFIG_202308081515" author="Sreelekha, Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("3DA, Upper limb prosthetic side","3DA, Upper limb prosthetic age group","3DA, Type of prosthesis","3DA, Type of adult upper limb prosthetic activity","3DA, Type of paediatric upper limb prosthetic activity","3DA, Adult upper limb prosthetic clinical assessments","3DA, Paediatric upper limb prosthetic clinical assessments","3DA, Date of follow-up session (Upper Limb)","3DA, Referral (Upper Limb)","3DA, Type of session (Upper Limb)","3DA, Orthosis or prosthesis delivered? (Upper Limb)","3DA, Comments on orthosis or prosthesis (Upper Limb)","3DA, General comments about the session (Upper Limb)","3DA, Date of discharge (Upper Limb)","3DA, 3D treatment plan provided in Amman (Upper Limb)","3DA, 3D recommendations for future treatment plan (Upper Limb)")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "3DA, Upper limb prosthetic");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Set Members to Upper limb prosthetic</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "3DA, Upper limb prosthetic" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+            set @member6_concept_id = 0;
+            set @member7_concept_id = 0;
+            set @member8_concept_id = 0;
+            set @member9_concept_id = 0;
+            set @member10_concept_id = 0;
+            set @member11_concept_id = 0;
+            set @member12_concept_id = 0;
+            set @member13_concept_id = 0;
+            set @member14_concept_id = 0;
+            set @member15_concept_id = 0;
+            set @member16_concept_id = 0;
+            select concept_id into @member1_concept_id from concept_name where name ="3DA, Upper limb prosthetic side" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name ="3DA, Upper limb prosthetic age group" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name ="3DA, Type of prosthesis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name ="3DA, Type of adult upper limb prosthetic activity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name ="3DA, Type of paediatric upper limb prosthetic activity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name ="3DA, Type of session (Upper Limb)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name ="3DA, Adult upper limb prosthetic clinical assessments" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member8_concept_id from concept_name where name ="3DA, Paediatric upper limb prosthetic clinical assessments" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member9_concept_id from concept_name where name ="3DA, Date of follow-up session (Upper Limb)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member10_concept_id from concept_name where name ="3DA, Referral (Upper Limb)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member11_concept_id from concept_name where name ="3DA, Orthosis or prosthesis delivered? (Upper Limb)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member12_concept_id from concept_name where name ="3DA, Comments on orthosis or prosthesis (Upper Limb)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member13_concept_id from concept_name where name ="3DA, General comments about the session (Upper Limb)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member14_concept_id from concept_name where name ="3DA, Date of discharge (Upper Limb)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member15_concept_id from concept_name where name ="3DA, 3D treatment plan provided in Amman (Upper Limb)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member16_concept_id from concept_name where name ="3DA, 3D recommendations for future treatment plan (Upper Limb)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members(@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members(@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members(@concept_id, @member4_concept_id, 4);
+            call add_concept_set_members(@concept_id, @member5_concept_id, 5);
+            call add_concept_set_members(@concept_id, @member6_concept_id, 6);
+            call add_concept_set_members(@concept_id, @member7_concept_id, 7);
+            call add_concept_set_members(@concept_id, @member8_concept_id, 8);
+            call add_concept_set_members(@concept_id, @member9_concept_id, 9);
+            call add_concept_set_members(@concept_id, @member10_concept_id, 10);
+            call add_concept_set_members(@concept_id, @member11_concept_id, 11);
+            call add_concept_set_members(@concept_id, @member12_concept_id, 12);
+            call add_concept_set_members(@concept_id, @member13_concept_id, 13);
+            call add_concept_set_members(@concept_id, @member14_concept_id, 14);
+            call add_concept_set_members(@concept_id, @member15_concept_id, 15);
+            call add_concept_set_members(@concept_id, @member16_concept_id, 16);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_2023072514520" author="Venky, Sri Laxmi">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -992,7 +1262,7 @@
         </sql>
     </changeSet>
 
-     <changeSet id="AMMAN_CONFIG_2023072514570" author="Venky, Sri Laxmi">
+    <changeSet id="AMMAN_CONFIG_2023072514570" author="Venky, Sri Laxmi">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -1028,6 +1298,36 @@
             call add_concept_set_members(@concept_id, @member4_concept_id, 4);
             call add_concept_set_members(@concept_id, @member5_concept_id, 5);
             call add_concept_set_members(@concept_id, @member6_concept_id, 6);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202308081526" author="Sreelekha, Sri Laxmi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("3DA, Splint side","3DA, Splint site","3DA, Type of splint")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "3DA, Splints");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Set Members to Splints</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "3DA, Splints" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            select concept_id into @member1_concept_id from concept_name where name ="3DA, Splint side" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name ="3DA, Splint site" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name ="3DA, Type of splint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members(@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members(@concept_id, @member3_concept_id, 3);
         </sql>
     </changeSet>
 </databaseChangeLog>

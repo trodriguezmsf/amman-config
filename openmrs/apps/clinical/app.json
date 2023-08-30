@@ -1893,6 +1893,12 @@
             "required":true,
             "multiSelect":true
           },
+          "3DA, Date of delivery":{
+            "allowFutureDates":true
+          },
+          "3DA, Date of follow-up session":{
+            "allowFutureDates":true
+          },
           "AIA, Date of next follow-up":{
             "allowFutureDates": true
           },

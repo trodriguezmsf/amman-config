@@ -10,17 +10,27 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Date recor
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Date of scan","Date of scan","Date","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Date of delivery","Date of delivery","Date","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Session date","Session date","Date","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Date of follow-up session","Date of follow-up session","Date","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Date of discharge","Date of discharge","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Date of follow-up session (Upper Limb)","Date of follow-up session (Upper Limb)","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Date of follow-up session (TFO)","Date of follow-up session (TFO)","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Date of follow-up session (MIDA)","Date of follow-up session (MIDA)","Date","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Hydrocolloid date of referral","Hydrocolloid date of referral","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Date of discharge (Upper Limb)","Date of discharge (Upper Limb)","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Date of discharge (TFO)","Date of discharge (TFO)","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Date of discharge (MIDA)","Date of discharge (MIDA)","Date","Misc",false);
 
 #Add Coded Concepts
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Referral (Upper Limb)","Referral (Upper Limb)","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Referral (TFO)","Referral (TFO)","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Referral (MIDA)","Referral (MIDA)","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Type of session (Upper Limb)","Type of session (Upper Limb)","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Type of session (TFO)","Type of session (TFO)","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Type of session (MIDA)","Type of session (MIDA)","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Orthosis or prosthesis delivered? (Upper Limb)","Orthosis or prosthesis delivered? (Upper Limb)","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Orthosis or prosthesis delivered? (TFO)","Orthosis or prosthesis delivered? (TFO)","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Orthosis or prosthesis delivered? (MIDA)","Orthosis or prosthesis delivered? (MIDA)","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Type of assessment","Type of assessment","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Referral source","Referral source","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Type of TFO activity","Type of TFO activity","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Referral","Referral","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Type of session","Type of session","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Orthosis or prosthesis delivered?","Orthosis or prosthesis delivered?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Type of MIDA activity","Type of MIDA activity","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Upper limb prosthetic side","Upper limb prosthetic side","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Upper limb prosthetic age group","Upper limb prosthetic age group","Coded","Misc",false);
@@ -70,15 +80,15 @@ VALUES ((select concept_id from concept_name where name = "3DA, Patient and obse
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "3DA, Vancouver scar scale (VSS) total score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "3DA, Functional activities evaluation total score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),64,NULL,NULL,0,NULL,NULL,"",0,1);
+VALUES ((select concept_id from concept_name where name = "3DA, Functional activities evaluation total score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),64,NULL,64,0,NULL,0,"",0,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "3DA, Other functional activities total score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),12,NULL,NULL,0,NULL,NULL,"",0,1);
+VALUES ((select concept_id from concept_name where name = "3DA, Other functional activities total score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),12,NULL,12,0,NULL,0,"",0,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "3DA, Patient satisfaction total score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),12,NULL,NULL,0,NULL,NULL,"",0,1);
+VALUES ((select concept_id from concept_name where name = "3DA, Patient satisfaction total score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),12,NULL,12,0,NULL,0,"",0,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "3DA, Patient social participation total score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),4,NULL,NULL,0,NULL,NULL,"",0,1);
+VALUES ((select concept_id from concept_name where name = "3DA, Patient social participation total score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),4,NULL,4,0,NULL,0,"",0,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "3DA, Symptoms total score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),20,NULL,NULL,0,NULL,NULL,"",0,1);
+VALUES ((select concept_id from concept_name where name = "3DA, Symptoms total score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),20,NULL,20,0,NULL,0,"",0,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "3DA, Vertical mouth opening" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,0,NULL,NULL,"cm",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
@@ -102,11 +112,21 @@ VALUES ((select concept_id from concept_name where name = "3DA, CAPP-FSI assessm
 
 #Add Text Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Comments on referral","Comments on referral","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Comments on orthosis or prosthesis","Comments on orthosis or prosthesis","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, General comments about the session","General comments about the session","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D treatment plan provided in Amman","3D treatment plan provided in Amman","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D recommendations for future treatment plan","3D recommendations for future treatment plan","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Comments on referral (TFO)","Comments on referral (TFO)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Comments on referral (MIDA)","Comments on referral (MIDA)","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Other SG referral source","Other SG referral source","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Comments on orthosis or prosthesis (Upper Limb)","Comments on orthosis or prosthesis (Upper Limb)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Comments on orthosis or prosthesis (TFO)","Comments on orthosis or prosthesis (TFO)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Comments on orthosis or prosthesis (MIDA)","Comments on orthosis or prosthesis (MIDA)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, General comments about the session (Upper Limb)","General comments about the session (Upper Limb)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, General comments about the session (TFO)","General comments about the session (TFO)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, General comments about the session (MIDA)","General comments about the session (MIDA)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D treatment plan provided in Amman (Upper Limb)","3D treatment plan provided in Amman (Upper Limb)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D treatment plan provided in Amman (TFO)","3D treatment plan provided in Amman (TFO)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D treatment plan provided in Amman (MIDA)","3D treatment plan provided in Amman (Upper Limb)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D recommendations for future treatment plan (Upper Limb)","3D recommendations for future treatment plan (Upper Limb)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D recommendations for future treatment plan (TFO)","3D recommendations for future treatment plan (TFO)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D recommendations for future treatment plan (MIDA)","3D recommendations for future treatment plan (Upper Limb)","Text","Misc",false);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Home visit","Home visit","N/A","Misc",false);
@@ -168,3 +188,5 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Video uplo
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, MIDA clinical assessments","MIDA clinical assessments","N/A","Misc",true);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Adult upper limb prosthetic clinical assessments","Adult upper limb prosthetic clinical assessments","N/A","Misc",true);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Paediatric upper limb prosthetic clinical assessments","Paediatric upper limb prosthetic clinical assessments","N/A","Misc",true);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Upper limb prosthetic","Upper limb prosthetic","N/A","Misc",true);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Splints","Splints","N/A","Misc",true);

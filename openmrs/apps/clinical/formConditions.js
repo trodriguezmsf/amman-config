@@ -4172,6 +4172,354 @@ Bahmni.ConceptSet.FormConditions.rules = {
             }
         }
         return conditions;
+    },
+    '3DA, Orthosis or prosthesis delivered? (TFO)': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['3DA, Orthosis or prosthesis delivered? (TFO)'];
+        if (conditionConcept == "Yes") {
+            conditions.show.push("3DA, Comments on orthosis or prosthesis (TFO)");
+        }
+        else {
+            conditions.hide.push("3DA, Comments on orthosis or prosthesis (TFO)");
+        }
+        return conditions;
+    },
+    '3DA, Orthosis or prosthesis delivered? (MIDA)': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['3DA, Orthosis or prosthesis delivered? (MIDA)'];
+        if (conditionConcept == "Yes") {
+            conditions.show.push("3DA, Comments on orthosis or prosthesis (MIDA)");
+        }
+        else {
+            conditions.hide.push("3DA, Comments on orthosis or prosthesis (MIDA)");
+        }
+        return conditions;
+    },
+    '3DA, Orthosis or prosthesis delivered? (Upper Limb)': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['3DA, Orthosis or prosthesis delivered? (Upper Limb)'];
+        if (conditionConcept == "Yes") {
+            conditions.show.push("3DA, Comments on orthosis or prosthesis (Upper Limb)");
+        }
+        else {
+            conditions.hide.push("3DA, Comments on orthosis or prosthesis (Upper Limb)");
+        }
+        return conditions;
+    },
+    '3DA, Upper limb prosthetic': function (formName, formFieldValues) {
+        var conditions = {
+            show: ['3DA, Upper limb prosthetic age group'],
+            hide: []
+        };
+        return conditions;
+    },
+    '3DA, Upper limb prosthetic age group': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['3DA, Upper limb prosthetic age group'];
+        if (conditionConcept == "Adult") {
+            conditions.show.push("3DA, Type of adult upper limb prosthetic activity");
+            conditions.hide.push("3DA, Type of paediatric upper limb prosthetic activity");
+        }
+        else if(conditionConcept == "Paediatric"){
+            conditions.show.push("3DA, Type of paediatric upper limb prosthetic activity");
+            conditions.hide.push("3DA, Type of adult upper limb prosthetic activity");
+        }
+        else{
+            conditions.hide.push("3DA, Type of paediatric upper limb prosthetic activity");
+            conditions.hide.push("3DA, Type of adult upper limb prosthetic activity");
+        }
+        return conditions;
+    },
+    '3DA, SG referral source': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['3DA, SG referral source'];
+        if (conditionConcept == "Other") {
+            conditions.show.push("3DA, Other SG referral source");
+        }
+        else {
+            conditions.hide.push("3DA, Other SG referral source");
+        }
+        return conditions;
+    },
+    '3DA, Referral source': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['3DA, Referral source'];
+        console.log(conditionConcept)
+        if (conditionConcept) {
+            conditions.show.push("3DA, Comments on referral");
+        }
+        else {
+            conditions.hide.push("3DA, Comments on referral");
+        }
+        return conditions;
+    },
+    '3DA, Type of assessment': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['3DA, Type of assessment'];
+        var concepts = {
+            "3DA, Date of scan" : 0,
+            "3DA, Date of delivery" : 0,
+            "3DA, Referral source" : 0,
+            "3DA, Type of TFO activity" : 0,
+            "3DA, Session date" : 0,
+            "3DA, Type of MIDA activity" : 0,
+            "3DA, Upper limb prosthetic" : 0,
+            "3DA, Type of session (Upper Limb)" : 0,
+            "3DA, Splints" : 0,
+            "3DA, Hydrocolloid date of referral" : 0,
+            "3DA, SG referral source" : 0,
+            "3DA, Hydrocolloid side" : 0,
+            "3DA, Type of Hydrocolloid activity" : 0,
+            "3DA, Image upload" : 0,
+            "3DA, Video upload" : 0,
+        }
+        if(conditionConcept.indexOf("Transparent facial orthosis (TFO) assessment")>=0){
+            concepts["3DA, Date of scan"] = 1;
+            concepts["3DA, Date of delivery"] = 1;
+            concepts["3DA, Referral source"] = 1;
+            concepts["3DA, Type of TFO activity"] = 1;
+            concepts["3DA, Session date"] = 1;
+            concepts["3DA, Image upload"] = 1;
+            concepts["3DA, Video upload"] = 1;
+        }
+        if(conditionConcept.indexOf("Mouth impairment and disability (MIDA) assessment")>=0){
+            concepts["3DA, Date of delivery"] = 1;
+            concepts["3DA, Referral source"] = 1;
+            concepts["3DA, Type of MIDA activity"] = 1;
+            concepts["3DA, Image upload"] = 1;
+            concepts["3DA, Video upload"] = 1;
+        }
+        if(conditionConcept.indexOf("Upper limb prosthetic assessment")>=0){
+            concepts["3DA, Date of scan"] = 1;
+            concepts["3DA, Date of delivery"] = 1;
+            concepts["3DA, Upper limb prosthetic"] = 1;
+            concepts["3DA, Type of session (Upper Limb)"] = 1;
+            concepts["3DA, Referral source"] = 1;
+            concepts["3DA, Image upload"] = 1;
+            concepts["3DA, Video upload"] = 1;
+        }
+        if(conditionConcept.indexOf("Splints")>=0){
+            concepts["3DA, Date of scan"] = 1;
+            concepts["3DA, Date of delivery"] = 1;
+            concepts["3DA, Splints"] = 1;
+            concepts["3DA, Referral source"] = 1;
+            concepts["3DA, Image upload"] = 1;
+            concepts["3DA, Video upload"] = 1;
+        }
+        if(conditionConcept.indexOf("Surgical guide (SG)")>=0){
+            concepts["3DA, Date of delivery"] = 1;
+            concepts["3DA, SG referral source"] = 1;
+            concepts["3DA, Image upload"] = 1;
+            concepts["3DA, Video upload"] = 1;
+        }
+        if(conditionConcept.indexOf("Hydrocolloid")>=0){
+            concepts["3DA, Hydrocolloid side"] = 1;
+            concepts["3DA, Hydrocolloid date of referral"] = 1;
+            concepts["3DA, Type of Hydrocolloid activity"] = 1;
+            concepts["3DA, Image upload"] = 1;
+            concepts["3DA, Video upload"] = 1;
+        }
+        for(const concept in concepts){
+            if(concepts[concept] == 1){
+                conditions.show.push(concept);
+            }
+            else{
+                conditions.hide.push(concept);
+            }
+        }
+        return conditions;
+    },
+    '3DA, Type of TFO activity': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['3DA, Type of TFO activity'];
+        var concepts = {
+            "3DA, TFO clinical assessments" : 0,
+            "3DA, Date of follow-up session (TFO)" : 0,
+            "3DA, Referral (TFO)" : 0,
+            "3DA, Type of session (TFO)" : 0,
+            "3DA, Orthosis or prosthesis delivered? (TFO)" : 0,
+            "3DA, General comments about the session (TFO)" : 0,
+            "3DA, Comments on referral (TFO)" : 0,
+            "3DA, Date of discharge (TFO)" : 0,
+            "3DA, 3D treatment plan provided in Amman (TFO)" : 0,
+            "3DA, 3D recommendations for future treatment plan (TFO)" : 0,
+        }
+        if (conditionConcept == "Initial assessment" || conditionConcept == "15 day assessment" || conditionConcept == "1 month assessment" || conditionConcept == "3 month assessment" || conditionConcept == "6 month assessment" || conditionConcept == "1 year assessment") {
+            concepts["3DA, TFO clinical assessments"] = 1;
+        }
+        if(conditionConcept == "Follow-up session note"){
+            concepts["3DA, Date of follow-up session (TFO)"] = 1;
+            concepts["3DA, Referral (TFO)"] = 1;
+            concepts["3DA, Type of session (TFO)"] = 1;
+            concepts["3DA, Comments on referral (TFO)"] = 1;
+            concepts["3DA, Orthosis or prosthesis delivered? (TFO)"] = 1;
+            concepts["3DA, General comments about the session (TFO)"] = 1;
+        }
+        if(conditionConcept == "Discharge assessment"){
+            concepts["3DA, Date of discharge (TFO)"] = 1;
+            concepts["3DA, 3D treatment plan provided in Amman (TFO)"] = 1;
+            concepts["3DA, 3D recommendations for future treatment plan (TFO)"] = 1;
+
+        }
+        for(const concept in concepts){
+            if(concepts[concept] == 1){
+                conditions.show.push(concept);
+            }
+            else{
+                conditions.hide.push(concept);
+            }
+        }
+        return conditions;
+    },
+    '3DA, Type of MIDA activity': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['3DA, Type of MIDA activity'];
+        var concepts = {
+            "3DA, MIDA clinical assessments" : 0,
+            "3DA, Date of follow-up session (MIDA)" : 0,
+            "3DA, Referral (MIDA)" : 0,
+            "3DA, Type of session (MIDA)" : 0,
+            "3DA, Orthosis or prosthesis delivered? (MIDA)" : 0,
+            "3DA, General comments about the session (MIDA)" : 0,
+            "3DA, Comments on referral (MIDA)" : 0,
+            "3DA, Date of discharge (MIDA)" : 0,
+            "3DA, 3D treatment plan provided in Amman (MIDA)" : 0,
+            "3DA, 3D recommendations for future treatment plan (MIDA)" : 0,
+        }
+        if (conditionConcept == "Initial assessment" || conditionConcept == "15 day assessment" || conditionConcept == "1 month assessment") {
+            concepts["3DA, MIDA clinical assessments"] = 1;
+        }
+        if(conditionConcept == "Follow-up session note"){
+            concepts["3DA, Date of follow-up session (MIDA)"] = 1;
+            concepts["3DA, Referral (MIDA)"] = 1;
+            concepts["3DA, Type of session (MIDA)"] = 1;
+            concepts["3DA, Comments on referral (MIDA)"] = 1;
+            concepts["3DA, Orthosis or prosthesis delivered? (MIDA)"] = 1;
+            concepts["3DA, General comments about the session (MIDA)"] = 1;
+        }
+        if(conditionConcept == "Discharge assessment"){
+            concepts["3DA, Date of discharge (MIDA)"] = 1;
+            concepts["3DA, 3D treatment plan provided in Amman (MIDA)"] = 1;
+            concepts["3DA, 3D recommendations for future treatment plan (MIDA)"] = 1;
+
+        }
+        for(const concept in concepts){
+            if(concepts[concept] == 1){
+                conditions.show.push(concept);
+            }
+            else{
+                conditions.hide.push(concept);
+            }
+        }
+        return conditions;
+    },
+    '3DA, Type of adult upper limb prosthetic activity': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['3DA, Type of adult upper limb prosthetic activity'];
+        var concepts = {
+            "3DA, Adult upper limb prosthetic clinical assessments" : 0,
+            "3DA, Date of follow-up session (Upper Limb)" : 0,
+            "3DA, Referral (Upper Limb)" : 0,
+            "3DA, Orthosis or prosthesis delivered? (Upper Limb)" : 0,
+            "3DA, General comments about the session (Upper Limb)" : 0,
+            "3DA, Date of discharge (Upper Limb)" : 0,
+            "3DA, 3D treatment plan provided in Amman (Upper Limb)" : 0,
+            "3DA, 3D recommendations for future treatment plan (Upper Limb)" : 0,
+        }
+        if (conditionConcept == "Initial assessment" || conditionConcept == "2 week assessment" || conditionConcept == "3 month assessment" || conditionConcept == "6 month assessment" || conditionConcept == "1 year assessment") {
+            concepts["3DA, Adult upper limb prosthetic clinical assessments"] = 1;
+        }
+        if(conditionConcept == "Follow-up session note" || formFieldValues['3DA, Type of paediatric upper limb prosthetic activity'] == "Follow-up session note"){
+            concepts["3DA, Date of follow-up session (Upper Limb)"] = 1;
+            concepts["3DA, Referral (Upper Limb)"] = 1;
+            concepts["3DA, Orthosis or prosthesis delivered? (Upper Limb)"] = 1;
+            concepts["3DA, General comments about the session (Upper Limb)"] = 1;
+        }
+        if(conditionConcept == "Discharge assessment" || formFieldValues['3DA, Type of paediatric upper limb prosthetic activity'] == "Discharge assessment"){
+            concepts["3DA, Date of discharge (Upper Limb)"] = 1;
+            concepts["3DA, 3D treatment plan provided in Amman (Upper Limb)"] = 1;
+            concepts["3DA, 3D recommendations for future treatment plan (Upper Limb)"] = 1;
+
+        }
+        for(const concept in concepts){
+            if(concepts[concept] == 1){
+                conditions.show.push(concept);
+            }
+            else{
+                conditions.hide.push(concept);
+            }
+        }
+        return conditions;
+    },
+    '3DA, Type of paediatric upper limb prosthetic activity': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['3DA, Type of paediatric upper limb prosthetic activity'];
+        var concepts = {
+            "3DA, Paediatric upper limb prosthetic clinical assessments" : 0,
+            "3DA, Date of follow-up session (Upper Limb)" : 0,
+            "3DA, Referral (Upper Limb)" : 0,
+            "3DA, Orthosis or prosthesis delivered? (Upper Limb)" : 0,
+            "3DA, General comments about the session (Upper Limb)" : 0,
+            "3DA, Date of discharge (Upper Limb)" : 0,
+            "3DA, 3D treatment plan provided in Amman (Upper Limb)" : 0,
+            "3DA, 3D recommendations for future treatment plan (Upper Limb)" : 0,
+        }
+        if (conditionConcept == "Initial assessment" || conditionConcept == "2 week assessment" || conditionConcept == "3 month assessment" || conditionConcept == "6 month assessment" || conditionConcept == "1 year assessment") {
+            concepts["3DA, Paediatric upper limb prosthetic clinical assessments"] = 1;
+        }
+        if(conditionConcept == "Follow-up session note" || formFieldValues['3DA, Type of adult upper limb prosthetic activity'] == "Follow-up session note"){
+            concepts["3DA, Date of follow-up session (Upper Limb)"] = 1;
+            concepts["3DA, Referral (Upper Limb)"] = 1;
+            concepts["3DA, Orthosis or prosthesis delivered? (Upper Limb)"] = 1;
+            concepts["3DA, General comments about the session (Upper Limb)"] = 1;
+        }
+        if(conditionConcept == "Discharge assessment" || formFieldValues['3DA, Type of adult upper limb prosthetic activity'] == "Discharge assessment"){
+            concepts["3DA, Date of discharge (Upper Limb)"] = 1;
+            concepts["3DA, 3D treatment plan provided in Amman (Upper Limb)"] = 1;
+            concepts["3DA, 3D recommendations for future treatment plan (Upper Limb)"] = 1;
+        }
+        for(const concept in concepts){
+            if(concepts[concept] == 1){
+                conditions.show.push(concept);
+            }
+            else{
+                conditions.hide.push(concept);
+            }
+        }
+        return conditions;
     }
 }
 
