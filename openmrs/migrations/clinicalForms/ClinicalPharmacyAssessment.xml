@@ -41,7 +41,6 @@
             set @child9_concept_id = 0;
             set @child10_concept_id = 0;
             set @child11_concept_id = 0;
-            set @child12_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Treatment plan" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Inappropriate drug regimen" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Drug-drug interaction" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
