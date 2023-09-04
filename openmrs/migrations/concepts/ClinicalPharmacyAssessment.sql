@@ -22,7 +22,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Comments o
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Comments on therapeutic duplication","Comments on therapeutic duplication","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Comments on drug without indication","Comments on drug without indication","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Comments on therapeutic drug monitoring","Comments on therapeutic drug monitoring","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Comments on alternative recommended medications from MSF standard list","Comments on alternative recommended medications from MSF standard list","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Comments on alternative recommended medications","Comments on alternative recommended medications","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Comments on laboratory investigation required","Comments on laboratory investigation required","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Comments on the accepted intervention","Comments on the accepted intervention","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, Why intervention not accepted by the prescriber?","Why intervention not accepted by the prescriber?","Text","Misc",false);
@@ -63,7 +63,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Contraindicatio
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"To be taken into account","To be taken into account","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Drug-drug interaction","Drug-drug interaction","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Aminophylline","Aminophylline","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Intervention follow-up by physician","Intervention follow-up by physician","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Therapeutic duplication","Therapeutic duplication","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Phenytoin","Phenytoin","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Therapeutic drug monitoring","Therapeutic drug monitoring","N/A","Misc",false);
@@ -87,7 +86,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Valproic acid",
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Step up","Step up","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Carbamazepine","Carbamazepine","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Step down","Step down","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Alternative recommended medications from MSF standard list","Alternative recommended medications from MSF standard list","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Alternative recommended medications","Alternative recommended medications","N/A","Misc",false);
 
 #Add Computed concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CPA, BMI","BMI","N/A","Concept Details",true);
@@ -120,3 +119,9 @@ VALUES ((select concept_id from concept_name where name = "BMI Computed" and con
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
 VALUES ((select concept_id from concept_name where name = "ABW Computed" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
 "IBW + 0.4 * (ABW - IBW)","en",1,now(),NULL,NULL,uuid());
+INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
+VALUES ((select concept_id from concept_name where name = "CPA, Ideal body weight (IBW)" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
+"For male IBW = 50 + (0.91 x [height in Cm - 152.4]), For female IBW = 45.5 + (0.91 x [height in Cm - 152.4])","en",1,now(),NULL,NULL,uuid());
+INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
+VALUES ((select concept_id from concept_name where name = "CPA, Creatinine clearance" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
+"For male CrCl= {((140-age) x weight)/(72x Serum Cr.)}, For Female CrCl= {((140-age) x weight)/(72x Serum Cr.)} x 0.85","en",1,now(),NULL,NULL,uuid());

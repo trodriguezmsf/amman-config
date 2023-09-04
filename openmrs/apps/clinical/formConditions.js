@@ -4111,65 +4111,79 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['CPA, Reason for intervention'];
-        var concepts = {
-            "CPA, Change in treatment plan" : 0,
-            "CPA, Comments on change in treatment plan" : 0,
-            "CPA, Comments on inappropriate drug regimen (dose modification)" : 0,
-            "CPA, Type of drug-drug interaction" : 0,
-            "CPA, Comments on drug-drug interaction" : 0,
-            "CPA, Comments on contraindications" : 0,
-            "CPA, Comments on untreated condition" : 0,
-            "CPA, Comments on therapeutic duplication" : 0,
-            "CPA, Comments on drug without indication" : 0,
-            "CPA, Therapeutic drug monitoring for" : 0,
-            "CPA, Comments on therapeutic drug monitoring" : 0,
-            "CPA, Comments on alternative recommended medications from MSF standard list" : 0,
-            "CPA, Comments on laboratory investigation required" : 0,
-            "CPA, Intervention accepted by the prescriber?" : 0
+        if (conditionConcept == "Treatment plan") {
+            conditions.show.push("CPA, Change in treatment plan");
+            conditions.show.push("CPA, Comments on change in treatment plan");
         }
-        if (conditionConcept.indexOf("Treatment plan")>=0) {
-            concepts["CPA, Change in treatment plan"] = 1;
-            concepts["CPA, Comments on change in treatment plan"] = 1;
+        else {
+            conditions.hide.push("CPA, Change in treatment plan");
+            conditions.hide.push("CPA, Comments on change in treatment plan");
         }
-        if (conditionConcept.indexOf("Inappropriate drug regimen")>=0) {
-            concepts["CPA, Comments on inappropriate drug regimen (dose modification)"] = 1;
+        if (conditionConcept == "Inappropriate drug regimen") {
+            conditions.show.push("CPA, Comments on inappropriate drug regimen (dose modification)");
         }
-        if (conditionConcept.indexOf("Drug-drug interaction")>=0) {
-            concepts["CPA, Type of drug-drug interaction"] = 1;
-            concepts["CPA, Comments on drug-drug interaction"] = 1;
+        else {
+            conditions.hide.push("CPA, Comments on inappropriate drug regimen (dose modification)");
         }
-        if (conditionConcept.indexOf("Contraindications")>=0) {
-            concepts["CPA, Comments on contraindications"] = 1;
+        if (conditionConcept == "Drug-drug interaction") {
+            conditions.show.push("CPA, Type of drug-drug interaction");
+            conditions.show.push("CPA, Comments on drug-drug interaction");
         }
-        if (conditionConcept.indexOf("Untreated condition")>=0) {
-            concepts["CPA, Comments on untreated condition"] = 1;
+        else {
+            conditions.hide.push("CPA, Type of drug-drug interaction");
+            conditions.hide.push("CPA, Comments on drug-drug interaction");
         }
-        if (conditionConcept.indexOf("Therapeutic duplication")>=0) {
-            concepts["CPA, Comments on therapeutic duplication"] = 1;
+        if (conditionConcept == "Adverse drug reaction (ADR)") {
+            conditions.show.push("CPA, Type of adverse drug reaction (ADR)");
+            conditions.show.push("CPA, Comments on adverse drug reaction");
         }
-        if (conditionConcept.indexOf("Drug without indication")>=0) {
-            concepts["CPA, Comments on drug without indication"] = 1;
+        else {
+            conditions.hide.push("CPA, Type of adverse drug reaction (ADR)");
+            conditions.hide.push("CPA, Comments on adverse drug reaction");
         }
-        if (conditionConcept.indexOf("Therapeutic drug monitoring")>=0) {
-            concepts["CPA, Therapeutic drug monitoring for"] = 1;
-            concepts["CPA, Comments on therapeutic drug monitoring"] = 1;
+        if (conditionConcept == "Contraindications") {
+            conditions.show.push("CPA, Comments on contraindications");
         }
-        if (conditionConcept.indexOf("Alternative recommended medications from MSF standard list")>=0) {
-            concepts["CPA, Comments on alternative recommended medications from MSF standard list"] = 1;
+        else {
+            conditions.hide.push("CPA, Comments on contraindications");
         }
-        if (conditionConcept.indexOf("Laboratory investigation required")>=0) {
-            concepts["CPA, Comments on laboratory investigation required"] = 1;
+        if (conditionConcept == "Untreated condition") {
+            conditions.show.push("CPA, Comments on untreated condition");
         }
-        if (conditionConcept.indexOf("Intervention follow-up by physician")>=0) {
-            concepts["CPA, Intervention accepted by the prescriber?"] = 1;
+        else {
+            conditions.hide.push("CPA, Comments on untreated condition");
         }
-        for(const concept in concepts){
-            if(concepts[concept] == 1){
-                conditions.show.push(concept);
-            }
-            else{
-                conditions.hide.push(concept);
-            }
+        if (conditionConcept == "Therapeutic duplication") {
+            conditions.show.push("CPA, Comments on therapeutic duplication");
+        }
+        else {
+            conditions.hide.push("CPA, Comments on therapeutic duplication");
+        }
+        if (conditionConcept == "Drug without indication") {
+            conditions.show.push("CPA, Comments on drug without indication");
+        }
+        else {
+            conditions.hide.push("CPA, Comments on drug without indication");
+        }
+        if (conditionConcept == "Therapeutic drug monitoring") {
+            conditions.show.push("CPA, Therapeutic drug monitoring for");
+            conditions.show.push("CPA, Comments on therapeutic drug monitoring");
+        }
+        else {
+            conditions.hide.push("CPA, Therapeutic drug monitoring for");
+            conditions.hide.push("CPA, Comments on therapeutic drug monitoring");
+        }
+        if (conditionConcept == "Alternative recommended medications") {
+            conditions.show.push("CPA, Comments on alternative recommended medications");
+        }
+        else {
+            conditions.hide.push("CPA, Comments on alternative recommended medications");
+        }
+        if (conditionConcept == "Laboratory investigation required") {
+            conditions.show.push("CPA, Comments on laboratory investigation required");
+        }
+        else {
+            conditions.hide.push("CPA, Comments on laboratory investigation required");
         }
         return conditions;
     },
