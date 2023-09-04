@@ -123,10 +123,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, General co
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, General comments about the session (MIDA)","General comments about the session (MIDA)","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D treatment plan provided in Amman (Upper Limb)","3D treatment plan provided in Amman (Upper Limb)","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D treatment plan provided in Amman (TFO)","3D treatment plan provided in Amman (TFO)","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D treatment plan provided in Amman (MIDA)","3D treatment plan provided in Amman (Upper Limb)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D treatment plan provided in Amman (MIDA)","3D treatment plan provided in Amman (MIDA)","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D recommendations for future treatment plan (Upper Limb)","3D recommendations for future treatment plan (Upper Limb)","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D recommendations for future treatment plan (TFO)","3D recommendations for future treatment plan (TFO)","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D recommendations for future treatment plan (MIDA)","3D recommendations for future treatment plan (Upper Limb)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D recommendations for future treatment plan (MIDA)","3D recommendations for future treatment plan (MIDA)","Text","Misc",false);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Home visit","Home visit","N/A","Misc",false);
