@@ -20,7 +20,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Treatment plan", "Inappropriate drug regimen", "Drug-drug interaction", "Adverse drug reaction (ADR)", "Contraindications", "Untreated condition", "Therapeutic duplication", "Drug without indication", "Therapeutic drug monitoring", "Alternative recommended medications from MSF standard list", "Laboratory investigation required", "Intervention follow-up by physician")
+                ("Treatment plan", "Inappropriate drug regimen", "Drug-drug interaction", "Adverse drug reaction (ADR)", "Contraindications", "Untreated condition", "Therapeutic duplication", "Drug without indication", "Therapeutic drug monitoring", "Alternative recommended medications", "Laboratory investigation required")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "CPA, Reason for intervention");
@@ -41,7 +41,6 @@
             set @child9_concept_id = 0;
             set @child10_concept_id = 0;
             set @child11_concept_id = 0;
-            set @child12_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Treatment plan" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Inappropriate drug regimen" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Drug-drug interaction" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
@@ -51,9 +50,8 @@
             select concept_id into @child7_concept_id from concept_name where name ="Therapeutic duplication" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child8_concept_id from concept_name where name ="Drug without indication" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child9_concept_id from concept_name where name ="Therapeutic drug monitoring" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child10_concept_id from concept_name where name ="Alternative recommended medications from MSF standard list" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="Alternative recommended medications" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child11_concept_id from concept_name where name ="Laboratory investigation required" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child12_concept_id from concept_name where name ="Intervention follow-up by physician" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -65,7 +63,6 @@
             call add_concept_answer(@concept_id, @child9_concept_id, 9);
             call add_concept_answer(@concept_id, @child10_concept_id, 10);
             call add_concept_answer(@concept_id, @child11_concept_id, 11);
-            call add_concept_answer(@concept_id, @child12_concept_id, 12);
         </sql>
     </changeSet>
 
@@ -353,7 +350,7 @@
                 "CPA, Comments on change in treatment plan","CPA, Comments on inappropriate drug regimen (dose modification)","CPA, Type of drug-drug interaction",
                 "CPA, Comments on drug-drug interaction","CPA, Type of adverse drug reaction (ADR)","CPA, Comments on adverse drug reaction","CPA, Comments on contraindications",
                 "CPA, Comments on untreated condition","CPA, Comments on therapeutic duplication","CPA, Comments on drug without indication","CPA, Therapeutic drug monitoring for",
-                "CPA, Comments on therapeutic drug monitoring","CPA, Comments on alternative recommended medications from MSF standard list","CPA, Comments on laboratory investigation required",
+                "CPA, Comments on therapeutic drug monitoring","CPA, Comments on alternative recommended medications","CPA, Comments on laboratory investigation required",
                 "CPA, Intervention accepted by the prescriber?","CPA, Comments on the accepted intervention","CPA, Why intervention not accepted by the prescriber?")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
@@ -400,7 +397,7 @@
             select concept_id into @member13_concept_id from concept_name where name ="CPA, Comments on drug without indication" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @member14_concept_id from concept_name where name ="CPA, Therapeutic drug monitoring for" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @member15_concept_id from concept_name where name ="CPA, Comments on therapeutic drug monitoring" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member16_concept_id from concept_name where name ="CPA, Comments on alternative recommended medications from MSF standard list" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member16_concept_id from concept_name where name ="CPA, Comments on alternative recommended medications" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @member17_concept_id from concept_name where name ="CPA, Comments on laboratory investigation required" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @member18_concept_id from concept_name where name ="CPA, Intervention accepted by the prescriber?" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @member19_concept_id from concept_name where name ="CPA, Comments on the accepted intervention" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
