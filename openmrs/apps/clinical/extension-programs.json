@@ -95,7 +95,7 @@
       "translationKey": "MODULE_LABEL_TRM_PATIENT_KEY",
       "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
       "view": "tabular",
-      "searchColumns": ["Date of Arrival", "identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Is Caretaker Required?", "Name of Surgeon", "Bed allocation", "Surgeon TRM", "Physio TRM","Psycho-social TRM", "OPD Doctor TRM" ]
+      "searchColumns": ["Date of Arrival", "identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Age", "Country", "Is Caretaker Required?", "Name of Surgeon", "Bed allocation", "Surgeon TRM", "Physio TRM","Mental Health TRM", "OPD Doctor TRM" ]
     },
     "order": 11,
     "requiredPrivilege": "app:limitedprogramqueues"
