@@ -4069,6 +4069,12 @@ Bahmni.ConceptSet.FormConditions.rules = {
         else {
             conditions.hide.push("EC, Type of external consultation, other");
         }
+        if (conditionConcept == "Admission to other hospital") {
+            conditions.show.push("EC, Reason and details of admission");
+        }
+        else {
+            conditions.hide.push("EC, Reason and details of admission");
+        }
         return conditions;
     },
     'PPN, Patient surgical status': function (formName, formFieldValues) {

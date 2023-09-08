@@ -12619,6 +12619,7 @@
     <include file="clinicalForms/ClinicalPharmacyAssessment.xml"/>
     <include file="clinicalForms/postOperativeAnaesthesiaNoteForm.xml"/>
     <include file="clinicalForms/AddNewConceptsComplications.xml"/>
+    <include file="clinicalForms/externalConsultationForm_2.xml"/>
 
     <changeSet id="AMMAN_CONFIG_202309061352123" author="Sreelekha">
         <comment>MOBN-2162 | Rename Psycho-social TRM to Mental Health TRM </comment>
