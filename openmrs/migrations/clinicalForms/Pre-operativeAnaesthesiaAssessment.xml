@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="Amman_CONFIG_20230905083511382" author="Bindu">
+        <comment>Adding Concepts for Pre-operativeAnaesthesiaAssessment Form</comment>
+        <sqlFile path="concepts/Pre-operativeAnaesthesiaAssessment.sql"/>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_20230905085011574" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("ASA I", "ASA II", "ASA III", "ASA IV", "ASA V", "ASA VI")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PREOPAA, ASA score");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PREOPAA, ASA score</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PREOPAA, ASA score" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="ASA I" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="ASA II" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="ASA III" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="ASA IV" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="ASA V" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="ASA VI" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_20230905090011626" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Group A", "Group B", "Group AB", "Group O")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PREOPAA, Blood group");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PREOPAA, Blood group</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PREOPAA, Blood group" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Group A" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Group B" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Group AB" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Group O" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_20230905090511632" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Positive", "Negative")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PREOPAA, Rh");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PREOPAA, Rh</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PREOPAA, Rh" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Negative" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_20230905091011667" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Yes", "No")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PREOPAA, Risk of post-operative nausea and vomiting");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PREOPAA, Risk of post-operative nausea and vomiting</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PREOPAA, Risk of post-operative nausea and vomiting" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_20230905091511697" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Yes", "No")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PREOPAA, Patient ready for surgery?");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PREOPAA, Patient ready for surgery?</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PREOPAA, Patient ready for surgery?" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Amman_CONFIG_20230905091511707" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("160327","160328","160329","160330","160331","160332","163126",
+                "163115","163116","163117","163118","145439")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding CEIL codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
+            
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160327",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160328",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160329",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160330",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160331",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160332",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"163126",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"163115",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"163116",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"163117",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"163118",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"145439",@source_id,uuid(),now());
+            
+            call CREATE_REFERENCE_MAPPING_CEIL("PREOPAA, Date recorded","162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("ASA I","160327");
+            call CREATE_REFERENCE_MAPPING_CEIL("ASA II","160328");
+            call CREATE_REFERENCE_MAPPING_CEIL("ASA III","160329");
+            call CREATE_REFERENCE_MAPPING_CEIL("ASA IV","160330");
+            call CREATE_REFERENCE_MAPPING_CEIL("ASA V","160331");
+            call CREATE_REFERENCE_MAPPING_CEIL("ASA VI","160332");
+            call CREATE_REFERENCE_MAPPING_CEIL("PREOPAA, Blood group","163126");
+            call CREATE_REFERENCE_MAPPING_CEIL("Group A","163115");
+            call CREATE_REFERENCE_MAPPING_CEIL("Group B","163116");
+            call CREATE_REFERENCE_MAPPING_CEIL("Group AB","163117");
+            call CREATE_REFERENCE_MAPPING_CEIL("Group O","163118");
+            call CREATE_REFERENCE_MAPPING_CEIL("PREOPAA, Chronic diseases","145439");
+
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202308101613510" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("PREOPAA, Date recorded", "PREOPAA, ASA score", "PREOPAA, Hemoglobin (Hb)", "PREOPAA, Blood group", "PREOPAA, Rh", 
+                "PREOPAA, Chest status", "PREOPAA, Chronic diseases", "PREOPAA, Recent medical problems",
+                "PREOPAA, Investigations needed", "PREOPAA, Current medications", "PREOPAA, Risk of post-operative nausea and vomiting", 
+                "PREOPAA, Nausea and vomiting prevention plan", "PREOPAA, Pre-operative medications details", "PREOPAA, Blood product preparation", 
+                "PREOPAA, Fasting duration before surgery (hours)", "PREOPAA, Patient ready for surgery?", "PREOPAA, Anaesthesia remarks and notes")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PREOPAA, Pre-Operative Anaesthesia Assessment");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Set Members to Clinical Pharmacy Assessment</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PREOPAA, Pre-Operative Anaesthesia Assessment" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            set @member4_concept_id = 0;
+            set @member5_concept_id = 0;
+            set @member6_concept_id = 0;
+            set @member7_concept_id = 0;
+            set @member8_concept_id = 0;
+            set @member9_concept_id = 0;
+            set @member10_concept_id = 0;
+            set @member11_concept_id = 0;
+            set @member12_concept_id = 0;
+            set @member13_concept_id = 0;
+            set @member14_concept_id = 0;
+            set @member15_concept_id = 0;
+            set @member16_concept_id = 0;
+            set @member17_concept_id = 0;
+
+            select concept_id into @member1_concept_id from concept_name where name ="PREOPAA, Date recorded" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name ="PREOPAA, ASA score" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name ="PREOPAA, Hemoglobin (Hb)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member4_concept_id from concept_name where name ="PREOPAA, Blood group" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member5_concept_id from concept_name where name ="PREOPAA, Rh" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member6_concept_id from concept_name where name ="PREOPAA, Chest status" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member7_concept_id from concept_name where name ="PREOPAA, Chronic diseases" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member8_concept_id from concept_name where name ="PREOPAA, Recent medical problems" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member9_concept_id from concept_name where name ="PREOPAA, Investigations needed" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member10_concept_id from concept_name where name ="PREOPAA, Current medications" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member11_concept_id from concept_name where name ="PREOPAA, Risk of post-operative nausea and vomiting" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member12_concept_id from concept_name where name ="PREOPAA, Nausea and vomiting prevention plan" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member13_concept_id from concept_name where name ="PREOPAA, Pre-operative medications details" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member14_concept_id from concept_name where name ="PREOPAA, Blood product preparation" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member15_concept_id from concept_name where name ="PREOPAA, Fasting duration before surgery (hours)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member16_concept_id from concept_name where name ="PREOPAA, Patient ready for surgery?" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member17_concept_id from concept_name where name ="PREOPAA, Anaesthesia remarks and notes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members(@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members(@concept_id, @member3_concept_id, 3);
+            call add_concept_set_members(@concept_id, @member4_concept_id, 4);
+            call add_concept_set_members(@concept_id, @member5_concept_id, 5);
+            call add_concept_set_members(@concept_id, @member6_concept_id, 6);
+            call add_concept_set_members(@concept_id, @member7_concept_id, 7);
+            call add_concept_set_members(@concept_id, @member8_concept_id, 8);
+            call add_concept_set_members(@concept_id, @member9_concept_id, 9);
+            call add_concept_set_members(@concept_id, @member10_concept_id, 10);
+            call add_concept_set_members(@concept_id, @member11_concept_id, 11);
+            call add_concept_set_members(@concept_id, @member12_concept_id, 12);
+            call add_concept_set_members(@concept_id, @member13_concept_id, 13);
+            call add_concept_set_members(@concept_id, @member14_concept_id, 14);
+            call add_concept_set_members(@concept_id, @member15_concept_id, 15);
+            call add_concept_set_members(@concept_id, @member16_concept_id, 16);
+            call add_concept_set_members(@concept_id, @member17_concept_id, 17);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_20230810160135523" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                                         join concept_name cn
+                                              on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name ="PREOPAA, Pre-Operative Anaesthesia Assessment"  AND concept_name_type = "FULLY_SPECIFIED")
+                  and cs.concept_set IN (select concept_id from concept_name where name = "All Observation Templates");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members to all observation templates</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = "All Observation Templates" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = "PREOPAA, Pre-Operative Anaesthesia Assessment" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

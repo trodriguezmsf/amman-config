@@ -4540,6 +4540,34 @@ Bahmni.ConceptSet.FormConditions.rules = {
             }
         }
         return conditions;
-    }
+    },
+    'PREOPAA, Blood group': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PREOPAA, Blood group'];
+        if (conditionConcept) {
+            conditions.show.push("PREOPAA, Rh");
+        }
+        else {
+            conditions.hide.push("PREOPAA, Rh");
+        }
+        return conditions;
+    },
+    'PREOPAA, Risk of post-operative nausea and vomiting': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['PREOPAA, Risk of post-operative nausea and vomiting'];
+        if (conditionConcept == "Yes") {
+            conditions.show.push("PREOPAA, Nausea and vomiting prevention plan");
+        }
+        else {
+            conditions.hide.push("PREOPAA, Nausea and vomiting prevention plan");
+        }
+        return conditions;
+    },
 }
 

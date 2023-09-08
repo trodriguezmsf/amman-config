@@ -264,7 +264,8 @@
                     "Occupational Therapy Assessment",
                     "External Consultation",
                     "3DA, 3D Assessment",
-                    "CPA, Clinical Pharmacy Assessment"
+                    "CPA, Clinical Pharmacy Assessment",
+                    "PREOPAA, Pre-Operative Anaesthesia Assessment"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
             }

@@ -1913,6 +1913,9 @@
           },
           "CPA, Clinical pharmacy interventions": {
               "allowAddMore": true
+          },
+          "PREOPAA, ASA score":{
+            "required":true
           }
         },
         "visitPage": {

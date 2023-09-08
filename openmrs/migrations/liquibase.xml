@@ -12625,4 +12625,5 @@
         <comment>MOBN-2162 | Rename Psycho-social TRM to Mental Health TRM </comment>
         <sqlFile path="programs/trmPatients_2.sql"/>
     </changeSet>
+    <include file="clinicalForms/Pre-operativeAnaesthesiaAssessment.xml"/>
 </databaseChangeLog>
