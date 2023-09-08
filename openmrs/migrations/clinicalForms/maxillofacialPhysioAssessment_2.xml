@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <changeSet id="AMMAN_CONFIG_20230900774334972" author="Venky, Shyam">
+    <comment>Adding Concepts for Maxillofacial Physio Assessment Form</comment>
+    <sqlFile path="concepts/maxillofacialPhysioAssessment_2.sql"/>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_20230900774334573" author="Venky, Shyam">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Post-burn contracture rehabilitation", "Temporomandibular Mobilization-TMJ", "Neck mobilization", "Scar management for TFO patients", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "MPA, Reason for physiotherapy referral");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding Answers to MPA, Reason for physiotherapy referral</comment>
+    <sql>
+            select concept_id into @concept_id from concept_name where name = "MPA, Reason for physiotherapy referral" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Post-burn contracture rehabilitation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Temporomandibular Mobilization-TMJ" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Neck mobilization" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Scar management for TFO patients" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_20230900774334974" author="Venky, Shyam">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ('MPA, Reason for physiotherapy referral', 'MPA, Other reason for physiotherapy referral') AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'Maxillofacial Physio Assessment');
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding set members for "Maxillofacial Physio Assessment" Concept</comment>
+    <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'Maxillofacial Physio Assessment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'MPA, Reason for physiotherapy referral' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = 'MPA, Other reason for physiotherapy referral' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            
+            call add_concept_set_members (@concept_id, @member1_concept_id, 17);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 18);
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_20230900774334975" author="Venky, Shyam">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="36">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ("MPA, Date recorded", "MPA, Type of assessment", "MPA, Reason for physiotherapy referral", "MPA, Other reason for physiotherapy referral", "MPA, Previous history of physiotherapy", "MPA, Details of previous physiotherapy", "MPA, Chief complaint of patient", "MPA, Problem List", "MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Summary neurological examination (sensation), comments", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments", "MPA, Followup Plan") AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'Maxillofacial Physio Assessment');
+      </sqlCheck>
+    </preConditions>
+    <comment>Reorder sections in Maxillofacial Physio Assessment</comment>
+    <sql>
+            set @observation_form_name = "Maxillofacial Physio Assessment";
+            # Reorder concepts (Concept set full name, Concept full name, sort weight)
+            call reorder_concept_set(@observation_form_name, "MPA, Date recorded", 1);
+            call reorder_concept_set(@observation_form_name, "MPA, Type of assessment", 2);
+            call reorder_concept_set(@observation_form_name, "MPA, Reason for physiotherapy referral", 3);
+            call reorder_concept_set(@observation_form_name, "MPA, Other reason for physiotherapy referral", 4);
+            call reorder_concept_set(@observation_form_name, "MPA, Previous history of physiotherapy", 5);
+            call reorder_concept_set(@observation_form_name, "MPA, Details of previous physiotherapy", 6);
+            call reorder_concept_set(@observation_form_name, "MPA, Chief complaint of patient", 7);
+            call reorder_concept_set(@observation_form_name, "MPA, Problem List", 8);
+            call reorder_concept_set(@observation_form_name, "MPA, Independence of Patient", 9);
+            call reorder_concept_set(@observation_form_name, "MPA, Functional status of the patient", 10);
+            call reorder_concept_set(@observation_form_name, "MPA, Pain Assessment", 11);
+            call reorder_concept_set(@observation_form_name, "MPA, Summary neurological examination (sensation)", 12);
+            call reorder_concept_set(@observation_form_name, "MPA, Summary neurological examination (sensation), comments", 13);
+            call reorder_concept_set(@observation_form_name, "MPA, Objective examination", 14);
+            call reorder_concept_set(@observation_form_name, "MPA, Functional examination", 15);
+            call reorder_concept_set(@observation_form_name, "MPA, Facial Disability Index", 16);
+            call reorder_concept_set(@observation_form_name, "MPA, Additional comments", 17);
+            call reorder_concept_set(@observation_form_name, "MPA, Followup Plan", 18);
+    </sql>
+  </changeSet>
+
+</databaseChangeLog>

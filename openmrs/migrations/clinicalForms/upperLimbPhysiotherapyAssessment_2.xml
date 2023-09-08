@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <changeSet id="AMMAN_CONFIG_20230900774334962" author="Venky, Shyam">
+    <comment>Adding Concepts for Upper Limb Physiotherapy Assessment Form</comment>
+    <sqlFile path="concepts/upperLimbPhysiotherapyAssessment_2.sql"/>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_20230900774334963" author="Venky, Shyam">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Bone lengthening", "Bone transportation", "Post-burn contracture management", "Peripheral nerve injury rehabilitation", "Tendon rehabilitation", "Post-fracture rehabilitation", "Amputation", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ULA, Reason for physiotherapy referral");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding Answers to ULA, Reason for physiotherapy referral</comment>
+    <sql>
+            select concept_id into @concept_id from concept_name where name = "ULA, Reason for physiotherapy referral" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            
+            select concept_id into @child1_concept_id from concept_name where name ="Bone lengthening" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Bone transportation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Post-burn contracture management" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Peripheral nerve injury rehabilitation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Tendon rehabilitation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Post-fracture rehabilitation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Amputation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_20230900774334964" author="Venky, Shyam">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ('ULA, Reason for physiotherapy referral', 'ULA, Other reason for physiotherapy referral') AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'Upper Limb Physiotherapy Assessment');
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding set members for "Upper Limb Physiotherapy Assessment" Concept</comment>
+    <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'Upper Limb Physiotherapy Assessment' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'ULA, Reason for physiotherapy referral' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = 'ULA, Other reason for physiotherapy referral' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            
+            call add_concept_set_members (@concept_id, @member1_concept_id, 30);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 31);
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_20230900774334965" author="Venky, Shyam">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="58">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ("ULA, Date recorded", "ULA, Type of assessment", "ULA, Previous history of physiotherapy", "ULA, Details of previous physiotherapy", "ULA, Chief complaint of patient", "ULA, Problem List", "ULA, Dominant side", "ULA, Affected side", "ULA, Reason for physiotherapy referral", "ULA, Other reason for physiotherapy referral", "ULA, Independence of Patient", "ULA, Does the patient use an assistive device or orthosis?", "ULA, Type of assistive device or orthosis", "ULA, Other type of assistive device", "ULA, Comments about assistive device or orthosis", "ULA, Amputee patient?", "ULA, Level of amputation", "ULA, Pain Assessment", "ULA, Objective examination", "ULA, R.O.M Test for Upper Limbs", "ULA, Hand and Finger", "ULA, Muscle Test for Upper Limbs", "ULA, Neurological exam of upper limb", "ULA, Basic Grip Test", "ULA, How old is the patient", "ULA, Pediatric Upper Extremity Function ( Fine Motor, ADL)", "ULA, (UEFI) Upper Extremity Functional Index", "ULA, Additional comments", "ULA, Followup Plan") AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'Upper Limb Physiotherapy Assessment');
+      </sqlCheck>
+    </preConditions>
+    <comment>Reorder sections in Upper Limb Physiotherapy Assessment</comment>
+    <sql>
+            set @observation_form_name = "Upper Limb Physiotherapy Assessment";
+            # Reorder concepts (Concept set full name, Concept full name, sort weight)
+            call reorder_concept_set(@observation_form_name, "ULA, Date recorded", 1);
+            call reorder_concept_set(@observation_form_name, "ULA, Type of assessment", 2);
+            call reorder_concept_set(@observation_form_name, "ULA, Previous history of physiotherapy", 3);
+            call reorder_concept_set(@observation_form_name, "ULA, Details of previous physiotherapy", 4);
+            call reorder_concept_set(@observation_form_name, "ULA, Chief complaint of patient", 5);
+            call reorder_concept_set(@observation_form_name, "ULA, Problem List", 6);
+            call reorder_concept_set(@observation_form_name, "ULA, Dominant side", 7);
+            call reorder_concept_set(@observation_form_name, "ULA, Affected side", 8);
+            call reorder_concept_set(@observation_form_name, "ULA, Reason for physiotherapy referral", 9);
+            call reorder_concept_set(@observation_form_name, "ULA, Other reason for physiotherapy referral", 10);
+            call reorder_concept_set(@observation_form_name, "ULA, Independence of Patient", 11);
+            call reorder_concept_set(@observation_form_name, "ULA, Does the patient use an assistive device or orthosis?", 12);
+            call reorder_concept_set(@observation_form_name, "ULA, Type of assistive device or orthosis", 13);
+            call reorder_concept_set(@observation_form_name, "ULA, Other type of assistive device", 14);
+            call reorder_concept_set(@observation_form_name, "ULA, Comments about assistive device or orthosis", 15);
+            call reorder_concept_set(@observation_form_name, "ULA, Amputee patient?", 16);
+            call reorder_concept_set(@observation_form_name, "ULA, Level of amputation", 17);
+            call reorder_concept_set(@observation_form_name, "ULA, Pain Assessment", 18);
+            call reorder_concept_set(@observation_form_name, "ULA, Objective examination", 19);
+            call reorder_concept_set(@observation_form_name, "ULA, R.O.M Test for Upper Limbs", 20);
+            call reorder_concept_set(@observation_form_name, "ULA, Hand and Finger", 21);
+            call reorder_concept_set(@observation_form_name, "ULA, Muscle Test for Upper Limbs", 22);
+            call reorder_concept_set(@observation_form_name, "ULA, Neurological exam of upper limb", 23);
+            call reorder_concept_set(@observation_form_name, "ULA, Basic Grip Test", 24);
+            call reorder_concept_set(@observation_form_name, "ULA, How old is the patient", 25);
+            call reorder_concept_set(@observation_form_name, "ULA, Pediatric Upper Extremity Function ( Fine Motor, ADL)", 26);
+            call reorder_concept_set(@observation_form_name, "ULA, (UEFI) Upper Extremity Functional Index", 27);
+            call reorder_concept_set(@observation_form_name, "ULA, Additional comments", 28);
+            call reorder_concept_set(@observation_form_name, "ULA, Followup Plan", 29);
+    </sql>
+  </changeSet>
+
+  <changeSet id="AMMAN_CONFIG_20230900774334966" author="Venky, Shyam">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("166708","130421", "166839")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding CEIL codes to concepts</comment>
+    <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166708",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"130421",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166839",@source_id,uuid(),now());
+
+            call CREATE_REFERENCE_MAPPING_CEIL("Bone lengthening","166708");
+            call CREATE_REFERENCE_MAPPING_CEIL("Peripheral nerve injury rehabilitation","130421");
+            call CREATE_REFERENCE_MAPPING_CEIL("Tendon rehabilitation","166839");
+            call CREATE_REFERENCE_MAPPING_CEIL("Amputation","164009");
+    </sql>
+  </changeSet>
+
+</databaseChangeLog>

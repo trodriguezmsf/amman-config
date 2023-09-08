@@ -12590,9 +12590,9 @@
             set @concept_id = 0;
             set @concept_short_id = 0;
             set @concept_full_id = 0;
-            
+
             call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mental Health Assessment","Mental Health Assessment","N/A","Misc",false);
-        </sql>    
+        </sql>
     </changeSet>
 
     <changeSet id="AMMAN_CONFIG_20232108131534962" author="Sreelekha">
@@ -12605,9 +12605,9 @@
         <sql>
             select concept_id into @concept_id from concept_name where name = "Radiology" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
-        
+
             select concept_id into @child1_concept_id from concept_name where name ="Mental Health Assessment" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-        
+
             call add_concept_set_members(@concept_id, @child1_concept_id, 16);
         </sql>
     </changeSet>
@@ -12625,5 +12625,8 @@
         <comment>MOBN-2162 | Rename Psycho-social TRM to Mental Health TRM </comment>
         <sqlFile path="programs/trmPatients_2.sql"/>
     </changeSet>
+    <include file="clinicalForms/upperLimbPhysiotherapyAssessment_2.xml"/>
+    <include file="clinicalForms/maxillofacialPhysioAssessment_2.xml"/>
+    <include file="clinicalForms/lowerLimbPhysiotherapyAssessment_2.xml"/>
     <include file="clinicalForms/Pre-operativeAnaesthesiaAssessment.xml"/>
 </databaseChangeLog>

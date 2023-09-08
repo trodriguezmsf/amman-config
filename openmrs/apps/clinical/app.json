@@ -1914,6 +1914,15 @@
           "CPA, Clinical pharmacy interventions": {
               "allowAddMore": true
           },
+          "ULA, Reason for physiotherapy referral":{
+            "multiSelect":true
+          },
+          "MPA, Reason for physiotherapy referral":{
+            "multiSelect":true
+          },
+          "LLA, Reason for physiotherapy referral":{
+            "multiSelect":true
+          },
           "PREOPAA, ASA score":{
             "required":true
           }

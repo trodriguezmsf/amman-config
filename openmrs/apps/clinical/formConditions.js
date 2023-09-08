@@ -2153,21 +2153,34 @@ Bahmni.ConceptSet.FormConditions.rules = {
           };
           var conditionConcept = formFieldValues['LLA, Type of assessment'];
           if (conditionConcept == "Initial"){
-              conditions.hide.push("LLA, Follow-up Plan")
+              conditions.hide.push("LLA, Follow-up Plan", "LLA, Other reason for physiotherapy referral", "LLA, Reason for physiotherapy referral")
               conditions.show.push("LLA, Previous history of physiotherapy","LLA, Chief complaint of patient","LLA, Problem List",  "LLA, Affected side", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, How old is the patient", "LLA, Additional comments")
           }
           else if (conditionConcept == "Post-operative"){
-	         conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Chief complaint of patient","LLA, Problem List","LLA, Follow-up Plan")
+	         conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Chief complaint of patient","LLA, Problem List","LLA, Follow-up Plan", "LLA, Reason for physiotherapy referral", "LLA, Other reason for physiotherapy referral")
              conditions.show.push("LLA, Affected side", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, How old is the patient", "LLA, Additional comments")
          }
          else if (conditionConcept == "Final"){
 	         conditions.hide.push("LLA, Previous history of physiotherapy","LLA, Chief complaint of patient","LLA, Problem List")
-             conditions.show.push("LLA, Follow-up Plan", "LLA, Affected side", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, How old is the patient", "LLA, Additional comments")
+             conditions.show.push("LLA, Follow-up Plan", "LLA, Affected side", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, How old is the patient", "LLA, Additional comments", "LLA, Reason for physiotherapy referral")
          }
          else {
-             conditions.hide.push("LLA, Pediatric Lower Extremity Function(Mobility)", "LLA, Lower Extremity Functional Index (LEFI)", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, Follow-up Plan", "LLA, Previous history of physiotherapy", "LLA, Chief complaint of patient", "LLA, Problem List", "LLA, Affected side", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, How old is the patient", "LLA, Additional comments")
+             conditions.hide.push("LLA, Pediatric Lower Extremity Function(Mobility)", "LLA, Lower Extremity Functional Index (LEFI)", "LLA, Independence of Patient", "LLA, Leg Length Discrepancy (LLD)", "LLA, Pain Assessment", "LLA, R.O.M Test for Lower Limbs", "LLA, Neurological exam of lower limb", "LLA, Muscle Test for Lower Limbs", "LLA, Tinetti Balance Assessment Tool", "LLA, Follow-up Plan", "LLA, Previous history of physiotherapy", "LLA, Chief complaint of patient", "LLA, Problem List", "LLA, Affected side", "LLA, Does the patient use an assistive device or orthosis?", "LLA, Amputee patient?", "LLA, How old is the patient", "LLA, Additional comments", "LLA, Other reason for physiotherapy referral", "LLA, Reason for physiotherapy referral")
          }
           return conditions;
+      },
+      'LLA, Reason for physiotherapy referral': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['LLA, Reason for physiotherapy referral'];
+        if (conditionConcept.indexOf("Other")>=0){
+            conditions.show.push("LLA, Other reason for physiotherapy referral")
+        }else {
+           conditions.hide.push("LLA, Other reason for physiotherapy referral")
+       }
+        return conditions;
       },
       'ULA, Type of assessment': function (formName, formFieldValues) {
           var conditions = {
@@ -2176,19 +2189,32 @@ Bahmni.ConceptSet.FormConditions.rules = {
           };
           var conditionConcept = formFieldValues['ULA, Type of assessment'];
           if (conditionConcept == "Initial"){
-              conditions.hide.push("ULA, Followup Plan")
+              conditions.hide.push("ULA, Followup Plan", "ULA, Reason for physiotherapy referral", "ULA, Other reason for physiotherapy referral")
               conditions.show.push("ULA, Previous history of physiotherapy","ULA, Chief complaint of patient","ULA, Problem List","ULA, Dominant side", "ULA, Affected side", "ULA, Independence of Patient", "ULA, Does the patient use an assistive device or orthosis?", "ULA, Amputee patient?", "ULA, Pain Assessment", "ULA, Objective examination", "ULA, R.O.M Test for Upper Limbs", "ULA, Neurological exam of upper limb", "ULA, Muscle Test for Upper Limbs", "ULA, Hand and Finger", "ULA, hand and finger R.O.M", "ULA, Basic Grip Test", "ULA, How old is the patient", "ULA, Additional comments", "ULA, Site of pain", "ULA, Summary neurological examination (sensation)")
           }
           else if (conditionConcept == "Post-operative"){
-              conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Chief complaint of patient","ULA, Problem List","ULA, Followup Plan")
+              conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Chief complaint of patient","ULA, Problem List","ULA, Followup Plan", "ULA, Reason for physiotherapy referral", "ULA, Other reason for physiotherapy referral")
               conditions.show.push("ULA, Dominant side", "ULA, Affected side", "ULA, Independence of Patient", "ULA, Does the patient use an assistive device or orthosis?", "ULA, Amputee patient?", "ULA, Pain Assessment", "ULA, Objective examination", "ULA, R.O.M Test for Upper Limbs", "ULA, Neurological exam of upper limb", "ULA, Muscle Test for Upper Limbs", "ULA, Hand and Finger", "ULA, hand and finger R.O.M", "ULA, Basic Grip Test", "ULA, How old is the patient", "ULA, Additional comments", "ULA, Site of pain", "ULA, Summary neurological examination (sensation)")
          }
          else if (conditionConcept == "Final"){
 	          conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Chief complaint of patient","ULA, Problem List")
-              conditions.show.push("ULA, Followup Plan", "ULA, Dominant side", "ULA, Affected side", "ULA, Independence of Patient", "ULA, Does the patient use an assistive device or orthosis?", "ULA, Amputee patient?", "ULA, Pain Assessment", "ULA, Objective examination", "ULA, R.O.M Test for Upper Limbs", "ULA, Neurological exam of upper limb", "ULA, Muscle Test for Upper Limbs", "ULA, Hand and Finger", "ULA, hand and finger R.O.M", "ULA, Basic Grip Test", "ULA, How old is the patient", "ULA, Additional comments", "ULA, Site of pain", "ULA, Summary neurological examination (sensation)")
+              conditions.show.push("ULA, Followup Plan", "ULA, Dominant side", "ULA, Affected side", "ULA, Independence of Patient", "ULA, Does the patient use an assistive device or orthosis?", "ULA, Amputee patient?", "ULA, Pain Assessment", "ULA, Objective examination", "ULA, R.O.M Test for Upper Limbs", "ULA, Neurological exam of upper limb", "ULA, Muscle Test for Upper Limbs", "ULA, Hand and Finger", "ULA, hand and finger R.O.M", "ULA, Basic Grip Test", "ULA, How old is the patient", "ULA, Additional comments", "ULA, Site of pain", "ULA, Summary neurological examination (sensation)", "ULA, Reason for physiotherapy referral")
          }
          else {
-             conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Level of amputation", "ULA, Pediatric Upper Extremity Function ( Fine Motor, ADL)", "ULA, (UEFI) Upper Extremity Functional Index", "ULA, Chief complaint of patient", "ULA, Problem List", "ULA, Dominant side", "ULA, Affected side", "ULA, Independence of Patient", "ULA, Does the patient use an assistive device or orthosis?", "ULA, Amputee patient?", "ULA, Pain Assessment", "ULA, Objective examination", "ULA, R.O.M Test for Upper Limbs", "ULA, Neurological exam of upper limb", "ULA, Muscle Test for Upper Limbs","ULA, Hand and Finger", "ULA, hand and finger R.O.M", "ULA, Basic Grip Test", "ULA, How old is the patient", "ULA, Additional comments", "ULA, Followup Plan")
+             conditions.hide.push("ULA, Previous history of physiotherapy","ULA, Level of amputation", "ULA, Pediatric Upper Extremity Function ( Fine Motor, ADL)", "ULA, (UEFI) Upper Extremity Functional Index", "ULA, Chief complaint of patient", "ULA, Problem List", "ULA, Dominant side", "ULA, Affected side", "ULA, Independence of Patient", "ULA, Does the patient use an assistive device or orthosis?", "ULA, Amputee patient?", "ULA, Pain Assessment", "ULA, Objective examination", "ULA, R.O.M Test for Upper Limbs", "ULA, Neurological exam of upper limb", "ULA, Muscle Test for Upper Limbs","ULA, Hand and Finger", "ULA, hand and finger R.O.M", "ULA, Basic Grip Test", "ULA, How old is the patient", "ULA, Additional comments", "ULA, Followup Plan", "ULA, Reason for physiotherapy referral", "ULA, Other reason for physiotherapy referral")
+         }
+          return conditions;
+      },
+      'ULA, Reason for physiotherapy referral': function (formName, formFieldValues) {
+          var conditions = {
+              show: [],
+              hide: []
+          };
+          var conditionConcept = formFieldValues['ULA, Reason for physiotherapy referral'];
+          if (conditionConcept.indexOf("Other")>=0){
+              conditions.show.push("ULA, Other reason for physiotherapy referral")
+          }else {
+             conditions.hide.push("ULA, Other reason for physiotherapy referral")
          }
           return conditions;
       },
@@ -2199,22 +2225,35 @@ Bahmni.ConceptSet.FormConditions.rules = {
           };
           var conditionConcept = formFieldValues['MPA, Type of assessment'];
           if (conditionConcept == "Initial"){
-              conditions.hide.push("MPA, Followup Plan")
+              conditions.hide.push("MPA, Followup Plan", "MPA, Reason for physiotherapy referral", "MPA, Other reason for physiotherapy referral")
               conditions.show.push("MPA, Previous history of physiotherapy","MPA, Chief complaint of patient","MPA, Problem List", "MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments")
           }
           else if (conditionConcept == "Post-operative"){
-              conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Chief complaint of patient","MPA, Problem List","MPA, Followup Plan")
+              conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Chief complaint of patient","MPA, Problem List","MPA, Followup Plan", "MPA, Reason for physiotherapy referral", "MPA, Other reason for physiotherapy referral")
               conditions.show.push("MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments")
          }
          else if (conditionConcept == "Final"){
              conditions.hide.push("MPA, Previous history of physiotherapy",  "MPA, Chief complaint of patient","MPA, Problem List")
-             conditions.show.push("MPA, Followup Plan", "MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments")
+             conditions.show.push("MPA, Followup Plan", "MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments", "MPA, Reason for physiotherapy referral")
          }
          else {
              conditions.show.push("MPA, Date recorded")
-             conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Chief complaint of patient", "MPA, Problem List", "MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments", "MPA, Followup Plan")
+             conditions.hide.push("MPA, Previous history of physiotherapy", "MPA, Chief complaint of patient", "MPA, Problem List", "MPA, Independence of Patient", "MPA, Functional status of the patient", "MPA, Pain Assessment", "MPA, Summary neurological examination (sensation)", "MPA, Objective examination", "MPA, Functional examination", "MPA, Facial Disability Index", "MPA, Additional comments", "MPA, Followup Plan", "MPA, Reason for physiotherapy referral", "MPA, Other reason for physiotherapy referral")
           }
           return conditions;
+      },
+      'MPA, Reason for physiotherapy referral': function (formName, formFieldValues) {
+        var conditions = {
+            show: [],
+            hide: []
+        };
+        var conditionConcept = formFieldValues['MPA, Reason for physiotherapy referral'];
+        if (conditionConcept.indexOf("Other")>=0){
+            conditions.show.push("MPA, Other reason for physiotherapy referral")
+        }else {
+           conditions.hide.push("MPA, Other reason for physiotherapy referral")
+       }
+        return conditions;
       },
     'MPA, Movement difficulty of facial muscles': function (formName, formFieldValues) {
           var conditions = {
