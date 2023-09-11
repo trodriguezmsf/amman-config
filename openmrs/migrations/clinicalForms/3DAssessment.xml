@@ -901,7 +901,22 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("3DA, Date recorded","3DA, Type of assessment","3DA, Date of scan","3DA, Date of delivery","3DA, Session date","3DA, Referral source","3DA, Type of TFO activity","3DA, TFO clinical assessments","3DA, Date of follow-up session (TFO)","3DA, Referral (TFO)","3DA, Comments on referral (TFO)","3DA, Type of session (TFO)","3DA, Orthosis or prosthesis delivered? (TFO)","3DA, Comments on orthosis or prosthesis (TFO)","3DA, General comments about the session (TFO)","3DA, Date of discharge (TFO)","3DA, 3D treatment plan provided in Amman (TFO)","3DA, 3D recommendations for future treatment plan (TFO)","3DA, Comments on referral","3DA, Type of MIDA activity","3DA, MIDA clinical assessments","3DA, Date of follow-up session (MIDA)","3DA, Referral (MIDA)","3DA, Comments on referral (MIDA)","3DA, Type of session (MIDA)","3DA, Orthosis or prosthesis delivered? (MIDA)","3DA, Comments on orthosis or prosthesis (MIDA)","3DA, General comments about the session (MIDA)","3DA, Date of discharge (MIDA)","3DA, 3D treatment plan provided in Amman (MIDA)","3DA, 3D recommendations for future treatment plan (MIDA)","3DA, Upper limb prosthetic","3DA, Splints","3DA, SG referral source","3DA, Other SG referral source","3DA, Hydrocolloid side","3DA, Hydrocolloid date of referral","3DA, Type of Hydrocolloid activity","3DA, Image upload","3DA, Video upload")
+                ("3DA, Date recorded","3DA, Type of assessment","3DA, Date of scan","3DA, Date of delivery","3DA, 
+                Session date","3DA, Referral source","3DA, Type of TFO activity","3DA, TFO clinical assessments",
+                "3DA, Date of follow-up session (TFO)","3DA, Referral (TFO)","3DA, Comments on referral (TFO)",
+                "3DA, Type of session (TFO)","3DA, Orthosis or prosthesis delivered? (TFO)",
+                "3DA, Comments on orthosis or prosthesis (TFO)","3DA, General comments about the session (TFO)",
+                "3DA, Date of discharge (TFO)","3DA, 3D treatment plan provided in Amman (TFO)",
+                "3DA, 3D recommendations for future treatment plan (TFO)","3DA, Comments on referral",
+                "3DA, Type of MIDA activity","3DA, MIDA clinical assessments","3DA, Date of follow-up session (MIDA)",
+                "3DA, Referral (MIDA)","3DA, Comments on referral (MIDA)","3DA, Type of session (MIDA)",
+                "3DA, Orthosis or prosthesis delivered? (MIDA)","3DA, Comments on orthosis or prosthesis (MIDA)",
+                "3DA, General comments about the session (MIDA)","3DA, Date of discharge (MIDA)",
+                "3DA, 3D treatment plan provided in Amman (MIDA)","3DA, 3D recommendations for future treatment plan (MIDA)",
+                "3DA, Upper limb prosthetic","3DA, Splints","3DA, SG referral source","3DA, Comments on SG referral source",
+                "3DA, Other SG referral source","3DA, Hydrocolloid side","3DA, Hydrocolloid date of referral",
+                "3DA, Type of Hydrocolloid activity",
+                "3DA, Image upload","3DA, Video upload")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "3DA, 3D Assessment");
@@ -951,6 +966,8 @@
             set @member38_concept_id = 0;
             set @member39_concept_id = 0;
             set @member40_concept_id = 0;
+            set @member41_concept_id = 0;
+
             select concept_id into @member1_concept_id from concept_name where name ="3DA, Date recorded" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @member2_concept_id from concept_name where name ="3DA, Type of assessment" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @member3_concept_id from concept_name where name ="3DA, Date of scan" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
@@ -985,12 +1002,14 @@
             select concept_id into @member32_concept_id from concept_name where name ="3DA, Upper limb prosthetic" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @member33_concept_id from concept_name where name ="3DA, Splints" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @member34_concept_id from concept_name where name ="3DA, SG referral source" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member35_concept_id from concept_name where name ="3DA, Other SG referral source" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member36_concept_id from concept_name where name ="3DA, Hydrocolloid side" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member37_concept_id from concept_name where name ="3DA, Hydrocolloid date of referral" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member38_concept_id from concept_name where name ="3DA, Type of Hydrocolloid activity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member39_concept_id from concept_name where name ="3DA, Image upload" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @member40_concept_id from concept_name where name ="3DA, Video upload" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member35_concept_id from concept_name where name ="3DA, Comments on SG referral source" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member36_concept_id from concept_name where name ="3DA, Other SG referral source" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member37_concept_id from concept_name where name ="3DA, Hydrocolloid side" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member38_concept_id from concept_name where name ="3DA, Hydrocolloid date of referral" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member39_concept_id from concept_name where name ="3DA, Type of Hydrocolloid activity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member40_concept_id from concept_name where name ="3DA, Image upload" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member41_concept_id from concept_name where name ="3DA, Video upload" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_set_members(@concept_id, @member1_concept_id, 1);
             call add_concept_set_members(@concept_id, @member2_concept_id, 2);
             call add_concept_set_members(@concept_id, @member3_concept_id, 3);
@@ -1031,6 +1050,7 @@
             call add_concept_set_members(@concept_id, @member38_concept_id, 38);
             call add_concept_set_members(@concept_id, @member39_concept_id, 39);
             call add_concept_set_members(@concept_id, @member40_concept_id, 40);
+            call add_concept_set_members(@concept_id, @member41_concept_id, 41);
         </sql>
     </changeSet>
 

@@ -4313,6 +4313,12 @@ Bahmni.ConceptSet.FormConditions.rules = {
         else {
             conditions.hide.push("3DA, Other SG referral source");
         }
+        if (conditionConcept == "Plastic" || conditionConcept == "Orthopaedic" || conditionConcept == "Maxillofacial") {
+            conditions.show.push("3DA, Comments on SG referral source");
+        }
+        else {
+            conditions.hide.push("3DA, Comments on SG referral source");
+        }
         return conditions;
     },
     '3DA, Referral source': function (formName, formFieldValues) {

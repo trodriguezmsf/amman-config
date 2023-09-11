@@ -127,6 +127,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D treatme
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D recommendations for future treatment plan (Upper Limb)","3D recommendations for future treatment plan (Upper Limb)","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D recommendations for future treatment plan (TFO)","3D recommendations for future treatment plan (TFO)","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, 3D recommendations for future treatment plan (MIDA)","3D recommendations for future treatment plan (MIDA)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3DA, Comments on SG referral source","Comments on SG referral source","Text","Misc",false);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Home visit","Home visit","N/A","Misc",false);
