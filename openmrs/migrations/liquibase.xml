@@ -12629,4 +12629,10 @@
     <include file="clinicalForms/maxillofacialPhysioAssessment_2.xml"/>
     <include file="clinicalForms/lowerLimbPhysiotherapyAssessment_2.xml"/>
     <include file="clinicalForms/Pre-operativeAnaesthesiaAssessment.xml"/>
+
+    <changeSet id="AMMAN_CONFIG_202310092205123" author="Sreelekha">
+        <comment>MOBN-2162 | Rename isCareTakeRequired column to Caretaker Name </comment>
+        <sqlFile path="programs/hospitalRSPQueue_2.sql"/>
+    </changeSet>
+
 </databaseChangeLog>

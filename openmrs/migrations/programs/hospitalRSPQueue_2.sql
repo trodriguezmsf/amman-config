@@ -1,7 +1,13 @@
-SELECT
+DELETE FROM global_property where property = 'emrapi.sqlSearch.hospitalRSP';
+ select uuid() into @uuid;
+
+
+ INSERT INTO global_property (property, property_value, description, uuid)
+ VALUES ('emrapi.sqlSearch.hospitalRSP',
+"SELECT SQL_CACHE
   dateOfArrival.dateOfArrival AS `Date of Arrival`,
-  personData.patient_identifier AS 'Identifier',
-  personData.name AS 'Name',
+  personData.patient_identifier AS 'identifier',
+  personData.name AS 'PATIENT_LISTING_QUEUES_HEADER_NAME',
   personData.age AS `Age`,
   paddress.address3 AS `Country`,
   careTakerRequired.careTakerName AS 'Caretaker Name',
@@ -17,12 +23,14 @@ SELECT
   DATE_FORMAT(last_surgery.`Last Surgery`,'%d/%m/%Y') AS 'Last Surgery',
   last_surgery.`Procedure` AS 'Procedure (Last)',
   IF(latest_future_appointment.startdate IS NULL , DATE_FORMAT(latest_past_appointment.startdate, '%d/%m/%Y'),
-     DATE_FORMAT(latest_future_appointment.startdate, '%d/%m/%Y'))                                         AS 'Date of Appointment',
+     DATE_FORMAT(latest_future_appointment.startdate, '%d/%m/%Y'))                                                                                   AS 'Date of Appointment',
   IF(latest_future_appointment.startdate IS NULL , latest_past_appointment.serviceappointmenttype, latest_future_appointment.serviceappointmenttype) AS 'Service Appointment Type',
-  IF(latest_future_appointment.startdate IS NULL , latest_past_appointment.providername, latest_future_appointment.providername) AS 'Provider name',
-  CONCAT_WS(',', latestNoteAndCorrespoindingDateRecorded.ONN_date_recorded,latestNoteAndCorrespoindingDateRecorded.value_text) AS 'Nursing consultation notes',
+  IF(latest_future_appointment.startdate IS NULL , latest_past_appointment.providername, latest_future_appointment.providername)                     AS 'Provider name',
+  CONCAT_WS(',', latestNoteAndCorrespoindingDateRecorded.ONN_date_recorded,
+            latestNoteAndCorrespoindingDateRecorded.value_text)                                                                               AS 'Nursing consultation notes',
   `Bed allocation`,
-  cn.name AS `Phase of treatment`
+  cn.name                                                                                                                                            AS `Phase of treatment`,
+  personData.uuid
 FROM
   (SELECT
      concat(pn.given_name, ' ', pn.family_name)                                                                 AS name,
@@ -184,7 +192,7 @@ FROM
               GROUP BY latest_appointment.patient_id
               )last_surgery on last_surgery.patient_id = personData.person_id
   LEFT OUTER JOIN (
-                     SELECT
+                    SELECT
                       patappoint.patient_id,
                       patappoint.start_date_time                 AS startdate,
                       patappoint.end_date_time                   AS enddate,
@@ -236,27 +244,27 @@ FROM
                       LEFT OUTER JOIN appointment_service_type ast ON ast.appointment_service_type_id = patappoint.appointment_service_type_id AND ast.voided IS FALSE
                     GROUP BY patappoint.patient_id
                   ) latest_past_appointment ON latest_past_appointment.patient_id = personData.person_id
-      LEFT JOIN (
-                      SELECT value_coded.person_id, cn.name from concept_name cn
-                        JOIN (select
-                                o.person_id,o.value_coded
-                              from
-                                concept_name cn
-                                join obs o ON cn.concept_id=o.concept_id and o.voided is FALSE
-                                              and cn.name = 'SAP, Frequency of Operations' and cn.concept_name_type= 'FULLY_SPECIFIED') value_coded on value_coded.value_coded = cn.concept_id
-                        GROUP BY value_coded.person_id
-                    )frequency_value ON frequency_value.person_id = personData.person_id
-      LEFT JOIN (
-                      SELECT value_coded.person_id, cn.name from concept_name cn
-                        JOIN (select
-                                o.person_id,o.value_coded
-                              from
-                                concept_name cn
-                                join obs o ON cn.concept_id=o.concept_id and o.voided is FALSE
-                                              and cn.name = 'SAP, Estimated length of stay' and cn.concept_name_type= 'FULLY_SPECIFIED') value_coded on value_coded.value_coded = cn.concept_id
-                        GROUP BY value_coded.person_id
-                    )length_value on length_value.person_id = personData.person_id
-      LEFT JOIN (
+  LEFT JOIN (
+              SELECT value_coded.person_id, cn.name from concept_name cn
+                JOIN (select
+                        o.person_id,o.value_coded
+                      from
+                        concept_name cn
+                        join obs o ON cn.concept_id=o.concept_id and o.voided is FALSE
+                                      and cn.name = 'SAP, Frequency of Operations' and cn.concept_name_type= 'FULLY_SPECIFIED') value_coded on value_coded.value_coded = cn.concept_id
+              GROUP BY value_coded.person_id
+            )frequency_value ON frequency_value.person_id = personData.person_id
+  LEFT JOIN (
+              SELECT value_coded.person_id, cn.name from concept_name cn
+                JOIN (select
+                        o.person_id,o.value_coded
+                      from
+                        concept_name cn
+                        join obs o ON cn.concept_id=o.concept_id and o.voided is FALSE
+                                      and cn.name = 'SAP, Estimated length of stay' and cn.concept_name_type= 'FULLY_SPECIFIED') value_coded on value_coded.value_coded = cn.concept_id
+              GROUP BY value_coded.person_id
+            )length_value on length_value.person_id = personData.person_id
+  LEFT JOIN (
               SELECT
                 o.person_id,
                 o.encounter_id,
@@ -289,10 +297,9 @@ FROM
                             FROM obs
                               INNER JOIN concept_view qcvn
                                 ON obs.concept_id = qcvn.concept_id AND
-                                qcvn.retired IS FALSE AND obs.voided IS FALSE AND
+                                   qcvn.retired IS FALSE AND obs.voided IS FALSE AND
                                    qcvn.concept_full_name = 'ONN, Date recorded'
                             ORDER BY person_id
                           ) onnDateRecorded ON o.encounter_id = onnDateRecorded.encounter_id
-                ) latestNoteAndCorrespoindingDateRecorded
-    ON latestNoteAndCorrespoindingDateRecorded.person_id = personData.person_id
-ORDER BY dateOfArrival.date_of_arrival
+            ) latestNoteAndCorrespoindingDateRecorded ON latestNoteAndCorrespoindingDateRecorded.person_id = personData.person_id
+ORDER BY dateOfArrival.date_of_arrival", 'Hospital RSP Queue', @uuid);
