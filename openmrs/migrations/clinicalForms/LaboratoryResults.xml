@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="AMMAN_CONFIG_202309110215" author="Keerthi">
+        <comment>Adding Concepts for Laboratory Results Form</comment>
+        <sqlFile path="concepts/addLaboratoryResultsFormConcepts.sql"/>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202309110245" author="Keerthi ">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_reference_term
+                where code in
+                      ("162869")
+                  and retired = 0
+                  and concept_source_id = (
+                    select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding CEIL codes to concepts</comment>
+        <sql>
+            call CREATE_REFERENCE_MAPPING_CEIL("LR, Date of sample","162869");
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202309110345" author="Keerthi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                                         join
+                                     concept_name cn
+                                     on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                                                                                      ("LR, Date of sample","LR, Laboratory results, comments","LR, Image upload")
+                  AND
+                        cn.concept_id IN (select concept_id from concept_name where name = "LR, Laboratory Results"));
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Set Members to LR Laboratory Results</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "LR, Laboratory Results" and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+            set @member3_concept_id = 0;
+            select concept_id into @member1_concept_id from concept_name where name ="LR, Date of sample" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name ="LR, Laboratory results, comments" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name ="LR, Image upload" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1);
+            call add_concept_set_members(@concept_id, @member2_concept_id, 2);
+            call add_concept_set_members(@concept_id, @member3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202309110246" author="Keerthi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                                         join
+                                     concept_name cn
+                                     on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                                                                                      ("Image")
+                                                                                  and concept_name_type = "FULLY_SPECIFIED")
+                  AND
+                        cn.concept_id IN (select concept_id from concept_name where name = "LR, Image upload");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Set Members to LR, Image upload</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "LR, Image upload" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            set @member1_concept_id = 0;
+
+            select concept_id into @member1_concept_id from concept_name where name ="Image" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            call add_concept_set_members(@concept_id, @member1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202309110247" author="Keerthi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                                         join concept_name cn
+                                              on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name ='LR, Laboratory Results'  AND concept_name_type = "FULLY_SPECIFIED")
+                  and cs.concept_set IN (select concept_id from concept_name where name = 'All Observation Templates');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members to all observation templates</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            select concept_id into @concept_id from concept_name where name = 'All Observation Templates' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'LR, Laboratory Results' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members (@concept_id, @member1_concept_id, 1);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

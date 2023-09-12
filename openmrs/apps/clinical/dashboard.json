@@ -266,6 +266,8 @@
                     "3DA, 3D Assessment",
                     "CPA, Clinical Pharmacy Assessment",
                     "PREOPAA, Pre-Operative Anaesthesia Assessment"
+                    "CPA, Clinical Pharmacy Assessment",
+                    "LR, Laboratory Results"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT"
             }

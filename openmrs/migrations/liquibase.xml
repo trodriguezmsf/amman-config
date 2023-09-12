@@ -12635,4 +12635,5 @@
         <sqlFile path="programs/hospitalRSPQueue_2.sql"/>
     </changeSet>
 
+    <include file="clinicalForms/LaboratoryResults.xml"/>
 </databaseChangeLog>
