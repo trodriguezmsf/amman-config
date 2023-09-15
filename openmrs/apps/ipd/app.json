@@ -216,11 +216,33 @@
                         "pivotTable": {}
                     }
                 },
+                "clinicalpharmacyassessment": {
+                    "translationKey": "DASHBOARD_CLINICAL_PHARMACY_KEY",
+                    "type": "vitals",
+                    "isObservation": true,
+                    "displayOrder": 13,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "CPA, Clinical Pharmacy Assessment"
+                        ],
+                        "showGroupDateTime": true
+                    },
+                    "expandedViewConfig": {
+                        "conceptNames": [
+                            "CPA, Clinical Pharmacy Assessment"
+                        ],
+                        "isEditable": true,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
                 "consultationnote": {
                     "translationKey": "DASHBOARD_CONSULTATION_NOTE_KEY",
                     "type": "vitals",
                     "isObservation": true,
-                    "displayOrder": 13,
+                    "displayOrder": 14,
                     "dashboardConfig": {
                         "showDetailsButton": true,
                         "isEditable": true,

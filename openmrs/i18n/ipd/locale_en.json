@@ -48,5 +48,6 @@
   "MULTITAG_KEY": "MultiTag",
   "OCCUPIED_VALUE_KEY": "Occupied",
   "AVAILABLE_VALUE_KEY": "Available",
-  "OUT_OF_SERVICE": "Out of service"
+  "OUT_OF_SERVICE": "Out of service",
+  "DASHBOARD_CLINICAL_PHARMACY_KEY": "Clinical Pharmacy"
 }
