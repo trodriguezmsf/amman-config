@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="AMMAN_CONFIG_202319090150" author="Keerthi">
+        <comment>Adding Concepts for Follow-up Validation form</comment>
+        <sqlFile path="concepts/addNewFollowUpValidationConcepts.sql"/>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202319090102" author="Keerthi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                                         join
+                                     concept_name cn
+                                     on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                                                                                      ("Fits anaesthesia criteria", "R1D: does not fit anaesthesia criteria", "Needs complementary investigation")
+                                                                                  and concept_name_type = "FULLY_SPECIFIED")
+                  AND
+                        cn.concept_id IN (select concept_id from concept_name where name = "FUP, Outcome for further admission anaesthesia validation");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to FUP, Outcome for further admission anaesthesia validation</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "FUP, Outcome for further admission anaesthesia validation" and
+                concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Fits anaesthesia criteria" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="R1D: does not fit anaesthesia criteria" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Needs complementary investigation" and concept_name_type ="FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202319090103" author="Keerthi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                                         join
+                                     concept_name cn
+                                     on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                                                                                      ("Dr. Hadeel Al-Ani", "Dr. Ammar Sobhi Ahmad", "Dr. Abdulraoof Al-Ahmad", "Dr. Fadi Abu Alrub")
+                                                                                  and concept_name_type = "FULLY_SPECIFIED")
+                  AND
+                        cn.concept_id IN (select concept_id from concept_name where name = "FUP, Name of anaesthetist");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to FUP, Name of anaesthetist</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "FUP, Name of anaesthetist" and
+                concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Dr. Hadeel Al-Ani" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Dr. Ammar Sobhi Ahmad" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Dr. Abdulraoof Al-Ahmad" and concept_name_type ="FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Dr. Fadi Abu Alrub" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="AMMAN_CONFIG_202319090104" author="Keerthi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                                         join concept_name cn
+                                              on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                                                                                  ('FUP, Outcome for further admission anaesthesia validation', 'FUP, Comments about anaesthesia validation', 'FUP, Name of anaesthetist') AND concept_name_type = "FULLY_SPECIFIED")
+                  and cs.concept_set IN (select concept_id from concept_name where name = 'Follow-up validation');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for "Follow-up validation" Concept</comment>
+        <sql>
+            set @concept_id = 0;
+            set @member1_concept_id = 0;
+            set @member2_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = 'Follow-up validation' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member1_concept_id from concept_name where name = 'FUP, Outcome for further admission anaesthesia validation' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member2_concept_id from concept_name where name = 'FUP, Comments about anaesthesia validation' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @member3_concept_id from concept_name where name = 'FUP, Name of anaesthetist' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members (@concept_id, @member1_concept_id, 22);
+            call add_concept_set_members (@concept_id, @member2_concept_id, 23);
+            call add_concept_set_members (@concept_id, @member3_concept_id, 24);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

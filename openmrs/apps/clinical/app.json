@@ -185,6 +185,18 @@
             "FUP, Outcomes for follow-up surgical validation":{
                 "dropdown":true
             },
+            "FUP, Outcome for further admission anaesthesia validation":{
+              "dropdown":true
+            },
+            "FUP, Name of anaesthetist":{
+              "dropdown":true
+            },
+            "FUP, Outcome for further admission anaesthesia validation":{
+              "dropdown":true
+            },
+           "FUP, Name of anaesthetist":{
+              "dropdown":true
+            },
             "FUP, Time for next medical follow-up":{
                 "dropdown":true
             },
