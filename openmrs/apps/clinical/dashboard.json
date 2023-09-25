@@ -117,7 +117,10 @@
                 "FUP, Priority",
                 "FUP, Name (s) of Surgeon 1",
                 "FUP, Name (s) of Surgeon 2",
-                "FUP, Does the Patient need Surgical Final Validation"
+                "FUP, Does the Patient need Surgical Final Validation",
+                "FUP, Outcome for further admission anaesthesia validation",
+                "FUP, Comments about anaesthesia validation",
+                "FUP, Name of anaesthetist"
               ]
             },
             "expandedViewConfig": {
