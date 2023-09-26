@@ -1239,7 +1239,13 @@
             "V, Pulse",
             "V, Respiratory rate",
             "V, Systolic blood pressure",
-            "V, Diastolic blood pressure"
+            "V, Diastolic blood pressure",
+            "OS, Pain Severity",
+            "OS, Does the patient have a drain?",
+            "OS, Side of drain",
+            "OS, Site of drain",
+            "OS, Drainage",
+            "OS, Total quantity evacuated from the drain"
           ]
         },
         "expandedViewConfig": {
@@ -1250,7 +1256,13 @@
             "V, Pulse",
             "V, Respiratory rate",
             "V, Systolic blood pressure",
-            "V, Diastolic blood pressure"
+            "V, Diastolic blood pressure",
+            "OS, Pain Severity",
+            "OS, Does the patient have a drain?",
+            "OS, Side of drain",
+            "OS, Site of drain",
+            "OS, Drainage",
+            "OS, Total quantity evacuated from the drain"
           ]
         }
       }
