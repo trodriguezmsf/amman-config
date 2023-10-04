@@ -12637,4 +12637,5 @@
 
     <include file="clinicalForms/LaboratoryResults.xml"/>
     <include file="clinicalForms/followUpValidationForm1.xml"/>
+    <include file="bacteriology/addNewAntibiogramsAndMicroOrganisms.xml"/>
 </databaseChangeLog>
