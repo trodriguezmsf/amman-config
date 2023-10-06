@@ -6376,6 +6376,10 @@
         <comment>Adding queue for patients with any medications prescribed that a stop date has not been entered or that the end date for the prescription has not past</comment>
         <sqlFile path="programs/openPrescription.sql"/>
     </changeSet>
+    <changeSet id="Amman-202305101121" author="Keerthi" context="rel3.5" runOnChange="true">
+        <comment>Adding queue for patients with any medications prescribed that has is DOT checked</comment>
+        <sqlFile path="programs/dotMedications.sql"/>
+    </changeSet>
     <changeSet id="Amman-201712281459" author="Mahesh" context="rel3.5" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
