@@ -12647,7 +12647,7 @@
         <comment>Adding global property for network physiotherapy display control</comment>
         <sqlFile path="displayControl/mloName.sql"/>
         <sqlFile path="displayControl/siteAndSide.sql"/>
-        <sqlFile path="displayControl/obsDateTime.sql"/>
+        <sqlFile path="displayControl/obsdateTime.sql"/>
         <sqlFile path="displayControl/physiotherapyPainAssessment1.sql"/>
         <sqlFile path="displayControl/physiotherapyPainAssessment2.sql"/>
         <sqlFile path="displayControl/physiotherapyFollowUpPlan.sql"/>
