@@ -1,0 +1,143 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="Amman-202310050001" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name
+                where name in
+                      ("3D", "3D-workflow", "3D-outcome", "Active 3D")
+                  and concept_name_type = 'FULLY_SPECIFIED'
+                  and locale = 'en'
+                  and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding 3D program concepts</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3D","3D","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3D-workflow","3D-workflow","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3D-outcome","3D-outcome","N/A","Misc",true);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Active 3D","Active 3D","N/A","Misc",false);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202310050002" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*)
+                from concept_set cs
+                         join concept_name cn
+                              on cs.concept_id = cn.concept_id
+                where cs.concept_id
+                    IN (select concept_id
+                        from concept_name
+                        where name in ("Defaulter", "Dismissal", "Refused", "MBA", "Death")
+                          AND concept_name_type = 'FULLY_SPECIFIED')
+                  and cs.concept_set IN (select concept_id from concept_name where name = '3D-outcome')
+                  and concept_name_type = "FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for "3D-outcome" concept</comment>
+        <sql>
+            select concept_id into @3D_outcome_concept_id from concept_name where name = "3D-outcome" and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Defaulter" and concept_name_type =
+                                                                                                    'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Dismissal" and concept_name_type =
+                                                                                                    'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Refused" and concept_name_type =
+                                                                                                'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="MBA" and concept_name_type =
+                                                                                                  'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Death" and concept_name_type =
+                                                                                              'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members(@3D_outcome_concept_id, @child1_concept_id, 1);
+            call add_concept_set_members(@3D_outcome_concept_id, @child2_concept_id, 2);
+            call add_concept_set_members(@3D_outcome_concept_id, @child3_concept_id, 3);
+            call add_concept_set_members(@3D_outcome_concept_id, @child4_concept_id, 4);
+            call add_concept_set_members(@3D_outcome_concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202310050003" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program where name='3D';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding program 3D</comment>
+        <sql>
+            select concept_id into @3D_concept_id from concept_name where name = '3D' and concept_name_type
+                = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @3D_outcome_concept_id from concept_name where name = '3D-outcome' and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select user_id into @creator_concept_id from users where username='superman';
+
+            INSERT INTO program(concept_id,outcomes_concept_id,creator,date_created,name,description,uuid)
+            VALUES (@3D_concept_id,@3D_outcome_concept_id,@creator_concept_id,now(),'3D','3D Program',uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202310050004" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program_workflow pw join concept_name cn on pw.concept_id = cn.concept_id
+                where pw.concept_id = (select concept_id from concept_name where name = '3D-workflow' and
+                    concept_name_type = 'FULLY_SPECIFIED') and concept_name_type = 'FULLY_SPECIFIED';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding 3D Program workflow</comment>
+        <sql>
+            select program_id into @3D_program_workflow from program where name='3D';
+            select concept_id into @3D_workflow_concept_id from concept_name where name ="3D-workflow" and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select user_id into @creator_concept_id from users where username='superman';
+
+            INSERT INTO program_workflow (program_id , concept_id , creator , date_created , retired , uuid)
+            VALUES (@3D_program_workflow,@3D_workflow_concept_id,@creator_concept_id, now(),0, uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="Amman-202310050005" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program_workflow_state where concept_id in (select concept_id from concept_name
+                                                                                 where name in ('Active 3D','Discharge')
+                                                                                   and program_workflow_id = (select program_workflow_id from program_workflow pw join concept_name cn on
+                                                                                     pw.concept_id = cn.concept_id
+                                                                                                              where pw.concept_id = (select concept_id from concept_name where name = '3D-workflow' and
+                                                                                                                  concept_name_type = 'FULLY_SPECIFIED' ) and concept_name_type = 'FULLY_SPECIFIED')
+                                                                                   and concept_name_type = 'FULLY_SPECIFIED');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Program states for 3D-workflow</comment>
+        <sql>
+            select concept_id into @3D_workflow_concept_id from concept_name where name = "3D-workflow" and
+                concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select program_workflow_id into @program_workflow_id from program_workflow where concept_id =
+                                                                                             @3D_workflow_concept_id;
+
+            select concept_id into @active_3D_concept_id from concept_name where name = "Active 3D"
+                                                                                  and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @discharge_concept_id from concept_name where name = "Discharge"
+                                                                                    and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            insert into program_workflow_state
+            (program_workflow_id,concept_id,initial,terminal,creator,date_created,retired ,uuid) values
+                                                                                                     (@program_workflow_id,@active_3D_concept_id,0,0,1,now(),0,uuid()),
+                                                                                                     (@program_workflow_id,@discharge_concept_id,0,0,1,now(),0,uuid());
+        </sql>
+    </changeSet>
+</databaseChangeLog>

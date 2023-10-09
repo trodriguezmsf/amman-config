@@ -892,6 +892,28 @@
             "pivotTable": {}
           }
         },
+        "3D Assessment": {
+          "translationKey": "DASHBOARD_TITLE_3D_ASSESSMENT_FORMS",
+          "displayOrder": 7,
+          "isObservation": true,
+          "dashboardConfig": {
+            "numberOfEncounters": 6,
+            "showDetailsButton": true,
+            "isEditable": true,
+            "conceptNames": [
+              "3DA, 3D Assessment"
+            ]
+          },
+          "expandedViewConfig": {
+            "conceptNames": [
+              "3DA, 3D Assessment"
+            ],
+            "isEditable": true,
+            "numberOfEncounters": 6,
+            "showDetailsButton": true,
+            "pivotTable": {}
+          }
+        },
         "lowerLimbPhysioSummary": {
           "type": "custom",
           "displayOrder": 4,
@@ -921,7 +943,7 @@
       "NetworkPhysiotherapy": {
         "translationKey": "NETWORK_PHYSIOTHERAPY_INFORMATION",
         "type": "custom",
-        "displayOrder": 7,
+        "displayOrder": 8,
         "config": {
           "title": "NETWORK_PHYSIOTHERAPY_INFORMATION",
           "template": "<network-physiotherapy section='config' patient='patient' enrollment='enrollment'></network-physiotherapy>"
