@@ -1,0 +1,244 @@
+<style>
+  .diagnosis-style {
+    margin-top: 12px !important;
+  }
+  #customControl {
+    background: #fff;
+  }
+  .hierarchy ul li {
+    background: none;
+  }
+  #customControl section.block {
+    padding: 0px !important;
+    border: 0;
+    background: #fff;
+  }
+  #customControl section.block ul {
+    background: none;
+    border-bottom: 1px solid #eee;
+  }
+  .data-hierarchy {
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 1px solid #eee;
+  }
+  div.text-hierarchy {
+    width: 38%;
+    padding: 3px;
+    padding-left: 0px;
+    float: left;
+    overflow: hidden;
+    font-size: 12px;
+  }
+  .header,
+  .sub_header {
+    border-bottom: 1px solid #eee;
+  }
+  .sub_header .heading,
+  .sub_header .heading2 {
+    font-size: 13px;
+    padding: 3px 0;
+    margin-left: 20px;
+  }
+  .sub_header .heading2 {
+    margin-left: 30px;
+  }
+  .header .heading {
+    padding: 3px;
+    padding-left: 20px;
+  }
+  .heading1 {
+    padding-left: 20px;
+    font-size: 14px;
+  }
+  .answer-concept {
+    font-size: 14px !important;
+  }
+  .text-hierarchy .concept_name {
+    margin-left: 30px;
+    margin-right: 20px;
+  }
+  .className {
+    padding-left: 10px !important;
+  }
+  .follow-up {
+    margin-left: 30px !important;
+  }
+  .video-container {
+    width: 90%;
+    margin-left: 30px;
+  }
+  .img_concept img {
+    width: 180px;
+    float: left;
+    border-radius: 5px;
+    margin-right: 15px;
+    margin-bottom: 5px;
+    margin-left: 15px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 15px 40px;
+  }
+  .video_container {
+    width: 43%;
+    float: left;
+    border: 1px solid #ede9e9;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 15px 40px;
+  }
+</style>
+<div id="customControl">
+  <h2 class="section-title">{{title | titleTranslate}}</h2>
+  <section class="block hierarchy">
+    <ul>
+      <li ng-if="mloNames.length>0">
+        <div class="data-hierarchy">
+          <div class="text-hierarchy">
+            <p class="heading1">{{mloNames[0].concept_name}}</p>
+          </div>
+          <div class="text-hierarchy answer-concept">
+            <label>{{mloNames[0].answer_concept_name}}</label>
+          </div>
+        </div>
+      </li>
+
+      <li ng-if="siteAndSideArrayLength>0">
+        <div
+          ng-repeat="(key, Data) in mapSiteAndSideDataToHeading track by $index"
+        >
+          <div class="header"><p class="heading">{{key}}</p></div>
+          <div ng-repeat="group in Data track by $index">
+            <div class="sub-section" ng-if="value.answer_concept_name !== ''">
+              <div class="sub_header"><p class="heading2">{{key}}</p></div>
+              <div ng-repeat="value in group track by $index">
+                <div class="data-hierarchy">
+                  <div class="text-hierarchy">
+                    <div class="concept_name className">
+                      <label>{{value.concept_name}}</label>
+                    </div>
+                  </div>
+                  <div class="text-hierarchy answer-concept">
+                    <label>{{value.answer_concept_name}}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li ng-if="painAssessmentArrayLength>0">
+        <div class="header">
+          <p class="heading">{{headingForPhysiotherapyPainAssessment}}</p>
+        </div>
+        <div
+          ng-repeat="(key, Data) in painAssessmentDataByObsGroupId track by $index"
+        >
+          <div class="sub_header" ng-if="$index !== 0">
+            <p class="heading" style="padding-left: 10px">
+              {{headingForPainAssessment}}
+            </p>
+          </div>
+          <div ng-repeat="group in Data track by $index">
+            <div class="sub-section" ng-if="group.answer_concept_name !== ''">
+              <div
+                class="data-hierarchy"
+                ng-class="{'className': group.concept_name !=='Obs datetime'}"
+              >
+                <div class="text-hierarchy">
+                  <div class="concept_name">
+                    <label>{{ group.concept_name }}</label>
+                  </div>
+                </div>
+                <div class="text-hierarchy answer-concept">
+                  <label>{{ group.answer_concept_name }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li
+        ng-repeat="Data in physiotherapyFollowUpPlan.concat(networkPhysiotherapy) track by $index"
+        ng-if="physiotherapyFollowUpPlan.concat(networkPhysiotherapy).length>0"
+      >
+        <div class="header">
+          <p class="heading" ng-if="$index === 0">
+            {{headingForPhysiotherapyFollowUpPlan}}
+          </p>
+          <p class="heading" ng-if="$index === 1">
+            {{headingForNetworkPainAssessment}}
+          </p>
+        </div>
+        <div class="sub_header">
+          <p class="heading follow-up" ng-if="$index === 0">
+            {{headingForFollowUpPlan}}
+          </p>
+        </div>
+        <div ng-repeat="(key, value) in Data track by $index">
+          <div
+            class="sub-section"
+            ng-class="{'className': $parent.$index === 0}"
+          >
+            <div class="data-hierarchy" ng-if="value !== ''">
+              <div class="text-hierarchy">
+                <div class="concept_name"><label>{{ key }}</label></div>
+              </div>
+              <div
+                class="text-hierarchy answer-concept"
+                ng-if="key !== 'Video Upload' && key !== 'Photo Upload'"
+              >
+                <label>{{ value }}</label>
+              </div>
+              <div ng-if="key === 'Video Upload'">
+                <br /><br />
+                <div
+                  class="video_container"
+                  ng-repeat="video in getPhotoesAndVideos(value)"
+                >
+                  <video width="100%" height="auto" controls>
+                    <source
+                      ng-src="{{ '/document_images/' + video }}"
+                      type="video/mp4"
+                    />
+                  </video>
+                </div>
+              </div>
+              <div ng-if="key === 'Photo Upload'">
+                <br /><br />
+                <div>
+                  <div
+                    class="img_concept"
+                    ng-repeat="image in getPhotoesAndVideos(value)"
+                  >
+                    <img
+                      cImg
+                      rounded
+                      src="{{ '/document_images/' + image }}"
+                      thumbnail
+                      width="100%"
+                      height="auto"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div
+      ng-if="mloNames.length == 0 && siteAndSideArrayLength == 0 && painAssessmentArrayLength == 0 && physiotherapyFollowUpPlan.length == 0 && networkPhysiotherapy.length == 0"
+    >
+      <div class="placeholder-text">
+        <p
+          translate="DISPLAY_CONTROL_ERROR_MESSAGE_KEY"
+          translate-values="::{displayControl : '{{'Network Physiotherapy Information found' | translate}}'}"
+        ></p>
+      </div>
+    </div>
+  </section>
+</div>

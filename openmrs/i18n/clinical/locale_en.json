@@ -48,7 +48,7 @@
   "DASHBOARD_TAB_PATIENT_SUMMARY_KEY": "Patient Summary",
   "DASHBOARD_TAB_DISCHARGE_SUMMARY_KEY": "Discharge Summary",
   "DASHBOARD_TAB_ORDERS_KEY": "Orders",
-  "DASHBOARD_TAB_PHYSIO_DASHBOARD_KEY": "Physiotherapy Summary",
+  "DASHBOARD_TAB_PHYSIO_DASHBOARD_KEY": "Rehabilitation Summary",
   "DASHBOARD_TITLE_VITAL_SIGNS":"Baseline Vital Signs",
   "DASHBOARD_TITLE_SOCIAL_HISTORY":"Social History",
   "DASHBOARD_TITLE_HEALTH_EDUCATION":"Health Education",
@@ -169,5 +169,6 @@
   "DASHBOARD_TITLE_TEMPERATURE": "Temperature",
   "DASHBOARD_TITLE_PAIN_SERVICE_NOTE": "Pain Service Note",
   "DASHBOARD_TITLE_MENTAL_HEALTH_ASSESSMENT": "Mental Health assessment",
-  "MEDICATION_LABEL_START_DATE": "Medication Start Date"
+  "MEDICATION_LABEL_START_DATE": "Medication Start Date",
+  "NETWORK_PHYSIOTHERAPY_INFORMATION":"Network Physiotherapy Information"
 }

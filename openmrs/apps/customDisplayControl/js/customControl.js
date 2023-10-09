@@ -1602,4 +1602,97 @@ angular.module('bahmni.common.displaycontrol.custom')
         controller: controller,
         template: '<ng-include src="contentUrl"/>'
     }
+}]).directive('networkPhysiotherapy', ['$http', '$stateParams', '$q', 'appService', 'spinner', function ($http, $stateParams, $q, appService, spinner) {
+    var controller = function ($scope) {
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/networkPhysiotherapy.html";
+        $scope.title = $scope.config.title;
+
+        var getResponseFromQuery = function (queryParameter) {
+            var params = {
+                patientUuid: $scope.patient.uuid,
+                q: queryParameter,
+                v: "full"
+            };
+            return $http.get('/openmrs/ws/rest/v1/bahmnicore/sql', {
+                method: "GET",
+                params: params,
+                withCredentials: true
+            });
+        };
+        spinner.forPromise($q.all([getResponseFromQuery("bahmni.sqlGet.mloName"), getResponseFromQuery("bahmni.sqlGet.siteAndSide"), getResponseFromQuery("bahmni.sqlGet.obsDateTime"),
+        getResponseFromQuery("bahmni.sqlGet.physiotherapyPainAssessment1"), getResponseFromQuery("bahmni.sqlGet.physiotherapyFollowUpPlan"), 
+        getResponseFromQuery("bahmni.sqlGet.networkPhysiotherapyAssessment"), getResponseFromQuery("bahmni.sqlGet.physiotherapyPainAssessment2")]).then(function (response) {
+          const headingForSurgicalDiagnosis = "Surgical Diagnosis";
+          $scope.headingForPhysiotherapyPainAssessment =
+            "Physiotherapy pain assessment";
+          $scope.headingForPainAssessment = "Pain Assessment";
+          $scope.headingForPhysiotherapyFollowUpPlan =
+            "Physiotherapy follow-up plan";
+          $scope.headingForNetworkPainAssessment =
+            "NetworkPhysiotherapy Pain Assessment";
+          $scope.headingForFollowUpPlan = "Follow-up plan";
+
+          $scope.mloNames = response[0].data;
+          $scope.siteAndSide = response[1].data;
+          $scope.painAssessment = response[3].data;
+          $scope.networkPhysiotherapy = response[5].data;
+
+          const obsDateTime = response[2].data[0];
+          const followUpPlan = response[4].data;
+          const painAssessment2 = response[6].data;
+          $scope.painAssessment.unshift(obsDateTime);
+          $scope.painAssessment.push(...painAssessment2);
+
+          let getDataByObsGroupId = (groupArray) => {
+            const groupedData = {};
+            groupArray.map((item) => {
+              const obsGroupId = item?.obs_group_id;
+              if (obsGroupId !== undefined) {
+                if (!groupedData[obsGroupId]) {
+                  groupedData[obsGroupId] = [];
+                }
+              }
+              if (item) groupedData[obsGroupId].push(item);
+            });
+            return groupedData;
+          };
+
+          const siteAndSideDataByObsGroupId = getDataByObsGroupId($scope.siteAndSide);
+          $scope.painAssessmentDataByObsGroupId = getDataByObsGroupId($scope.painAssessment);
+          const headings = [headingForSurgicalDiagnosis];
+          const groupedDataArray = [siteAndSideDataByObsGroupId];
+
+          $scope.mapSiteAndSideDataToHeading = {};
+          for (let i = 0; i < groupedDataArray.length; i++) {
+            const valueFromArray2 = headings[i];
+            console.log(groupedDataArray[i], typeof groupedDataArray[i]);
+            const groupedData = groupedDataArray[i];
+            if (Object.keys(groupedData).length > 0)
+              $scope.mapSiteAndSideDataToHeading[valueFromArray2] = groupedDataArray[i];
+          }
+
+          $scope.siteAndSideArrayLength = Object.keys($scope.mapSiteAndSideDataToHeading).length;
+          $scope.painAssessmentArrayLength = Object.keys(
+            $scope.painAssessmentDataByObsGroupId
+          ).length;
+
+          $scope.physiotherapyFollowUpPlan = [];
+          if (obsDateTime?.answer_concept_name != undefined) {
+            $scope.physiotherapyFollowUpPlan.push({
+              "Obs datetime": obsDateTime.answer_concept_name,
+              ...followUpPlan[0],
+            });
+          }
+
+          $scope.getPhotoesAndVideos = (value) =>{
+            return value.split(', ');
+          }
+        }));
+    };
+
+    return {
+        restrict: 'E',
+        controller: controller,
+        template: '<ng-include src="contentUrl"/>'
+    }
 }]);

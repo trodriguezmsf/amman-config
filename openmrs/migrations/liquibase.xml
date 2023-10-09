@@ -12642,4 +12642,15 @@
     <include file="clinicalForms/LaboratoryResults.xml"/>
     <include file="clinicalForms/followUpValidationForm1.xml"/>
     <include file="bacteriology/addNewAntibiogramsAndMicroOrganisms.xml"/>
+
+    <changeSet id="Amman-202310051614" author="Bindu">
+        <comment>Adding global property for network physiotherapy display control</comment>
+        <sqlFile path="displayControl/mloName.sql"/>
+        <sqlFile path="displayControl/siteAndSide.sql"/>
+        <sqlFile path="displayControl/obsDateTime.sql"/>
+        <sqlFile path="displayControl/physiotherapyPainAssessment1.sql"/>
+        <sqlFile path="displayControl/physiotherapyPainAssessment2.sql"/>
+        <sqlFile path="displayControl/physiotherapyFollowUpPlan.sql"/>
+        <sqlFile path="displayControl/networkPhysiotherapyAssessment.sql"/>
+    </changeSet>
 </databaseChangeLog>
