@@ -55,5 +55,24 @@
     },
     "order": 3,
     "requiredPrivilege": "app:pharmacy"
+  },
+  "bahmniClinicalPatientsSearchPharmacyRecentStoppedPrescriptions": {
+    "id": "bahmni.clinical.patients.search.pharmacyRecentStoppedPrescriptions",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "searchHandler": "emrapi.sqlSearch.recentStoppedPrescriptions",
+      "translationKey": "MODULE_LABEL_RECENTSTOPPEDPRESCRIPTIONS_KEY",
+      "links": [
+        {
+          "url": "#/programs/patient/{{patientUuid}}/dashboard/treatment?programUuid={{programUuid}}&enrollment={{enrollment}}&tabConfigName=allMedicationTabConfig",
+          "linkColumn": "identifier",
+          "newTab": true
+        }],
+      "view": "tabular",
+      "searchColumns": ["identifier","Patient Name","Age","Speciality","Name of Surgeon","Bed Allocation","Prescriber","Medications","Start Date","Prescribed/Updated Time","Duration & Units","Stop Date"]
+    },
+    "order": 3,
+    "requiredPrivilege": "app:pharmacy"
   }
 }

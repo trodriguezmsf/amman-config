@@ -141,6 +141,7 @@
   "MODULE_LABEL_NEWMODIFIED_KEY": "New/Modified Prescriptions",
   "MODULE_LABEL_OPENPRESCRIPTION_KEY": "Open Prescriptions",
   "MODULE_LABEL_DOTMEDICATIONS_KEY": "DOT Medications",
+  "MODULE_LABEL_RECENTSTOPPEDPRESCRIPTIONS_KEY": "Recent Stopped Medications",
   "DASHBOARD_TITLE_PHYSIO_SUMMARY_SCORES_KEY": "Scores",
   "NO_SCORES_FOUND_MESSAGE": "No score present for this patient",
   "NO_PATIENT_INFORMATION_FOUND": "No Information Found For This Patient",

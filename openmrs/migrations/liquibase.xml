@@ -12615,6 +12615,10 @@
             call add_concept_set_members(@concept_id, @child1_concept_id, 16);
         </sql>
     </changeSet>
+    <changeSet id="Amman-202310101545" author="Sreelekha">
+        <comment>Adding Recently Closed Prescriptions in Pharmacy tab</comment>
+        <sqlFile path="programs/recentStoppedPrescriptions.sql"/>
+    </changeSet>
     <include file="clinicalForms/3DAssessment.xml"/>
     <include file="clinicalForms/addAnesthesiaInitialAssessment.xml"/>
     <include file="clinicalForms/vitalSigns.xml"/>
