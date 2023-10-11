@@ -939,16 +939,7 @@
             "title": "DASHBOARD_TITLE_PHYSIO_SUMMARY_SCORES_KEY",
             "template": "<physio-summary-scores section='config' patient='patient' enrollment='enrollment'></physio-summary-scores>"
           }
-        },
-      "NetworkPhysiotherapy": {
-        "translationKey": "NETWORK_PHYSIOTHERAPY_INFORMATION",
-        "type": "custom",
-        "displayOrder": 8,
-        "config": {
-          "title": "NETWORK_PHYSIOTHERAPY_INFORMATION",
-          "template": "<network-physiotherapy section='config' patient='patient' enrollment='enrollment'></network-physiotherapy>"
         }
-      }
       }
     },
   "AddintionalInfo": {
