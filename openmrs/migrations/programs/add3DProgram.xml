@@ -8,7 +8,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_name
                 where name in
-                      ("3D", "3D-workflow", "3D-outcome", "Active 3D")
+                      ("3D", "3D-workflow", "3D-outcome", "Active")
                   and concept_name_type = 'FULLY_SPECIFIED'
                   and locale = 'en'
                   and voided = 0;
@@ -25,7 +25,7 @@
             call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3D","3D","N/A","Misc",false);
             call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3D-workflow","3D-workflow","N/A","Misc",false);
             call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3D-outcome","3D-outcome","N/A","Misc",true);
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Active 3D","Active 3D","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Active","Active","N/A","Misc",false);
         </sql>
     </changeSet>
     <changeSet id="Amman-202310050002" author="Supriya">
@@ -114,7 +114,7 @@
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from program_workflow_state where concept_id in (select concept_id from concept_name
-                                                                                 where name in ('Active 3D','Discharge')
+                                                                                 where name in ('Active','Discharge')
                                                                                    and program_workflow_id = (select program_workflow_id from program_workflow pw join concept_name cn on
                                                                                      pw.concept_id = cn.concept_id
                                                                                                               where pw.concept_id = (select concept_id from concept_name where name = '3D-workflow' and
@@ -129,14 +129,14 @@
             select program_workflow_id into @program_workflow_id from program_workflow where concept_id =
                                                                                              @3D_workflow_concept_id;
 
-            select concept_id into @active_3D_concept_id from concept_name where name = "Active 3D"
+            select concept_id into @Active_concept_id from concept_name where name = "Active"
                                                                                   and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @discharge_concept_id from concept_name where name = "Discharge"
                                                                                     and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
 
             insert into program_workflow_state
             (program_workflow_id,concept_id,initial,terminal,creator,date_created,retired ,uuid) values
-                                                                                                     (@program_workflow_id,@active_3D_concept_id,0,0,1,now(),0,uuid()),
+                                                                                                     (@program_workflow_id,@Active_concept_id,0,0,1,now(),0,uuid()),
                                                                                                      (@program_workflow_id,@discharge_concept_id,0,0,1,now(),0,uuid());
         </sql>
     </changeSet>
